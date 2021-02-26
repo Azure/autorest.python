@@ -16,6 +16,7 @@ from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -36,11 +37,12 @@ class PollingPagingExampleOperationsMixin:
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = self._basic_polling_initial_request(
+        request = _basic_polling_initial_request(
             body=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -140,16 +142,18 @@ class PollingPagingExampleOperationsMixin:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._basic_paging_request(
+                request = _basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._basic_paging_request(
+                request = _basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"

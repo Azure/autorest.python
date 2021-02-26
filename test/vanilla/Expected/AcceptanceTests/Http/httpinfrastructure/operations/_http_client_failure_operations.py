@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +68,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head400_request(template_url=self.head400.metadata["url"], **kwargs)
+        request = _head400_request(template_url=self.head400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,7 +101,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get400_request(template_url=self.get400.metadata["url"], **kwargs)
+        request = _get400_request(template_url=self.get400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -133,7 +134,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options400_request(template_url=self.options400.metadata["url"], **kwargs)
+        request = _options400_request(template_url=self.options400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -172,7 +174,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put400_request(body=boolean_value, template_url=self.put400.metadata["url"], **kwargs)
+        request = _put400_request(body=boolean_value, template_url=self.put400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -211,7 +214,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch400_request(body=boolean_value, template_url=self.patch400.metadata["url"], **kwargs)
+        request = _patch400_request(body=boolean_value, template_url=self.patch400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -250,7 +254,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post400_request(body=boolean_value, template_url=self.post400.metadata["url"], **kwargs)
+        request = _post400_request(body=boolean_value, template_url=self.post400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -289,7 +294,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete400_request(body=boolean_value, template_url=self.delete400.metadata["url"], **kwargs)
+        request = _delete400_request(body=boolean_value, template_url=self.delete400.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -321,7 +327,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head401_request(template_url=self.head401.metadata["url"], **kwargs)
+        request = _head401_request(template_url=self.head401.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -353,7 +360,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get402_request(template_url=self.get402.metadata["url"], **kwargs)
+        request = _get402_request(template_url=self.get402.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -385,7 +393,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options403_request(template_url=self.options403.metadata["url"], **kwargs)
+        request = _options403_request(template_url=self.options403.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -417,7 +426,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get403_request(template_url=self.get403.metadata["url"], **kwargs)
+        request = _get403_request(template_url=self.get403.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -456,7 +466,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put404_request(body=boolean_value, template_url=self.put404.metadata["url"], **kwargs)
+        request = _put404_request(body=boolean_value, template_url=self.put404.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -495,7 +506,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch405_request(body=boolean_value, template_url=self.patch405.metadata["url"], **kwargs)
+        request = _patch405_request(body=boolean_value, template_url=self.patch405.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -534,7 +546,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post406_request(body=boolean_value, template_url=self.post406.metadata["url"], **kwargs)
+        request = _post406_request(body=boolean_value, template_url=self.post406.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -573,7 +586,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete407_request(body=boolean_value, template_url=self.delete407.metadata["url"], **kwargs)
+        request = _delete407_request(body=boolean_value, template_url=self.delete407.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -612,7 +626,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put409_request(body=boolean_value, template_url=self.put409.metadata["url"], **kwargs)
+        request = _put409_request(body=boolean_value, template_url=self.put409.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -644,7 +659,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head410_request(template_url=self.head410.metadata["url"], **kwargs)
+        request = _head410_request(template_url=self.head410.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -676,7 +692,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get411_request(template_url=self.get411.metadata["url"], **kwargs)
+        request = _get411_request(template_url=self.get411.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -708,7 +725,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options412_request(template_url=self.options412.metadata["url"], **kwargs)
+        request = _options412_request(template_url=self.options412.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -740,7 +758,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get412_request(template_url=self.get412.metadata["url"], **kwargs)
+        request = _get412_request(template_url=self.get412.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -779,7 +798,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put413_request(body=boolean_value, template_url=self.put413.metadata["url"], **kwargs)
+        request = _put413_request(body=boolean_value, template_url=self.put413.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -818,7 +838,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch414_request(body=boolean_value, template_url=self.patch414.metadata["url"], **kwargs)
+        request = _patch414_request(body=boolean_value, template_url=self.patch414.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -857,7 +878,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post415_request(body=boolean_value, template_url=self.post415.metadata["url"], **kwargs)
+        request = _post415_request(body=boolean_value, template_url=self.post415.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -889,7 +911,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get416_request(template_url=self.get416.metadata["url"], **kwargs)
+        request = _get416_request(template_url=self.get416.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -928,7 +951,8 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete417_request(body=boolean_value, template_url=self.delete417.metadata["url"], **kwargs)
+        request = _delete417_request(body=boolean_value, template_url=self.delete417.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -960,7 +984,8 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head429_request(template_url=self.head429.metadata["url"], **kwargs)
+        request = _head429_request(template_url=self.head429.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

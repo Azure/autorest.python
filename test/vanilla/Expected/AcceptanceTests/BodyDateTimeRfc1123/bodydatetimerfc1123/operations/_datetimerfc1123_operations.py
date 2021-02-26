@@ -21,12 +21,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -70,7 +69,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = _get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -106,7 +106,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = _get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -142,7 +143,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_overflow_request(template_url=self.get_overflow.metadata["url"], **kwargs)
+        request = _get_overflow_request(template_url=self.get_overflow.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -178,7 +180,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_underflow_request(template_url=self.get_underflow.metadata["url"], **kwargs)
+        request = _get_underflow_request(template_url=self.get_underflow.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -220,9 +223,10 @@ class Datetimerfc1123Operations(object):
 
         datetime_body = self._serialize.body(datetime_body, "rfc-1123")
 
-        request = self._put_utc_max_date_time_request(
+        request = _put_utc_max_date_time_request(
             body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -254,9 +258,10 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_utc_lowercase_max_date_time_request(
+        request = _get_utc_lowercase_max_date_time_request(
             template_url=self.get_utc_lowercase_max_date_time.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,9 +297,10 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_utc_uppercase_max_date_time_request(
+        request = _get_utc_uppercase_max_date_time_request(
             template_url=self.get_utc_uppercase_max_date_time.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -336,9 +342,10 @@ class Datetimerfc1123Operations(object):
 
         datetime_body = self._serialize.body(datetime_body, "rfc-1123")
 
-        request = self._put_utc_min_date_time_request(
+        request = _put_utc_min_date_time_request(
             body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -370,7 +377,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_utc_min_date_time_request(template_url=self.get_utc_min_date_time.metadata["url"], **kwargs)
+        request = _get_utc_min_date_time_request(template_url=self.get_utc_min_date_time.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

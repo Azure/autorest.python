@@ -22,4 +22,10 @@ def _get_incorrect_error_from_server_request(**kwargs) -> HttpRequest:
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

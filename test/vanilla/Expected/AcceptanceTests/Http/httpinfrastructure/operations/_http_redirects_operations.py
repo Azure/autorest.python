@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +68,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head300_request(template_url=self.head300.metadata["url"], **kwargs)
+        request = _head300_request(template_url=self.head300.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -105,7 +105,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get300_request(template_url=self.get300.metadata["url"], **kwargs)
+        request = _get300_request(template_url=self.get300.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -146,7 +147,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head301_request(template_url=self.head301.metadata["url"], **kwargs)
+        request = _head301_request(template_url=self.head301.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -182,7 +184,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get301_request(template_url=self.get301.metadata["url"], **kwargs)
+        request = _get301_request(template_url=self.get301.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -226,7 +229,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put301_request(body=boolean_value, template_url=self.put301.metadata["url"], **kwargs)
+        request = _put301_request(body=boolean_value, template_url=self.put301.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -261,7 +265,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head302_request(template_url=self.head302.metadata["url"], **kwargs)
+        request = _head302_request(template_url=self.head302.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -297,7 +302,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get302_request(template_url=self.get302.metadata["url"], **kwargs)
+        request = _get302_request(template_url=self.get302.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -341,7 +347,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch302_request(body=boolean_value, template_url=self.patch302.metadata["url"], **kwargs)
+        request = _patch302_request(body=boolean_value, template_url=self.patch302.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -384,7 +391,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post303_request(body=boolean_value, template_url=self.post303.metadata["url"], **kwargs)
+        request = _post303_request(body=boolean_value, template_url=self.post303.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -420,7 +428,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head307_request(template_url=self.head307.metadata["url"], **kwargs)
+        request = _head307_request(template_url=self.head307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -456,7 +465,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get307_request(template_url=self.get307.metadata["url"], **kwargs)
+        request = _get307_request(template_url=self.get307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -492,7 +502,8 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options307_request(template_url=self.options307.metadata["url"], **kwargs)
+        request = _options307_request(template_url=self.options307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -535,7 +546,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put307_request(body=boolean_value, template_url=self.put307.metadata["url"], **kwargs)
+        request = _put307_request(body=boolean_value, template_url=self.put307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -578,7 +590,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch307_request(body=boolean_value, template_url=self.patch307.metadata["url"], **kwargs)
+        request = _patch307_request(body=boolean_value, template_url=self.patch307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -621,7 +634,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post307_request(body=boolean_value, template_url=self.post307.metadata["url"], **kwargs)
+        request = _post307_request(body=boolean_value, template_url=self.post307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -664,7 +678,8 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete307_request(body=boolean_value, template_url=self.delete307.metadata["url"], **kwargs)
+        request = _delete307_request(body=boolean_value, template_url=self.delete307.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

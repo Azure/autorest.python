@@ -20,6 +20,8 @@ from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMetho
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
+from ...protocol import *
+
 
 class MultiapiServiceClientOperationsMixin(object):
 

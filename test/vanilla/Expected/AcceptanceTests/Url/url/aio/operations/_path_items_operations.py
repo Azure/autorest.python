@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -78,7 +79,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_all_with_values_request(
+        request = _get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -86,6 +87,7 @@ class PathItemsOperations:
             template_url=self.get_all_with_values.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -132,7 +134,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_global_query_null_request(
+        request = _get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -140,6 +142,7 @@ class PathItemsOperations:
             template_url=self.get_global_query_null.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -186,7 +189,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_global_and_local_query_null_request(
+        request = _get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -194,6 +197,7 @@ class PathItemsOperations:
             template_url=self.get_global_and_local_query_null.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -239,7 +243,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_local_path_item_query_null_request(
+        request = _get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -247,6 +251,7 @@ class PathItemsOperations:
             template_url=self.get_local_path_item_query_null.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

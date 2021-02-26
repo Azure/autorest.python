@@ -28,7 +28,13 @@ def _get_no_item_name_pages_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_null_next_link_name_pages_request(
     **kwargs
 ) -> HttpRequest:
@@ -45,7 +51,13 @@ def _get_null_next_link_name_pages_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_single_pages_request(
     **kwargs
 ) -> HttpRequest:
@@ -62,7 +74,13 @@ def _get_single_pages_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _first_response_empty_request(
     **kwargs
 ) -> HttpRequest:
@@ -79,7 +97,13 @@ def _first_response_empty_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_request(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -105,7 +129,13 @@ def _get_multiple_pages_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_with_query_params_request(
     required_query_parameter: int,
     **kwargs
@@ -126,7 +156,13 @@ def _get_with_query_params_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_with_query_params_next_request(
     **kwargs
 ) -> HttpRequest:
@@ -145,7 +181,13 @@ def _get_with_query_params_next_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_odata_multiple_pages_request(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -171,7 +213,13 @@ def _get_odata_multiple_pages_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_with_offset_request(
     offset: int,
     client_request_id: Optional[str] = None,
@@ -202,7 +250,13 @@ def _get_multiple_pages_with_offset_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_retry_first_request(
     **kwargs
 ) -> HttpRequest:
@@ -219,7 +273,13 @@ def _get_multiple_pages_retry_first_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_retry_second_request(
     **kwargs
 ) -> HttpRequest:
@@ -236,7 +296,13 @@ def _get_multiple_pages_retry_second_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_single_pages_failure_request(
     **kwargs
 ) -> HttpRequest:
@@ -253,7 +319,13 @@ def _get_single_pages_failure_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_failure_request(
     **kwargs
 ) -> HttpRequest:
@@ -270,7 +342,13 @@ def _get_multiple_pages_failure_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_failure_uri_request(
     **kwargs
 ) -> HttpRequest:
@@ -287,7 +365,13 @@ def _get_multiple_pages_failure_uri_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_fragment_next_link_request(
     api_version: str,
     tenant: str,
@@ -311,7 +395,13 @@ def _get_multiple_pages_fragment_next_link_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_fragment_with_grouping_next_link_request(
     api_version: str,
     tenant: str,
@@ -335,7 +425,13 @@ def _get_multiple_pages_fragment_with_grouping_next_link_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_lro_initial_request(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -361,7 +457,13 @@ def _get_multiple_pages_lro_initial_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_fragment_next_link_next_request(
     api_version: str,
     tenant: str,
@@ -387,7 +489,13 @@ def _get_multiple_pages_fragment_next_link_next_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
     api_version: str,
     tenant: str,
@@ -413,7 +521,13 @@ def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _get_paging_model_with_item_name_with_xms_client_name_request(
     **kwargs
 ) -> HttpRequest:
@@ -430,4 +544,10 @@ def _get_paging_model_with_item_name_with_xms_client_name_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

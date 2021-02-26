@@ -34,4 +34,10 @@ def _test_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

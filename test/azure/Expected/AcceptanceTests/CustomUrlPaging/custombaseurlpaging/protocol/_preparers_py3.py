@@ -29,7 +29,13 @@ def _get_pages_partial_url_request(account_name: str, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_pages_partial_url_operation_request(account_name: str, **kwargs) -> HttpRequest:
@@ -50,7 +56,13 @@ def _get_pages_partial_url_operation_request(account_name: str, **kwargs) -> Htt
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_pages_partial_url_operation_next_request(account_name: str, next_link: str, **kwargs) -> HttpRequest:
@@ -72,4 +84,10 @@ def _get_pages_partial_url_operation_next_request(account_name: str, next_link: 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

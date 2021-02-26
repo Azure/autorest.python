@@ -8,13 +8,12 @@
 import datetime
 from typing import TYPE_CHECKING
 
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import List, Optional, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -40,7 +39,13 @@ def _get_boolean_true_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_boolean_false_request(
@@ -64,7 +69,13 @@ def _get_boolean_false_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_int_one_million_request(
@@ -88,7 +99,13 @@ def _get_int_one_million_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_int_negative_one_million_request(
@@ -112,7 +129,13 @@ def _get_int_negative_one_million_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_ten_billion_request(
@@ -136,7 +159,13 @@ def _get_ten_billion_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_negative_ten_billion_request(
@@ -160,7 +189,13 @@ def _get_negative_ten_billion_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _float_scientific_positive_request(
@@ -184,7 +219,13 @@ def _float_scientific_positive_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _float_scientific_negative_request(
@@ -208,7 +249,13 @@ def _float_scientific_negative_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _double_decimal_positive_request(
@@ -232,7 +279,13 @@ def _double_decimal_positive_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _double_decimal_negative_request(
@@ -256,7 +309,13 @@ def _double_decimal_negative_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_unicode_request(
@@ -280,7 +339,13 @@ def _string_unicode_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_url_encoded_request(
@@ -306,7 +371,13 @@ def _string_url_encoded_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_url_non_encoded_request(
@@ -330,7 +401,13 @@ def _string_url_non_encoded_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_empty_request(
@@ -354,7 +431,13 @@ def _string_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_null_request(
@@ -378,7 +461,13 @@ def _string_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _enum_valid_request(
@@ -402,7 +491,13 @@ def _enum_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _enum_null_request(
@@ -426,7 +521,13 @@ def _enum_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _byte_multi_byte_request(
@@ -450,7 +551,13 @@ def _byte_multi_byte_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _byte_empty_request(
@@ -474,7 +581,13 @@ def _byte_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _byte_null_request(
@@ -498,7 +611,13 @@ def _byte_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_valid_request(
@@ -522,7 +641,13 @@ def _date_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_null_request(
@@ -546,7 +671,13 @@ def _date_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_time_valid_request(
@@ -570,7 +701,13 @@ def _date_time_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_time_null_request(
@@ -594,7 +731,13 @@ def _date_time_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _base64_url_request(
@@ -618,7 +761,13 @@ def _base64_url_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_csv_in_path_request(
@@ -645,7 +794,13 @@ def _array_csv_in_path_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _unix_time_url_request(
@@ -669,7 +824,13 @@ def _unix_time_url_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_boolean_true_request(
@@ -690,7 +851,13 @@ def _get_boolean_true_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_boolean_false_request(
@@ -711,7 +878,13 @@ def _get_boolean_false_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_boolean_null_request(
@@ -733,7 +906,13 @@ def _get_boolean_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_int_one_million_request(
@@ -754,7 +933,13 @@ def _get_int_one_million_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_int_negative_one_million_request(
@@ -775,7 +960,13 @@ def _get_int_negative_one_million_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_int_null_request(
@@ -797,7 +988,13 @@ def _get_int_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_ten_billion_request(
@@ -818,7 +1015,13 @@ def _get_ten_billion_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_negative_ten_billion_request(
@@ -839,7 +1042,13 @@ def _get_negative_ten_billion_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_long_null_request(
@@ -861,7 +1070,13 @@ def _get_long_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _float_scientific_positive_request(
@@ -882,7 +1097,13 @@ def _float_scientific_positive_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _float_scientific_negative_request(
@@ -903,7 +1124,13 @@ def _float_scientific_negative_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _float_null_request(
@@ -925,7 +1152,13 @@ def _float_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _double_decimal_positive_request(
@@ -946,7 +1179,13 @@ def _double_decimal_positive_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _double_decimal_negative_request(
@@ -967,7 +1206,13 @@ def _double_decimal_negative_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _double_null_request(
@@ -989,7 +1234,13 @@ def _double_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_unicode_request(
@@ -1010,7 +1261,13 @@ def _string_unicode_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_url_encoded_request(
@@ -1033,7 +1290,13 @@ def _string_url_encoded_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_empty_request(
@@ -1054,7 +1317,13 @@ def _string_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _string_null_request(
@@ -1076,7 +1345,13 @@ def _string_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _enum_valid_request(
@@ -1098,7 +1373,13 @@ def _enum_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _enum_null_request(
@@ -1120,7 +1401,13 @@ def _enum_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _byte_multi_byte_request(
@@ -1142,7 +1429,13 @@ def _byte_multi_byte_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _byte_empty_request(
@@ -1163,7 +1456,13 @@ def _byte_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _byte_null_request(
@@ -1185,7 +1484,13 @@ def _byte_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_valid_request(
@@ -1206,7 +1511,13 @@ def _date_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_null_request(
@@ -1228,7 +1539,13 @@ def _date_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_time_valid_request(
@@ -1249,7 +1566,13 @@ def _date_time_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _date_time_null_request(
@@ -1271,7 +1594,13 @@ def _date_time_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_csv_valid_request(
@@ -1293,7 +1622,13 @@ def _array_string_csv_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_csv_null_request(
@@ -1315,7 +1650,13 @@ def _array_string_csv_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_csv_empty_request(
@@ -1337,7 +1678,13 @@ def _array_string_csv_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_no_collection_format_empty_request(
@@ -1359,7 +1706,13 @@ def _array_string_no_collection_format_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_ssv_valid_request(
@@ -1381,7 +1734,13 @@ def _array_string_ssv_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_tsv_valid_request(
@@ -1403,7 +1762,13 @@ def _array_string_tsv_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_pipes_valid_request(
@@ -1425,7 +1790,13 @@ def _array_string_pipes_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_all_with_values_request(
@@ -1467,7 +1838,13 @@ def _get_all_with_values_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_global_query_null_request(
@@ -1509,7 +1886,13 @@ def _get_global_query_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_global_and_local_query_null_request(
@@ -1551,7 +1934,13 @@ def _get_global_and_local_query_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_local_path_item_query_null_request(
@@ -1593,4 +1982,10 @@ def _get_local_path_item_query_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

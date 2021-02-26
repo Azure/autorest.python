@@ -7,13 +7,12 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional
-
-    from azure.core.pipeline.transport import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -39,7 +38,13 @@ def _get_pet_by_id_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _do_something_request(
@@ -63,7 +68,13 @@ def _do_something_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _has_models_param_request(
@@ -85,4 +96,10 @@ def _has_models_param_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

@@ -29,9 +29,16 @@ def _put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_request(**kwargs) -> HttpRequest:
@@ -47,7 +54,13 @@ def _get_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
@@ -66,9 +79,16 @@ def _put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwa
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_request(**kwargs) -> HttpRequest:
@@ -84,4 +104,10 @@ def _get_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

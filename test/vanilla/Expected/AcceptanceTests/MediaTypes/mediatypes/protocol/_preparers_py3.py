@@ -30,10 +30,10 @@ def _analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     if header_parameters["Content-Type"].split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
-        body_content_kwargs["stream_content"] = body
+        content = body
 
     elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
-        body_content_kwargs["content"] = body
+        content = body
     else:
         raise ValueError(
             "The content_type '{}' is not one of the allowed values: "
@@ -42,7 +42,14 @@ def _analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None
             )
         )
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _content_type_with_encoding_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -61,6 +68,13 @@ def _content_type_with_encoding_request(body: Optional[str] = None, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        data=content,
+        query=query_parameters,
+    )
+    return request

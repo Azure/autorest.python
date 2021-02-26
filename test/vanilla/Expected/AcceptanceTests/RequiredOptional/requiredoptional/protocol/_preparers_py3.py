@@ -30,7 +30,13 @@ def _get_required_path_request(path_parameter: str, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_optional_query_request(query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -48,7 +54,13 @@ def _put_optional_query_request(query_parameter: Optional[str] = None, **kwargs)
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_optional_header_request(query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -66,7 +78,13 @@ def _put_optional_header_request(query_parameter: Optional[str] = None, **kwargs
         header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_optional_body_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -85,9 +103,16 @@ def _put_optional_body_request(body: Optional[str] = None, **kwargs) -> HttpRequ
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> HttpRequest:
@@ -106,9 +131,16 @@ def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["stream_content"] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        stream=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_required_global_path_request(**kwargs) -> HttpRequest:
@@ -130,7 +162,13 @@ def _get_required_global_path_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_required_global_query_request(**kwargs) -> HttpRequest:
@@ -149,7 +187,13 @@ def _get_required_global_query_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_optional_global_query_request(**kwargs) -> HttpRequest:
@@ -169,7 +213,13 @@ def _get_optional_global_query_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> HttpRequest:
@@ -188,9 +238,16 @@ def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["stream_content"] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        stream=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_required_binary_body_request(body: IO, **kwargs) -> HttpRequest:
@@ -209,9 +266,16 @@ def _put_required_binary_body_request(body: IO, **kwargs) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["stream_content"] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        stream=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_integer_parameter_request(body: int, **kwargs) -> HttpRequest:
@@ -230,9 +294,16 @@ def _post_required_integer_parameter_request(body: int, **kwargs) -> HttpRequest
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_integer_parameter_request(body: Optional[int] = None, **kwargs) -> HttpRequest:
@@ -251,9 +322,16 @@ def _post_optional_integer_parameter_request(body: Optional[int] = None, **kwarg
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_integer_property_request(body: "_models.IntWrapper", **kwargs) -> HttpRequest:
@@ -272,9 +350,16 @@ def _post_required_integer_property_request(body: "_models.IntWrapper", **kwargs
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_integer_property_request(
@@ -295,9 +380,16 @@ def _post_optional_integer_property_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_integer_header_request(header_parameter: int, **kwargs) -> HttpRequest:
@@ -314,7 +406,13 @@ def _post_required_integer_header_request(header_parameter: int, **kwargs) -> Ht
     header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_integer_header_request(header_parameter: Optional[int] = None, **kwargs) -> HttpRequest:
@@ -332,7 +430,13 @@ def _post_optional_integer_header_request(header_parameter: Optional[int] = None
         header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_string_parameter_request(body: str, **kwargs) -> HttpRequest:
@@ -351,9 +455,16 @@ def _post_required_string_parameter_request(body: str, **kwargs) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_string_parameter_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -372,9 +483,16 @@ def _post_optional_string_parameter_request(body: Optional[str] = None, **kwargs
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_string_property_request(body: "_models.StringWrapper", **kwargs) -> HttpRequest:
@@ -393,9 +511,16 @@ def _post_required_string_property_request(body: "_models.StringWrapper", **kwar
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_string_property_request(
@@ -416,9 +541,16 @@ def _post_optional_string_property_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_string_header_request(header_parameter: str, **kwargs) -> HttpRequest:
@@ -435,7 +567,13 @@ def _post_required_string_header_request(header_parameter: str, **kwargs) -> Htt
     header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_string_header_request(body_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -453,7 +591,13 @@ def _post_optional_string_header_request(body_parameter: Optional[str] = None, *
         header_parameters["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_class_parameter_request(body: "_models.Product", **kwargs) -> HttpRequest:
@@ -472,9 +616,16 @@ def _post_required_class_parameter_request(body: "_models.Product", **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_class_parameter_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
@@ -493,9 +644,16 @@ def _post_optional_class_parameter_request(body: Optional["_models.Product"] = N
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_class_property_request(body: "_models.ClassWrapper", **kwargs) -> HttpRequest:
@@ -514,9 +672,16 @@ def _post_required_class_property_request(body: "_models.ClassWrapper", **kwargs
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_class_property_request(
@@ -537,9 +702,16 @@ def _post_optional_class_property_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_array_parameter_request(body: List[str], **kwargs) -> HttpRequest:
@@ -558,9 +730,16 @@ def _post_required_array_parameter_request(body: List[str], **kwargs) -> HttpReq
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_array_parameter_request(body: Optional[List[str]] = None, **kwargs) -> HttpRequest:
@@ -579,9 +758,16 @@ def _post_optional_array_parameter_request(body: Optional[List[str]] = None, **k
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_array_property_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
@@ -600,9 +786,16 @@ def _post_required_array_property_request(body: "_models.ArrayWrapper", **kwargs
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_array_property_request(
@@ -623,9 +816,16 @@ def _post_optional_array_property_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_required_array_header_request(header_parameter: List[str], **kwargs) -> HttpRequest:
@@ -642,7 +842,13 @@ def _post_required_array_header_request(header_parameter: List[str], **kwargs) -
     header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_array_header_request(header_parameter: Optional[List[str]] = None, **kwargs) -> HttpRequest:
@@ -662,4 +868,10 @@ def _post_optional_array_header_request(header_parameter: Optional[List[str]] = 
         )
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

@@ -13,6 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -40,11 +41,12 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_request(
+        request = _test_request(
             id=id,
             template_url=self.test.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

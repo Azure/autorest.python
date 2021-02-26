@@ -13,12 +13,11 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -69,11 +68,12 @@ class OperationGroupOneOperations(object):
         if parameter_one is not None:
             parameter_one = self._serialize.body(parameter_one, 'ModelThree')
 
-        request = self._test_two_request(
+        request = _test_two_request(
             body=parameter_one,
             template_url=self.test_two.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

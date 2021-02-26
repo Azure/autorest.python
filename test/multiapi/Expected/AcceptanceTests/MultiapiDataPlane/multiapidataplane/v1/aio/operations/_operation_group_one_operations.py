@@ -13,6 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -56,10 +57,11 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_two_request(
+        request = _test_two_request(
             template_url=self.test_two.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

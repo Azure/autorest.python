@@ -29,4 +29,10 @@ def _poll_with_parameterized_endpoints_initial_request(account_name: str, **kwar
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

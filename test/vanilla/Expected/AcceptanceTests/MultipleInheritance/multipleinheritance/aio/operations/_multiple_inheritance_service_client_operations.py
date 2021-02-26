@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -39,7 +40,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
+        request = _get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -76,7 +78,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         horse = self._serialize.body(horse, "Horse")
 
-        request = self._put_horse_request(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request = _put_horse_request(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -108,7 +111,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
+        request = _get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -146,7 +150,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _pet = _models.Pet(name=name)
         _pet = self._serialize.body(_pet, "Pet")
 
-        request = self._put_pet_request(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request = _put_pet_request(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -178,7 +183,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
+        request = _get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -215,7 +221,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         feline = self._serialize.body(feline, "Feline")
 
-        request = self._put_feline_request(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request = _put_feline_request(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -247,7 +254,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
+        request = _get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -284,7 +292,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         cat = self._serialize.body(cat, "Cat")
 
-        request = self._put_cat_request(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request = _put_cat_request(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -317,7 +326,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
+        request = _get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -356,7 +366,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         kitten = self._serialize.body(kitten, "Kitten")
 
-        request = self._put_kitten_request(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request = _put_kitten_request(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -20,11 +20,11 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
+from ..protocol import *
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
 
 class MultiapiServiceClientOperationsMixin(object):

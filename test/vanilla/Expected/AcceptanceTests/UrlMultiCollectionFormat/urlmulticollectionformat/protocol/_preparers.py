@@ -7,13 +7,12 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import List, Optional
-
-    from azure.core.pipeline.transport import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -39,7 +38,13 @@ def _array_string_multi_null_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_multi_empty_request(
@@ -63,7 +68,13 @@ def _array_string_multi_empty_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_multi_valid_request(
@@ -87,4 +98,10 @@ def _array_string_multi_valid_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

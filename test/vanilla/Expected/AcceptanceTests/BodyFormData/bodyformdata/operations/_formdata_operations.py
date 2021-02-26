@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, IO, List, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -81,7 +80,8 @@ class FormdataOperations(object):
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = self._upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request = _upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -121,9 +121,10 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_file_via_body_request(
+        request = _upload_file_via_body_request(
             body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -167,7 +168,8 @@ class FormdataOperations(object):
         _body = {
             "fileContent": file_content,
         }
-        request = self._upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request = _upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)

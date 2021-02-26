@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -55,12 +54,13 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._validation_of_method_parameters_request(
+        request = _validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -109,13 +109,14 @@ class AutoRestValidationTestOperationsMixin(object):
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = self._validation_of_body_request(
+        request = _validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             body=body,
             template_url=self.validation_of_body.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -151,9 +152,10 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_with_constant_in_path_request(
+        request = _get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -191,9 +193,10 @@ class AutoRestValidationTestOperationsMixin(object):
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = self._post_with_constant_in_body_request(
+        request = _post_with_constant_in_body_request(
             body=body, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

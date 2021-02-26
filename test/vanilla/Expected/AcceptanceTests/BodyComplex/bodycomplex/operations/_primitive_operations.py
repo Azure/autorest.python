@@ -21,12 +21,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -70,7 +69,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_request(template_url=self.get_int.metadata["url"], **kwargs)
+        request = _get_int_request(template_url=self.get_int.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -112,7 +112,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "IntWrapper")
 
-        request = self._put_int_request(body=complex_body, template_url=self.put_int.metadata["url"], **kwargs)
+        request = _put_int_request(body=complex_body, template_url=self.put_int.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -144,7 +145,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_request(template_url=self.get_long.metadata["url"], **kwargs)
+        request = _get_long_request(template_url=self.get_long.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -186,7 +188,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "LongWrapper")
 
-        request = self._put_long_request(body=complex_body, template_url=self.put_long.metadata["url"], **kwargs)
+        request = _put_long_request(body=complex_body, template_url=self.put_long.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -218,7 +221,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_request(template_url=self.get_float.metadata["url"], **kwargs)
+        request = _get_float_request(template_url=self.get_float.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -260,7 +264,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "FloatWrapper")
 
-        request = self._put_float_request(body=complex_body, template_url=self.put_float.metadata["url"], **kwargs)
+        request = _put_float_request(body=complex_body, template_url=self.put_float.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,7 +297,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_request(template_url=self.get_double.metadata["url"], **kwargs)
+        request = _get_double_request(template_url=self.get_double.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -335,7 +341,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "DoubleWrapper")
 
-        request = self._put_double_request(body=complex_body, template_url=self.put_double.metadata["url"], **kwargs)
+        request = _put_double_request(body=complex_body, template_url=self.put_double.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -367,7 +374,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_bool_request(template_url=self.get_bool.metadata["url"], **kwargs)
+        request = _get_bool_request(template_url=self.get_bool.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -409,7 +417,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "BooleanWrapper")
 
-        request = self._put_bool_request(body=complex_body, template_url=self.put_bool.metadata["url"], **kwargs)
+        request = _put_bool_request(body=complex_body, template_url=self.put_bool.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -441,7 +450,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_request(template_url=self.get_string.metadata["url"], **kwargs)
+        request = _get_string_request(template_url=self.get_string.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -483,7 +493,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "StringWrapper")
 
-        request = self._put_string_request(body=complex_body, template_url=self.put_string.metadata["url"], **kwargs)
+        request = _put_string_request(body=complex_body, template_url=self.put_string.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -515,7 +526,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_request(template_url=self.get_date.metadata["url"], **kwargs)
+        request = _get_date_request(template_url=self.get_date.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -557,7 +569,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "DateWrapper")
 
-        request = self._put_date_request(body=complex_body, template_url=self.put_date.metadata["url"], **kwargs)
+        request = _put_date_request(body=complex_body, template_url=self.put_date.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -589,7 +602,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_request(template_url=self.get_date_time.metadata["url"], **kwargs)
+        request = _get_date_time_request(template_url=self.get_date_time.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -631,9 +645,8 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "DatetimeWrapper")
 
-        request = self._put_date_time_request(
-            body=complex_body, template_url=self.put_date_time.metadata["url"], **kwargs
-        )
+        request = _put_date_time_request(body=complex_body, template_url=self.put_date_time.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -665,7 +678,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_rfc1123_request(template_url=self.get_date_time_rfc1123.metadata["url"], **kwargs)
+        request = _get_date_time_rfc1123_request(template_url=self.get_date_time_rfc1123.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -708,9 +722,10 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
-        request = self._put_date_time_rfc1123_request(
+        request = _put_date_time_rfc1123_request(
             body=complex_body, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -742,7 +757,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_duration_request(template_url=self.get_duration.metadata["url"], **kwargs)
+        request = _get_duration_request(template_url=self.get_duration.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -785,9 +801,8 @@ class PrimitiveOperations(object):
         _complex_body = _models.DurationWrapper(field=field)
         _complex_body = self._serialize.body(_complex_body, "DurationWrapper")
 
-        request = self._put_duration_request(
-            body=_complex_body, template_url=self.put_duration.metadata["url"], **kwargs
-        )
+        request = _put_duration_request(body=_complex_body, template_url=self.put_duration.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -819,7 +834,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_byte_request(template_url=self.get_byte.metadata["url"], **kwargs)
+        request = _get_byte_request(template_url=self.get_byte.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -862,7 +878,8 @@ class PrimitiveOperations(object):
         _complex_body = _models.ByteWrapper(field=field)
         _complex_body = self._serialize.body(_complex_body, "ByteWrapper")
 
-        request = self._put_byte_request(body=_complex_body, template_url=self.put_byte.metadata["url"], **kwargs)
+        request = _put_byte_request(body=_complex_body, template_url=self.put_byte.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

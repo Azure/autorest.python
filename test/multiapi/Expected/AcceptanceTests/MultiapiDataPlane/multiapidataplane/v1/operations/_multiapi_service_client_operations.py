@@ -16,12 +16,11 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -52,12 +51,13 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_one_request(
+        request = _test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -88,11 +88,12 @@ class MultiapiServiceClientOperationsMixin(object):
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = self._test_lro_initial_request(
+        request = _test_lro_initial_request(
             body=product,
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -193,13 +194,14 @@ class MultiapiServiceClientOperationsMixin(object):
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
-        request = self._test_lro_and_paging_initial_request(
+        request = _test_lro_and_paging_initial_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._test_lro_and_pa_initial.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -255,13 +257,14 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = self._test_lro_and_paging_initial_request(
+                request = _test_lro_and_paging_initial_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
                 
@@ -270,13 +273,14 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = self._test_lro_and_paging_initial_request(
+                request = _test_lro_and_paging_initial_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -368,11 +372,12 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_different_calls_request(
+        request = _test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

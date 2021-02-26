@@ -30,7 +30,13 @@ def _get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _add_pet_request(body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
@@ -49,6 +55,13 @@ def _add_pet_request(body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequ
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request

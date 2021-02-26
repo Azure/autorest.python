@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -82,13 +81,14 @@ class AvailabilitySetsOperations(object):
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         _tags = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = self._update_request(
+        request = _update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             body=_tags,
             template_url=self.update.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -23,6 +23,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,9 +61,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_succeeded_initial_request(
+        request = _put200_succeeded_initial_request(
             body=product, template_url=self._put200_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -147,9 +149,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_succeeded_initial_request(
+        request = _put201_succeeded_initial_request(
             body=product, template_url=self._put201_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -227,7 +230,8 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_list_initial_request(template_url=self._post202_list_initial.metadata["url"], **kwargs)
+        request = _post202_list_initial_request(template_url=self._post202_list_initial.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -315,9 +319,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_succeeded_no_state_initial_request(
+        request = _put200_succeeded_no_state_initial_request(
             body=product, template_url=self._put200_succeeded_no_stat_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -400,9 +405,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put202_retry200_initial_request(
+        request = _put202_retry200_initial_request(
             body=product, template_url=self._put202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -486,9 +492,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_creating_succeeded200_initial_request(
+        request = _put201_creating_succeeded200_initial_request(
             body=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -578,9 +585,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_updating_succeeded204_initial_request(
+        request = _put200_updating_succeeded204_initial_request(
             body=product, template_url=self._put200_updating_succeeded204_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -666,9 +674,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_creating_failed200_initial_request(
+        request = _put201_creating_failed200_initial_request(
             body=product, template_url=self._put201_creating_failed200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -756,9 +765,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_acceptedcanceled200_initial_request(
+        request = _put200_acceptedcanceled200_initial_request(
             body=product, template_url=self._put200_acceptedcanceled200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -844,9 +854,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_no_header_in_retry_initial_request(
+        request = _put_no_header_in_retry_initial_request(
             body=product, template_url=self._put_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -936,9 +947,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_retry_succeeded_initial_request(
+        request = _put_async_retry_succeeded_initial_request(
             body=product, template_url=self._put_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1037,9 +1049,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_no_retry_succeeded_initial_request(
+        request = _put_async_no_retry_succeeded_initial_request(
             body=product, template_url=self._put_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1138,9 +1151,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_retry_failed_initial_request(
+        request = _put_async_retry_failed_initial_request(
             body=product, template_url=self._put_async_retry_failed_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1239,9 +1253,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_no_retrycanceled_initial_request(
+        request = _put_async_no_retrycanceled_initial_request(
             body=product, template_url=self._put_async_no_retrycanceled_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1340,9 +1355,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_no_header_in_retry_initial_request(
+        request = _put_async_no_header_in_retry_initial_request(
             body=product, template_url=self._put_async_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1437,9 +1453,10 @@ class LROsOperations:
         if sku is not None:
             sku = self._serialize.body(sku, "Sku")
 
-        request = self._put_non_resource_initial_request(
+        request = _put_non_resource_initial_request(
             body=sku, template_url=self._put_non_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1519,9 +1536,10 @@ class LROsOperations:
         if sku is not None:
             sku = self._serialize.body(sku, "Sku")
 
-        request = self._put_async_non_resource_initial_request(
+        request = _put_async_non_resource_initial_request(
             body=sku, template_url=self._put_async_non_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1604,9 +1622,10 @@ class LROsOperations:
         if _product is not None:
             _product = self._serialize.body(_product, "SubProduct")
 
-        request = self._put_sub_resource_initial_request(
+        request = _put_sub_resource_initial_request(
             body=_product, template_url=self._put_sub_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1691,9 +1710,10 @@ class LROsOperations:
         if _product is not None:
             _product = self._serialize.body(_product, "SubProduct")
 
-        request = self._put_async_sub_resource_initial_request(
+        request = _put_async_sub_resource_initial_request(
             body=_product, template_url=self._put_async_sub_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1772,9 +1792,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_accepted200_succeeded_initial_request(
+        request = _delete_provisioning202_accepted200_succeeded_initial_request(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1859,9 +1880,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_deleting_failed200_initial_request(
+        request = _delete_provisioning202_deleting_failed200_initial_request(
             template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1944,9 +1966,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_deletingcanceled200_initial_request(
+        request = _delete_provisioning202_deletingcanceled200_initial_request(
             template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2029,9 +2052,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete204_succeeded_initial_request(
+        request = _delete204_succeeded_initial_request(
             template_url=self._delete204_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2097,9 +2121,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_retry200_initial_request(
+        request = _delete202_retry200_initial_request(
             template_url=self._delete202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2180,9 +2205,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_no_retry204_initial_request(
+        request = _delete202_no_retry204_initial_request(
             template_url=self._delete202_no_retry204_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2263,9 +2289,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_no_header_in_retry_initial_request(
+        request = _delete_no_header_in_retry_initial_request(
             template_url=self._delete_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2336,9 +2363,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_no_header_in_retry_initial_request(
+        request = _delete_async_no_header_in_retry_initial_request(
             template_url=self._delete_async_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2409,9 +2437,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_retry_succeeded_initial_request(
+        request = _delete_async_retry_succeeded_initial_request(
             template_url=self._delete_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2485,9 +2514,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_no_retry_succeeded_initial_request(
+        request = _delete_async_no_retry_succeeded_initial_request(
             template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2561,9 +2591,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_retry_failed_initial_request(
+        request = _delete_async_retry_failed_initial_request(
             template_url=self._delete_async_retry_failed_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2637,9 +2668,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_retrycanceled_initial_request(
+        request = _delete_async_retrycanceled_initial_request(
             template_url=self._delete_async_retrycanceled_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2713,9 +2745,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post200_with_payload_initial_request(
+        request = _post200_with_payload_initial_request(
             template_url=self._post200_with_payload_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2796,9 +2829,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post202_retry200_initial_request(
+        request = _post202_retry200_initial_request(
             body=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2878,9 +2912,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post202_no_retry204_initial_request(
+        request = _post202_no_retry204_initial_request(
             body=product, template_url=self._post202_no_retry204_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2967,9 +3002,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_double_headers_final_location_get_initial_request(
+        request = _post_double_headers_final_location_get_initial_request(
             template_url=self._post_double_headers_final_location_get_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3044,9 +3080,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_double_headers_final_azure_header_get_initial_request(
+        request = _post_double_headers_final_azure_header_get_initial_request(
             template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3123,9 +3160,10 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_double_headers_final_azure_header_get_default_initial_request(
+        request = _post_double_headers_final_azure_header_get_default_initial_request(
             template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3209,9 +3247,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_retry_succeeded_initial_request(
+        request = _post_async_retry_succeeded_initial_request(
             body=product, template_url=self._post_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3307,9 +3346,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_no_retry_succeeded_initial_request(
+        request = _post_async_no_retry_succeeded_initial_request(
             body=product, template_url=self._post_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3403,9 +3443,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_retry_failed_initial_request(
+        request = _post_async_retry_failed_initial_request(
             body=product, template_url=self._post_async_retry_failed_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3487,9 +3528,10 @@ class LROsOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_retrycanceled_initial_request(
+        request = _post_async_retrycanceled_initial_request(
             body=product, template_url=self._post_async_retrycanceled_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

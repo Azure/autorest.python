@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +68,8 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_true_request(template_url=self.get_true.metadata["url"], **kwargs)
+        request = _get_true_request(template_url=self.get_true.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -108,7 +108,8 @@ class BoolOperations(object):
         bool_body = True
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = self._put_true_request(body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
+        request = _put_true_request(body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -140,7 +141,8 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_false_request(template_url=self.get_false.metadata["url"], **kwargs)
+        request = _get_false_request(template_url=self.get_false.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -179,7 +181,8 @@ class BoolOperations(object):
         bool_body = False
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = self._put_false_request(body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
+        request = _put_false_request(body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -211,7 +214,8 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = _get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -247,7 +251,8 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = _get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

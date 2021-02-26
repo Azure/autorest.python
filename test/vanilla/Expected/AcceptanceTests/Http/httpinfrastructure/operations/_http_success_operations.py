@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +68,8 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request = _head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,7 +101,8 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_request(template_url=self.get200.metadata["url"], **kwargs)
+        request = _get200_request(template_url=self.get200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -137,7 +138,8 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options200_request(template_url=self.options200.metadata["url"], **kwargs)
+        request = _options200_request(template_url=self.options200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -180,7 +182,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put200_request(body=boolean_value, template_url=self.put200.metadata["url"], **kwargs)
+        request = _put200_request(body=boolean_value, template_url=self.put200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -219,7 +222,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch200_request(body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs)
+        request = _patch200_request(body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -258,7 +262,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post200_request(body=boolean_value, template_url=self.post200.metadata["url"], **kwargs)
+        request = _post200_request(body=boolean_value, template_url=self.post200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -297,7 +302,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete200_request(body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs)
+        request = _delete200_request(body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -336,7 +342,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put201_request(body=boolean_value, template_url=self.put201.metadata["url"], **kwargs)
+        request = _put201_request(body=boolean_value, template_url=self.put201.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -375,7 +382,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post201_request(body=boolean_value, template_url=self.post201.metadata["url"], **kwargs)
+        request = _post201_request(body=boolean_value, template_url=self.post201.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -414,7 +422,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put202_request(body=boolean_value, template_url=self.put202.metadata["url"], **kwargs)
+        request = _put202_request(body=boolean_value, template_url=self.put202.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -453,7 +462,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch202_request(body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs)
+        request = _patch202_request(body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -492,7 +502,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post202_request(body=boolean_value, template_url=self.post202.metadata["url"], **kwargs)
+        request = _post202_request(body=boolean_value, template_url=self.post202.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -531,7 +542,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete202_request(body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs)
+        request = _delete202_request(body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -563,7 +575,8 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request = _head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -602,7 +615,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put204_request(body=boolean_value, template_url=self.put204.metadata["url"], **kwargs)
+        request = _put204_request(body=boolean_value, template_url=self.put204.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -641,7 +655,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch204_request(body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs)
+        request = _patch204_request(body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -680,7 +695,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post204_request(body=boolean_value, template_url=self.post204.metadata["url"], **kwargs)
+        request = _post204_request(body=boolean_value, template_url=self.post204.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -719,7 +735,8 @@ class HttpSuccessOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete204_request(body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs)
+        request = _delete204_request(body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -751,7 +768,8 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request = _head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

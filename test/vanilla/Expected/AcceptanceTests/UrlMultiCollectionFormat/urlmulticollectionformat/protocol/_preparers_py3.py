@@ -30,7 +30,13 @@ def _array_string_multi_null_request(array_query: Optional[List[str]] = None, **
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_multi_empty_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
@@ -50,7 +56,13 @@ def _array_string_multi_empty_request(array_query: Optional[List[str]] = None, *
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _array_string_multi_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
@@ -70,4 +82,10 @@ def _array_string_multi_valid_request(array_query: Optional[List[str]] = None, *
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

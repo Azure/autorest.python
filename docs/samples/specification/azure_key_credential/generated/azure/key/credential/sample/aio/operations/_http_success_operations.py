@@ -12,6 +12,8 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
+from ...protocol import *
+
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -50,10 +52,11 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head200_request(
+        request = _head200_request(
             template_url=self.head200.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -85,10 +88,11 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head204_request(
+        request = _head204_request(
             template_url=self.head204.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -120,10 +124,11 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head404_request(
+        request = _head404_request(
             template_url=self.head404.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

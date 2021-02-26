@@ -7,13 +7,12 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional
-
-    from azure.core.pipeline.transport import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -37,7 +36,13 @@ def _get_report_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_optional_report_request(
@@ -59,4 +64,10 @@ def _get_optional_report_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

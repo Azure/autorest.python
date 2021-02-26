@@ -24,12 +24,11 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -81,9 +80,10 @@ class StorageAccountsOperations(object):
 
         account_name = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
-        request = self._check_name_availability_request(
+        request = _check_name_availability_request(
             body=account_name, template_url=self.check_name_availability.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -116,13 +116,14 @@ class StorageAccountsOperations(object):
 
         parameters = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
-        request = self._create_initial_request(
+        request = _create_initial_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             body=parameters,
             template_url=self._creat_initial.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -247,12 +248,13 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_request(
+        request = _delete_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             template_url=self.delete.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -294,12 +296,13 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_properties_request(
+        request = _get_properties_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             template_url=self.get_properties.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -355,13 +358,14 @@ class StorageAccountsOperations(object):
 
         parameters = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
-        request = self._update_request(
+        request = _update_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             body=parameters,
             template_url=self.update.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -403,12 +407,13 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._list_keys_request(
+        request = _list_keys_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             template_url=self.list_keys.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -446,10 +451,12 @@ class StorageAccountsOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
+                request = _list_request(template_url=self.list.metadata["url"], **kwargs)
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
+                request = _list_request(template_url=self.list.metadata["url"], **kwargs)
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -507,18 +514,20 @@ class StorageAccountsOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._list_by_resource_group_request(
+                request = _list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     template_url=self.list_by_resource_group.metadata["url"],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._list_by_resource_group_request(
+                request = _list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     template_url=self.list_by_resource_group.metadata["url"],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -585,13 +594,14 @@ class StorageAccountsOperations(object):
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         _regenerate_key = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
 
-        request = self._regenerate_key_request(
+        request = _regenerate_key_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             body=_regenerate_key,
             template_url=self.regenerate_key.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,7 +61,8 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = _get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -99,7 +101,8 @@ class InheritanceOperations:
 
         complex_body = self._serialize.body(complex_body, "Siamese")
 
-        request = self._put_valid_request(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = _put_valid_request(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -28,7 +28,13 @@ def _put_no_model_as_string_no_required_two_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_no_required_two_value_default_request(
@@ -46,7 +52,13 @@ def _put_no_model_as_string_no_required_two_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_no_required_one_value_no_default_request(
@@ -64,7 +76,13 @@ def _put_no_model_as_string_no_required_one_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_no_required_one_value_default_request(
@@ -82,7 +100,13 @@ def _put_no_model_as_string_no_required_one_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_required_two_value_no_default_request(
@@ -99,7 +123,13 @@ def _put_no_model_as_string_required_two_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_required_two_value_default_request(
@@ -116,7 +146,13 @@ def _put_no_model_as_string_required_two_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_required_one_value_no_default_request(**kwargs) -> HttpRequest:
@@ -132,7 +168,13 @@ def _put_no_model_as_string_required_one_value_no_default_request(**kwargs) -> H
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_no_model_as_string_required_one_value_default_request(**kwargs) -> HttpRequest:
@@ -148,7 +190,13 @@ def _put_no_model_as_string_required_one_value_default_request(**kwargs) -> Http
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_no_required_two_value_no_default_request(
@@ -166,7 +214,13 @@ def _put_model_as_string_no_required_two_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_no_required_two_value_default_request(
@@ -184,7 +238,13 @@ def _put_model_as_string_no_required_two_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_no_required_one_value_no_default_request(
@@ -202,7 +262,13 @@ def _put_model_as_string_no_required_one_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_no_required_one_value_default_request(
@@ -220,7 +286,13 @@ def _put_model_as_string_no_required_one_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_required_two_value_no_default_request(
@@ -237,7 +309,13 @@ def _put_model_as_string_required_two_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_required_two_value_default_request(
@@ -254,7 +332,13 @@ def _put_model_as_string_required_two_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_required_one_value_no_default_request(
@@ -271,7 +355,13 @@ def _put_model_as_string_required_one_value_no_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _put_model_as_string_required_one_value_default_request(
@@ -288,4 +378,10 @@ def _put_model_as_string_required_one_value_default_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

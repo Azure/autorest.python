@@ -35,7 +35,13 @@ def _test_one_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.put(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _test_lro_initial_request(
     body: Optional["_models.Product"] = None,
     **kwargs
@@ -55,9 +61,16 @@ def _test_lro_initial_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs['content'] = body
+    content = body
 
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 def _test_lro_and_paging_initial_request(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -83,7 +96,13 @@ def _test_lro_and_paging_initial_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _test_different_calls_request(
     greeting_in_english: str,
     **kwargs
@@ -104,7 +123,13 @@ def _test_different_calls_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 def _test_two_request(
     **kwargs
 ) -> HttpRequest:
@@ -123,4 +148,10 @@ def _test_two_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

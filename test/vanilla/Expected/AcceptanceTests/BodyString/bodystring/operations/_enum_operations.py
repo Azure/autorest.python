@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +68,8 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_expandable_request(template_url=self.get_not_expandable.metadata["url"], **kwargs)
+        request = _get_not_expandable_request(template_url=self.get_not_expandable.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -111,9 +111,10 @@ class EnumOperations(object):
 
         string_body = self._serialize.body(string_body, "str")
 
-        request = self._put_not_expandable_request(
+        request = _put_not_expandable_request(
             body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -145,7 +146,8 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
+        request = _get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -187,9 +189,10 @@ class EnumOperations(object):
 
         enum_string_body = self._serialize.body(enum_string_body, "str")
 
-        request = self._put_referenced_request(
+        request = _put_referenced_request(
             body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -221,9 +224,8 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"], **kwargs
-        )
+        request = _get_referenced_constant_request(template_url=self.get_referenced_constant.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -266,9 +268,10 @@ class EnumOperations(object):
         _enum_string_body = _models.RefColorConstant(field1=field1)
         _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
 
-        request = self._put_referenced_constant_request(
+        request = _put_referenced_constant_request(
             body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

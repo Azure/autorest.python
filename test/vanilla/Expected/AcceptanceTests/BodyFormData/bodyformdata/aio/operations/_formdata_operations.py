@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +70,8 @@ class FormdataOperations:
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = self._upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request = _upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -104,9 +106,10 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_file_via_body_request(
+        request = _upload_file_via_body_request(
             body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -145,7 +148,8 @@ class FormdataOperations:
         _body = {
             "fileContent": file_content,
         }
-        request = self._upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request = _upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

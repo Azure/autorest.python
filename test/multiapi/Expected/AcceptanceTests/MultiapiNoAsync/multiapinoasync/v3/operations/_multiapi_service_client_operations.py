@@ -15,12 +15,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -47,16 +46,18 @@ class MultiapiServiceClientOperationsMixin(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._test_paging_request(
+                request = _test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._test_paging_request(
+                request = _test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -114,13 +115,14 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_different_calls_request(
+        request = _test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

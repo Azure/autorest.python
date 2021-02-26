@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -69,13 +70,14 @@ class AvailabilitySetsOperations:
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         _tags = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = self._update_request(
+        request = _update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             body=_tags,
             template_url=self.update.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

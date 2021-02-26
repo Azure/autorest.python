@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,7 +61,8 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head408_request(template_url=self.head408.metadata["url"], **kwargs)
+        request = _head408_request(template_url=self.head408.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -94,7 +96,8 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put500_request(body=boolean_value, template_url=self.put500.metadata["url"], **kwargs)
+        request = _put500_request(body=boolean_value, template_url=self.put500.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -128,7 +131,8 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch500_request(body=boolean_value, template_url=self.patch500.metadata["url"], **kwargs)
+        request = _patch500_request(body=boolean_value, template_url=self.patch500.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -157,7 +161,8 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get502_request(template_url=self.get502.metadata["url"], **kwargs)
+        request = _get502_request(template_url=self.get502.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -186,7 +191,8 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options502_request(template_url=self.options502.metadata["url"], **kwargs)
+        request = _options502_request(template_url=self.options502.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -224,7 +230,8 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post503_request(body=boolean_value, template_url=self.post503.metadata["url"], **kwargs)
+        request = _post503_request(body=boolean_value, template_url=self.post503.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -258,7 +265,8 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete503_request(body=boolean_value, template_url=self.delete503.metadata["url"], **kwargs)
+        request = _delete503_request(body=boolean_value, template_url=self.delete503.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,7 +300,8 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put504_request(body=boolean_value, template_url=self.put504.metadata["url"], **kwargs)
+        request = _put504_request(body=boolean_value, template_url=self.put504.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -326,7 +335,8 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch504_request(body=boolean_value, template_url=self.patch504.metadata["url"], **kwargs)
+        request = _patch504_request(body=boolean_value, template_url=self.patch504.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

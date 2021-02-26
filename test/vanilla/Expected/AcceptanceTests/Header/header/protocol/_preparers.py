@@ -8,13 +8,12 @@
 import datetime
 from typing import TYPE_CHECKING
 
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -37,7 +36,13 @@ def _param_existing_key_request(
     header_parameters["User-Agent"] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_existing_key_request(
@@ -56,7 +61,13 @@ def _response_existing_key_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_protected_key_request(
@@ -77,7 +88,13 @@ def _param_protected_key_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_protected_key_request(
@@ -96,7 +113,13 @@ def _response_protected_key_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_integer_request(
@@ -119,7 +142,13 @@ def _param_integer_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "int")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_integer_request(
@@ -140,7 +169,13 @@ def _response_integer_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_long_request(
@@ -163,7 +198,13 @@ def _param_long_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "long")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_long_request(
@@ -184,7 +225,13 @@ def _response_long_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_float_request(
@@ -207,7 +254,13 @@ def _param_float_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "float")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_float_request(
@@ -228,7 +281,13 @@ def _response_float_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_double_request(
@@ -251,7 +310,13 @@ def _param_double_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "float")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_double_request(
@@ -272,7 +337,13 @@ def _response_double_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_bool_request(
@@ -295,7 +366,13 @@ def _param_bool_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_bool_request(
@@ -316,7 +393,13 @@ def _response_bool_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_string_request(
@@ -340,7 +423,13 @@ def _param_string_request(
         header_parameters["value"] = _SERIALIZER.header("value", value, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_string_request(
@@ -361,7 +450,13 @@ def _response_string_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_date_request(
@@ -384,7 +479,13 @@ def _param_date_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "date")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_date_request(
@@ -405,7 +506,13 @@ def _response_date_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_datetime_request(
@@ -428,7 +535,13 @@ def _param_datetime_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_datetime_request(
@@ -449,7 +562,13 @@ def _response_datetime_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_datetime_rfc1123_request(
@@ -473,7 +592,13 @@ def _param_datetime_rfc1123_request(
         header_parameters["value"] = _SERIALIZER.header("value", value, "rfc-1123")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_datetime_rfc1123_request(
@@ -494,7 +619,13 @@ def _response_datetime_rfc1123_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_duration_request(
@@ -517,7 +648,13 @@ def _param_duration_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_duration_request(
@@ -538,7 +675,13 @@ def _response_duration_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_byte_request(
@@ -561,7 +704,13 @@ def _param_byte_request(
     header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_byte_request(
@@ -582,7 +731,13 @@ def _response_byte_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _param_enum_request(
@@ -606,7 +761,13 @@ def _param_enum_request(
         header_parameters["value"] = _SERIALIZER.header("value", value, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _response_enum_request(
@@ -627,7 +788,13 @@ def _response_enum_request(
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _custom_request_id_request(
@@ -646,4 +813,10 @@ def _custom_request_id_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

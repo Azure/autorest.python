@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -55,7 +54,8 @@ class MediaTypesClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = self._analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
+        request = _analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -97,9 +97,10 @@ class MediaTypesClientOperationsMixin(object):
         if input is not None:
             input = self._serialize.body(input, "str")
 
-        request = self._content_type_with_encoding_request(
+        request = _content_type_with_encoding_request(
             body=input, template_url=self.content_type_with_encoding.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -22,6 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,14 +68,16 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._get_pages_partial_url_request(
+                request = _get_pages_partial_url_request(
                     account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._get_pages_partial_url_request(
+                request = _get_pages_partial_url_request(
                     account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -125,19 +128,21 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._get_pages_partial_url_operation_request(
+                request = _get_pages_partial_url_operation_request(
                     account_name=account_name,
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._get_pages_partial_url_operation_next_request(
+                request = _get_pages_partial_url_operation_next_request(
                     account_name=account_name,
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             return request
 

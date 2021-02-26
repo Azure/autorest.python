@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -64,9 +65,10 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
-        request = self._create_ap_true_request(
+        request = _create_ap_true_request(
             body=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -103,9 +105,10 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
-        request = self._create_cat_ap_true_request(
+        request = _create_cat_ap_true_request(
             body=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -142,9 +145,10 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
-        request = self._create_ap_object_request(
+        request = _create_ap_object_request(
             body=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -181,9 +185,10 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
-        request = self._create_ap_string_request(
+        request = _create_ap_string_request(
             body=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -222,9 +227,10 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
-        request = self._create_ap_in_properties_request(
+        request = _create_ap_in_properties_request(
             body=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -263,9 +269,10 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
-        request = self._create_ap_in_properties_with_ap_string_request(
+        request = _create_ap_in_properties_with_ap_string_request(
             body=create_parameters, template_url=self.create_ap_in_properties_with_ap_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ...protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -43,12 +44,13 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._validation_of_method_parameters_request(
+        request = _validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -92,13 +94,14 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = self._validation_of_body_request(
+        request = _validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             body=body,
             template_url=self.validation_of_body.metadata["url"],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -131,9 +134,10 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_with_constant_in_path_request(
+        request = _get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -166,9 +170,10 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = self._post_with_constant_in_body_request(
+        request = _post_with_constant_in_body_request(
             body=body, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

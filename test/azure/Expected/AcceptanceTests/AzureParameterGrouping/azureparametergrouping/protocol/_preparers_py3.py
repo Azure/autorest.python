@@ -39,9 +39,16 @@ def _post_required_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    content = body
 
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=content,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_optional_request(custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs) -> HttpRequest:
@@ -61,7 +68,13 @@ def _post_optional_request(custom_header: Optional[str] = None, query: Optional[
         header_parameters["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_multi_param_groups_request(
@@ -91,7 +104,13 @@ def _post_multi_param_groups_request(
         header_parameters["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _post_shared_parameter_group_object_request(
@@ -113,4 +132,10 @@ def _post_shared_parameter_group_object_request(
         header_parameters["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.post(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

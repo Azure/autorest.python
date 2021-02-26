@@ -20,12 +20,11 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    from azure.core.pipeline.transport import HttpRequest
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -81,7 +80,8 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_pet_by_id_request(pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs)
+        request = _get_pet_by_id_request(pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -129,9 +129,10 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._do_something_request(
+        request = _do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -180,9 +181,8 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._has_models_param_request(
-            models=models, template_url=self.has_models_param.metadata["url"], **kwargs
-        )
+        request = _has_models_param_request(models=models, template_url=self.has_models_param.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

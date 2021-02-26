@@ -28,7 +28,13 @@ def _get_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpReques
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _get_optional_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -46,4 +52,10 @@ def _get_optional_report_request(qualifier: Optional[str] = None, **kwargs) -> H
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return self._client.get(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request

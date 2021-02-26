@@ -60,12 +60,15 @@ class Preparer(BaseModel):
 
     @property
     def content_type(self) -> str:
-        return next(iter(
-            [
-                p.schema.get_declaration(cast(ConstantSchema, p.schema).value)
-                for p in self.parameters.constant if p.serialized_name == "content_type"
-            ]
-        ))
+        try:
+            return next(iter(
+                [
+                    p.schema.get_declaration(cast(ConstantSchema, p.schema).value)
+                    for p in self.parameters.constant if p.serialized_name == "content_type"
+                ]
+            ))
+        except StopIteration:
+            raise ValueError(f"Preparer {self.name} does not have a content type")
 
     @property
     def is_stream(self) -> bool:
@@ -88,6 +91,16 @@ class Preparer(BaseModel):
         except ValueError:
             return False
 
+    @property
+    def body_param_name(self) -> str:
+        if not self.parameters.has_body:
+            raise ValueError("This property is only applicable if your preparer has a body")
+        if "json" in self.content_type:
+            return "json"
+        if self.is_stream:
+            return "stream"
+        return "data"
+
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
@@ -100,7 +113,6 @@ class Preparer(BaseModel):
             "azure.core.pipeline.transport",
             "HttpRequest",
             ImportType.AZURECORE,
-            TypingSection.CONDITIONAL,
         )
         return file_import
 
@@ -117,7 +129,7 @@ class Preparer(BaseModel):
             yaml_data=yaml_data,
             name=name,
             url=first_request["protocol"]["http"]["path"],
-            method=first_request["protocol"]["http"]["method"],
+            method=first_request["protocol"]["http"]["method"].upper(),
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             parameters=PreparerParameterList(parameters),

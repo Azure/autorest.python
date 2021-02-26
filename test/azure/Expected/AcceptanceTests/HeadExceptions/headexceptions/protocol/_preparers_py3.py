@@ -22,7 +22,13 @@ def _head200_request(**kwargs) -> HttpRequest:
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.head(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _head204_request(**kwargs) -> HttpRequest:
@@ -36,7 +42,13 @@ def _head204_request(**kwargs) -> HttpRequest:
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.head(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
 
 
 def _head404_request(**kwargs) -> HttpRequest:
@@ -50,4 +62,10 @@ def _head404_request(**kwargs) -> HttpRequest:
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return self._client.head(url, query_parameters, header_parameters)
+    request = HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        query=query_parameters,
+    )
+    return request
