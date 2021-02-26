@@ -58,7 +58,7 @@ modelerfour:
 
 pipeline:
   python:
-    # doesn't process anything, just makes it so that the 'python:' config section loads early.
+    # Doesn't process anything, just makes it so that the 'python:' config section is loaded and available for the next plugins.
     pass-thru: true
     input: modelerfour/identity
 
