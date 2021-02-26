@@ -215,8 +215,6 @@ def _put_big_double_positive_decimal_request(body: float, **kwargs) -> HttpReque
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "float")
-
     content = body
 
     request = HttpRequest(
@@ -267,8 +265,6 @@ def _put_big_double_negative_decimal_request(body: float, **kwargs) -> HttpReque
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "float")
-
     content = body
 
     request = HttpRequest(
@@ -369,8 +365,6 @@ def _put_big_decimal_positive_decimal_request(body: float, **kwargs) -> HttpRequ
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "float")
-
     content = body
 
     request = HttpRequest(
@@ -421,8 +415,6 @@ def _put_big_decimal_negative_decimal_request(body: float, **kwargs) -> HttpRequ
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "float")
-
     content = body
 
     request = HttpRequest(

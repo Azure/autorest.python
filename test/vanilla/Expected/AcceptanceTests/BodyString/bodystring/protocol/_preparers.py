@@ -119,8 +119,6 @@ def _put_empty_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "str")
-
     content = body
 
     request = HttpRequest(
@@ -178,8 +176,6 @@ def _put_mbcs_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "str")
-
     content = body
 
     request = HttpRequest(
@@ -237,8 +233,6 @@ def _put_whitespace_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "str")
-
     content = body
 
     request = HttpRequest(

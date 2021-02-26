@@ -42,6 +42,7 @@ def _test_one_request(
         query=query_parameters,
     )
     return request
+
 def _test_lro_initial_request(
     body: Optional["_models.Product"] = None,
     **kwargs
@@ -71,6 +72,7 @@ def _test_lro_initial_request(
         query=query_parameters,
     )
     return request
+
 def _test_lro_and_paging_initial_request(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -103,6 +105,7 @@ def _test_lro_and_paging_initial_request(
         query=query_parameters,
     )
     return request
+
 def _test_different_calls_request(
     greeting_in_english: str,
     **kwargs
@@ -130,6 +133,7 @@ def _test_different_calls_request(
         query=query_parameters,
     )
     return request
+
 def _test_two_request(
     **kwargs
 ) -> HttpRequest:

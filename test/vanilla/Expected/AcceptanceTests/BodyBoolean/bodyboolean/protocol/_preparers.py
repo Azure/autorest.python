@@ -56,8 +56,6 @@ def _put_true_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "bool")
-
     content = body
 
     request = HttpRequest(
@@ -115,8 +113,6 @@ def _put_false_request(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body = self._serialize.body(body, "bool")
-
     content = body
 
     request = HttpRequest(

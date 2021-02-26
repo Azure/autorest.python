@@ -42,6 +42,7 @@ def _test_one_request(
         query=query_parameters,
     )
     return request
+
 def _test_different_calls_request(
     greeting_in_english: str,
     greeting_in_chinese: Optional[str] = None,
@@ -72,6 +73,7 @@ def _test_different_calls_request(
         query=query_parameters,
     )
     return request
+
 def _test_two_request(
     body: Optional["_models.ModelTwo"] = None,
     **kwargs
@@ -103,6 +105,7 @@ def _test_two_request(
         query=query_parameters,
     )
     return request
+
 def _test_three_request(
     **kwargs
 ) -> HttpRequest:
@@ -128,6 +131,7 @@ def _test_three_request(
         query=query_parameters,
     )
     return request
+
 def _test_four_request(
     parameter_one: bool,
     **kwargs

@@ -46,6 +46,7 @@ def _basic_polling_initial_request(
         query=query_parameters,
     )
     return request
+
 def _basic_paging_request(
     **kwargs  # type: Any
 ):

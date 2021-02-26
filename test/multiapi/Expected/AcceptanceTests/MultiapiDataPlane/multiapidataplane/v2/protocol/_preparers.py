@@ -47,6 +47,7 @@ def _test_one_request(
         query=query_parameters,
     )
     return request
+
 def _test_different_calls_request(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
@@ -78,6 +79,7 @@ def _test_different_calls_request(
         query=query_parameters,
     )
     return request
+
 def _test_two_request(
     body=None,  # type: Optional["_models.ModelTwo"]
     **kwargs  # type: Any
@@ -110,6 +112,7 @@ def _test_two_request(
         query=query_parameters,
     )
     return request
+
 def _test_three_request(
     **kwargs  # type: Any
 ):
@@ -136,6 +139,7 @@ def _test_three_request(
         query=query_parameters,
     )
     return request
+
 def _test_four_request(
     parameter_one,  # type: bool
     **kwargs  # type: Any

@@ -173,10 +173,6 @@ content = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.is_stream_request %}
 content = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-    {% if preparer.parameters.has_body and preparer.parameters.body[0].constant %}
-{% set send_xml = "xml" if preparer.parameters.has_body and "xml" in preparer.content_type %}
-{{ non_stream_body_params(preparer, send_xml) }}
-    {% endif %}
 content = body{% endif %}{% endmacro %}
 
 {# write body parameters #}

@@ -40,6 +40,7 @@ def _test_paging_request(
         query=query_parameters,
     )
     return request
+
 def _test_different_calls_request(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
@@ -74,6 +75,7 @@ def _test_different_calls_request(
         query=query_parameters,
     )
     return request
+
 def _test_two_request(
     body=None,  # type: Optional["_models.ModelThree"]
     **kwargs  # type: Any
@@ -106,6 +108,7 @@ def _test_two_request(
         query=query_parameters,
     )
     return request
+
 def _test_four_request(
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
@@ -147,6 +150,7 @@ def _test_four_request(
         query=query_parameters,
     )
     return request
+
 def _test_five_request(
     **kwargs  # type: Any
 ):

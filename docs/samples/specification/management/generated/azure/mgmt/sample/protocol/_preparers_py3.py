@@ -31,6 +31,7 @@ def _head200_request(
         query=query_parameters,
     )
     return request
+
 def _head204_request(
     **kwargs
 ) -> HttpRequest:
@@ -52,6 +53,7 @@ def _head204_request(
         query=query_parameters,
     )
     return request
+
 def _head404_request(
     **kwargs
 ) -> HttpRequest:
