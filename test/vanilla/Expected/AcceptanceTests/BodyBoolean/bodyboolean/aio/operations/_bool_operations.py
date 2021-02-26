@@ -111,8 +111,6 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -212,8 +210,6 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
