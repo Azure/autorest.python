@@ -1,5 +1,14 @@
 # Change Log
 
+### 2021-03-01 - 5.6.4
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+- Bump `Autorest core` minimum version to be able to deal with indented `python` blocks in config files
+
 ### 2021-02-10 - 5.6.3
 
 min Autorest core version: 3.0.6372
