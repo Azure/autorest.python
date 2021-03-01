@@ -7,9 +7,9 @@ These directives all start out with this general skeleton of a directive:
 ````
 ```yaml
 directive:
-    from: swagger-document
-    where: ...
-    transform: ...
+    - from: swagger-document
+      where: ...
+      transform: ...
 ```
 ````
 
@@ -42,9 +42,9 @@ We use `$["x-python-custom-poller-sync"]` and `$["x-python-custom-poller-async"]
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/polling"].put'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/polling"].put'
+      transform: >
         $["x-python-custom-poller-sync"] = "my.library.CustomPoller";
         $["x-python-custom-poller-async"] = "my.library.aio.AsyncCustomPoller"
 ```
@@ -72,9 +72,9 @@ We use `$["x-python-custom-default-polling-method-sync"]` and `$["x-python-custo
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/polling"].put'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/polling"].put'
+      transform: >
         $["x-python-custom-default-polling-method-sync"] = "my.library.CustomDefaultPollingMethod";
         $["x-python-custom-default-polling-method-async"] = "my.library.aio.AsyncCustomDefaultPollingMethod"
 ```
@@ -101,9 +101,9 @@ We use `$["x-python-custom-pager-sync"]` and `$["x-python-custom-pager-async"]` 
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/paging"].get'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/paging"].get'
+      transform: >
         $["x-python-custom-pager-sync"] = "my.library.CustomPager";
         $["x-python-custom-pager-async"] = "my.library.aio.AsyncCustomPager"
 ```
@@ -130,9 +130,9 @@ We use `$["x-python-custom-default-paging-method]` to specify our default  pagin
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/paging"].get'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/paging"].get'
+      transform: >
         $["x-python-custom-default-paging-method"] = "my.library.CustomDefaultPagingMethod";
 ```
 
