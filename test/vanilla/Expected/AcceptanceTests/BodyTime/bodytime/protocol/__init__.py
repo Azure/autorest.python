@@ -7,13 +7,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_request
-    from ._preparers_py3 import _put_request
+    from ._preparers_py3 import _prepare_time_get_request
+    from ._preparers_py3 import _prepare_time_put_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_request  # type: ignore
-    from ._preparers import _put_request  # type: ignore
+    from ._preparers import _prepare_time_get_request  # type: ignore
+    from ._preparers import _prepare_time_put_request  # type: ignore
 
 __all__ = [
-    "_get_request",
-    "_put_request",
+    "_prepare_time_get_request",
+    "_prepare_time_put_request",
 ]

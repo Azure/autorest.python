@@ -69,7 +69,7 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = _prepare_duration_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -112,7 +112,7 @@ class DurationOperations(object):
 
         duration_body = self._serialize.body(duration_body, "duration")
 
-        request = _put_positive_duration_request(
+        request = _prepare_duration_put_positive_duration_request(
             body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -147,7 +147,9 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_positive_duration_request(template_url=self.get_positive_duration.metadata["url"], **kwargs)
+        request = _prepare_duration_get_positive_duration_request(
+            template_url=self.get_positive_duration.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -184,7 +186,7 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = _prepare_duration_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

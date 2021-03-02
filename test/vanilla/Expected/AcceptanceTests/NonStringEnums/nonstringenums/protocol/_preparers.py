@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _put_request(
+def _prepare_int_put_request(
     body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
     **kwargs  # type: Any
 ):
@@ -49,7 +49,7 @@ def _put_request(
     return request
 
 
-def _get_request(
+def _prepare_int_get_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -74,7 +74,7 @@ def _get_request(
     return request
 
 
-def _put_request(
+def _prepare_float_put_request(
     body=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
     **kwargs  # type: Any
 ):
@@ -106,7 +106,7 @@ def _put_request(
     return request
 
 
-def _get_request(
+def _prepare_float_get_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

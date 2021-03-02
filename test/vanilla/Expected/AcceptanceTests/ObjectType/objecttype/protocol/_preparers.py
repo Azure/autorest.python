@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_request(
+def _prepare_get_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -36,7 +36,7 @@ def _get_request(
     return request
 
 
-def _put_request(
+def _prepare_put_request(
     body,  # type: object
     **kwargs  # type: Any
 ):

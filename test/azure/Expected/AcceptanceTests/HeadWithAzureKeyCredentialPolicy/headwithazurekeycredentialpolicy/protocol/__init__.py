@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _head200_request
-    from ._preparers_py3 import _head204_request
-    from ._preparers_py3 import _head404_request
+    from ._preparers_py3 import _prepare_httpsuccess_head200_request
+    from ._preparers_py3 import _prepare_httpsuccess_head204_request
+    from ._preparers_py3 import _prepare_httpsuccess_head404_request
 except (SyntaxError, ImportError):
-    from ._preparers import _head200_request  # type: ignore
-    from ._preparers import _head204_request  # type: ignore
-    from ._preparers import _head404_request  # type: ignore
+    from ._preparers import _prepare_httpsuccess_head200_request  # type: ignore
+    from ._preparers import _prepare_httpsuccess_head204_request  # type: ignore
+    from ._preparers import _prepare_httpsuccess_head404_request  # type: ignore
 
 __all__ = [
-    "_head200_request",
-    "_head204_request",
-    "_head404_request",
+    "_prepare_httpsuccess_head200_request",
+    "_prepare_httpsuccess_head204_request",
+    "_prepare_httpsuccess_head404_request",
 ]

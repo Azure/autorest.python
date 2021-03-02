@@ -80,7 +80,9 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_pet_by_id_request(pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs)
+        request = _prepare_pet_get_pet_by_id_request(
+            pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -129,7 +131,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _do_something_request(
+        request = _prepare_pet_do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -181,7 +183,9 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _has_models_param_request(models=models, template_url=self.has_models_param.metadata["url"], **kwargs)
+        request = _prepare_pet_has_models_param_request(
+            models=models, template_url=self.has_models_param.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -44,7 +44,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _validation_of_method_parameters_request(
+        request = _prepare_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
@@ -97,7 +97,7 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = _validation_of_body_request(
+        request = _prepare_validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             body=body,
@@ -140,7 +140,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_with_constant_in_path_request(
+        request = _prepare_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -176,7 +176,7 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = _post_with_constant_in_body_request(
+        request = _prepare_post_with_constant_in_body_request(
             body=body, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

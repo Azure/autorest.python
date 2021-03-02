@@ -68,7 +68,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _head501_request(template_url=self.head501.metadata["url"], **kwargs)
+        request = _prepare_httpserverfailure_head501_request(template_url=self.head501.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -101,7 +101,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get501_request(template_url=self.get501.metadata["url"], **kwargs)
+        request = _prepare_httpserverfailure_get501_request(template_url=self.get501.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -141,7 +141,9 @@ class HttpServerFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _post505_request(body=boolean_value, template_url=self.post505.metadata["url"], **kwargs)
+        request = _prepare_httpserverfailure_post505_request(
+            body=boolean_value, template_url=self.post505.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -181,7 +183,9 @@ class HttpServerFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _delete505_request(body=boolean_value, template_url=self.delete505.metadata["url"], **kwargs)
+        request = _prepare_httpserverfailure_delete505_request(
+            body=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -12,7 +12,7 @@ from msrest import Serializer
 
 _SERIALIZER = Serializer()
 
-def _test_one_request(
+def _prepare_test_one_request(
     id: int,
     message: Optional[str] = None,
     **kwargs
@@ -43,7 +43,7 @@ def _test_one_request(
     )
     return request
 
-def _test_different_calls_request(
+def _prepare_test_different_calls_request(
     greeting_in_english: str,
     greeting_in_chinese: Optional[str] = None,
     **kwargs
@@ -74,7 +74,7 @@ def _test_different_calls_request(
     )
     return request
 
-def _test_two_request(
+def _prepare_operationgroupone_test_two_request(
     body: Optional["_models.ModelTwo"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -106,7 +106,7 @@ def _test_two_request(
     )
     return request
 
-def _test_three_request(
+def _prepare_operationgroupone_test_three_request(
     **kwargs
 ) -> HttpRequest:
     api_version = "2.0.0"
@@ -132,7 +132,7 @@ def _test_three_request(
     )
     return request
 
-def _test_four_request(
+def _prepare_operationgrouptwo_test_four_request(
     parameter_one: bool,
     **kwargs
 ) -> HttpRequest:

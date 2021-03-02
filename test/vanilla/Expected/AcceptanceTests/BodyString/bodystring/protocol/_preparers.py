@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(
+def _prepare_string_get_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -42,7 +42,7 @@ def _get_null_request(
     return request
 
 
-def _put_null_request(
+def _prepare_string_put_null_request(
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -74,7 +74,7 @@ def _put_null_request(
     return request
 
 
-def _get_empty_request(
+def _prepare_string_get_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -99,7 +99,7 @@ def _get_empty_request(
     return request
 
 
-def _put_empty_request(
+def _prepare_string_put_empty_request(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -131,7 +131,7 @@ def _put_empty_request(
     return request
 
 
-def _get_mbcs_request(
+def _prepare_string_get_mbcs_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -156,7 +156,7 @@ def _get_mbcs_request(
     return request
 
 
-def _put_mbcs_request(
+def _prepare_string_put_mbcs_request(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -188,7 +188,7 @@ def _put_mbcs_request(
     return request
 
 
-def _get_whitespace_request(
+def _prepare_string_get_whitespace_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -213,7 +213,7 @@ def _get_whitespace_request(
     return request
 
 
-def _put_whitespace_request(
+def _prepare_string_put_whitespace_request(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -245,7 +245,7 @@ def _put_whitespace_request(
     return request
 
 
-def _get_not_provided_request(
+def _prepare_string_get_not_provided_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -270,7 +270,7 @@ def _get_not_provided_request(
     return request
 
 
-def _get_base64_encoded_request(
+def _prepare_string_get_base64_encoded_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -295,7 +295,7 @@ def _get_base64_encoded_request(
     return request
 
 
-def _get_base64_url_encoded_request(
+def _prepare_string_get_base64_url_encoded_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -320,7 +320,7 @@ def _get_base64_url_encoded_request(
     return request
 
 
-def _put_base64_url_encoded_request(
+def _prepare_string_put_base64_url_encoded_request(
     body,  # type: bytes
     **kwargs  # type: Any
 ):
@@ -352,7 +352,7 @@ def _put_base64_url_encoded_request(
     return request
 
 
-def _get_null_base64_url_encoded_request(
+def _prepare_string_get_null_base64_url_encoded_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -377,7 +377,7 @@ def _get_null_base64_url_encoded_request(
     return request
 
 
-def _get_not_expandable_request(
+def _prepare_enum_get_not_expandable_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -402,7 +402,7 @@ def _get_not_expandable_request(
     return request
 
 
-def _put_not_expandable_request(
+def _prepare_enum_put_not_expandable_request(
     body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
@@ -434,7 +434,7 @@ def _put_not_expandable_request(
     return request
 
 
-def _get_referenced_request(
+def _prepare_enum_get_referenced_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -459,7 +459,7 @@ def _get_referenced_request(
     return request
 
 
-def _put_referenced_request(
+def _prepare_enum_put_referenced_request(
     body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
@@ -491,7 +491,7 @@ def _put_referenced_request(
     return request
 
 
-def _get_referenced_constant_request(
+def _prepare_enum_get_referenced_constant_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -516,7 +516,7 @@ def _get_referenced_constant_request(
     return request
 
 
-def _put_referenced_constant_request(
+def _prepare_enum_put_referenced_constant_request(
     body,  # type: "_models.RefColorConstant"
     **kwargs  # type: Any
 ):

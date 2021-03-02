@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _upload_file_request(
+def _prepare_formdata_upload_file_request(
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -49,7 +49,7 @@ def _upload_file_request(
     return request
 
 
-def _upload_file_via_body_request(
+def _prepare_formdata_upload_file_via_body_request(
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -81,7 +81,7 @@ def _upload_file_via_body_request(
     return request
 
 
-def _upload_files_request(
+def _prepare_formdata_upload_files_request(
     body,  # type: List[IO]
     **kwargs  # type: Any
 ):

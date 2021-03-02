@@ -41,7 +41,7 @@ class PollingPagingExampleOperationsMixin(object):
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = _basic_polling_initial_request(
+        request = _prepare_basic_polling_initial_request(
             body=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
@@ -148,14 +148,14 @@ class PollingPagingExampleOperationsMixin(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _basic_paging_request(
+                request = _prepare_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _basic_paging_request(
+                request = _prepare_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )

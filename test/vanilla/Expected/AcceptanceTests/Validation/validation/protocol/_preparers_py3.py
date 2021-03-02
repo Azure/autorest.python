@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _validation_of_method_parameters_request(resource_group_name: str, id: int, **kwargs) -> HttpRequest:
+def _prepare_validation_of_method_parameters_request(resource_group_name: str, id: int, **kwargs) -> HttpRequest:
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -45,7 +45,7 @@ def _validation_of_method_parameters_request(resource_group_name: str, id: int, 
     return request
 
 
-def _validation_of_body_request(
+def _prepare_validation_of_body_request(
     resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     api_version = "1.0.0"
@@ -84,7 +84,7 @@ def _validation_of_body_request(
     return request
 
 
-def _get_with_constant_in_path_request(**kwargs) -> HttpRequest:
+def _prepare_get_with_constant_in_path_request(**kwargs) -> HttpRequest:
     constant_param = "constant"
 
     # Construct URL
@@ -109,7 +109,7 @@ def _get_with_constant_in_path_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _post_with_constant_in_body_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _prepare_post_with_constant_in_body_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     constant_param = "constant"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"

@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(**kwargs) -> HttpRequest:
+def _prepare_date_get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -35,7 +35,7 @@ def _get_null_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_invalid_date_request(**kwargs) -> HttpRequest:
+def _prepare_date_get_invalid_date_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -57,7 +57,7 @@ def _get_invalid_date_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_overflow_date_request(**kwargs) -> HttpRequest:
+def _prepare_date_get_overflow_date_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -79,7 +79,7 @@ def _get_overflow_date_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_underflow_date_request(**kwargs) -> HttpRequest:
+def _prepare_date_get_underflow_date_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -101,7 +101,7 @@ def _get_underflow_date_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_max_date_request(body: datetime.date, **kwargs) -> HttpRequest:
+def _prepare_date_put_max_date_request(body: datetime.date, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -129,7 +129,7 @@ def _put_max_date_request(body: datetime.date, **kwargs) -> HttpRequest:
     return request
 
 
-def _get_max_date_request(**kwargs) -> HttpRequest:
+def _prepare_date_get_max_date_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -151,7 +151,7 @@ def _get_max_date_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_min_date_request(body: datetime.date, **kwargs) -> HttpRequest:
+def _prepare_date_put_min_date_request(body: datetime.date, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -179,7 +179,7 @@ def _put_min_date_request(body: datetime.date, **kwargs) -> HttpRequest:
     return request
 
 
-def _get_min_date_request(**kwargs) -> HttpRequest:
+def _prepare_date_get_min_date_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

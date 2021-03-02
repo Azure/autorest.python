@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _get_report_request(
+def _prepare_get_report_request(
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -45,7 +45,7 @@ def _get_report_request(
     return request
 
 
-def _get_optional_report_request(
+def _prepare_get_optional_report_request(
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

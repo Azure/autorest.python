@@ -69,7 +69,7 @@ class TimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _prepare_time_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -112,7 +112,7 @@ class TimeOperations(object):
 
         time_body = self._serialize.body(time_body, "time")
 
-        request = _put_request(body=time_body, template_url=self.put.metadata["url"], **kwargs)
+        request = _prepare_time_put_request(body=time_body, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -122,8 +122,16 @@ class Preparer(BaseModel):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Preparer":
-        operation_name = yaml_data["language"]["python"]["name"]
-        name = f"_{operation_name}_request"
+
+        names = [
+            "prepare",
+            yaml_data["language"]["python"]["operationGroupName"],
+            yaml_data["language"]["python"]["name"],
+            "request"
+        ]
+        name = "_{}".format(
+            "_".join([n for n in names if n])
+        )
 
         first_request = yaml_data["requests"][0]
 

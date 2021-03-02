@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _get_complex_type_ref_no_meta_request(
+def _prepare_xml_get_complex_type_ref_no_meta_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -42,7 +42,7 @@ def _get_complex_type_ref_no_meta_request(
     return request
 
 
-def _put_complex_type_ref_no_meta_request(
+def _prepare_xml_put_complex_type_ref_no_meta_request(
     body,  # type: "_models.RootWithRefAndNoMeta"
     **kwargs  # type: Any
 ):
@@ -72,7 +72,7 @@ def _put_complex_type_ref_no_meta_request(
     return request
 
 
-def _get_complex_type_ref_with_meta_request(
+def _prepare_xml_get_complex_type_ref_with_meta_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -97,7 +97,7 @@ def _get_complex_type_ref_with_meta_request(
     return request
 
 
-def _put_complex_type_ref_with_meta_request(
+def _prepare_xml_put_complex_type_ref_with_meta_request(
     body,  # type: "_models.RootWithRefAndMeta"
     **kwargs  # type: Any
 ):
@@ -127,7 +127,7 @@ def _put_complex_type_ref_with_meta_request(
     return request
 
 
-def _get_simple_request(
+def _prepare_xml_get_simple_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -152,7 +152,7 @@ def _get_simple_request(
     return request
 
 
-def _put_simple_request(
+def _prepare_xml_put_simple_request(
     body,  # type: "_models.Slideshow"
     **kwargs  # type: Any
 ):
@@ -184,7 +184,7 @@ def _put_simple_request(
     return request
 
 
-def _get_wrapped_lists_request(
+def _prepare_xml_get_wrapped_lists_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -209,7 +209,7 @@ def _get_wrapped_lists_request(
     return request
 
 
-def _put_wrapped_lists_request(
+def _prepare_xml_put_wrapped_lists_request(
     body,  # type: "_models.AppleBarrel"
     **kwargs  # type: Any
 ):
@@ -241,7 +241,7 @@ def _put_wrapped_lists_request(
     return request
 
 
-def _get_headers_request(
+def _prepare_xml_get_headers_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -264,7 +264,7 @@ def _get_headers_request(
     return request
 
 
-def _get_empty_list_request(
+def _prepare_xml_get_empty_list_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -289,7 +289,7 @@ def _get_empty_list_request(
     return request
 
 
-def _put_empty_list_request(
+def _prepare_xml_put_empty_list_request(
     body,  # type: "_models.Slideshow"
     **kwargs  # type: Any
 ):
@@ -319,7 +319,7 @@ def _put_empty_list_request(
     return request
 
 
-def _get_empty_wrapped_lists_request(
+def _prepare_xml_get_empty_wrapped_lists_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -344,7 +344,7 @@ def _get_empty_wrapped_lists_request(
     return request
 
 
-def _put_empty_wrapped_lists_request(
+def _prepare_xml_put_empty_wrapped_lists_request(
     body,  # type: "_models.AppleBarrel"
     **kwargs  # type: Any
 ):
@@ -374,7 +374,7 @@ def _put_empty_wrapped_lists_request(
     return request
 
 
-def _get_root_list_request(
+def _prepare_xml_get_root_list_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -399,7 +399,7 @@ def _get_root_list_request(
     return request
 
 
-def _put_root_list_request(
+def _prepare_xml_put_root_list_request(
     body,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
@@ -429,7 +429,7 @@ def _put_root_list_request(
     return request
 
 
-def _get_root_list_single_item_request(
+def _prepare_xml_get_root_list_single_item_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -454,7 +454,7 @@ def _get_root_list_single_item_request(
     return request
 
 
-def _put_root_list_single_item_request(
+def _prepare_xml_put_root_list_single_item_request(
     body,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
@@ -484,7 +484,7 @@ def _put_root_list_single_item_request(
     return request
 
 
-def _get_empty_root_list_request(
+def _prepare_xml_get_empty_root_list_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -509,7 +509,7 @@ def _get_empty_root_list_request(
     return request
 
 
-def _put_empty_root_list_request(
+def _prepare_xml_put_empty_root_list_request(
     body,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
@@ -539,7 +539,7 @@ def _put_empty_root_list_request(
     return request
 
 
-def _get_empty_child_element_request(
+def _prepare_xml_get_empty_child_element_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -564,7 +564,7 @@ def _get_empty_child_element_request(
     return request
 
 
-def _put_empty_child_element_request(
+def _prepare_xml_put_empty_child_element_request(
     body,  # type: "_models.Banana"
     **kwargs  # type: Any
 ):
@@ -594,7 +594,7 @@ def _put_empty_child_element_request(
     return request
 
 
-def _list_containers_request(
+def _prepare_xml_list_containers_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -621,7 +621,7 @@ def _list_containers_request(
     return request
 
 
-def _get_service_properties_request(
+def _prepare_xml_get_service_properties_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -650,7 +650,7 @@ def _get_service_properties_request(
     return request
 
 
-def _put_service_properties_request(
+def _prepare_xml_put_service_properties_request(
     body,  # type: "_models.StorageServiceProperties"
     **kwargs  # type: Any
 ):
@@ -684,7 +684,7 @@ def _put_service_properties_request(
     return request
 
 
-def _get_acls_request(
+def _prepare_xml_get_acls_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -713,7 +713,7 @@ def _get_acls_request(
     return request
 
 
-def _put_acls_request(
+def _prepare_xml_put_acls_request(
     body,  # type: List["_models.SignedIdentifier"]
     **kwargs  # type: Any
 ):
@@ -747,7 +747,7 @@ def _put_acls_request(
     return request
 
 
-def _list_blobs_request(
+def _prepare_xml_list_blobs_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -776,7 +776,7 @@ def _list_blobs_request(
     return request
 
 
-def _json_input_request(
+def _prepare_xml_json_input_request(
     body,  # type: "_models.JSONInput"
     **kwargs  # type: Any
 ):
@@ -806,7 +806,7 @@ def _json_input_request(
     return request
 
 
-def _json_output_request(
+def _prepare_xml_json_output_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -831,7 +831,7 @@ def _json_output_request(
     return request
 
 
-def _get_xms_text_request(
+def _prepare_xml_get_xms_text_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -856,7 +856,7 @@ def _get_xms_text_request(
     return request
 
 
-def _get_bytes_request(
+def _prepare_xml_get_bytes_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -881,7 +881,7 @@ def _get_bytes_request(
     return request
 
 
-def _put_binary_request(
+def _prepare_xml_put_binary_request(
     body,  # type: "_models.ModelWithByteProperty"
     **kwargs  # type: Any
 ):
@@ -913,7 +913,7 @@ def _put_binary_request(
     return request
 
 
-def _get_uri_request(
+def _prepare_xml_get_uri_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -938,7 +938,7 @@ def _get_uri_request(
     return request
 
 
-def _put_uri_request(
+def _prepare_xml_put_uri_request(
     body,  # type: "_models.ModelWithUrlProperty"
     **kwargs  # type: Any
 ):

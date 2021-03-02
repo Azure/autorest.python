@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -35,7 +35,7 @@ def _get_null_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_invalid_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -57,7 +57,7 @@ def _get_invalid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_overflow_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_overflow_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -79,7 +79,7 @@ def _get_overflow_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_underflow_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_underflow_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -101,7 +101,7 @@ def _get_underflow_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_utc_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_put_utc_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -129,7 +129,7 @@ def _put_utc_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpReq
     return request
 
 
-def _get_utc_lowercase_max_date_time_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -151,7 +151,7 @@ def _get_utc_lowercase_max_date_time_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_utc_uppercase_max_date_time_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -173,7 +173,7 @@ def _get_utc_uppercase_max_date_time_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_utc_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_put_utc_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -201,7 +201,7 @@ def _put_utc_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpReq
     return request
 
 
-def _get_utc_min_date_time_request(**kwargs) -> HttpRequest:
+def _prepare_datetimerfc1123_get_utc_min_date_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

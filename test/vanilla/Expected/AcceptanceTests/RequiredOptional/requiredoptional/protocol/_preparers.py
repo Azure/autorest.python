@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _get_required_path_request(
+def _prepare_implicit_get_required_path_request(
     path_parameter,  # type: str
     **kwargs  # type: Any
 ):
@@ -48,7 +48,7 @@ def _get_required_path_request(
     return request
 
 
-def _put_optional_query_request(
+def _prepare_implicit_put_optional_query_request(
     query_parameter=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -76,7 +76,7 @@ def _put_optional_query_request(
     return request
 
 
-def _put_optional_header_request(
+def _prepare_implicit_put_optional_header_request(
     query_parameter=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -104,7 +104,7 @@ def _put_optional_header_request(
     return request
 
 
-def _put_optional_body_request(
+def _prepare_implicit_put_optional_body_request(
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -136,7 +136,7 @@ def _put_optional_body_request(
     return request
 
 
-def _put_optional_binary_body_request(
+def _prepare_implicit_put_optional_binary_body_request(
     body=None,  # type: Optional[IO]
     **kwargs  # type: Any
 ):
@@ -168,7 +168,7 @@ def _put_optional_binary_body_request(
     return request
 
 
-def _get_required_global_path_request(
+def _prepare_implicit_get_required_global_path_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -193,7 +193,7 @@ def _get_required_global_path_request(
     return request
 
 
-def _get_required_global_query_request(
+def _prepare_implicit_get_required_global_query_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -221,7 +221,7 @@ def _get_required_global_query_request(
     return request
 
 
-def _get_optional_global_query_request(
+def _prepare_implicit_get_optional_global_query_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -250,7 +250,7 @@ def _get_optional_global_query_request(
     return request
 
 
-def _put_optional_binary_body_request(
+def _prepare_explicit_put_optional_binary_body_request(
     body=None,  # type: Optional[IO]
     **kwargs  # type: Any
 ):
@@ -282,7 +282,7 @@ def _put_optional_binary_body_request(
     return request
 
 
-def _put_required_binary_body_request(
+def _prepare_explicit_put_required_binary_body_request(
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -314,7 +314,7 @@ def _put_required_binary_body_request(
     return request
 
 
-def _post_required_integer_parameter_request(
+def _prepare_explicit_post_required_integer_parameter_request(
     body,  # type: int
     **kwargs  # type: Any
 ):
@@ -346,7 +346,7 @@ def _post_required_integer_parameter_request(
     return request
 
 
-def _post_optional_integer_parameter_request(
+def _prepare_explicit_post_optional_integer_parameter_request(
     body=None,  # type: Optional[int]
     **kwargs  # type: Any
 ):
@@ -378,7 +378,7 @@ def _post_optional_integer_parameter_request(
     return request
 
 
-def _post_required_integer_property_request(
+def _prepare_explicit_post_required_integer_property_request(
     body,  # type: "_models.IntWrapper"
     **kwargs  # type: Any
 ):
@@ -410,7 +410,7 @@ def _post_required_integer_property_request(
     return request
 
 
-def _post_optional_integer_property_request(
+def _prepare_explicit_post_optional_integer_property_request(
     body=None,  # type: Optional["_models.IntOptionalWrapper"]
     **kwargs  # type: Any
 ):
@@ -442,7 +442,7 @@ def _post_optional_integer_property_request(
     return request
 
 
-def _post_required_integer_header_request(
+def _prepare_explicit_post_required_integer_header_request(
     header_parameter,  # type: int
     **kwargs  # type: Any
 ):
@@ -469,7 +469,7 @@ def _post_required_integer_header_request(
     return request
 
 
-def _post_optional_integer_header_request(
+def _prepare_explicit_post_optional_integer_header_request(
     header_parameter=None,  # type: Optional[int]
     **kwargs  # type: Any
 ):
@@ -497,7 +497,7 @@ def _post_optional_integer_header_request(
     return request
 
 
-def _post_required_string_parameter_request(
+def _prepare_explicit_post_required_string_parameter_request(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -529,7 +529,7 @@ def _post_required_string_parameter_request(
     return request
 
 
-def _post_optional_string_parameter_request(
+def _prepare_explicit_post_optional_string_parameter_request(
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -561,7 +561,7 @@ def _post_optional_string_parameter_request(
     return request
 
 
-def _post_required_string_property_request(
+def _prepare_explicit_post_required_string_property_request(
     body,  # type: "_models.StringWrapper"
     **kwargs  # type: Any
 ):
@@ -593,7 +593,7 @@ def _post_required_string_property_request(
     return request
 
 
-def _post_optional_string_property_request(
+def _prepare_explicit_post_optional_string_property_request(
     body=None,  # type: Optional["_models.StringOptionalWrapper"]
     **kwargs  # type: Any
 ):
@@ -625,7 +625,7 @@ def _post_optional_string_property_request(
     return request
 
 
-def _post_required_string_header_request(
+def _prepare_explicit_post_required_string_header_request(
     header_parameter,  # type: str
     **kwargs  # type: Any
 ):
@@ -652,7 +652,7 @@ def _post_required_string_header_request(
     return request
 
 
-def _post_optional_string_header_request(
+def _prepare_explicit_post_optional_string_header_request(
     body_parameter=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -680,7 +680,7 @@ def _post_optional_string_header_request(
     return request
 
 
-def _post_required_class_parameter_request(
+def _prepare_explicit_post_required_class_parameter_request(
     body,  # type: "_models.Product"
     **kwargs  # type: Any
 ):
@@ -712,7 +712,7 @@ def _post_required_class_parameter_request(
     return request
 
 
-def _post_optional_class_parameter_request(
+def _prepare_explicit_post_optional_class_parameter_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -744,7 +744,7 @@ def _post_optional_class_parameter_request(
     return request
 
 
-def _post_required_class_property_request(
+def _prepare_explicit_post_required_class_property_request(
     body,  # type: "_models.ClassWrapper"
     **kwargs  # type: Any
 ):
@@ -776,7 +776,7 @@ def _post_required_class_property_request(
     return request
 
 
-def _post_optional_class_property_request(
+def _prepare_explicit_post_optional_class_property_request(
     body=None,  # type: Optional["_models.ClassOptionalWrapper"]
     **kwargs  # type: Any
 ):
@@ -808,7 +808,7 @@ def _post_optional_class_property_request(
     return request
 
 
-def _post_required_array_parameter_request(
+def _prepare_explicit_post_required_array_parameter_request(
     body,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -840,7 +840,7 @@ def _post_required_array_parameter_request(
     return request
 
 
-def _post_optional_array_parameter_request(
+def _prepare_explicit_post_optional_array_parameter_request(
     body=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -872,7 +872,7 @@ def _post_optional_array_parameter_request(
     return request
 
 
-def _post_required_array_property_request(
+def _prepare_explicit_post_required_array_property_request(
     body,  # type: "_models.ArrayWrapper"
     **kwargs  # type: Any
 ):
@@ -904,7 +904,7 @@ def _post_required_array_property_request(
     return request
 
 
-def _post_optional_array_property_request(
+def _prepare_explicit_post_optional_array_property_request(
     body=None,  # type: Optional["_models.ArrayOptionalWrapper"]
     **kwargs  # type: Any
 ):
@@ -936,7 +936,7 @@ def _post_optional_array_property_request(
     return request
 
 
-def _post_required_array_header_request(
+def _prepare_explicit_post_required_array_header_request(
     header_parameter,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -963,7 +963,7 @@ def _post_required_array_header_request(
     return request
 
 
-def _post_optional_array_header_request(
+def _prepare_explicit_post_optional_array_header_request(
     header_parameter=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):

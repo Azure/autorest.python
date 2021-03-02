@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_pages_partial_url_request
-    from ._preparers_py3 import _get_pages_partial_url_operation_request
+    from ._preparers_py3 import _prepare_paging_get_pages_partial_url_request
+    from ._preparers_py3 import _prepare_paging_get_pages_partial_url_operation_request
     from ._preparers_py3 import _get_pages_partial_url_operation_next_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_pages_partial_url_request  # type: ignore
-    from ._preparers import _get_pages_partial_url_operation_request  # type: ignore
+    from ._preparers import _prepare_paging_get_pages_partial_url_request  # type: ignore
+    from ._preparers import _prepare_paging_get_pages_partial_url_operation_request  # type: ignore
     from ._preparers import _get_pages_partial_url_operation_next_request  # type: ignore
 
 __all__ = [
-    "_get_pages_partial_url_request",
-    "_get_pages_partial_url_operation_request",
+    "_prepare_paging_get_pages_partial_url_request",
+    "_prepare_paging_get_pages_partial_url_operation_request",
     "_get_pages_partial_url_operation_next_request",
 ]

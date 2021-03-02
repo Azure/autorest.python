@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _param_existing_key_request(
+def _prepare_header_param_existing_key_request(
     user_agent_parameter,  # type: str
     **kwargs  # type: Any
 ):
@@ -45,7 +45,7 @@ def _param_existing_key_request(
     return request
 
 
-def _response_existing_key_request(
+def _prepare_header_response_existing_key_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -70,7 +70,7 @@ def _response_existing_key_request(
     return request
 
 
-def _param_protected_key_request(
+def _prepare_header_param_protected_key_request(
     content_type,  # type: str
     **kwargs  # type: Any
 ):
@@ -97,7 +97,7 @@ def _param_protected_key_request(
     return request
 
 
-def _response_protected_key_request(
+def _prepare_header_response_protected_key_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -122,7 +122,7 @@ def _response_protected_key_request(
     return request
 
 
-def _param_integer_request(
+def _prepare_header_param_integer_request(
     scenario,  # type: str
     value,  # type: int
     **kwargs  # type: Any
@@ -151,7 +151,7 @@ def _param_integer_request(
     return request
 
 
-def _response_integer_request(
+def _prepare_header_response_integer_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -178,7 +178,7 @@ def _response_integer_request(
     return request
 
 
-def _param_long_request(
+def _prepare_header_param_long_request(
     scenario,  # type: str
     value,  # type: int
     **kwargs  # type: Any
@@ -207,7 +207,7 @@ def _param_long_request(
     return request
 
 
-def _response_long_request(
+def _prepare_header_response_long_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -234,7 +234,7 @@ def _response_long_request(
     return request
 
 
-def _param_float_request(
+def _prepare_header_param_float_request(
     scenario,  # type: str
     value,  # type: float
     **kwargs  # type: Any
@@ -263,7 +263,7 @@ def _param_float_request(
     return request
 
 
-def _response_float_request(
+def _prepare_header_response_float_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -290,7 +290,7 @@ def _response_float_request(
     return request
 
 
-def _param_double_request(
+def _prepare_header_param_double_request(
     scenario,  # type: str
     value,  # type: float
     **kwargs  # type: Any
@@ -319,7 +319,7 @@ def _param_double_request(
     return request
 
 
-def _response_double_request(
+def _prepare_header_response_double_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -346,7 +346,7 @@ def _response_double_request(
     return request
 
 
-def _param_bool_request(
+def _prepare_header_param_bool_request(
     scenario,  # type: str
     value,  # type: bool
     **kwargs  # type: Any
@@ -375,7 +375,7 @@ def _param_bool_request(
     return request
 
 
-def _response_bool_request(
+def _prepare_header_response_bool_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -402,7 +402,7 @@ def _response_bool_request(
     return request
 
 
-def _param_string_request(
+def _prepare_header_param_string_request(
     scenario,  # type: str
     value=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -432,7 +432,7 @@ def _param_string_request(
     return request
 
 
-def _response_string_request(
+def _prepare_header_response_string_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -459,7 +459,7 @@ def _response_string_request(
     return request
 
 
-def _param_date_request(
+def _prepare_header_param_date_request(
     scenario,  # type: str
     value,  # type: datetime.date
     **kwargs  # type: Any
@@ -488,7 +488,7 @@ def _param_date_request(
     return request
 
 
-def _response_date_request(
+def _prepare_header_response_date_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -515,7 +515,7 @@ def _response_date_request(
     return request
 
 
-def _param_datetime_request(
+def _prepare_header_param_datetime_request(
     scenario,  # type: str
     value,  # type: datetime.datetime
     **kwargs  # type: Any
@@ -544,7 +544,7 @@ def _param_datetime_request(
     return request
 
 
-def _response_datetime_request(
+def _prepare_header_response_datetime_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -571,7 +571,7 @@ def _response_datetime_request(
     return request
 
 
-def _param_datetime_rfc1123_request(
+def _prepare_header_param_datetime_rfc1123_request(
     scenario,  # type: str
     value=None,  # type: Optional[datetime.datetime]
     **kwargs  # type: Any
@@ -601,7 +601,7 @@ def _param_datetime_rfc1123_request(
     return request
 
 
-def _response_datetime_rfc1123_request(
+def _prepare_header_response_datetime_rfc1123_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -628,7 +628,7 @@ def _response_datetime_rfc1123_request(
     return request
 
 
-def _param_duration_request(
+def _prepare_header_param_duration_request(
     scenario,  # type: str
     value,  # type: datetime.timedelta
     **kwargs  # type: Any
@@ -657,7 +657,7 @@ def _param_duration_request(
     return request
 
 
-def _response_duration_request(
+def _prepare_header_response_duration_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -684,7 +684,7 @@ def _response_duration_request(
     return request
 
 
-def _param_byte_request(
+def _prepare_header_param_byte_request(
     scenario,  # type: str
     value,  # type: bytearray
     **kwargs  # type: Any
@@ -713,7 +713,7 @@ def _param_byte_request(
     return request
 
 
-def _response_byte_request(
+def _prepare_header_response_byte_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -740,7 +740,7 @@ def _response_byte_request(
     return request
 
 
-def _param_enum_request(
+def _prepare_header_param_enum_request(
     scenario,  # type: str
     value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
     **kwargs  # type: Any
@@ -770,7 +770,7 @@ def _param_enum_request(
     return request
 
 
-def _response_enum_request(
+def _prepare_header_response_enum_request(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -797,7 +797,7 @@ def _response_enum_request(
     return request
 
 
-def _custom_request_id_request(
+def _prepare_header_custom_request_id_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
+def _prepare_int_put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -41,7 +41,7 @@ def _put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs)
     return request
 
 
-def _get_request(**kwargs) -> HttpRequest:
+def _prepare_int_get_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -63,7 +63,7 @@ def _get_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
+def _prepare_float_put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -91,7 +91,7 @@ def _put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwa
     return request
 
 
-def _get_request(**kwargs) -> HttpRequest:
+def _prepare_float_get_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

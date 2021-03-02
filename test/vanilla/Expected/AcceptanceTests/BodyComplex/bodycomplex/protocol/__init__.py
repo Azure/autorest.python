@@ -7,172 +7,172 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_invalid_request
-    from ._preparers_py3 import _get_empty_request
-    from ._preparers_py3 import _get_null_request
-    from ._preparers_py3 import _get_not_provided_request
-    from ._preparers_py3 import _get_int_request
-    from ._preparers_py3 import _put_int_request
-    from ._preparers_py3 import _get_long_request
-    from ._preparers_py3 import _put_long_request
-    from ._preparers_py3 import _get_float_request
-    from ._preparers_py3 import _put_float_request
-    from ._preparers_py3 import _get_double_request
-    from ._preparers_py3 import _put_double_request
-    from ._preparers_py3 import _get_bool_request
-    from ._preparers_py3 import _put_bool_request
-    from ._preparers_py3 import _get_string_request
-    from ._preparers_py3 import _put_string_request
-    from ._preparers_py3 import _get_date_request
-    from ._preparers_py3 import _put_date_request
-    from ._preparers_py3 import _get_date_time_request
-    from ._preparers_py3 import _put_date_time_request
-    from ._preparers_py3 import _get_date_time_rfc1123_request
-    from ._preparers_py3 import _put_date_time_rfc1123_request
-    from ._preparers_py3 import _get_duration_request
-    from ._preparers_py3 import _put_duration_request
-    from ._preparers_py3 import _get_byte_request
-    from ._preparers_py3 import _put_byte_request
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_empty_request
-    from ._preparers_py3 import _put_empty_request
-    from ._preparers_py3 import _get_not_provided_request
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_empty_request
-    from ._preparers_py3 import _put_empty_request
-    from ._preparers_py3 import _get_null_request
-    from ._preparers_py3 import _get_not_provided_request
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_dot_syntax_request
-    from ._preparers_py3 import _get_composed_with_discriminator_request
-    from ._preparers_py3 import _get_composed_without_discriminator_request
-    from ._preparers_py3 import _get_complicated_request
-    from ._preparers_py3 import _put_complicated_request
-    from ._preparers_py3 import _put_missing_discriminator_request
-    from ._preparers_py3 import _put_valid_missing_required_request
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_valid_request
-    from ._preparers_py3 import _put_valid_request
-    from ._preparers_py3 import _get_valid_request
+    from ._preparers_py3 import _prepare_basic_get_valid_request
+    from ._preparers_py3 import _prepare_basic_put_valid_request
+    from ._preparers_py3 import _prepare_basic_get_invalid_request
+    from ._preparers_py3 import _prepare_basic_get_empty_request
+    from ._preparers_py3 import _prepare_basic_get_null_request
+    from ._preparers_py3 import _prepare_basic_get_not_provided_request
+    from ._preparers_py3 import _prepare_primitive_get_int_request
+    from ._preparers_py3 import _prepare_primitive_put_int_request
+    from ._preparers_py3 import _prepare_primitive_get_long_request
+    from ._preparers_py3 import _prepare_primitive_put_long_request
+    from ._preparers_py3 import _prepare_primitive_get_float_request
+    from ._preparers_py3 import _prepare_primitive_put_float_request
+    from ._preparers_py3 import _prepare_primitive_get_double_request
+    from ._preparers_py3 import _prepare_primitive_put_double_request
+    from ._preparers_py3 import _prepare_primitive_get_bool_request
+    from ._preparers_py3 import _prepare_primitive_put_bool_request
+    from ._preparers_py3 import _prepare_primitive_get_string_request
+    from ._preparers_py3 import _prepare_primitive_put_string_request
+    from ._preparers_py3 import _prepare_primitive_get_date_request
+    from ._preparers_py3 import _prepare_primitive_put_date_request
+    from ._preparers_py3 import _prepare_primitive_get_date_time_request
+    from ._preparers_py3 import _prepare_primitive_put_date_time_request
+    from ._preparers_py3 import _prepare_primitive_get_date_time_rfc1123_request
+    from ._preparers_py3 import _prepare_primitive_put_date_time_rfc1123_request
+    from ._preparers_py3 import _prepare_primitive_get_duration_request
+    from ._preparers_py3 import _prepare_primitive_put_duration_request
+    from ._preparers_py3 import _prepare_primitive_get_byte_request
+    from ._preparers_py3 import _prepare_primitive_put_byte_request
+    from ._preparers_py3 import _prepare_array_get_valid_request
+    from ._preparers_py3 import _prepare_array_put_valid_request
+    from ._preparers_py3 import _prepare_array_get_empty_request
+    from ._preparers_py3 import _prepare_array_put_empty_request
+    from ._preparers_py3 import _prepare_array_get_not_provided_request
+    from ._preparers_py3 import _prepare_dictionary_get_valid_request
+    from ._preparers_py3 import _prepare_dictionary_put_valid_request
+    from ._preparers_py3 import _prepare_dictionary_get_empty_request
+    from ._preparers_py3 import _prepare_dictionary_put_empty_request
+    from ._preparers_py3 import _prepare_dictionary_get_null_request
+    from ._preparers_py3 import _prepare_dictionary_get_not_provided_request
+    from ._preparers_py3 import _prepare_inheritance_get_valid_request
+    from ._preparers_py3 import _prepare_inheritance_put_valid_request
+    from ._preparers_py3 import _prepare_polymorphism_get_valid_request
+    from ._preparers_py3 import _prepare_polymorphism_put_valid_request
+    from ._preparers_py3 import _prepare_polymorphism_get_dot_syntax_request
+    from ._preparers_py3 import _prepare_polymorphism_get_composed_with_discriminator_request
+    from ._preparers_py3 import _prepare_polymorphism_get_composed_without_discriminator_request
+    from ._preparers_py3 import _prepare_polymorphism_get_complicated_request
+    from ._preparers_py3 import _prepare_polymorphism_put_complicated_request
+    from ._preparers_py3 import _prepare_polymorphism_put_missing_discriminator_request
+    from ._preparers_py3 import _prepare_polymorphism_put_valid_missing_required_request
+    from ._preparers_py3 import _prepare_polymorphicrecursive_get_valid_request
+    from ._preparers_py3 import _prepare_polymorphicrecursive_put_valid_request
+    from ._preparers_py3 import _prepare_readonlyproperty_get_valid_request
+    from ._preparers_py3 import _prepare_readonlyproperty_put_valid_request
+    from ._preparers_py3 import _prepare_flattencomplex_get_valid_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_invalid_request  # type: ignore
-    from ._preparers import _get_empty_request  # type: ignore
-    from ._preparers import _get_null_request  # type: ignore
-    from ._preparers import _get_not_provided_request  # type: ignore
-    from ._preparers import _get_int_request  # type: ignore
-    from ._preparers import _put_int_request  # type: ignore
-    from ._preparers import _get_long_request  # type: ignore
-    from ._preparers import _put_long_request  # type: ignore
-    from ._preparers import _get_float_request  # type: ignore
-    from ._preparers import _put_float_request  # type: ignore
-    from ._preparers import _get_double_request  # type: ignore
-    from ._preparers import _put_double_request  # type: ignore
-    from ._preparers import _get_bool_request  # type: ignore
-    from ._preparers import _put_bool_request  # type: ignore
-    from ._preparers import _get_string_request  # type: ignore
-    from ._preparers import _put_string_request  # type: ignore
-    from ._preparers import _get_date_request  # type: ignore
-    from ._preparers import _put_date_request  # type: ignore
-    from ._preparers import _get_date_time_request  # type: ignore
-    from ._preparers import _put_date_time_request  # type: ignore
-    from ._preparers import _get_date_time_rfc1123_request  # type: ignore
-    from ._preparers import _put_date_time_rfc1123_request  # type: ignore
-    from ._preparers import _get_duration_request  # type: ignore
-    from ._preparers import _put_duration_request  # type: ignore
-    from ._preparers import _get_byte_request  # type: ignore
-    from ._preparers import _put_byte_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_empty_request  # type: ignore
-    from ._preparers import _put_empty_request  # type: ignore
-    from ._preparers import _get_not_provided_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_empty_request  # type: ignore
-    from ._preparers import _put_empty_request  # type: ignore
-    from ._preparers import _get_null_request  # type: ignore
-    from ._preparers import _get_not_provided_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_dot_syntax_request  # type: ignore
-    from ._preparers import _get_composed_with_discriminator_request  # type: ignore
-    from ._preparers import _get_composed_without_discriminator_request  # type: ignore
-    from ._preparers import _get_complicated_request  # type: ignore
-    from ._preparers import _put_complicated_request  # type: ignore
-    from ._preparers import _put_missing_discriminator_request  # type: ignore
-    from ._preparers import _put_valid_missing_required_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
-    from ._preparers import _put_valid_request  # type: ignore
-    from ._preparers import _get_valid_request  # type: ignore
+    from ._preparers import _prepare_basic_get_valid_request  # type: ignore
+    from ._preparers import _prepare_basic_put_valid_request  # type: ignore
+    from ._preparers import _prepare_basic_get_invalid_request  # type: ignore
+    from ._preparers import _prepare_basic_get_empty_request  # type: ignore
+    from ._preparers import _prepare_basic_get_null_request  # type: ignore
+    from ._preparers import _prepare_basic_get_not_provided_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_int_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_int_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_long_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_long_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_float_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_float_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_double_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_double_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_bool_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_bool_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_string_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_string_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_date_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_date_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_date_time_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_date_time_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_date_time_rfc1123_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_date_time_rfc1123_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_duration_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_duration_request  # type: ignore
+    from ._preparers import _prepare_primitive_get_byte_request  # type: ignore
+    from ._preparers import _prepare_primitive_put_byte_request  # type: ignore
+    from ._preparers import _prepare_array_get_valid_request  # type: ignore
+    from ._preparers import _prepare_array_put_valid_request  # type: ignore
+    from ._preparers import _prepare_array_get_empty_request  # type: ignore
+    from ._preparers import _prepare_array_put_empty_request  # type: ignore
+    from ._preparers import _prepare_array_get_not_provided_request  # type: ignore
+    from ._preparers import _prepare_dictionary_get_valid_request  # type: ignore
+    from ._preparers import _prepare_dictionary_put_valid_request  # type: ignore
+    from ._preparers import _prepare_dictionary_get_empty_request  # type: ignore
+    from ._preparers import _prepare_dictionary_put_empty_request  # type: ignore
+    from ._preparers import _prepare_dictionary_get_null_request  # type: ignore
+    from ._preparers import _prepare_dictionary_get_not_provided_request  # type: ignore
+    from ._preparers import _prepare_inheritance_get_valid_request  # type: ignore
+    from ._preparers import _prepare_inheritance_put_valid_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_get_valid_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_put_valid_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_get_dot_syntax_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_get_composed_with_discriminator_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_get_composed_without_discriminator_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_get_complicated_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_put_complicated_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_put_missing_discriminator_request  # type: ignore
+    from ._preparers import _prepare_polymorphism_put_valid_missing_required_request  # type: ignore
+    from ._preparers import _prepare_polymorphicrecursive_get_valid_request  # type: ignore
+    from ._preparers import _prepare_polymorphicrecursive_put_valid_request  # type: ignore
+    from ._preparers import _prepare_readonlyproperty_get_valid_request  # type: ignore
+    from ._preparers import _prepare_readonlyproperty_put_valid_request  # type: ignore
+    from ._preparers import _prepare_flattencomplex_get_valid_request  # type: ignore
 
 __all__ = [
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_invalid_request",
-    "_get_empty_request",
-    "_get_null_request",
-    "_get_not_provided_request",
-    "_get_int_request",
-    "_put_int_request",
-    "_get_long_request",
-    "_put_long_request",
-    "_get_float_request",
-    "_put_float_request",
-    "_get_double_request",
-    "_put_double_request",
-    "_get_bool_request",
-    "_put_bool_request",
-    "_get_string_request",
-    "_put_string_request",
-    "_get_date_request",
-    "_put_date_request",
-    "_get_date_time_request",
-    "_put_date_time_request",
-    "_get_date_time_rfc1123_request",
-    "_put_date_time_rfc1123_request",
-    "_get_duration_request",
-    "_put_duration_request",
-    "_get_byte_request",
-    "_put_byte_request",
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_empty_request",
-    "_put_empty_request",
-    "_get_not_provided_request",
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_empty_request",
-    "_put_empty_request",
-    "_get_null_request",
-    "_get_not_provided_request",
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_dot_syntax_request",
-    "_get_composed_with_discriminator_request",
-    "_get_composed_without_discriminator_request",
-    "_get_complicated_request",
-    "_put_complicated_request",
-    "_put_missing_discriminator_request",
-    "_put_valid_missing_required_request",
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_valid_request",
-    "_put_valid_request",
-    "_get_valid_request",
+    "_prepare_basic_get_valid_request",
+    "_prepare_basic_put_valid_request",
+    "_prepare_basic_get_invalid_request",
+    "_prepare_basic_get_empty_request",
+    "_prepare_basic_get_null_request",
+    "_prepare_basic_get_not_provided_request",
+    "_prepare_primitive_get_int_request",
+    "_prepare_primitive_put_int_request",
+    "_prepare_primitive_get_long_request",
+    "_prepare_primitive_put_long_request",
+    "_prepare_primitive_get_float_request",
+    "_prepare_primitive_put_float_request",
+    "_prepare_primitive_get_double_request",
+    "_prepare_primitive_put_double_request",
+    "_prepare_primitive_get_bool_request",
+    "_prepare_primitive_put_bool_request",
+    "_prepare_primitive_get_string_request",
+    "_prepare_primitive_put_string_request",
+    "_prepare_primitive_get_date_request",
+    "_prepare_primitive_put_date_request",
+    "_prepare_primitive_get_date_time_request",
+    "_prepare_primitive_put_date_time_request",
+    "_prepare_primitive_get_date_time_rfc1123_request",
+    "_prepare_primitive_put_date_time_rfc1123_request",
+    "_prepare_primitive_get_duration_request",
+    "_prepare_primitive_put_duration_request",
+    "_prepare_primitive_get_byte_request",
+    "_prepare_primitive_put_byte_request",
+    "_prepare_array_get_valid_request",
+    "_prepare_array_put_valid_request",
+    "_prepare_array_get_empty_request",
+    "_prepare_array_put_empty_request",
+    "_prepare_array_get_not_provided_request",
+    "_prepare_dictionary_get_valid_request",
+    "_prepare_dictionary_put_valid_request",
+    "_prepare_dictionary_get_empty_request",
+    "_prepare_dictionary_put_empty_request",
+    "_prepare_dictionary_get_null_request",
+    "_prepare_dictionary_get_not_provided_request",
+    "_prepare_inheritance_get_valid_request",
+    "_prepare_inheritance_put_valid_request",
+    "_prepare_polymorphism_get_valid_request",
+    "_prepare_polymorphism_put_valid_request",
+    "_prepare_polymorphism_get_dot_syntax_request",
+    "_prepare_polymorphism_get_composed_with_discriminator_request",
+    "_prepare_polymorphism_get_composed_without_discriminator_request",
+    "_prepare_polymorphism_get_complicated_request",
+    "_prepare_polymorphism_put_complicated_request",
+    "_prepare_polymorphism_put_missing_discriminator_request",
+    "_prepare_polymorphism_put_valid_missing_required_request",
+    "_prepare_polymorphicrecursive_get_valid_request",
+    "_prepare_polymorphicrecursive_put_valid_request",
+    "_prepare_readonlyproperty_get_valid_request",
+    "_prepare_readonlyproperty_put_valid_request",
+    "_prepare_flattencomplex_get_valid_request",
 ]

@@ -7,19 +7,19 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _post_required_request
-    from ._preparers_py3 import _post_optional_request
-    from ._preparers_py3 import _post_multi_param_groups_request
-    from ._preparers_py3 import _post_shared_parameter_group_object_request
+    from ._preparers_py3 import _prepare_parametergrouping_post_required_request
+    from ._preparers_py3 import _prepare_parametergrouping_post_optional_request
+    from ._preparers_py3 import _prepare_parametergrouping_post_multi_param_groups_request
+    from ._preparers_py3 import _prepare_parametergrouping_post_shared_parameter_group_object_request
 except (SyntaxError, ImportError):
-    from ._preparers import _post_required_request  # type: ignore
-    from ._preparers import _post_optional_request  # type: ignore
-    from ._preparers import _post_multi_param_groups_request  # type: ignore
-    from ._preparers import _post_shared_parameter_group_object_request  # type: ignore
+    from ._preparers import _prepare_parametergrouping_post_required_request  # type: ignore
+    from ._preparers import _prepare_parametergrouping_post_optional_request  # type: ignore
+    from ._preparers import _prepare_parametergrouping_post_multi_param_groups_request  # type: ignore
+    from ._preparers import _prepare_parametergrouping_post_shared_parameter_group_object_request  # type: ignore
 
 __all__ = [
-    "_post_required_request",
-    "_post_optional_request",
-    "_post_multi_param_groups_request",
-    "_post_shared_parameter_group_object_request",
+    "_prepare_parametergrouping_post_required_request",
+    "_prepare_parametergrouping_post_optional_request",
+    "_prepare_parametergrouping_post_multi_param_groups_request",
+    "_prepare_parametergrouping_post_shared_parameter_group_object_request",
 ]

@@ -61,7 +61,9 @@ class HttpFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_empty_error_request(template_url=self.get_empty_error.metadata["url"], **kwargs)
+        request = _prepare_httpfailure_get_empty_error_request(
+            template_url=self.get_empty_error.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -95,7 +97,9 @@ class HttpFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_no_model_error_request(template_url=self.get_no_model_error.metadata["url"], **kwargs)
+        request = _prepare_httpfailure_get_no_model_error_request(
+            template_url=self.get_no_model_error.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -128,7 +132,9 @@ class HttpFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_no_model_empty_request(template_url=self.get_no_model_empty.metadata["url"], **kwargs)
+        request = _prepare_httpfailure_get_no_model_empty_request(
+            template_url=self.get_no_model_empty.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

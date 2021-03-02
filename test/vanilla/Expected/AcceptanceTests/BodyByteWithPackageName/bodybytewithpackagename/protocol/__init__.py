@@ -7,22 +7,22 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_null_request
-    from ._preparers_py3 import _get_empty_request
-    from ._preparers_py3 import _get_non_ascii_request
-    from ._preparers_py3 import _put_non_ascii_request
-    from ._preparers_py3 import _get_invalid_request
+    from ._preparers_py3 import _prepare_byte_get_null_request
+    from ._preparers_py3 import _prepare_byte_get_empty_request
+    from ._preparers_py3 import _prepare_byte_get_non_ascii_request
+    from ._preparers_py3 import _prepare_byte_put_non_ascii_request
+    from ._preparers_py3 import _prepare_byte_get_invalid_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_null_request  # type: ignore
-    from ._preparers import _get_empty_request  # type: ignore
-    from ._preparers import _get_non_ascii_request  # type: ignore
-    from ._preparers import _put_non_ascii_request  # type: ignore
-    from ._preparers import _get_invalid_request  # type: ignore
+    from ._preparers import _prepare_byte_get_null_request  # type: ignore
+    from ._preparers import _prepare_byte_get_empty_request  # type: ignore
+    from ._preparers import _prepare_byte_get_non_ascii_request  # type: ignore
+    from ._preparers import _prepare_byte_put_non_ascii_request  # type: ignore
+    from ._preparers import _prepare_byte_get_invalid_request  # type: ignore
 
 __all__ = [
-    "_get_null_request",
-    "_get_empty_request",
-    "_get_non_ascii_request",
-    "_put_non_ascii_request",
-    "_get_invalid_request",
+    "_prepare_byte_get_null_request",
+    "_prepare_byte_get_empty_request",
+    "_prepare_byte_get_non_ascii_request",
+    "_prepare_byte_put_non_ascii_request",
+    "_prepare_byte_get_invalid_request",
 ]

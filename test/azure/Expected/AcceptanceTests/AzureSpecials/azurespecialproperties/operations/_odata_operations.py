@@ -79,7 +79,7 @@ class OdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_with_filter_request(
+        request = _prepare_odata_get_with_filter_request(
             filter=filter, top=top, orderby=orderby, template_url=self.get_with_filter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

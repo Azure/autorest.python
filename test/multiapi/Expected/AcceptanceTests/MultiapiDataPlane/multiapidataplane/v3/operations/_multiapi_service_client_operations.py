@@ -45,14 +45,14 @@ class MultiapiServiceClientOperationsMixin(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _test_paging_request(
+                request = _prepare_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _test_paging_request(
+                request = _prepare_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
@@ -114,7 +114,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _test_different_calls_request(
+        request = _prepare_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,

@@ -7,13 +7,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_report_request
-    from ._preparers_py3 import _get_optional_report_request
+    from ._preparers_py3 import _prepare_get_report_request
+    from ._preparers_py3 import _prepare_get_optional_report_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_report_request  # type: ignore
-    from ._preparers import _get_optional_report_request  # type: ignore
+    from ._preparers import _prepare_get_report_request  # type: ignore
+    from ._preparers import _prepare_get_optional_report_request  # type: ignore
 
 __all__ = [
-    "_get_report_request",
-    "_get_optional_report_request",
+    "_prepare_get_report_request",
+    "_prepare_get_optional_report_request",
 ]

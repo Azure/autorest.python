@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _put_array_request(body: Optional[List["_models.Resource"]] = None, **kwargs) -> HttpRequest:
+def _prepare_put_array_request(body: Optional[List["_models.Resource"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -42,7 +42,7 @@ def _put_array_request(body: Optional[List["_models.Resource"]] = None, **kwargs
     return request
 
 
-def _get_array_request(**kwargs) -> HttpRequest:
+def _prepare_get_array_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -64,7 +64,7 @@ def _get_array_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_wrapped_array_request(body: Optional[List["_models.WrappedProduct"]] = None, **kwargs) -> HttpRequest:
+def _prepare_put_wrapped_array_request(body: Optional[List["_models.WrappedProduct"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -92,7 +92,7 @@ def _put_wrapped_array_request(body: Optional[List["_models.WrappedProduct"]] = 
     return request
 
 
-def _get_wrapped_array_request(**kwargs) -> HttpRequest:
+def _prepare_get_wrapped_array_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -114,7 +114,9 @@ def _get_wrapped_array_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_dictionary_request(body: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs) -> HttpRequest:
+def _prepare_put_dictionary_request(
+    body: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -142,7 +144,7 @@ def _put_dictionary_request(body: Optional[Dict[str, "_models.FlattenedProduct"]
     return request
 
 
-def _get_dictionary_request(**kwargs) -> HttpRequest:
+def _prepare_get_dictionary_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -164,7 +166,9 @@ def _get_dictionary_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_resource_collection_request(body: Optional["_models.ResourceCollection"] = None, **kwargs) -> HttpRequest:
+def _prepare_put_resource_collection_request(
+    body: Optional["_models.ResourceCollection"] = None, **kwargs
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -192,7 +196,7 @@ def _put_resource_collection_request(body: Optional["_models.ResourceCollection"
     return request
 
 
-def _get_resource_collection_request(**kwargs) -> HttpRequest:
+def _prepare_get_resource_collection_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -214,7 +218,7 @@ def _get_resource_collection_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_simple_product_request(body: Optional["_models.SimpleProduct"] = None, **kwargs) -> HttpRequest:
+def _prepare_put_simple_product_request(body: Optional["_models.SimpleProduct"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -242,7 +246,9 @@ def _put_simple_product_request(body: Optional["_models.SimpleProduct"] = None, 
     return request
 
 
-def _post_flattened_simple_product_request(body: Optional["_models.SimpleProduct"] = None, **kwargs) -> HttpRequest:
+def _prepare_post_flattened_simple_product_request(
+    body: Optional["_models.SimpleProduct"] = None, **kwargs
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -270,7 +276,7 @@ def _post_flattened_simple_product_request(body: Optional["_models.SimpleProduct
     return request
 
 
-def _put_simple_product_with_grouping_request(
+def _prepare_put_simple_product_with_grouping_request(
     name: str, body: Optional["_models.SimpleProduct"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")

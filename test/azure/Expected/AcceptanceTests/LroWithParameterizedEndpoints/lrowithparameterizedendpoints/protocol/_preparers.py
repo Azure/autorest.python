@@ -12,7 +12,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _poll_with_parameterized_endpoints_initial_request(
+def _prepare_poll_with_parameterized_endpoints_initial_request(
     account_name,  # type: str
     **kwargs  # type: Any
 ):

@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_basic_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -36,7 +36,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.Basic", **kwargs) -> HttpRequest:
+def _prepare_basic_put_valid_request(body: "_models.Basic", **kwargs) -> HttpRequest:
     api_version = "2016-02-29"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -66,7 +66,7 @@ def _put_valid_request(body: "_models.Basic", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_invalid_request(**kwargs) -> HttpRequest:
+def _prepare_basic_get_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -88,7 +88,7 @@ def _get_invalid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_empty_request(**kwargs) -> HttpRequest:
+def _prepare_basic_get_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -110,7 +110,7 @@ def _get_empty_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_null_request(**kwargs) -> HttpRequest:
+def _prepare_basic_get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -132,7 +132,7 @@ def _get_null_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_not_provided_request(**kwargs) -> HttpRequest:
+def _prepare_basic_get_not_provided_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -154,7 +154,7 @@ def _get_not_provided_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_int_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_int_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -176,7 +176,7 @@ def _get_int_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_int_request(body: "_models.IntWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_int_request(body: "_models.IntWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -204,7 +204,7 @@ def _put_int_request(body: "_models.IntWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_long_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_long_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -226,7 +226,7 @@ def _get_long_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_long_request(body: "_models.LongWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_long_request(body: "_models.LongWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -254,7 +254,7 @@ def _put_long_request(body: "_models.LongWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_float_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_float_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -276,7 +276,7 @@ def _get_float_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_float_request(body: "_models.FloatWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_float_request(body: "_models.FloatWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -304,7 +304,7 @@ def _put_float_request(body: "_models.FloatWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_double_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_double_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -326,7 +326,7 @@ def _get_double_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_double_request(body: "_models.DoubleWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_double_request(body: "_models.DoubleWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -354,7 +354,7 @@ def _put_double_request(body: "_models.DoubleWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_bool_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_bool_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -376,7 +376,7 @@ def _get_bool_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_bool_request(body: "_models.BooleanWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_bool_request(body: "_models.BooleanWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -404,7 +404,7 @@ def _put_bool_request(body: "_models.BooleanWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_string_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_string_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -426,7 +426,7 @@ def _get_string_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_string_request(body: "_models.StringWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_string_request(body: "_models.StringWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -454,7 +454,7 @@ def _put_string_request(body: "_models.StringWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_date_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_date_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -476,7 +476,7 @@ def _get_date_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_date_request(body: "_models.DateWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_date_request(body: "_models.DateWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -504,7 +504,7 @@ def _put_date_request(body: "_models.DateWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_date_time_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_date_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -526,7 +526,7 @@ def _get_date_time_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_date_time_request(body: "_models.DatetimeWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_date_time_request(body: "_models.DatetimeWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -554,7 +554,7 @@ def _put_date_time_request(body: "_models.DatetimeWrapper", **kwargs) -> HttpReq
     return request
 
 
-def _get_date_time_rfc1123_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_date_time_rfc1123_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -576,7 +576,7 @@ def _get_date_time_rfc1123_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_date_time_rfc1123_request(body: "_models.Datetimerfc1123Wrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_date_time_rfc1123_request(body: "_models.Datetimerfc1123Wrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -604,7 +604,7 @@ def _put_date_time_rfc1123_request(body: "_models.Datetimerfc1123Wrapper", **kwa
     return request
 
 
-def _get_duration_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_duration_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -626,7 +626,7 @@ def _get_duration_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_duration_request(body: "_models.DurationWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_duration_request(body: "_models.DurationWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -654,7 +654,7 @@ def _put_duration_request(body: "_models.DurationWrapper", **kwargs) -> HttpRequ
     return request
 
 
-def _get_byte_request(**kwargs) -> HttpRequest:
+def _prepare_primitive_get_byte_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -676,7 +676,7 @@ def _get_byte_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_byte_request(body: "_models.ByteWrapper", **kwargs) -> HttpRequest:
+def _prepare_primitive_put_byte_request(body: "_models.ByteWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -704,7 +704,7 @@ def _put_byte_request(body: "_models.ByteWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_array_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -726,7 +726,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
+def _prepare_array_put_valid_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -754,7 +754,7 @@ def _put_valid_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_empty_request(**kwargs) -> HttpRequest:
+def _prepare_array_get_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -776,7 +776,7 @@ def _get_empty_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_empty_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
+def _prepare_array_put_empty_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -804,7 +804,7 @@ def _put_empty_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_not_provided_request(**kwargs) -> HttpRequest:
+def _prepare_array_get_not_provided_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -826,7 +826,7 @@ def _get_not_provided_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_dictionary_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -848,7 +848,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.DictionaryWrapper", **kwargs) -> HttpRequest:
+def _prepare_dictionary_put_valid_request(body: "_models.DictionaryWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -876,7 +876,7 @@ def _put_valid_request(body: "_models.DictionaryWrapper", **kwargs) -> HttpReque
     return request
 
 
-def _get_empty_request(**kwargs) -> HttpRequest:
+def _prepare_dictionary_get_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -898,7 +898,7 @@ def _get_empty_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_empty_request(body: "_models.DictionaryWrapper", **kwargs) -> HttpRequest:
+def _prepare_dictionary_put_empty_request(body: "_models.DictionaryWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -926,7 +926,7 @@ def _put_empty_request(body: "_models.DictionaryWrapper", **kwargs) -> HttpReque
     return request
 
 
-def _get_null_request(**kwargs) -> HttpRequest:
+def _prepare_dictionary_get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -948,7 +948,7 @@ def _get_null_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_not_provided_request(**kwargs) -> HttpRequest:
+def _prepare_dictionary_get_not_provided_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -970,7 +970,7 @@ def _get_not_provided_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_inheritance_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -992,7 +992,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.Siamese", **kwargs) -> HttpRequest:
+def _prepare_inheritance_put_valid_request(body: "_models.Siamese", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1020,7 +1020,7 @@ def _put_valid_request(body: "_models.Siamese", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_polymorphism_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1042,7 +1042,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.Fish", **kwargs) -> HttpRequest:
+def _prepare_polymorphism_put_valid_request(body: "_models.Fish", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1070,7 +1070,7 @@ def _put_valid_request(body: "_models.Fish", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_dot_syntax_request(**kwargs) -> HttpRequest:
+def _prepare_polymorphism_get_dot_syntax_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1092,7 +1092,7 @@ def _get_dot_syntax_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_composed_with_discriminator_request(**kwargs) -> HttpRequest:
+def _prepare_polymorphism_get_composed_with_discriminator_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1114,7 +1114,7 @@ def _get_composed_with_discriminator_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_composed_without_discriminator_request(**kwargs) -> HttpRequest:
+def _prepare_polymorphism_get_composed_without_discriminator_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1136,7 +1136,7 @@ def _get_composed_without_discriminator_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_complicated_request(**kwargs) -> HttpRequest:
+def _prepare_polymorphism_get_complicated_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1158,7 +1158,7 @@ def _get_complicated_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_complicated_request(body: "_models.Salmon", **kwargs) -> HttpRequest:
+def _prepare_polymorphism_put_complicated_request(body: "_models.Salmon", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1186,7 +1186,7 @@ def _put_complicated_request(body: "_models.Salmon", **kwargs) -> HttpRequest:
     return request
 
 
-def _put_missing_discriminator_request(body: "_models.Salmon", **kwargs) -> HttpRequest:
+def _prepare_polymorphism_put_missing_discriminator_request(body: "_models.Salmon", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1214,7 +1214,7 @@ def _put_missing_discriminator_request(body: "_models.Salmon", **kwargs) -> Http
     return request
 
 
-def _put_valid_missing_required_request(body: "_models.Fish", **kwargs) -> HttpRequest:
+def _prepare_polymorphism_put_valid_missing_required_request(body: "_models.Fish", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1242,7 +1242,7 @@ def _put_valid_missing_required_request(body: "_models.Fish", **kwargs) -> HttpR
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_polymorphicrecursive_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1264,7 +1264,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.Fish", **kwargs) -> HttpRequest:
+def _prepare_polymorphicrecursive_put_valid_request(body: "_models.Fish", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1292,7 +1292,7 @@ def _put_valid_request(body: "_models.Fish", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_readonlyproperty_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1314,7 +1314,7 @@ def _get_valid_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_valid_request(body: "_models.ReadonlyObj", **kwargs) -> HttpRequest:
+def _prepare_readonlyproperty_put_valid_request(body: "_models.ReadonlyObj", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1342,7 +1342,7 @@ def _put_valid_request(body: "_models.ReadonlyObj", **kwargs) -> HttpRequest:
     return request
 
 
-def _get_valid_request(**kwargs) -> HttpRequest:
+def _prepare_flattencomplex_get_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

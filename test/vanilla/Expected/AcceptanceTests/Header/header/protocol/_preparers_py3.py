@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _param_existing_key_request(user_agent_parameter: str, **kwargs) -> HttpRequest:
+def _prepare_header_param_existing_key_request(user_agent_parameter: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -37,7 +37,7 @@ def _param_existing_key_request(user_agent_parameter: str, **kwargs) -> HttpRequ
     return request
 
 
-def _response_existing_key_request(**kwargs) -> HttpRequest:
+def _prepare_header_response_existing_key_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -59,7 +59,7 @@ def _response_existing_key_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _param_protected_key_request(content_type: str, **kwargs) -> HttpRequest:
+def _prepare_header_param_protected_key_request(content_type: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -82,7 +82,7 @@ def _param_protected_key_request(content_type: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _response_protected_key_request(**kwargs) -> HttpRequest:
+def _prepare_header_response_protected_key_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -104,7 +104,7 @@ def _response_protected_key_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _param_integer_request(scenario: str, value: int, **kwargs) -> HttpRequest:
+def _prepare_header_param_integer_request(scenario: str, value: int, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -128,7 +128,7 @@ def _param_integer_request(scenario: str, value: int, **kwargs) -> HttpRequest:
     return request
 
 
-def _response_integer_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_integer_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -151,7 +151,7 @@ def _response_integer_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_long_request(scenario: str, value: int, **kwargs) -> HttpRequest:
+def _prepare_header_param_long_request(scenario: str, value: int, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -175,7 +175,7 @@ def _param_long_request(scenario: str, value: int, **kwargs) -> HttpRequest:
     return request
 
 
-def _response_long_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_long_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -198,7 +198,7 @@ def _response_long_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_float_request(scenario: str, value: float, **kwargs) -> HttpRequest:
+def _prepare_header_param_float_request(scenario: str, value: float, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -222,7 +222,7 @@ def _param_float_request(scenario: str, value: float, **kwargs) -> HttpRequest:
     return request
 
 
-def _response_float_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_float_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -245,7 +245,7 @@ def _response_float_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_double_request(scenario: str, value: float, **kwargs) -> HttpRequest:
+def _prepare_header_param_double_request(scenario: str, value: float, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -269,7 +269,7 @@ def _param_double_request(scenario: str, value: float, **kwargs) -> HttpRequest:
     return request
 
 
-def _response_double_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_double_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -292,7 +292,7 @@ def _response_double_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_bool_request(scenario: str, value: bool, **kwargs) -> HttpRequest:
+def _prepare_header_param_bool_request(scenario: str, value: bool, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -316,7 +316,7 @@ def _param_bool_request(scenario: str, value: bool, **kwargs) -> HttpRequest:
     return request
 
 
-def _response_bool_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_bool_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -339,7 +339,7 @@ def _response_bool_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_string_request(scenario: str, value: Optional[str] = None, **kwargs) -> HttpRequest:
+def _prepare_header_param_string_request(scenario: str, value: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -364,7 +364,7 @@ def _param_string_request(scenario: str, value: Optional[str] = None, **kwargs) 
     return request
 
 
-def _response_string_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_string_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -387,7 +387,7 @@ def _response_string_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_date_request(scenario: str, value: datetime.date, **kwargs) -> HttpRequest:
+def _prepare_header_param_date_request(scenario: str, value: datetime.date, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -411,7 +411,7 @@ def _param_date_request(scenario: str, value: datetime.date, **kwargs) -> HttpRe
     return request
 
 
-def _response_date_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_date_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -434,7 +434,7 @@ def _response_date_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_datetime_request(scenario: str, value: datetime.datetime, **kwargs) -> HttpRequest:
+def _prepare_header_param_datetime_request(scenario: str, value: datetime.datetime, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -458,7 +458,7 @@ def _param_datetime_request(scenario: str, value: datetime.datetime, **kwargs) -
     return request
 
 
-def _response_datetime_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_datetime_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -481,7 +481,9 @@ def _response_datetime_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_datetime_rfc1123_request(scenario: str, value: Optional[datetime.datetime] = None, **kwargs) -> HttpRequest:
+def _prepare_header_param_datetime_rfc1123_request(
+    scenario: str, value: Optional[datetime.datetime] = None, **kwargs
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -506,7 +508,7 @@ def _param_datetime_rfc1123_request(scenario: str, value: Optional[datetime.date
     return request
 
 
-def _response_datetime_rfc1123_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_datetime_rfc1123_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -529,7 +531,7 @@ def _response_datetime_rfc1123_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_duration_request(scenario: str, value: datetime.timedelta, **kwargs) -> HttpRequest:
+def _prepare_header_param_duration_request(scenario: str, value: datetime.timedelta, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -553,7 +555,7 @@ def _param_duration_request(scenario: str, value: datetime.timedelta, **kwargs) 
     return request
 
 
-def _response_duration_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_duration_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -576,7 +578,7 @@ def _response_duration_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_byte_request(scenario: str, value: bytearray, **kwargs) -> HttpRequest:
+def _prepare_header_param_byte_request(scenario: str, value: bytearray, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -600,7 +602,7 @@ def _param_byte_request(scenario: str, value: bytearray, **kwargs) -> HttpReques
     return request
 
 
-def _response_byte_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_byte_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -623,7 +625,7 @@ def _response_byte_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _param_enum_request(
+def _prepare_header_param_enum_request(
     scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -650,7 +652,7 @@ def _param_enum_request(
     return request
 
 
-def _response_enum_request(scenario: str, **kwargs) -> HttpRequest:
+def _prepare_header_response_enum_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -673,7 +675,7 @@ def _response_enum_request(scenario: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _custom_request_id_request(**kwargs) -> HttpRequest:
+def _prepare_header_custom_request_id_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

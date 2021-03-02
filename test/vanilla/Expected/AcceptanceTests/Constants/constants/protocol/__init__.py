@@ -7,55 +7,55 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _put_no_model_as_string_no_required_two_value_no_default_request
-    from ._preparers_py3 import _put_no_model_as_string_no_required_two_value_default_request
-    from ._preparers_py3 import _put_no_model_as_string_no_required_one_value_no_default_request
-    from ._preparers_py3 import _put_no_model_as_string_no_required_one_value_default_request
-    from ._preparers_py3 import _put_no_model_as_string_required_two_value_no_default_request
-    from ._preparers_py3 import _put_no_model_as_string_required_two_value_default_request
-    from ._preparers_py3 import _put_no_model_as_string_required_one_value_no_default_request
-    from ._preparers_py3 import _put_no_model_as_string_required_one_value_default_request
-    from ._preparers_py3 import _put_model_as_string_no_required_two_value_no_default_request
-    from ._preparers_py3 import _put_model_as_string_no_required_two_value_default_request
-    from ._preparers_py3 import _put_model_as_string_no_required_one_value_no_default_request
-    from ._preparers_py3 import _put_model_as_string_no_required_one_value_default_request
-    from ._preparers_py3 import _put_model_as_string_required_two_value_no_default_request
-    from ._preparers_py3 import _put_model_as_string_required_two_value_default_request
-    from ._preparers_py3 import _put_model_as_string_required_one_value_no_default_request
-    from ._preparers_py3 import _put_model_as_string_required_one_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_no_required_two_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_no_required_one_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_required_two_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_required_two_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_required_one_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_no_model_as_string_required_one_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_no_required_two_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_no_required_two_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_no_required_one_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_no_required_one_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_required_two_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_required_two_value_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_required_one_value_no_default_request
+    from ._preparers_py3 import _prepare_contants_put_model_as_string_required_one_value_default_request
 except (SyntaxError, ImportError):
-    from ._preparers import _put_no_model_as_string_no_required_two_value_no_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_no_required_two_value_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_no_required_one_value_no_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_no_required_one_value_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_required_two_value_no_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_required_two_value_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_required_one_value_no_default_request  # type: ignore
-    from ._preparers import _put_no_model_as_string_required_one_value_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_no_required_two_value_no_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_no_required_two_value_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_no_required_one_value_no_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_no_required_one_value_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_required_two_value_no_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_required_two_value_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_required_one_value_no_default_request  # type: ignore
-    from ._preparers import _put_model_as_string_required_one_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_no_required_two_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_no_required_one_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_required_two_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_required_two_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_required_one_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_no_model_as_string_required_one_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_no_required_two_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_no_required_two_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_no_required_one_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_no_required_one_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_required_two_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_required_two_value_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_required_one_value_no_default_request  # type: ignore
+    from ._preparers import _prepare_contants_put_model_as_string_required_one_value_default_request  # type: ignore
 
 __all__ = [
-    "_put_no_model_as_string_no_required_two_value_no_default_request",
-    "_put_no_model_as_string_no_required_two_value_default_request",
-    "_put_no_model_as_string_no_required_one_value_no_default_request",
-    "_put_no_model_as_string_no_required_one_value_default_request",
-    "_put_no_model_as_string_required_two_value_no_default_request",
-    "_put_no_model_as_string_required_two_value_default_request",
-    "_put_no_model_as_string_required_one_value_no_default_request",
-    "_put_no_model_as_string_required_one_value_default_request",
-    "_put_model_as_string_no_required_two_value_no_default_request",
-    "_put_model_as_string_no_required_two_value_default_request",
-    "_put_model_as_string_no_required_one_value_no_default_request",
-    "_put_model_as_string_no_required_one_value_default_request",
-    "_put_model_as_string_required_two_value_no_default_request",
-    "_put_model_as_string_required_two_value_default_request",
-    "_put_model_as_string_required_one_value_no_default_request",
-    "_put_model_as_string_required_one_value_default_request",
+    "_prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request",
+    "_prepare_contants_put_no_model_as_string_no_required_two_value_default_request",
+    "_prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request",
+    "_prepare_contants_put_no_model_as_string_no_required_one_value_default_request",
+    "_prepare_contants_put_no_model_as_string_required_two_value_no_default_request",
+    "_prepare_contants_put_no_model_as_string_required_two_value_default_request",
+    "_prepare_contants_put_no_model_as_string_required_one_value_no_default_request",
+    "_prepare_contants_put_no_model_as_string_required_one_value_default_request",
+    "_prepare_contants_put_model_as_string_no_required_two_value_no_default_request",
+    "_prepare_contants_put_model_as_string_no_required_two_value_default_request",
+    "_prepare_contants_put_model_as_string_no_required_one_value_no_default_request",
+    "_prepare_contants_put_model_as_string_no_required_one_value_default_request",
+    "_prepare_contants_put_model_as_string_required_two_value_no_default_request",
+    "_prepare_contants_put_model_as_string_required_two_value_default_request",
+    "_prepare_contants_put_model_as_string_required_one_value_no_default_request",
+    "_prepare_contants_put_model_as_string_required_one_value_default_request",
 ]

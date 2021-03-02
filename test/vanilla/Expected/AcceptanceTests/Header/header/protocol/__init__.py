@@ -7,94 +7,94 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _param_existing_key_request
-    from ._preparers_py3 import _response_existing_key_request
-    from ._preparers_py3 import _param_protected_key_request
-    from ._preparers_py3 import _response_protected_key_request
-    from ._preparers_py3 import _param_integer_request
-    from ._preparers_py3 import _response_integer_request
-    from ._preparers_py3 import _param_long_request
-    from ._preparers_py3 import _response_long_request
-    from ._preparers_py3 import _param_float_request
-    from ._preparers_py3 import _response_float_request
-    from ._preparers_py3 import _param_double_request
-    from ._preparers_py3 import _response_double_request
-    from ._preparers_py3 import _param_bool_request
-    from ._preparers_py3 import _response_bool_request
-    from ._preparers_py3 import _param_string_request
-    from ._preparers_py3 import _response_string_request
-    from ._preparers_py3 import _param_date_request
-    from ._preparers_py3 import _response_date_request
-    from ._preparers_py3 import _param_datetime_request
-    from ._preparers_py3 import _response_datetime_request
-    from ._preparers_py3 import _param_datetime_rfc1123_request
-    from ._preparers_py3 import _response_datetime_rfc1123_request
-    from ._preparers_py3 import _param_duration_request
-    from ._preparers_py3 import _response_duration_request
-    from ._preparers_py3 import _param_byte_request
-    from ._preparers_py3 import _response_byte_request
-    from ._preparers_py3 import _param_enum_request
-    from ._preparers_py3 import _response_enum_request
-    from ._preparers_py3 import _custom_request_id_request
+    from ._preparers_py3 import _prepare_header_param_existing_key_request
+    from ._preparers_py3 import _prepare_header_response_existing_key_request
+    from ._preparers_py3 import _prepare_header_param_protected_key_request
+    from ._preparers_py3 import _prepare_header_response_protected_key_request
+    from ._preparers_py3 import _prepare_header_param_integer_request
+    from ._preparers_py3 import _prepare_header_response_integer_request
+    from ._preparers_py3 import _prepare_header_param_long_request
+    from ._preparers_py3 import _prepare_header_response_long_request
+    from ._preparers_py3 import _prepare_header_param_float_request
+    from ._preparers_py3 import _prepare_header_response_float_request
+    from ._preparers_py3 import _prepare_header_param_double_request
+    from ._preparers_py3 import _prepare_header_response_double_request
+    from ._preparers_py3 import _prepare_header_param_bool_request
+    from ._preparers_py3 import _prepare_header_response_bool_request
+    from ._preparers_py3 import _prepare_header_param_string_request
+    from ._preparers_py3 import _prepare_header_response_string_request
+    from ._preparers_py3 import _prepare_header_param_date_request
+    from ._preparers_py3 import _prepare_header_response_date_request
+    from ._preparers_py3 import _prepare_header_param_datetime_request
+    from ._preparers_py3 import _prepare_header_response_datetime_request
+    from ._preparers_py3 import _prepare_header_param_datetime_rfc1123_request
+    from ._preparers_py3 import _prepare_header_response_datetime_rfc1123_request
+    from ._preparers_py3 import _prepare_header_param_duration_request
+    from ._preparers_py3 import _prepare_header_response_duration_request
+    from ._preparers_py3 import _prepare_header_param_byte_request
+    from ._preparers_py3 import _prepare_header_response_byte_request
+    from ._preparers_py3 import _prepare_header_param_enum_request
+    from ._preparers_py3 import _prepare_header_response_enum_request
+    from ._preparers_py3 import _prepare_header_custom_request_id_request
 except (SyntaxError, ImportError):
-    from ._preparers import _param_existing_key_request  # type: ignore
-    from ._preparers import _response_existing_key_request  # type: ignore
-    from ._preparers import _param_protected_key_request  # type: ignore
-    from ._preparers import _response_protected_key_request  # type: ignore
-    from ._preparers import _param_integer_request  # type: ignore
-    from ._preparers import _response_integer_request  # type: ignore
-    from ._preparers import _param_long_request  # type: ignore
-    from ._preparers import _response_long_request  # type: ignore
-    from ._preparers import _param_float_request  # type: ignore
-    from ._preparers import _response_float_request  # type: ignore
-    from ._preparers import _param_double_request  # type: ignore
-    from ._preparers import _response_double_request  # type: ignore
-    from ._preparers import _param_bool_request  # type: ignore
-    from ._preparers import _response_bool_request  # type: ignore
-    from ._preparers import _param_string_request  # type: ignore
-    from ._preparers import _response_string_request  # type: ignore
-    from ._preparers import _param_date_request  # type: ignore
-    from ._preparers import _response_date_request  # type: ignore
-    from ._preparers import _param_datetime_request  # type: ignore
-    from ._preparers import _response_datetime_request  # type: ignore
-    from ._preparers import _param_datetime_rfc1123_request  # type: ignore
-    from ._preparers import _response_datetime_rfc1123_request  # type: ignore
-    from ._preparers import _param_duration_request  # type: ignore
-    from ._preparers import _response_duration_request  # type: ignore
-    from ._preparers import _param_byte_request  # type: ignore
-    from ._preparers import _response_byte_request  # type: ignore
-    from ._preparers import _param_enum_request  # type: ignore
-    from ._preparers import _response_enum_request  # type: ignore
-    from ._preparers import _custom_request_id_request  # type: ignore
+    from ._preparers import _prepare_header_param_existing_key_request  # type: ignore
+    from ._preparers import _prepare_header_response_existing_key_request  # type: ignore
+    from ._preparers import _prepare_header_param_protected_key_request  # type: ignore
+    from ._preparers import _prepare_header_response_protected_key_request  # type: ignore
+    from ._preparers import _prepare_header_param_integer_request  # type: ignore
+    from ._preparers import _prepare_header_response_integer_request  # type: ignore
+    from ._preparers import _prepare_header_param_long_request  # type: ignore
+    from ._preparers import _prepare_header_response_long_request  # type: ignore
+    from ._preparers import _prepare_header_param_float_request  # type: ignore
+    from ._preparers import _prepare_header_response_float_request  # type: ignore
+    from ._preparers import _prepare_header_param_double_request  # type: ignore
+    from ._preparers import _prepare_header_response_double_request  # type: ignore
+    from ._preparers import _prepare_header_param_bool_request  # type: ignore
+    from ._preparers import _prepare_header_response_bool_request  # type: ignore
+    from ._preparers import _prepare_header_param_string_request  # type: ignore
+    from ._preparers import _prepare_header_response_string_request  # type: ignore
+    from ._preparers import _prepare_header_param_date_request  # type: ignore
+    from ._preparers import _prepare_header_response_date_request  # type: ignore
+    from ._preparers import _prepare_header_param_datetime_request  # type: ignore
+    from ._preparers import _prepare_header_response_datetime_request  # type: ignore
+    from ._preparers import _prepare_header_param_datetime_rfc1123_request  # type: ignore
+    from ._preparers import _prepare_header_response_datetime_rfc1123_request  # type: ignore
+    from ._preparers import _prepare_header_param_duration_request  # type: ignore
+    from ._preparers import _prepare_header_response_duration_request  # type: ignore
+    from ._preparers import _prepare_header_param_byte_request  # type: ignore
+    from ._preparers import _prepare_header_response_byte_request  # type: ignore
+    from ._preparers import _prepare_header_param_enum_request  # type: ignore
+    from ._preparers import _prepare_header_response_enum_request  # type: ignore
+    from ._preparers import _prepare_header_custom_request_id_request  # type: ignore
 
 __all__ = [
-    "_param_existing_key_request",
-    "_response_existing_key_request",
-    "_param_protected_key_request",
-    "_response_protected_key_request",
-    "_param_integer_request",
-    "_response_integer_request",
-    "_param_long_request",
-    "_response_long_request",
-    "_param_float_request",
-    "_response_float_request",
-    "_param_double_request",
-    "_response_double_request",
-    "_param_bool_request",
-    "_response_bool_request",
-    "_param_string_request",
-    "_response_string_request",
-    "_param_date_request",
-    "_response_date_request",
-    "_param_datetime_request",
-    "_response_datetime_request",
-    "_param_datetime_rfc1123_request",
-    "_response_datetime_rfc1123_request",
-    "_param_duration_request",
-    "_response_duration_request",
-    "_param_byte_request",
-    "_response_byte_request",
-    "_param_enum_request",
-    "_response_enum_request",
-    "_custom_request_id_request",
+    "_prepare_header_param_existing_key_request",
+    "_prepare_header_response_existing_key_request",
+    "_prepare_header_param_protected_key_request",
+    "_prepare_header_response_protected_key_request",
+    "_prepare_header_param_integer_request",
+    "_prepare_header_response_integer_request",
+    "_prepare_header_param_long_request",
+    "_prepare_header_response_long_request",
+    "_prepare_header_param_float_request",
+    "_prepare_header_response_float_request",
+    "_prepare_header_param_double_request",
+    "_prepare_header_response_double_request",
+    "_prepare_header_param_bool_request",
+    "_prepare_header_response_bool_request",
+    "_prepare_header_param_string_request",
+    "_prepare_header_response_string_request",
+    "_prepare_header_param_date_request",
+    "_prepare_header_response_date_request",
+    "_prepare_header_param_datetime_request",
+    "_prepare_header_response_datetime_request",
+    "_prepare_header_param_datetime_rfc1123_request",
+    "_prepare_header_response_datetime_rfc1123_request",
+    "_prepare_header_param_duration_request",
+    "_prepare_header_response_duration_request",
+    "_prepare_header_param_byte_request",
+    "_prepare_header_response_byte_request",
+    "_prepare_header_param_enum_request",
+    "_prepare_header_response_enum_request",
+    "_prepare_header_custom_request_id_request",
 ]

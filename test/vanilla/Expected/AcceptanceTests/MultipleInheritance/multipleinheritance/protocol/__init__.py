@@ -7,37 +7,37 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_horse_request
-    from ._preparers_py3 import _put_horse_request
-    from ._preparers_py3 import _get_pet_request
-    from ._preparers_py3 import _put_pet_request
-    from ._preparers_py3 import _get_feline_request
-    from ._preparers_py3 import _put_feline_request
-    from ._preparers_py3 import _get_cat_request
-    from ._preparers_py3 import _put_cat_request
-    from ._preparers_py3 import _get_kitten_request
-    from ._preparers_py3 import _put_kitten_request
+    from ._preparers_py3 import _prepare_get_horse_request
+    from ._preparers_py3 import _prepare_put_horse_request
+    from ._preparers_py3 import _prepare_get_pet_request
+    from ._preparers_py3 import _prepare_put_pet_request
+    from ._preparers_py3 import _prepare_get_feline_request
+    from ._preparers_py3 import _prepare_put_feline_request
+    from ._preparers_py3 import _prepare_get_cat_request
+    from ._preparers_py3 import _prepare_put_cat_request
+    from ._preparers_py3 import _prepare_get_kitten_request
+    from ._preparers_py3 import _prepare_put_kitten_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_horse_request  # type: ignore
-    from ._preparers import _put_horse_request  # type: ignore
-    from ._preparers import _get_pet_request  # type: ignore
-    from ._preparers import _put_pet_request  # type: ignore
-    from ._preparers import _get_feline_request  # type: ignore
-    from ._preparers import _put_feline_request  # type: ignore
-    from ._preparers import _get_cat_request  # type: ignore
-    from ._preparers import _put_cat_request  # type: ignore
-    from ._preparers import _get_kitten_request  # type: ignore
-    from ._preparers import _put_kitten_request  # type: ignore
+    from ._preparers import _prepare_get_horse_request  # type: ignore
+    from ._preparers import _prepare_put_horse_request  # type: ignore
+    from ._preparers import _prepare_get_pet_request  # type: ignore
+    from ._preparers import _prepare_put_pet_request  # type: ignore
+    from ._preparers import _prepare_get_feline_request  # type: ignore
+    from ._preparers import _prepare_put_feline_request  # type: ignore
+    from ._preparers import _prepare_get_cat_request  # type: ignore
+    from ._preparers import _prepare_put_cat_request  # type: ignore
+    from ._preparers import _prepare_get_kitten_request  # type: ignore
+    from ._preparers import _prepare_put_kitten_request  # type: ignore
 
 __all__ = [
-    "_get_horse_request",
-    "_put_horse_request",
-    "_get_pet_request",
-    "_put_pet_request",
-    "_get_feline_request",
-    "_put_feline_request",
-    "_get_cat_request",
-    "_put_cat_request",
-    "_get_kitten_request",
-    "_put_kitten_request",
+    "_prepare_get_horse_request",
+    "_prepare_put_horse_request",
+    "_prepare_get_pet_request",
+    "_prepare_put_pet_request",
+    "_prepare_get_feline_request",
+    "_prepare_put_feline_request",
+    "_prepare_get_cat_request",
+    "_prepare_put_cat_request",
+    "_prepare_get_kitten_request",
+    "_prepare_put_kitten_request",
 ]

@@ -62,7 +62,9 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_method_local_valid_request(template_url=self.get_method_local_valid.metadata["url"], **kwargs)
+        request = _prepare_apiversionlocal_get_method_local_valid_request(
+            template_url=self.get_method_local_valid.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -95,7 +97,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_method_local_null_request(
+        request = _prepare_apiversionlocal_get_method_local_null_request(
             api_version=api_version, template_url=self.get_method_local_null.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -127,7 +129,9 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_path_local_valid_request(template_url=self.get_path_local_valid.metadata["url"], **kwargs)
+        request = _prepare_apiversionlocal_get_path_local_valid_request(
+            template_url=self.get_path_local_valid.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -157,7 +161,9 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_swagger_local_valid_request(template_url=self.get_swagger_local_valid.metadata["url"], **kwargs)
+        request = _prepare_apiversionlocal_get_swagger_local_valid_request(
+            template_url=self.get_swagger_local_valid.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

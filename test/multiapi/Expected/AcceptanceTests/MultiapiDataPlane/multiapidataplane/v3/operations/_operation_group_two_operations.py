@@ -17,7 +17,7 @@ from ..protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +68,7 @@ class OperationGroupTwoOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = _test_four_request(
+        request = _prepare_operationgrouptwo_test_four_request(
             body=input,
             template_url=self.test_four.metadata['url'],
             **kwargs
@@ -107,7 +107,7 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _test_five_request(
+        request = _prepare_operationgrouptwo_test_five_request(
             template_url=self.test_five.metadata['url'],
             **kwargs
         )

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _update_request(
+def _prepare_availabilitysets_update_request(
     resource_group_name,  # type: str
     avset,  # type: str
     body,  # type: "_models.AvailabilitySetUpdateParameters"

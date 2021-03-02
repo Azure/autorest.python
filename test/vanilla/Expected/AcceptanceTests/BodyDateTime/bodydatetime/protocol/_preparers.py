@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(
+def _prepare_datetime_get_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -38,7 +38,7 @@ def _get_null_request(
     return request
 
 
-def _get_invalid_request(
+def _prepare_datetime_get_invalid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -63,7 +63,7 @@ def _get_invalid_request(
     return request
 
 
-def _get_overflow_request(
+def _prepare_datetime_get_overflow_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -88,7 +88,7 @@ def _get_overflow_request(
     return request
 
 
-def _get_underflow_request(
+def _prepare_datetime_get_underflow_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -113,7 +113,7 @@ def _get_underflow_request(
     return request
 
 
-def _put_utc_max_date_time_request(
+def _prepare_datetime_put_utc_max_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -145,7 +145,7 @@ def _put_utc_max_date_time_request(
     return request
 
 
-def _put_utc_max_date_time7_digits_request(
+def _prepare_datetime_put_utc_max_date_time7_digits_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -177,7 +177,7 @@ def _put_utc_max_date_time7_digits_request(
     return request
 
 
-def _get_utc_lowercase_max_date_time_request(
+def _prepare_datetime_get_utc_lowercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -202,7 +202,7 @@ def _get_utc_lowercase_max_date_time_request(
     return request
 
 
-def _get_utc_uppercase_max_date_time_request(
+def _prepare_datetime_get_utc_uppercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -227,7 +227,7 @@ def _get_utc_uppercase_max_date_time_request(
     return request
 
 
-def _get_utc_uppercase_max_date_time7_digits_request(
+def _prepare_datetime_get_utc_uppercase_max_date_time7_digits_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -252,7 +252,7 @@ def _get_utc_uppercase_max_date_time7_digits_request(
     return request
 
 
-def _put_local_positive_offset_max_date_time_request(
+def _prepare_datetime_put_local_positive_offset_max_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -284,7 +284,7 @@ def _put_local_positive_offset_max_date_time_request(
     return request
 
 
-def _get_local_positive_offset_lowercase_max_date_time_request(
+def _prepare_datetime_get_local_positive_offset_lowercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -309,7 +309,7 @@ def _get_local_positive_offset_lowercase_max_date_time_request(
     return request
 
 
-def _get_local_positive_offset_uppercase_max_date_time_request(
+def _prepare_datetime_get_local_positive_offset_uppercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -334,7 +334,7 @@ def _get_local_positive_offset_uppercase_max_date_time_request(
     return request
 
 
-def _put_local_negative_offset_max_date_time_request(
+def _prepare_datetime_put_local_negative_offset_max_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -366,7 +366,7 @@ def _put_local_negative_offset_max_date_time_request(
     return request
 
 
-def _get_local_negative_offset_uppercase_max_date_time_request(
+def _prepare_datetime_get_local_negative_offset_uppercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -391,7 +391,7 @@ def _get_local_negative_offset_uppercase_max_date_time_request(
     return request
 
 
-def _get_local_negative_offset_lowercase_max_date_time_request(
+def _prepare_datetime_get_local_negative_offset_lowercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -416,7 +416,7 @@ def _get_local_negative_offset_lowercase_max_date_time_request(
     return request
 
 
-def _put_utc_min_date_time_request(
+def _prepare_datetime_put_utc_min_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -448,7 +448,7 @@ def _put_utc_min_date_time_request(
     return request
 
 
-def _get_utc_min_date_time_request(
+def _prepare_datetime_get_utc_min_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -473,7 +473,7 @@ def _get_utc_min_date_time_request(
     return request
 
 
-def _put_local_positive_offset_min_date_time_request(
+def _prepare_datetime_put_local_positive_offset_min_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -505,7 +505,7 @@ def _put_local_positive_offset_min_date_time_request(
     return request
 
 
-def _get_local_positive_offset_min_date_time_request(
+def _prepare_datetime_get_local_positive_offset_min_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -530,7 +530,7 @@ def _get_local_positive_offset_min_date_time_request(
     return request
 
 
-def _put_local_negative_offset_min_date_time_request(
+def _prepare_datetime_put_local_negative_offset_min_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -562,7 +562,7 @@ def _put_local_negative_offset_min_date_time_request(
     return request
 
 
-def _get_local_negative_offset_min_date_time_request(
+def _prepare_datetime_get_local_negative_offset_min_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -587,7 +587,7 @@ def _get_local_negative_offset_min_date_time_request(
     return request
 
 
-def _get_local_no_offset_min_date_time_request(
+def _prepare_datetime_get_local_no_offset_min_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

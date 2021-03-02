@@ -7,13 +7,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _analyze_body_request
-    from ._preparers_py3 import _content_type_with_encoding_request
+    from ._preparers_py3 import _prepare_analyze_body_request
+    from ._preparers_py3 import _prepare_content_type_with_encoding_request
 except (SyntaxError, ImportError):
-    from ._preparers import _analyze_body_request  # type: ignore
-    from ._preparers import _content_type_with_encoding_request  # type: ignore
+    from ._preparers import _prepare_analyze_body_request  # type: ignore
+    from ._preparers import _prepare_content_type_with_encoding_request  # type: ignore
 
 __all__ = [
-    "_analyze_body_request",
-    "_content_type_with_encoding_request",
+    "_prepare_analyze_body_request",
+    "_prepare_content_type_with_encoding_request",
 ]

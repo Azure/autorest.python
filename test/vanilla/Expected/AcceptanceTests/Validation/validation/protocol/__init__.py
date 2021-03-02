@@ -7,19 +7,19 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _validation_of_method_parameters_request
-    from ._preparers_py3 import _validation_of_body_request
-    from ._preparers_py3 import _get_with_constant_in_path_request
-    from ._preparers_py3 import _post_with_constant_in_body_request
+    from ._preparers_py3 import _prepare_validation_of_method_parameters_request
+    from ._preparers_py3 import _prepare_validation_of_body_request
+    from ._preparers_py3 import _prepare_get_with_constant_in_path_request
+    from ._preparers_py3 import _prepare_post_with_constant_in_body_request
 except (SyntaxError, ImportError):
-    from ._preparers import _validation_of_method_parameters_request  # type: ignore
-    from ._preparers import _validation_of_body_request  # type: ignore
-    from ._preparers import _get_with_constant_in_path_request  # type: ignore
-    from ._preparers import _post_with_constant_in_body_request  # type: ignore
+    from ._preparers import _prepare_validation_of_method_parameters_request  # type: ignore
+    from ._preparers import _prepare_validation_of_body_request  # type: ignore
+    from ._preparers import _prepare_get_with_constant_in_path_request  # type: ignore
+    from ._preparers import _prepare_post_with_constant_in_body_request  # type: ignore
 
 __all__ = [
-    "_validation_of_method_parameters_request",
-    "_validation_of_body_request",
-    "_get_with_constant_in_path_request",
-    "_post_with_constant_in_body_request",
+    "_prepare_validation_of_method_parameters_request",
+    "_prepare_validation_of_body_request",
+    "_prepare_get_with_constant_in_path_request",
+    "_prepare_post_with_constant_in_body_request",
 ]

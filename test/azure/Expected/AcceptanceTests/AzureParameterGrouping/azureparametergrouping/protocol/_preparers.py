@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _post_required_request(
+def _prepare_parametergrouping_post_required_request(
     path,  # type: str
     body,  # type: int
     custom_header=None,  # type: Optional[str]
@@ -61,7 +61,7 @@ def _post_required_request(
     return request
 
 
-def _post_optional_request(
+def _prepare_parametergrouping_post_optional_request(
     custom_header=None,  # type: Optional[str]
     query=30,  # type: Optional[int]
     **kwargs  # type: Any
@@ -92,7 +92,7 @@ def _post_optional_request(
     return request
 
 
-def _post_multi_param_groups_request(
+def _prepare_parametergrouping_post_multi_param_groups_request(
     header_one=None,  # type: Optional[str]
     query_one=30,  # type: Optional[int]
     header_two=None,  # type: Optional[str]
@@ -129,7 +129,7 @@ def _post_multi_param_groups_request(
     return request
 
 
-def _post_shared_parameter_group_object_request(
+def _prepare_parametergrouping_post_shared_parameter_group_object_request(
     header_one=None,  # type: Optional[str]
     query_one=30,  # type: Optional[int]
     **kwargs  # type: Any

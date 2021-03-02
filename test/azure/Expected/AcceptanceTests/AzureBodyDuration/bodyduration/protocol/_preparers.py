@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(
+def _prepare_duration_get_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -38,7 +38,7 @@ def _get_null_request(
     return request
 
 
-def _put_positive_duration_request(
+def _prepare_duration_put_positive_duration_request(
     body,  # type: datetime.timedelta
     **kwargs  # type: Any
 ):
@@ -70,7 +70,7 @@ def _put_positive_duration_request(
     return request
 
 
-def _get_positive_duration_request(
+def _prepare_duration_get_positive_duration_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -95,7 +95,7 @@ def _get_positive_duration_request(
     return request
 
 
-def _get_invalid_request(
+def _prepare_duration_get_invalid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

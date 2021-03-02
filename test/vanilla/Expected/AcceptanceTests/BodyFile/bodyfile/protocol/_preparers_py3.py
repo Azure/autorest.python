@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_file_request(**kwargs) -> HttpRequest:
+def _prepare_files_get_file_request(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def _get_file_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_file_large_request(**kwargs) -> HttpRequest:
+def _prepare_files_get_file_large_request(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL
@@ -55,7 +55,7 @@ def _get_file_large_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_empty_file_request(**kwargs) -> HttpRequest:
+def _prepare_files_get_empty_file_request(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL

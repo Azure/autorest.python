@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_true_request(**kwargs) -> HttpRequest:
+def _prepare_bool_get_true_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def _get_true_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_true_request(body: bool, **kwargs) -> HttpRequest:
+def _prepare_bool_put_true_request(body: bool, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -61,7 +61,7 @@ def _put_true_request(body: bool, **kwargs) -> HttpRequest:
     return request
 
 
-def _get_false_request(**kwargs) -> HttpRequest:
+def _prepare_bool_get_false_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -83,7 +83,7 @@ def _get_false_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_false_request(body: bool, **kwargs) -> HttpRequest:
+def _prepare_bool_put_false_request(body: bool, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -111,7 +111,7 @@ def _put_false_request(body: bool, **kwargs) -> HttpRequest:
     return request
 
 
-def _get_null_request(**kwargs) -> HttpRequest:
+def _prepare_bool_get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -133,7 +133,7 @@ def _get_null_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_invalid_request(**kwargs) -> HttpRequest:
+def _prepare_bool_get_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

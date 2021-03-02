@@ -75,7 +75,7 @@ class SubscriptionInMethodOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _post_method_local_valid_request(
+        request = _prepare_subscriptioninmethod_post_method_local_valid_request(
             subscription_id=subscription_id, template_url=self.post_method_local_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -116,7 +116,7 @@ class SubscriptionInMethodOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _post_method_local_null_request(
+        request = _prepare_subscriptioninmethod_post_method_local_null_request(
             subscription_id=subscription_id, template_url=self.post_method_local_null.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -156,7 +156,7 @@ class SubscriptionInMethodOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _post_path_local_valid_request(
+        request = _prepare_subscriptioninmethod_post_path_local_valid_request(
             subscription_id=subscription_id, template_url=self.post_path_local_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -197,7 +197,7 @@ class SubscriptionInMethodOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _post_swagger_local_valid_request(
+        request = _prepare_subscriptioninmethod_post_swagger_local_valid_request(
             subscription_id=subscription_id, template_url=self.post_swagger_local_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

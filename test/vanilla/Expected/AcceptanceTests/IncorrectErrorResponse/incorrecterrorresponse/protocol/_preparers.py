@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_incorrect_error_from_server_request(
+def _prepare_get_incorrect_error_from_server_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

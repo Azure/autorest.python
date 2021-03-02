@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _create_ap_true_request(
+def _prepare_pets_create_ap_true_request(
     body,  # type: "_models.PetAPTrue"
     **kwargs  # type: Any
 ):
@@ -43,7 +43,7 @@ def _create_ap_true_request(
     return request
 
 
-def _create_cat_ap_true_request(
+def _prepare_pets_create_cat_ap_true_request(
     body,  # type: "_models.CatAPTrue"
     **kwargs  # type: Any
 ):
@@ -75,7 +75,7 @@ def _create_cat_ap_true_request(
     return request
 
 
-def _create_ap_object_request(
+def _prepare_pets_create_ap_object_request(
     body,  # type: "_models.PetAPObject"
     **kwargs  # type: Any
 ):
@@ -107,7 +107,7 @@ def _create_ap_object_request(
     return request
 
 
-def _create_ap_string_request(
+def _prepare_pets_create_ap_string_request(
     body,  # type: "_models.PetAPString"
     **kwargs  # type: Any
 ):
@@ -139,7 +139,7 @@ def _create_ap_string_request(
     return request
 
 
-def _create_ap_in_properties_request(
+def _prepare_pets_create_ap_in_properties_request(
     body,  # type: "_models.PetAPInProperties"
     **kwargs  # type: Any
 ):
@@ -171,7 +171,7 @@ def _create_ap_in_properties_request(
     return request
 
 
-def _create_ap_in_properties_with_ap_string_request(
+def _prepare_pets_create_ap_in_properties_with_ap_string_request(
     body,  # type: "_models.PetAPInPropertiesWithAPString"
     **kwargs  # type: Any
 ):

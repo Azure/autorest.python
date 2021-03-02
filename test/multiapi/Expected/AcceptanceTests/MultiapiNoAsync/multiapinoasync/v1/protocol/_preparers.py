@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
-def _test_one_request(
+def _prepare_test_one_request(
     id,  # type: int
     message=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -48,7 +48,7 @@ def _test_one_request(
     )
     return request
 
-def _test_lro_initial_request(
+def _prepare_test_lro_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -79,7 +79,7 @@ def _test_lro_initial_request(
     )
     return request
 
-def _test_lro_and_paging_initial_request(
+def _prepare_test_lro_and_paging_initial_request(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
@@ -113,7 +113,7 @@ def _test_lro_and_paging_initial_request(
     )
     return request
 
-def _test_different_calls_request(
+def _prepare_test_different_calls_request(
     greeting_in_english,  # type: str
     **kwargs  # type: Any
 ):
@@ -142,7 +142,7 @@ def _test_different_calls_request(
     )
     return request
 
-def _test_two_request(
+def _prepare_operationgroupone_test_two_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

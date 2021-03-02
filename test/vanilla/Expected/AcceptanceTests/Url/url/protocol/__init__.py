@@ -7,205 +7,205 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_boolean_true_request
-    from ._preparers_py3 import _get_boolean_false_request
-    from ._preparers_py3 import _get_int_one_million_request
-    from ._preparers_py3 import _get_int_negative_one_million_request
-    from ._preparers_py3 import _get_ten_billion_request
-    from ._preparers_py3 import _get_negative_ten_billion_request
-    from ._preparers_py3 import _float_scientific_positive_request
-    from ._preparers_py3 import _float_scientific_negative_request
-    from ._preparers_py3 import _double_decimal_positive_request
-    from ._preparers_py3 import _double_decimal_negative_request
-    from ._preparers_py3 import _string_unicode_request
-    from ._preparers_py3 import _string_url_encoded_request
-    from ._preparers_py3 import _string_url_non_encoded_request
-    from ._preparers_py3 import _string_empty_request
-    from ._preparers_py3 import _string_null_request
-    from ._preparers_py3 import _enum_valid_request
-    from ._preparers_py3 import _enum_null_request
-    from ._preparers_py3 import _byte_multi_byte_request
-    from ._preparers_py3 import _byte_empty_request
-    from ._preparers_py3 import _byte_null_request
-    from ._preparers_py3 import _date_valid_request
-    from ._preparers_py3 import _date_null_request
-    from ._preparers_py3 import _date_time_valid_request
-    from ._preparers_py3 import _date_time_null_request
-    from ._preparers_py3 import _base64_url_request
-    from ._preparers_py3 import _array_csv_in_path_request
-    from ._preparers_py3 import _unix_time_url_request
-    from ._preparers_py3 import _get_boolean_true_request
-    from ._preparers_py3 import _get_boolean_false_request
-    from ._preparers_py3 import _get_boolean_null_request
-    from ._preparers_py3 import _get_int_one_million_request
-    from ._preparers_py3 import _get_int_negative_one_million_request
-    from ._preparers_py3 import _get_int_null_request
-    from ._preparers_py3 import _get_ten_billion_request
-    from ._preparers_py3 import _get_negative_ten_billion_request
-    from ._preparers_py3 import _get_long_null_request
-    from ._preparers_py3 import _float_scientific_positive_request
-    from ._preparers_py3 import _float_scientific_negative_request
-    from ._preparers_py3 import _float_null_request
-    from ._preparers_py3 import _double_decimal_positive_request
-    from ._preparers_py3 import _double_decimal_negative_request
-    from ._preparers_py3 import _double_null_request
-    from ._preparers_py3 import _string_unicode_request
-    from ._preparers_py3 import _string_url_encoded_request
-    from ._preparers_py3 import _string_empty_request
-    from ._preparers_py3 import _string_null_request
-    from ._preparers_py3 import _enum_valid_request
-    from ._preparers_py3 import _enum_null_request
-    from ._preparers_py3 import _byte_multi_byte_request
-    from ._preparers_py3 import _byte_empty_request
-    from ._preparers_py3 import _byte_null_request
-    from ._preparers_py3 import _date_valid_request
-    from ._preparers_py3 import _date_null_request
-    from ._preparers_py3 import _date_time_valid_request
-    from ._preparers_py3 import _date_time_null_request
-    from ._preparers_py3 import _array_string_csv_valid_request
-    from ._preparers_py3 import _array_string_csv_null_request
-    from ._preparers_py3 import _array_string_csv_empty_request
-    from ._preparers_py3 import _array_string_no_collection_format_empty_request
-    from ._preparers_py3 import _array_string_ssv_valid_request
-    from ._preparers_py3 import _array_string_tsv_valid_request
-    from ._preparers_py3 import _array_string_pipes_valid_request
-    from ._preparers_py3 import _get_all_with_values_request
-    from ._preparers_py3 import _get_global_query_null_request
-    from ._preparers_py3 import _get_global_and_local_query_null_request
-    from ._preparers_py3 import _get_local_path_item_query_null_request
+    from ._preparers_py3 import _prepare_paths_get_boolean_true_request
+    from ._preparers_py3 import _prepare_paths_get_boolean_false_request
+    from ._preparers_py3 import _prepare_paths_get_int_one_million_request
+    from ._preparers_py3 import _prepare_paths_get_int_negative_one_million_request
+    from ._preparers_py3 import _prepare_paths_get_ten_billion_request
+    from ._preparers_py3 import _prepare_paths_get_negative_ten_billion_request
+    from ._preparers_py3 import _prepare_paths_float_scientific_positive_request
+    from ._preparers_py3 import _prepare_paths_float_scientific_negative_request
+    from ._preparers_py3 import _prepare_paths_double_decimal_positive_request
+    from ._preparers_py3 import _prepare_paths_double_decimal_negative_request
+    from ._preparers_py3 import _prepare_paths_string_unicode_request
+    from ._preparers_py3 import _prepare_paths_string_url_encoded_request
+    from ._preparers_py3 import _prepare_paths_string_url_non_encoded_request
+    from ._preparers_py3 import _prepare_paths_string_empty_request
+    from ._preparers_py3 import _prepare_paths_string_null_request
+    from ._preparers_py3 import _prepare_paths_enum_valid_request
+    from ._preparers_py3 import _prepare_paths_enum_null_request
+    from ._preparers_py3 import _prepare_paths_byte_multi_byte_request
+    from ._preparers_py3 import _prepare_paths_byte_empty_request
+    from ._preparers_py3 import _prepare_paths_byte_null_request
+    from ._preparers_py3 import _prepare_paths_date_valid_request
+    from ._preparers_py3 import _prepare_paths_date_null_request
+    from ._preparers_py3 import _prepare_paths_date_time_valid_request
+    from ._preparers_py3 import _prepare_paths_date_time_null_request
+    from ._preparers_py3 import _prepare_paths_base64_url_request
+    from ._preparers_py3 import _prepare_paths_array_csv_in_path_request
+    from ._preparers_py3 import _prepare_paths_unix_time_url_request
+    from ._preparers_py3 import _prepare_queries_get_boolean_true_request
+    from ._preparers_py3 import _prepare_queries_get_boolean_false_request
+    from ._preparers_py3 import _prepare_queries_get_boolean_null_request
+    from ._preparers_py3 import _prepare_queries_get_int_one_million_request
+    from ._preparers_py3 import _prepare_queries_get_int_negative_one_million_request
+    from ._preparers_py3 import _prepare_queries_get_int_null_request
+    from ._preparers_py3 import _prepare_queries_get_ten_billion_request
+    from ._preparers_py3 import _prepare_queries_get_negative_ten_billion_request
+    from ._preparers_py3 import _prepare_queries_get_long_null_request
+    from ._preparers_py3 import _prepare_queries_float_scientific_positive_request
+    from ._preparers_py3 import _prepare_queries_float_scientific_negative_request
+    from ._preparers_py3 import _prepare_queries_float_null_request
+    from ._preparers_py3 import _prepare_queries_double_decimal_positive_request
+    from ._preparers_py3 import _prepare_queries_double_decimal_negative_request
+    from ._preparers_py3 import _prepare_queries_double_null_request
+    from ._preparers_py3 import _prepare_queries_string_unicode_request
+    from ._preparers_py3 import _prepare_queries_string_url_encoded_request
+    from ._preparers_py3 import _prepare_queries_string_empty_request
+    from ._preparers_py3 import _prepare_queries_string_null_request
+    from ._preparers_py3 import _prepare_queries_enum_valid_request
+    from ._preparers_py3 import _prepare_queries_enum_null_request
+    from ._preparers_py3 import _prepare_queries_byte_multi_byte_request
+    from ._preparers_py3 import _prepare_queries_byte_empty_request
+    from ._preparers_py3 import _prepare_queries_byte_null_request
+    from ._preparers_py3 import _prepare_queries_date_valid_request
+    from ._preparers_py3 import _prepare_queries_date_null_request
+    from ._preparers_py3 import _prepare_queries_date_time_valid_request
+    from ._preparers_py3 import _prepare_queries_date_time_null_request
+    from ._preparers_py3 import _prepare_queries_array_string_csv_valid_request
+    from ._preparers_py3 import _prepare_queries_array_string_csv_null_request
+    from ._preparers_py3 import _prepare_queries_array_string_csv_empty_request
+    from ._preparers_py3 import _prepare_queries_array_string_no_collection_format_empty_request
+    from ._preparers_py3 import _prepare_queries_array_string_ssv_valid_request
+    from ._preparers_py3 import _prepare_queries_array_string_tsv_valid_request
+    from ._preparers_py3 import _prepare_queries_array_string_pipes_valid_request
+    from ._preparers_py3 import _prepare_pathitems_get_all_with_values_request
+    from ._preparers_py3 import _prepare_pathitems_get_global_query_null_request
+    from ._preparers_py3 import _prepare_pathitems_get_global_and_local_query_null_request
+    from ._preparers_py3 import _prepare_pathitems_get_local_path_item_query_null_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_boolean_true_request  # type: ignore
-    from ._preparers import _get_boolean_false_request  # type: ignore
-    from ._preparers import _get_int_one_million_request  # type: ignore
-    from ._preparers import _get_int_negative_one_million_request  # type: ignore
-    from ._preparers import _get_ten_billion_request  # type: ignore
-    from ._preparers import _get_negative_ten_billion_request  # type: ignore
-    from ._preparers import _float_scientific_positive_request  # type: ignore
-    from ._preparers import _float_scientific_negative_request  # type: ignore
-    from ._preparers import _double_decimal_positive_request  # type: ignore
-    from ._preparers import _double_decimal_negative_request  # type: ignore
-    from ._preparers import _string_unicode_request  # type: ignore
-    from ._preparers import _string_url_encoded_request  # type: ignore
-    from ._preparers import _string_url_non_encoded_request  # type: ignore
-    from ._preparers import _string_empty_request  # type: ignore
-    from ._preparers import _string_null_request  # type: ignore
-    from ._preparers import _enum_valid_request  # type: ignore
-    from ._preparers import _enum_null_request  # type: ignore
-    from ._preparers import _byte_multi_byte_request  # type: ignore
-    from ._preparers import _byte_empty_request  # type: ignore
-    from ._preparers import _byte_null_request  # type: ignore
-    from ._preparers import _date_valid_request  # type: ignore
-    from ._preparers import _date_null_request  # type: ignore
-    from ._preparers import _date_time_valid_request  # type: ignore
-    from ._preparers import _date_time_null_request  # type: ignore
-    from ._preparers import _base64_url_request  # type: ignore
-    from ._preparers import _array_csv_in_path_request  # type: ignore
-    from ._preparers import _unix_time_url_request  # type: ignore
-    from ._preparers import _get_boolean_true_request  # type: ignore
-    from ._preparers import _get_boolean_false_request  # type: ignore
-    from ._preparers import _get_boolean_null_request  # type: ignore
-    from ._preparers import _get_int_one_million_request  # type: ignore
-    from ._preparers import _get_int_negative_one_million_request  # type: ignore
-    from ._preparers import _get_int_null_request  # type: ignore
-    from ._preparers import _get_ten_billion_request  # type: ignore
-    from ._preparers import _get_negative_ten_billion_request  # type: ignore
-    from ._preparers import _get_long_null_request  # type: ignore
-    from ._preparers import _float_scientific_positive_request  # type: ignore
-    from ._preparers import _float_scientific_negative_request  # type: ignore
-    from ._preparers import _float_null_request  # type: ignore
-    from ._preparers import _double_decimal_positive_request  # type: ignore
-    from ._preparers import _double_decimal_negative_request  # type: ignore
-    from ._preparers import _double_null_request  # type: ignore
-    from ._preparers import _string_unicode_request  # type: ignore
-    from ._preparers import _string_url_encoded_request  # type: ignore
-    from ._preparers import _string_empty_request  # type: ignore
-    from ._preparers import _string_null_request  # type: ignore
-    from ._preparers import _enum_valid_request  # type: ignore
-    from ._preparers import _enum_null_request  # type: ignore
-    from ._preparers import _byte_multi_byte_request  # type: ignore
-    from ._preparers import _byte_empty_request  # type: ignore
-    from ._preparers import _byte_null_request  # type: ignore
-    from ._preparers import _date_valid_request  # type: ignore
-    from ._preparers import _date_null_request  # type: ignore
-    from ._preparers import _date_time_valid_request  # type: ignore
-    from ._preparers import _date_time_null_request  # type: ignore
-    from ._preparers import _array_string_csv_valid_request  # type: ignore
-    from ._preparers import _array_string_csv_null_request  # type: ignore
-    from ._preparers import _array_string_csv_empty_request  # type: ignore
-    from ._preparers import _array_string_no_collection_format_empty_request  # type: ignore
-    from ._preparers import _array_string_ssv_valid_request  # type: ignore
-    from ._preparers import _array_string_tsv_valid_request  # type: ignore
-    from ._preparers import _array_string_pipes_valid_request  # type: ignore
-    from ._preparers import _get_all_with_values_request  # type: ignore
-    from ._preparers import _get_global_query_null_request  # type: ignore
-    from ._preparers import _get_global_and_local_query_null_request  # type: ignore
-    from ._preparers import _get_local_path_item_query_null_request  # type: ignore
+    from ._preparers import _prepare_paths_get_boolean_true_request  # type: ignore
+    from ._preparers import _prepare_paths_get_boolean_false_request  # type: ignore
+    from ._preparers import _prepare_paths_get_int_one_million_request  # type: ignore
+    from ._preparers import _prepare_paths_get_int_negative_one_million_request  # type: ignore
+    from ._preparers import _prepare_paths_get_ten_billion_request  # type: ignore
+    from ._preparers import _prepare_paths_get_negative_ten_billion_request  # type: ignore
+    from ._preparers import _prepare_paths_float_scientific_positive_request  # type: ignore
+    from ._preparers import _prepare_paths_float_scientific_negative_request  # type: ignore
+    from ._preparers import _prepare_paths_double_decimal_positive_request  # type: ignore
+    from ._preparers import _prepare_paths_double_decimal_negative_request  # type: ignore
+    from ._preparers import _prepare_paths_string_unicode_request  # type: ignore
+    from ._preparers import _prepare_paths_string_url_encoded_request  # type: ignore
+    from ._preparers import _prepare_paths_string_url_non_encoded_request  # type: ignore
+    from ._preparers import _prepare_paths_string_empty_request  # type: ignore
+    from ._preparers import _prepare_paths_string_null_request  # type: ignore
+    from ._preparers import _prepare_paths_enum_valid_request  # type: ignore
+    from ._preparers import _prepare_paths_enum_null_request  # type: ignore
+    from ._preparers import _prepare_paths_byte_multi_byte_request  # type: ignore
+    from ._preparers import _prepare_paths_byte_empty_request  # type: ignore
+    from ._preparers import _prepare_paths_byte_null_request  # type: ignore
+    from ._preparers import _prepare_paths_date_valid_request  # type: ignore
+    from ._preparers import _prepare_paths_date_null_request  # type: ignore
+    from ._preparers import _prepare_paths_date_time_valid_request  # type: ignore
+    from ._preparers import _prepare_paths_date_time_null_request  # type: ignore
+    from ._preparers import _prepare_paths_base64_url_request  # type: ignore
+    from ._preparers import _prepare_paths_array_csv_in_path_request  # type: ignore
+    from ._preparers import _prepare_paths_unix_time_url_request  # type: ignore
+    from ._preparers import _prepare_queries_get_boolean_true_request  # type: ignore
+    from ._preparers import _prepare_queries_get_boolean_false_request  # type: ignore
+    from ._preparers import _prepare_queries_get_boolean_null_request  # type: ignore
+    from ._preparers import _prepare_queries_get_int_one_million_request  # type: ignore
+    from ._preparers import _prepare_queries_get_int_negative_one_million_request  # type: ignore
+    from ._preparers import _prepare_queries_get_int_null_request  # type: ignore
+    from ._preparers import _prepare_queries_get_ten_billion_request  # type: ignore
+    from ._preparers import _prepare_queries_get_negative_ten_billion_request  # type: ignore
+    from ._preparers import _prepare_queries_get_long_null_request  # type: ignore
+    from ._preparers import _prepare_queries_float_scientific_positive_request  # type: ignore
+    from ._preparers import _prepare_queries_float_scientific_negative_request  # type: ignore
+    from ._preparers import _prepare_queries_float_null_request  # type: ignore
+    from ._preparers import _prepare_queries_double_decimal_positive_request  # type: ignore
+    from ._preparers import _prepare_queries_double_decimal_negative_request  # type: ignore
+    from ._preparers import _prepare_queries_double_null_request  # type: ignore
+    from ._preparers import _prepare_queries_string_unicode_request  # type: ignore
+    from ._preparers import _prepare_queries_string_url_encoded_request  # type: ignore
+    from ._preparers import _prepare_queries_string_empty_request  # type: ignore
+    from ._preparers import _prepare_queries_string_null_request  # type: ignore
+    from ._preparers import _prepare_queries_enum_valid_request  # type: ignore
+    from ._preparers import _prepare_queries_enum_null_request  # type: ignore
+    from ._preparers import _prepare_queries_byte_multi_byte_request  # type: ignore
+    from ._preparers import _prepare_queries_byte_empty_request  # type: ignore
+    from ._preparers import _prepare_queries_byte_null_request  # type: ignore
+    from ._preparers import _prepare_queries_date_valid_request  # type: ignore
+    from ._preparers import _prepare_queries_date_null_request  # type: ignore
+    from ._preparers import _prepare_queries_date_time_valid_request  # type: ignore
+    from ._preparers import _prepare_queries_date_time_null_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_csv_valid_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_csv_null_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_csv_empty_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_no_collection_format_empty_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_ssv_valid_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_tsv_valid_request  # type: ignore
+    from ._preparers import _prepare_queries_array_string_pipes_valid_request  # type: ignore
+    from ._preparers import _prepare_pathitems_get_all_with_values_request  # type: ignore
+    from ._preparers import _prepare_pathitems_get_global_query_null_request  # type: ignore
+    from ._preparers import _prepare_pathitems_get_global_and_local_query_null_request  # type: ignore
+    from ._preparers import _prepare_pathitems_get_local_path_item_query_null_request  # type: ignore
 
 __all__ = [
-    "_get_boolean_true_request",
-    "_get_boolean_false_request",
-    "_get_int_one_million_request",
-    "_get_int_negative_one_million_request",
-    "_get_ten_billion_request",
-    "_get_negative_ten_billion_request",
-    "_float_scientific_positive_request",
-    "_float_scientific_negative_request",
-    "_double_decimal_positive_request",
-    "_double_decimal_negative_request",
-    "_string_unicode_request",
-    "_string_url_encoded_request",
-    "_string_url_non_encoded_request",
-    "_string_empty_request",
-    "_string_null_request",
-    "_enum_valid_request",
-    "_enum_null_request",
-    "_byte_multi_byte_request",
-    "_byte_empty_request",
-    "_byte_null_request",
-    "_date_valid_request",
-    "_date_null_request",
-    "_date_time_valid_request",
-    "_date_time_null_request",
-    "_base64_url_request",
-    "_array_csv_in_path_request",
-    "_unix_time_url_request",
-    "_get_boolean_true_request",
-    "_get_boolean_false_request",
-    "_get_boolean_null_request",
-    "_get_int_one_million_request",
-    "_get_int_negative_one_million_request",
-    "_get_int_null_request",
-    "_get_ten_billion_request",
-    "_get_negative_ten_billion_request",
-    "_get_long_null_request",
-    "_float_scientific_positive_request",
-    "_float_scientific_negative_request",
-    "_float_null_request",
-    "_double_decimal_positive_request",
-    "_double_decimal_negative_request",
-    "_double_null_request",
-    "_string_unicode_request",
-    "_string_url_encoded_request",
-    "_string_empty_request",
-    "_string_null_request",
-    "_enum_valid_request",
-    "_enum_null_request",
-    "_byte_multi_byte_request",
-    "_byte_empty_request",
-    "_byte_null_request",
-    "_date_valid_request",
-    "_date_null_request",
-    "_date_time_valid_request",
-    "_date_time_null_request",
-    "_array_string_csv_valid_request",
-    "_array_string_csv_null_request",
-    "_array_string_csv_empty_request",
-    "_array_string_no_collection_format_empty_request",
-    "_array_string_ssv_valid_request",
-    "_array_string_tsv_valid_request",
-    "_array_string_pipes_valid_request",
-    "_get_all_with_values_request",
-    "_get_global_query_null_request",
-    "_get_global_and_local_query_null_request",
-    "_get_local_path_item_query_null_request",
+    "_prepare_paths_get_boolean_true_request",
+    "_prepare_paths_get_boolean_false_request",
+    "_prepare_paths_get_int_one_million_request",
+    "_prepare_paths_get_int_negative_one_million_request",
+    "_prepare_paths_get_ten_billion_request",
+    "_prepare_paths_get_negative_ten_billion_request",
+    "_prepare_paths_float_scientific_positive_request",
+    "_prepare_paths_float_scientific_negative_request",
+    "_prepare_paths_double_decimal_positive_request",
+    "_prepare_paths_double_decimal_negative_request",
+    "_prepare_paths_string_unicode_request",
+    "_prepare_paths_string_url_encoded_request",
+    "_prepare_paths_string_url_non_encoded_request",
+    "_prepare_paths_string_empty_request",
+    "_prepare_paths_string_null_request",
+    "_prepare_paths_enum_valid_request",
+    "_prepare_paths_enum_null_request",
+    "_prepare_paths_byte_multi_byte_request",
+    "_prepare_paths_byte_empty_request",
+    "_prepare_paths_byte_null_request",
+    "_prepare_paths_date_valid_request",
+    "_prepare_paths_date_null_request",
+    "_prepare_paths_date_time_valid_request",
+    "_prepare_paths_date_time_null_request",
+    "_prepare_paths_base64_url_request",
+    "_prepare_paths_array_csv_in_path_request",
+    "_prepare_paths_unix_time_url_request",
+    "_prepare_queries_get_boolean_true_request",
+    "_prepare_queries_get_boolean_false_request",
+    "_prepare_queries_get_boolean_null_request",
+    "_prepare_queries_get_int_one_million_request",
+    "_prepare_queries_get_int_negative_one_million_request",
+    "_prepare_queries_get_int_null_request",
+    "_prepare_queries_get_ten_billion_request",
+    "_prepare_queries_get_negative_ten_billion_request",
+    "_prepare_queries_get_long_null_request",
+    "_prepare_queries_float_scientific_positive_request",
+    "_prepare_queries_float_scientific_negative_request",
+    "_prepare_queries_float_null_request",
+    "_prepare_queries_double_decimal_positive_request",
+    "_prepare_queries_double_decimal_negative_request",
+    "_prepare_queries_double_null_request",
+    "_prepare_queries_string_unicode_request",
+    "_prepare_queries_string_url_encoded_request",
+    "_prepare_queries_string_empty_request",
+    "_prepare_queries_string_null_request",
+    "_prepare_queries_enum_valid_request",
+    "_prepare_queries_enum_null_request",
+    "_prepare_queries_byte_multi_byte_request",
+    "_prepare_queries_byte_empty_request",
+    "_prepare_queries_byte_null_request",
+    "_prepare_queries_date_valid_request",
+    "_prepare_queries_date_null_request",
+    "_prepare_queries_date_time_valid_request",
+    "_prepare_queries_date_time_null_request",
+    "_prepare_queries_array_string_csv_valid_request",
+    "_prepare_queries_array_string_csv_null_request",
+    "_prepare_queries_array_string_csv_empty_request",
+    "_prepare_queries_array_string_no_collection_format_empty_request",
+    "_prepare_queries_array_string_ssv_valid_request",
+    "_prepare_queries_array_string_tsv_valid_request",
+    "_prepare_queries_array_string_pipes_valid_request",
+    "_prepare_pathitems_get_all_with_values_request",
+    "_prepare_pathitems_get_global_query_null_request",
+    "_prepare_pathitems_get_global_and_local_query_null_request",
+    "_prepare_pathitems_get_local_path_item_query_null_request",
 ]

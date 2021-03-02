@@ -80,7 +80,9 @@ class FormdataOperations(object):
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = _upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request = _prepare_formdata_upload_file_request(
+            body=_body, template_url=self.upload_file.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -121,7 +123,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _upload_file_via_body_request(
+        request = _prepare_formdata_upload_file_via_body_request(
             body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -168,7 +170,9 @@ class FormdataOperations(object):
         _body = {
             "fileContent": file_content,
         }
-        request = _upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request = _prepare_formdata_upload_files_request(
+            body=_body, template_url=self.upload_files.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

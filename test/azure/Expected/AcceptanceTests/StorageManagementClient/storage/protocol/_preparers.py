@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _check_name_availability_request(
+def _prepare_storageaccounts_check_name_availability_request(
     body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
     **kwargs  # type: Any
 ):
@@ -54,7 +54,7 @@ def _check_name_availability_request(
     return request
 
 
-def _create_initial_request(
+def _prepare_storageaccounts_create_initial_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     body,  # type: "_models.StorageAccountCreateParameters"
@@ -98,7 +98,7 @@ def _create_initial_request(
     return request
 
 
-def _delete_request(
+def _prepare_storageaccounts_delete_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     **kwargs  # type: Any
@@ -133,7 +133,7 @@ def _delete_request(
     return request
 
 
-def _get_properties_request(
+def _prepare_storageaccounts_get_properties_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     **kwargs  # type: Any
@@ -170,7 +170,7 @@ def _get_properties_request(
     return request
 
 
-def _update_request(
+def _prepare_storageaccounts_update_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     body,  # type: "_models.StorageAccountUpdateParameters"
@@ -214,7 +214,7 @@ def _update_request(
     return request
 
 
-def _list_keys_request(
+def _prepare_storageaccounts_list_keys_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     **kwargs  # type: Any
@@ -251,7 +251,7 @@ def _list_keys_request(
     return request
 
 
-def _list_request(
+def _prepare_storageaccounts_list_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -278,7 +278,7 @@ def _list_request(
     return request
 
 
-def _list_by_resource_group_request(
+def _prepare_storageaccounts_list_by_resource_group_request(
     resource_group_name,  # type: str
     **kwargs  # type: Any
 ):
@@ -313,7 +313,7 @@ def _list_by_resource_group_request(
     return request
 
 
-def _regenerate_key_request(
+def _prepare_storageaccounts_regenerate_key_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     body,  # type: "_models.StorageAccountRegenerateKeyParameters"
@@ -357,7 +357,7 @@ def _regenerate_key_request(
     return request
 
 
-def _list_request(
+def _prepare_usage_list_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

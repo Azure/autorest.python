@@ -7,40 +7,40 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _put_array_request
-    from ._preparers_py3 import _get_array_request
-    from ._preparers_py3 import _put_wrapped_array_request
-    from ._preparers_py3 import _get_wrapped_array_request
-    from ._preparers_py3 import _put_dictionary_request
-    from ._preparers_py3 import _get_dictionary_request
-    from ._preparers_py3 import _put_resource_collection_request
-    from ._preparers_py3 import _get_resource_collection_request
-    from ._preparers_py3 import _put_simple_product_request
-    from ._preparers_py3 import _post_flattened_simple_product_request
-    from ._preparers_py3 import _put_simple_product_with_grouping_request
+    from ._preparers_py3 import _prepare_put_array_request
+    from ._preparers_py3 import _prepare_get_array_request
+    from ._preparers_py3 import _prepare_put_wrapped_array_request
+    from ._preparers_py3 import _prepare_get_wrapped_array_request
+    from ._preparers_py3 import _prepare_put_dictionary_request
+    from ._preparers_py3 import _prepare_get_dictionary_request
+    from ._preparers_py3 import _prepare_put_resource_collection_request
+    from ._preparers_py3 import _prepare_get_resource_collection_request
+    from ._preparers_py3 import _prepare_put_simple_product_request
+    from ._preparers_py3 import _prepare_post_flattened_simple_product_request
+    from ._preparers_py3 import _prepare_put_simple_product_with_grouping_request
 except (SyntaxError, ImportError):
-    from ._preparers import _put_array_request  # type: ignore
-    from ._preparers import _get_array_request  # type: ignore
-    from ._preparers import _put_wrapped_array_request  # type: ignore
-    from ._preparers import _get_wrapped_array_request  # type: ignore
-    from ._preparers import _put_dictionary_request  # type: ignore
-    from ._preparers import _get_dictionary_request  # type: ignore
-    from ._preparers import _put_resource_collection_request  # type: ignore
-    from ._preparers import _get_resource_collection_request  # type: ignore
-    from ._preparers import _put_simple_product_request  # type: ignore
-    from ._preparers import _post_flattened_simple_product_request  # type: ignore
-    from ._preparers import _put_simple_product_with_grouping_request  # type: ignore
+    from ._preparers import _prepare_put_array_request  # type: ignore
+    from ._preparers import _prepare_get_array_request  # type: ignore
+    from ._preparers import _prepare_put_wrapped_array_request  # type: ignore
+    from ._preparers import _prepare_get_wrapped_array_request  # type: ignore
+    from ._preparers import _prepare_put_dictionary_request  # type: ignore
+    from ._preparers import _prepare_get_dictionary_request  # type: ignore
+    from ._preparers import _prepare_put_resource_collection_request  # type: ignore
+    from ._preparers import _prepare_get_resource_collection_request  # type: ignore
+    from ._preparers import _prepare_put_simple_product_request  # type: ignore
+    from ._preparers import _prepare_post_flattened_simple_product_request  # type: ignore
+    from ._preparers import _prepare_put_simple_product_with_grouping_request  # type: ignore
 
 __all__ = [
-    "_put_array_request",
-    "_get_array_request",
-    "_put_wrapped_array_request",
-    "_get_wrapped_array_request",
-    "_put_dictionary_request",
-    "_get_dictionary_request",
-    "_put_resource_collection_request",
-    "_get_resource_collection_request",
-    "_put_simple_product_request",
-    "_post_flattened_simple_product_request",
-    "_put_simple_product_with_grouping_request",
+    "_prepare_put_array_request",
+    "_prepare_get_array_request",
+    "_prepare_put_wrapped_array_request",
+    "_prepare_get_wrapped_array_request",
+    "_prepare_put_dictionary_request",
+    "_prepare_get_dictionary_request",
+    "_prepare_put_resource_collection_request",
+    "_prepare_get_resource_collection_request",
+    "_prepare_put_simple_product_request",
+    "_prepare_post_flattened_simple_product_request",
+    "_prepare_put_simple_product_with_grouping_request",
 ]

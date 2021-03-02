@@ -64,7 +64,7 @@ class GroupOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_sample_resource_group_request(
+        request = _prepare_group_get_sample_resource_group_request(
             resource_group_name=resource_group_name,
             template_url=self.get_sample_resource_group.metadata["url"],
             **kwargs

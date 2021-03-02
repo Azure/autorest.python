@@ -84,7 +84,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_all_with_values_request(
+        request = _prepare_pathitems_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -145,7 +145,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_global_query_null_request(
+        request = _prepare_pathitems_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -206,7 +206,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_global_and_local_query_null_request(
+        request = _prepare_pathitems_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
@@ -266,7 +266,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_local_path_item_query_null_request(
+        request = _prepare_pathitems_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,

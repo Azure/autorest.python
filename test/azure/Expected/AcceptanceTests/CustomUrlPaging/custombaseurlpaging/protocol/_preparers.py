@@ -12,7 +12,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_pages_partial_url_request(
+def _prepare_paging_get_pages_partial_url_request(
     account_name,  # type: str
     **kwargs  # type: Any
 ):
@@ -42,7 +42,7 @@ def _get_pages_partial_url_request(
     return request
 
 
-def _get_pages_partial_url_operation_request(
+def _prepare_paging_get_pages_partial_url_operation_request(
     account_name,  # type: str
     **kwargs  # type: Any
 ):

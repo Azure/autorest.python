@@ -12,7 +12,7 @@ from msrest import Serializer
 
 _SERIALIZER = Serializer()
 
-def _test_one_request(
+def _prepare_test_one_request(
     id: int,
     message: Optional[str] = None,
     **kwargs
@@ -43,7 +43,7 @@ def _test_one_request(
     )
     return request
 
-def _test_lro_initial_request(
+def _prepare_test_lro_initial_request(
     body: Optional["_models.Product"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -73,7 +73,7 @@ def _test_lro_initial_request(
     )
     return request
 
-def _test_lro_and_paging_initial_request(
+def _prepare_test_lro_and_paging_initial_request(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
     timeout: Optional[int] = 30,
@@ -106,7 +106,7 @@ def _test_lro_and_paging_initial_request(
     )
     return request
 
-def _test_different_calls_request(
+def _prepare_test_different_calls_request(
     greeting_in_english: str,
     **kwargs
 ) -> HttpRequest:
@@ -134,7 +134,7 @@ def _test_different_calls_request(
     )
     return request
 
-def _test_two_request(
+def _prepare_operationgroupone_test_two_request(
     **kwargs
 ) -> HttpRequest:
     api_version = "1.0.0"

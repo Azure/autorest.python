@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _check_name_availability_request(
+def _prepare_storageaccounts_check_name_availability_request(
     body: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
@@ -48,7 +48,7 @@ def _check_name_availability_request(
     return request
 
 
-def _create_initial_request(
+def _prepare_storageaccounts_create_initial_request(
     resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
@@ -88,7 +88,7 @@ def _create_initial_request(
     return request
 
 
-def _delete_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+def _prepare_storageaccounts_delete_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
 
     # Construct URL
@@ -118,7 +118,9 @@ def _delete_request(resource_group_name: str, account_name: str, **kwargs) -> Ht
     return request
 
 
-def _get_properties_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+def _prepare_storageaccounts_get_properties_request(
+    resource_group_name: str, account_name: str, **kwargs
+) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -150,7 +152,7 @@ def _get_properties_request(resource_group_name: str, account_name: str, **kwarg
     return request
 
 
-def _update_request(
+def _prepare_storageaccounts_update_request(
     resource_group_name: str, account_name: str, body: "_models.StorageAccountUpdateParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
@@ -190,7 +192,7 @@ def _update_request(
     return request
 
 
-def _list_keys_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+def _prepare_storageaccounts_list_keys_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -222,7 +224,7 @@ def _list_keys_request(resource_group_name: str, account_name: str, **kwargs) ->
     return request
 
 
-def _list_request(**kwargs) -> HttpRequest:
+def _prepare_storageaccounts_list_request(**kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -246,7 +248,7 @@ def _list_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _list_by_resource_group_request(resource_group_name: str, **kwargs) -> HttpRequest:
+def _prepare_storageaccounts_list_by_resource_group_request(resource_group_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -277,7 +279,7 @@ def _list_by_resource_group_request(resource_group_name: str, **kwargs) -> HttpR
     return request
 
 
-def _regenerate_key_request(
+def _prepare_storageaccounts_regenerate_key_request(
     resource_group_name: str, account_name: str, body: "_models.StorageAccountRegenerateKeyParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
@@ -317,7 +319,7 @@ def _regenerate_key_request(
     return request
 
 
-def _list_request(**kwargs) -> HttpRequest:
+def _prepare_usage_list_request(**kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 

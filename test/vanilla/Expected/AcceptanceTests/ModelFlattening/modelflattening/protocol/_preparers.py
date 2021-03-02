@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _put_array_request(
+def _prepare_put_array_request(
     body=None,  # type: Optional[List["_models.Resource"]]
     **kwargs  # type: Any
 ):
@@ -50,7 +50,7 @@ def _put_array_request(
     return request
 
 
-def _get_array_request(
+def _prepare_get_array_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -75,7 +75,7 @@ def _get_array_request(
     return request
 
 
-def _put_wrapped_array_request(
+def _prepare_put_wrapped_array_request(
     body=None,  # type: Optional[List["_models.WrappedProduct"]]
     **kwargs  # type: Any
 ):
@@ -107,7 +107,7 @@ def _put_wrapped_array_request(
     return request
 
 
-def _get_wrapped_array_request(
+def _prepare_get_wrapped_array_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -132,7 +132,7 @@ def _get_wrapped_array_request(
     return request
 
 
-def _put_dictionary_request(
+def _prepare_put_dictionary_request(
     body=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
     **kwargs  # type: Any
 ):
@@ -164,7 +164,7 @@ def _put_dictionary_request(
     return request
 
 
-def _get_dictionary_request(
+def _prepare_get_dictionary_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -189,7 +189,7 @@ def _get_dictionary_request(
     return request
 
 
-def _put_resource_collection_request(
+def _prepare_put_resource_collection_request(
     body=None,  # type: Optional["_models.ResourceCollection"]
     **kwargs  # type: Any
 ):
@@ -221,7 +221,7 @@ def _put_resource_collection_request(
     return request
 
 
-def _get_resource_collection_request(
+def _prepare_get_resource_collection_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -246,7 +246,7 @@ def _get_resource_collection_request(
     return request
 
 
-def _put_simple_product_request(
+def _prepare_put_simple_product_request(
     body=None,  # type: Optional["_models.SimpleProduct"]
     **kwargs  # type: Any
 ):
@@ -278,7 +278,7 @@ def _put_simple_product_request(
     return request
 
 
-def _post_flattened_simple_product_request(
+def _prepare_post_flattened_simple_product_request(
     body=None,  # type: Optional["_models.SimpleProduct"]
     **kwargs  # type: Any
 ):
@@ -310,7 +310,7 @@ def _post_flattened_simple_product_request(
     return request
 
 
-def _put_simple_product_with_grouping_request(
+def _prepare_put_simple_product_with_grouping_request(
     name,  # type: str
     body=None,  # type: Optional["_models.SimpleProduct"]
     **kwargs  # type: Any

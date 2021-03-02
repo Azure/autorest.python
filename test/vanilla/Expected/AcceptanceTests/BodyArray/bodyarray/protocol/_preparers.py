@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(
+def _prepare_array_get_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -43,7 +43,7 @@ def _get_null_request(
     return request
 
 
-def _get_invalid_request(
+def _prepare_array_get_invalid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -68,7 +68,7 @@ def _get_invalid_request(
     return request
 
 
-def _get_empty_request(
+def _prepare_array_get_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -93,7 +93,7 @@ def _get_empty_request(
     return request
 
 
-def _put_empty_request(
+def _prepare_array_put_empty_request(
     body,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -125,7 +125,7 @@ def _put_empty_request(
     return request
 
 
-def _get_boolean_tfft_request(
+def _prepare_array_get_boolean_tfft_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -150,7 +150,7 @@ def _get_boolean_tfft_request(
     return request
 
 
-def _put_boolean_tfft_request(
+def _prepare_array_put_boolean_tfft_request(
     body,  # type: List[bool]
     **kwargs  # type: Any
 ):
@@ -182,7 +182,7 @@ def _put_boolean_tfft_request(
     return request
 
 
-def _get_boolean_invalid_null_request(
+def _prepare_array_get_boolean_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -207,7 +207,7 @@ def _get_boolean_invalid_null_request(
     return request
 
 
-def _get_boolean_invalid_string_request(
+def _prepare_array_get_boolean_invalid_string_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -232,7 +232,7 @@ def _get_boolean_invalid_string_request(
     return request
 
 
-def _get_integer_valid_request(
+def _prepare_array_get_integer_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -257,7 +257,7 @@ def _get_integer_valid_request(
     return request
 
 
-def _put_integer_valid_request(
+def _prepare_array_put_integer_valid_request(
     body,  # type: List[int]
     **kwargs  # type: Any
 ):
@@ -289,7 +289,7 @@ def _put_integer_valid_request(
     return request
 
 
-def _get_int_invalid_null_request(
+def _prepare_array_get_int_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -314,7 +314,7 @@ def _get_int_invalid_null_request(
     return request
 
 
-def _get_int_invalid_string_request(
+def _prepare_array_get_int_invalid_string_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -339,7 +339,7 @@ def _get_int_invalid_string_request(
     return request
 
 
-def _get_long_valid_request(
+def _prepare_array_get_long_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -364,7 +364,7 @@ def _get_long_valid_request(
     return request
 
 
-def _put_long_valid_request(
+def _prepare_array_put_long_valid_request(
     body,  # type: List[int]
     **kwargs  # type: Any
 ):
@@ -396,7 +396,7 @@ def _put_long_valid_request(
     return request
 
 
-def _get_long_invalid_null_request(
+def _prepare_array_get_long_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -421,7 +421,7 @@ def _get_long_invalid_null_request(
     return request
 
 
-def _get_long_invalid_string_request(
+def _prepare_array_get_long_invalid_string_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -446,7 +446,7 @@ def _get_long_invalid_string_request(
     return request
 
 
-def _get_float_valid_request(
+def _prepare_array_get_float_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -471,7 +471,7 @@ def _get_float_valid_request(
     return request
 
 
-def _put_float_valid_request(
+def _prepare_array_put_float_valid_request(
     body,  # type: List[float]
     **kwargs  # type: Any
 ):
@@ -503,7 +503,7 @@ def _put_float_valid_request(
     return request
 
 
-def _get_float_invalid_null_request(
+def _prepare_array_get_float_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -528,7 +528,7 @@ def _get_float_invalid_null_request(
     return request
 
 
-def _get_float_invalid_string_request(
+def _prepare_array_get_float_invalid_string_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -553,7 +553,7 @@ def _get_float_invalid_string_request(
     return request
 
 
-def _get_double_valid_request(
+def _prepare_array_get_double_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -578,7 +578,7 @@ def _get_double_valid_request(
     return request
 
 
-def _put_double_valid_request(
+def _prepare_array_put_double_valid_request(
     body,  # type: List[float]
     **kwargs  # type: Any
 ):
@@ -610,7 +610,7 @@ def _put_double_valid_request(
     return request
 
 
-def _get_double_invalid_null_request(
+def _prepare_array_get_double_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -635,7 +635,7 @@ def _get_double_invalid_null_request(
     return request
 
 
-def _get_double_invalid_string_request(
+def _prepare_array_get_double_invalid_string_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -660,7 +660,7 @@ def _get_double_invalid_string_request(
     return request
 
 
-def _get_string_valid_request(
+def _prepare_array_get_string_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -685,7 +685,7 @@ def _get_string_valid_request(
     return request
 
 
-def _put_string_valid_request(
+def _prepare_array_put_string_valid_request(
     body,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -717,7 +717,7 @@ def _put_string_valid_request(
     return request
 
 
-def _get_enum_valid_request(
+def _prepare_array_get_enum_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -742,7 +742,7 @@ def _get_enum_valid_request(
     return request
 
 
-def _put_enum_valid_request(
+def _prepare_array_put_enum_valid_request(
     body,  # type: List[Union[str, "_models.FooEnum"]]
     **kwargs  # type: Any
 ):
@@ -774,7 +774,7 @@ def _put_enum_valid_request(
     return request
 
 
-def _get_string_enum_valid_request(
+def _prepare_array_get_string_enum_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -799,7 +799,7 @@ def _get_string_enum_valid_request(
     return request
 
 
-def _put_string_enum_valid_request(
+def _prepare_array_put_string_enum_valid_request(
     body,  # type: List[Union[str, "_models.Enum1"]]
     **kwargs  # type: Any
 ):
@@ -831,7 +831,7 @@ def _put_string_enum_valid_request(
     return request
 
 
-def _get_string_with_null_request(
+def _prepare_array_get_string_with_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -856,7 +856,7 @@ def _get_string_with_null_request(
     return request
 
 
-def _get_string_with_invalid_request(
+def _prepare_array_get_string_with_invalid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -881,7 +881,7 @@ def _get_string_with_invalid_request(
     return request
 
 
-def _get_uuid_valid_request(
+def _prepare_array_get_uuid_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -906,7 +906,7 @@ def _get_uuid_valid_request(
     return request
 
 
-def _put_uuid_valid_request(
+def _prepare_array_put_uuid_valid_request(
     body,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -938,7 +938,7 @@ def _put_uuid_valid_request(
     return request
 
 
-def _get_uuid_invalid_chars_request(
+def _prepare_array_get_uuid_invalid_chars_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -963,7 +963,7 @@ def _get_uuid_invalid_chars_request(
     return request
 
 
-def _get_date_valid_request(
+def _prepare_array_get_date_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -988,7 +988,7 @@ def _get_date_valid_request(
     return request
 
 
-def _put_date_valid_request(
+def _prepare_array_put_date_valid_request(
     body,  # type: List[datetime.date]
     **kwargs  # type: Any
 ):
@@ -1020,7 +1020,7 @@ def _put_date_valid_request(
     return request
 
 
-def _get_date_invalid_null_request(
+def _prepare_array_get_date_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1045,7 +1045,7 @@ def _get_date_invalid_null_request(
     return request
 
 
-def _get_date_invalid_chars_request(
+def _prepare_array_get_date_invalid_chars_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1070,7 +1070,7 @@ def _get_date_invalid_chars_request(
     return request
 
 
-def _get_date_time_valid_request(
+def _prepare_array_get_date_time_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1095,7 +1095,7 @@ def _get_date_time_valid_request(
     return request
 
 
-def _put_date_time_valid_request(
+def _prepare_array_put_date_time_valid_request(
     body,  # type: List[datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -1127,7 +1127,7 @@ def _put_date_time_valid_request(
     return request
 
 
-def _get_date_time_invalid_null_request(
+def _prepare_array_get_date_time_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1152,7 +1152,7 @@ def _get_date_time_invalid_null_request(
     return request
 
 
-def _get_date_time_invalid_chars_request(
+def _prepare_array_get_date_time_invalid_chars_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1177,7 +1177,7 @@ def _get_date_time_invalid_chars_request(
     return request
 
 
-def _get_date_time_rfc1123_valid_request(
+def _prepare_array_get_date_time_rfc1123_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1202,7 +1202,7 @@ def _get_date_time_rfc1123_valid_request(
     return request
 
 
-def _put_date_time_rfc1123_valid_request(
+def _prepare_array_put_date_time_rfc1123_valid_request(
     body,  # type: List[datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -1234,7 +1234,7 @@ def _put_date_time_rfc1123_valid_request(
     return request
 
 
-def _get_duration_valid_request(
+def _prepare_array_get_duration_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1259,7 +1259,7 @@ def _get_duration_valid_request(
     return request
 
 
-def _put_duration_valid_request(
+def _prepare_array_put_duration_valid_request(
     body,  # type: List[datetime.timedelta]
     **kwargs  # type: Any
 ):
@@ -1291,7 +1291,7 @@ def _put_duration_valid_request(
     return request
 
 
-def _get_byte_valid_request(
+def _prepare_array_get_byte_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1316,7 +1316,7 @@ def _get_byte_valid_request(
     return request
 
 
-def _put_byte_valid_request(
+def _prepare_array_put_byte_valid_request(
     body,  # type: List[bytearray]
     **kwargs  # type: Any
 ):
@@ -1348,7 +1348,7 @@ def _put_byte_valid_request(
     return request
 
 
-def _get_byte_invalid_null_request(
+def _prepare_array_get_byte_invalid_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1373,7 +1373,7 @@ def _get_byte_invalid_null_request(
     return request
 
 
-def _get_base64_url_request(
+def _prepare_array_get_base64_url_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1398,7 +1398,7 @@ def _get_base64_url_request(
     return request
 
 
-def _get_complex_null_request(
+def _prepare_array_get_complex_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1423,7 +1423,7 @@ def _get_complex_null_request(
     return request
 
 
-def _get_complex_empty_request(
+def _prepare_array_get_complex_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1448,7 +1448,7 @@ def _get_complex_empty_request(
     return request
 
 
-def _get_complex_item_null_request(
+def _prepare_array_get_complex_item_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1473,7 +1473,7 @@ def _get_complex_item_null_request(
     return request
 
 
-def _get_complex_item_empty_request(
+def _prepare_array_get_complex_item_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1498,7 +1498,7 @@ def _get_complex_item_empty_request(
     return request
 
 
-def _get_complex_valid_request(
+def _prepare_array_get_complex_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1523,7 +1523,7 @@ def _get_complex_valid_request(
     return request
 
 
-def _put_complex_valid_request(
+def _prepare_array_put_complex_valid_request(
     body,  # type: List["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1555,7 +1555,7 @@ def _put_complex_valid_request(
     return request
 
 
-def _get_array_null_request(
+def _prepare_array_get_array_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1580,7 +1580,7 @@ def _get_array_null_request(
     return request
 
 
-def _get_array_empty_request(
+def _prepare_array_get_array_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1605,7 +1605,7 @@ def _get_array_empty_request(
     return request
 
 
-def _get_array_item_null_request(
+def _prepare_array_get_array_item_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1630,7 +1630,7 @@ def _get_array_item_null_request(
     return request
 
 
-def _get_array_item_empty_request(
+def _prepare_array_get_array_item_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1655,7 +1655,7 @@ def _get_array_item_empty_request(
     return request
 
 
-def _get_array_valid_request(
+def _prepare_array_get_array_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1680,7 +1680,7 @@ def _get_array_valid_request(
     return request
 
 
-def _put_array_valid_request(
+def _prepare_array_put_array_valid_request(
     body,  # type: List[List[str]]
     **kwargs  # type: Any
 ):
@@ -1712,7 +1712,7 @@ def _put_array_valid_request(
     return request
 
 
-def _get_dictionary_null_request(
+def _prepare_array_get_dictionary_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1737,7 +1737,7 @@ def _get_dictionary_null_request(
     return request
 
 
-def _get_dictionary_empty_request(
+def _prepare_array_get_dictionary_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1762,7 +1762,7 @@ def _get_dictionary_empty_request(
     return request
 
 
-def _get_dictionary_item_null_request(
+def _prepare_array_get_dictionary_item_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1787,7 +1787,7 @@ def _get_dictionary_item_null_request(
     return request
 
 
-def _get_dictionary_item_empty_request(
+def _prepare_array_get_dictionary_item_empty_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1812,7 +1812,7 @@ def _get_dictionary_item_empty_request(
     return request
 
 
-def _get_dictionary_valid_request(
+def _prepare_array_get_dictionary_valid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1837,7 +1837,7 @@ def _get_dictionary_valid_request(
     return request
 
 
-def _put_dictionary_valid_request(
+def _prepare_array_put_dictionary_valid_request(
     body,  # type: List[Dict[str, str]]
     **kwargs  # type: Any
 ):

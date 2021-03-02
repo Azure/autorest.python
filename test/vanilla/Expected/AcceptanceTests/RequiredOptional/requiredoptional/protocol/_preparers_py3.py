@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_required_path_request(path_parameter: str, **kwargs) -> HttpRequest:
+def _prepare_implicit_get_required_path_request(path_parameter: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -40,7 +40,7 @@ def _get_required_path_request(path_parameter: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _put_optional_query_request(query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
+def _prepare_implicit_put_optional_query_request(query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -64,7 +64,7 @@ def _put_optional_query_request(query_parameter: Optional[str] = None, **kwargs)
     return request
 
 
-def _put_optional_header_request(query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
+def _prepare_implicit_put_optional_header_request(query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -88,7 +88,7 @@ def _put_optional_header_request(query_parameter: Optional[str] = None, **kwargs
     return request
 
 
-def _put_optional_body_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
+def _prepare_implicit_put_optional_body_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -116,7 +116,7 @@ def _put_optional_body_request(body: Optional[str] = None, **kwargs) -> HttpRequ
     return request
 
 
-def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> HttpRequest:
+def _prepare_implicit_put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/json"
 
@@ -144,7 +144,7 @@ def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> Ht
     return request
 
 
-def _get_required_global_path_request(**kwargs) -> HttpRequest:
+def _prepare_implicit_get_required_global_path_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -166,7 +166,7 @@ def _get_required_global_path_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_required_global_query_request(**kwargs) -> HttpRequest:
+def _prepare_implicit_get_required_global_query_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -191,7 +191,7 @@ def _get_required_global_query_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _get_optional_global_query_request(**kwargs) -> HttpRequest:
+def _prepare_implicit_get_optional_global_query_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -217,7 +217,7 @@ def _get_optional_global_query_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/json"
 
@@ -245,7 +245,7 @@ def _put_optional_binary_body_request(body: Optional[IO] = None, **kwargs) -> Ht
     return request
 
 
-def _put_required_binary_body_request(body: IO, **kwargs) -> HttpRequest:
+def _prepare_explicit_put_required_binary_body_request(body: IO, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/json"
 
@@ -273,7 +273,7 @@ def _put_required_binary_body_request(body: IO, **kwargs) -> HttpRequest:
     return request
 
 
-def _post_required_integer_parameter_request(body: int, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_integer_parameter_request(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -301,7 +301,7 @@ def _post_required_integer_parameter_request(body: int, **kwargs) -> HttpRequest
     return request
 
 
-def _post_optional_integer_parameter_request(body: Optional[int] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_integer_parameter_request(body: Optional[int] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -329,7 +329,7 @@ def _post_optional_integer_parameter_request(body: Optional[int] = None, **kwarg
     return request
 
 
-def _post_required_integer_property_request(body: "_models.IntWrapper", **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_integer_property_request(body: "_models.IntWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -357,7 +357,7 @@ def _post_required_integer_property_request(body: "_models.IntWrapper", **kwargs
     return request
 
 
-def _post_optional_integer_property_request(
+def _prepare_explicit_post_optional_integer_property_request(
     body: Optional["_models.IntOptionalWrapper"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -387,7 +387,7 @@ def _post_optional_integer_property_request(
     return request
 
 
-def _post_required_integer_header_request(header_parameter: int, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_integer_header_request(header_parameter: int, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -410,7 +410,9 @@ def _post_required_integer_header_request(header_parameter: int, **kwargs) -> Ht
     return request
 
 
-def _post_optional_integer_header_request(header_parameter: Optional[int] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_integer_header_request(
+    header_parameter: Optional[int] = None, **kwargs
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -434,7 +436,7 @@ def _post_optional_integer_header_request(header_parameter: Optional[int] = None
     return request
 
 
-def _post_required_string_parameter_request(body: str, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_string_parameter_request(body: str, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -462,7 +464,7 @@ def _post_required_string_parameter_request(body: str, **kwargs) -> HttpRequest:
     return request
 
 
-def _post_optional_string_parameter_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_string_parameter_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -490,7 +492,7 @@ def _post_optional_string_parameter_request(body: Optional[str] = None, **kwargs
     return request
 
 
-def _post_required_string_property_request(body: "_models.StringWrapper", **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_string_property_request(body: "_models.StringWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -518,7 +520,7 @@ def _post_required_string_property_request(body: "_models.StringWrapper", **kwar
     return request
 
 
-def _post_optional_string_property_request(
+def _prepare_explicit_post_optional_string_property_request(
     body: Optional["_models.StringOptionalWrapper"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -548,7 +550,7 @@ def _post_optional_string_property_request(
     return request
 
 
-def _post_required_string_header_request(header_parameter: str, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_string_header_request(header_parameter: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -571,7 +573,9 @@ def _post_required_string_header_request(header_parameter: str, **kwargs) -> Htt
     return request
 
 
-def _post_optional_string_header_request(body_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_string_header_request(
+    body_parameter: Optional[str] = None, **kwargs
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -595,7 +599,7 @@ def _post_optional_string_header_request(body_parameter: Optional[str] = None, *
     return request
 
 
-def _post_required_class_parameter_request(body: "_models.Product", **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_class_parameter_request(body: "_models.Product", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -623,7 +627,9 @@ def _post_required_class_parameter_request(body: "_models.Product", **kwargs) ->
     return request
 
 
-def _post_optional_class_parameter_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_class_parameter_request(
+    body: Optional["_models.Product"] = None, **kwargs
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -651,7 +657,7 @@ def _post_optional_class_parameter_request(body: Optional["_models.Product"] = N
     return request
 
 
-def _post_required_class_property_request(body: "_models.ClassWrapper", **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_class_property_request(body: "_models.ClassWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -679,7 +685,7 @@ def _post_required_class_property_request(body: "_models.ClassWrapper", **kwargs
     return request
 
 
-def _post_optional_class_property_request(
+def _prepare_explicit_post_optional_class_property_request(
     body: Optional["_models.ClassOptionalWrapper"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -709,7 +715,7 @@ def _post_optional_class_property_request(
     return request
 
 
-def _post_required_array_parameter_request(body: List[str], **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_array_parameter_request(body: List[str], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -737,7 +743,7 @@ def _post_required_array_parameter_request(body: List[str], **kwargs) -> HttpReq
     return request
 
 
-def _post_optional_array_parameter_request(body: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_array_parameter_request(body: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -765,7 +771,7 @@ def _post_optional_array_parameter_request(body: Optional[List[str]] = None, **k
     return request
 
 
-def _post_required_array_property_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_array_property_request(body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -793,7 +799,7 @@ def _post_required_array_property_request(body: "_models.ArrayWrapper", **kwargs
     return request
 
 
-def _post_optional_array_property_request(
+def _prepare_explicit_post_optional_array_property_request(
     body: Optional["_models.ArrayOptionalWrapper"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -823,7 +829,7 @@ def _post_optional_array_property_request(
     return request
 
 
-def _post_required_array_header_request(header_parameter: List[str], **kwargs) -> HttpRequest:
+def _prepare_explicit_post_required_array_header_request(header_parameter: List[str], **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -846,7 +852,9 @@ def _post_required_array_header_request(header_parameter: List[str], **kwargs) -
     return request
 
 
-def _post_optional_array_header_request(header_parameter: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _prepare_explicit_post_optional_array_header_request(
+    header_parameter: Optional[List[str]] = None, **kwargs
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

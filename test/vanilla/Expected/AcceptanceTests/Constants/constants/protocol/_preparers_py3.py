@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _put_no_model_as_string_no_required_two_value_no_default_request(
+def _prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request(
     input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
 ) -> HttpRequest:
 
@@ -37,7 +37,7 @@ def _put_no_model_as_string_no_required_two_value_no_default_request(
     return request
 
 
-def _put_no_model_as_string_no_required_two_value_default_request(
+def _prepare_contants_put_no_model_as_string_no_required_two_value_default_request(
     input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -61,7 +61,7 @@ def _put_no_model_as_string_no_required_two_value_default_request(
     return request
 
 
-def _put_no_model_as_string_no_required_one_value_no_default_request(
+def _prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request(
     input: Optional[str] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -85,7 +85,7 @@ def _put_no_model_as_string_no_required_one_value_no_default_request(
     return request
 
 
-def _put_no_model_as_string_no_required_one_value_default_request(
+def _prepare_contants_put_no_model_as_string_no_required_one_value_default_request(
     input: Optional[str] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -109,7 +109,7 @@ def _put_no_model_as_string_no_required_one_value_default_request(
     return request
 
 
-def _put_no_model_as_string_required_two_value_no_default_request(
+def _prepare_contants_put_no_model_as_string_required_two_value_no_default_request(
     input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
 ) -> HttpRequest:
 
@@ -132,7 +132,7 @@ def _put_no_model_as_string_required_two_value_no_default_request(
     return request
 
 
-def _put_no_model_as_string_required_two_value_default_request(
+def _prepare_contants_put_no_model_as_string_required_two_value_default_request(
     input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -155,7 +155,7 @@ def _put_no_model_as_string_required_two_value_default_request(
     return request
 
 
-def _put_no_model_as_string_required_one_value_no_default_request(**kwargs) -> HttpRequest:
+def _prepare_contants_put_no_model_as_string_required_one_value_no_default_request(**kwargs) -> HttpRequest:
     input = "value1"
 
     # Construct URL
@@ -177,7 +177,7 @@ def _put_no_model_as_string_required_one_value_no_default_request(**kwargs) -> H
     return request
 
 
-def _put_no_model_as_string_required_one_value_default_request(**kwargs) -> HttpRequest:
+def _prepare_contants_put_no_model_as_string_required_one_value_default_request(**kwargs) -> HttpRequest:
     input = "value1"
 
     # Construct URL
@@ -199,7 +199,7 @@ def _put_no_model_as_string_required_one_value_default_request(**kwargs) -> Http
     return request
 
 
-def _put_model_as_string_no_required_two_value_no_default_request(
+def _prepare_contants_put_model_as_string_no_required_two_value_no_default_request(
     input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
 ) -> HttpRequest:
 
@@ -223,7 +223,7 @@ def _put_model_as_string_no_required_two_value_no_default_request(
     return request
 
 
-def _put_model_as_string_no_required_two_value_default_request(
+def _prepare_contants_put_model_as_string_no_required_two_value_default_request(
     input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -247,7 +247,7 @@ def _put_model_as_string_no_required_two_value_default_request(
     return request
 
 
-def _put_model_as_string_no_required_one_value_no_default_request(
+def _prepare_contants_put_model_as_string_no_required_one_value_no_default_request(
     input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None, **kwargs
 ) -> HttpRequest:
 
@@ -271,7 +271,7 @@ def _put_model_as_string_no_required_one_value_no_default_request(
     return request
 
 
-def _put_model_as_string_no_required_one_value_default_request(
+def _prepare_contants_put_model_as_string_no_required_one_value_default_request(
     input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -295,7 +295,7 @@ def _put_model_as_string_no_required_one_value_default_request(
     return request
 
 
-def _put_model_as_string_required_two_value_no_default_request(
+def _prepare_contants_put_model_as_string_required_two_value_no_default_request(
     input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
 ) -> HttpRequest:
 
@@ -318,7 +318,7 @@ def _put_model_as_string_required_two_value_no_default_request(
     return request
 
 
-def _put_model_as_string_required_two_value_default_request(
+def _prepare_contants_put_model_as_string_required_two_value_default_request(
     input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
 ) -> HttpRequest:
 
@@ -341,7 +341,7 @@ def _put_model_as_string_required_two_value_default_request(
     return request
 
 
-def _put_model_as_string_required_one_value_no_default_request(
+def _prepare_contants_put_model_as_string_required_one_value_no_default_request(
     input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs
 ) -> HttpRequest:
 
@@ -364,7 +364,7 @@ def _put_model_as_string_required_one_value_no_default_request(
     return request
 
 
-def _put_model_as_string_required_one_value_default_request(
+def _prepare_contants_put_model_as_string_required_one_value_default_request(
     input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs
 ) -> HttpRequest:
 

@@ -72,7 +72,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_required_path_request(
+        request = _prepare_implicit_get_required_path_request(
             path_parameter=path_parameter, template_url=self.get_required_path.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -111,7 +111,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _put_optional_query_request(
+        request = _prepare_implicit_put_optional_query_request(
             query_parameter=query_parameter, template_url=self.put_optional_query.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -150,7 +150,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _put_optional_header_request(
+        request = _prepare_implicit_put_optional_header_request(
             query_parameter=query_parameter, template_url=self.put_optional_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -192,7 +192,7 @@ class ImplicitOperations(object):
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "str")
 
-        request = _put_optional_body_request(
+        request = _prepare_implicit_put_optional_body_request(
             body=body_parameter, template_url=self.put_optional_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -231,7 +231,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _put_optional_binary_body_request(
+        request = _prepare_implicit_put_optional_binary_body_request(
             body=body_parameter, template_url=self.put_optional_binary_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -266,7 +266,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_required_global_path_request(
+        request = _prepare_implicit_get_required_global_path_request(
             template_url=self.get_required_global_path.metadata["url"], **kwargs
         )
         path_format_arguments = {
@@ -306,7 +306,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_required_global_query_request(
+        request = _prepare_implicit_get_required_global_query_request(
             template_url=self.get_required_global_query.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -341,7 +341,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_optional_global_query_request(
+        request = _prepare_implicit_get_optional_global_query_request(
             template_url=self.get_optional_global_query.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

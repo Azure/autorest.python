@@ -47,7 +47,7 @@ class ObjectTypeClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _prepare_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -91,7 +91,7 @@ class ObjectTypeClientOperationsMixin(object):
 
         put_object = self._serialize.body(put_object, "object")
 
-        request = _put_request(body=put_object, template_url=self.put.metadata["url"], **kwargs)
+        request = _prepare_put_request(body=put_object, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

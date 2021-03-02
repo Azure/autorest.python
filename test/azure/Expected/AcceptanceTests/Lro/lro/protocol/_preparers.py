@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _put200_succeeded_initial_request(
+def _prepare_lros_put200_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -49,7 +49,7 @@ def _put200_succeeded_initial_request(
     return request
 
 
-def _put201_succeeded_initial_request(
+def _prepare_lros_put201_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -81,7 +81,7 @@ def _put201_succeeded_initial_request(
     return request
 
 
-def _post202_list_initial_request(
+def _prepare_lros_post202_list_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -106,7 +106,7 @@ def _post202_list_initial_request(
     return request
 
 
-def _put200_succeeded_no_state_initial_request(
+def _prepare_lros_put200_succeeded_no_state_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -138,7 +138,7 @@ def _put200_succeeded_no_state_initial_request(
     return request
 
 
-def _put202_retry200_initial_request(
+def _prepare_lros_put202_retry200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -170,7 +170,7 @@ def _put202_retry200_initial_request(
     return request
 
 
-def _put201_creating_succeeded200_initial_request(
+def _prepare_lros_put201_creating_succeeded200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -202,7 +202,7 @@ def _put201_creating_succeeded200_initial_request(
     return request
 
 
-def _put200_updating_succeeded204_initial_request(
+def _prepare_lros_put200_updating_succeeded204_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -234,7 +234,7 @@ def _put200_updating_succeeded204_initial_request(
     return request
 
 
-def _put201_creating_failed200_initial_request(
+def _prepare_lros_put201_creating_failed200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -266,7 +266,7 @@ def _put201_creating_failed200_initial_request(
     return request
 
 
-def _put200_acceptedcanceled200_initial_request(
+def _prepare_lros_put200_acceptedcanceled200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -298,7 +298,7 @@ def _put200_acceptedcanceled200_initial_request(
     return request
 
 
-def _put_no_header_in_retry_initial_request(
+def _prepare_lros_put_no_header_in_retry_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -330,7 +330,7 @@ def _put_no_header_in_retry_initial_request(
     return request
 
 
-def _put_async_retry_succeeded_initial_request(
+def _prepare_lros_put_async_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -362,7 +362,7 @@ def _put_async_retry_succeeded_initial_request(
     return request
 
 
-def _put_async_no_retry_succeeded_initial_request(
+def _prepare_lros_put_async_no_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -394,7 +394,7 @@ def _put_async_no_retry_succeeded_initial_request(
     return request
 
 
-def _put_async_retry_failed_initial_request(
+def _prepare_lros_put_async_retry_failed_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -426,7 +426,7 @@ def _put_async_retry_failed_initial_request(
     return request
 
 
-def _put_async_no_retrycanceled_initial_request(
+def _prepare_lros_put_async_no_retrycanceled_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -458,7 +458,7 @@ def _put_async_no_retrycanceled_initial_request(
     return request
 
 
-def _put_async_no_header_in_retry_initial_request(
+def _prepare_lros_put_async_no_header_in_retry_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -490,7 +490,7 @@ def _put_async_no_header_in_retry_initial_request(
     return request
 
 
-def _put_non_resource_initial_request(
+def _prepare_lros_put_non_resource_initial_request(
     body=None,  # type: Optional["_models.Sku"]
     **kwargs  # type: Any
 ):
@@ -522,7 +522,7 @@ def _put_non_resource_initial_request(
     return request
 
 
-def _put_async_non_resource_initial_request(
+def _prepare_lros_put_async_non_resource_initial_request(
     body=None,  # type: Optional["_models.Sku"]
     **kwargs  # type: Any
 ):
@@ -554,7 +554,7 @@ def _put_async_non_resource_initial_request(
     return request
 
 
-def _put_sub_resource_initial_request(
+def _prepare_lros_put_sub_resource_initial_request(
     body=None,  # type: Optional["_models.SubProduct"]
     **kwargs  # type: Any
 ):
@@ -586,7 +586,7 @@ def _put_sub_resource_initial_request(
     return request
 
 
-def _put_async_sub_resource_initial_request(
+def _prepare_lros_put_async_sub_resource_initial_request(
     body=None,  # type: Optional["_models.SubProduct"]
     **kwargs  # type: Any
 ):
@@ -618,7 +618,7 @@ def _put_async_sub_resource_initial_request(
     return request
 
 
-def _delete_provisioning202_accepted200_succeeded_initial_request(
+def _prepare_lros_delete_provisioning202_accepted200_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -643,7 +643,7 @@ def _delete_provisioning202_accepted200_succeeded_initial_request(
     return request
 
 
-def _delete_provisioning202_deleting_failed200_initial_request(
+def _prepare_lros_delete_provisioning202_deleting_failed200_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -668,7 +668,7 @@ def _delete_provisioning202_deleting_failed200_initial_request(
     return request
 
 
-def _delete_provisioning202_deletingcanceled200_initial_request(
+def _prepare_lros_delete_provisioning202_deletingcanceled200_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -693,7 +693,7 @@ def _delete_provisioning202_deletingcanceled200_initial_request(
     return request
 
 
-def _delete204_succeeded_initial_request(
+def _prepare_lros_delete204_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -718,7 +718,7 @@ def _delete204_succeeded_initial_request(
     return request
 
 
-def _delete202_retry200_initial_request(
+def _prepare_lros_delete202_retry200_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -743,7 +743,7 @@ def _delete202_retry200_initial_request(
     return request
 
 
-def _delete202_no_retry204_initial_request(
+def _prepare_lros_delete202_no_retry204_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -768,7 +768,7 @@ def _delete202_no_retry204_initial_request(
     return request
 
 
-def _delete_no_header_in_retry_initial_request(
+def _prepare_lros_delete_no_header_in_retry_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -793,7 +793,7 @@ def _delete_no_header_in_retry_initial_request(
     return request
 
 
-def _delete_async_no_header_in_retry_initial_request(
+def _prepare_lros_delete_async_no_header_in_retry_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -818,7 +818,7 @@ def _delete_async_no_header_in_retry_initial_request(
     return request
 
 
-def _delete_async_retry_succeeded_initial_request(
+def _prepare_lros_delete_async_retry_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -843,7 +843,7 @@ def _delete_async_retry_succeeded_initial_request(
     return request
 
 
-def _delete_async_no_retry_succeeded_initial_request(
+def _prepare_lros_delete_async_no_retry_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -868,7 +868,7 @@ def _delete_async_no_retry_succeeded_initial_request(
     return request
 
 
-def _delete_async_retry_failed_initial_request(
+def _prepare_lros_delete_async_retry_failed_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -893,7 +893,7 @@ def _delete_async_retry_failed_initial_request(
     return request
 
 
-def _delete_async_retrycanceled_initial_request(
+def _prepare_lros_delete_async_retrycanceled_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -918,7 +918,7 @@ def _delete_async_retrycanceled_initial_request(
     return request
 
 
-def _post200_with_payload_initial_request(
+def _prepare_lros_post200_with_payload_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -943,7 +943,7 @@ def _post200_with_payload_initial_request(
     return request
 
 
-def _post202_retry200_initial_request(
+def _prepare_lros_post202_retry200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -975,7 +975,7 @@ def _post202_retry200_initial_request(
     return request
 
 
-def _post202_no_retry204_initial_request(
+def _prepare_lros_post202_no_retry204_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1007,7 +1007,7 @@ def _post202_no_retry204_initial_request(
     return request
 
 
-def _post_double_headers_final_location_get_initial_request(
+def _prepare_lros_post_double_headers_final_location_get_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1032,7 +1032,7 @@ def _post_double_headers_final_location_get_initial_request(
     return request
 
 
-def _post_double_headers_final_azure_header_get_initial_request(
+def _prepare_lros_post_double_headers_final_azure_header_get_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1057,7 +1057,7 @@ def _post_double_headers_final_azure_header_get_initial_request(
     return request
 
 
-def _post_double_headers_final_azure_header_get_default_initial_request(
+def _prepare_lros_post_double_headers_final_azure_header_get_default_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1082,7 +1082,7 @@ def _post_double_headers_final_azure_header_get_default_initial_request(
     return request
 
 
-def _post_async_retry_succeeded_initial_request(
+def _prepare_lros_post_async_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1114,7 +1114,7 @@ def _post_async_retry_succeeded_initial_request(
     return request
 
 
-def _post_async_no_retry_succeeded_initial_request(
+def _prepare_lros_post_async_no_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1146,7 +1146,7 @@ def _post_async_no_retry_succeeded_initial_request(
     return request
 
 
-def _post_async_retry_failed_initial_request(
+def _prepare_lros_post_async_retry_failed_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1178,7 +1178,7 @@ def _post_async_retry_failed_initial_request(
     return request
 
 
-def _post_async_retrycanceled_initial_request(
+def _prepare_lros_post_async_retrycanceled_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1210,7 +1210,7 @@ def _post_async_retrycanceled_initial_request(
     return request
 
 
-def _put201_creating_succeeded200_initial_request(
+def _prepare_lroretrys_put201_creating_succeeded200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1242,7 +1242,7 @@ def _put201_creating_succeeded200_initial_request(
     return request
 
 
-def _put_async_relative_retry_succeeded_initial_request(
+def _prepare_lroretrys_put_async_relative_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1274,7 +1274,7 @@ def _put_async_relative_retry_succeeded_initial_request(
     return request
 
 
-def _delete_provisioning202_accepted200_succeeded_initial_request(
+def _prepare_lroretrys_delete_provisioning202_accepted200_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1299,7 +1299,7 @@ def _delete_provisioning202_accepted200_succeeded_initial_request(
     return request
 
 
-def _delete202_retry200_initial_request(
+def _prepare_lroretrys_delete202_retry200_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1324,7 +1324,7 @@ def _delete202_retry200_initial_request(
     return request
 
 
-def _delete_async_relative_retry_succeeded_initial_request(
+def _prepare_lroretrys_delete_async_relative_retry_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1349,7 +1349,7 @@ def _delete_async_relative_retry_succeeded_initial_request(
     return request
 
 
-def _post202_retry200_initial_request(
+def _prepare_lroretrys_post202_retry200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1381,7 +1381,7 @@ def _post202_retry200_initial_request(
     return request
 
 
-def _post_async_relative_retry_succeeded_initial_request(
+def _prepare_lroretrys_post_async_relative_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1413,7 +1413,7 @@ def _post_async_relative_retry_succeeded_initial_request(
     return request
 
 
-def _put_non_retry400_initial_request(
+def _prepare_lrosads_put_non_retry400_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1445,7 +1445,7 @@ def _put_non_retry400_initial_request(
     return request
 
 
-def _put_non_retry201_creating400_initial_request(
+def _prepare_lrosads_put_non_retry201_creating400_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1477,7 +1477,7 @@ def _put_non_retry201_creating400_initial_request(
     return request
 
 
-def _put_non_retry201_creating400_invalid_json_initial_request(
+def _prepare_lrosads_put_non_retry201_creating400_invalid_json_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1509,7 +1509,7 @@ def _put_non_retry201_creating400_invalid_json_initial_request(
     return request
 
 
-def _put_async_relative_retry400_initial_request(
+def _prepare_lrosads_put_async_relative_retry400_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1541,7 +1541,7 @@ def _put_async_relative_retry400_initial_request(
     return request
 
 
-def _delete_non_retry400_initial_request(
+def _prepare_lrosads_delete_non_retry400_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1566,7 +1566,7 @@ def _delete_non_retry400_initial_request(
     return request
 
 
-def _delete202_non_retry400_initial_request(
+def _prepare_lrosads_delete202_non_retry400_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1591,7 +1591,7 @@ def _delete202_non_retry400_initial_request(
     return request
 
 
-def _delete_async_relative_retry400_initial_request(
+def _prepare_lrosads_delete_async_relative_retry400_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1616,7 +1616,7 @@ def _delete_async_relative_retry400_initial_request(
     return request
 
 
-def _post_non_retry400_initial_request(
+def _prepare_lrosads_post_non_retry400_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1648,7 +1648,7 @@ def _post_non_retry400_initial_request(
     return request
 
 
-def _post202_non_retry400_initial_request(
+def _prepare_lrosads_post202_non_retry400_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1680,7 +1680,7 @@ def _post202_non_retry400_initial_request(
     return request
 
 
-def _post_async_relative_retry400_initial_request(
+def _prepare_lrosads_post_async_relative_retry400_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1712,7 +1712,7 @@ def _post_async_relative_retry400_initial_request(
     return request
 
 
-def _put_error201_no_provisioning_state_payload_initial_request(
+def _prepare_lrosads_put_error201_no_provisioning_state_payload_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1744,7 +1744,7 @@ def _put_error201_no_provisioning_state_payload_initial_request(
     return request
 
 
-def _put_async_relative_retry_no_status_initial_request(
+def _prepare_lrosads_put_async_relative_retry_no_status_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1776,7 +1776,7 @@ def _put_async_relative_retry_no_status_initial_request(
     return request
 
 
-def _put_async_relative_retry_no_status_payload_initial_request(
+def _prepare_lrosads_put_async_relative_retry_no_status_payload_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1808,7 +1808,7 @@ def _put_async_relative_retry_no_status_payload_initial_request(
     return request
 
 
-def _delete204_succeeded_initial_request(
+def _prepare_lrosads_delete204_succeeded_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1833,7 +1833,7 @@ def _delete204_succeeded_initial_request(
     return request
 
 
-def _delete_async_relative_retry_no_status_initial_request(
+def _prepare_lrosads_delete_async_relative_retry_no_status_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1858,7 +1858,7 @@ def _delete_async_relative_retry_no_status_initial_request(
     return request
 
 
-def _post202_no_location_initial_request(
+def _prepare_lrosads_post202_no_location_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1890,7 +1890,7 @@ def _post202_no_location_initial_request(
     return request
 
 
-def _post_async_relative_retry_no_payload_initial_request(
+def _prepare_lrosads_post_async_relative_retry_no_payload_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1922,7 +1922,7 @@ def _post_async_relative_retry_no_payload_initial_request(
     return request
 
 
-def _put200_invalid_json_initial_request(
+def _prepare_lrosads_put200_invalid_json_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1954,7 +1954,7 @@ def _put200_invalid_json_initial_request(
     return request
 
 
-def _put_async_relative_retry_invalid_header_initial_request(
+def _prepare_lrosads_put_async_relative_retry_invalid_header_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -1986,7 +1986,7 @@ def _put_async_relative_retry_invalid_header_initial_request(
     return request
 
 
-def _put_async_relative_retry_invalid_json_polling_initial_request(
+def _prepare_lrosads_put_async_relative_retry_invalid_json_polling_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2018,7 +2018,7 @@ def _put_async_relative_retry_invalid_json_polling_initial_request(
     return request
 
 
-def _delete202_retry_invalid_header_initial_request(
+def _prepare_lrosads_delete202_retry_invalid_header_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2043,7 +2043,7 @@ def _delete202_retry_invalid_header_initial_request(
     return request
 
 
-def _delete_async_relative_retry_invalid_header_initial_request(
+def _prepare_lrosads_delete_async_relative_retry_invalid_header_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2068,7 +2068,7 @@ def _delete_async_relative_retry_invalid_header_initial_request(
     return request
 
 
-def _delete_async_relative_retry_invalid_json_polling_initial_request(
+def _prepare_lrosads_delete_async_relative_retry_invalid_json_polling_initial_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2093,7 +2093,7 @@ def _delete_async_relative_retry_invalid_json_polling_initial_request(
     return request
 
 
-def _post202_retry_invalid_header_initial_request(
+def _prepare_lrosads_post202_retry_invalid_header_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2125,7 +2125,7 @@ def _post202_retry_invalid_header_initial_request(
     return request
 
 
-def _post_async_relative_retry_invalid_header_initial_request(
+def _prepare_lrosads_post_async_relative_retry_invalid_header_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2157,7 +2157,7 @@ def _post_async_relative_retry_invalid_header_initial_request(
     return request
 
 
-def _post_async_relative_retry_invalid_json_polling_initial_request(
+def _prepare_lrosads_post_async_relative_retry_invalid_json_polling_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2189,7 +2189,7 @@ def _post_async_relative_retry_invalid_json_polling_initial_request(
     return request
 
 
-def _put_async_retry_succeeded_initial_request(
+def _prepare_lroscustomheader_put_async_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2221,7 +2221,7 @@ def _put_async_retry_succeeded_initial_request(
     return request
 
 
-def _put201_creating_succeeded200_initial_request(
+def _prepare_lroscustomheader_put201_creating_succeeded200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2253,7 +2253,7 @@ def _put201_creating_succeeded200_initial_request(
     return request
 
 
-def _post202_retry200_initial_request(
+def _prepare_lroscustomheader_post202_retry200_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -2285,7 +2285,7 @@ def _post202_retry200_initial_request(
     return request
 
 
-def _post_async_retry_succeeded_initial_request(
+def _prepare_lroscustomheader_post_async_retry_succeeded_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):

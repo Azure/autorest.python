@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _analyze_body_request(
+def _prepare_analyze_body_request(
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
 ):
@@ -60,7 +60,7 @@ def _analyze_body_request(
     return request
 
 
-def _content_type_with_encoding_request(
+def _prepare_content_type_with_encoding_request(
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

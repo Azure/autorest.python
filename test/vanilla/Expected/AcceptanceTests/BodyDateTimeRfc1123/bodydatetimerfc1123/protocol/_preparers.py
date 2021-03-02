@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_null_request(
+def _prepare_datetimerfc1123_get_null_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -38,7 +38,7 @@ def _get_null_request(
     return request
 
 
-def _get_invalid_request(
+def _prepare_datetimerfc1123_get_invalid_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -63,7 +63,7 @@ def _get_invalid_request(
     return request
 
 
-def _get_overflow_request(
+def _prepare_datetimerfc1123_get_overflow_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -88,7 +88,7 @@ def _get_overflow_request(
     return request
 
 
-def _get_underflow_request(
+def _prepare_datetimerfc1123_get_underflow_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -113,7 +113,7 @@ def _get_underflow_request(
     return request
 
 
-def _put_utc_max_date_time_request(
+def _prepare_datetimerfc1123_put_utc_max_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -145,7 +145,7 @@ def _put_utc_max_date_time_request(
     return request
 
 
-def _get_utc_lowercase_max_date_time_request(
+def _prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -170,7 +170,7 @@ def _get_utc_lowercase_max_date_time_request(
     return request
 
 
-def _get_utc_uppercase_max_date_time_request(
+def _prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -195,7 +195,7 @@ def _get_utc_uppercase_max_date_time_request(
     return request
 
 
-def _put_utc_min_date_time_request(
+def _prepare_datetimerfc1123_put_utc_min_date_time_request(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -227,7 +227,7 @@ def _put_utc_min_date_time_request(
     return request
 
 
-def _get_utc_min_date_time_request(
+def _prepare_datetimerfc1123_get_utc_min_date_time_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

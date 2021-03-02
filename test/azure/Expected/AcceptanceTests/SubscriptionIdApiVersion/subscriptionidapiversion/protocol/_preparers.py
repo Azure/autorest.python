@@ -12,7 +12,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_sample_resource_group_request(
+def _prepare_group_get_sample_resource_group_request(
     resource_group_name,  # type: str
     **kwargs  # type: Any
 ):

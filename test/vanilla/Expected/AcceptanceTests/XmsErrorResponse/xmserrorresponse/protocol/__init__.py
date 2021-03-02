@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_pet_by_id_request
-    from ._preparers_py3 import _do_something_request
-    from ._preparers_py3 import _has_models_param_request
+    from ._preparers_py3 import _prepare_pet_get_pet_by_id_request
+    from ._preparers_py3 import _prepare_pet_do_something_request
+    from ._preparers_py3 import _prepare_pet_has_models_param_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_pet_by_id_request  # type: ignore
-    from ._preparers import _do_something_request  # type: ignore
-    from ._preparers import _has_models_param_request  # type: ignore
+    from ._preparers import _prepare_pet_get_pet_by_id_request  # type: ignore
+    from ._preparers import _prepare_pet_do_something_request  # type: ignore
+    from ._preparers import _prepare_pet_has_models_param_request  # type: ignore
 
 __all__ = [
-    "_get_pet_by_id_request",
-    "_do_something_request",
-    "_has_models_param_request",
+    "_prepare_pet_get_pet_by_id_request",
+    "_prepare_pet_do_something_request",
+    "_prepare_pet_has_models_param_request",
 ]

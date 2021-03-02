@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _post_required_request(
+def _prepare_parametergrouping_post_required_request(
     path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -52,7 +52,9 @@ def _post_required_request(
     return request
 
 
-def _post_optional_request(custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs) -> HttpRequest:
+def _prepare_parametergrouping_post_optional_request(
+    custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -78,7 +80,7 @@ def _post_optional_request(custom_header: Optional[str] = None, query: Optional[
     return request
 
 
-def _post_multi_param_groups_request(
+def _prepare_parametergrouping_post_multi_param_groups_request(
     header_one: Optional[str] = None,
     query_one: Optional[int] = 30,
     header_two: Optional[str] = None,
@@ -114,7 +116,7 @@ def _post_multi_param_groups_request(
     return request
 
 
-def _post_shared_parameter_group_object_request(
+def _prepare_parametergrouping_post_shared_parameter_group_object_request(
     header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"

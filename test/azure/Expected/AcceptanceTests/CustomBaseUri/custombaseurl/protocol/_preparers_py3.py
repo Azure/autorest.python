@@ -12,7 +12,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_empty_request(account_name: str, **kwargs) -> HttpRequest:
+def _prepare_paths_get_empty_request(account_name: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

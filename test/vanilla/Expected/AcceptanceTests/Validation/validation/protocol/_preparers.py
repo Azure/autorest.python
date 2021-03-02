@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _validation_of_method_parameters_request(
+def _prepare_validation_of_method_parameters_request(
     resource_group_name,  # type: str
     id,  # type: int
     **kwargs  # type: Any
@@ -54,7 +54,7 @@ def _validation_of_method_parameters_request(
     return request
 
 
-def _validation_of_body_request(
+def _prepare_validation_of_body_request(
     resource_group_name,  # type: str
     id,  # type: int
     body=None,  # type: Optional["_models.Product"]
@@ -97,7 +97,7 @@ def _validation_of_body_request(
     return request
 
 
-def _get_with_constant_in_path_request(
+def _prepare_get_with_constant_in_path_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -125,7 +125,7 @@ def _get_with_constant_in_path_request(
     return request
 
 
-def _post_with_constant_in_body_request(
+def _prepare_post_with_constant_in_body_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):

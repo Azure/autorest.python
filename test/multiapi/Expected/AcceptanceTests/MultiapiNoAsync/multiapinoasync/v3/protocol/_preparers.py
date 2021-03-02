@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
-def _test_paging_request(
+def _prepare_test_paging_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -41,7 +41,7 @@ def _test_paging_request(
     )
     return request
 
-def _test_different_calls_request(
+def _prepare_test_different_calls_request(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
     greeting_in_french=None,  # type: Optional[str]
@@ -76,7 +76,7 @@ def _test_different_calls_request(
     )
     return request
 
-def _test_two_request(
+def _prepare_operationgroupone_test_two_request(
     body=None,  # type: Optional["_models.ModelThree"]
     **kwargs  # type: Any
 ):
@@ -109,7 +109,7 @@ def _test_two_request(
     )
     return request
 
-def _test_four_request(
+def _prepare_operationgrouptwo_test_four_request(
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
 ):
@@ -151,7 +151,7 @@ def _test_four_request(
     )
     return request
 
-def _test_five_request(
+def _prepare_operationgrouptwo_test_five_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

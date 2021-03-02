@@ -7,13 +7,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_by_pet_id_request
-    from ._preparers_py3 import _add_pet_request
+    from ._preparers_py3 import _prepare_pet_get_by_pet_id_request
+    from ._preparers_py3 import _prepare_pet_add_pet_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_by_pet_id_request  # type: ignore
-    from ._preparers import _add_pet_request  # type: ignore
+    from ._preparers import _prepare_pet_get_by_pet_id_request  # type: ignore
+    from ._preparers import _prepare_pet_add_pet_request  # type: ignore
 
 __all__ = [
-    "_get_by_pet_id_request",
-    "_add_pet_request",
+    "_prepare_pet_get_by_pet_id_request",
+    "_prepare_pet_add_pet_request",
 ]

@@ -61,7 +61,7 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = _prepare_inheritance_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -101,7 +101,9 @@ class InheritanceOperations:
 
         complex_body = self._serialize.body(complex_body, "Siamese")
 
-        request = _put_valid_request(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = _prepare_inheritance_put_valid_request(
+            body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

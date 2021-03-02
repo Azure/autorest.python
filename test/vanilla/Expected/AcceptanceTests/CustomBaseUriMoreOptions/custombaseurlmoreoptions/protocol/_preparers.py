@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def _get_empty_request(
+def _prepare_paths_get_empty_request(
     vault,  # type: str
     secret,  # type: str
     key_name,  # type: str

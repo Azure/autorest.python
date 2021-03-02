@@ -7,25 +7,25 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_true_request
-    from ._preparers_py3 import _put_true_request
-    from ._preparers_py3 import _get_false_request
-    from ._preparers_py3 import _put_false_request
-    from ._preparers_py3 import _get_null_request
-    from ._preparers_py3 import _get_invalid_request
+    from ._preparers_py3 import _prepare_bool_get_true_request
+    from ._preparers_py3 import _prepare_bool_put_true_request
+    from ._preparers_py3 import _prepare_bool_get_false_request
+    from ._preparers_py3 import _prepare_bool_put_false_request
+    from ._preparers_py3 import _prepare_bool_get_null_request
+    from ._preparers_py3 import _prepare_bool_get_invalid_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_true_request  # type: ignore
-    from ._preparers import _put_true_request  # type: ignore
-    from ._preparers import _get_false_request  # type: ignore
-    from ._preparers import _put_false_request  # type: ignore
-    from ._preparers import _get_null_request  # type: ignore
-    from ._preparers import _get_invalid_request  # type: ignore
+    from ._preparers import _prepare_bool_get_true_request  # type: ignore
+    from ._preparers import _prepare_bool_put_true_request  # type: ignore
+    from ._preparers import _prepare_bool_get_false_request  # type: ignore
+    from ._preparers import _prepare_bool_put_false_request  # type: ignore
+    from ._preparers import _prepare_bool_get_null_request  # type: ignore
+    from ._preparers import _prepare_bool_get_invalid_request  # type: ignore
 
 __all__ = [
-    "_get_true_request",
-    "_put_true_request",
-    "_get_false_request",
-    "_put_false_request",
-    "_get_null_request",
-    "_get_invalid_request",
+    "_prepare_bool_get_true_request",
+    "_prepare_bool_put_true_request",
+    "_prepare_bool_get_false_request",
+    "_prepare_bool_put_false_request",
+    "_prepare_bool_get_null_request",
+    "_prepare_bool_get_invalid_request",
 ]

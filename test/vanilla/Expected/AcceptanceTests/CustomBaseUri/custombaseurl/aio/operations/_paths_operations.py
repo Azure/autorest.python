@@ -63,7 +63,9 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_empty_request(account_name=account_name, template_url=self.get_empty.metadata["url"], **kwargs)
+        request = _prepare_paths_get_empty_request(
+            account_name=account_name, template_url=self.get_empty.metadata["url"], **kwargs
+        )
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }

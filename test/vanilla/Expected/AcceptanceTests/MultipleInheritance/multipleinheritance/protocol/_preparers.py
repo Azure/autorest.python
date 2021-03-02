@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_horse_request(
+def _prepare_get_horse_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -36,7 +36,7 @@ def _get_horse_request(
     return request
 
 
-def _put_horse_request(
+def _prepare_put_horse_request(
     body,  # type: "_models.Horse"
     **kwargs  # type: Any
 ):
@@ -68,7 +68,7 @@ def _put_horse_request(
     return request
 
 
-def _get_pet_request(
+def _prepare_get_pet_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -93,7 +93,7 @@ def _get_pet_request(
     return request
 
 
-def _put_pet_request(
+def _prepare_put_pet_request(
     body,  # type: "_models.Pet"
     **kwargs  # type: Any
 ):
@@ -125,7 +125,7 @@ def _put_pet_request(
     return request
 
 
-def _get_feline_request(
+def _prepare_get_feline_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -150,7 +150,7 @@ def _get_feline_request(
     return request
 
 
-def _put_feline_request(
+def _prepare_put_feline_request(
     body,  # type: "_models.Feline"
     **kwargs  # type: Any
 ):
@@ -182,7 +182,7 @@ def _put_feline_request(
     return request
 
 
-def _get_cat_request(
+def _prepare_get_cat_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -207,7 +207,7 @@ def _get_cat_request(
     return request
 
 
-def _put_cat_request(
+def _prepare_put_cat_request(
     body,  # type: "_models.Cat"
     **kwargs  # type: Any
 ):
@@ -239,7 +239,7 @@ def _put_cat_request(
     return request
 
 
-def _get_kitten_request(
+def _prepare_get_kitten_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -264,7 +264,7 @@ def _get_kitten_request(
     return request
 
 
-def _put_kitten_request(
+def _prepare_put_kitten_request(
     body,  # type: "_models.Kitten"
     **kwargs  # type: Any
 ):

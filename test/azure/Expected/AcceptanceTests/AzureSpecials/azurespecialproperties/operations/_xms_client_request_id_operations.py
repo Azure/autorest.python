@@ -70,7 +70,7 @@ class XMsClientRequestIdOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _prepare_xmsclientrequestid_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -108,7 +108,7 @@ class XMsClientRequestIdOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _param_get_request(
+        request = _prepare_xmsclientrequestid_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id, template_url=self.param_get.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

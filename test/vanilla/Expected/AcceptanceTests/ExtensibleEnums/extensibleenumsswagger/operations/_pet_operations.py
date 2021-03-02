@@ -72,7 +72,9 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _get_by_pet_id_request(pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs)
+        request = _prepare_pet_get_by_pet_id_request(
+            pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -115,7 +117,7 @@ class PetOperations(object):
         if pet_param is not None:
             pet_param = self._serialize.body(pet_param, "Pet")
 
-        request = _add_pet_request(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
+        request = _prepare_pet_add_pet_request(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

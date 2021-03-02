@@ -7,22 +7,22 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _test_one_request
-    from ._preparers_py3 import _test_different_calls_request
-    from ._preparers_py3 import _test_two_request
-    from ._preparers_py3 import _test_three_request
-    from ._preparers_py3 import _test_four_request
+    from ._preparers_py3 import _prepare_test_one_request
+    from ._preparers_py3 import _prepare_test_different_calls_request
+    from ._preparers_py3 import _prepare_operationgroupone_test_two_request
+    from ._preparers_py3 import _prepare_operationgroupone_test_three_request
+    from ._preparers_py3 import _prepare_operationgrouptwo_test_four_request
 except (SyntaxError, ImportError):
-    from ._preparers import _test_one_request  # type: ignore
-    from ._preparers import _test_different_calls_request  # type: ignore
-    from ._preparers import _test_two_request  # type: ignore
-    from ._preparers import _test_three_request  # type: ignore
-    from ._preparers import _test_four_request  # type: ignore
+    from ._preparers import _prepare_test_one_request  # type: ignore
+    from ._preparers import _prepare_test_different_calls_request  # type: ignore
+    from ._preparers import _prepare_operationgroupone_test_two_request  # type: ignore
+    from ._preparers import _prepare_operationgroupone_test_three_request  # type: ignore
+    from ._preparers import _prepare_operationgrouptwo_test_four_request  # type: ignore
 
 __all__ = [
-    '_test_one_request',
-    '_test_different_calls_request',
-    '_test_two_request',
-    '_test_three_request',
-    '_test_four_request',
+    '_prepare_test_one_request',
+    '_prepare_test_different_calls_request',
+    '_prepare_operationgroupone_test_two_request',
+    '_prepare_operationgroupone_test_three_request',
+    '_prepare_operationgrouptwo_test_four_request',
 ]

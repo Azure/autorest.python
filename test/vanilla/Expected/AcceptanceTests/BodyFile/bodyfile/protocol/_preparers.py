@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_file_request(
+def _prepare_files_get_file_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -36,7 +36,7 @@ def _get_file_request(
     return request
 
 
-def _get_file_large_request(
+def _prepare_files_get_file_large_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -61,7 +61,7 @@ def _get_file_large_request(
     return request
 
 
-def _get_empty_file_request(
+def _prepare_files_get_empty_file_request(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

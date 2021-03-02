@@ -7,103 +7,103 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import _get_required_path_request
-    from ._preparers_py3 import _put_optional_query_request
-    from ._preparers_py3 import _put_optional_header_request
-    from ._preparers_py3 import _put_optional_body_request
-    from ._preparers_py3 import _put_optional_binary_body_request
-    from ._preparers_py3 import _get_required_global_path_request
-    from ._preparers_py3 import _get_required_global_query_request
-    from ._preparers_py3 import _get_optional_global_query_request
-    from ._preparers_py3 import _put_optional_binary_body_request
-    from ._preparers_py3 import _put_required_binary_body_request
-    from ._preparers_py3 import _post_required_integer_parameter_request
-    from ._preparers_py3 import _post_optional_integer_parameter_request
-    from ._preparers_py3 import _post_required_integer_property_request
-    from ._preparers_py3 import _post_optional_integer_property_request
-    from ._preparers_py3 import _post_required_integer_header_request
-    from ._preparers_py3 import _post_optional_integer_header_request
-    from ._preparers_py3 import _post_required_string_parameter_request
-    from ._preparers_py3 import _post_optional_string_parameter_request
-    from ._preparers_py3 import _post_required_string_property_request
-    from ._preparers_py3 import _post_optional_string_property_request
-    from ._preparers_py3 import _post_required_string_header_request
-    from ._preparers_py3 import _post_optional_string_header_request
-    from ._preparers_py3 import _post_required_class_parameter_request
-    from ._preparers_py3 import _post_optional_class_parameter_request
-    from ._preparers_py3 import _post_required_class_property_request
-    from ._preparers_py3 import _post_optional_class_property_request
-    from ._preparers_py3 import _post_required_array_parameter_request
-    from ._preparers_py3 import _post_optional_array_parameter_request
-    from ._preparers_py3 import _post_required_array_property_request
-    from ._preparers_py3 import _post_optional_array_property_request
-    from ._preparers_py3 import _post_required_array_header_request
-    from ._preparers_py3 import _post_optional_array_header_request
+    from ._preparers_py3 import _prepare_implicit_get_required_path_request
+    from ._preparers_py3 import _prepare_implicit_put_optional_query_request
+    from ._preparers_py3 import _prepare_implicit_put_optional_header_request
+    from ._preparers_py3 import _prepare_implicit_put_optional_body_request
+    from ._preparers_py3 import _prepare_implicit_put_optional_binary_body_request
+    from ._preparers_py3 import _prepare_implicit_get_required_global_path_request
+    from ._preparers_py3 import _prepare_implicit_get_required_global_query_request
+    from ._preparers_py3 import _prepare_implicit_get_optional_global_query_request
+    from ._preparers_py3 import _prepare_explicit_put_optional_binary_body_request
+    from ._preparers_py3 import _prepare_explicit_put_required_binary_body_request
+    from ._preparers_py3 import _prepare_explicit_post_required_integer_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_integer_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_required_integer_property_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_integer_property_request
+    from ._preparers_py3 import _prepare_explicit_post_required_integer_header_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_integer_header_request
+    from ._preparers_py3 import _prepare_explicit_post_required_string_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_string_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_required_string_property_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_string_property_request
+    from ._preparers_py3 import _prepare_explicit_post_required_string_header_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_string_header_request
+    from ._preparers_py3 import _prepare_explicit_post_required_class_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_class_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_required_class_property_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_class_property_request
+    from ._preparers_py3 import _prepare_explicit_post_required_array_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_array_parameter_request
+    from ._preparers_py3 import _prepare_explicit_post_required_array_property_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_array_property_request
+    from ._preparers_py3 import _prepare_explicit_post_required_array_header_request
+    from ._preparers_py3 import _prepare_explicit_post_optional_array_header_request
 except (SyntaxError, ImportError):
-    from ._preparers import _get_required_path_request  # type: ignore
-    from ._preparers import _put_optional_query_request  # type: ignore
-    from ._preparers import _put_optional_header_request  # type: ignore
-    from ._preparers import _put_optional_body_request  # type: ignore
-    from ._preparers import _put_optional_binary_body_request  # type: ignore
-    from ._preparers import _get_required_global_path_request  # type: ignore
-    from ._preparers import _get_required_global_query_request  # type: ignore
-    from ._preparers import _get_optional_global_query_request  # type: ignore
-    from ._preparers import _put_optional_binary_body_request  # type: ignore
-    from ._preparers import _put_required_binary_body_request  # type: ignore
-    from ._preparers import _post_required_integer_parameter_request  # type: ignore
-    from ._preparers import _post_optional_integer_parameter_request  # type: ignore
-    from ._preparers import _post_required_integer_property_request  # type: ignore
-    from ._preparers import _post_optional_integer_property_request  # type: ignore
-    from ._preparers import _post_required_integer_header_request  # type: ignore
-    from ._preparers import _post_optional_integer_header_request  # type: ignore
-    from ._preparers import _post_required_string_parameter_request  # type: ignore
-    from ._preparers import _post_optional_string_parameter_request  # type: ignore
-    from ._preparers import _post_required_string_property_request  # type: ignore
-    from ._preparers import _post_optional_string_property_request  # type: ignore
-    from ._preparers import _post_required_string_header_request  # type: ignore
-    from ._preparers import _post_optional_string_header_request  # type: ignore
-    from ._preparers import _post_required_class_parameter_request  # type: ignore
-    from ._preparers import _post_optional_class_parameter_request  # type: ignore
-    from ._preparers import _post_required_class_property_request  # type: ignore
-    from ._preparers import _post_optional_class_property_request  # type: ignore
-    from ._preparers import _post_required_array_parameter_request  # type: ignore
-    from ._preparers import _post_optional_array_parameter_request  # type: ignore
-    from ._preparers import _post_required_array_property_request  # type: ignore
-    from ._preparers import _post_optional_array_property_request  # type: ignore
-    from ._preparers import _post_required_array_header_request  # type: ignore
-    from ._preparers import _post_optional_array_header_request  # type: ignore
+    from ._preparers import _prepare_implicit_get_required_path_request  # type: ignore
+    from ._preparers import _prepare_implicit_put_optional_query_request  # type: ignore
+    from ._preparers import _prepare_implicit_put_optional_header_request  # type: ignore
+    from ._preparers import _prepare_implicit_put_optional_body_request  # type: ignore
+    from ._preparers import _prepare_implicit_put_optional_binary_body_request  # type: ignore
+    from ._preparers import _prepare_implicit_get_required_global_path_request  # type: ignore
+    from ._preparers import _prepare_implicit_get_required_global_query_request  # type: ignore
+    from ._preparers import _prepare_implicit_get_optional_global_query_request  # type: ignore
+    from ._preparers import _prepare_explicit_put_optional_binary_body_request  # type: ignore
+    from ._preparers import _prepare_explicit_put_required_binary_body_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_integer_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_integer_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_integer_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_integer_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_integer_header_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_integer_header_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_string_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_string_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_string_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_string_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_string_header_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_string_header_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_class_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_class_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_class_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_class_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_array_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_array_parameter_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_array_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_array_property_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_required_array_header_request  # type: ignore
+    from ._preparers import _prepare_explicit_post_optional_array_header_request  # type: ignore
 
 __all__ = [
-    "_get_required_path_request",
-    "_put_optional_query_request",
-    "_put_optional_header_request",
-    "_put_optional_body_request",
-    "_put_optional_binary_body_request",
-    "_get_required_global_path_request",
-    "_get_required_global_query_request",
-    "_get_optional_global_query_request",
-    "_put_optional_binary_body_request",
-    "_put_required_binary_body_request",
-    "_post_required_integer_parameter_request",
-    "_post_optional_integer_parameter_request",
-    "_post_required_integer_property_request",
-    "_post_optional_integer_property_request",
-    "_post_required_integer_header_request",
-    "_post_optional_integer_header_request",
-    "_post_required_string_parameter_request",
-    "_post_optional_string_parameter_request",
-    "_post_required_string_property_request",
-    "_post_optional_string_property_request",
-    "_post_required_string_header_request",
-    "_post_optional_string_header_request",
-    "_post_required_class_parameter_request",
-    "_post_optional_class_parameter_request",
-    "_post_required_class_property_request",
-    "_post_optional_class_property_request",
-    "_post_required_array_parameter_request",
-    "_post_optional_array_parameter_request",
-    "_post_required_array_property_request",
-    "_post_optional_array_property_request",
-    "_post_required_array_header_request",
-    "_post_optional_array_header_request",
+    "_prepare_implicit_get_required_path_request",
+    "_prepare_implicit_put_optional_query_request",
+    "_prepare_implicit_put_optional_header_request",
+    "_prepare_implicit_put_optional_body_request",
+    "_prepare_implicit_put_optional_binary_body_request",
+    "_prepare_implicit_get_required_global_path_request",
+    "_prepare_implicit_get_required_global_query_request",
+    "_prepare_implicit_get_optional_global_query_request",
+    "_prepare_explicit_put_optional_binary_body_request",
+    "_prepare_explicit_put_required_binary_body_request",
+    "_prepare_explicit_post_required_integer_parameter_request",
+    "_prepare_explicit_post_optional_integer_parameter_request",
+    "_prepare_explicit_post_required_integer_property_request",
+    "_prepare_explicit_post_optional_integer_property_request",
+    "_prepare_explicit_post_required_integer_header_request",
+    "_prepare_explicit_post_optional_integer_header_request",
+    "_prepare_explicit_post_required_string_parameter_request",
+    "_prepare_explicit_post_optional_string_parameter_request",
+    "_prepare_explicit_post_required_string_property_request",
+    "_prepare_explicit_post_optional_string_property_request",
+    "_prepare_explicit_post_required_string_header_request",
+    "_prepare_explicit_post_optional_string_header_request",
+    "_prepare_explicit_post_required_class_parameter_request",
+    "_prepare_explicit_post_optional_class_parameter_request",
+    "_prepare_explicit_post_required_class_property_request",
+    "_prepare_explicit_post_optional_class_property_request",
+    "_prepare_explicit_post_required_array_parameter_request",
+    "_prepare_explicit_post_optional_array_parameter_request",
+    "_prepare_explicit_post_required_array_property_request",
+    "_prepare_explicit_post_optional_array_property_request",
+    "_prepare_explicit_post_required_array_header_request",
+    "_prepare_explicit_post_optional_array_header_request",
 ]

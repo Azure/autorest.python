@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _array_string_multi_null_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _prepare_queries_array_string_multi_null_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -39,7 +39,7 @@ def _array_string_multi_null_request(array_query: Optional[List[str]] = None, **
     return request
 
 
-def _array_string_multi_empty_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _prepare_queries_array_string_multi_empty_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -65,7 +65,7 @@ def _array_string_multi_empty_request(array_query: Optional[List[str]] = None, *
     return request
 
 
-def _array_string_multi_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _prepare_queries_array_string_multi_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

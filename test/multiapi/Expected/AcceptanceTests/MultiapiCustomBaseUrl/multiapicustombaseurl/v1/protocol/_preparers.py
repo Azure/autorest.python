@@ -10,7 +10,7 @@ from msrest import Serializer
 
 _SERIALIZER = Serializer()
 
-def _test_request(
+def _prepare_test_request(
     id,  # type: int
     **kwargs  # type: Any
 ):

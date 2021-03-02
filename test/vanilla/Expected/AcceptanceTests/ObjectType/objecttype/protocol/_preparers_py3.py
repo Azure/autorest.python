@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _get_request(**kwargs) -> HttpRequest:
+def _prepare_get_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def _get_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _put_request(body: object, **kwargs) -> HttpRequest:
+def _prepare_put_request(body: object, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
