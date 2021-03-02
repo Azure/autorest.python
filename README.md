@@ -27,7 +27,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ^3.0.6372
+version: ^3.1.0
 use-extension:
   "@autorest/modelerfour": ^4.15.456
 
@@ -58,18 +58,12 @@ modelerfour:
 
 pipeline:
   python:
-    # doesn't process anything, just makes it so that the 'python:' config section loads early.
+    # Doesn't process anything, just makes it so that the 'python:' config section is loaded and available for the next plugins.
     pass-thru: true
-    input: openapi-document/multi-api/identity
-
-  modelerfour:
-    # in order that the modelerfour/flattener/grouper/etc picks up
-    # configuration nested under python: in the user's config,
-    # we have to make modeler four pull from the 'python' task.
-    input: python
+    input: modelerfour/identity
 
   python/m2r:
-    input: modelerfour/identity
+    input: python
 
   python/namer:
     input: python/m2r
