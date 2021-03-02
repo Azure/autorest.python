@@ -59,7 +59,6 @@ def _prepare_xml_put_complex_type_ref_no_meta_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -114,7 +113,6 @@ def _prepare_xml_put_complex_type_ref_with_meta_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -171,7 +169,6 @@ def _prepare_xml_put_simple_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -228,7 +225,6 @@ def _prepare_xml_put_wrapped_lists_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -306,7 +302,6 @@ def _prepare_xml_put_empty_list_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -361,7 +356,6 @@ def _prepare_xml_put_empty_wrapped_lists_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -416,7 +410,6 @@ def _prepare_xml_put_root_list_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -471,7 +464,6 @@ def _prepare_xml_put_root_list_single_item_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -526,7 +518,6 @@ def _prepare_xml_put_empty_root_list_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -581,7 +572,6 @@ def _prepare_xml_put_empty_child_element_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -671,7 +661,6 @@ def _prepare_xml_put_service_properties_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -734,7 +723,6 @@ def _prepare_xml_put_acls_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -793,7 +781,6 @@ def _prepare_xml_json_input_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -900,7 +887,6 @@ def _prepare_xml_put_binary_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -957,7 +943,6 @@ def _prepare_xml_put_uri_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(

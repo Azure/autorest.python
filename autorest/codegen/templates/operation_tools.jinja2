@@ -178,7 +178,6 @@ content = body{% endif %}{% endmacro %}
 {# write body parameters #}
 {% macro body_parameters(preparer) %}
 {% if preparer.parameters.has_body %}
-body_content_kwargs = {}  # type: Dict[str, Any]
     {% if (preparer.schema_requests | length) == 1 %}
 {{ set_body_content_kwarg(preparer, preparer.schema_requests[0]) }}
     {% else %}

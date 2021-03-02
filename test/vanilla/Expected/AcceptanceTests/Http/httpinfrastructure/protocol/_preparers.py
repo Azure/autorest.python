@@ -186,7 +186,6 @@ def _prepare_httpsuccess_put200_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -218,7 +217,6 @@ def _prepare_httpsuccess_patch200_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -250,7 +248,6 @@ def _prepare_httpsuccess_post200_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -282,7 +279,6 @@ def _prepare_httpsuccess_delete200_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -314,7 +310,6 @@ def _prepare_httpsuccess_put201_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -346,7 +341,6 @@ def _prepare_httpsuccess_post201_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -378,7 +372,6 @@ def _prepare_httpsuccess_put202_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -410,7 +403,6 @@ def _prepare_httpsuccess_patch202_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -442,7 +434,6 @@ def _prepare_httpsuccess_post202_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -474,7 +465,6 @@ def _prepare_httpsuccess_delete202_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -531,7 +521,6 @@ def _prepare_httpsuccess_put204_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -563,7 +552,6 @@ def _prepare_httpsuccess_patch204_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -595,7 +583,6 @@ def _prepare_httpsuccess_post204_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -627,7 +614,6 @@ def _prepare_httpsuccess_delete204_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -784,7 +770,6 @@ def _prepare_httpredirects_put301_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -866,7 +851,6 @@ def _prepare_httpredirects_patch302_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -898,7 +882,6 @@ def _prepare_httpredirects_post303_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1005,7 +988,6 @@ def _prepare_httpredirects_put307_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1037,7 +1019,6 @@ def _prepare_httpredirects_patch307_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1069,7 +1050,6 @@ def _prepare_httpredirects_post307_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1101,7 +1081,6 @@ def _prepare_httpredirects_delete307_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1208,7 +1187,6 @@ def _prepare_httpclientfailure_put400_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1240,7 +1218,6 @@ def _prepare_httpclientfailure_patch400_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1272,7 +1249,6 @@ def _prepare_httpclientfailure_post400_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1304,7 +1280,6 @@ def _prepare_httpclientfailure_delete400_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1436,7 +1411,6 @@ def _prepare_httpclientfailure_put404_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1468,7 +1442,6 @@ def _prepare_httpclientfailure_patch405_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1500,7 +1473,6 @@ def _prepare_httpclientfailure_post406_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1532,7 +1504,6 @@ def _prepare_httpclientfailure_delete407_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1564,7 +1535,6 @@ def _prepare_httpclientfailure_put409_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1696,7 +1666,6 @@ def _prepare_httpclientfailure_put413_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1728,7 +1697,6 @@ def _prepare_httpclientfailure_patch414_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1760,7 +1728,6 @@ def _prepare_httpclientfailure_post415_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1817,7 +1784,6 @@ def _prepare_httpclientfailure_delete417_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1924,7 +1890,6 @@ def _prepare_httpserverfailure_post505_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -1956,7 +1921,6 @@ def _prepare_httpserverfailure_delete505_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -2013,7 +1977,6 @@ def _prepare_httpretry_put500_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -2045,7 +2008,6 @@ def _prepare_httpretry_patch500_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -2127,7 +2089,6 @@ def _prepare_httpretry_post503_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -2159,7 +2120,6 @@ def _prepare_httpretry_delete503_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -2191,7 +2151,6 @@ def _prepare_httpretry_put504_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -2223,7 +2182,6 @@ def _prepare_httpretry_patch504_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(

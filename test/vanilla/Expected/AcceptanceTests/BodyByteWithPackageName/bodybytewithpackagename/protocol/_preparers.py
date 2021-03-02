@@ -105,7 +105,6 @@ def _prepare_byte_put_non_ascii_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(

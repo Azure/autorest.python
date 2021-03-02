@@ -28,7 +28,6 @@ def _prepare_formdata_upload_file_request(body: IO, **kwargs) -> HttpRequest:
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -56,7 +55,6 @@ def _prepare_formdata_upload_file_via_body_request(body: IO, **kwargs) -> HttpRe
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
@@ -84,7 +82,6 @@ def _prepare_formdata_upload_files_request(body: List[IO], **kwargs) -> HttpRequ
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(

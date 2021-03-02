@@ -34,7 +34,6 @@ def _prepare_availabilitysets_update_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
     content = body
 
     request = HttpRequest(
