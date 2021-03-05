@@ -75,17 +75,13 @@ class PathsOperations:
             vault=vault,
             secret=secret,
             key_name=key_name,
+            subscription_id=self._config.subscription_id,
+            dns_suffix=self._config.dns_suffix,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
             **kwargs
         )
-        path_format_arguments = {
-            "dnsSuffix": self._serialize.url(
-                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
-            ),
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

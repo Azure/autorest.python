@@ -36,13 +36,11 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         request = _prepare_poll_with_parameterized_endpoints_initial_request(
             account_name=account_name,
+            host=self._config.host,
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
             **kwargs
         )
-        path_format_arguments = {
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

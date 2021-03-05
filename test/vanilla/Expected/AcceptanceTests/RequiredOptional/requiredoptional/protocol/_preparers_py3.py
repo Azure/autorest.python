@@ -142,11 +142,15 @@ def _prepare_implicit_put_optional_binary_body_request(body: Optional[IO] = None
     return request
 
 
-def _prepare_implicit_get_required_global_path_request(**kwargs) -> HttpRequest:
+def _prepare_implicit_get_required_global_path_request(required_global_path: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
+    path_format_arguments = {
+        "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -164,7 +168,7 @@ def _prepare_implicit_get_required_global_path_request(**kwargs) -> HttpRequest:
     return request
 
 
-def _prepare_implicit_get_required_global_query_request(**kwargs) -> HttpRequest:
+def _prepare_implicit_get_required_global_query_request(required_global_query: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -172,9 +176,7 @@ def _prepare_implicit_get_required_global_query_request(**kwargs) -> HttpRequest
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["required-global-query"] = _SERIALIZER.query(
-        "self._config.required_global_query", self._config.required_global_query, "str"
-    )
+    query_parameters["required-global-query"] = _SERIALIZER.query("required_global_query", required_global_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
@@ -189,7 +191,9 @@ def _prepare_implicit_get_required_global_query_request(**kwargs) -> HttpRequest
     return request
 
 
-def _prepare_implicit_get_optional_global_query_request(**kwargs) -> HttpRequest:
+def _prepare_implicit_get_optional_global_query_request(
+    optional_global_query: Optional[int] = None, **kwargs
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -197,9 +201,9 @@ def _prepare_implicit_get_optional_global_query_request(**kwargs) -> HttpRequest
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    if self._config.optional_global_query is not None:
+    if optional_global_query is not None:
         query_parameters["optional-global-query"] = _SERIALIZER.query(
-            "self._config.optional_global_query", self._config.optional_global_query, "int"
+            "optional_global_query", optional_global_query, "int"
         )
 
     # Construct headers

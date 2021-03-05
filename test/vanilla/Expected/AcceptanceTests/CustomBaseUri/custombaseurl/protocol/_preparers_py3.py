@@ -12,13 +12,14 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _prepare_paths_get_empty_request(account_name: str, **kwargs) -> HttpRequest:
+def _prepare_paths_get_empty_request(account_name: str, host: str = "host", **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/customuri")
     path_format_arguments = {
         "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
+        "host": _SERIALIZER.url("host", host, "str", skip_quote=True),
     }
     url = _format_url_section(url, **path_format_arguments)
 

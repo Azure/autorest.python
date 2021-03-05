@@ -1591,8 +1591,10 @@ def _prepare_queries_array_string_pipes_valid_request(array_query: Optional[List
 
 def _prepare_pathitems_get_all_with_values_request(
     path_item_string_path: str,
+    global_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
     **kwargs
 ) -> HttpRequest:
@@ -1605,6 +1607,7 @@ def _prepare_pathitems_get_all_with_values_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)
@@ -1615,10 +1618,8 @@ def _prepare_pathitems_get_all_with_values_request(
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query(
-            "self._config.global_string_query", self._config.global_string_query, "str"
-        )
+    if global_string_query is not None:
+        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
@@ -1637,8 +1638,10 @@ def _prepare_pathitems_get_all_with_values_request(
 
 def _prepare_pathitems_get_global_query_null_request(
     path_item_string_path: str,
+    global_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
     **kwargs
 ) -> HttpRequest:
@@ -1651,6 +1654,7 @@ def _prepare_pathitems_get_global_query_null_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)
@@ -1661,10 +1665,8 @@ def _prepare_pathitems_get_global_query_null_request(
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query(
-            "self._config.global_string_query", self._config.global_string_query, "str"
-        )
+    if global_string_query is not None:
+        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
@@ -1683,8 +1685,10 @@ def _prepare_pathitems_get_global_query_null_request(
 
 def _prepare_pathitems_get_global_and_local_query_null_request(
     path_item_string_path: str,
+    global_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
     **kwargs
 ) -> HttpRequest:
@@ -1697,6 +1701,7 @@ def _prepare_pathitems_get_global_and_local_query_null_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)
@@ -1707,10 +1712,8 @@ def _prepare_pathitems_get_global_and_local_query_null_request(
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query(
-            "self._config.global_string_query", self._config.global_string_query, "str"
-        )
+    if global_string_query is not None:
+        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
@@ -1729,8 +1732,10 @@ def _prepare_pathitems_get_global_and_local_query_null_request(
 
 def _prepare_pathitems_get_local_path_item_query_null_request(
     path_item_string_path: str,
+    global_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
+    global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
     **kwargs
 ) -> HttpRequest:
@@ -1743,6 +1748,7 @@ def _prepare_pathitems_get_local_path_item_query_null_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)
@@ -1753,10 +1759,8 @@ def _prepare_pathitems_get_local_path_item_query_null_request(
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query(
-            "self._config.global_string_query", self._config.global_string_query, "str"
-        )
+    if global_string_query is not None:
+        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 

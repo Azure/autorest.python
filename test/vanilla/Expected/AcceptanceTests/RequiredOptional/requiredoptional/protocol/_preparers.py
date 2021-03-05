@@ -167,13 +167,18 @@ def _prepare_implicit_put_optional_binary_body_request(
 
 
 def _prepare_implicit_get_required_global_path_request(
-    **kwargs,  # type: Any
+    required_global_path,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
+    path_format_arguments = {
+        "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -192,7 +197,8 @@ def _prepare_implicit_get_required_global_path_request(
 
 
 def _prepare_implicit_get_required_global_query_request(
-    **kwargs,  # type: Any
+    required_global_query,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -202,9 +208,7 @@ def _prepare_implicit_get_required_global_query_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["required-global-query"] = _SERIALIZER.query(
-        "self._config.required_global_query", self._config.required_global_query, "str"
-    )
+    query_parameters["required-global-query"] = _SERIALIZER.query("required_global_query", required_global_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
@@ -220,7 +224,8 @@ def _prepare_implicit_get_required_global_query_request(
 
 
 def _prepare_implicit_get_optional_global_query_request(
-    **kwargs,  # type: Any
+    optional_global_query=None,  # type: Optional[int]
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -230,9 +235,9 @@ def _prepare_implicit_get_optional_global_query_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    if self._config.optional_global_query is not None:
+    if optional_global_query is not None:
         query_parameters["optional-global-query"] = _SERIALIZER.query(
-            "self._config.optional_global_query", self._config.optional_global_query, "int"
+            "optional_global_query", optional_global_query, "int"
         )
 
     # Construct headers

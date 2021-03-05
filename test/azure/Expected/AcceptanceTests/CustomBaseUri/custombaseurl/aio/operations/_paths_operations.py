@@ -64,12 +64,9 @@ class PathsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _prepare_paths_get_empty_request(
-            account_name=account_name, template_url=self.get_empty.metadata["url"], **kwargs
+            account_name=account_name, host=self._config.host, template_url=self.get_empty.metadata["url"], **kwargs
         )
-        path_format_arguments = {
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -12,13 +12,16 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _prepare_group_get_sample_resource_group_request(resource_group_name: str, **kwargs) -> HttpRequest:
+def _prepare_group_get_sample_resource_group_request(
+    subscription_id: str, resource_group_name: str, **kwargs
+) -> HttpRequest:
     api_version = "2014-04-01-preview"
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
     path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)

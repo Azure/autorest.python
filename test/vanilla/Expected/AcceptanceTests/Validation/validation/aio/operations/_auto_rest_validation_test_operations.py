@@ -45,15 +45,13 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _prepare_validation_of_method_parameters_request(
+            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
             **kwargs
         )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -98,16 +96,14 @@ class AutoRestValidationTestOperationsMixin:
             body = self._serialize.body(body, "Product")
 
         request = _prepare_validation_of_body_request(
+            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
             body=body,
             template_url=self.validation_of_body.metadata["url"],
             **kwargs
         )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

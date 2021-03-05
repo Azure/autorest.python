@@ -168,6 +168,7 @@ if {{ preparer.parameters.body[0].serialized_name }} is not None:
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(preparer, schema_request) %}
+body_content_kwargs = {}  # type: Dict[str, Any]
 {% if preparer.multipart %}
 content = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.is_stream_request %}
@@ -297,10 +298,5 @@ request = {{ preparer.name }}(
     template_url={{ template_url }},
     **kwargs
 )
-{% set path_format_arguments_kwarg = "" %}
-{% if operation.parameters.path | selectattr("implementation", "equalto", "Client") | first %}
-    {% set path_format_arguments_kwarg = ", **path_format_arguments" %}
-{{ path_format_arguments(operation.parameters.path | selectattr("implementation", "equalto", "Client")) }}
-{% endif %}
-request.url = self._client.format_url(request.url{{ path_format_arguments_kwarg }})
+request.url = self._client.format_url(request.url)
 kwargs.pop("content_type", None){% endmacro %}

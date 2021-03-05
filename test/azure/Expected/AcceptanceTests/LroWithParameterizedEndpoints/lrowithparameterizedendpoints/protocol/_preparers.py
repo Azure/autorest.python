@@ -14,6 +14,7 @@ _SERIALIZER = Serializer()
 
 def _prepare_poll_with_parameterized_endpoints_initial_request(
     account_name,  # type: str
+    host="host",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -23,6 +24,7 @@ def _prepare_poll_with_parameterized_endpoints_initial_request(
     url = kwargs.pop("template_url", "/lroParameterizedEndpoints")
     path_format_arguments = {
         "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
+        "host": _SERIALIZER.url("host", host, "str", skip_quote=True),
     }
     url = _format_url_section(url, **path_format_arguments)
 

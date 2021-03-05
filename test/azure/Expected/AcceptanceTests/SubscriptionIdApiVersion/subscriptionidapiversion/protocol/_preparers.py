@@ -13,6 +13,7 @@ _SERIALIZER = Serializer()
 
 
 def _prepare_group_get_sample_resource_group_request(
+    subscription_id,  # type: str
     resource_group_name,  # type: str
     **kwargs  # type: Any
 ):
@@ -23,6 +24,7 @@ def _prepare_group_get_sample_resource_group_request(
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
     path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)

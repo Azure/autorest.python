@@ -29,26 +29,14 @@ class PreparerParameterList(ParameterList):
         return all_constants
 
     @property
-    def path(self) -> List[Parameter]:
-        all_path_params = super(PreparerParameterList, self).path
-        return [
-            p for p in all_path_params
-            if p.implementation == "Method"
-        ]
-
-    @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """
         signature_parameters_no_default_value = []
         signature_parameters_default_value = []
 
-        # Client level should not be on Method, etc.
-        parameters_of_this_implementation = self.get_from_predicate(
-            lambda parameter: parameter.implementation == self.implementation
-        )
         seen_body = False
-        for parameter in parameters_of_this_implementation:
+        for parameter in self.parameters:
             if any([g for g in self.groupers if id(g.yaml_data) == id(parameter.yaml_data)]):
                 continue
             if parameter.in_method_signature:

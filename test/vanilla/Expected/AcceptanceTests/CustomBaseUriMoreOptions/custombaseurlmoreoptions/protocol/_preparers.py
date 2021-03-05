@@ -22,6 +22,8 @@ def _prepare_paths_get_empty_request(
     vault,  # type: str
     secret,  # type: str
     key_name,  # type: str
+    subscription_id,  # type: str
+    dns_suffix="host",  # type: str
     key_version="v1",  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -33,7 +35,9 @@ def _prepare_paths_get_empty_request(
     path_format_arguments = {
         "vault": _SERIALIZER.url("vault", vault, "str", skip_quote=True),
         "secret": _SERIALIZER.url("secret", secret, "str", skip_quote=True),
+        "dnsSuffix": _SERIALIZER.url("dns_suffix", dns_suffix, "str", skip_quote=True),
         "keyName": _SERIALIZER.url("key_name", key_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
     url = _format_url_section(url, **path_format_arguments)
 

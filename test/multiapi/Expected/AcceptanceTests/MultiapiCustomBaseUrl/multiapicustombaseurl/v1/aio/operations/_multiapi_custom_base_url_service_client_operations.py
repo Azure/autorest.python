@@ -42,14 +42,12 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         error_map.update(kwargs.pop('error_map', {}))
 
         request = _prepare_test_request(
+            endpoint=self._config.endpoint,
             id=id,
             template_url=self.test.metadata['url'],
             **kwargs
         )
-        path_format_arguments = {
-            'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

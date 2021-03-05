@@ -71,7 +71,8 @@ def _prepare_xmsclientrequestid_param_get_request(
 
 
 def _prepare_subscriptionincredentials_post_method_global_valid_request(
-    **kwargs,  # type: Any
+    subscription_id,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -81,6 +82,10 @@ def _prepare_subscriptionincredentials_post_method_global_valid_request(
         "template_url",
         "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -99,7 +104,8 @@ def _prepare_subscriptionincredentials_post_method_global_valid_request(
 
 
 def _prepare_subscriptionincredentials_post_method_global_null_request(
-    **kwargs,  # type: Any
+    subscription_id,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -108,6 +114,10 @@ def _prepare_subscriptionincredentials_post_method_global_null_request(
     url = kwargs.pop(
         "template_url", "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -126,7 +136,8 @@ def _prepare_subscriptionincredentials_post_method_global_null_request(
 
 
 def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
-    **kwargs,  # type: Any
+    subscription_id,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -137,6 +148,10 @@ def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_req
         "template_url",
         "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -156,7 +171,8 @@ def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_req
 
 
 def _prepare_subscriptionincredentials_post_path_global_valid_request(
-    **kwargs,  # type: Any
+    subscription_id,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -166,6 +182,10 @@ def _prepare_subscriptionincredentials_post_path_global_valid_request(
         "template_url",
         "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -184,7 +204,8 @@ def _prepare_subscriptionincredentials_post_path_global_valid_request(
 
 
 def _prepare_subscriptionincredentials_post_swagger_global_valid_request(
-    **kwargs,  # type: Any
+    subscription_id,  # type: str
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -194,6 +215,10 @@ def _prepare_subscriptionincredentials_post_swagger_global_valid_request(
         "template_url",
         "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

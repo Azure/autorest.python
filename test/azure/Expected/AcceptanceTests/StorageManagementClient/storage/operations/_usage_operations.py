@@ -69,11 +69,10 @@ class UsageOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_usage_list_request(template_url=self.list.metadata["url"], **kwargs)
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request = _prepare_usage_list_request(
+            subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

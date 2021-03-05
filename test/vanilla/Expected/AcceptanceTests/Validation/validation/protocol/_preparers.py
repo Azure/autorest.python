@@ -19,6 +19,7 @@ _SERIALIZER = Serializer()
 
 
 def _prepare_validation_of_method_parameters_request(
+    subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
     **kwargs  # type: Any
@@ -30,6 +31,7 @@ def _prepare_validation_of_method_parameters_request(
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
             "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9\']+"
         ),
@@ -55,6 +57,7 @@ def _prepare_validation_of_method_parameters_request(
 
 
 def _prepare_validation_of_body_request(
+    subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
     body=None,  # type: Optional["_models.Product"]
@@ -68,6 +71,7 @@ def _prepare_validation_of_body_request(
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
             "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9]+"
         ),

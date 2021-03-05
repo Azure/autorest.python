@@ -59,7 +59,7 @@ def _prepare_xmsclientrequestid_param_get_request(x_ms_client_request_id: str, *
     return request
 
 
-def _prepare_subscriptionincredentials_post_method_global_valid_request(**kwargs) -> HttpRequest:
+def _prepare_subscriptionincredentials_post_method_global_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -67,6 +67,10 @@ def _prepare_subscriptionincredentials_post_method_global_valid_request(**kwargs
         "template_url",
         "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -84,13 +88,17 @@ def _prepare_subscriptionincredentials_post_method_global_valid_request(**kwargs
     return request
 
 
-def _prepare_subscriptionincredentials_post_method_global_null_request(**kwargs) -> HttpRequest:
+def _prepare_subscriptionincredentials_post_method_global_null_request(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop(
         "template_url", "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -108,7 +116,9 @@ def _prepare_subscriptionincredentials_post_method_global_null_request(**kwargs)
     return request
 
 
-def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(**kwargs) -> HttpRequest:
+def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
+    subscription_id: str, **kwargs
+) -> HttpRequest:
     api_version = "2015-07-01-preview"
     accept = "application/json"
 
@@ -117,6 +127,10 @@ def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_req
         "template_url",
         "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -135,7 +149,7 @@ def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_req
     return request
 
 
-def _prepare_subscriptionincredentials_post_path_global_valid_request(**kwargs) -> HttpRequest:
+def _prepare_subscriptionincredentials_post_path_global_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -143,6 +157,10 @@ def _prepare_subscriptionincredentials_post_path_global_valid_request(**kwargs) 
         "template_url",
         "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -160,7 +178,7 @@ def _prepare_subscriptionincredentials_post_path_global_valid_request(**kwargs) 
     return request
 
 
-def _prepare_subscriptionincredentials_post_swagger_global_valid_request(**kwargs) -> HttpRequest:
+def _prepare_subscriptionincredentials_post_swagger_global_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -168,6 +186,10 @@ def _prepare_subscriptionincredentials_post_swagger_global_valid_request(**kwarg
         "template_url",
         "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

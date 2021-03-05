@@ -14,13 +14,16 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def _prepare_validation_of_method_parameters_request(resource_group_name: str, id: int, **kwargs) -> HttpRequest:
+def _prepare_validation_of_method_parameters_request(
+    subscription_id: str, resource_group_name: str, id: int, **kwargs
+) -> HttpRequest:
     api_version = "1.0.0"
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
             "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9\']+"
         ),
@@ -46,7 +49,7 @@ def _prepare_validation_of_method_parameters_request(resource_group_name: str, i
 
 
 def _prepare_validation_of_body_request(
-    resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
+    subscription_id: str, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     api_version = "1.0.0"
     content_type = kwargs.pop("content_type", "application/json")
@@ -55,6 +58,7 @@ def _prepare_validation_of_body_request(
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
             "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9]+"
         ),
