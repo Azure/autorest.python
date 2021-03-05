@@ -1,5 +1,6 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% set path_to_models = ".." if async_mode else "." %}
+{% import 'operation_tools.jinja2' as op_tools %}
 {% macro method_signature() %}
 def __init__(
     self,
@@ -8,7 +9,7 @@ def __init__(
     {{ param_signature }},
         {% endfor %}
         {% if code_model.base_url %}
-    base_url: Optional[str] = None,
+    {{ code_model.base_url_method_signature(True) }}
         {% endif %}
     **kwargs: Any
     {% else %}
@@ -16,7 +17,7 @@ def __init__(
     {{ param_signature }}
         {% endfor %}
         {% if code_model.base_url %}
-    base_url=None,  # type: Optional[str]
+    {{ code_model.base_url_method_signature(False) }}
         {% endif %}
     **kwargs  # type: Any
     {% endif %}
@@ -91,6 +92,29 @@ class {{ code_model.class_name }}({{ base_class }}):
         self.{{ operation_group.name }} = {{ operation_group.class_name }}(
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
+
+    {% set http_response = "AsyncHttpResponse" if async_mode else "HttpResponse" %}
+    {{ keywords.def }} _send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
+        {% if not async_mode %}
+        # type: (HttpRequest, Any) -> {{ http_response }}
+        {% endif %}
+        """Runs the network request through the client's chained policies.
+
+        :param http_request: The network request you want to make. Required.
+        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.{{ http_response }}
+        """
+        {% if code_model.global_parameters.path %}
+        {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
+        {{ op_tools.format_path_format_arguments(url_name="http_request.url")|indent(8) }}
+        {% else %}
+        http_request.url = self._client.format_url(http_request.url)
+        {% endif %}
+        stream = kwargs.pop("stream", True)
+        pipeline_response = {{ keywords.await }}self._client._pipeline.run(http_request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

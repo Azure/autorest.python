@@ -8,15 +8,22 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PetsOperations:
     """PetsOperations async operations.
@@ -41,11 +48,7 @@ class PetsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def create_ap_true(
-        self,
-        create_parameters: "_models.PetAPTrue",
-        **kwargs
-    ) -> "_models.PetAPTrue":
+    async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs) -> "_models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -55,51 +58,46 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPTrue"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_true.metadata['url']  # type: ignore
+        url = self.create_ap_true.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, 'PetAPTrue')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(create_parameters, "PetAPTrue")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('PetAPTrue', pipeline_response)
+        deserialized = self._deserialize("PetAPTrue", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_true.metadata = {'url': '/additionalProperties/true'}  # type: ignore
+
+    create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace_async
-    async def create_cat_ap_true(
-        self,
-        create_parameters: "_models.CatAPTrue",
-        **kwargs
-    ) -> "_models.CatAPTrue":
+    async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs) -> "_models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -109,51 +107,46 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.CatAPTrue"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.create_cat_ap_true.metadata['url']  # type: ignore
+        url = self.create_cat_ap_true.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, 'CatAPTrue')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(create_parameters, "CatAPTrue")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('CatAPTrue', pipeline_response)
+        deserialized = self._deserialize("CatAPTrue", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}  # type: ignore
+
+    create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_object(
-        self,
-        create_parameters: "_models.PetAPObject",
-        **kwargs
-    ) -> "_models.PetAPObject":
+    async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs) -> "_models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -163,51 +156,46 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPObject"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_object.metadata['url']  # type: ignore
+        url = self.create_ap_object.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, 'PetAPObject')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(create_parameters, "PetAPObject")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('PetAPObject', pipeline_response)
+        deserialized = self._deserialize("PetAPObject", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}  # type: ignore
+
+    create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_string(
-        self,
-        create_parameters: "_models.PetAPString",
-        **kwargs
-    ) -> "_models.PetAPString":
+    async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs) -> "_models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -217,50 +205,47 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPString"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_string.metadata['url']  # type: ignore
+        url = self.create_ap_string.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, 'PetAPString')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(create_parameters, "PetAPString")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('PetAPString', pipeline_response)
+        deserialized = self._deserialize("PetAPString", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}  # type: ignore
+
+    create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties(
-        self,
-        create_parameters: "_models.PetAPInProperties",
-        **kwargs
+        self, create_parameters: "_models.PetAPInProperties", **kwargs
     ) -> "_models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
 
@@ -271,50 +256,47 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPInProperties"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_in_properties.metadata['url']  # type: ignore
+        url = self.create_ap_in_properties.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(create_parameters, "PetAPInProperties")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('PetAPInProperties', pipeline_response)
+        deserialized = self._deserialize("PetAPInProperties", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}  # type: ignore
+
+    create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
-        self,
-        create_parameters: "_models.PetAPInPropertiesWithAPString",
-        **kwargs
+        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs
     ) -> "_models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
 
@@ -325,41 +307,40 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_in_properties_with_ap_string.metadata['url']  # type: ignore
+        url = self.create_ap_in_properties_with_ap_string.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
+        deserialized = self._deserialize("PetAPInPropertiesWithAPString", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}  # type: ignore
+
+    create_ap_in_properties_with_ap_string.metadata = {"url": "/additionalProperties/in/properties/with/additionalProperties/string"}  # type: ignore

@@ -8,7 +8,13 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -16,8 +22,9 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class SkipUrlEncodingOperations:
     """SkipUrlEncodingOperations async operations.
@@ -42,11 +49,7 @@ class SkipUrlEncodingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_path_valid(
-        self,
-        unencoded_path_param: str,
-        **kwargs
-    ) -> None:
+    async def get_method_path_valid(self, unencoded_path_param: str, **kwargs) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -56,17 +59,17 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_method_path_valid.metadata['url']  # type: ignore
+        url = self.get_method_path_valid.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
+            "unencodedPathParam": self._serialize.url(
+                "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -75,7 +78,7 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -83,20 +86,16 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}  # type: ignore
+    get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_valid(
-        self,
-        unencoded_path_param: str,
-        **kwargs
-    ) -> None:
+    async def get_path_valid(self, unencoded_path_param: str, **kwargs) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -106,17 +105,17 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_path_valid.metadata['url']  # type: ignore
+        url = self.get_path_valid.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
+            "unencodedPathParam": self._serialize.url(
+                "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -125,7 +124,7 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -133,19 +132,16 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}  # type: ignore
+    get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_path_valid(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_swagger_path_valid(self, **kwargs) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -153,18 +149,18 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         unencoded_path_param = "path1/path2/path3"
         accept = "application/json"
 
         # Construct URL
-        url = self.get_swagger_path_valid.metadata['url']  # type: ignore
+        url = self.get_swagger_path_valid.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
+            "unencodedPathParam": self._serialize.url(
+                "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -173,7 +169,7 @@ class SkipUrlEncodingOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -181,20 +177,16 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}  # type: ignore
+    get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_query_valid(
-        self,
-        q1: str,
-        **kwargs
-    ) -> None:
+    async def get_method_query_valid(self, q1: str, **kwargs) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -204,23 +196,21 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_method_query_valid.metadata['url']  # type: ignore
+        url = self.get_method_query_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
+        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -228,20 +218,16 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}  # type: ignore
+    get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_query_null(
-        self,
-        q1: Optional[str] = None,
-        **kwargs
-    ) -> None:
+    async def get_method_query_null(self, q1: Optional[str] = None, **kwargs) -> None:
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null.
@@ -251,24 +237,22 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_method_query_null.metadata['url']  # type: ignore
+        url = self.get_method_query_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if q1 is not None:
-            query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
+            query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -276,20 +260,16 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}  # type: ignore
+    get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_query_valid(
-        self,
-        q1: str,
-        **kwargs
-    ) -> None:
+    async def get_path_query_valid(self, q1: str, **kwargs) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -299,23 +279,21 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_path_query_valid.metadata['url']  # type: ignore
+        url = self.get_path_query_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
+        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -323,19 +301,16 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}  # type: ignore
+    get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_query_valid(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_swagger_query_valid(self, **kwargs) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -343,24 +318,22 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         q1 = "value1&q2=value2&q3=value3"
         accept = "application/json"
 
         # Construct URL
-        url = self.get_swagger_query_valid.metadata['url']  # type: ignore
+        url = self.get_swagger_query_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
+        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -368,10 +341,10 @@ class SkipUrlEncodingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}  # type: ignore
+    get_swagger_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/query/valid"}  # type: ignore

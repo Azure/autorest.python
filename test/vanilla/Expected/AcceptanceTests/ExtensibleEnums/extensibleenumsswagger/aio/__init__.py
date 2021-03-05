@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._pet_store_inc import PetStoreInc
-__all__ = ['PetStoreInc']
+
+__all__ = ["PetStoreInc"]

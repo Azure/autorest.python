@@ -18,7 +18,7 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["codegen", "m2r", "namer", "multiapiscript"]
+    return ["codegen", "m2r", "namer", "black", "multiapiscript"]
 
 
 @dispatcher.add_method
@@ -37,6 +37,8 @@ def Process(plugin_name: str, session_id: str) -> bool:
             from ..namer import Namer as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
             from ..codegen import CodeGenerator as PluginToLoad  # type: ignore
+        elif plugin_name == "black":
+            from ..black import BlackScriptPlugin  as PluginToLoad  # type: ignore
         elif plugin_name == "multiapiscript":
             from ..multiapi import MultiApiScriptPlugin as PluginToLoad  # type: ignore
         else:

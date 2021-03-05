@@ -10,10 +10,11 @@ from ._auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutl
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestUrlMutliCollectionFormatTestService']
+__all__ = ["AutoRestUrlMutliCollectionFormatTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

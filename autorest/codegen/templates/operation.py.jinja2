@@ -80,12 +80,8 @@
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
 {% if operation.parameters.path %}
-    path_format_arguments = {
-{% for path_parameter in operation.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
-{% endfor %}
-    }
-    url = self._client.format_url(url, **path_format_arguments)
+    {{ op_tools.path_format_arguments(operation.parameters.path)|indent }}
+    {{ op_tools.format_path_format_arguments()|indent }}
 {% endif %}
 
     {{ op_tools.query_parameters(operation, async_mode)|indent }}
@@ -97,7 +93,7 @@
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         {% if operation.default_exception %}
-        error = self._deserialize({{ operation.default_exception }}, response)
+        error = self._deserialize.failsafe_deserialize({{ operation.default_exception }}, response)
         {% endif %}
         raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
 

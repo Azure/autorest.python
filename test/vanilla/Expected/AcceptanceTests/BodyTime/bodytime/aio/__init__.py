@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_time_test_service import AutoRestTimeTestService
-__all__ = ['AutoRestTimeTestService']
+
+__all__ = ["AutoRestTimeTestService"]

@@ -26,21 +26,15 @@ class BaseProduct(msrest.serialization.Model):
     """
 
     _validation = {
-        'product_id': {'required': True},
+        "product_id": {"required": True},
     }
 
     _attribute_map = {
-        'product_id': {'key': 'base_product_id', 'type': 'str'},
-        'description': {'key': 'base_product_description', 'type': 'str'},
+        "product_id": {"key": "base_product_id", "type": "str"},
+        "description": {"key": "base_product_description", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        product_id: str,
-        description: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, product_id: str, description: Optional[str] = None, **kwargs):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = product_id
         self.description = description
@@ -58,9 +52,9 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
-        'parent_error': {'key': 'parentError', 'type': 'Error'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
+        "parent_error": {"key": "parentError", "type": "Error"},
     }
 
     def __init__(
@@ -95,26 +89,20 @@ class Resource(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
-        'name': {'readonly': True},
+        "id": {"readonly": True},
+        "type": {"readonly": True},
+        "name": {"readonly": True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "tags": {"key": "tags", "type": "{str}"},
+        "location": {"key": "location", "type": "str"},
+        "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        tags: Optional[Dict[str, str]] = None,
-        location: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -151,22 +139,22 @@ class FlattenedProduct(Resource):
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
-        'name': {'readonly': True},
-        'provisioning_state_values': {'readonly': True},
+        "id": {"readonly": True},
+        "type": {"readonly": True},
+        "name": {"readonly": True},
+        "provisioning_state_values": {"readonly": True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
-        'name': {'key': 'name', 'type': 'str'},
-        'p_name': {'key': 'properties.p\\.name', 'type': 'str'},
-        'type_properties_type': {'key': 'properties.type', 'type': 'str'},
-        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
-        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "tags": {"key": "tags", "type": "{str}"},
+        "location": {"key": "location", "type": "str"},
+        "name": {"key": "name", "type": "str"},
+        "p_name": {"key": "properties.p\\.name", "type": "str"},
+        "type_properties_type": {"key": "properties.type", "type": "str"},
+        "provisioning_state_values": {"key": "properties.provisioningStateValues", "type": "str"},
+        "provisioning_state": {"key": "properties.provisioningState", "type": "str"},
     }
 
     def __init__(
@@ -210,18 +198,18 @@ class FlattenParameterGroup(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
-        'product_id': {'required': True},
+        "name": {"required": True},
+        "product_id": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'simple_body_product': {'key': 'SimpleBodyProduct', 'type': 'SimpleProduct'},
-        'product_id': {'key': 'productId', 'type': 'str'},
-        'description': {'key': 'description', 'type': 'str'},
-        'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
-        'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
+        "simple_body_product": {"key": "SimpleBodyProduct", "type": "SimpleProduct"},
+        "product_id": {"key": "productId", "type": "str"},
+        "description": {"key": "description", "type": "str"},
+        "max_product_display_name": {"key": "max_product_display_name", "type": "str"},
+        "generic_value": {"key": "generic_value", "type": "str"},
+        "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
 
     def __init__(
@@ -254,15 +242,10 @@ class GenericUrl(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'generic_value': {'key': 'generic_value', 'type': 'str'},
+        "generic_value": {"key": "generic_value", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        generic_value: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, generic_value: Optional[str] = None, **kwargs):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
 
@@ -277,17 +260,11 @@ class ProductUrl(GenericUrl):
     """
 
     _attribute_map = {
-        'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
+        "generic_value": {"key": "generic_value", "type": "str"},
+        "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        generic_value: Optional[str] = None,
-        odata_value: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, generic_value: Optional[str] = None, odata_value: Optional[str] = None, **kwargs):
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
         self.odata_value = odata_value
 
@@ -300,15 +277,10 @@ class ProductWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'property.value', 'type': 'str'},
+        "value": {"key": "property.value", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[str] = None, **kwargs):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -325,9 +297,9 @@ class ResourceCollection(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'productresource': {'key': 'productresource', 'type': 'FlattenedProduct'},
-        'arrayofresources': {'key': 'arrayofresources', 'type': '[FlattenedProduct]'},
-        'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
+        "productresource": {"key": "productresource", "type": "FlattenedProduct"},
+        "arrayofresources": {"key": "arrayofresources", "type": "[FlattenedProduct]"},
+        "dictionaryofresources": {"key": "dictionaryofresources", "type": "{FlattenedProduct}"},
     }
 
     def __init__(
@@ -368,17 +340,17 @@ class SimpleProduct(BaseProduct):
     """
 
     _validation = {
-        'product_id': {'required': True},
-        'capacity': {'constant': True},
+        "product_id": {"required": True},
+        "capacity": {"constant": True},
     }
 
     _attribute_map = {
-        'product_id': {'key': 'base_product_id', 'type': 'str'},
-        'description': {'key': 'base_product_description', 'type': 'str'},
-        'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
-        'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
-        'generic_value': {'key': 'details.max_product_image.generic_value', 'type': 'str'},
-        'odata_value': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
+        "product_id": {"key": "base_product_id", "type": "str"},
+        "description": {"key": "base_product_description", "type": "str"},
+        "max_product_display_name": {"key": "details.max_product_display_name", "type": "str"},
+        "capacity": {"key": "details.max_product_capacity", "type": "str"},
+        "generic_value": {"key": "details.max_product_image.generic_value", "type": "str"},
+        "odata_value": {"key": "details.max_product_image.@odata\\.value", "type": "str"},
     }
 
     capacity = "Large"
@@ -407,14 +379,9 @@ class WrappedProduct(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'str'},
+        "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[str] = None, **kwargs):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = value

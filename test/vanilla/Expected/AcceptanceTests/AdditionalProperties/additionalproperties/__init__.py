@@ -10,10 +10,11 @@ from ._additional_properties_client import AdditionalPropertiesClient
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AdditionalPropertiesClient']
+__all__ = ["AdditionalPropertiesClient"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

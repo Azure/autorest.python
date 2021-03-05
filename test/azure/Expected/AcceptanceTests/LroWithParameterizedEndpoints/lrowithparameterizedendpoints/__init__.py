@@ -10,10 +10,11 @@ from ._lro_with_paramaterized_endpoints import LROWithParamaterizedEndpoints
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['LROWithParamaterizedEndpoints']
+__all__ = ["LROWithParamaterizedEndpoints"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

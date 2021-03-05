@@ -49,5 +49,6 @@ setup(
         "Jinja2 >= 2.11", # I need "include" and auto-context + blank line are not indented by default
         "pyyaml",
         "m2r",
+        "black",
     ],
 )

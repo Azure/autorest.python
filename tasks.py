@@ -50,6 +50,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'ExtensibleEnums': 'extensible-enums-swagger.json',
     'Header': 'header.json',
     'Http': 'httpInfrastructure.json',
+    'IncorrectErrorResponse': 'incorrect-error-response.json',
     'Report': 'report.json',
     'RequiredOptional': 'required-optional.json',
     'Url': 'url.json',
@@ -140,14 +141,14 @@ def _build_flags(
         "trace": True,
         "output-artifact": "code-model-v4-no-tags",
         "input-file": f"{testserver_dir}/{swagger_name}",
-        "debug": debug,
         "add-credential": False,
         "vanilla": swagger_group == _SwaggerGroup.VANILLA,
         "azure-arm": swagger_group == _SwaggerGroup.AZURE_ARM,
         "payload-flattening-threshold": 1,
         "keep-version-file": True,
         "namespace": _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()),
-        "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
+        "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION,
+        "black": True,
     }
     if override_flags:
         flags.update(override_flags)
@@ -164,7 +165,8 @@ def _build_command_line(
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
     ]
-    return "autorest " + " ".join(flag_strings)
+    debug_str = " --python.debugger" if debug else ""
+    return "autorest " + " ".join(flag_strings) + debug_str
 
 def _run_autorest(cmds, debug):
     if len(cmds) == 1:
@@ -263,6 +265,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
         regenerate_custom_poller_pager(c, debug)
+        regenerate_samples(c, debug)
 
 
 @task
@@ -333,3 +336,28 @@ def regenerate_custom_poller_pager(c, debug=False):
         f'autorest test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
+
+@task
+def regenerate_samples(c, debug=False):
+    cwd = os.getcwd()
+    sample_to_special_flags = {
+        "management": None,
+        "multiapi": {
+            "multiapi": True,
+            "python-sdks-folder": f'{cwd}/docs/samples/specification/multiapi'
+        },
+        "azure_key_credential": None,
+        "directives": None,
+        "basic": None,
+    }
+
+    cmds = []
+    for sample, special_flags in sample_to_special_flags.items():
+        cmd =  f'autorest docs/samples/specification/{sample}/readme.md --use=.  '
+        if special_flags:
+            flag_strings = [
+                f"--{flag}={value}" for flag, value in special_flags.items()
+            ]
+            cmd += " ".join(flag_strings)
+        cmds.append(cmd)
+    _run_autorest(cmds, debug)

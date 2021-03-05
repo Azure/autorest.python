@@ -30,14 +30,14 @@ from ._auto_rest_long_running_operation_test_service_enums import (
 )
 
 __all__ = [
-    'OperationResult',
-    'OperationResultError',
-    'Product',
-    'Resource',
-    'Sku',
-    'SubProduct',
-    'SubResource',
-    'OperationResultStatus',
-    'ProductPropertiesProvisioningStateValues',
-    'SubProductPropertiesProvisioningStateValues',
+    "OperationResult",
+    "OperationResultError",
+    "Product",
+    "Resource",
+    "Sku",
+    "SubProduct",
+    "SubResource",
+    "OperationResultStatus",
+    "ProductPropertiesProvisioningStateValues",
+    "SubProductPropertiesProvisioningStateValues",
 ]

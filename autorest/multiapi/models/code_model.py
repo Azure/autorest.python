@@ -39,7 +39,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             version_path_to_metadata, mod_to_api_version, default_api_version
         )
         self.global_parameters = GlobalParameters(
-            default_version_metadata["global_parameters"], self.service_client.base_url
+            default_version_metadata["global_parameters"]
         )
         self.user_specified_default_api = user_specified_default_api
 

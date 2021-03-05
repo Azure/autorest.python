@@ -20,9 +20,9 @@ clear-output-folder: true
 ### Override ItemPaged to custom Pager
 ``` yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/paging/single"].get'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/paging/single"].get'
+      transform: >
         $["x-python-custom-pager-sync"] = "custompollerpagerdefinitions.CustomPager";
         $["x-python-custom-pager-async"] = "custompollerpagerdefinitions.aio.AsyncCustomPager"
 ```
@@ -30,9 +30,9 @@ directive:
 ### Override LROPoller to custom Poller
 ``` yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/paging/multiple/lro"].post'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/paging/multiple/lro"].post'
+      transform: >
         $["x-python-custom-poller-sync"] = "custompollerpagerdefinitions.CustomPoller";
         $["x-python-custom-poller-async"] = "custompollerpagerdefinitions.aio.AsyncCustomPoller"
 ```

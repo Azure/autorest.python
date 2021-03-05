@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._additional_properties_client import AdditionalPropertiesClient
-__all__ = ['AdditionalPropertiesClient']
+
+__all__ = ["AdditionalPropertiesClient"]

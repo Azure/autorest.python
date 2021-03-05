@@ -8,24 +8,26 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class AutoRestReportServiceOperationsMixin:
 
+class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
-    async def get_report(
-        self,
-        qualifier: Optional[str] = None,
-        **kwargs
-    ) -> Dict[str, int]:
+    async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -37,24 +39,22 @@ class AutoRestReportServiceOperationsMixin:
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_report.metadata['url']  # type: ignore
+        url = self.get_report.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if qualifier is not None:
-            query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
+            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -62,23 +62,20 @@ class AutoRestReportServiceOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('{int}', pipeline_response)
+        deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_report.metadata = {'url': '/report'}  # type: ignore
+
+    get_report.metadata = {"url": "/report"}  # type: ignore
 
     @distributed_trace_async
-    async def get_optional_report(
-        self,
-        qualifier: Optional[str] = None,
-        **kwargs
-    ) -> Dict[str, int]:
+    async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get optional test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -90,24 +87,22 @@ class AutoRestReportServiceOperationsMixin:
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_optional_report.metadata['url']  # type: ignore
+        url = self.get_optional_report.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if qualifier is not None:
-            query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
+            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,13 +110,14 @@ class AutoRestReportServiceOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('{int}', pipeline_response)
+        deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_optional_report.metadata = {'url': '/report/optional'}  # type: ignore
+
+    get_optional_report.metadata = {"url": "/report/optional"}  # type: ignore

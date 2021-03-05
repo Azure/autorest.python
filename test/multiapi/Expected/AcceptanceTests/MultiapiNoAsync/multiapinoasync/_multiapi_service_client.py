@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import TokenCredential
+    from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
@@ -70,7 +71,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential,  # type: "TokenCredential"
         api_version=None, # type: Optional[str]
-        base_url=None, # type: Optional[str]
+        base_url=None,  # type: Optional[str]
         profile=KnownProfiles.default, # type: KnownProfiles
         **kwargs  # type: Any
     ):

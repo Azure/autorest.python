@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._models import Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema  # type: ignore
 
 __all__ = [
-    'Error',
-    'Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema',
-    'Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema',
+    "Error",
+    "Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema",
+    "Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema",
 ]

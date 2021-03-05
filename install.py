@@ -42,8 +42,8 @@ def main():
         env_builder.create(venv_path)
         venv_context = env_builder.context
 
-        python_run(venv_context, "pip", "install -U pip")
-        python_run(venv_context, "pip", "install -e {}".format(_ROOT_DIR))
+        python_run(venv_context, "pip", ["install", "-U", "pip"])
+        python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR)])
 
 if __name__ == "__main__":
     main()

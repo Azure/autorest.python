@@ -19,7 +19,7 @@ VERSION = "0.1.0"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["msrest>=0.6.18", "azure-core<2.0.0,>=1.8.2", "azure-mgmt-core<2.0.0,>=1.2.1"]
+REQUIRES = ["msrest>=0.6.21", "azure-core<2.0.0,>=1.8.2", "azure-mgmt-core<2.0.0,>=1.2.1"]
 
 setup(
     name=NAME,
@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Long-running Operation for AutoRest.
-    """
+    """,
 )

@@ -10,10 +10,11 @@ from ._auto_rest_head_exception_test_service import AutoRestHeadExceptionTestSer
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestHeadExceptionTestService']
+__all__ = ["AutoRestHeadExceptionTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

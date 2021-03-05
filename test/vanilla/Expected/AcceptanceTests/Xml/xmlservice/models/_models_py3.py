@@ -29,25 +29,18 @@ class AccessPolicy(msrest.serialization.Model):
     """
 
     _validation = {
-        'start': {'required': True},
-        'expiry': {'required': True},
-        'permission': {'required': True},
+        "start": {"required": True},
+        "expiry": {"required": True},
+        "permission": {"required": True},
     }
 
     _attribute_map = {
-        'start': {'key': 'Start', 'type': 'iso-8601'},
-        'expiry': {'key': 'Expiry', 'type': 'iso-8601'},
-        'permission': {'key': 'Permission', 'type': 'str'},
+        "start": {"key": "Start", "type": "iso-8601"},
+        "expiry": {"key": "Expiry", "type": "iso-8601"},
+        "permission": {"key": "Permission", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        start: datetime.datetime,
-        expiry: datetime.datetime,
-        permission: str,
-        **kwargs
-    ):
+    def __init__(self, *, start: datetime.datetime, expiry: datetime.datetime, permission: str, **kwargs):
         super(AccessPolicy, self).__init__(**kwargs)
         self.start = start
         self.expiry = expiry
@@ -64,17 +57,11 @@ class AppleBarrel(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
+        "good_apples": {"key": "GoodApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
+        "bad_apples": {"key": "BadApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
     }
 
-    def __init__(
-        self,
-        *,
-        good_apples: Optional[List[str]] = None,
-        bad_apples: Optional[List[str]] = None,
-        **kwargs
-    ):
+    def __init__(self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = good_apples
         self.bad_apples = bad_apples
@@ -92,13 +79,11 @@ class Banana(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
-        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
-        'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
+        "name": {"key": "name", "type": "str", "xml": {"name": "name"}},
+        "flavor": {"key": "flavor", "type": "str", "xml": {"name": "flavor"}},
+        "expiration": {"key": "expiration", "type": "iso-8601", "xml": {"name": "expiration"}},
     }
-    _xml_map = {
-        'name': 'banana'
-    }
+    _xml_map = {"name": "banana"}
 
     def __init__(
         self,
@@ -132,22 +117,20 @@ class Blob(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
-        'deleted': {'required': True},
-        'snapshot': {'required': True},
-        'properties': {'required': True},
+        "name": {"required": True},
+        "deleted": {"required": True},
+        "snapshot": {"required": True},
+        "properties": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
-        'deleted': {'key': 'Deleted', 'type': 'bool'},
-        'snapshot': {'key': 'Snapshot', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'BlobProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
+        "name": {"key": "Name", "type": "str"},
+        "deleted": {"key": "Deleted", "type": "bool"},
+        "snapshot": {"key": "Snapshot", "type": "str"},
+        "properties": {"key": "Properties", "type": "BlobProperties"},
+        "metadata": {"key": "Metadata", "type": "{str}"},
     }
-    _xml_map = {
-        'name': 'Blob'
-    }
+    _xml_map = {"name": "Blob"}
 
     def __init__(
         self,
@@ -177,19 +160,14 @@ class BlobPrefix(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
+        "name": {"key": "Name", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        **kwargs
-    ):
+    def __init__(self, *, name: str, **kwargs):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = name
 
@@ -261,39 +239,39 @@ class BlobProperties(msrest.serialization.Model):
     """
 
     _validation = {
-        'last_modified': {'required': True},
-        'etag': {'required': True},
+        "last_modified": {"required": True},
+        "etag": {"required": True},
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
-        'etag': {'key': 'Etag', 'type': 'str'},
-        'content_length': {'key': 'Content-Length', 'type': 'long'},
-        'content_type': {'key': 'Content-Type', 'type': 'str'},
-        'content_encoding': {'key': 'Content-Encoding', 'type': 'str'},
-        'content_language': {'key': 'Content-Language', 'type': 'str'},
-        'content_md5': {'key': 'Content-MD5', 'type': 'str'},
-        'content_disposition': {'key': 'Content-Disposition', 'type': 'str'},
-        'cache_control': {'key': 'Cache-Control', 'type': 'str'},
-        'blob_sequence_number': {'key': 'x-ms-blob-sequence-number', 'type': 'int'},
-        'blob_type': {'key': 'BlobType', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
-        'lease_state': {'key': 'LeaseState', 'type': 'str'},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
-        'copy_id': {'key': 'CopyId', 'type': 'str'},
-        'copy_status': {'key': 'CopyStatus', 'type': 'str'},
-        'copy_source': {'key': 'CopySource', 'type': 'str'},
-        'copy_progress': {'key': 'CopyProgress', 'type': 'str'},
-        'copy_completion_time': {'key': 'CopyCompletionTime', 'type': 'rfc-1123'},
-        'copy_status_description': {'key': 'CopyStatusDescription', 'type': 'str'},
-        'server_encrypted': {'key': 'ServerEncrypted', 'type': 'bool'},
-        'incremental_copy': {'key': 'IncrementalCopy', 'type': 'bool'},
-        'destination_snapshot': {'key': 'DestinationSnapshot', 'type': 'str'},
-        'deleted_time': {'key': 'DeletedTime', 'type': 'rfc-1123'},
-        'remaining_retention_days': {'key': 'RemainingRetentionDays', 'type': 'int'},
-        'access_tier': {'key': 'AccessTier', 'type': 'str'},
-        'access_tier_inferred': {'key': 'AccessTierInferred', 'type': 'bool'},
-        'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
+        "last_modified": {"key": "Last-Modified", "type": "rfc-1123"},
+        "etag": {"key": "Etag", "type": "str"},
+        "content_length": {"key": "Content-Length", "type": "long"},
+        "content_type": {"key": "Content-Type", "type": "str"},
+        "content_encoding": {"key": "Content-Encoding", "type": "str"},
+        "content_language": {"key": "Content-Language", "type": "str"},
+        "content_md5": {"key": "Content-MD5", "type": "str"},
+        "content_disposition": {"key": "Content-Disposition", "type": "str"},
+        "cache_control": {"key": "Cache-Control", "type": "str"},
+        "blob_sequence_number": {"key": "x-ms-blob-sequence-number", "type": "int"},
+        "blob_type": {"key": "BlobType", "type": "str"},
+        "lease_status": {"key": "LeaseStatus", "type": "str"},
+        "lease_state": {"key": "LeaseState", "type": "str"},
+        "lease_duration": {"key": "LeaseDuration", "type": "str"},
+        "copy_id": {"key": "CopyId", "type": "str"},
+        "copy_status": {"key": "CopyStatus", "type": "str"},
+        "copy_source": {"key": "CopySource", "type": "str"},
+        "copy_progress": {"key": "CopyProgress", "type": "str"},
+        "copy_completion_time": {"key": "CopyCompletionTime", "type": "rfc-1123"},
+        "copy_status_description": {"key": "CopyStatusDescription", "type": "str"},
+        "server_encrypted": {"key": "ServerEncrypted", "type": "bool"},
+        "incremental_copy": {"key": "IncrementalCopy", "type": "bool"},
+        "destination_snapshot": {"key": "DestinationSnapshot", "type": "str"},
+        "deleted_time": {"key": "DeletedTime", "type": "rfc-1123"},
+        "remaining_retention_days": {"key": "RemainingRetentionDays", "type": "int"},
+        "access_tier": {"key": "AccessTier", "type": "str"},
+        "access_tier_inferred": {"key": "AccessTierInferred", "type": "bool"},
+        "archive_status": {"key": "ArchiveStatus", "type": "str"},
     }
 
     def __init__(
@@ -370,16 +348,12 @@ class Blobs(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]'},
-        'blob': {'key': 'Blob', 'type': '[Blob]'},
+        "blob_prefix": {"key": "BlobPrefix", "type": "[BlobPrefix]"},
+        "blob": {"key": "Blob", "type": "[Blob]"},
     }
 
     def __init__(
-        self,
-        *,
-        blob_prefix: Optional[List["BlobPrefix"]] = None,
-        blob: Optional[List["Blob"]] = None,
-        **kwargs
+        self, *, blob_prefix: Optional[List["BlobPrefix"]] = None, blob: Optional[List["Blob"]] = None, **kwargs
     ):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = blob_prefix
@@ -394,15 +368,10 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'ID', 'type': 'str'},
+        "id": {"key": "ID", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: Optional[str] = None, **kwargs):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = id
 
@@ -415,18 +384,11 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'ID', 'type': 'str'},
+        "id": {"key": "ID", "type": "str"},
     }
-    _xml_map = {
-        'name': 'XMLComplexTypeWithMeta'
-    }
+    _xml_map = {"name": "XMLComplexTypeWithMeta"}
 
-    def __init__(
-        self,
-        *,
-        id: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: Optional[str] = None, **kwargs):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = id
 
@@ -445,23 +407,18 @@ class Container(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
-        'properties': {'required': True},
+        "name": {"required": True},
+        "properties": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'ContainerProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
+        "name": {"key": "Name", "type": "str"},
+        "properties": {"key": "Properties", "type": "ContainerProperties"},
+        "metadata": {"key": "Metadata", "type": "{str}"},
     }
 
     def __init__(
-        self,
-        *,
-        name: str,
-        properties: "ContainerProperties",
-        metadata: Optional[Dict[str, str]] = None,
-        **kwargs
+        self, *, name: str, properties: "ContainerProperties", metadata: Optional[Dict[str, str]] = None, **kwargs
     ):
         super(Container, self).__init__(**kwargs)
         self.name = name
@@ -490,17 +447,17 @@ class ContainerProperties(msrest.serialization.Model):
     """
 
     _validation = {
-        'last_modified': {'required': True},
-        'etag': {'required': True},
+        "last_modified": {"required": True},
+        "etag": {"required": True},
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
-        'etag': {'key': 'Etag', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
-        'lease_state': {'key': 'LeaseState', 'type': 'str'},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
-        'public_access': {'key': 'PublicAccess', 'type': 'str'},
+        "last_modified": {"key": "Last-Modified", "type": "rfc-1123"},
+        "etag": {"key": "Etag", "type": "str"},
+        "lease_status": {"key": "LeaseStatus", "type": "str"},
+        "lease_state": {"key": "LeaseState", "type": "str"},
+        "lease_duration": {"key": "LeaseDuration", "type": "str"},
+        "public_access": {"key": "PublicAccess", "type": "str"},
     }
 
     def __init__(
@@ -549,23 +506,21 @@ class CorsRule(msrest.serialization.Model):
     """
 
     _validation = {
-        'allowed_origins': {'required': True},
-        'allowed_methods': {'required': True},
-        'allowed_headers': {'required': True},
-        'exposed_headers': {'required': True},
-        'max_age_in_seconds': {'required': True, 'minimum': 0},
+        "allowed_origins": {"required": True},
+        "allowed_methods": {"required": True},
+        "allowed_headers": {"required": True},
+        "exposed_headers": {"required": True},
+        "max_age_in_seconds": {"required": True, "minimum": 0},
     }
 
     _attribute_map = {
-        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str'},
-        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str'},
-        'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str'},
-        'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
-        'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
+        "allowed_origins": {"key": "AllowedOrigins", "type": "str"},
+        "allowed_methods": {"key": "AllowedMethods", "type": "str"},
+        "allowed_headers": {"key": "AllowedHeaders", "type": "str"},
+        "exposed_headers": {"key": "ExposedHeaders", "type": "str"},
+        "max_age_in_seconds": {"key": "MaxAgeInSeconds", "type": "int"},
     }
-    _xml_map = {
-        'name': 'CorsRule'
-    }
+    _xml_map = {"name": "CorsRule"}
 
     def __init__(
         self,
@@ -595,17 +550,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -619,15 +568,10 @@ class JSONInput(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
+        "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: Optional[int] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: Optional[int] = None, **kwargs):
         super(JSONInput, self).__init__(**kwargs)
         self.id = id
 
@@ -640,15 +584,10 @@ class JSONOutput(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
+        "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: Optional[int] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: Optional[int] = None, **kwargs):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = id
 
@@ -677,28 +616,26 @@ class ListBlobsResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        'container_name': {'required': True},
-        'prefix': {'required': True},
-        'marker': {'required': True},
-        'max_results': {'required': True},
-        'delimiter': {'required': True},
-        'blobs': {'required': True},
-        'next_marker': {'required': True},
+        "container_name": {"required": True},
+        "prefix": {"required": True},
+        "marker": {"required": True},
+        "max_results": {"required": True},
+        "delimiter": {"required": True},
+        "blobs": {"required": True},
+        "next_marker": {"required": True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
-        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
-        'marker': {'key': 'Marker', 'type': 'str'},
-        'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'delimiter': {'key': 'Delimiter', 'type': 'str'},
-        'blobs': {'key': 'Blobs', 'type': 'Blobs'},
-        'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        "service_endpoint": {"key": "ServiceEndpoint", "type": "str", "xml": {"attr": True}},
+        "container_name": {"key": "ContainerName", "type": "str", "xml": {"attr": True}},
+        "prefix": {"key": "Prefix", "type": "str"},
+        "marker": {"key": "Marker", "type": "str"},
+        "max_results": {"key": "MaxResults", "type": "int"},
+        "delimiter": {"key": "Delimiter", "type": "str"},
+        "blobs": {"key": "Blobs", "type": "Blobs"},
+        "next_marker": {"key": "NextMarker", "type": "str"},
     }
-    _xml_map = {
-        'name': 'EnumerationResults'
-    }
+    _xml_map = {"name": "EnumerationResults"}
 
     def __init__(
         self,
@@ -744,23 +681,21 @@ class ListContainersResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        'service_endpoint': {'required': True},
-        'prefix': {'required': True},
-        'max_results': {'required': True},
-        'next_marker': {'required': True},
+        "service_endpoint": {"required": True},
+        "prefix": {"required": True},
+        "max_results": {"required": True},
+        "next_marker": {"required": True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
-        'marker': {'key': 'Marker', 'type': 'str'},
-        'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
-        'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        "service_endpoint": {"key": "ServiceEndpoint", "type": "str", "xml": {"attr": True}},
+        "prefix": {"key": "Prefix", "type": "str"},
+        "marker": {"key": "Marker", "type": "str"},
+        "max_results": {"key": "MaxResults", "type": "int"},
+        "containers": {"key": "Containers", "type": "[Container]", "xml": {"wrapped": True}},
+        "next_marker": {"key": "NextMarker", "type": "str"},
     }
-    _xml_map = {
-        'name': 'EnumerationResults'
-    }
+    _xml_map = {"name": "EnumerationResults"}
 
     def __init__(
         self,
@@ -800,30 +735,23 @@ class Logging(msrest.serialization.Model):
     """
 
     _validation = {
-        'version': {'required': True},
-        'delete': {'required': True},
-        'read': {'required': True},
-        'write': {'required': True},
-        'retention_policy': {'required': True},
+        "version": {"required": True},
+        "delete": {"required": True},
+        "read": {"required": True},
+        "write": {"required": True},
+        "retention_policy": {"required": True},
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
-        'delete': {'key': 'Delete', 'type': 'bool'},
-        'read': {'key': 'Read', 'type': 'bool'},
-        'write': {'key': 'Write', 'type': 'bool'},
-        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        "version": {"key": "Version", "type": "str"},
+        "delete": {"key": "Delete", "type": "bool"},
+        "read": {"key": "Read", "type": "bool"},
+        "write": {"key": "Write", "type": "bool"},
+        "retention_policy": {"key": "RetentionPolicy", "type": "RetentionPolicy"},
     }
 
     def __init__(
-        self,
-        *,
-        version: str,
-        delete: bool,
-        read: bool,
-        write: bool,
-        retention_policy: "RetentionPolicy",
-        **kwargs
+        self, *, version: str, delete: bool, read: bool, write: bool, retention_policy: "RetentionPolicy", **kwargs
     ):
         super(Logging, self).__init__(**kwargs)
         self.version = version
@@ -850,14 +778,14 @@ class Metrics(msrest.serialization.Model):
     """
 
     _validation = {
-        'enabled': {'required': True},
+        "enabled": {"required": True},
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
-        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        "version": {"key": "Version", "type": "str"},
+        "enabled": {"key": "Enabled", "type": "bool"},
+        "include_apis": {"key": "IncludeAPIs", "type": "bool"},
+        "retention_policy": {"key": "RetentionPolicy", "type": "RetentionPolicy"},
     }
 
     def __init__(
@@ -876,6 +804,38 @@ class Metrics(msrest.serialization.Model):
         self.retention_policy = retention_policy
 
 
+class ModelWithByteProperty(msrest.serialization.Model):
+    """ModelWithByteProperty.
+
+    :param bytes:
+    :type bytes: bytearray
+    """
+
+    _attribute_map = {
+        "bytes": {"key": "Bytes", "type": "bytearray"},
+    }
+
+    def __init__(self, *, bytes: Optional[bytearray] = None, **kwargs):
+        super(ModelWithByteProperty, self).__init__(**kwargs)
+        self.bytes = bytes
+
+
+class ModelWithUrlProperty(msrest.serialization.Model):
+    """ModelWithUrlProperty.
+
+    :param url:
+    :type url: str
+    """
+
+    _attribute_map = {
+        "url": {"key": "Url", "type": "str"},
+    }
+
+    def __init__(self, *, url: Optional[str] = None, **kwargs):
+        super(ModelWithUrlProperty, self).__init__(**kwargs)
+        self.url = url
+
+
 class ObjectWithXMsTextProperty(msrest.serialization.Model):
     """Contans property.
 
@@ -886,20 +846,12 @@ class ObjectWithXMsTextProperty(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'language': {'key': 'language', 'type': 'str', 'xml': {'name': 'language', 'attr': True}},
-        'content': {'key': 'content', 'type': 'str', 'xml': {'text': True}},
+        "language": {"key": "language", "type": "str", "xml": {"name": "language", "attr": True}},
+        "content": {"key": "content", "type": "str", "xml": {"text": True}},
     }
-    _xml_map = {
-        'name': 'Data'
-    }
+    _xml_map = {"name": "Data"}
 
-    def __init__(
-        self,
-        *,
-        language: Optional[str] = None,
-        content: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, language: Optional[str] = None, content: Optional[str] = None, **kwargs):
         super(ObjectWithXMsTextProperty, self).__init__(**kwargs)
         self.language = language
         self.content = content
@@ -919,22 +871,16 @@ class RetentionPolicy(msrest.serialization.Model):
     """
 
     _validation = {
-        'enabled': {'required': True},
-        'days': {'minimum': 1},
+        "enabled": {"required": True},
+        "days": {"minimum": 1},
     }
 
     _attribute_map = {
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'days': {'key': 'Days', 'type': 'int'},
+        "enabled": {"key": "Enabled", "type": "bool"},
+        "days": {"key": "Days", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        enabled: bool,
-        days: Optional[int] = None,
-        **kwargs
-    ):
+    def __init__(self, *, enabled: bool, days: Optional[int] = None, **kwargs):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = enabled
         self.days = days
@@ -950,16 +896,12 @@ class RootWithRefAndMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeWithMeta'},
-        'something': {'key': 'Something', 'type': 'str'},
+        "ref_to_model": {"key": "RefToModel", "type": "ComplexTypeWithMeta"},
+        "something": {"key": "Something", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        ref_to_model: Optional["ComplexTypeWithMeta"] = None,
-        something: Optional[str] = None,
-        **kwargs
+        self, *, ref_to_model: Optional["ComplexTypeWithMeta"] = None, something: Optional[str] = None, **kwargs
     ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
@@ -976,16 +918,12 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeNoMeta'},
-        'something': {'key': 'Something', 'type': 'str'},
+        "ref_to_model": {"key": "RefToModel", "type": "ComplexTypeNoMeta"},
+        "something": {"key": "Something", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        ref_to_model: Optional["ComplexTypeNoMeta"] = None,
-        something: Optional[str] = None,
-        **kwargs
+        self, *, ref_to_model: Optional["ComplexTypeNoMeta"] = None, something: Optional[str] = None, **kwargs
     ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
@@ -1004,25 +942,17 @@ class SignedIdentifier(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'access_policy': {'required': True},
+        "id": {"required": True},
+        "access_policy": {"required": True},
     }
 
     _attribute_map = {
-        'id': {'key': 'Id', 'type': 'str'},
-        'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
+        "id": {"key": "Id", "type": "str"},
+        "access_policy": {"key": "AccessPolicy", "type": "AccessPolicy"},
     }
-    _xml_map = {
-        'name': 'SignedIdentifier'
-    }
+    _xml_map = {"name": "SignedIdentifier"}
 
-    def __init__(
-        self,
-        *,
-        id: str,
-        access_policy: "AccessPolicy",
-        **kwargs
-    ):
+    def __init__(self, *, id: str, access_policy: "AccessPolicy", **kwargs):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = id
         self.access_policy = access_policy
@@ -1040,21 +970,14 @@ class Slide(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'type': {'key': 'type', 'type': 'str', 'xml': {'attr': True}},
-        'title': {'key': 'title', 'type': 'str'},
-        'items': {'key': 'items', 'type': '[str]', 'xml': {'itemsName': 'item'}},
+        "type": {"key": "type", "type": "str", "xml": {"attr": True}},
+        "title": {"key": "title", "type": "str"},
+        "items": {"key": "items", "type": "[str]", "xml": {"itemsName": "item"}},
     }
-    _xml_map = {
-        'name': 'slide'
-    }
+    _xml_map = {"name": "slide"}
 
     def __init__(
-        self,
-        *,
-        type: Optional[str] = None,
-        title: Optional[str] = None,
-        items: Optional[List[str]] = None,
-        **kwargs
+        self, *, type: Optional[str] = None, title: Optional[str] = None, items: Optional[List[str]] = None, **kwargs
     ):
         super(Slide, self).__init__(**kwargs)
         self.type = type
@@ -1076,14 +999,12 @@ class Slideshow(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
-        'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
-        'slides': {'key': 'slides', 'type': '[Slide]'},
+        "title": {"key": "title", "type": "str", "xml": {"attr": True}},
+        "date": {"key": "date", "type": "str", "xml": {"attr": True}},
+        "author": {"key": "author", "type": "str", "xml": {"attr": True}},
+        "slides": {"key": "slides", "type": "[Slide]"},
     }
-    _xml_map = {
-        'name': 'slideshow'
-    }
+    _xml_map = {"name": "slideshow"}
 
     def __init__(
         self,
@@ -1123,12 +1044,12 @@ class StorageServiceProperties(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'logging': {'key': 'Logging', 'type': 'Logging'},
-        'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
-        'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
-        'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'wrapped': True, 'itemsName': 'CorsRule'}},
-        'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
-        'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
+        "logging": {"key": "Logging", "type": "Logging"},
+        "hour_metrics": {"key": "HourMetrics", "type": "Metrics"},
+        "minute_metrics": {"key": "MinuteMetrics", "type": "Metrics"},
+        "cors": {"key": "Cors", "type": "[CorsRule]", "xml": {"wrapped": True, "itemsName": "CorsRule"}},
+        "default_service_version": {"key": "DefaultServiceVersion", "type": "str"},
+        "delete_retention_policy": {"key": "DeleteRetentionPolicy", "type": "RetentionPolicy"},
     }
 
     def __init__(

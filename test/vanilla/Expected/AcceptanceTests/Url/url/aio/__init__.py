@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_url_test_service import AutoRestUrlTestService
-__all__ = ['AutoRestUrlTestService']
+
+__all__ = ["AutoRestUrlTestService"]

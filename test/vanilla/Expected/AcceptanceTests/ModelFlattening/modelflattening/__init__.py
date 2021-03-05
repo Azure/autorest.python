@@ -10,10 +10,11 @@ from ._auto_rest_resource_flattening_test_service import AutoRestResourceFlatten
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestResourceFlatteningTestService']
+__all__ = ["AutoRestResourceFlatteningTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

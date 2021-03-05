@@ -61,7 +61,7 @@ def python_run(venv_context, module, command=None, *, additional_dir=".", error_
         cmd_line= [
             venv_context.env_exe,
             "-m", module
-        ] + (command.split() if command else [])
+        ] + (command if command else [])
         print("Executing: {}".format(" ".join(cmd_line)), file=sys.stderr)
         subprocess.run(
             cmd_line,

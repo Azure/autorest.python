@@ -15,6 +15,8 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
+    from azure.core.pipeline.transport import HttpRequest, HttpResponse
+
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
 from .operations import LROWithParamaterizedEndpointsOperationsMixin
 from . import models
@@ -34,7 +36,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        base_url = 'http://{accountName}{host}'
+        base_url = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -43,6 +45,23 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
+    def _send_request(self, http_request, **kwargs):
+        # type: (HttpRequest, Any) -> HttpResponse
+        """Runs the network request through the client's chained policies.
+
+        :param http_request: The network request you want to make. Required.
+        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        """
+        path_format_arguments = {
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        }
+        http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
+        stream = kwargs.pop("stream", True)
+        pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     def close(self):
         # type: () -> None

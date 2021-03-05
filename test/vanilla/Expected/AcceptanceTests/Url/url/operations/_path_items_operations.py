@@ -8,7 +8,13 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -19,8 +25,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
-    T = TypeVar('T')
+    T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PathItemsOperations(object):
     """PathItemsOperations operations.
@@ -72,34 +79,40 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_all_with_values.metadata['url']  # type: ignore
+        url = self.get_all_with_values.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
-            'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
+            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
-            query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
+            query_parameters["pathItemStringQuery"] = self._serialize.query(
+                "path_item_string_query", path_item_string_query, "str"
+            )
         if self._config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
+            query_parameters["globalStringQuery"] = self._serialize.query(
+                "self._config.global_string_query", self._config.global_string_query, "str"
+            )
         if local_string_query is not None:
-            query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
+            query_parameters["localStringQuery"] = self._serialize.query(
+                "local_string_query", local_string_query, "str"
+            )
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -107,13 +120,13 @@ class PathItemsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}  # type: ignore
+    get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace
     def get_global_query_null(
@@ -143,34 +156,40 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_global_query_null.metadata['url']  # type: ignore
+        url = self.get_global_query_null.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
-            'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
+            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
-            query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
+            query_parameters["pathItemStringQuery"] = self._serialize.query(
+                "path_item_string_query", path_item_string_query, "str"
+            )
         if self._config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
+            query_parameters["globalStringQuery"] = self._serialize.query(
+                "self._config.global_string_query", self._config.global_string_query, "str"
+            )
         if local_string_query is not None:
-            query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
+            query_parameters["localStringQuery"] = self._serialize.query(
+                "local_string_query", local_string_query, "str"
+            )
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -178,13 +197,13 @@ class PathItemsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}  # type: ignore
+    get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace
     def get_global_and_local_query_null(
@@ -214,34 +233,40 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_global_and_local_query_null.metadata['url']  # type: ignore
+        url = self.get_global_and_local_query_null.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
-            'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
+            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
-            query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
+            query_parameters["pathItemStringQuery"] = self._serialize.query(
+                "path_item_string_query", path_item_string_query, "str"
+            )
         if self._config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
+            query_parameters["globalStringQuery"] = self._serialize.query(
+                "self._config.global_string_query", self._config.global_string_query, "str"
+            )
         if local_string_query is not None:
-            query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
+            query_parameters["localStringQuery"] = self._serialize.query(
+                "local_string_query", local_string_query, "str"
+            )
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -249,13 +274,13 @@ class PathItemsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}  # type: ignore
+    get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
 
     @distributed_trace
     def get_local_path_item_query_null(
@@ -284,34 +309,40 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_path_item_query_null.metadata['url']  # type: ignore
+        url = self.get_local_path_item_query_null.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
-            'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
-            'localStringPath': self._serialize.url("local_string_path", local_string_path, 'str'),
+            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
-            query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
+            query_parameters["pathItemStringQuery"] = self._serialize.query(
+                "path_item_string_query", path_item_string_query, "str"
+            )
         if self._config.global_string_query is not None:
-            query_parameters['globalStringQuery'] = self._serialize.query("self._config.global_string_query", self._config.global_string_query, 'str')
+            query_parameters["globalStringQuery"] = self._serialize.query(
+                "self._config.global_string_query", self._config.global_string_query, "str"
+            )
         if local_string_query is not None:
-            query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
+            query_parameters["localStringQuery"] = self._serialize.query(
+                "local_string_query", local_string_query, "str"
+            )
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -319,10 +350,10 @@ class PathItemsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}  # type: ignore
+    get_local_path_item_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"}  # type: ignore

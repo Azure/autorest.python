@@ -10,10 +10,11 @@ from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['MicrosoftAzureTestUrl']
+__all__ = ["MicrosoftAzureTestUrl"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

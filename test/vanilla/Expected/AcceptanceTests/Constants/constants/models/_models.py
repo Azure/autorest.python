@@ -17,15 +17,12 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', "value1")
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
@@ -36,15 +33,12 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', None)
+        self.parameter = kwargs.get("parameter", None)
 
 
 class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
@@ -55,15 +49,12 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', "value1")
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -74,15 +65,12 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', None)
+        self.parameter = kwargs.get("parameter", None)
 
 
 class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
@@ -95,19 +83,16 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', "value1")
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
@@ -120,19 +105,16 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
-        self.parameter = kwargs['parameter']
+        self.parameter = kwargs["parameter"]
 
 
 class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
@@ -145,19 +127,16 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', "value1")
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -170,19 +149,16 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
-        self.parameter = kwargs['parameter']
+        self.parameter = kwargs["parameter"]
 
 
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
@@ -195,19 +171,16 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'constant': True},
+        "parameter": {"constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
 
 
@@ -221,19 +194,16 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'constant': True},
+        "parameter": {"constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
 
 
@@ -245,15 +215,12 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', "value1")
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -264,15 +231,12 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', None)
+        self.parameter = kwargs.get("parameter", None)
 
 
 class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
@@ -287,19 +251,16 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True, 'constant': True},
+        "parameter": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
 
 
@@ -315,19 +276,16 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True, 'constant': True},
+        "parameter": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
 
 
@@ -341,19 +299,16 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', "value1")
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -366,16 +321,13 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
-        self.parameter = kwargs['parameter']
+        self.parameter = kwargs["parameter"]

@@ -20,15 +20,10 @@ class MyException(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status_code': {'key': 'statusCode', 'type': 'str'},
+        "status_code": {"key": "statusCode", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status_code: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status_code: Optional[str] = None, **kwargs):
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
 
@@ -43,17 +38,11 @@ class B(MyException):
     """
 
     _attribute_map = {
-        'status_code': {'key': 'statusCode', 'type': 'str'},
-        'text_status_code': {'key': 'textStatusCode', 'type': 'str'},
+        "status_code": {"key": "statusCode", "type": "str"},
+        "text_status_code": {"key": "textStatusCode", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status_code: Optional[str] = None,
-        text_status_code: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status_code: Optional[str] = None, text_status_code: Optional[str] = None, **kwargs):
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
 
@@ -66,15 +55,10 @@ class C(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'http_code': {'key': 'httpCode', 'type': 'str'},
+        "http_code": {"key": "httpCode", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        http_code: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, http_code: Optional[str] = None, **kwargs):
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
 
@@ -87,15 +71,10 @@ class D(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'http_status_code': {'key': 'httpStatusCode', 'type': 'str'},
+        "http_status_code": {"key": "httpStatusCode", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        http_status_code: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, http_status_code: Optional[str] = None, **kwargs):
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
 
@@ -110,17 +89,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
