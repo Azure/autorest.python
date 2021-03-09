@@ -37,8 +37,9 @@ def _prepare_xml_get_complex_type_ref_no_meta_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -59,15 +60,17 @@ def _prepare_xml_put_complex_type_ref_no_meta_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -91,8 +94,9 @@ def _prepare_xml_get_complex_type_ref_with_meta_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -113,15 +117,17 @@ def _prepare_xml_put_complex_type_ref_with_meta_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -145,8 +151,9 @@ def _prepare_xml_get_simple_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -169,15 +176,17 @@ def _prepare_xml_put_simple_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -201,8 +210,9 @@ def _prepare_xml_get_wrapped_lists_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -225,15 +235,17 @@ def _prepare_xml_put_wrapped_lists_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -255,8 +267,9 @@ def _prepare_xml_get_headers_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -280,8 +293,9 @@ def _prepare_xml_get_empty_list_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -302,15 +316,17 @@ def _prepare_xml_put_empty_list_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -334,8 +350,9 @@ def _prepare_xml_get_empty_wrapped_lists_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -356,15 +373,17 @@ def _prepare_xml_put_empty_wrapped_lists_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -388,8 +407,9 @@ def _prepare_xml_get_root_list_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -410,15 +430,17 @@ def _prepare_xml_put_root_list_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -442,8 +464,9 @@ def _prepare_xml_get_root_list_single_item_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -464,15 +487,17 @@ def _prepare_xml_put_root_list_single_item_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -496,8 +521,9 @@ def _prepare_xml_get_empty_root_list_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -518,15 +544,17 @@ def _prepare_xml_put_empty_root_list_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -550,8 +578,9 @@ def _prepare_xml_get_empty_child_element_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -572,15 +601,17 @@ def _prepare_xml_put_empty_child_element_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -606,8 +637,9 @@ def _prepare_xml_list_containers_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -635,8 +667,9 @@ def _prepare_xml_get_service_properties_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -661,15 +694,17 @@ def _prepare_xml_put_service_properties_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -697,8 +732,9 @@ def _prepare_xml_get_acls_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -723,15 +759,17 @@ def _prepare_xml_put_acls_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -759,8 +797,9 @@ def _prepare_xml_list_blobs_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -781,15 +820,17 @@ def _prepare_xml_json_input_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -813,8 +854,9 @@ def _prepare_xml_json_output_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -838,8 +880,9 @@ def _prepare_xml_get_xms_text_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -863,8 +906,9 @@ def _prepare_xml_get_bytes_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -887,15 +931,17 @@ def _prepare_xml_put_binary_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -919,8 +965,9 @@ def _prepare_xml_get_uri_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -943,13 +990,15 @@ def _prepare_xml_put_uri_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        data=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

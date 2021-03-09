@@ -28,15 +28,17 @@ def _prepare_lros_put200_succeeded_initial_request(body: Optional["_models.Produ
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -55,15 +57,17 @@ def _prepare_lros_put201_succeeded_initial_request(body: Optional["_models.Produ
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -84,8 +88,9 @@ def _prepare_lros_post202_list_initial_request(**kwargs) -> HttpRequest:
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -106,15 +111,17 @@ def _prepare_lros_put200_succeeded_no_state_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -133,15 +140,17 @@ def _prepare_lros_put202_retry200_initial_request(body: Optional["_models.Produc
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -162,15 +171,17 @@ def _prepare_lros_put201_creating_succeeded200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -191,15 +202,17 @@ def _prepare_lros_put200_updating_succeeded204_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -220,15 +233,17 @@ def _prepare_lros_put201_creating_failed200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -249,15 +264,17 @@ def _prepare_lros_put200_acceptedcanceled200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -278,15 +295,17 @@ def _prepare_lros_put_no_header_in_retry_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -307,15 +326,17 @@ def _prepare_lros_put_async_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -336,15 +357,17 @@ def _prepare_lros_put_async_no_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -365,15 +388,17 @@ def _prepare_lros_put_async_retry_failed_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -394,15 +419,17 @@ def _prepare_lros_put_async_no_retrycanceled_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -423,15 +450,17 @@ def _prepare_lros_put_async_no_header_in_retry_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -450,15 +479,17 @@ def _prepare_lros_put_non_resource_initial_request(body: Optional["_models.Sku"]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -477,15 +508,17 @@ def _prepare_lros_put_async_non_resource_initial_request(body: Optional["_models
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -506,15 +539,17 @@ def _prepare_lros_put_sub_resource_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -535,15 +570,17 @@ def _prepare_lros_put_async_sub_resource_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -564,8 +601,9 @@ def _prepare_lros_delete_provisioning202_accepted200_succeeded_initial_request(*
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -586,8 +624,9 @@ def _prepare_lros_delete_provisioning202_deleting_failed200_initial_request(**kw
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -608,8 +647,9 @@ def _prepare_lros_delete_provisioning202_deletingcanceled200_initial_request(**k
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -630,8 +670,9 @@ def _prepare_lros_delete204_succeeded_initial_request(**kwargs) -> HttpRequest:
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -652,8 +693,9 @@ def _prepare_lros_delete202_retry200_initial_request(**kwargs) -> HttpRequest:
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -674,8 +716,9 @@ def _prepare_lros_delete202_no_retry204_initial_request(**kwargs) -> HttpRequest
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -696,8 +739,9 @@ def _prepare_lros_delete_no_header_in_retry_initial_request(**kwargs) -> HttpReq
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -718,8 +762,9 @@ def _prepare_lros_delete_async_no_header_in_retry_initial_request(**kwargs) -> H
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -740,8 +785,9 @@ def _prepare_lros_delete_async_retry_succeeded_initial_request(**kwargs) -> Http
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -762,8 +808,9 @@ def _prepare_lros_delete_async_no_retry_succeeded_initial_request(**kwargs) -> H
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -784,8 +831,9 @@ def _prepare_lros_delete_async_retry_failed_initial_request(**kwargs) -> HttpReq
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -806,8 +854,9 @@ def _prepare_lros_delete_async_retrycanceled_initial_request(**kwargs) -> HttpRe
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -828,8 +877,9 @@ def _prepare_lros_post200_with_payload_initial_request(**kwargs) -> HttpRequest:
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -848,15 +898,17 @@ def _prepare_lros_post202_retry200_initial_request(body: Optional["_models.Produ
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -877,15 +929,17 @@ def _prepare_lros_post202_no_retry204_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -906,8 +960,9 @@ def _prepare_lros_post_double_headers_final_location_get_initial_request(**kwarg
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -928,8 +983,9 @@ def _prepare_lros_post_double_headers_final_azure_header_get_initial_request(**k
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -950,8 +1006,9 @@ def _prepare_lros_post_double_headers_final_azure_header_get_default_initial_req
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -972,15 +1029,17 @@ def _prepare_lros_post_async_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1001,15 +1060,17 @@ def _prepare_lros_post_async_no_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1030,15 +1091,17 @@ def _prepare_lros_post_async_retry_failed_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1059,15 +1122,17 @@ def _prepare_lros_post_async_retrycanceled_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1088,15 +1153,17 @@ def _prepare_lroretrys_put201_creating_succeeded200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1117,15 +1184,17 @@ def _prepare_lroretrys_put_async_relative_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1146,8 +1215,9 @@ def _prepare_lroretrys_delete_provisioning202_accepted200_succeeded_initial_requ
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1168,8 +1238,9 @@ def _prepare_lroretrys_delete202_retry200_initial_request(**kwargs) -> HttpReque
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1190,8 +1261,9 @@ def _prepare_lroretrys_delete_async_relative_retry_succeeded_initial_request(**k
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1212,15 +1284,17 @@ def _prepare_lroretrys_post202_retry200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1241,15 +1315,17 @@ def _prepare_lroretrys_post_async_relative_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1270,15 +1346,17 @@ def _prepare_lrosads_put_non_retry400_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1299,15 +1377,17 @@ def _prepare_lrosads_put_non_retry201_creating400_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1328,15 +1408,17 @@ def _prepare_lrosads_put_non_retry201_creating400_invalid_json_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1357,15 +1439,17 @@ def _prepare_lrosads_put_async_relative_retry400_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1386,8 +1470,9 @@ def _prepare_lrosads_delete_non_retry400_initial_request(**kwargs) -> HttpReques
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1408,8 +1493,9 @@ def _prepare_lrosads_delete202_non_retry400_initial_request(**kwargs) -> HttpReq
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1430,8 +1516,9 @@ def _prepare_lrosads_delete_async_relative_retry400_initial_request(**kwargs) ->
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1452,15 +1539,17 @@ def _prepare_lrosads_post_non_retry400_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1481,15 +1570,17 @@ def _prepare_lrosads_post202_non_retry400_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1510,15 +1601,17 @@ def _prepare_lrosads_post_async_relative_retry400_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1539,15 +1632,17 @@ def _prepare_lrosads_put_error201_no_provisioning_state_payload_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1568,15 +1663,17 @@ def _prepare_lrosads_put_async_relative_retry_no_status_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1597,15 +1694,17 @@ def _prepare_lrosads_put_async_relative_retry_no_status_payload_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1626,8 +1725,9 @@ def _prepare_lrosads_delete204_succeeded_initial_request(**kwargs) -> HttpReques
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1648,8 +1748,9 @@ def _prepare_lrosads_delete_async_relative_retry_no_status_initial_request(**kwa
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1670,15 +1771,17 @@ def _prepare_lrosads_post202_no_location_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1699,15 +1802,17 @@ def _prepare_lrosads_post_async_relative_retry_no_payload_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1728,15 +1833,17 @@ def _prepare_lrosads_put200_invalid_json_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1757,15 +1864,17 @@ def _prepare_lrosads_put_async_relative_retry_invalid_header_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1786,15 +1895,17 @@ def _prepare_lrosads_put_async_relative_retry_invalid_json_polling_initial_reque
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1815,8 +1926,9 @@ def _prepare_lrosads_delete202_retry_invalid_header_initial_request(**kwargs) ->
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1837,8 +1949,9 @@ def _prepare_lrosads_delete_async_relative_retry_invalid_header_initial_request(
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1859,8 +1972,9 @@ def _prepare_lrosads_delete_async_relative_retry_invalid_json_polling_initial_re
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1881,15 +1995,17 @@ def _prepare_lrosads_post202_retry_invalid_header_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1910,15 +2026,17 @@ def _prepare_lrosads_post_async_relative_retry_invalid_header_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1939,15 +2057,17 @@ def _prepare_lrosads_post_async_relative_retry_invalid_json_polling_initial_requ
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1968,15 +2088,17 @@ def _prepare_lroscustomheader_put_async_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1997,15 +2119,17 @@ def _prepare_lroscustomheader_put201_creating_succeeded200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -2026,15 +2150,17 @@ def _prepare_lroscustomheader_post202_retry200_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -2055,13 +2181,15 @@ def _prepare_lroscustomheader_post_async_retry_succeeded_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

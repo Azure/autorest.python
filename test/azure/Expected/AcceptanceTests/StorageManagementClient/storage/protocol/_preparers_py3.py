@@ -39,15 +39,17 @@ def _prepare_storageaccounts_check_name_availability_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -83,15 +85,17 @@ def _prepare_storageaccounts_create_initial_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -123,8 +127,9 @@ def _prepare_storageaccounts_delete_request(
         method="DELETE",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -158,8 +163,9 @@ def _prepare_storageaccounts_get_properties_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -195,15 +201,17 @@ def _prepare_storageaccounts_update_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PATCH",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -237,8 +245,9 @@ def _prepare_storageaccounts_list_keys_request(
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -265,8 +274,9 @@ def _prepare_storageaccounts_list_request(subscription_id: str, **kwargs) -> Htt
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -299,8 +309,9 @@ def _prepare_storageaccounts_list_by_resource_group_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -336,15 +347,17 @@ def _prepare_storageaccounts_regenerate_key_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -371,6 +384,7 @@ def _prepare_usage_list_request(subscription_id: str, **kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

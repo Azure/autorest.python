@@ -34,6 +34,7 @@ def _prepare_paths_get_empty_request(account_name: str, host: str = "host", **kw
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

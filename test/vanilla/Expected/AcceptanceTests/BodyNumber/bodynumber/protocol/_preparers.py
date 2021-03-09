@@ -31,8 +31,9 @@ def _prepare_number_get_null_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -56,8 +57,9 @@ def _prepare_number_get_invalid_float_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -81,8 +83,9 @@ def _prepare_number_get_invalid_double_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -106,8 +109,9 @@ def _prepare_number_get_invalid_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -130,15 +134,17 @@ def _prepare_number_put_big_float_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -162,8 +168,9 @@ def _prepare_number_get_big_float_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -186,15 +193,17 @@ def _prepare_number_put_big_double_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -218,8 +227,9 @@ def _prepare_number_get_big_double_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -242,15 +252,17 @@ def _prepare_number_put_big_double_positive_decimal_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -274,8 +286,9 @@ def _prepare_number_get_big_double_positive_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -298,15 +311,17 @@ def _prepare_number_put_big_double_negative_decimal_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -330,8 +345,9 @@ def _prepare_number_get_big_double_negative_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -354,15 +370,17 @@ def _prepare_number_put_big_decimal_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -386,8 +404,9 @@ def _prepare_number_get_big_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -410,15 +429,17 @@ def _prepare_number_put_big_decimal_positive_decimal_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -442,8 +463,9 @@ def _prepare_number_get_big_decimal_positive_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -466,15 +488,17 @@ def _prepare_number_put_big_decimal_negative_decimal_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -498,8 +522,9 @@ def _prepare_number_get_big_decimal_negative_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -522,15 +547,17 @@ def _prepare_number_put_small_float_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -554,8 +581,9 @@ def _prepare_number_get_small_float_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -578,15 +606,17 @@ def _prepare_number_put_small_double_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -610,8 +640,9 @@ def _prepare_number_get_small_double_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -634,15 +665,17 @@ def _prepare_number_put_small_decimal_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -666,6 +699,7 @@ def _prepare_number_get_small_decimal_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

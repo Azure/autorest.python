@@ -37,15 +37,17 @@ def _prepare_put_array_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -69,8 +71,9 @@ def _prepare_get_array_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -93,15 +96,17 @@ def _prepare_put_wrapped_array_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -125,8 +130,9 @@ def _prepare_get_wrapped_array_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -149,15 +155,17 @@ def _prepare_put_dictionary_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -181,8 +189,9 @@ def _prepare_get_dictionary_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -205,15 +214,17 @@ def _prepare_put_resource_collection_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -237,8 +248,9 @@ def _prepare_get_resource_collection_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -261,15 +273,17 @@ def _prepare_put_simple_product_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -292,15 +306,17 @@ def _prepare_post_flattened_simple_product_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -328,13 +344,15 @@ def _prepare_put_simple_product_with_grouping_request(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

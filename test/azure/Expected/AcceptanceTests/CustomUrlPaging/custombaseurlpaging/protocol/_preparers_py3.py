@@ -34,8 +34,9 @@ def _prepare_paging_get_pages_partial_url_request(account_name: str, host: str =
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -63,8 +64,9 @@ def _prepare_paging_get_pages_partial_url_operation_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -93,6 +95,7 @@ def _get_pages_partial_url_operation_next_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

@@ -28,8 +28,9 @@ def _prepare_httpsuccess_head200_request(
         method="HEAD",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 def _prepare_httpsuccess_head204_request(
@@ -50,8 +51,9 @@ def _prepare_httpsuccess_head204_request(
         method="HEAD",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 def _prepare_httpsuccess_head404_request(
@@ -72,6 +74,7 @@ def _prepare_httpsuccess_head404_request(
         method="HEAD",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

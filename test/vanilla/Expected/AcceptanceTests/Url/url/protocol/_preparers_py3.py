@@ -37,8 +37,9 @@ def _prepare_paths_get_boolean_true_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -64,8 +65,9 @@ def _prepare_paths_get_boolean_false_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -91,8 +93,9 @@ def _prepare_paths_get_int_one_million_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -118,8 +121,9 @@ def _prepare_paths_get_int_negative_one_million_request(**kwargs) -> HttpRequest
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -145,8 +149,9 @@ def _prepare_paths_get_ten_billion_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -172,8 +177,9 @@ def _prepare_paths_get_negative_ten_billion_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -199,8 +205,9 @@ def _prepare_paths_float_scientific_positive_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -226,8 +233,9 @@ def _prepare_paths_float_scientific_negative_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -253,8 +261,9 @@ def _prepare_paths_double_decimal_positive_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -280,8 +289,9 @@ def _prepare_paths_double_decimal_negative_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -307,8 +317,9 @@ def _prepare_paths_string_unicode_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -336,8 +347,9 @@ def _prepare_paths_string_url_encoded_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -363,8 +375,9 @@ def _prepare_paths_string_url_non_encoded_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -390,8 +403,9 @@ def _prepare_paths_string_empty_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -416,8 +430,9 @@ def _prepare_paths_string_null_request(string_path: str, **kwargs) -> HttpReques
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -442,8 +457,9 @@ def _prepare_paths_enum_valid_request(enum_path: Union[str, "_models.UriColor"],
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -468,8 +484,9 @@ def _prepare_paths_enum_null_request(enum_path: Union[str, "_models.UriColor"], 
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -494,8 +511,9 @@ def _prepare_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs) -> Ht
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -521,8 +539,9 @@ def _prepare_paths_byte_empty_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -547,8 +566,9 @@ def _prepare_paths_byte_null_request(byte_path: bytearray, **kwargs) -> HttpRequ
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -574,8 +594,9 @@ def _prepare_paths_date_valid_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -600,8 +621,9 @@ def _prepare_paths_date_null_request(date_path: datetime.date, **kwargs) -> Http
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -627,8 +649,9 @@ def _prepare_paths_date_time_valid_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -653,8 +676,9 @@ def _prepare_paths_date_time_null_request(date_time_path: datetime.datetime, **k
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -679,8 +703,9 @@ def _prepare_paths_base64_url_request(base64_url_path: bytes, **kwargs) -> HttpR
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -708,8 +733,9 @@ def _prepare_paths_array_csv_in_path_request(array_path: List[str], **kwargs) ->
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -734,8 +760,9 @@ def _prepare_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, 
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -758,8 +785,9 @@ def _prepare_queries_get_boolean_true_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -782,8 +810,9 @@ def _prepare_queries_get_boolean_false_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -806,8 +835,9 @@ def _prepare_queries_get_boolean_null_request(bool_query: Optional[bool] = None,
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -830,8 +860,9 @@ def _prepare_queries_get_int_one_million_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -854,8 +885,9 @@ def _prepare_queries_get_int_negative_one_million_request(**kwargs) -> HttpReque
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -878,8 +910,9 @@ def _prepare_queries_get_int_null_request(int_query: Optional[int] = None, **kwa
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -902,8 +935,9 @@ def _prepare_queries_get_ten_billion_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -926,8 +960,9 @@ def _prepare_queries_get_negative_ten_billion_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -950,8 +985,9 @@ def _prepare_queries_get_long_null_request(long_query: Optional[int] = None, **k
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -974,8 +1010,9 @@ def _prepare_queries_float_scientific_positive_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -998,8 +1035,9 @@ def _prepare_queries_float_scientific_negative_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1022,8 +1060,9 @@ def _prepare_queries_float_null_request(float_query: Optional[float] = None, **k
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1046,8 +1085,9 @@ def _prepare_queries_double_decimal_positive_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1070,8 +1110,9 @@ def _prepare_queries_double_decimal_negative_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1094,8 +1135,9 @@ def _prepare_queries_double_null_request(double_query: Optional[float] = None, *
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1118,8 +1160,9 @@ def _prepare_queries_string_unicode_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1144,8 +1187,9 @@ def _prepare_queries_string_url_encoded_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1168,8 +1212,9 @@ def _prepare_queries_string_empty_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1192,8 +1237,9 @@ def _prepare_queries_string_null_request(string_query: Optional[str] = None, **k
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1218,8 +1264,9 @@ def _prepare_queries_enum_valid_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1244,8 +1291,9 @@ def _prepare_queries_enum_null_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1268,8 +1316,9 @@ def _prepare_queries_byte_multi_byte_request(byte_query: Optional[bytearray] = N
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1292,8 +1341,9 @@ def _prepare_queries_byte_empty_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1316,8 +1366,9 @@ def _prepare_queries_byte_null_request(byte_query: Optional[bytearray] = None, *
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1340,8 +1391,9 @@ def _prepare_queries_date_valid_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1364,8 +1416,9 @@ def _prepare_queries_date_null_request(date_query: Optional[datetime.date] = Non
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1388,8 +1441,9 @@ def _prepare_queries_date_time_valid_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1414,8 +1468,9 @@ def _prepare_queries_date_time_null_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1438,8 +1493,9 @@ def _prepare_queries_array_string_csv_valid_request(array_query: Optional[List[s
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1462,8 +1518,9 @@ def _prepare_queries_array_string_csv_null_request(array_query: Optional[List[st
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1486,8 +1543,9 @@ def _prepare_queries_array_string_csv_empty_request(array_query: Optional[List[s
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1512,8 +1570,9 @@ def _prepare_queries_array_string_no_collection_format_empty_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1536,8 +1595,9 @@ def _prepare_queries_array_string_ssv_valid_request(array_query: Optional[List[s
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1560,8 +1620,9 @@ def _prepare_queries_array_string_tsv_valid_request(array_query: Optional[List[s
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1584,8 +1645,9 @@ def _prepare_queries_array_string_pipes_valid_request(array_query: Optional[List
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1631,8 +1693,9 @@ def _prepare_pathitems_get_all_with_values_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1678,8 +1741,9 @@ def _prepare_pathitems_get_global_query_null_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1725,8 +1789,9 @@ def _prepare_pathitems_get_global_and_local_query_null_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -1772,6 +1837,7 @@ def _prepare_pathitems_get_local_path_item_query_null_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

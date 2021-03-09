@@ -31,8 +31,9 @@ def _prepare_paging_get_no_item_name_pages_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -53,8 +54,9 @@ def _prepare_paging_get_null_next_link_name_pages_request(**kwargs) -> HttpReque
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -75,8 +77,9 @@ def _prepare_paging_get_single_pages_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -97,8 +100,9 @@ def _prepare_paging_first_response_empty_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -127,8 +131,9 @@ def _prepare_paging_get_multiple_pages_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -154,8 +159,9 @@ def _prepare_paging_get_with_query_params_request(required_query_parameter: int,
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -178,8 +184,9 @@ def _get_with_query_params_next_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -208,8 +215,9 @@ def _prepare_paging_get_odata_multiple_pages_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -246,8 +254,9 @@ def _prepare_paging_get_multiple_pages_with_offset_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -268,8 +277,9 @@ def _prepare_paging_get_multiple_pages_retry_first_request(**kwargs) -> HttpRequ
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -290,8 +300,9 @@ def _prepare_paging_get_multiple_pages_retry_second_request(**kwargs) -> HttpReq
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -312,8 +323,9 @@ def _prepare_paging_get_single_pages_failure_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -334,8 +346,9 @@ def _prepare_paging_get_multiple_pages_failure_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -356,8 +369,9 @@ def _prepare_paging_get_multiple_pages_failure_uri_request(**kwargs) -> HttpRequ
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -385,8 +399,9 @@ def _prepare_paging_get_multiple_pages_fragment_next_link_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -414,8 +429,9 @@ def _prepare_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -444,8 +460,9 @@ def _prepare_paging_get_multiple_pages_lro_initial_request(
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -474,8 +491,9 @@ def _get_multiple_pages_fragment_next_link_next_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -504,8 +522,9 @@ def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -526,6 +545,7 @@ def _prepare_paging_get_paging_model_with_item_name_with_xms_client_name_request
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

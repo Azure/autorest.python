@@ -42,13 +42,15 @@ def _prepare_availabilitysets_update_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["json"] = body
 
     request = HttpRequest(
         method="PATCH",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

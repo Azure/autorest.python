@@ -35,8 +35,9 @@ def _prepare_pet_get_pet_by_id_request(pet_id: str, **kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -61,8 +62,9 @@ def _prepare_pet_do_something_request(what_action: str, **kwargs) -> HttpRequest
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -85,6 +87,7 @@ def _prepare_pet_has_models_param_request(models: Optional[str] = "value1", **kw
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

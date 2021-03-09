@@ -36,6 +36,7 @@ def _prepare_poll_with_parameterized_endpoints_initial_request(
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

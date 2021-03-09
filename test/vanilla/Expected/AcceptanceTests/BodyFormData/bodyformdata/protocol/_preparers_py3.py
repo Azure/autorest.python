@@ -28,15 +28,16 @@ def _prepare_formdata_upload_file_request(body: IO, **kwargs) -> HttpRequest:
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    formdata_content = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
-    request.set_formdata_body(content)
+    if query_parameters:
+        request.format_parameters(query_parameters)
+    request.set_formdata_body(formdata_content)
     return request
 
 
@@ -55,15 +56,17 @@ def _prepare_formdata_upload_file_via_body_request(body: IO, **kwargs) -> HttpRe
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs["stream"] = body
 
     request = HttpRequest(
         method="PUT",
         url=url,
         headers=header_parameters,
-        stream=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -82,13 +85,14 @@ def _prepare_formdata_upload_files_request(body: List[IO], **kwargs) -> HttpRequ
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    content = body
+    formdata_content = body
 
     request = HttpRequest(
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
-    request.set_formdata_body(content)
+    if query_parameters:
+        request.format_parameters(query_parameters)
+    request.set_formdata_body(formdata_content)
     return request

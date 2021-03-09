@@ -29,8 +29,9 @@ def _prepare_xmsclientrequestid_get_request(**kwargs) -> HttpRequest:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -54,8 +55,9 @@ def _prepare_xmsclientrequestid_param_get_request(x_ms_client_request_id: str, *
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -83,8 +85,9 @@ def _prepare_subscriptionincredentials_post_method_global_valid_request(subscrip
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -111,8 +114,9 @@ def _prepare_subscriptionincredentials_post_method_global_null_request(subscript
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -144,8 +148,9 @@ def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_req
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -173,8 +178,9 @@ def _prepare_subscriptionincredentials_post_path_global_valid_request(subscripti
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -202,8 +208,9 @@ def _prepare_subscriptionincredentials_post_swagger_global_valid_request(subscri
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -231,8 +238,9 @@ def _prepare_subscriptioninmethod_post_method_local_valid_request(subscription_i
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -259,8 +267,9 @@ def _prepare_subscriptioninmethod_post_method_local_null_request(subscription_id
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -287,8 +296,9 @@ def _prepare_subscriptioninmethod_post_path_local_valid_request(subscription_id:
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -316,8 +326,9 @@ def _prepare_subscriptioninmethod_post_swagger_local_valid_request(subscription_
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -340,8 +351,9 @@ def _prepare_apiversiondefault_get_method_global_valid_request(**kwargs) -> Http
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -366,8 +378,9 @@ def _prepare_apiversiondefault_get_method_global_not_provided_valid_request(**kw
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -390,8 +403,9 @@ def _prepare_apiversiondefault_get_path_global_valid_request(**kwargs) -> HttpRe
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -414,8 +428,9 @@ def _prepare_apiversiondefault_get_swagger_global_valid_request(**kwargs) -> Htt
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -438,8 +453,9 @@ def _prepare_apiversionlocal_get_method_local_valid_request(**kwargs) -> HttpReq
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -462,8 +478,9 @@ def _prepare_apiversionlocal_get_method_local_null_request(api_version: Optional
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -486,8 +503,9 @@ def _prepare_apiversionlocal_get_path_local_valid_request(**kwargs) -> HttpReque
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -510,8 +528,9 @@ def _prepare_apiversionlocal_get_swagger_local_valid_request(**kwargs) -> HttpRe
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -536,8 +555,9 @@ def _prepare_skipurlencoding_get_method_path_valid_request(unencoded_path_param:
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -562,8 +582,9 @@ def _prepare_skipurlencoding_get_path_valid_request(unencoded_path_param: str, *
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -589,8 +610,9 @@ def _prepare_skipurlencoding_get_swagger_path_valid_request(**kwargs) -> HttpReq
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -612,8 +634,9 @@ def _prepare_skipurlencoding_get_method_query_valid_request(q1: str, **kwargs) -
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -636,8 +659,9 @@ def _prepare_skipurlencoding_get_method_query_null_request(q1: Optional[str] = N
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -659,8 +683,9 @@ def _prepare_skipurlencoding_get_path_query_valid_request(q1: str, **kwargs) -> 
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -683,8 +708,9 @@ def _prepare_skipurlencoding_get_swagger_query_valid_request(**kwargs) -> HttpRe
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -713,8 +739,9 @@ def _prepare_odata_get_with_filter_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -738,8 +765,9 @@ def _prepare_header_custom_named_request_id_request(foo_client_request_id: str, 
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -763,8 +791,9 @@ def _prepare_header_custom_named_request_id_param_grouping_request(foo_client_re
         method="POST",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -788,6 +817,7 @@ def _prepare_header_custom_named_request_id_head_request(foo_client_request_id: 
         method="HEAD",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

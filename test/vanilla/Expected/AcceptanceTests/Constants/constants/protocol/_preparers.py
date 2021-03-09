@@ -38,8 +38,9 @@ def _prepare_contants_put_no_model_as_string_no_required_two_value_no_default_re
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -64,8 +65,9 @@ def _prepare_contants_put_no_model_as_string_no_required_two_value_default_reque
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -90,8 +92,9 @@ def _prepare_contants_put_no_model_as_string_no_required_one_value_no_default_re
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -116,8 +119,9 @@ def _prepare_contants_put_no_model_as_string_no_required_one_value_default_reque
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -141,8 +145,9 @@ def _prepare_contants_put_no_model_as_string_required_two_value_no_default_reque
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -166,8 +171,9 @@ def _prepare_contants_put_no_model_as_string_required_two_value_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -191,8 +197,9 @@ def _prepare_contants_put_no_model_as_string_required_one_value_no_default_reque
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -216,8 +223,9 @@ def _prepare_contants_put_no_model_as_string_required_one_value_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -242,8 +250,9 @@ def _prepare_contants_put_model_as_string_no_required_two_value_no_default_reque
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -268,8 +277,9 @@ def _prepare_contants_put_model_as_string_no_required_two_value_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -294,8 +304,9 @@ def _prepare_contants_put_model_as_string_no_required_one_value_no_default_reque
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -320,8 +331,9 @@ def _prepare_contants_put_model_as_string_no_required_one_value_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -345,8 +357,9 @@ def _prepare_contants_put_model_as_string_required_two_value_no_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -370,8 +383,9 @@ def _prepare_contants_put_model_as_string_required_two_value_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -395,8 +409,9 @@ def _prepare_contants_put_model_as_string_required_one_value_no_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 
@@ -420,6 +435,7 @@ def _prepare_contants_put_model_as_string_required_one_value_default_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request

@@ -32,8 +32,9 @@ def _prepare_test_paging_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 def _prepare_test_different_calls_request(
@@ -66,8 +67,9 @@ def _prepare_test_different_calls_request(
         method="GET",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 def _prepare_operationgroupone_test_two_request(
@@ -90,15 +92,17 @@ def _prepare_operationgroupone_test_two_request(
     header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    content = body
+    body_content_kwargs = {}  # type: Dict[str, Any]
+    body_content_kwargs['json'] = body
 
     request = HttpRequest(
         method="GET",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 def _prepare_operationgrouptwo_test_four_request(
@@ -122,10 +126,12 @@ def _prepare_operationgrouptwo_test_four_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-        content = body
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content_kwargs['stream'] = body
 
     elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
-        content = body
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content_kwargs['json'] = body
     else:
         raise ValueError(
             "The content_type '{}' is not one of the allowed values: "
@@ -136,9 +142,10 @@ def _prepare_operationgrouptwo_test_four_request(
         method="POST",
         url=url,
         headers=header_parameters,
-        json=content,
-        query=query_parameters,
+        **body_content_kwargs,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
 
 def _prepare_operationgrouptwo_test_five_request(
@@ -163,6 +170,7 @@ def _prepare_operationgrouptwo_test_five_request(
         method="PUT",
         url=url,
         headers=header_parameters,
-        query=query_parameters,
     )
+    if query_parameters:
+        request.format_parameters(query_parameters)
     return request
