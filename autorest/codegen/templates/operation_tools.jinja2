@@ -168,15 +168,13 @@ if {{ preparer.parameters.body[0].serialized_name }} is not None:
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(preparer, schema_request) %}
-{% if not preparer.multipart %}
 body_content_kwargs = {}  # type: Dict[str, Any]
-{% endif %}
 {% if preparer.multipart %}
-formdata_content = {{ preparer.parameters.body[0].serialized_name }}
+body_content_kwargs['form_content'] = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.is_stream_request %}
-body_content_kwargs['stream'] = {{ preparer.parameters.body[0].serialized_name }}
+body_content_kwargs['stream_content'] = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-body_content_kwargs['json'] = body{% endif %}{% endmacro %}
+body_content_kwargs['content'] = body{% endif %}{% endmacro %}
 
 {# write body parameters #}
 {% macro body_parameters(preparer) %}
@@ -197,20 +195,9 @@ else:
 
 {# create HTTPRequest #}
 {% macro create_http_request(preparer) %}
-request = HttpRequest(
-    method="{{ preparer.method }}",
-    url=url,
-    headers=header_parameters,
-    {% if preparer.parameters.has_body and not preparer.multipart %}
-    **body_content_kwargs,
-    {% endif %}
-)
-if query_parameters:
-    request.format_parameters(query_parameters)
-{% if preparer.multipart %}
-request.set_formdata_body(formdata_content)
-{% endif %}
-return request{% endmacro %}
+{% set body_content_kwargs_signature = ", **body_content_kwargs" if preparer.parameters.has_body else "" %}
+return _request("{{ preparer.method }}", url, query_parameters, header_parameters{{ body_content_kwargs_signature }})
+{% endmacro %}
 
 
 {% macro handle_error_response(code_model, operation) %}
