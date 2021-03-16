@@ -46,7 +46,6 @@ def test_paging():
 
 def test_lro():
     with AutoRestLongRunningOperationTestService("cred", base_url="dummy url") as client:
-        assert not has_tracing_decorator(client.lros._put201_creating_succeeded200_initial_request)
         assert not has_tracing_decorator(client.lros._put201_creating_succeeded200_initial)
         assert has_tracing_decorator(client.lros.begin_put201_creating_succeeded200)
 

@@ -9,7 +9,6 @@ from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
-from .preparer import Preparer
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 

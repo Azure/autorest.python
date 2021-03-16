@@ -72,10 +72,7 @@ class StorageManagementClient(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.HttpResponse
         """
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
+        http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)
         pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
         return pipeline_response.http_response

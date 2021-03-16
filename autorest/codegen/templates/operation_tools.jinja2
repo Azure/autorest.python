@@ -242,7 +242,7 @@ if cls:
 
 return deserialized
 {% endif %}
-{% if operation.preparer.method == 'head' and code_model.options['head_as_boolean'] %}
+{% if operation.preparer.method == 'HEAD' and code_model.options['head_as_boolean'] %}
 return 200 <= response.status_code <= 299
 {% endif %}{% endmacro %}
 
@@ -288,5 +288,8 @@ request = {{ preparer.name }}(
     template_url={{ template_url }},
     **kwargs
 )
-request.url = self._client.format_url(request.url)
+{% if operation.parameters.path %}
+{{ path_format_arguments(operation.parameters.path) }}
+{% endif %}
+request.url = self._client.format_url(request.url{{ ", **path_format_arguments" if operation.parameters.path else "" }})
 kwargs.pop("content_type", None){% endmacro %}

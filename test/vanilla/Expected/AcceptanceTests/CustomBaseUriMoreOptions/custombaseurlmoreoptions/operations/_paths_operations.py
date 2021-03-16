@@ -82,16 +82,20 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _prepare_paths_get_empty_request(
-            vault=vault,
-            secret=secret,
             key_name=key_name,
             subscription_id=self._config.subscription_id,
-            dns_suffix=self._config.dns_suffix,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
+            "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
+            "dnsSuffix": self._serialize.url(
+                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

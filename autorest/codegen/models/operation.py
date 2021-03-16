@@ -59,7 +59,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def preparer(self) -> Preparer:
         if not self._preparer:
             raise ValueError(
-                "You're calling preparer when you haven't linked up operation to its request preparer through the code model"
+                "You're calling preparer when you haven't linked up operation to its "
+                "request preparer through the code model"
             )
         return self._preparer
 

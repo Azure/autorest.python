@@ -3,8 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.preparer import Preparer
-from autorest.codegen.models.protocol import Protocol
 from itertools import chain
 import logging
 from typing import cast, List, Dict, Optional, Any, Set, Union
@@ -23,6 +21,8 @@ from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
+from .preparer import Preparer
+from .protocol import Protocol
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -86,8 +86,18 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
         self.service_client: Client = Client()
-        self.protocol: Optional[Protocol] = None
+        self._protocol: Optional[Protocol] = None
         self.preparer_ids: Dict[int, Preparer] = {}
+
+    @property
+    def protocol(self) -> Protocol:
+        if not self._protocol:
+            raise ValueError("protocol is None. Can not call it, you first have to set it.")
+        return self._protocol
+
+    @protocol.setter
+    def protocol(self, p: Protocol) -> None:
+        self._protocol = p
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.

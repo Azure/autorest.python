@@ -86,7 +86,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
 
-    def serialize_line(self, function_name: str, parameters_line: str):
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
         return f'self._serialize.{function_name}({parameters_line})'
 
     def build_serialize_data_call(self, function_name: str) -> str:

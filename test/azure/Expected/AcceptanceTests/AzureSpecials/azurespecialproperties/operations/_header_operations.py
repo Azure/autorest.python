@@ -187,5 +187,6 @@ class HeaderOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
+        return 200 <= response.status_code <= 299
 
     custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore

@@ -41,10 +41,14 @@ class PreparerParameter(Parameter):
 
     @property
     def in_method_code(self) -> bool:
-        super_in_method_code = super(PreparerParameter, self).in_method_code
         if isinstance(self.schema, ConstantSchema) and self.location == ParameterLocation.Body:
+            # constant bodies aren't really a thing in requests
+            # users need to explicitly pass the constant body through the method signature
             return True
-        return super_in_method_code
+        if self.location == ParameterLocation.Uri:
+            # don't want any base url path formatting arguments
+            return False
+        return super(PreparerParameter, self).in_method_code
 
     @property
     def default_value(self) -> Optional[Any]:
@@ -52,7 +56,8 @@ class PreparerParameter(Parameter):
             return None
         return super(PreparerParameter, self).default_value
 
-    def serialize_line(self, function_name: str, parameters_line: str):
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
         return f'_SERIALIZER.{function_name}({parameters_line})'
 
     @property

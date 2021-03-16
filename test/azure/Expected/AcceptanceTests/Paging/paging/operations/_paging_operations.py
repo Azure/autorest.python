@@ -577,11 +577,8 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
-                path_format_arguments = {
-                    "offset": self._serialize.url("offset", _offset, "int"),
-                }
                 request.method = "get"
-                request.url = self._client.format_url(next_link, **path_format_arguments)
+                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):

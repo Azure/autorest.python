@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.protocol import Protocol
 import logging
 import sys
 from typing import Dict, Any, Set, Union, List
@@ -14,7 +13,8 @@ from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
-from .models.parameter_list import ParameterList
+from .models.parameter_list import GlobalParameterList
+from .models.protocol import Protocol
 from .serializers import JinjaSerializer
 
 
@@ -70,9 +70,8 @@ class CodeGenerator(Plugin):
         )
 
         # Global parameters
-        code_model.global_parameters = ParameterList(
+        code_model.global_parameters = GlobalParameterList(
             [Parameter.from_yaml(param) for param in yaml_data.get("globalParameters", [])],
-            implementation="Client",
         )
 
         # Custom URL

@@ -44,12 +44,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _prepare_poll_with_parameterized_endpoints_initial_request(
-            account_name=account_name,
-            host=self._config.host,
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-            **kwargs
+            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

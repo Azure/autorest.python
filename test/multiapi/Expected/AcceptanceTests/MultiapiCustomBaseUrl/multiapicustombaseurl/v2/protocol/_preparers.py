@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from azure.core.pipeline.transport import HttpRequest
-from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
@@ -51,7 +50,6 @@ def _request(
 
 
 def _prepare_test_request(
-    endpoint,  # type: str
     id,  # type: int
     **kwargs  # type: Any
 ):
@@ -61,10 +59,6 @@ def _prepare_test_request(
 
     # Construct URL
     url = kwargs.pop("template_url", '/test')
-    path_format_arguments = {
-        'Endpoint': _SERIALIZER.url("endpoint", endpoint, 'str', skip_quote=True),
-    }
-    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

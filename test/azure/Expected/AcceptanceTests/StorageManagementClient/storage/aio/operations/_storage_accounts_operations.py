@@ -195,14 +195,8 @@ class StorageAccountsOperations:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        path_format_arguments = {
-            "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-            "accountName": self._serialize.url("account_name", account_name, "str"),
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-
         if polling is True:
-            polling_method = AsyncARMPolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
+            polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False:
             polling_method = AsyncNoPolling()
         else:
@@ -441,13 +435,8 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
-                path_format_arguments = {
-                    "subscriptionId": self._serialize.url(
-                        "self._config.subscription_id", self._config.subscription_id, "str"
-                    ),
-                }
                 request.method = "get"
-                request.url = self._client.format_url(next_link, **path_format_arguments)
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -511,14 +500,8 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
-                path_format_arguments = {
-                    "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-                    "subscriptionId": self._serialize.url(
-                        "self._config.subscription_id", self._config.subscription_id, "str"
-                    ),
-                }
                 request.method = "get"
-                request.url = self._client.format_url(next_link, **path_format_arguments)
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):

@@ -10,7 +10,7 @@ from .constant_schema import ConstantSchema
 from .preparer_parameter import PreparerParameter
 from .preparer_parameter_list import PreparerParameterList
 from .schema_request import SchemaRequest
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 from .utils import get_converted_parameters
 
 

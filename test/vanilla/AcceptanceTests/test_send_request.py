@@ -202,20 +202,6 @@ class TestSendRequest(object):
             response = client._send_request(request)
             assert response.status_code == 200
 
-    def test_send_request_with_client_path_format_arguments(self):
-        from validation import AutoRestValidationTest
-
-        client = AutoRestValidationTest("mySubscriptionId", base_url="http://localhost:3000")
-
-        request = HttpRequest("GET", "/fakepath/{subscriptionId}/123/150",
-            headers={
-                'Accept': 'application/json'
-            },
-        )
-
-        response = client._send_request(request)
-        assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
-
     def test_send_request_full_url(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese

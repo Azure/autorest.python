@@ -55,22 +55,13 @@ def _request(
 
 
 def _prepare_paths_get_empty_request(
-    vault: str,
-    secret: str,
-    key_name: str,
-    subscription_id: str,
-    dns_suffix: str = "host",
-    key_version: Optional[str] = "v1",
-    **kwargs
+    key_name: str, subscription_id: str, key_version: Optional[str] = "v1", **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
     path_format_arguments = {
-        "vault": _SERIALIZER.url("vault", vault, "str", skip_quote=True),
-        "secret": _SERIALIZER.url("secret", secret, "str", skip_quote=True),
-        "dnsSuffix": _SERIALIZER.url("dns_suffix", dns_suffix, "str", skip_quote=True),
         "keyName": _SERIALIZER.url("key_name", key_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }

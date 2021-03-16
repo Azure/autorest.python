@@ -95,12 +95,14 @@ class JinjaSerializer:
 
         # write generic preparers file
         self._autorestapi.write_file(
-            protocol_path / Path("_preparers.py"), ProtocolSerializer(code_model=code_model, env=env).serialize_preparers(is_python_3_file=False)
+            protocol_path / Path("_preparers.py"),
+            ProtocolSerializer(code_model=code_model, env=env).serialize_preparers(is_python_3_file=False)
         )
 
         # write python3 preparers file
         self._autorestapi.write_file(
-            protocol_path / Path("_preparers_py3.py"), ProtocolSerializer(code_model=code_model, env=env).serialize_preparers(is_python_3_file=True)
+            protocol_path / Path("_preparers_py3.py"),
+            ProtocolSerializer(code_model=code_model, env=env).serialize_preparers(is_python_3_file=True)
         )
 
         # write protocol init file
