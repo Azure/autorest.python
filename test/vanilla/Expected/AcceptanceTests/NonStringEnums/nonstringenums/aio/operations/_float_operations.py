@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +62,7 @@ class FloatOperations:
         if input is not None:
             input = self._serialize.body(input, "float")
 
-        request = _prepare_float_put_request(body=input, template_url=self.put.metadata["url"], **kwargs)
+        request = prepare_float_put_request(body=input, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -95,7 +95,7 @@ class FloatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_float_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = prepare_float_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

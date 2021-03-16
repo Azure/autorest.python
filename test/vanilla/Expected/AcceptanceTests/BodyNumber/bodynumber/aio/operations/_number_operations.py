@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -61,7 +61,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_number_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -95,7 +95,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_invalid_float_request(
+        request = prepare_number_get_invalid_float_request(
             template_url=self.get_invalid_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -131,7 +131,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_invalid_double_request(
+        request = prepare_number_get_invalid_double_request(
             template_url=self.get_invalid_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -167,7 +167,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_invalid_decimal_request(
+        request = prepare_number_get_invalid_decimal_request(
             template_url=self.get_invalid_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -207,7 +207,7 @@ class NumberOperations:
 
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_float_request(
+        request = prepare_number_put_big_float_request(
             body=number_body, template_url=self.put_big_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -239,7 +239,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_float_request(template_url=self.get_big_float.metadata["url"], **kwargs)
+        request = prepare_number_get_big_float_request(template_url=self.get_big_float.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -277,7 +277,7 @@ class NumberOperations:
 
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_double_request(
+        request = prepare_number_put_big_double_request(
             body=number_body, template_url=self.put_big_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -309,7 +309,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_double_request(template_url=self.get_big_double.metadata["url"], **kwargs)
+        request = prepare_number_get_big_double_request(template_url=self.get_big_double.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -346,7 +346,7 @@ class NumberOperations:
         number_body = 99999999.99
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_double_positive_decimal_request(
+        request = prepare_number_put_big_double_positive_decimal_request(
             body=number_body, template_url=self.put_big_double_positive_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -378,7 +378,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_double_positive_decimal_request(
+        request = prepare_number_get_big_double_positive_decimal_request(
             template_url=self.get_big_double_positive_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -417,7 +417,7 @@ class NumberOperations:
         number_body = -99999999.99
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_double_negative_decimal_request(
+        request = prepare_number_put_big_double_negative_decimal_request(
             body=number_body, template_url=self.put_big_double_negative_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -449,7 +449,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_double_negative_decimal_request(
+        request = prepare_number_get_big_double_negative_decimal_request(
             template_url=self.get_big_double_negative_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -489,7 +489,7 @@ class NumberOperations:
 
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_decimal_request(
+        request = prepare_number_put_big_decimal_request(
             body=number_body, template_url=self.put_big_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -521,7 +521,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_decimal_request(template_url=self.get_big_decimal.metadata["url"], **kwargs)
+        request = prepare_number_get_big_decimal_request(template_url=self.get_big_decimal.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -558,7 +558,7 @@ class NumberOperations:
         number_body = 99999999.99
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_decimal_positive_decimal_request(
+        request = prepare_number_put_big_decimal_positive_decimal_request(
             body=number_body, template_url=self.put_big_decimal_positive_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -590,7 +590,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_decimal_positive_decimal_request(
+        request = prepare_number_get_big_decimal_positive_decimal_request(
             template_url=self.get_big_decimal_positive_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -629,7 +629,7 @@ class NumberOperations:
         number_body = -99999999.99
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_big_decimal_negative_decimal_request(
+        request = prepare_number_put_big_decimal_negative_decimal_request(
             body=number_body, template_url=self.put_big_decimal_negative_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -661,7 +661,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_big_decimal_negative_decimal_request(
+        request = prepare_number_get_big_decimal_negative_decimal_request(
             template_url=self.get_big_decimal_negative_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -701,7 +701,7 @@ class NumberOperations:
 
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_small_float_request(
+        request = prepare_number_put_small_float_request(
             body=number_body, template_url=self.put_small_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -733,7 +733,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_small_float_request(template_url=self.get_small_float.metadata["url"], **kwargs)
+        request = prepare_number_get_small_float_request(template_url=self.get_small_float.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -771,7 +771,7 @@ class NumberOperations:
 
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_small_double_request(
+        request = prepare_number_put_small_double_request(
             body=number_body, template_url=self.put_small_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -803,7 +803,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_small_double_request(template_url=self.get_small_double.metadata["url"], **kwargs)
+        request = prepare_number_get_small_double_request(template_url=self.get_small_double.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -841,7 +841,7 @@ class NumberOperations:
 
         number_body = self._serialize.body(number_body, "float")
 
-        request = _prepare_number_put_small_decimal_request(
+        request = prepare_number_put_small_decimal_request(
             body=number_body, template_url=self.put_small_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -873,7 +873,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_number_get_small_decimal_request(
+        request = prepare_number_get_small_decimal_request(
             template_url=self.get_small_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

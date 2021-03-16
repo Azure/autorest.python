@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -46,14 +46,14 @@ class MultiapiServiceClientOperationsMixin(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _prepare_test_paging_request(
+                request = prepare_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _prepare_test_paging_request(
+                request = prepare_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
@@ -115,7 +115,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_test_different_calls_request(
+        request = prepare_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,

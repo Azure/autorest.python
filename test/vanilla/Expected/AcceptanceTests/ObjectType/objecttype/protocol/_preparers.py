@@ -72,7 +72,7 @@ def _prepare_get_request(
 
 def _prepare_put_request(
     body,  # type: object
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

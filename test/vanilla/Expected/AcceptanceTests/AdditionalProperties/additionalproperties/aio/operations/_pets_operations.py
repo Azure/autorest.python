@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
-        request = _prepare_pets_create_ap_true_request(
+        request = prepare_pets_create_ap_true_request(
             body=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -105,7 +105,7 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
-        request = _prepare_pets_create_cat_ap_true_request(
+        request = prepare_pets_create_cat_ap_true_request(
             body=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -145,7 +145,7 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
-        request = _prepare_pets_create_ap_object_request(
+        request = prepare_pets_create_ap_object_request(
             body=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -185,7 +185,7 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
-        request = _prepare_pets_create_ap_string_request(
+        request = prepare_pets_create_ap_string_request(
             body=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -227,7 +227,7 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
-        request = _prepare_pets_create_ap_in_properties_request(
+        request = prepare_pets_create_ap_in_properties_request(
             body=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -269,7 +269,7 @@ class PetsOperations:
 
         create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
-        request = _prepare_pets_create_ap_in_properties_with_ap_string_request(
+        request = prepare_pets_create_ap_in_properties_with_ap_string_request(
             body=create_parameters, template_url=self.create_ap_in_properties_with_ap_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

@@ -21,7 +21,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -69,7 +69,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_apiversiondefault_get_method_global_valid_request(
+        request = prepare_apiversiondefault_get_method_global_valid_request(
             template_url=self.get_method_global_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -104,7 +104,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_apiversiondefault_get_method_global_not_provided_valid_request(
+        request = prepare_apiversiondefault_get_method_global_not_provided_valid_request(
             template_url=self.get_method_global_not_provided_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -139,7 +139,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_apiversiondefault_get_path_global_valid_request(
+        request = prepare_apiversiondefault_get_path_global_valid_request(
             template_url=self.get_path_global_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -174,7 +174,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_apiversiondefault_get_swagger_global_valid_request(
+        request = prepare_apiversiondefault_get_swagger_global_valid_request(
             template_url=self.get_swagger_global_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

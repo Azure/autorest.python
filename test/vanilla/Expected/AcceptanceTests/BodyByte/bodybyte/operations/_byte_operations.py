@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -68,7 +68,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_byte_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_byte_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -105,7 +105,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_byte_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_byte_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -142,7 +142,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_byte_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
+        request = prepare_byte_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -185,7 +185,7 @@ class ByteOperations(object):
 
         byte_body = self._serialize.body(byte_body, "bytearray")
 
-        request = _prepare_byte_put_non_ascii_request(
+        request = prepare_byte_put_non_ascii_request(
             body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -220,7 +220,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_byte_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = prepare_byte_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

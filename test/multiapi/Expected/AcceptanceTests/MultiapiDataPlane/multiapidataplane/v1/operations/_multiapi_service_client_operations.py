@@ -16,7 +16,7 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,7 +51,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_test_one_request(
+        request = prepare_test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -88,7 +88,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = _prepare_test_lro_initial_request(
+        request = prepare_test_lro_initial_request(
             body=product,
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
@@ -194,7 +194,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
-        request = _prepare_test_lro_and_paging_initial_request(
+        request = prepare_test_lro_and_paging_initial_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -257,7 +257,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = _prepare_test_lro_and_paging_initial_request(
+                request = prepare_test_lro_and_paging_initial_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -273,7 +273,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = _prepare_test_lro_and_paging_initial_request(
+                request = prepare_test_lro_and_paging_initial_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -372,7 +372,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_test_different_calls_request(
+        request = prepare_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
             **kwargs

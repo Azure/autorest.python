@@ -91,7 +91,7 @@ class JinjaSerializer:
     def _serialize_and_write_protocol_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        protocol_path = namespace_path / Path("protocol")
+        protocol_path = namespace_path / Path("_protocol")
 
         # write generic preparers file
         self._autorestapi.write_file(

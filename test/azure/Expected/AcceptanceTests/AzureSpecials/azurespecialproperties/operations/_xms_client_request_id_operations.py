@@ -21,7 +21,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -70,7 +70,7 @@ class XMsClientRequestIdOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_xmsclientrequestid_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = prepare_xmsclientrequestid_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -108,7 +108,7 @@ class XMsClientRequestIdOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_xmsclientrequestid_param_get_request(
+        request = prepare_xmsclientrequestid_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id, template_url=self.param_get.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

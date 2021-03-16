@@ -21,7 +21,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -70,7 +70,7 @@ class SubscriptionInCredentialsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_subscriptionincredentials_post_method_global_valid_request(
+        request = prepare_subscriptionincredentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_valid.metadata["url"],
             **kwargs
@@ -108,7 +108,7 @@ class SubscriptionInCredentialsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_subscriptionincredentials_post_method_global_null_request(
+        request = prepare_subscriptionincredentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_null.metadata["url"],
             **kwargs
@@ -146,7 +146,7 @@ class SubscriptionInCredentialsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
+        request = prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
             **kwargs
@@ -184,7 +184,7 @@ class SubscriptionInCredentialsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_subscriptionincredentials_post_path_global_valid_request(
+        request = prepare_subscriptionincredentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_path_global_valid.metadata["url"],
             **kwargs
@@ -222,7 +222,7 @@ class SubscriptionInCredentialsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_subscriptionincredentials_post_swagger_global_valid_request(
+        request = prepare_subscriptionincredentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_swagger_global_valid.metadata["url"],
             **kwargs

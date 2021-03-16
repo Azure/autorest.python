@@ -131,7 +131,7 @@ def _prepare_datetimerfc1123_get_underflow_request(
 
 def _prepare_datetimerfc1123_put_utc_max_date_time_request(
     body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -194,7 +194,7 @@ def _prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request(
 
 def _prepare_datetimerfc1123_put_utc_min_date_time_request(
     body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

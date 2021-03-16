@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +62,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_date_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_date_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -96,7 +96,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_date_get_invalid_date_request(template_url=self.get_invalid_date.metadata["url"], **kwargs)
+        request = prepare_date_get_invalid_date_request(template_url=self.get_invalid_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -130,7 +130,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_date_get_overflow_date_request(template_url=self.get_overflow_date.metadata["url"], **kwargs)
+        request = prepare_date_get_overflow_date_request(template_url=self.get_overflow_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -164,7 +164,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_date_get_underflow_date_request(
+        request = prepare_date_get_underflow_date_request(
             template_url=self.get_underflow_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -204,7 +204,7 @@ class DateOperations:
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = _prepare_date_put_max_date_request(
+        request = prepare_date_put_max_date_request(
             body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -236,7 +236,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_date_get_max_date_request(template_url=self.get_max_date.metadata["url"], **kwargs)
+        request = prepare_date_get_max_date_request(template_url=self.get_max_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -274,7 +274,7 @@ class DateOperations:
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = _prepare_date_put_min_date_request(
+        request = prepare_date_put_min_date_request(
             body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -306,7 +306,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_date_get_min_date_request(template_url=self.get_min_date.metadata["url"], **kwargs)
+        request = prepare_date_get_min_date_request(template_url=self.get_min_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

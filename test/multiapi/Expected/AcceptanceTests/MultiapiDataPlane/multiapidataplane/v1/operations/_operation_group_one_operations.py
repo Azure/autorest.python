@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -62,7 +62,7 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_operationgroupone_test_two_request(
+        request = prepare_operationgroupone_test_two_request(
             template_url=self.test_two.metadata['url'],
             **kwargs
         )

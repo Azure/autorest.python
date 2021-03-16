@@ -399,7 +399,7 @@ def _prepare_paths_string_empty_request(
 
 def _prepare_paths_string_null_request(
     string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -423,7 +423,7 @@ def _prepare_paths_string_null_request(
 
 def _prepare_paths_enum_valid_request(
     enum_path,  # type: Union[str, "_models.UriColor"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -447,7 +447,7 @@ def _prepare_paths_enum_valid_request(
 
 def _prepare_paths_enum_null_request(
     enum_path,  # type: Union[str, "_models.UriColor"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -471,7 +471,7 @@ def _prepare_paths_enum_null_request(
 
 def _prepare_paths_byte_multi_byte_request(
     byte_path,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -519,7 +519,7 @@ def _prepare_paths_byte_empty_request(
 
 def _prepare_paths_byte_null_request(
     byte_path,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -567,7 +567,7 @@ def _prepare_paths_date_valid_request(
 
 def _prepare_paths_date_null_request(
     date_path,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -615,7 +615,7 @@ def _prepare_paths_date_time_valid_request(
 
 def _prepare_paths_date_time_null_request(
     date_time_path,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -639,7 +639,7 @@ def _prepare_paths_date_time_null_request(
 
 def _prepare_paths_base64_url_request(
     base64_url_path,  # type: bytes
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -663,7 +663,7 @@ def _prepare_paths_base64_url_request(
 
 def _prepare_paths_array_csv_in_path_request(
     array_path,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -690,7 +690,7 @@ def _prepare_paths_array_csv_in_path_request(
 
 def _prepare_paths_unix_time_url_request(
     unix_time_url_path,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -756,7 +756,7 @@ def _prepare_queries_get_boolean_false_request(
 
 def _prepare_queries_get_boolean_null_request(
     bool_query=None,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -820,7 +820,7 @@ def _prepare_queries_get_int_negative_one_million_request(
 
 def _prepare_queries_get_int_null_request(
     int_query=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -884,7 +884,7 @@ def _prepare_queries_get_negative_ten_billion_request(
 
 def _prepare_queries_get_long_null_request(
     long_query=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -948,7 +948,7 @@ def _prepare_queries_float_scientific_negative_request(
 
 def _prepare_queries_float_null_request(
     float_query=None,  # type: Optional[float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1012,7 +1012,7 @@ def _prepare_queries_double_decimal_negative_request(
 
 def _prepare_queries_double_null_request(
     double_query=None,  # type: Optional[float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1099,7 +1099,7 @@ def _prepare_queries_string_empty_request(
 
 def _prepare_queries_string_null_request(
     string_query=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1121,7 +1121,7 @@ def _prepare_queries_string_null_request(
 
 def _prepare_queries_enum_valid_request(
     enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1143,7 +1143,7 @@ def _prepare_queries_enum_valid_request(
 
 def _prepare_queries_enum_null_request(
     enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1165,7 +1165,7 @@ def _prepare_queries_enum_null_request(
 
 def _prepare_queries_byte_multi_byte_request(
     byte_query=None,  # type: Optional[bytearray]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1208,7 +1208,7 @@ def _prepare_queries_byte_empty_request(
 
 def _prepare_queries_byte_null_request(
     byte_query=None,  # type: Optional[bytearray]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1251,7 +1251,7 @@ def _prepare_queries_date_valid_request(
 
 def _prepare_queries_date_null_request(
     date_query=None,  # type: Optional[datetime.date]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1294,7 +1294,7 @@ def _prepare_queries_date_time_valid_request(
 
 def _prepare_queries_date_time_null_request(
     date_time_query=None,  # type: Optional[datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1316,7 +1316,7 @@ def _prepare_queries_date_time_null_request(
 
 def _prepare_queries_array_string_csv_valid_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1338,7 +1338,7 @@ def _prepare_queries_array_string_csv_valid_request(
 
 def _prepare_queries_array_string_csv_null_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1360,7 +1360,7 @@ def _prepare_queries_array_string_csv_null_request(
 
 def _prepare_queries_array_string_csv_empty_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1382,7 +1382,7 @@ def _prepare_queries_array_string_csv_empty_request(
 
 def _prepare_queries_array_string_no_collection_format_empty_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1404,7 +1404,7 @@ def _prepare_queries_array_string_no_collection_format_empty_request(
 
 def _prepare_queries_array_string_ssv_valid_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1426,7 +1426,7 @@ def _prepare_queries_array_string_ssv_valid_request(
 
 def _prepare_queries_array_string_tsv_valid_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1448,7 +1448,7 @@ def _prepare_queries_array_string_tsv_valid_request(
 
 def _prepare_queries_array_string_pipes_valid_request(
     array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1475,7 +1475,7 @@ def _prepare_pathitems_get_all_with_values_request(
     path_item_string_query=None,  # type: Optional[str]
     global_string_query=None,  # type: Optional[str]
     local_string_query=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1517,7 +1517,7 @@ def _prepare_pathitems_get_global_query_null_request(
     path_item_string_query=None,  # type: Optional[str]
     global_string_query=None,  # type: Optional[str]
     local_string_query=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1559,7 +1559,7 @@ def _prepare_pathitems_get_global_and_local_query_null_request(
     path_item_string_query=None,  # type: Optional[str]
     global_string_query=None,  # type: Optional[str]
     local_string_query=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1601,7 +1601,7 @@ def _prepare_pathitems_get_local_path_item_query_null_request(
     path_item_string_query=None,  # type: Optional[str]
     global_string_query=None,  # type: Optional[str]
     local_string_query=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

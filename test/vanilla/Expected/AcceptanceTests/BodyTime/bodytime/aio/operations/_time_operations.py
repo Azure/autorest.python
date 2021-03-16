@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +62,7 @@ class TimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_time_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = prepare_time_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -100,7 +100,7 @@ class TimeOperations:
 
         time_body = self._serialize.body(time_body, "time")
 
-        request = _prepare_time_put_request(body=time_body, template_url=self.put.metadata["url"], **kwargs)
+        request = prepare_time_put_request(body=time_body, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

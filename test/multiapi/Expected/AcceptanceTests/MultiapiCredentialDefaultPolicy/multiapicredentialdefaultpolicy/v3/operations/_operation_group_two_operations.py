@@ -14,7 +14,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -69,7 +69,7 @@ class OperationGroupTwoOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = _prepare_operationgrouptwo_test_four_request(
+        request = prepare_operationgrouptwo_test_four_request(
             body=input,
             template_url=self.test_four.metadata['url'],
             **kwargs
@@ -108,7 +108,7 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_operationgrouptwo_test_five_request(
+        request = prepare_operationgrouptwo_test_five_request(
             template_url=self.test_five.metadata['url'],
             **kwargs
         )

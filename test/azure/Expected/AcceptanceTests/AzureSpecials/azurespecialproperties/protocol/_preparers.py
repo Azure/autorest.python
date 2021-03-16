@@ -77,7 +77,7 @@ def _prepare_xmsclientrequestid_get_request(
 
 def _prepare_xmsclientrequestid_param_get_request(
     x_ms_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -100,7 +100,7 @@ def _prepare_xmsclientrequestid_param_get_request(
 
 def _prepare_subscriptionincredentials_post_method_global_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -127,7 +127,7 @@ def _prepare_subscriptionincredentials_post_method_global_valid_request(
 
 def _prepare_subscriptionincredentials_post_method_global_null_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -153,7 +153,7 @@ def _prepare_subscriptionincredentials_post_method_global_null_request(
 
 def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -182,7 +182,7 @@ def _prepare_subscriptionincredentials_post_method_global_not_provided_valid_req
 
 def _prepare_subscriptionincredentials_post_path_global_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -209,7 +209,7 @@ def _prepare_subscriptionincredentials_post_path_global_valid_request(
 
 def _prepare_subscriptionincredentials_post_swagger_global_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -236,7 +236,7 @@ def _prepare_subscriptionincredentials_post_swagger_global_valid_request(
 
 def _prepare_subscriptioninmethod_post_method_local_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -263,7 +263,7 @@ def _prepare_subscriptioninmethod_post_method_local_valid_request(
 
 def _prepare_subscriptioninmethod_post_method_local_null_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -289,7 +289,7 @@ def _prepare_subscriptioninmethod_post_method_local_null_request(
 
 def _prepare_subscriptioninmethod_post_path_local_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -315,7 +315,7 @@ def _prepare_subscriptioninmethod_post_path_local_valid_request(
 
 def _prepare_subscriptioninmethod_post_swagger_local_valid_request(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -449,7 +449,7 @@ def _prepare_apiversionlocal_get_method_local_valid_request(
 
 def _prepare_apiversionlocal_get_method_local_null_request(
     api_version=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -513,7 +513,7 @@ def _prepare_apiversionlocal_get_swagger_local_valid_request(
 
 def _prepare_skipurlencoding_get_method_path_valid_request(
     unencoded_path_param,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -537,7 +537,7 @@ def _prepare_skipurlencoding_get_method_path_valid_request(
 
 def _prepare_skipurlencoding_get_path_valid_request(
     unencoded_path_param,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -585,7 +585,7 @@ def _prepare_skipurlencoding_get_swagger_path_valid_request(
 
 def _prepare_skipurlencoding_get_method_query_valid_request(
     q1,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -606,7 +606,7 @@ def _prepare_skipurlencoding_get_method_query_valid_request(
 
 def _prepare_skipurlencoding_get_method_query_null_request(
     q1=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -628,7 +628,7 @@ def _prepare_skipurlencoding_get_method_query_null_request(
 
 def _prepare_skipurlencoding_get_path_query_valid_request(
     q1,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -672,7 +672,7 @@ def _prepare_odata_get_with_filter_request(
     filter=None,  # type: Optional[str]
     top=None,  # type: Optional[int]
     orderby=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -698,7 +698,7 @@ def _prepare_odata_get_with_filter_request(
 
 def _prepare_header_custom_named_request_id_request(
     foo_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -721,7 +721,7 @@ def _prepare_header_custom_named_request_id_request(
 
 def _prepare_header_custom_named_request_id_param_grouping_request(
     foo_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -744,7 +744,7 @@ def _prepare_header_custom_named_request_id_param_grouping_request(
 
 def _prepare_header_custom_named_request_id_head_request(
     foo_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

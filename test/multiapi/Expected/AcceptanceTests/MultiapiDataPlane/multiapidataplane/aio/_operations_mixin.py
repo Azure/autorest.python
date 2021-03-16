@@ -19,7 +19,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 
-from ...protocol import *
+from ..._protocol import *
 
 
 class MultiapiServiceClientOperationsMixin(object):

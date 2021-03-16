@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +67,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request(
+        request = prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
             **kwargs
@@ -106,7 +106,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_no_required_two_value_default_request(
+        request = prepare_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
             **kwargs
@@ -145,7 +145,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request(
+        request = prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
             **kwargs
@@ -184,7 +184,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_no_required_one_value_default_request(
+        request = prepare_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
             **kwargs
@@ -223,7 +223,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_required_two_value_no_default_request(
+        request = prepare_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
             **kwargs
@@ -262,7 +262,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_required_two_value_default_request(
+        request = prepare_contants_put_no_model_as_string_required_two_value_default_request(
             input=input, template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -295,7 +295,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_required_one_value_no_default_request(
+        request = prepare_contants_put_no_model_as_string_required_one_value_no_default_request(
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -328,7 +328,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_no_model_as_string_required_one_value_default_request(
+        request = prepare_contants_put_no_model_as_string_required_one_value_default_request(
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -365,7 +365,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_no_required_two_value_no_default_request(
+        request = prepare_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
             **kwargs
@@ -404,7 +404,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_no_required_two_value_default_request(
+        request = prepare_contants_put_model_as_string_no_required_two_value_default_request(
             input=input, template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -441,7 +441,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_no_required_one_value_no_default_request(
+        request = prepare_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
             **kwargs
@@ -480,7 +480,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_no_required_one_value_default_request(
+        request = prepare_contants_put_model_as_string_no_required_one_value_default_request(
             input=input, template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -517,7 +517,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_required_two_value_no_default_request(
+        request = prepare_contants_put_model_as_string_required_two_value_no_default_request(
             input=input, template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -554,7 +554,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_required_two_value_default_request(
+        request = prepare_contants_put_model_as_string_required_two_value_default_request(
             input=input, template_url=self.put_model_as_string_required_two_value_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -591,7 +591,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_required_one_value_no_default_request(
+        request = prepare_contants_put_model_as_string_required_one_value_no_default_request(
             input=input, template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -628,7 +628,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_contants_put_model_as_string_required_one_value_default_request(
+        request = prepare_contants_put_model_as_string_required_one_value_default_request(
             input=input, template_url=self.put_model_as_string_required_one_value_default.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

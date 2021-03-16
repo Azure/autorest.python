@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -61,7 +61,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_httpretry_head408_request(template_url=self.head408.metadata["url"], **kwargs)
+        request = prepare_httpretry_head408_request(template_url=self.head408.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -96,7 +96,7 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _prepare_httpretry_put500_request(
+        request = prepare_httpretry_put500_request(
             body=boolean_value, template_url=self.put500.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -133,7 +133,7 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _prepare_httpretry_patch500_request(
+        request = prepare_httpretry_patch500_request(
             body=boolean_value, template_url=self.patch500.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -165,7 +165,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_httpretry_get502_request(template_url=self.get502.metadata["url"], **kwargs)
+        request = prepare_httpretry_get502_request(template_url=self.get502.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -195,7 +195,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_httpretry_options502_request(template_url=self.options502.metadata["url"], **kwargs)
+        request = prepare_httpretry_options502_request(template_url=self.options502.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -234,7 +234,7 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _prepare_httpretry_post503_request(
+        request = prepare_httpretry_post503_request(
             body=boolean_value, template_url=self.post503.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -271,7 +271,7 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _prepare_httpretry_delete503_request(
+        request = prepare_httpretry_delete503_request(
             body=boolean_value, template_url=self.delete503.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -308,7 +308,7 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _prepare_httpretry_put504_request(
+        request = prepare_httpretry_put504_request(
             body=boolean_value, template_url=self.put504.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -345,7 +345,7 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = _prepare_httpretry_patch504_request(
+        request = prepare_httpretry_patch504_request(
             body=boolean_value, template_url=self.patch504.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

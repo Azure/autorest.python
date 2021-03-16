@@ -92,7 +92,7 @@ def _prepare_paging_get_pages_partial_url_operation_request(
 
 def _get_pages_partial_url_operation_next_request(
     next_link,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

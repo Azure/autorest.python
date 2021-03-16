@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -71,7 +71,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_pet_get_pet_by_id_request(
+        request = prepare_pet_get_pet_by_id_request(
             pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -117,7 +117,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_pet_do_something_request(
+        request = prepare_pet_do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -164,7 +164,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_pet_has_models_param_request(
+        request = prepare_pet_has_models_param_request(
             models=models, template_url=self.has_models_param.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

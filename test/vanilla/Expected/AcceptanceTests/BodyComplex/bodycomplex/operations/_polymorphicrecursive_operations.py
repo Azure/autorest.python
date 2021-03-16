@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -68,7 +68,7 @@ class PolymorphicrecursiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_polymorphicrecursive_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = prepare_polymorphicrecursive_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -163,7 +163,7 @@ class PolymorphicrecursiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "Fish")
 
-        request = _prepare_polymorphicrecursive_put_valid_request(
+        request = prepare_polymorphicrecursive_put_valid_request(
             body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

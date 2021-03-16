@@ -16,7 +16,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
-from ...protocol import *
+from ..._protocol import *
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):

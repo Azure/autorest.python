@@ -21,7 +21,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -73,7 +73,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_header_custom_named_request_id_request(
+        request = prepare_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
             **kwargs
@@ -121,7 +121,7 @@ class HeaderOperations(object):
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
-        request = _prepare_header_custom_named_request_id_param_grouping_request(
+        request = prepare_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
             **kwargs
@@ -165,7 +165,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_header_custom_named_request_id_head_request(
+        request = prepare_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
             **kwargs

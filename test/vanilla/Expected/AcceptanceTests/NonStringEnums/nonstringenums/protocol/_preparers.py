@@ -59,7 +59,7 @@ def _request(
 
 def _prepare_int_put_request(
     body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -103,7 +103,7 @@ def _prepare_int_get_request(
 
 def _prepare_float_put_request(
     body=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

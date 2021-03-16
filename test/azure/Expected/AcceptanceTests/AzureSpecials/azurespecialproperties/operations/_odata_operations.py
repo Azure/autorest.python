@@ -21,7 +21,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -79,7 +79,7 @@ class OdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_odata_get_with_filter_request(
+        request = prepare_odata_get_with_filter_request(
             filter=filter, top=top, orderby=orderby, template_url=self.get_with_filter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

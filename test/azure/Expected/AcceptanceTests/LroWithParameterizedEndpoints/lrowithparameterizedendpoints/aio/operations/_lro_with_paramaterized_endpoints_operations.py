@@ -22,7 +22,7 @@ from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,7 +34,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_poll_with_parameterized_endpoints_initial_request(
+        request = prepare_poll_with_parameterized_endpoints_initial_request(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
         )
         path_format_arguments = {

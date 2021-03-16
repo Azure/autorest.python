@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -45,7 +45,7 @@ class MediaTypesClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = _prepare_analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
+        request = prepare_analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -83,7 +83,7 @@ class MediaTypesClientOperationsMixin:
         if input is not None:
             input = self._serialize.body(input, "str")
 
-        request = _prepare_content_type_with_encoding_request(
+        request = prepare_content_type_with_encoding_request(
             body=input, template_url=self.content_type_with_encoding.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

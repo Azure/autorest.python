@@ -60,7 +60,7 @@ def _request(
 
 def _prepare_header_param_existing_key_request(
     user_agent_parameter,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -100,7 +100,7 @@ def _prepare_header_response_existing_key_request(
 
 def _prepare_header_param_protected_key_request(
     content_type,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -141,7 +141,7 @@ def _prepare_header_response_protected_key_request(
 def _prepare_header_param_integer_request(
     scenario,  # type: str
     value,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -163,7 +163,7 @@ def _prepare_header_param_integer_request(
 
 def _prepare_header_response_integer_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -185,7 +185,7 @@ def _prepare_header_response_integer_request(
 def _prepare_header_param_long_request(
     scenario,  # type: str
     value,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -207,7 +207,7 @@ def _prepare_header_param_long_request(
 
 def _prepare_header_response_long_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -229,7 +229,7 @@ def _prepare_header_response_long_request(
 def _prepare_header_param_float_request(
     scenario,  # type: str
     value,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -251,7 +251,7 @@ def _prepare_header_param_float_request(
 
 def _prepare_header_response_float_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -273,7 +273,7 @@ def _prepare_header_response_float_request(
 def _prepare_header_param_double_request(
     scenario,  # type: str
     value,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -295,7 +295,7 @@ def _prepare_header_param_double_request(
 
 def _prepare_header_response_double_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -317,7 +317,7 @@ def _prepare_header_response_double_request(
 def _prepare_header_param_bool_request(
     scenario,  # type: str
     value,  # type: bool
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -339,7 +339,7 @@ def _prepare_header_param_bool_request(
 
 def _prepare_header_response_bool_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -361,7 +361,7 @@ def _prepare_header_response_bool_request(
 def _prepare_header_param_string_request(
     scenario,  # type: str
     value=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -384,7 +384,7 @@ def _prepare_header_param_string_request(
 
 def _prepare_header_response_string_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -406,7 +406,7 @@ def _prepare_header_response_string_request(
 def _prepare_header_param_date_request(
     scenario,  # type: str
     value,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -428,7 +428,7 @@ def _prepare_header_param_date_request(
 
 def _prepare_header_response_date_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -450,7 +450,7 @@ def _prepare_header_response_date_request(
 def _prepare_header_param_datetime_request(
     scenario,  # type: str
     value,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -472,7 +472,7 @@ def _prepare_header_param_datetime_request(
 
 def _prepare_header_response_datetime_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -494,7 +494,7 @@ def _prepare_header_response_datetime_request(
 def _prepare_header_param_datetime_rfc1123_request(
     scenario,  # type: str
     value=None,  # type: Optional[datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -517,7 +517,7 @@ def _prepare_header_param_datetime_rfc1123_request(
 
 def _prepare_header_response_datetime_rfc1123_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -539,7 +539,7 @@ def _prepare_header_response_datetime_rfc1123_request(
 def _prepare_header_param_duration_request(
     scenario,  # type: str
     value,  # type: datetime.timedelta
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -561,7 +561,7 @@ def _prepare_header_param_duration_request(
 
 def _prepare_header_response_duration_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -583,7 +583,7 @@ def _prepare_header_response_duration_request(
 def _prepare_header_param_byte_request(
     scenario,  # type: str
     value,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -605,7 +605,7 @@ def _prepare_header_param_byte_request(
 
 def _prepare_header_response_byte_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -627,7 +627,7 @@ def _prepare_header_response_byte_request(
 def _prepare_header_param_enum_request(
     scenario,  # type: str
     value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -650,7 +650,7 @@ def _prepare_header_param_enum_request(
 
 def _prepare_header_response_enum_request(
     scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

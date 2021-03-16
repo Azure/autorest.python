@@ -129,9 +129,7 @@ class Preparer(BaseModel):
             yaml_data["language"]["python"]["name"],
             "request"
         ]
-        name = "_{}".format(
-            "_".join([n for n in names if n])
-        )
+        name = "_".join([n for n in names if n])
 
         first_request = yaml_data["requests"][0]
 

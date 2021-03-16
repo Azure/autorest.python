@@ -16,7 +16,7 @@ from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -37,7 +37,7 @@ class PollingPagingExampleOperationsMixin:
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = _prepare_basic_polling_initial_request(
+        request = prepare_basic_polling_initial_request(
             body=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
@@ -142,14 +142,14 @@ class PollingPagingExampleOperationsMixin:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _prepare_basic_paging_request(
+                request = prepare_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _prepare_basic_paging_request(
+                request = prepare_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )

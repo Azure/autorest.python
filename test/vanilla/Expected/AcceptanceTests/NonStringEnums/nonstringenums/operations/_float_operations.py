@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -71,7 +71,7 @@ class FloatOperations(object):
         if input is not None:
             input = self._serialize.body(input, "float")
 
-        request = _prepare_float_put_request(body=input, template_url=self.put.metadata["url"], **kwargs)
+        request = prepare_float_put_request(body=input, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -107,7 +107,7 @@ class FloatOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_float_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = prepare_float_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

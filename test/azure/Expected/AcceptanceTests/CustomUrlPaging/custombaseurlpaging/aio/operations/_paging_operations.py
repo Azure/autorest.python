@@ -22,7 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +68,7 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _prepare_paging_get_pages_partial_url_request(
+                request = prepare_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -78,7 +78,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = _prepare_paging_get_pages_partial_url_request(
+                request = prepare_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -136,7 +136,7 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _prepare_paging_get_pages_partial_url_operation_request(
+                request = prepare_paging_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
                 )
                 path_format_arguments = {

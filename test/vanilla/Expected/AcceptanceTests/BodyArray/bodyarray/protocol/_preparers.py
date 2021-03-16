@@ -117,7 +117,7 @@ def _prepare_array_get_empty_request(
 
 def _prepare_array_put_empty_request(
     body,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -161,7 +161,7 @@ def _prepare_array_get_boolean_tfft_request(
 
 def _prepare_array_put_boolean_tfft_request(
     body,  # type: List[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -243,7 +243,7 @@ def _prepare_array_get_integer_valid_request(
 
 def _prepare_array_put_integer_valid_request(
     body,  # type: List[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -325,7 +325,7 @@ def _prepare_array_get_long_valid_request(
 
 def _prepare_array_put_long_valid_request(
     body,  # type: List[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -407,7 +407,7 @@ def _prepare_array_get_float_valid_request(
 
 def _prepare_array_put_float_valid_request(
     body,  # type: List[float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -489,7 +489,7 @@ def _prepare_array_get_double_valid_request(
 
 def _prepare_array_put_double_valid_request(
     body,  # type: List[float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -571,7 +571,7 @@ def _prepare_array_get_string_valid_request(
 
 def _prepare_array_put_string_valid_request(
     body,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -615,7 +615,7 @@ def _prepare_array_get_enum_valid_request(
 
 def _prepare_array_put_enum_valid_request(
     body,  # type: List[Union[str, "_models.FooEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -659,7 +659,7 @@ def _prepare_array_get_string_enum_valid_request(
 
 def _prepare_array_put_string_enum_valid_request(
     body,  # type: List[Union[str, "_models.Enum1"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -741,7 +741,7 @@ def _prepare_array_get_uuid_valid_request(
 
 def _prepare_array_put_uuid_valid_request(
     body,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -804,7 +804,7 @@ def _prepare_array_get_date_valid_request(
 
 def _prepare_array_put_date_valid_request(
     body,  # type: List[datetime.date]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -886,7 +886,7 @@ def _prepare_array_get_date_time_valid_request(
 
 def _prepare_array_put_date_time_valid_request(
     body,  # type: List[datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -968,7 +968,7 @@ def _prepare_array_get_date_time_rfc1123_valid_request(
 
 def _prepare_array_put_date_time_rfc1123_valid_request(
     body,  # type: List[datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1012,7 +1012,7 @@ def _prepare_array_get_duration_valid_request(
 
 def _prepare_array_put_duration_valid_request(
     body,  # type: List[datetime.timedelta]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1056,7 +1056,7 @@ def _prepare_array_get_byte_valid_request(
 
 def _prepare_array_put_byte_valid_request(
     body,  # type: List[bytearray]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1214,7 +1214,7 @@ def _prepare_array_get_complex_valid_request(
 
 def _prepare_array_put_complex_valid_request(
     body,  # type: List["_models.Product"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1334,7 +1334,7 @@ def _prepare_array_get_array_valid_request(
 
 def _prepare_array_put_array_valid_request(
     body,  # type: List[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1454,7 +1454,7 @@ def _prepare_array_get_dictionary_valid_request(
 
 def _prepare_array_put_dictionary_valid_request(
     body,  # type: List[Dict[str, str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

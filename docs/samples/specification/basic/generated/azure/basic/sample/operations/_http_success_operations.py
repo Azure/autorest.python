@@ -12,7 +12,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -57,7 +57,7 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_httpsuccess_head200_request(
+        request = prepare_httpsuccess_head200_request(
             template_url=self.head200.metadata['url'],
             **kwargs
         )
@@ -94,7 +94,7 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_httpsuccess_head204_request(
+        request = prepare_httpsuccess_head204_request(
             template_url=self.head204.metadata['url'],
             **kwargs
         )
@@ -131,7 +131,7 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_httpsuccess_head404_request(
+        request = prepare_httpsuccess_head404_request(
             template_url=self.head404.metadata['url'],
             **kwargs
         )

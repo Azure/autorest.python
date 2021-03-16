@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -44,7 +44,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_validation_of_method_parameters_request(
+        request = prepare_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -95,7 +95,7 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = _prepare_validation_of_body_request(
+        request = prepare_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -136,7 +136,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_get_with_constant_in_path_request(
+        request = prepare_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -172,7 +172,7 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             body = self._serialize.body(body, "Product")
 
-        request = _prepare_post_with_constant_in_body_request(
+        request = prepare_post_with_constant_in_body_request(
             body=body, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

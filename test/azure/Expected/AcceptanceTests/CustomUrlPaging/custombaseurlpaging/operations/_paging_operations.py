@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -76,7 +76,7 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _prepare_paging_get_pages_partial_url_request(
+                request = prepare_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -86,7 +86,7 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = _prepare_paging_get_pages_partial_url_request(
+                request = prepare_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -149,7 +149,7 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _prepare_paging_get_pages_partial_url_operation_request(
+                request = prepare_paging_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
                 )
                 path_format_arguments = {

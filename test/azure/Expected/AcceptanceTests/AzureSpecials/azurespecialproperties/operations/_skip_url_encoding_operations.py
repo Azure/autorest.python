@@ -21,7 +21,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -73,7 +73,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_method_path_valid_request(
+        request = prepare_skipurlencoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param, template_url=self.get_method_path_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -112,7 +112,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_path_valid_request(
+        request = prepare_skipurlencoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param, template_url=self.get_path_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -147,7 +147,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_swagger_path_valid_request(
+        request = prepare_skipurlencoding_get_swagger_path_valid_request(
             template_url=self.get_swagger_path_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -186,7 +186,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_method_query_valid_request(
+        request = prepare_skipurlencoding_get_method_query_valid_request(
             q1=q1, template_url=self.get_method_query_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -225,7 +225,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_method_query_null_request(
+        request = prepare_skipurlencoding_get_method_query_null_request(
             q1=q1, template_url=self.get_method_query_null.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -264,7 +264,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_path_query_valid_request(
+        request = prepare_skipurlencoding_get_path_query_valid_request(
             q1=q1, template_url=self.get_path_query_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -299,7 +299,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_skipurlencoding_get_swagger_query_valid_request(
+        request = prepare_skipurlencoding_get_swagger_query_valid_request(
             template_url=self.get_swagger_query_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

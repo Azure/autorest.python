@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +62,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_duration_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_duration_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -100,7 +100,7 @@ class DurationOperations:
 
         duration_body = self._serialize.body(duration_body, "duration")
 
-        request = _prepare_duration_put_positive_duration_request(
+        request = prepare_duration_put_positive_duration_request(
             body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -132,7 +132,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_duration_get_positive_duration_request(
+        request = prepare_duration_get_positive_duration_request(
             template_url=self.get_positive_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -168,7 +168,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_duration_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = prepare_duration_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

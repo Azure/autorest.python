@@ -98,7 +98,7 @@ def _prepare_dictionary_get_empty_request(
 
 def _prepare_dictionary_put_empty_request(
     body,  # type: Dict[str, str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -218,7 +218,7 @@ def _prepare_dictionary_get_boolean_tfft_request(
 
 def _prepare_dictionary_put_boolean_tfft_request(
     body,  # type: Dict[str, bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -300,7 +300,7 @@ def _prepare_dictionary_get_integer_valid_request(
 
 def _prepare_dictionary_put_integer_valid_request(
     body,  # type: Dict[str, int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -382,7 +382,7 @@ def _prepare_dictionary_get_long_valid_request(
 
 def _prepare_dictionary_put_long_valid_request(
     body,  # type: Dict[str, int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -464,7 +464,7 @@ def _prepare_dictionary_get_float_valid_request(
 
 def _prepare_dictionary_put_float_valid_request(
     body,  # type: Dict[str, float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -546,7 +546,7 @@ def _prepare_dictionary_get_double_valid_request(
 
 def _prepare_dictionary_put_double_valid_request(
     body,  # type: Dict[str, float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -628,7 +628,7 @@ def _prepare_dictionary_get_string_valid_request(
 
 def _prepare_dictionary_put_string_valid_request(
     body,  # type: Dict[str, str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -710,7 +710,7 @@ def _prepare_dictionary_get_date_valid_request(
 
 def _prepare_dictionary_put_date_valid_request(
     body,  # type: Dict[str, datetime.date]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -792,7 +792,7 @@ def _prepare_dictionary_get_date_time_valid_request(
 
 def _prepare_dictionary_put_date_time_valid_request(
     body,  # type: Dict[str, datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -874,7 +874,7 @@ def _prepare_dictionary_get_date_time_rfc1123_valid_request(
 
 def _prepare_dictionary_put_date_time_rfc1123_valid_request(
     body,  # type: Dict[str, datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -918,7 +918,7 @@ def _prepare_dictionary_get_duration_valid_request(
 
 def _prepare_dictionary_put_duration_valid_request(
     body,  # type: Dict[str, datetime.timedelta]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -962,7 +962,7 @@ def _prepare_dictionary_get_byte_valid_request(
 
 def _prepare_dictionary_put_byte_valid_request(
     body,  # type: Dict[str, bytearray]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1120,7 +1120,7 @@ def _prepare_dictionary_get_complex_valid_request(
 
 def _prepare_dictionary_put_complex_valid_request(
     body,  # type: Dict[str, "_models.Widget"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1240,7 +1240,7 @@ def _prepare_dictionary_get_array_valid_request(
 
 def _prepare_dictionary_put_array_valid_request(
     body,  # type: Dict[str, List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1360,7 +1360,7 @@ def _prepare_dictionary_get_dictionary_valid_request(
 
 def _prepare_dictionary_put_dictionary_valid_request(
     body,  # type: Dict[str, Dict[str, str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

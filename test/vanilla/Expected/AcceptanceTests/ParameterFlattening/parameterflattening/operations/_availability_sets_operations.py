@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..protocol import *
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -81,7 +81,7 @@ class AvailabilitySetsOperations(object):
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         _tags = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = _prepare_availabilitysets_update_request(
+        request = prepare_availabilitysets_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             body=_tags,

@@ -169,7 +169,7 @@ def _prepare_int_get_underflow_int64_request(
 
 def _prepare_int_put_max32_request(
     body,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -194,7 +194,7 @@ def _prepare_int_put_max32_request(
 
 def _prepare_int_put_max64_request(
     body,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -219,7 +219,7 @@ def _prepare_int_put_max64_request(
 
 def _prepare_int_put_min32_request(
     body,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -244,7 +244,7 @@ def _prepare_int_put_min32_request(
 
 def _prepare_int_put_min64_request(
     body,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -288,7 +288,7 @@ def _prepare_int_get_unix_time_request(
 
 def _prepare_int_put_unix_time_date_request(
     body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

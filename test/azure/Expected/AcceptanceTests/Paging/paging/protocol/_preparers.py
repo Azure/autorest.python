@@ -138,7 +138,7 @@ def _prepare_paging_get_multiple_pages_request(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -164,7 +164,7 @@ def _prepare_paging_get_multiple_pages_request(
 
 def _prepare_paging_get_with_query_params_request(
     required_query_parameter,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     query_constant = True
@@ -212,7 +212,7 @@ def _prepare_paging_get_odata_multiple_pages_request(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -241,7 +241,7 @@ def _prepare_paging_get_multiple_pages_with_offset_request(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -367,7 +367,7 @@ def _prepare_paging_get_multiple_pages_failure_uri_request(
 def _prepare_paging_get_multiple_pages_fragment_next_link_request(
     api_version,  # type: str
     tenant,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -393,7 +393,7 @@ def _prepare_paging_get_multiple_pages_fragment_next_link_request(
 def _prepare_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
     api_version,  # type: str
     tenant,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -420,7 +420,7 @@ def _prepare_paging_get_multiple_pages_lro_initial_request(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -448,7 +448,7 @@ def _get_multiple_pages_fragment_next_link_next_request(
     api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -476,7 +476,7 @@ def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
     api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

@@ -131,7 +131,7 @@ def _prepare_date_get_underflow_date_request(
 
 def _prepare_date_put_max_date_request(
     body,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -175,7 +175,7 @@ def _prepare_date_get_max_date_request(
 
 def _prepare_date_put_min_date_request(
     body,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

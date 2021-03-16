@@ -62,7 +62,7 @@ def _prepare_validation_of_method_parameters_request(
     subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "1.0.0"
@@ -95,7 +95,7 @@ def _prepare_validation_of_body_request(
     resource_group_name,  # type: str
     id,  # type: int
     body=None,  # type: Optional["_models.Product"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "1.0.0"
@@ -152,7 +152,7 @@ def _prepare_get_with_constant_in_path_request(
 
 def _prepare_post_with_constant_in_body_request(
     body=None,  # type: Optional["_models.Product"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     constant_param = "constant"

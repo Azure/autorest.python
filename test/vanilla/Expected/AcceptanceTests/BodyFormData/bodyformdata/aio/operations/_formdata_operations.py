@@ -20,7 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -70,7 +70,7 @@ class FormdataOperations:
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = _prepare_formdata_upload_file_request(
+        request = prepare_formdata_upload_file_request(
             body=_body, template_url=self.upload_file.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -108,7 +108,7 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_formdata_upload_file_via_body_request(
+        request = prepare_formdata_upload_file_via_body_request(
             body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -150,7 +150,7 @@ class FormdataOperations:
         _body = {
             "fileContent": file_content,
         }
-        request = _prepare_formdata_upload_files_request(
+        request = prepare_formdata_upload_files_request(
             body=_body, template_url=self.upload_files.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

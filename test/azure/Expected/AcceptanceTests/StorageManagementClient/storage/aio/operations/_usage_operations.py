@@ -21,7 +21,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +62,7 @@ class UsageOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _prepare_usage_list_request(
+        request = prepare_usage_list_request(
             subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

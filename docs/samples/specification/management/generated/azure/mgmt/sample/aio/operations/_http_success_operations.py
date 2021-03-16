@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ...protocol import *
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -53,7 +53,7 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_httpsuccess_head200_request(
+        request = prepare_httpsuccess_head200_request(
             template_url=self.head200.metadata['url'],
             **kwargs
         )
@@ -90,7 +90,7 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_httpsuccess_head204_request(
+        request = prepare_httpsuccess_head204_request(
             template_url=self.head204.metadata['url'],
             **kwargs
         )
@@ -127,7 +127,7 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = _prepare_httpsuccess_head404_request(
+        request = prepare_httpsuccess_head404_request(
             template_url=self.head404.metadata['url'],
             **kwargs
         )
