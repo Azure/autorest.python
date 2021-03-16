@@ -50,7 +50,6 @@ class AutoRestParameterizedCustomHostTestClient(object):
         :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
         """
         path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "dnsSuffix": self._serialize.url(
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),

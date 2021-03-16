@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,21 +48,6 @@ class ArrayOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/array/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_valid(self, **kwargs) -> "_models.ArrayWrapper":
         """Get complex types with array property.
@@ -75,7 +61,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -95,25 +82,6 @@ class ArrayOperations:
 
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _put_valid_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/array/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_valid(self, array: Optional[List[str]] = None, **kwargs) -> None:
         """Put complex types with array property.
@@ -132,7 +100,10 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = self._put_valid_request(body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = prepare_array_put_valid_request(
+            body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -148,21 +119,6 @@ class ArrayOperations:
 
     put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/array/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> "_models.ArrayWrapper":
         """Get complex types with array property which is empty.
@@ -176,7 +132,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -196,25 +153,6 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/array/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_empty(self, array: Optional[List[str]] = None, **kwargs) -> None:
         """Put complex types with array property which is empty.
@@ -233,7 +171,10 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = self._put_empty_request(body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs)
+        request = prepare_array_put_empty_request(
+            body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -249,21 +190,6 @@ class ArrayOperations:
 
     put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _get_not_provided_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/array/notprovided")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_not_provided(self, **kwargs) -> "_models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
@@ -277,7 +203,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
+        request = prepare_array_get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

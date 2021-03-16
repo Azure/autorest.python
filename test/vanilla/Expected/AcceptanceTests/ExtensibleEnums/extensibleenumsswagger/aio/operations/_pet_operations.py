@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,25 +48,6 @@ class PetOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_by_pet_id_request(self, pet_id: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
-        path_format_arguments = {
-            "petId": self._serialize.url("pet_id", pet_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_by_pet_id(self, pet_id: str, **kwargs) -> "_models.Pet":
         """get pet by id.
@@ -81,7 +63,10 @@ class PetOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_by_pet_id_request(pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs)
+        request = prepare_pet_get_by_pet_id_request(
+            pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -99,25 +84,6 @@ class PetOperations:
         return deserialized
 
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
-
-    def _add_pet_request(self, body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/extensibleenums/pet/addPet")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs) -> "_models.Pet":
@@ -137,7 +103,8 @@ class PetOperations:
         if pet_param is not None:
             pet_param = self._serialize.body(pet_param, "Pet")
 
-        request = self._add_pet_request(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
+        request = prepare_pet_add_pet_request(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

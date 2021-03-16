@@ -20,29 +20,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class AutoRestReportServiceOperationsMixin:
-    def _get_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/report")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get test coverage report.
@@ -60,7 +44,10 @@ class AutoRestReportServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_report_request(qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs)
+        request = prepare_get_report_request(
+            qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -80,23 +67,6 @@ class AutoRestReportServiceOperationsMixin:
 
     get_report.metadata = {"url": "/report"}  # type: ignore
 
-    def _get_optional_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/report/optional")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get optional test coverage report.
@@ -114,9 +84,10 @@ class AutoRestReportServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_optional_report_request(
+        request = prepare_get_optional_report_request(
             qualifier=qualifier, template_url=self.get_optional_report.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

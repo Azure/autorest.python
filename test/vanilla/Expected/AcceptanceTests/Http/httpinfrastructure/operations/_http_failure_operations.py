@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,24 +52,6 @@ class HttpFailureOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_error_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/emptybody/error")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_empty_error(
         self, **kwargs  # type: Any
@@ -85,7 +68,10 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_error_request(template_url=self.get_empty_error.metadata["url"], **kwargs)
+        request = prepare_httpfailure_get_empty_error_request(
+            template_url=self.get_empty_error.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -105,24 +91,6 @@ class HttpFailureOperations(object):
 
     get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
-    def _get_no_model_error_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/nomodel/error")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_no_model_error(
         self, **kwargs  # type: Any
@@ -139,7 +107,10 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_no_model_error_request(template_url=self.get_no_model_error.metadata["url"], **kwargs)
+        request = prepare_httpfailure_get_no_model_error_request(
+            template_url=self.get_no_model_error.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -158,24 +129,6 @@ class HttpFailureOperations(object):
 
     get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
-    def _get_no_model_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/nomodel/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_no_model_empty(
         self, **kwargs  # type: Any
@@ -192,7 +145,10 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_no_model_empty_request(template_url=self.get_no_model_empty.metadata["url"], **kwargs)
+        request = prepare_httpfailure_get_no_model_empty_request(
+            template_url=self.get_no_model_empty.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

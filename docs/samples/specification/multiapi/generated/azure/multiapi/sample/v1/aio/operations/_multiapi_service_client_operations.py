@@ -17,36 +17,12 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class MultiapiServiceClientOperationsMixin:
-
-    def _test_one_request(
-        self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "1.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     async def test_one(
         self,
@@ -71,12 +47,13 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_one_request(
+        request = prepare_test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -92,29 +69,6 @@ class MultiapiServiceClientOperationsMixin:
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
-    def _test_lro_initial_request(
-        self,
-        body: Optional["_models.Product"] = None,
-        **kwargs
-    ) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/lro')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _test_lro_initial(
         self,
         product: Optional["_models.Product"] = None,
@@ -129,11 +83,12 @@ class MultiapiServiceClientOperationsMixin:
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = self._test_lro_initial_request(
+        request = prepare_test_lro_initial_request(
             body=product,
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -162,7 +117,7 @@ class MultiapiServiceClientOperationsMixin:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
-        :type product: ~azure.multiapi.sample.v1.models.Product
+        :type product: ~azure.multiapi.sample.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
@@ -170,7 +125,7 @@ class MultiapiServiceClientOperationsMixin:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.multiapi.sample.v1.models.Product]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.multiapi.sample.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -214,33 +169,6 @@ class MultiapiServiceClientOperationsMixin:
     begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
 
-    def _test_lro_and_paging_initial_request(
-        self,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
-        **kwargs
-    ) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/lroAndPaging')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        if client_request_id is not None:
-            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-        if maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
-        if timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     async def _test_lro_and_pa_initial(
         self,
         client_request_id: Optional[str] = None,
@@ -259,13 +187,14 @@ class MultiapiServiceClientOperationsMixin:
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
-        request = self._test_lro_and_paging_initial_request(
+        request = prepare_test_lro_and_paging_initial_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._test_lro_and_pa_initial.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -295,7 +224,7 @@ class MultiapiServiceClientOperationsMixin:
         :param client_request_id:
         :type client_request_id: str
         :param test_lro_and_paging_options: Parameter group.
-        :type test_lro_and_paging_options: ~azure.multiapi.sample.v1.models.TestLroAndPagingOptions
+        :type test_lro_and_paging_options: ~azure.multiapi.sample.models.TestLroAndPagingOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
@@ -303,7 +232,7 @@ class MultiapiServiceClientOperationsMixin:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~azure.multiapi.sample.v1.models.PagingResult]]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~azure.multiapi.sample.models.PagingResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
@@ -320,13 +249,14 @@ class MultiapiServiceClientOperationsMixin:
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = self._test_lro_and_paging_initial_request(
+                request = prepare_test_lro_and_paging_initial_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
                 
@@ -335,13 +265,14 @@ class MultiapiServiceClientOperationsMixin:
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = self._test_lro_and_paging_initial_request(
+                request = prepare_test_lro_and_paging_initial_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -412,28 +343,6 @@ class MultiapiServiceClientOperationsMixin:
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
 
-    def _test_different_calls_request(
-        self,
-        greeting_in_english: str,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "1.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     async def test_different_calls(
         self,
         greeting_in_english: str,
@@ -454,11 +363,12 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_different_calls_request(
+        request = prepare_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

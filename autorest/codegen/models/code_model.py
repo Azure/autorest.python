@@ -21,6 +21,8 @@ from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
+from .preparer import Preparer
+from .protocol import Protocol
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -84,6 +86,18 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
         self.service_client: Client = Client()
+        self._protocol: Optional[Protocol] = None
+        self.preparer_ids: Dict[int, Preparer] = {}
+
+    @property
+    def protocol(self) -> Protocol:
+        if not self._protocol:
+            raise ValueError("protocol is None. Can not call it, you first have to set it.")
+        return self._protocol
+
+    @protocol.setter
+    def protocol(self, p: Protocol) -> None:
+        self._protocol = p
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
@@ -332,3 +346,24 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         if async_mode:
             return "base_url: Optional[str] = None,"
         return "base_url=None,  # type: Optional[str]"
+
+    def _lookup_preparer(self, schema_id: int) -> Preparer:
+        """Looks to see if the schema has already been created.
+
+        :param int schema_id: The yaml id of the schema
+        :return: If created, we return the created schema, otherwise, we throw.
+        :rtype: ~autorest.models.Preparer
+        :raises: KeyError if schema is not found
+        """
+        for elt_key, elt_value in self.preparer_ids.items():  # type: ignore
+            if schema_id == elt_key:
+                return elt_value
+        raise KeyError("Didn't find it!!!!!")
+
+    def link_operation_to_preparer(self) -> None:
+        for operation_group in self.operation_groups:
+            for operation in operation_group.operations:
+                preparer = self._lookup_preparer(id(operation.yaml_data))
+                if isinstance(operation, LROOperation):
+                    preparer.name = preparer.name[:preparer.name.rfind("_request")] + "_initial" + "_request"
+                operation.preparer = preparer

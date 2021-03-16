@@ -20,25 +20,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class IncorrectReturnedErrorModelOperationsMixin:
-    def _get_incorrect_error_from_server_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/incorrectError")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_incorrect_error_from_server(self, **kwargs) -> None:
         """Get an error response from the server that is not as described in our Error object. Want to
@@ -53,9 +41,10 @@ class IncorrectReturnedErrorModelOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_incorrect_error_from_server_request(
+        request = prepare_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,21 +48,6 @@ class HttpSuccessOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head200_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head200(self, **kwargs) -> None:
         """Return 200 status code if successful.
@@ -75,7 +61,8 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -91,21 +78,6 @@ class HttpSuccessOperations:
 
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _get200_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200(self, **kwargs) -> bool:
         """Get 200 success.
@@ -119,7 +91,8 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_request(template_url=self.get200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_get200_request(template_url=self.get200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -139,21 +112,6 @@ class HttpSuccessOperations:
 
     get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _options200_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.options(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def options200(self, **kwargs) -> bool:
         """Options 200 success.
@@ -167,7 +125,8 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options200_request(template_url=self.options200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_options200_request(template_url=self.options200.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -187,25 +146,6 @@ class HttpSuccessOperations:
 
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _put200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
         """Put boolean value true returning 200 success.
@@ -224,7 +164,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put200_request(body=boolean_value, template_url=self.put200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put200_request(
+            body=boolean_value, template_url=self.put200.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -239,25 +182,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
-
-    def _patch200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def patch200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -277,7 +201,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch200_request(body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_patch200_request(
+            body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,25 +219,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
-
-    def _post200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -330,7 +238,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post200_request(body=boolean_value, template_url=self.post200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post200_request(
+            body=boolean_value, template_url=self.post200.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -345,25 +256,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
-
-    def _delete200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def delete200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -383,7 +275,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete200_request(body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_delete200_request(
+            body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -398,25 +293,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
-
-    def _put201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/201")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put201(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -436,7 +312,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put201_request(body=boolean_value, template_url=self.put201.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put201_request(
+            body=boolean_value, template_url=self.put201.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -451,25 +330,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
-
-    def _post201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/201")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post201(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -489,7 +349,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post201_request(body=boolean_value, template_url=self.post201.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post201_request(
+            body=boolean_value, template_url=self.post201.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -504,25 +367,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
-
-    def _put202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/202")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -542,7 +386,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put202_request(body=boolean_value, template_url=self.put202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put202_request(
+            body=boolean_value, template_url=self.put202.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -557,25 +404,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
-
-    def _patch202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/202")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def patch202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -595,7 +423,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch202_request(body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_patch202_request(
+            body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -610,25 +441,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
-
-    def _post202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/202")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -648,7 +460,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post202_request(body=boolean_value, template_url=self.post202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post202_request(
+            body=boolean_value, template_url=self.post202.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -663,25 +478,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
-
-    def _delete202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/202")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def delete202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -701,7 +497,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete202_request(body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_delete202_request(
+            body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -717,21 +516,6 @@ class HttpSuccessOperations:
 
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _head204_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head204(self, **kwargs) -> None:
         """Return 204 status code if successful.
@@ -745,7 +529,8 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -760,25 +545,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
-
-    def _put204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -798,7 +564,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._put204_request(body=boolean_value, template_url=self.put204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put204_request(
+            body=boolean_value, template_url=self.put204.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -813,25 +582,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
-
-    def _patch204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def patch204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -851,7 +601,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._patch204_request(body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_patch204_request(
+            body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -866,25 +619,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
-
-    def _post204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -904,7 +638,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._post204_request(body=boolean_value, template_url=self.post204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post204_request(
+            body=boolean_value, template_url=self.post204.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -919,25 +656,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
 
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
-
-    def _delete204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def delete204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -957,7 +675,10 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = self._delete204_request(body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_delete204_request(
+            body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -973,21 +694,6 @@ class HttpSuccessOperations:
 
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _head404_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/success/404")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head404(self, **kwargs) -> None:
         """Return 404 status code.
@@ -1001,7 +707,8 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

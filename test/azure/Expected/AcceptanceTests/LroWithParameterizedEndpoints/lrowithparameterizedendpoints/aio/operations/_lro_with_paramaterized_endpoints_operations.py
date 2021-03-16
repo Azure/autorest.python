@@ -22,42 +22,26 @@ from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class LROWithParamaterizedEndpointsOperationsMixin:
-    def _poll_with_parameterized_endpoints_initial_request(self, account_name: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lroParameterizedEndpoints")
-        path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._poll_with_parameterized_endpoints_initial_request(
-            account_name=account_name,
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-            **kwargs
+        request = prepare_poll_with_parameterized_endpoints_initial_request(
+            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
         )
+        path_format_arguments = {
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

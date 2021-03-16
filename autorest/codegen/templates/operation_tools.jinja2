@@ -15,10 +15,12 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
 {{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get method signature #}
-{% macro _method_signature(operation, parameters, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
+{% macro _method_signature(operation, parameters, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None, want_self=True) %}
 {% import 'keywords.jinja2' as keywords with context %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(
+{% if want_self %}
     self,
+{% endif %}
 {% for param_signature in parameters.method_signature(async_mode) %}
     {{ param_signature }}
 {% endfor %}
@@ -29,8 +31,8 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro operation_method_signature(operation, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {{ _method_signature(operation, operation.parameters, operation.python_name, async_mode, coroutine, return_type_wrapper, return_type) }}{% endmacro %}
 
-{% macro preparer_method_signature(operation, preparer, async_mode) %}
-{{ _method_signature(operation, preparer.parameters, preparer.name, async_mode, coroutine=False, return_type_wrapper="", return_type="HttpRequest") }}{% endmacro %}
+{% macro preparer_method_signature(preparer, is_python_3_file) %}
+{{ _method_signature(None, preparer.parameters, preparer.name, is_python_3_file, coroutine=False, return_type_wrapper="", return_type="HttpRequest", want_self=False) }}{% endmacro %}
 
 {# content type docstring #}
 {% macro content_type_docstring(preparer) %}
@@ -166,6 +168,7 @@ if {{ preparer.parameters.body[0].serialized_name }} is not None:
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(preparer, schema_request) %}
+body_content_kwargs = {}  # type: Dict[str, Any]
 {% if preparer.multipart %}
 body_content_kwargs['form_content'] = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.is_stream_request %}
@@ -174,12 +177,8 @@ body_content_kwargs['stream_content'] = {{ preparer.parameters.body[0].serialize
 body_content_kwargs['content'] = body{% endif %}{% endmacro %}
 
 {# write body parameters #}
-{% macro body_parameters(preparer, http_verb=None, returns_preparer=True) %}
-{% set body_content_kwargs_signature = "" %}
-{% set form_content_kwarg_signature = "" %}
+{% macro body_parameters(preparer) %}
 {% if preparer.parameters.has_body %}
-    {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
-body_content_kwargs = {}  # type: Dict[str, Any]
     {% if (preparer.schema_requests | length) == 1 %}
 {{ set_body_content_kwarg(preparer, preparer.schema_requests[0]) }}
     {% else %}
@@ -192,9 +191,14 @@ else:
         "The content_type '{}' is not one of the allowed values: "
         "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
     )
-    {% endif %}
-{% endif %}
-{{ "return" if returns_preparer else "preparer =" }} self._client.{{ http_verb if http_verb else preparer.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
+    {% endif %}{% endif %}{% endmacro %}
+
+{# create HTTPRequest #}
+{% macro create_http_request(preparer) %}
+{% set body_content_kwargs_signature = ", **body_content_kwargs" if preparer.parameters.has_body else "" %}
+return _request("{{ preparer.method }}", url, query_parameters, header_parameters{{ body_content_kwargs_signature }})
+{% endmacro %}
+
 
 {% macro handle_error_response(code_model, operation) %}
 if response.status_code not in {{ operation.success_status_code|string() }}:
@@ -238,7 +242,7 @@ if cls:
 
 return deserialized
 {% endif %}
-{% if operation.preparer.method == 'head' and code_model.options['head_as_boolean'] %}
+{% if operation.preparer.method == 'HEAD' and code_model.options['head_as_boolean'] %}
 return 200 <= response.status_code <= 299
 {% endif %}{% endmacro %}
 
@@ -275,7 +279,7 @@ _body = {
         {% endfor %}
     {% endif %}
 {% endif %}
-request = self.{{ preparer.name }}(
+request = {{ preparer.name }}(
 {% if preparer.parameters.method %}
     {% for parameter in preparer.parameters.method %}
     {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
@@ -284,4 +288,8 @@ request = self.{{ preparer.name }}(
     template_url={{ template_url }},
     **kwargs
 )
+{% if operation.parameters.path %}
+{{ path_format_arguments(operation.parameters.path) }}
+{% endif %}
+request.url = self._client.format_url(request.url{{ ", **path_format_arguments" if operation.parameters.path else "" }})
 kwargs.pop("content_type", None){% endmacro %}

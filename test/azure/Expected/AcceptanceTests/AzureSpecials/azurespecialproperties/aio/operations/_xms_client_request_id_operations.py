@@ -21,6 +21,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,19 +49,6 @@ class XMsClientRequestIdOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/method/")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get(self, **kwargs) -> None:
         """Get method that overwrites x-ms-client-request header with value
@@ -75,7 +63,8 @@ class XMsClientRequestIdOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = prepare_xmsclientrequestid_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -89,24 +78,6 @@ class XMsClientRequestIdOperations:
             return cls(pipeline_response, None, {})
 
     get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}  # type: ignore
-
-    def _param_get_request(self, x_ms_client_request_id: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["x-ms-client-request-id"] = self._serialize.header(
-            "x_ms_client_request_id", x_ms_client_request_id, "str"
-        )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_get(self, x_ms_client_request_id: str, **kwargs) -> None:
@@ -125,9 +96,10 @@ class XMsClientRequestIdOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_get_request(
+        request = prepare_xmsclientrequestid_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id, template_url=self.param_get.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

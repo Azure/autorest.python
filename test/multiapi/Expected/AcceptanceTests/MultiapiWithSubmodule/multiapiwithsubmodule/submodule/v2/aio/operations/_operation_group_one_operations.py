@@ -14,6 +14,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -40,31 +41,6 @@ class OperationGroupOneOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _test_two_request(
-        self,
-        body: Optional["_models.ModelTwo"] = None,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "2.0.0"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelTwo"] = None,
@@ -88,11 +64,12 @@ class OperationGroupOneOperations:
         if parameter_one is not None:
             parameter_one = self._serialize.body(parameter_one, 'ModelTwo')
 
-        request = self._test_two_request(
+        request = prepare_operationgroupone_test_two_request(
             body=parameter_one,
             template_url=self.test_two.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -112,26 +89,6 @@ class OperationGroupOneOperations:
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
 
-    def _test_three_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "2.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/one/testThreeEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     async def test_three(
         self,
         **kwargs
@@ -149,10 +106,11 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_three_request(
+        request = prepare_operationgroupone_test_three_request(
             template_url=self.test_three.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -20,6 +20,8 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
+from .._protocol import *
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
@@ -35,7 +37,7 @@ class MultiapiServiceClientOperationsMixin(object):
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
-        :type product: ~azure.multiapi.sample.v1.models.Product
+        :type product: ~azure.multiapi.sample.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: Pass in True if you'd like the ARMPolling polling method,
@@ -43,7 +45,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~azure.multiapi.sample.v1.models.Product]
+        :rtype: ~azure.core.polling.LROPoller[~azure.multiapi.sample.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro')
@@ -70,7 +72,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :param client_request_id:
         :type client_request_id: str
         :param test_lro_and_paging_options: Parameter group.
-        :type test_lro_and_paging_options: ~azure.multiapi.sample.v1.models.TestLroAndPagingOptions
+        :type test_lro_and_paging_options: ~azure.multiapi.sample.models.TestLroAndPagingOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: Pass in True if you'd like the ARMPolling polling method,
@@ -78,7 +80,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~azure.multiapi.sample.v1.models.PagingResult]]
+        :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~azure.multiapi.sample.models.PagingResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro_and_paging')
@@ -171,7 +173,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~azure.multiapi.sample.v3.models.PagingResult]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.multiapi.sample.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('test_paging')

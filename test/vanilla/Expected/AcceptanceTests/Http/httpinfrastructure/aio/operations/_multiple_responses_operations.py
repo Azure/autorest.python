@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,21 +48,6 @@ class MultipleResponsesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get200_model204_no_model_default_error200_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/200/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error200_valid(self, **kwargs) -> Optional["_models.MyException"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -75,9 +61,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model204_no_model_default_error200_valid_request(
+        request = prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request(
             template_url=self.get200_model204_no_model_default_error200_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -99,21 +86,6 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
 
-    def _get200_model204_no_model_default_error204_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/204/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error204_valid(self, **kwargs) -> Optional["_models.MyException"]:
         """Send a 204 response with no payload.
@@ -127,9 +99,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model204_no_model_default_error204_valid_request(
+        request = prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request(
             template_url=self.get200_model204_no_model_default_error204_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -151,21 +124,6 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
 
-    def _get200_model204_no_model_default_error201_invalid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/201/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error201_invalid(self, **kwargs) -> Optional["_models.MyException"]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
@@ -179,9 +137,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model204_no_model_default_error201_invalid_request(
+        request = prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request(
             template_url=self.get200_model204_no_model_default_error201_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -203,21 +162,6 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
 
-    def _get200_model204_no_model_default_error202_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/202/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error202_none(self, **kwargs) -> Optional["_models.MyException"]:
         """Send a 202 response with no payload:.
@@ -231,9 +175,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model204_no_model_default_error202_none_request(
+        request = prepare_multipleresponses_get200_model204_no_model_default_error202_none_request(
             template_url=self.get200_model204_no_model_default_error202_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -255,21 +200,6 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
 
-    def _get200_model204_no_model_default_error400_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/400/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error400_valid(self, **kwargs) -> Optional["_models.MyException"]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
@@ -283,9 +213,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model204_no_model_default_error400_valid_request(
+        request = prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request(
             template_url=self.get200_model204_no_model_default_error400_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -307,21 +238,6 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
 
-    def _get200_model201_model_default_error200_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/B/default/Error/response/200/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model201_model_default_error200_valid(self, **kwargs) -> Union["_models.MyException", "_models.B"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -335,9 +251,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model201_model_default_error200_valid_request(
+        request = prepare_multipleresponses_get200_model201_model_default_error200_valid_request(
             template_url=self.get200_model201_model_default_error200_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -361,21 +278,6 @@ class MultipleResponsesOperations:
 
     get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
 
-    def _get200_model201_model_default_error201_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/B/default/Error/response/201/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model201_model_default_error201_valid(self, **kwargs) -> Union["_models.MyException", "_models.B"]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
@@ -389,9 +291,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model201_model_default_error201_valid_request(
+        request = prepare_multipleresponses_get200_model201_model_default_error201_valid_request(
             template_url=self.get200_model201_model_default_error201_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -415,21 +318,6 @@ class MultipleResponsesOperations:
 
     get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
 
-    def _get200_model201_model_default_error400_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/B/default/Error/response/400/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model201_model_default_error400_valid(self, **kwargs) -> Union["_models.MyException", "_models.B"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -443,9 +331,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model201_model_default_error400_valid_request(
+        request = prepare_multipleresponses_get200_model201_model_default_error400_valid_request(
             template_url=self.get200_model201_model_default_error400_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -469,21 +358,6 @@ class MultipleResponsesOperations:
 
     get200_model201_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error200_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error200_valid(
         self, **kwargs
@@ -499,9 +373,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a201_model_c404_model_d_default_error200_valid_request(
+        request = prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -528,21 +403,6 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error201_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error201_valid(
         self, **kwargs
@@ -558,9 +418,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a201_model_c404_model_d_default_error201_valid_request(
+        request = prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -587,21 +448,6 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error404_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error404_valid(
         self, **kwargs
@@ -617,9 +463,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a201_model_c404_model_d_default_error404_valid_request(
+        request = prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -646,21 +493,6 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error400_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error400_valid(
         self, **kwargs
@@ -676,9 +508,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a201_model_c404_model_d_default_error400_valid_request(
+        request = prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -705,21 +538,6 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
 
-    def _get202_none204_none_default_error202_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/Error/response/202/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(self, **kwargs) -> None:
         """Send a 202 response with no payload.
@@ -733,9 +551,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_error202_none_request(
+        request = prepare_multipleresponses_get202_none204_none_default_error202_none_request(
             template_url=self.get202_none204_none_default_error202_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -751,21 +570,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
-    def _get202_none204_none_default_error204_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/Error/response/204/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_error204_none(self, **kwargs) -> None:
         """Send a 204 response with no payload.
@@ -779,9 +583,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_error204_none_request(
+        request = prepare_multipleresponses_get202_none204_none_default_error204_none_request(
             template_url=self.get202_none204_none_default_error204_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -797,21 +602,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
-    def _get202_none204_none_default_error400_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/Error/response/400/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_error400_valid(self, **kwargs) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -825,9 +615,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_error400_valid_request(
+        request = prepare_multipleresponses_get202_none204_none_default_error400_valid_request(
             template_url=self.get202_none204_none_default_error400_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -843,19 +634,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
-    def _get202_none204_none_default_none202_invalid_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_none202_invalid(self, **kwargs) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
@@ -869,9 +647,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_none202_invalid_request(
+        request = prepare_multipleresponses_get202_none204_none_default_none202_invalid_request(
             template_url=self.get202_none204_none_default_none202_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -886,19 +665,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
-    def _get202_none204_none_default_none204_none_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_none204_none(self, **kwargs) -> None:
         """Send a 204 response with no payload.
@@ -912,9 +678,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_none204_none_request(
+        request = prepare_multipleresponses_get202_none204_none_default_none204_none_request(
             template_url=self.get202_none204_none_default_none204_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -929,19 +696,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
-    def _get202_none204_none_default_none400_none_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_none400_none(self, **kwargs) -> None:
         """Send a 400 response with no payload.
@@ -955,9 +709,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_none400_none_request(
+        request = prepare_multipleresponses_get202_none204_none_default_none400_none_request(
             template_url=self.get202_none204_none_default_none400_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -972,19 +727,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
-    def _get202_none204_none_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get202_none204_none_default_none400_invalid(self, **kwargs) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
@@ -998,9 +740,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get202_none204_none_default_none400_invalid_request(
+        request = prepare_multipleresponses_get202_none204_none_default_none400_invalid_request(
             template_url=self.get202_none204_none_default_none400_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1015,21 +758,6 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
 
-    def _get_default_model_a200_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/A/response/200/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_model_a200_valid(self, **kwargs) -> "_models.MyException":
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -1043,9 +771,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_model_a200_valid_request(
+        request = prepare_multipleresponses_get_default_model_a200_valid_request(
             template_url=self.get_default_model_a200_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1064,21 +793,6 @@ class MultipleResponsesOperations:
 
     get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
 
-    def _get_default_model_a200_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/A/response/200/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_model_a200_none(self, **kwargs) -> "_models.MyException":
         """Send a 200 response with no payload.
@@ -1092,9 +806,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_model_a200_none_request(
+        request = prepare_multipleresponses_get_default_model_a200_none_request(
             template_url=self.get_default_model_a200_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1113,21 +828,6 @@ class MultipleResponsesOperations:
 
     get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
 
-    def _get_default_model_a400_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/A/response/400/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_model_a400_valid(self, **kwargs) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
@@ -1141,9 +841,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_model_a400_valid_request(
+        request = prepare_multipleresponses_get_default_model_a400_valid_request(
             template_url=self.get_default_model_a400_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1159,21 +860,6 @@ class MultipleResponsesOperations:
 
     get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
-    def _get_default_model_a400_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/A/response/400/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_model_a400_none(self, **kwargs) -> None:
         """Send a 400 response with no payload.
@@ -1187,9 +873,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_model_a400_none_request(
+        request = prepare_multipleresponses_get_default_model_a400_none_request(
             template_url=self.get_default_model_a400_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1205,19 +892,6 @@ class MultipleResponsesOperations:
 
     get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
-    def _get_default_none200_invalid_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_none200_invalid(self, **kwargs) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
@@ -1231,9 +905,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_none200_invalid_request(
+        request = prepare_multipleresponses_get_default_none200_invalid_request(
             template_url=self.get_default_none200_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1248,19 +923,6 @@ class MultipleResponsesOperations:
 
     get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
-    def _get_default_none200_none_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_none200_none(self, **kwargs) -> None:
         """Send a 200 response with no payload.
@@ -1274,9 +936,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_none200_none_request(
+        request = prepare_multipleresponses_get_default_none200_none_request(
             template_url=self.get_default_none200_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1291,19 +954,6 @@ class MultipleResponsesOperations:
 
     get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
-    def _get_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_none400_invalid(self, **kwargs) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
@@ -1317,9 +967,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_none400_invalid_request(
+        request = prepare_multipleresponses_get_default_none400_invalid_request(
             template_url=self.get_default_none400_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1334,19 +985,6 @@ class MultipleResponsesOperations:
 
     get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
-    def _get_default_none400_none_request(self, **kwargs) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_default_none400_none(self, **kwargs) -> None:
         """Send a 400 response with no payload.
@@ -1360,9 +998,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_default_none400_none_request(
+        request = prepare_multipleresponses_get_default_none400_none_request(
             template_url=self.get_default_none400_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1376,21 +1015,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, None, {})
 
     get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
-
-    def _get200_model_a200_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/200/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get200_model_a200_none(self, **kwargs) -> "_models.MyException":
@@ -1406,9 +1030,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a200_none_request(
+        request = prepare_multipleresponses_get200_model_a200_none_request(
             template_url=self.get200_model_a200_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1427,21 +1052,6 @@ class MultipleResponsesOperations:
 
     get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
 
-    def _get200_model_a200_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/200/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a200_valid(self, **kwargs) -> "_models.MyException":
         """Send a 200 response with payload {'statusCode': '200'}.
@@ -1455,9 +1065,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a200_valid_request(
+        request = prepare_multipleresponses_get200_model_a200_valid_request(
             template_url=self.get200_model_a200_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1476,21 +1087,6 @@ class MultipleResponsesOperations:
 
     get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
 
-    def _get200_model_a200_invalid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/200/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a200_invalid(self, **kwargs) -> "_models.MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
@@ -1504,9 +1100,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a200_invalid_request(
+        request = prepare_multipleresponses_get200_model_a200_invalid_request(
             template_url=self.get200_model_a200_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1525,21 +1122,6 @@ class MultipleResponsesOperations:
 
     get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
 
-    def _get200_model_a400_none_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/400/none")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a400_none(self, **kwargs) -> "_models.MyException":
         """Send a 400 response with no payload client should treat as an http error with no error model.
@@ -1553,9 +1135,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a400_none_request(
+        request = prepare_multipleresponses_get200_model_a400_none_request(
             template_url=self.get200_model_a400_none.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1574,21 +1157,6 @@ class MultipleResponsesOperations:
 
     get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
 
-    def _get200_model_a400_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/400/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a400_valid(self, **kwargs) -> "_models.MyException":
         """Send a 200 response with payload {'statusCode': '400'}.
@@ -1602,9 +1170,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a400_valid_request(
+        request = prepare_multipleresponses_get200_model_a400_valid_request(
             template_url=self.get200_model_a400_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1623,21 +1192,6 @@ class MultipleResponsesOperations:
 
     get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
 
-    def _get200_model_a400_invalid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/400/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a400_invalid(self, **kwargs) -> "_models.MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
@@ -1651,9 +1205,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a400_invalid_request(
+        request = prepare_multipleresponses_get200_model_a400_invalid_request(
             template_url=self.get200_model_a400_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1672,21 +1227,6 @@ class MultipleResponsesOperations:
 
     get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
 
-    def _get200_model_a202_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/payloads/200/A/response/202/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get200_model_a202_valid(self, **kwargs) -> "_models.MyException":
         """Send a 202 response with payload {'statusCode': '202'}.
@@ -1700,9 +1240,10 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_model_a202_valid_request(
+        request = prepare_multipleresponses_get200_model_a202_valid_request(
             template_url=self.get200_model_a202_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

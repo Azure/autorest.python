@@ -14,6 +14,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -25,7 +26,7 @@ class OperationGroupTwoOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.v2.models
+    :type models: ~azure.multiapi.sample.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -39,28 +40,6 @@ class OperationGroupTwoOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-
-    def _test_four_request(
-        self,
-        parameter_one: bool,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "2.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['parameterOne'] = self._serialize.query("parameter_one", parameter_one, 'bool')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     async def test_four(
         self,
@@ -82,11 +61,12 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_four_request(
+        request = prepare_operationgrouptwo_test_four_request(
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -53,11 +53,12 @@ class OperationGroup(BaseModel):
                 file_import.add_from_import(
                     "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
                 )
+        local_path = "..." if async_mode else ".."
         if has_schemas:
-            if async_mode:
-                file_import.add_from_import("...", "models", ImportType.LOCAL, alias="_models")
-            else:
-                file_import.add_from_import("..", "models", ImportType.LOCAL, alias="_models")
+            file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
+
+        # import preparers
+        file_import.add_from_import(local_path + "_protocol", "*", ImportType.LOCAL)
         return file_import
 
     @property

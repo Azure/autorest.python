@@ -86,6 +86,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
 
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
+        return f'self._serialize.{function_name}({parameters_line})'
+
     def build_serialize_data_call(self, function_name: str) -> str:
 
         optional_parameters = []
@@ -127,7 +131,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         ]
         parameters_line = ', '.join(parameters)
 
-        serialize_line = f'self._serialize.{function_name}({parameters_line})'
+        serialize_line = self.serialize_line(function_name, parameters_line)
 
         if self.explode:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
@@ -178,7 +182,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def in_method_code(self) -> bool:
-        return not (isinstance(self.schema, ConstantSchema) and self.location == ParameterLocation.Other)
+        return not (
+            isinstance(self.schema, ConstantSchema) and
+            self.location == ParameterLocation.Other or
+            self.rest_api_name == '$host'
+        )
 
     @property
     def implementation(self) -> str:

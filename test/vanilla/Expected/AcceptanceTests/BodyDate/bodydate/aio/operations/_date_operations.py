@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,21 +49,6 @@ class DateOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_null(self, **kwargs) -> Optional[datetime.date]:
         """Get null date value.
@@ -76,7 +62,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_date_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -96,21 +83,6 @@ class DateOperations:
 
     get_null.metadata = {"url": "/date/null"}  # type: ignore
 
-    def _get_invalid_date_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/invaliddate")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_invalid_date(self, **kwargs) -> datetime.date:
         """Get invalid date value.
@@ -124,7 +96,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_invalid_date_request(template_url=self.get_invalid_date.metadata["url"], **kwargs)
+        request = prepare_date_get_invalid_date_request(template_url=self.get_invalid_date.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -144,21 +117,6 @@ class DateOperations:
 
     get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
-    def _get_overflow_date_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/overflowdate")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_overflow_date(self, **kwargs) -> datetime.date:
         """Get overflow date value.
@@ -172,7 +130,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_overflow_date_request(template_url=self.get_overflow_date.metadata["url"], **kwargs)
+        request = prepare_date_get_overflow_date_request(template_url=self.get_overflow_date.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -192,21 +151,6 @@ class DateOperations:
 
     get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
-    def _get_underflow_date_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/underflowdate")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_underflow_date(self, **kwargs) -> datetime.date:
         """Get underflow date value.
@@ -220,7 +164,10 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_underflow_date_request(template_url=self.get_underflow_date.metadata["url"], **kwargs)
+        request = prepare_date_get_underflow_date_request(
+            template_url=self.get_underflow_date.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -240,25 +187,6 @@ class DateOperations:
 
     get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
-    def _put_max_date_request(self, body: datetime.date, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/max")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_max_date(self, date_body: datetime.date, **kwargs) -> None:
         """Put max date value 9999-12-31.
@@ -276,7 +204,10 @@ class DateOperations:
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = self._put_max_date_request(body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs)
+        request = prepare_date_put_max_date_request(
+            body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,21 +223,6 @@ class DateOperations:
 
     put_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _get_max_date_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/max")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_max_date(self, **kwargs) -> datetime.date:
         """Get max date value 9999-12-31.
@@ -320,7 +236,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_max_date_request(template_url=self.get_max_date.metadata["url"], **kwargs)
+        request = prepare_date_get_max_date_request(template_url=self.get_max_date.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -340,25 +257,6 @@ class DateOperations:
 
     get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _put_min_date_request(self, body: datetime.date, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/min")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_min_date(self, date_body: datetime.date, **kwargs) -> None:
         """Put min date value 0000-01-01.
@@ -376,7 +274,10 @@ class DateOperations:
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = self._put_min_date_request(body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs)
+        request = prepare_date_put_min_date_request(
+            body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -392,21 +293,6 @@ class DateOperations:
 
     put_min_date.metadata = {"url": "/date/min"}  # type: ignore
 
-    def _get_min_date_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/date/min")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_min_date(self, **kwargs) -> datetime.date:
         """Get min date value 0000-01-01.
@@ -420,7 +306,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_min_date_request(template_url=self.get_min_date.metadata["url"], **kwargs)
+        request = prepare_date_get_min_date_request(template_url=self.get_min_date.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

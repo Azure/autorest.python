@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,25 +48,6 @@ class ImplicitOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_required_path_request(self, path_parameter: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
-        path_format_arguments = {
-            "pathParameter": self._serialize.url("path_parameter", path_parameter, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_required_path(self, path_parameter: str, **kwargs) -> None:
         """Test implicitly required path parameter.
@@ -81,9 +63,10 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_required_path_request(
+        request = prepare_implicit_get_required_path_request(
             path_parameter=path_parameter, template_url=self.get_required_path.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -98,23 +81,6 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
-
-    def _put_optional_query_request(self, query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if query_parameter is not None:
-            query_parameters["queryParameter"] = self._serialize.query("query_parameter", query_parameter, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_optional_query(self, query_parameter: Optional[str] = None, **kwargs) -> None:
@@ -131,9 +97,10 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_optional_query_request(
+        request = prepare_implicit_put_optional_query_request(
             query_parameter=query_parameter, template_url=self.put_optional_query.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -148,23 +115,6 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
-
-    def _put_optional_header_request(self, query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        if query_parameter is not None:
-            header_parameters["queryParameter"] = self._serialize.header("query_parameter", query_parameter, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_optional_header(self, query_parameter: Optional[str] = None, **kwargs) -> None:
@@ -181,9 +131,10 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_optional_header_request(
+        request = prepare_implicit_put_optional_header_request(
             query_parameter=query_parameter, template_url=self.put_optional_header.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -198,25 +149,6 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
-
-    def _put_optional_body_request(self, body: Optional[str] = None, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_optional_body(self, body_parameter: Optional[str] = None, **kwargs) -> None:
@@ -236,9 +168,10 @@ class ImplicitOperations:
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "str")
 
-        request = self._put_optional_body_request(
+        request = prepare_implicit_put_optional_body_request(
             body=body_parameter, template_url=self.put_optional_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -253,26 +186,6 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
-
-    def _put_optional_binary_body_request(self, body: Optional[IO] = None, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/octet-stream")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["stream_content"] = body
-
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs) -> None:
@@ -289,9 +202,10 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_optional_binary_body_request(
+        request = prepare_implicit_put_optional_binary_body_request(
             body=body_parameter, template_url=self.put_optional_binary_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -307,27 +221,6 @@ class ImplicitOperations:
 
     put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
 
-    def _get_required_global_path_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
-        path_format_arguments = {
-            "required-global-path": self._serialize.url(
-                "self._config.required_global_path", self._config.required_global_path, "str"
-            ),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_required_global_path(self, **kwargs) -> None:
         """Test implicitly required path parameter.
@@ -341,9 +234,12 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_required_global_path_request(
-            template_url=self.get_required_global_path.metadata["url"], **kwargs
+        request = prepare_implicit_get_required_global_path_request(
+            required_global_path=self._config.required_global_path,
+            template_url=self.get_required_global_path.metadata["url"],
+            **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -359,24 +255,6 @@ class ImplicitOperations:
 
     get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
-    def _get_required_global_query_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/global/required/query")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["required-global-query"] = self._serialize.query(
-            "self._config.required_global_query", self._config.required_global_query, "str"
-        )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_required_global_query(self, **kwargs) -> None:
         """Test implicitly required query parameter.
@@ -390,9 +268,12 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_required_global_query_request(
-            template_url=self.get_required_global_query.metadata["url"], **kwargs
+        request = prepare_implicit_get_required_global_query_request(
+            required_global_query=self._config.required_global_query,
+            template_url=self.get_required_global_query.metadata["url"],
+            **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -408,25 +289,6 @@ class ImplicitOperations:
 
     get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
 
-    def _get_optional_global_query_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/global/optional/query")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if self._config.optional_global_query is not None:
-            query_parameters["optional-global-query"] = self._serialize.query(
-                "self._config.optional_global_query", self._config.optional_global_query, "int"
-            )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_optional_global_query(self, **kwargs) -> None:
         """Test implicitly optional query parameter.
@@ -440,9 +302,12 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_optional_global_query_request(
-            template_url=self.get_optional_global_query.metadata["url"], **kwargs
+        request = prepare_implicit_get_optional_global_query_request(
+            optional_global_query=self._config.optional_global_query,
+            template_url=self.get_optional_global_query.metadata["url"],
+            **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

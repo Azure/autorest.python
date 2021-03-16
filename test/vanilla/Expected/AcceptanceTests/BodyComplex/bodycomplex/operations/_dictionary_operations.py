@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,24 +52,6 @@ class DictionaryOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_valid(
         self, **kwargs  # type: Any
@@ -85,7 +68,8 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = prepare_dictionary_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -104,30 +88,6 @@ class DictionaryOperations(object):
         return deserialized
 
     get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
-
-    def _put_valid_request(
-        self,
-        body,  # type: "_models.DictionaryWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_valid(
@@ -152,7 +112,10 @@ class DictionaryOperations(object):
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        request = self._put_valid_request(body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = prepare_dictionary_put_valid_request(
+            body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -167,24 +130,6 @@ class DictionaryOperations(object):
             return cls(pipeline_response, None, {})
 
     put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
-
-    def _get_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_empty(
@@ -202,7 +147,8 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_dictionary_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -221,30 +167,6 @@ class DictionaryOperations(object):
         return deserialized
 
     get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
-
-    def _put_empty_request(
-        self,
-        body,  # type: "_models.DictionaryWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty(
@@ -269,7 +191,10 @@ class DictionaryOperations(object):
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        request = self._put_empty_request(body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs)
+        request = prepare_dictionary_put_empty_request(
+            body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -284,24 +209,6 @@ class DictionaryOperations(object):
             return cls(pipeline_response, None, {})
 
     put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
-
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/dictionary/typed/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_null(
@@ -319,7 +226,8 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_dictionary_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -339,24 +247,6 @@ class DictionaryOperations(object):
 
     get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
 
-    def _get_not_provided_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/dictionary/typed/notprovided")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_not_provided(
         self, **kwargs  # type: Any
@@ -373,7 +263,10 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
+        request = prepare_dictionary_get_not_provided_request(
+            template_url=self.get_not_provided.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

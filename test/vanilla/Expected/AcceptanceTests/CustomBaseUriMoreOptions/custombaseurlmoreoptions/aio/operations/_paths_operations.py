@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,35 +48,6 @@ class PathsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_request(
-        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
-    ) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
-        path_format_arguments = {
-            "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
-            "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
-            "dnsSuffix": self._serialize.url(
-                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
-            ),
-            "keyName": self._serialize.url("key_name", key_name, "str"),
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if key_version is not None:
-            query_parameters["keyVersion"] = self._serialize.query("key_version", key_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_empty(
         self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
@@ -99,14 +71,21 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(
-            vault=vault,
-            secret=secret,
+        request = prepare_paths_get_empty_request(
             key_name=key_name,
+            subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
             **kwargs
         )
+        path_format_arguments = {
+            "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
+            "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
+            "dnsSuffix": self._serialize.url(
+                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

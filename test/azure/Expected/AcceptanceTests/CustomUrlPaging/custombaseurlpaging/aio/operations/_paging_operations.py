@@ -22,6 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,26 +50,6 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_pages_partial_url_request(self, account_name: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
-        path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_pages_partial_url(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
@@ -87,14 +68,24 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._get_pages_partial_url_request(
-                    account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
+                request = prepare_paging_get_pages_partial_url_request(
+                    template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
+                path_format_arguments = {
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = self._get_pages_partial_url_request(
-                    account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
+                request = prepare_paging_get_pages_partial_url_request(
+                    template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
+                path_format_arguments = {
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -128,47 +119,6 @@ class PagingOperations:
 
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
-    def _get_pages_partial_url_operation_request(self, account_name: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
-        path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
-    def _get_pages_partial_url_operation_next_request(self, account_name: str, next_link: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/paging/customurl/{nextLink}")
-        path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-            "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
@@ -186,19 +136,24 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._get_pages_partial_url_operation_request(
-                    account_name=account_name,
-                    template_url=self.get_pages_partial_url_operation.metadata["url"],
-                    **kwargs
+                request = prepare_paging_get_pages_partial_url_operation_request(
+                    template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
                 )
+                path_format_arguments = {
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = self._get_pages_partial_url_operation_next_request(
-                    account_name=account_name,
-                    next_link=next_link,
-                    template_url="/paging/customurl/{nextLink}",
-                    **kwargs
+                request = _get_pages_partial_url_operation_next_request(
+                    next_link=next_link, template_url="/paging/customurl/{nextLink}", **kwargs
                 )
+                path_format_arguments = {
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             return request
 

@@ -71,12 +71,7 @@ class AutoRestUrlTestService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.HttpResponse
         """
-        path_format_arguments = {
-            "globalStringPath": self._serialize.url(
-                "self._config.global_string_path", self._config.global_string_path, "str"
-            ),
-        }
-        http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
+        http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)
         pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
         return pipeline_response.http_response

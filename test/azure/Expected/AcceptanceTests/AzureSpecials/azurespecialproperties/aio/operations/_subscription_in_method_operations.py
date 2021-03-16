@@ -21,6 +21,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,28 +49,6 @@ class SubscriptionInMethodOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _post_method_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def post_method_local_valid(self, subscription_id: str, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
@@ -87,9 +66,10 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_method_local_valid_request(
+        request = prepare_subscriptioninmethod_post_method_local_valid_request(
             subscription_id=subscription_id, template_url=self.post_method_local_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -104,27 +84,6 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})
 
     post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
-
-    def _post_method_local_null_request(self, subscription_id: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url", "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def post_method_local_null(self, subscription_id: str, **kwargs) -> None:
@@ -143,9 +102,10 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_method_local_null_request(
+        request = prepare_subscriptioninmethod_post_method_local_null_request(
             subscription_id=subscription_id, template_url=self.post_method_local_null.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -160,28 +120,6 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})
 
     post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
-
-    def _post_path_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def post_path_local_valid(self, subscription_id: str, **kwargs) -> None:
@@ -199,9 +137,10 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_path_local_valid_request(
+        request = prepare_subscriptioninmethod_post_path_local_valid_request(
             subscription_id=subscription_id, template_url=self.post_path_local_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -216,28 +155,6 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})
 
     post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
-
-    def _post_swagger_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def post_swagger_local_valid(self, subscription_id: str, **kwargs) -> None:
@@ -256,9 +173,10 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_swagger_local_valid_request(
+        request = prepare_subscriptioninmethod_post_swagger_local_valid_request(
             subscription_id=subscription_id, template_url=self.post_swagger_local_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

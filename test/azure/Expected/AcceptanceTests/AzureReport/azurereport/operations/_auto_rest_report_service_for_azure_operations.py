@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,28 +31,6 @@ if TYPE_CHECKING:
 
 
 class AutoRestReportServiceForAzureOperationsMixin(object):
-    def _get_report_request(
-        self,
-        qualifier=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/report/azure")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_report(
         self,
@@ -74,7 +53,10 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_report_request(qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs)
+        request = prepare_get_report_request(
+            qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

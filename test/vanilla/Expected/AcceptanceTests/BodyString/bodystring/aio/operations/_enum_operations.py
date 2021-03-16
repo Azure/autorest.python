@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,21 +48,6 @@ class EnumOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_not_expandable_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/string/enum/notExpandable")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_not_expandable(self, **kwargs) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -75,7 +61,10 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_expandable_request(template_url=self.get_not_expandable.metadata["url"], **kwargs)
+        request = prepare_enum_get_not_expandable_request(
+            template_url=self.get_not_expandable.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -95,25 +84,6 @@ class EnumOperations:
 
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
-    def _put_not_expandable_request(self, body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/string/enum/notExpandable")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -131,9 +101,10 @@ class EnumOperations:
 
         string_body = self._serialize.body(string_body, "str")
 
-        request = self._put_not_expandable_request(
+        request = prepare_enum_put_not_expandable_request(
             body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -149,21 +120,6 @@ class EnumOperations:
 
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
-    def _get_referenced_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/string/enum/Referenced")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_referenced(self, **kwargs) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -177,7 +133,8 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
+        request = prepare_enum_get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -197,25 +154,6 @@ class EnumOperations:
 
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
-    def _put_referenced_request(self, body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/string/enum/Referenced")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -233,9 +171,10 @@ class EnumOperations:
 
         enum_string_body = self._serialize.body(enum_string_body, "str")
 
-        request = self._put_referenced_request(
+        request = prepare_enum_put_referenced_request(
             body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -251,21 +190,6 @@ class EnumOperations:
 
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
-    def _get_referenced_constant_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_referenced_constant(self, **kwargs) -> "_models.RefColorConstant":
         """Get value 'green-color' from the constant.
@@ -279,9 +203,10 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_referenced_constant_request(
+        request = prepare_enum_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -301,25 +226,6 @@ class EnumOperations:
 
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
-    def _put_referenced_constant_request(self, body: "_models.RefColorConstant", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs) -> None:
         """Sends value 'green-color' from a constant.
@@ -338,9 +244,10 @@ class EnumOperations:
         _enum_string_body = _models.RefColorConstant(field1=field1)
         _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
 
-        request = self._put_referenced_constant_request(
+        request = prepare_enum_put_referenced_constant_request(
             body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

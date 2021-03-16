@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 from .parameter import Parameter, ParameterLocation, ParameterStyle
+from .constant_schema import ConstantSchema
 
 def _make_public(name):
     if name[0] == "_":
@@ -16,7 +17,6 @@ class PreparerParameter(Parameter):
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # If I only have one value, I can't be set, so no point being in signature
             # constant bodies still go in method signature bc we don't support that in our preparer
             (self.constant and not self.location == ParameterLocation.Body)
             # If i'm not in the method code, no point in being in signature
@@ -25,13 +25,30 @@ class PreparerParameter(Parameter):
             or self.target_property_name
             # If I'm a kwarg, don't include in the signature
             or self.is_kwarg
+            or not self.in_method_code
         )
 
     @property
     def name_in_high_level_operation(self) -> str:
         if self.yaml_data["language"]["python"].get("multipart", False):
             return "_body"
-        return self.yaml_data["language"]["python"]["name"]
+        name = self.yaml_data["language"]["python"]["name"]
+        if self.implementation == "Client" and self.in_method_code:
+            # for these, we're passing the client params to the preparer.
+            # Need the self._config prefix
+            name = f"self._config.{name}"
+        return name
+
+    @property
+    def in_method_code(self) -> bool:
+        if isinstance(self.schema, ConstantSchema) and self.location == ParameterLocation.Body:
+            # constant bodies aren't really a thing in requests
+            # users need to explicitly pass the constant body through the method signature
+            return True
+        if self.location == ParameterLocation.Uri:
+            # don't want any base url path formatting arguments
+            return False
+        return super(PreparerParameter, self).in_method_code
 
     @property
     def default_value(self) -> Optional[Any]:
@@ -39,6 +56,13 @@ class PreparerParameter(Parameter):
             return None
         return super(PreparerParameter, self).default_value
 
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
+        return f'_SERIALIZER.{function_name}({parameters_line})'
+
+    @property
+    def full_serialized_name(self) -> str:
+        return self.serialized_name
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "PreparerParameter":

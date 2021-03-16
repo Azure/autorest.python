@@ -13,7 +13,8 @@ from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
-from .models.parameter_list import ParameterList
+from .models.parameter_list import GlobalParameterList
+from .models.protocol import Protocol
 from .serializers import JinjaSerializer
 
 
@@ -69,9 +70,8 @@ class CodeGenerator(Plugin):
         )
 
         # Global parameters
-        code_model.global_parameters = ParameterList(
+        code_model.global_parameters = GlobalParameterList(
             [Parameter.from_yaml(param) for param in yaml_data.get("globalParameters", [])],
-            implementation="Client",
         )
 
         # Custom URL
@@ -93,6 +93,7 @@ class CodeGenerator(Plugin):
             code_model.operation_groups = [
                 OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
             ]
+            code_model.protocol = Protocol.from_yaml(yaml_data, code_model=code_model)
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -109,6 +110,7 @@ class CodeGenerator(Plugin):
                     build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
             # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
 
+            code_model.link_operation_to_preparer()
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()

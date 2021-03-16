@@ -56,7 +56,7 @@ class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
     :param values:
-    :type values: list[~azure.multiapi.sample.v3.models.ModelThree]
+    :type values: list[~azure.multiapi.sample.models.ModelThree]
     :param next_link:
     :type next_link: str
     """

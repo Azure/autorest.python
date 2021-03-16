@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,24 +31,6 @@ if TYPE_CHECKING:
 
 
 class MultipleInheritanceServiceClientOperationsMixin(object):
-    def _get_horse_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/horse")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_horse(
         self, **kwargs  # type: Any
@@ -64,7 +47,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
+        request = prepare_get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -83,30 +67,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         return deserialized
 
     get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
-
-    def _put_horse_request(
-        self,
-        body,  # type: "_models.Horse"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/horse")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_horse(
@@ -130,7 +90,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         horse = self._serialize.body(horse, "Horse")
 
-        request = self._put_horse_request(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request = prepare_put_horse_request(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -149,24 +110,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
     put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
-    def _get_pet_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/pet")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_pet(
         self, **kwargs  # type: Any
@@ -183,7 +126,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
+        request = prepare_get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -202,30 +146,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         return deserialized
 
     get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
-
-    def _put_pet_request(
-        self,
-        body,  # type: "_models.Pet"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/pet")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_pet(
@@ -250,7 +170,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _pet = _models.Pet(name=name)
         _pet = self._serialize.body(_pet, "Pet")
 
-        request = self._put_pet_request(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request = prepare_put_pet_request(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -269,24 +190,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
     put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
-    def _get_feline_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/feline")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_feline(
         self, **kwargs  # type: Any
@@ -303,7 +206,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
+        request = prepare_get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -322,30 +226,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         return deserialized
 
     get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
-
-    def _put_feline_request(
-        self,
-        body,  # type: "_models.Feline"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/feline")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_feline(
@@ -369,7 +249,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         feline = self._serialize.body(feline, "Feline")
 
-        request = self._put_feline_request(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request = prepare_put_feline_request(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -388,24 +269,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
     put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
-    def _get_cat_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/cat")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_cat(
         self, **kwargs  # type: Any
@@ -422,7 +285,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
+        request = prepare_get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -441,30 +305,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         return deserialized
 
     get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
-
-    def _put_cat_request(
-        self,
-        body,  # type: "_models.Cat"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/cat")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_cat(
@@ -488,7 +328,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         cat = self._serialize.body(cat, "Cat")
 
-        request = self._put_cat_request(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request = prepare_put_cat_request(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -507,24 +348,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
     put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
-    def _get_kitten_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/kitten")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_kitten(
         self, **kwargs  # type: Any
@@ -542,7 +365,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
+        request = prepare_get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -561,30 +385,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         return deserialized
 
     get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
-
-    def _put_kitten_request(
-        self,
-        body,  # type: "_models.Kitten"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/multipleInheritance/kitten")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_kitten(
@@ -610,7 +410,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         kitten = self._serialize.body(kitten, "Kitten")
 
-        request = self._put_kitten_request(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request = prepare_put_kitten_request(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

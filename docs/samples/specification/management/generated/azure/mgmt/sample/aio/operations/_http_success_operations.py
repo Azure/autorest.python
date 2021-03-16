@@ -13,6 +13,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
+from ..._protocol import *
+
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -34,31 +36,15 @@ class HttpSuccessOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head200_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/http/success/200')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     async def head200(
         self,
         **kwargs
-    ) -> bool:
+    ) -> None:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
-        :rtype: bool
+        :return: None, or the result of cls(response)
+        :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -67,10 +53,11 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head200_request(
+        request = prepare_httpsuccess_head200_request(
             template_url=self.head200.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -86,31 +73,15 @@ class HttpSuccessOperations:
 
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
-    def _head204_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/http/success/204')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     async def head204(
         self,
         **kwargs
-    ) -> bool:
+    ) -> None:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
-        :rtype: bool
+        :return: None, or the result of cls(response)
+        :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -119,10 +90,11 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head204_request(
+        request = prepare_httpsuccess_head204_request(
             template_url=self.head204.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -138,31 +110,15 @@ class HttpSuccessOperations:
 
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
-    def _head404_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/http/success/404')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     async def head404(
         self,
         **kwargs
-    ) -> bool:
+    ) -> None:
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
-        :rtype: bool
+        :return: None, or the result of cls(response)
+        :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -171,10 +127,11 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head404_request(
+        request = prepare_httpsuccess_head404_request(
             template_url=self.head404.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

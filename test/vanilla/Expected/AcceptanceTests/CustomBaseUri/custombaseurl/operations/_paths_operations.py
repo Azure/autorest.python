@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,31 +52,6 @@ class PathsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_request(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/customuri")
-        path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_empty(
         self,
@@ -96,9 +72,12 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(
-            account_name=account_name, template_url=self.get_empty.metadata["url"], **kwargs
-        )
+        request = prepare_paths_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        path_format_arguments = {
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

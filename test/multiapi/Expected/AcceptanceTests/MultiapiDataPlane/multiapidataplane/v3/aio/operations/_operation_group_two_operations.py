@@ -13,6 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -39,40 +40,6 @@ class OperationGroupTwoOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _test_four_request(
-        self,
-        body: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "3.0.0"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            body_content_kwargs['stream_content'] = body
-
-        elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
-            body_content_kwargs['content'] = body
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
-            )
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def test_four(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
@@ -96,11 +63,12 @@ class OperationGroupTwoOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = self._test_four_request(
+        request = prepare_operationgrouptwo_test_four_request(
             body=input,
             template_url=self.test_four.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,26 +83,6 @@ class OperationGroupTwoOperations:
             return cls(pipeline_response, None, {})
 
     test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
-
-    def _test_five_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "3.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/two/testFiveEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     async def test_five(
         self,
@@ -153,10 +101,11 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_five_request(
+        request = prepare_operationgrouptwo_test_five_request(
             template_url=self.test_five.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

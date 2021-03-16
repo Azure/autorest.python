@@ -14,29 +14,12 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class MultiapiServiceClientOperationsMixin:
-
-    def _test_paging_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/paging')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     def test_paging(
         self,
@@ -57,16 +40,18 @@ class MultiapiServiceClientOperationsMixin:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._test_paging_request(
+                request = prepare_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._test_paging_request(
+                request = prepare_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -97,34 +82,6 @@ class MultiapiServiceClientOperationsMixin:
         )
     test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
 
-    def _test_different_calls_request(
-        self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        greeting_in_french: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
-        api_version = "3.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
-        if greeting_in_chinese is not None:
-            header_parameters['greetingInChinese'] = self._serialize.header("greeting_in_chinese", greeting_in_chinese, 'str')
-        if greeting_in_french is not None:
-            header_parameters['greetingInFrench'] = self._serialize.header("greeting_in_french", greeting_in_french, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     async def test_different_calls(
         self,
         greeting_in_english: str,
@@ -151,13 +108,14 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_different_calls_request(
+        request = prepare_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

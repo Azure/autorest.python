@@ -9,7 +9,6 @@ from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
-from .preparer import Preparer
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 
@@ -20,7 +19,6 @@ class LROOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        preparer: Preparer,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -34,7 +32,6 @@ class LROOperation(Operation):
     ) -> None:
         super(LROOperation, self).__init__(
             yaml_data,
-            preparer,
             name,
             description,
             api_versions,
@@ -48,7 +45,6 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
-        self.preparer.name = self.preparer.name[:self.preparer.name.rfind("_request")] + "_initial" + "_request"
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -81,9 +77,8 @@ class LROOperation(Operation):
 
     @property
     def initial_operation(self) -> Operation:
-        return Operation(
+        operation = Operation(
             yaml_data={},
-            preparer=self.preparer,
             name=self.name.strip("begin") + "_initial",
             description="",
             api_versions=self.api_versions,
@@ -94,6 +89,8 @@ class LROOperation(Operation):
             want_description_docstring=False,
             want_tracing=False,
         )
+        operation.preparer = self.preparer
+        return operation
 
     @property
     def has_optional_return_type(self) -> bool:

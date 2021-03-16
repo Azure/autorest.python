@@ -72,12 +72,7 @@ class AutoRestRequiredOptionalTestService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.HttpResponse
         """
-        path_format_arguments = {
-            "required-global-path": self._serialize.url(
-                "self._config.required_global_path", self._config.required_global_path, "str"
-            ),
-        }
-        http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
+        http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)
         pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
         return pipeline_response.http_response

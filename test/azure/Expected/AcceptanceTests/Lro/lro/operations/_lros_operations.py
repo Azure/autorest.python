@@ -23,6 +23,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -54,30 +55,6 @@ class LROsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put200_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/200/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put200_succeeded_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -91,9 +68,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_succeeded_initial_request(
+        request = prepare_lros_put200_succeeded_initial_request(
             body=product, template_url=self._put200_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -171,30 +149,6 @@ class LROsOperations(object):
 
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
 
-    def _put201_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/201/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put201_succeeded_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -208,9 +162,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_succeeded_initial_request(
+        request = prepare_lros_put201_succeeded_initial_request(
             body=product, template_url=self._put201_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -286,24 +241,6 @@ class LROsOperations(object):
 
     begin_put201_succeeded.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
 
-    def _post202_list_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     def _post202_list_initial(
         self, **kwargs  # type: Any
     ):
@@ -312,7 +249,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_list_initial_request(template_url=self._post202_list_initial.metadata["url"], **kwargs)
+        request = prepare_lros_post202_list_initial_request(
+            template_url=self._post202_list_initial.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -393,30 +333,6 @@ class LROsOperations(object):
 
     begin_post202_list.metadata = {"url": "/lro/list"}  # type: ignore
 
-    def _put200_succeeded_no_state_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/200/succeeded/nostate")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put200_succeeded_no_stat_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -430,9 +346,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_succeeded_no_state_initial_request(
+        request = prepare_lros_put200_succeeded_no_state_initial_request(
             body=product, template_url=self._put200_succeeded_no_stat_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -508,30 +425,6 @@ class LROsOperations(object):
 
     begin_put200_succeeded_no_state.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
-    def _put202_retry200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/202/retry/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put202_retry200_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -545,9 +438,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put202_retry200_initial_request(
+        request = prepare_lros_put202_retry200_initial_request(
             body=product, template_url=self._put202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -624,30 +518,6 @@ class LROsOperations(object):
 
     begin_put202_retry200.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
-    def _put201_creating_succeeded200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/201/creating/succeeded/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -661,9 +531,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_creating_succeeded200_initial_request(
+        request = prepare_lros_put201_creating_succeeded200_initial_request(
             body=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -744,30 +615,6 @@ class LROsOperations(object):
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _put200_updating_succeeded204_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/200/updating/succeeded/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put200_updating_succeeded204_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -781,9 +628,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_updating_succeeded204_initial_request(
+        request = prepare_lros_put200_updating_succeeded204_initial_request(
             body=product, template_url=self._put200_updating_succeeded204_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -860,30 +708,6 @@ class LROsOperations(object):
 
     begin_put200_updating_succeeded204.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
-    def _put201_creating_failed200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/201/created/failed/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put201_creating_failed200_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -897,9 +721,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_creating_failed200_initial_request(
+        request = prepare_lros_put201_creating_failed200_initial_request(
             body=product, template_url=self._put201_creating_failed200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -980,30 +805,6 @@ class LROsOperations(object):
 
     begin_put201_creating_failed200.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
 
-    def _put200_acceptedcanceled200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/200/accepted/canceled/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put200_acceptedcanceled200_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1017,9 +818,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put200_acceptedcanceled200_initial_request(
+        request = prepare_lros_put200_acceptedcanceled200_initial_request(
             body=product, template_url=self._put200_acceptedcanceled200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1096,30 +898,6 @@ class LROsOperations(object):
 
     begin_put200_acceptedcanceled200.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
-    def _put_no_header_in_retry_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/put/noheader/202/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_no_header_in_retry_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1133,9 +911,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_no_header_in_retry_initial_request(
+        request = prepare_lros_put_no_header_in_retry_initial_request(
             body=product, template_url=self._put_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1218,30 +997,6 @@ class LROsOperations(object):
 
     begin_put_no_header_in_retry.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
-    def _put_async_retry_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1255,9 +1010,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_retry_succeeded_initial_request(
+        request = prepare_lros_put_async_retry_succeeded_initial_request(
             body=product, template_url=self._put_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1349,30 +1105,6 @@ class LROsOperations(object):
 
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
-    def _put_async_no_retry_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putasync/noretry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_no_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1386,9 +1118,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_no_retry_succeeded_initial_request(
+        request = prepare_lros_put_async_no_retry_succeeded_initial_request(
             body=product, template_url=self._put_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1478,30 +1211,6 @@ class LROsOperations(object):
 
     begin_put_async_no_retry_succeeded.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
-    def _put_async_retry_failed_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putasync/retry/failed")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_retry_failed_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1515,9 +1224,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_retry_failed_initial_request(
+        request = prepare_lros_put_async_retry_failed_initial_request(
             body=product, template_url=self._put_async_retry_failed_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1609,30 +1319,6 @@ class LROsOperations(object):
 
     begin_put_async_retry_failed.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
 
-    def _put_async_no_retrycanceled_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putasync/noretry/canceled")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_no_retrycanceled_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1646,9 +1332,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_no_retrycanceled_initial_request(
+        request = prepare_lros_put_async_no_retrycanceled_initial_request(
             body=product, template_url=self._put_async_no_retrycanceled_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1738,30 +1425,6 @@ class LROsOperations(object):
 
     begin_put_async_no_retrycanceled.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
-    def _put_async_no_header_in_retry_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putasync/noheader/201/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_no_header_in_retry_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1775,9 +1438,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_no_header_in_retry_initial_request(
+        request = prepare_lros_put_async_no_header_in_retry_initial_request(
             body=product, template_url=self._put_async_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1865,30 +1529,6 @@ class LROsOperations(object):
 
     begin_put_async_no_header_in_retry.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
 
-    def _put_non_resource_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Sku"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putnonresource/202/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_non_resourc_initial(
         self,
         sku=None,  # type: Optional["_models.Sku"]
@@ -1902,9 +1542,10 @@ class LROsOperations(object):
         if sku is not None:
             sku = self._serialize.body(sku, "Sku")
 
-        request = self._put_non_resource_initial_request(
+        request = prepare_lros_put_non_resource_initial_request(
             body=sku, template_url=self._put_non_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1979,30 +1620,6 @@ class LROsOperations(object):
 
     begin_put_non_resource.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
 
-    def _put_async_non_resource_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Sku"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putnonresourceasync/202/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_non_resourc_initial(
         self,
         sku=None,  # type: Optional["_models.Sku"]
@@ -2016,9 +1633,10 @@ class LROsOperations(object):
         if sku is not None:
             sku = self._serialize.body(sku, "Sku")
 
-        request = self._put_async_non_resource_initial_request(
+        request = prepare_lros_put_async_non_resource_initial_request(
             body=sku, template_url=self._put_async_non_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2093,30 +1711,6 @@ class LROsOperations(object):
 
     begin_put_async_non_resource.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
-    def _put_sub_resource_initial_request(
-        self,
-        body=None,  # type: Optional["_models.SubProduct"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putsubresource/202/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_sub_resourc_initial(
         self,
         provisioning_state=None,  # type: Optional[str]
@@ -2131,9 +1725,10 @@ class LROsOperations(object):
         if _product is not None:
             _product = self._serialize.body(_product, "SubProduct")
 
-        request = self._put_sub_resource_initial_request(
+        request = prepare_lros_put_sub_resource_initial_request(
             body=_product, template_url=self._put_sub_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2210,30 +1805,6 @@ class LROsOperations(object):
 
     begin_put_sub_resource.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
-    def _put_async_sub_resource_initial_request(
-        self,
-        body=None,  # type: Optional["_models.SubProduct"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/putsubresourceasync/202/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_async_sub_resourc_initial(
         self,
         provisioning_state=None,  # type: Optional[str]
@@ -2248,9 +1819,10 @@ class LROsOperations(object):
         if _product is not None:
             _product = self._serialize.body(_product, "SubProduct")
 
-        request = self._put_async_sub_resource_initial_request(
+        request = prepare_lros_put_async_sub_resource_initial_request(
             body=_product, template_url=self._put_async_sub_resourc_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2327,24 +1899,6 @@ class LROsOperations(object):
 
     begin_put_async_sub_resource.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
-    def _delete_provisioning202_accepted200_succeeded_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/provisioning/202/accepted/200/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_provisioning202_accepted200_succeeded_initial(
         self, **kwargs  # type: Any
     ):
@@ -2353,9 +1907,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_accepted200_succeeded_initial_request(
+        request = prepare_lros_delete_provisioning202_accepted200_succeeded_initial_request(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2436,24 +1991,6 @@ class LROsOperations(object):
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete_provisioning202_deleting_failed200_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/provisioning/202/deleting/200/failed")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_provisioning202_deleting_failed200_initial(
         self, **kwargs  # type: Any
     ):
@@ -2462,9 +1999,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_deleting_failed200_initial_request(
+        request = prepare_lros_delete_provisioning202_deleting_failed200_initial_request(
             template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2545,24 +2083,6 @@ class LROsOperations(object):
 
     begin_delete_provisioning202_deleting_failed200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
-    def _delete_provisioning202_deletingcanceled200_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/provisioning/202/deleting/200/canceled")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_provisioning202_deletingcanceled200_initial(
         self, **kwargs  # type: Any
     ):
@@ -2571,9 +2091,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_deletingcanceled200_initial_request(
+        request = prepare_lros_delete_provisioning202_deletingcanceled200_initial_request(
             template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2654,24 +2175,6 @@ class LROsOperations(object):
 
     begin_delete_provisioning202_deletingcanceled200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
-    def _delete204_succeeded_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/204/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete204_succeeded_initial(
         self, **kwargs  # type: Any
     ):
@@ -2680,9 +2183,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete204_succeeded_initial_request(
+        request = prepare_lros_delete204_succeeded_initial_request(
             template_url=self._delete204_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2746,24 +2250,6 @@ class LROsOperations(object):
 
     begin_delete204_succeeded.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
-    def _delete202_retry200_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/202/retry/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete202_retry200_initial(
         self, **kwargs  # type: Any
     ):
@@ -2772,9 +2258,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_retry200_initial_request(
+        request = prepare_lros_delete202_retry200_initial_request(
             template_url=self._delete202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2853,24 +2340,6 @@ class LROsOperations(object):
 
     begin_delete202_retry200.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
-    def _delete202_no_retry204_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/202/noretry/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete202_no_retry204_initial(
         self, **kwargs  # type: Any
     ):
@@ -2879,9 +2348,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_no_retry204_initial_request(
+        request = prepare_lros_delete202_no_retry204_initial_request(
             template_url=self._delete202_no_retry204_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2960,24 +2430,6 @@ class LROsOperations(object):
 
     begin_delete202_no_retry204.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
-    def _delete_no_header_in_retry_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/delete/noheader")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_no_header_in_retry_initial(
         self, **kwargs  # type: Any
     ):
@@ -2986,9 +2438,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_no_header_in_retry_initial_request(
+        request = prepare_lros_delete_no_header_in_retry_initial_request(
             template_url=self._delete_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3057,24 +2510,6 @@ class LROsOperations(object):
 
     begin_delete_no_header_in_retry.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
-    def _delete_async_no_header_in_retry_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/deleteasync/noheader/202/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_async_no_header_in_retry_initial(
         self, **kwargs  # type: Any
     ):
@@ -3083,9 +2518,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_no_header_in_retry_initial_request(
+        request = prepare_lros_delete_async_no_header_in_retry_initial_request(
             template_url=self._delete_async_no_header_in_retry_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3154,24 +2590,6 @@ class LROsOperations(object):
 
     begin_delete_async_no_header_in_retry.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
-    def _delete_async_retry_succeeded_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/deleteasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_async_retry_succeeded_initial(
         self, **kwargs  # type: Any
     ):
@@ -3180,9 +2598,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_retry_succeeded_initial_request(
+        request = prepare_lros_delete_async_retry_succeeded_initial_request(
             template_url=self._delete_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3254,24 +2673,6 @@ class LROsOperations(object):
 
     begin_delete_async_retry_succeeded.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _delete_async_no_retry_succeeded_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/deleteasync/noretry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_async_no_retry_succeeded_initial(
         self, **kwargs  # type: Any
     ):
@@ -3280,9 +2681,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_no_retry_succeeded_initial_request(
+        request = prepare_lros_delete_async_no_retry_succeeded_initial_request(
             template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3354,24 +2756,6 @@ class LROsOperations(object):
 
     begin_delete_async_no_retry_succeeded.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
-    def _delete_async_retry_failed_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/deleteasync/retry/failed")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_async_retry_failed_initial(
         self, **kwargs  # type: Any
     ):
@@ -3380,9 +2764,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_retry_failed_initial_request(
+        request = prepare_lros_delete_async_retry_failed_initial_request(
             template_url=self._delete_async_retry_failed_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3454,24 +2839,6 @@ class LROsOperations(object):
 
     begin_delete_async_retry_failed.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
-    def _delete_async_retrycanceled_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/deleteasync/retry/canceled")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_async_retrycanceled_initial(
         self, **kwargs  # type: Any
     ):
@@ -3480,9 +2847,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_retrycanceled_initial_request(
+        request = prepare_lros_delete_async_retrycanceled_initial_request(
             template_url=self._delete_async_retrycanceled_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3554,24 +2922,6 @@ class LROsOperations(object):
 
     begin_delete_async_retrycanceled.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
-    def _post200_with_payload_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/post/payload/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     def _post200_with_payload_initial(
         self, **kwargs  # type: Any
     ):
@@ -3580,9 +2930,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post200_with_payload_initial_request(
+        request = prepare_lros_post200_with_payload_initial_request(
             template_url=self._post200_with_payload_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3658,30 +3009,6 @@ class LROsOperations(object):
 
     begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
-    def _post202_retry200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/post/202/retry/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post202_retry200_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -3695,9 +3022,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post202_retry200_initial_request(
+        request = prepare_lros_post202_retry200_initial_request(
             body=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3770,30 +3098,6 @@ class LROsOperations(object):
 
     begin_post202_retry200.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
-    def _post202_no_retry204_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/post/202/noretry/204")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post202_no_retry204_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -3807,9 +3111,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post202_no_retry204_initial_request(
+        request = prepare_lros_post202_no_retry204_initial_request(
             body=product, template_url=self._post202_no_retry204_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3894,24 +3199,6 @@ class LROsOperations(object):
 
     begin_post202_no_retry204.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
-    def _post_double_headers_final_location_get_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalLocationGet")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     def _post_double_headers_final_location_get_initial(
         self, **kwargs  # type: Any
     ):
@@ -3920,9 +3207,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_double_headers_final_location_get_initial_request(
+        request = prepare_lros_post_double_headers_final_location_get_initial_request(
             template_url=self._post_double_headers_final_location_get_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3995,24 +3283,6 @@ class LROsOperations(object):
 
     begin_post_double_headers_final_location_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
-    def _post_double_headers_final_azure_header_get_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalAzureHeaderGet")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     def _post_double_headers_final_azure_header_get_initial(
         self, **kwargs  # type: Any
     ):
@@ -4021,9 +3291,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_double_headers_final_azure_header_get_initial_request(
+        request = prepare_lros_post_double_headers_final_azure_header_get_initial_request(
             template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -4096,24 +3367,6 @@ class LROsOperations(object):
 
     begin_post_double_headers_final_azure_header_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
-    def _post_double_headers_final_azure_header_get_default_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     def _post_double_headers_final_azure_header_get_default_initial(
         self, **kwargs  # type: Any
     ):
@@ -4122,9 +3375,10 @@ class LROsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_double_headers_final_azure_header_get_default_initial_request(
+        request = prepare_lros_post_double_headers_final_azure_header_get_default_initial_request(
             template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -4199,30 +3453,6 @@ class LROsOperations(object):
 
     begin_post_double_headers_final_azure_header_get_default.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
-    def _post_async_retry_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/postasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -4236,9 +3466,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_retry_succeeded_initial_request(
+        request = prepare_lros_post_async_retry_succeeded_initial_request(
             body=product, template_url=self._post_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -4325,30 +3556,6 @@ class LROsOperations(object):
 
     begin_post_async_retry_succeeded.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
-    def _post_async_no_retry_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/postasync/noretry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post_async_no_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -4362,9 +3569,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_no_retry_succeeded_initial_request(
+        request = prepare_lros_post_async_no_retry_succeeded_initial_request(
             body=product, template_url=self._post_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -4451,30 +3659,6 @@ class LROsOperations(object):
 
     begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
-    def _post_async_retry_failed_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/postasync/retry/failed")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post_async_retry_failed_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -4488,9 +3672,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_retry_failed_initial_request(
+        request = prepare_lros_post_async_retry_failed_initial_request(
             body=product, template_url=self._post_async_retry_failed_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -4567,30 +3752,6 @@ class LROsOperations(object):
 
     begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
-    def _post_async_retrycanceled_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/postasync/retry/canceled")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post_async_retrycanceled_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -4604,9 +3765,10 @@ class LROsOperations(object):
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_retrycanceled_initial_request(
+        request = prepare_lros_post_async_retrycanceled_initial_request(
             body=product, template_url=self._post_async_retrycanceled_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -21,6 +21,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,29 +49,6 @@ class OdataOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_with_filter_request(
-        self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
-    ) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/odata/filter")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if filter is not None:
-            query_parameters["$filter"] = self._serialize.query("filter", filter, "str")
-        if top is not None:
-            query_parameters["$top"] = self._serialize.query("top", top, "int")
-        if orderby is not None:
-            query_parameters["$orderby"] = self._serialize.query("orderby", orderby, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_with_filter(
         self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
@@ -92,9 +70,10 @@ class OdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_with_filter_request(
+        request = prepare_odata_get_with_filter_request(
             filter=filter, top=top, orderby=orderby, template_url=self.get_with_filter.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

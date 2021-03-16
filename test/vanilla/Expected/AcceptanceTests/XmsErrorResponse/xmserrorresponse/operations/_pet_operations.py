@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,30 +52,6 @@ class PetOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_pet_by_id_request(
-        self,
-        pet_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
-        path_format_arguments = {
-            "petId": self._serialize.url("pet_id", pet_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_pet_by_id(
         self,
@@ -103,7 +80,10 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_pet_by_id_request(pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs)
+        request = prepare_pet_get_pet_by_id_request(
+            pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -123,30 +103,6 @@ class PetOperations(object):
         return deserialized
 
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
-
-    def _do_something_request(
-        self,
-        what_action,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
-        path_format_arguments = {
-            "whatAction": self._serialize.url("what_action", what_action, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace
     def do_something(
@@ -175,9 +131,10 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._do_something_request(
+        request = prepare_pet_do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -196,28 +153,6 @@ class PetOperations(object):
         return deserialized
 
     do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
-
-    def _has_models_param_request(
-        self,
-        models="value1",  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if models is not None:
-            query_parameters["models"] = self._serialize.query("models", models, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace
     def has_models_param(
@@ -248,9 +183,10 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._has_models_param_request(
+        request = prepare_pet_has_models_param_request(
             models=models, template_url=self.has_models_param.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -23,6 +23,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,27 +51,6 @@ class LRORetrysOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put201_creating_succeeded200_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/put/201/creating/succeeded/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _put201_creating_succeeded200_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -81,9 +61,10 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put201_creating_succeeded200_initial_request(
+        request = prepare_lroretrys_put201_creating_succeeded200_initial_request(
             body=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -163,27 +144,6 @@ class LRORetrysOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _put_async_relative_retry_succeeded_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/putasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _put_async_relative_retry_succeeded_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -194,9 +154,10 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._put_async_relative_retry_succeeded_initial_request(
+        request = prepare_lroretrys_put_async_relative_retry_succeeded_initial_request(
             body=product, template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -287,29 +248,15 @@ class LRORetrysOperations:
 
     begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
-    def _delete_provisioning202_accepted200_succeeded_initial_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_provisioning202_accepted200_succeeded_initial_request(
+        request = prepare_lroretrys_delete_provisioning202_accepted200_succeeded_initial_request(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -389,29 +336,15 @@ class LRORetrysOperations:
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete202_retry200_initial_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/delete/202/retry/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     async def _delete202_retry200_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_retry200_initial_request(
+        request = prepare_lroretrys_delete202_retry200_initial_request(
             template_url=self._delete202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -477,29 +410,15 @@ class LRORetrysOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
-    def _delete_async_relative_retry_succeeded_initial_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/deleteasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     async def _delete_async_relative_retry_succeeded_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_relative_retry_succeeded_initial_request(
+        request = prepare_lroretrys_delete_async_relative_retry_succeeded_initial_request(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -568,25 +487,6 @@ class LRORetrysOperations:
 
     begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/post/202/retry/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -595,9 +495,10 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post202_retry200_initial_request(
+        request = prepare_lroretrys_post202_retry200_initial_request(
             body=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -667,27 +568,6 @@ class LRORetrysOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
-    def _post_async_relative_retry_succeeded_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/retryerror/postasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _post_async_relative_retry_succeeded_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> None:
@@ -698,9 +578,10 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = self._post_async_relative_retry_succeeded_initial_request(
+        request = prepare_lroretrys_post_async_relative_retry_succeeded_initial_request(
             body=product, template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

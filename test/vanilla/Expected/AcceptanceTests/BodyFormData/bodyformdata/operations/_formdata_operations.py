@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,31 +52,6 @@ class FormdataOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _upload_file_request(
-        self,
-        body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "multipart/form-data")
-        accept = "application/octet-stream, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["form_content"] = body
-
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def upload_file(
         self,
@@ -104,7 +80,10 @@ class FormdataOperations(object):
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = self._upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request = prepare_formdata_upload_file_request(
+            body=_body, template_url=self.upload_file.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -123,31 +102,6 @@ class FormdataOperations(object):
         return deserialized
 
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
-
-    def _upload_file_via_body_request(
-        self,
-        body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/octet-stream")
-        accept = "application/octet-stream, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["stream_content"] = body
-
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def upload_file_via_body(
@@ -169,9 +123,10 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_file_via_body_request(
+        request = prepare_formdata_upload_file_via_body_request(
             body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -190,31 +145,6 @@ class FormdataOperations(object):
         return deserialized
 
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
-
-    def _upload_files_request(
-        self,
-        body,  # type: List[IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "multipart/form-data")
-        accept = "application/octet-stream, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["form_content"] = body
-
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def upload_files(
@@ -240,7 +170,10 @@ class FormdataOperations(object):
         _body = {
             "fileContent": file_content,
         }
-        request = self._upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request = prepare_formdata_upload_files_request(
+            body=_body, template_url=self.upload_files.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)

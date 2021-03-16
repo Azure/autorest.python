@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
+from .._protocol import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -51,30 +52,6 @@ class PetsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _create_ap_true_request(
-        self,
-        body,  # type: "_models.PetAPTrue"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/additionalProperties/true")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def create_ap_true(
         self,
@@ -97,9 +74,10 @@ class PetsOperations(object):
 
         create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
-        request = self._create_ap_true_request(
+        request = prepare_pets_create_ap_true_request(
             body=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -118,30 +96,6 @@ class PetsOperations(object):
         return deserialized
 
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
-
-    def _create_cat_ap_true_request(
-        self,
-        body,  # type: "_models.CatAPTrue"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/additionalProperties/true-subclass")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def create_cat_ap_true(
@@ -165,9 +119,10 @@ class PetsOperations(object):
 
         create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
-        request = self._create_cat_ap_true_request(
+        request = prepare_pets_create_cat_ap_true_request(
             body=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -186,30 +141,6 @@ class PetsOperations(object):
         return deserialized
 
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
-
-    def _create_ap_object_request(
-        self,
-        body,  # type: "_models.PetAPObject"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/additionalProperties/type/object")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def create_ap_object(
@@ -233,9 +164,10 @@ class PetsOperations(object):
 
         create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
-        request = self._create_ap_object_request(
+        request = prepare_pets_create_ap_object_request(
             body=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -254,30 +186,6 @@ class PetsOperations(object):
         return deserialized
 
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
-
-    def _create_ap_string_request(
-        self,
-        body,  # type: "_models.PetAPString"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/additionalProperties/type/string")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def create_ap_string(
@@ -301,9 +209,10 @@ class PetsOperations(object):
 
         create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
-        request = self._create_ap_string_request(
+        request = prepare_pets_create_ap_string_request(
             body=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -322,30 +231,6 @@ class PetsOperations(object):
         return deserialized
 
     create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
-
-    def _create_ap_in_properties_request(
-        self,
-        body,  # type: "_models.PetAPInProperties"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/additionalProperties/in/properties")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def create_ap_in_properties(
@@ -369,9 +254,10 @@ class PetsOperations(object):
 
         create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
-        request = self._create_ap_in_properties_request(
+        request = prepare_pets_create_ap_in_properties_request(
             body=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -390,30 +276,6 @@ class PetsOperations(object):
         return deserialized
 
     create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
-
-    def _create_ap_in_properties_with_ap_string_request(
-        self,
-        body,  # type: "_models.PetAPInPropertiesWithAPString"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/additionalProperties/in/properties/with/additionalProperties/string")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
@@ -437,9 +299,10 @@ class PetsOperations(object):
 
         create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
-        request = self._create_ap_in_properties_with_ap_string_request(
+        request = prepare_pets_create_ap_in_properties_with_ap_string_request(
             body=create_parameters, template_url=self.create_ap_in_properties_with_ap_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

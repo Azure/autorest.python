@@ -36,22 +36,13 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
 {% for operation in operation_group.operations %}
 
     {% set preparer = operation.preparer %}
-    {%- macro print_preparer() %}{% include "preparer.py.jinja2" %}{% endmacro %}
     {% if is_lro(operation) and is_paging(operation) %}
     {%- macro someop() %}{% include "lro_paging_operation.py.jinja2" %}{% endmacro %}
     {% elif is_lro(operation) %}
     {%- macro someop() %}{% include "lro_operation.py.jinja2" %}{% endmacro %}
     {% elif is_paging(operation) %}
-    {{ print_preparer()|indent }}
-    {% macro someop() %}
-        {% if operation.next_preparer %}
-            {% set preparer = operation.next_preparer %}
-                {% include "preparer.py.jinja2" %}
-
-        {% endif %}
-    {% include "paging_operation.py.jinja2" %}{% endmacro %}
+    {% macro someop() %}{% include "paging_operation.py.jinja2" %}{% endmacro %}
     {% else %}
-    {{ print_preparer()|indent }}
     {% macro someop() %}{% include "operation.py.jinja2" %}{% endmacro %}
     {% endif %}
     {{ someop()|indent }}

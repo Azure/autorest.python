@@ -16,34 +16,12 @@ from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class PollingPagingExampleOperationsMixin:
-
-    def _basic_polling_initial_request(
-        self,
-        body: Optional["_models.Product"] = None,
-        **kwargs
-    ) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/basic/polling')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _basic_poll_initial(
         self,
@@ -59,11 +37,12 @@ class PollingPagingExampleOperationsMixin:
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = self._basic_polling_initial_request(
+        request = prepare_basic_polling_initial_request(
             body=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -144,24 +123,6 @@ class PollingPagingExampleOperationsMixin:
     begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
 
 
-    def _basic_paging_request(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/basic/paging')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     def basic_paging(
         self,
         **kwargs
@@ -181,16 +142,18 @@ class PollingPagingExampleOperationsMixin:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._basic_paging_request(
+                request = prepare_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = self._basic_paging_request(
+                request = prepare_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                     **kwargs
                 )
+                request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"

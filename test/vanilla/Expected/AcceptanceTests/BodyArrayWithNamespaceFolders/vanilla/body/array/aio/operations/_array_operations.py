@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,21 +49,6 @@ class ArrayOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_null(self, **kwargs) -> List[int]:
         """Get null array value.
@@ -76,7 +62,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_array_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -96,21 +83,6 @@ class ArrayOperations:
 
     get_null.metadata = {"url": "/array/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_invalid(self, **kwargs) -> List[int]:
         """Get invalid array [1, 2, 3.
@@ -124,7 +96,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = prepare_array_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -144,21 +117,6 @@ class ArrayOperations:
 
     get_invalid.metadata = {"url": "/array/invalid"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> List[int]:
         """Get empty array value [].
@@ -172,7 +130,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -192,25 +151,6 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, body: List[str], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_empty(self, array_body: List[str], **kwargs) -> None:
         """Set array value empty [].
@@ -228,7 +168,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[str]")
 
-        request = self._put_empty_request(body=array_body, template_url=self.put_empty.metadata["url"], **kwargs)
+        request = prepare_array_put_empty_request(
+            body=array_body, template_url=self.put_empty.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -244,21 +187,6 @@ class ArrayOperations:
 
     put_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
-    def _get_boolean_tfft_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/boolean/tfft")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_boolean_tfft(self, **kwargs) -> List[bool]:
         """Get boolean array value [true, false, false, true].
@@ -272,7 +200,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_tfft_request(template_url=self.get_boolean_tfft.metadata["url"], **kwargs)
+        request = prepare_array_get_boolean_tfft_request(template_url=self.get_boolean_tfft.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,25 +221,6 @@ class ArrayOperations:
 
     get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
-    def _put_boolean_tfft_request(self, body: List[bool], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/boolean/tfft")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_boolean_tfft(self, array_body: List[bool], **kwargs) -> None:
         """Set array value empty [true, false, false, true].
@@ -328,9 +238,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[bool]")
 
-        request = self._put_boolean_tfft_request(
+        request = prepare_array_put_boolean_tfft_request(
             body=array_body, template_url=self.put_boolean_tfft.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -346,21 +257,6 @@ class ArrayOperations:
 
     put_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
-    def _get_boolean_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/boolean/true.null.false")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_boolean_invalid_null(self, **kwargs) -> List[bool]:
         """Get boolean array value [true, null, false].
@@ -374,9 +270,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_invalid_null_request(
+        request = prepare_array_get_boolean_invalid_null_request(
             template_url=self.get_boolean_invalid_null.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -396,21 +293,6 @@ class ArrayOperations:
 
     get_boolean_invalid_null.metadata = {"url": "/array/prim/boolean/true.null.false"}  # type: ignore
 
-    def _get_boolean_invalid_string_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/boolean/true.boolean.false")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_boolean_invalid_string(self, **kwargs) -> List[bool]:
         """Get boolean array value [true, 'boolean', false].
@@ -424,9 +306,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_invalid_string_request(
+        request = prepare_array_get_boolean_invalid_string_request(
             template_url=self.get_boolean_invalid_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -446,21 +329,6 @@ class ArrayOperations:
 
     get_boolean_invalid_string.metadata = {"url": "/array/prim/boolean/true.boolean.false"}  # type: ignore
 
-    def _get_integer_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/integer/1.-1.3.300")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_integer_valid(self, **kwargs) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
@@ -474,7 +342,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_integer_valid_request(template_url=self.get_integer_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_integer_valid_request(template_url=self.get_integer_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -494,25 +363,6 @@ class ArrayOperations:
 
     get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
-    def _put_integer_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/integer/1.-1.3.300")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_integer_valid(self, array_body: List[int], **kwargs) -> None:
         """Set array value empty [1, -1, 3, 300].
@@ -530,9 +380,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[int]")
 
-        request = self._put_integer_valid_request(
+        request = prepare_array_put_integer_valid_request(
             body=array_body, template_url=self.put_integer_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -548,21 +399,6 @@ class ArrayOperations:
 
     put_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
-    def _get_int_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/integer/1.null.zero")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_int_invalid_null(self, **kwargs) -> List[int]:
         """Get integer array value [1, null, 0].
@@ -576,7 +412,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_invalid_null_request(template_url=self.get_int_invalid_null.metadata["url"], **kwargs)
+        request = prepare_array_get_int_invalid_null_request(
+            template_url=self.get_int_invalid_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -596,21 +435,6 @@ class ArrayOperations:
 
     get_int_invalid_null.metadata = {"url": "/array/prim/integer/1.null.zero"}  # type: ignore
 
-    def _get_int_invalid_string_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/integer/1.integer.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_int_invalid_string(self, **kwargs) -> List[int]:
         """Get integer array value [1, 'integer', 0].
@@ -624,9 +448,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_invalid_string_request(
+        request = prepare_array_get_int_invalid_string_request(
             template_url=self.get_int_invalid_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -646,21 +471,6 @@ class ArrayOperations:
 
     get_int_invalid_string.metadata = {"url": "/array/prim/integer/1.integer.0"}  # type: ignore
 
-    def _get_long_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/long/1.-1.3.300")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_long_valid(self, **kwargs) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
@@ -674,7 +484,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_valid_request(template_url=self.get_long_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_long_valid_request(template_url=self.get_long_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -694,25 +505,6 @@ class ArrayOperations:
 
     get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
-    def _put_long_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/long/1.-1.3.300")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_long_valid(self, array_body: List[int], **kwargs) -> None:
         """Set array value empty [1, -1, 3, 300].
@@ -730,9 +522,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[long]")
 
-        request = self._put_long_valid_request(
+        request = prepare_array_put_long_valid_request(
             body=array_body, template_url=self.put_long_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -748,21 +541,6 @@ class ArrayOperations:
 
     put_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
-    def _get_long_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/long/1.null.zero")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_long_invalid_null(self, **kwargs) -> List[int]:
         """Get long array value [1, null, 0].
@@ -776,7 +554,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_invalid_null_request(template_url=self.get_long_invalid_null.metadata["url"], **kwargs)
+        request = prepare_array_get_long_invalid_null_request(
+            template_url=self.get_long_invalid_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -796,21 +577,6 @@ class ArrayOperations:
 
     get_long_invalid_null.metadata = {"url": "/array/prim/long/1.null.zero"}  # type: ignore
 
-    def _get_long_invalid_string_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/long/1.integer.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_long_invalid_string(self, **kwargs) -> List[int]:
         """Get long array value [1, 'integer', 0].
@@ -824,9 +590,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_invalid_string_request(
+        request = prepare_array_get_long_invalid_string_request(
             template_url=self.get_long_invalid_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -846,21 +613,6 @@ class ArrayOperations:
 
     get_long_invalid_string.metadata = {"url": "/array/prim/long/1.integer.0"}  # type: ignore
 
-    def _get_float_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/float/0--0.01-1.2e20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_float_valid(self, **kwargs) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
@@ -874,7 +626,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_valid_request(template_url=self.get_float_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_float_valid_request(template_url=self.get_float_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -894,25 +647,6 @@ class ArrayOperations:
 
     get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    def _put_float_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/float/0--0.01-1.2e20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_float_valid(self, array_body: List[float], **kwargs) -> None:
         """Set array value [0, -0.01, 1.2e20].
@@ -930,9 +664,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[float]")
 
-        request = self._put_float_valid_request(
+        request = prepare_array_put_float_valid_request(
             body=array_body, template_url=self.put_float_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -948,21 +683,6 @@ class ArrayOperations:
 
     put_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    def _get_float_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/float/0.0-null-1.2e20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_float_invalid_null(self, **kwargs) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
@@ -976,9 +696,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_invalid_null_request(
+        request = prepare_array_get_float_invalid_null_request(
             template_url=self.get_float_invalid_null.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -998,21 +719,6 @@ class ArrayOperations:
 
     get_float_invalid_null.metadata = {"url": "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
 
-    def _get_float_invalid_string_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/float/1.number.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_float_invalid_string(self, **kwargs) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
@@ -1026,9 +732,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_invalid_string_request(
+        request = prepare_array_get_float_invalid_string_request(
             template_url=self.get_float_invalid_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1048,21 +755,6 @@ class ArrayOperations:
 
     get_float_invalid_string.metadata = {"url": "/array/prim/float/1.number.0"}  # type: ignore
 
-    def _get_double_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/double/0--0.01-1.2e20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_double_valid(self, **kwargs) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
@@ -1076,7 +768,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_valid_request(template_url=self.get_double_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_double_valid_request(template_url=self.get_double_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1096,25 +789,6 @@ class ArrayOperations:
 
     get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    def _put_double_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/double/0--0.01-1.2e20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_double_valid(self, array_body: List[float], **kwargs) -> None:
         """Set array value [0, -0.01, 1.2e20].
@@ -1132,9 +806,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[float]")
 
-        request = self._put_double_valid_request(
+        request = prepare_array_put_double_valid_request(
             body=array_body, template_url=self.put_double_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1150,21 +825,6 @@ class ArrayOperations:
 
     put_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    def _get_double_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/double/0.0-null-1.2e20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_double_invalid_null(self, **kwargs) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
@@ -1178,9 +838,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_invalid_null_request(
+        request = prepare_array_get_double_invalid_null_request(
             template_url=self.get_double_invalid_null.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1200,21 +861,6 @@ class ArrayOperations:
 
     get_double_invalid_null.metadata = {"url": "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
 
-    def _get_double_invalid_string_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/double/1.number.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_double_invalid_string(self, **kwargs) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
@@ -1228,9 +874,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_invalid_string_request(
+        request = prepare_array_get_double_invalid_string_request(
             template_url=self.get_double_invalid_string.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1250,21 +897,6 @@ class ArrayOperations:
 
     get_double_invalid_string.metadata = {"url": "/array/prim/double/1.number.0"}  # type: ignore
 
-    def _get_string_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/string/foo1.foo2.foo3")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_string_valid(self, **kwargs) -> List[str]:
         """Get string array value ['foo1', 'foo2', 'foo3'].
@@ -1278,7 +910,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_valid_request(template_url=self.get_string_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_string_valid_request(template_url=self.get_string_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1298,25 +931,6 @@ class ArrayOperations:
 
     get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_string_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/string/foo1.foo2.foo3")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_string_valid(self, array_body: List[str], **kwargs) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1334,9 +948,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[str]")
 
-        request = self._put_string_valid_request(
+        request = prepare_array_put_string_valid_request(
             body=array_body, template_url=self.put_string_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1352,21 +967,6 @@ class ArrayOperations:
 
     put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    def _get_enum_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/enum/foo1.foo2.foo3")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_enum_valid(self, **kwargs) -> List[Union[str, "_models.FooEnum"]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
@@ -1380,7 +980,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_enum_valid_request(template_url=self.get_enum_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_enum_valid_request(template_url=self.get_enum_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1400,25 +1001,6 @@ class ArrayOperations:
 
     get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_enum_valid_request(self, body: List[Union[str, "_models.FooEnum"]], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/enum/foo1.foo2.foo3")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_enum_valid(self, array_body: List[Union[str, "_models.FooEnum"]], **kwargs) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1436,9 +1018,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[str]")
 
-        request = self._put_enum_valid_request(
+        request = prepare_array_put_enum_valid_request(
             body=array_body, template_url=self.put_enum_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1454,21 +1037,6 @@ class ArrayOperations:
 
     put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _get_string_enum_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/string-enum/foo1.foo2.foo3")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_string_enum_valid(self, **kwargs) -> List[Union[str, "_models.Enum0"]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
@@ -1482,7 +1050,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_enum_valid_request(template_url=self.get_string_enum_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_string_enum_valid_request(
+            template_url=self.get_string_enum_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1502,25 +1073,6 @@ class ArrayOperations:
 
     get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_string_enum_valid_request(self, body: List[Union[str, "_models.Enum1"]], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/string-enum/foo1.foo2.foo3")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_string_enum_valid(self, array_body: List[Union[str, "_models.Enum1"]], **kwargs) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1538,9 +1090,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[str]")
 
-        request = self._put_string_enum_valid_request(
+        request = prepare_array_put_string_enum_valid_request(
             body=array_body, template_url=self.put_string_enum_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1556,21 +1109,6 @@ class ArrayOperations:
 
     put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _get_string_with_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/string/foo.null.foo2")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_string_with_null(self, **kwargs) -> List[str]:
         """Get string array value ['foo', null, 'foo2'].
@@ -1584,7 +1122,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_with_null_request(template_url=self.get_string_with_null.metadata["url"], **kwargs)
+        request = prepare_array_get_string_with_null_request(
+            template_url=self.get_string_with_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1604,21 +1145,6 @@ class ArrayOperations:
 
     get_string_with_null.metadata = {"url": "/array/prim/string/foo.null.foo2"}  # type: ignore
 
-    def _get_string_with_invalid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/string/foo.123.foo2")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_string_with_invalid(self, **kwargs) -> List[str]:
         """Get string array value ['foo', 123, 'foo2'].
@@ -1632,9 +1158,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_with_invalid_request(
+        request = prepare_array_get_string_with_invalid_request(
             template_url=self.get_string_with_invalid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1654,21 +1181,6 @@ class ArrayOperations:
 
     get_string_with_invalid.metadata = {"url": "/array/prim/string/foo.123.foo2"}  # type: ignore
 
-    def _get_uuid_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/uuid/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_uuid_valid(self, **kwargs) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
@@ -1683,7 +1195,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_uuid_valid_request(template_url=self.get_uuid_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_uuid_valid_request(template_url=self.get_uuid_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1703,25 +1216,6 @@ class ArrayOperations:
 
     get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
-    def _put_uuid_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/uuid/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_uuid_valid(self, array_body: List[str], **kwargs) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
@@ -1740,9 +1234,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[str]")
 
-        request = self._put_uuid_valid_request(
+        request = prepare_array_put_uuid_valid_request(
             body=array_body, template_url=self.put_uuid_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1758,21 +1253,6 @@ class ArrayOperations:
 
     put_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
-    def _get_uuid_invalid_chars_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/uuid/invalidchars")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_uuid_invalid_chars(self, **kwargs) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
@@ -1786,9 +1266,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_uuid_invalid_chars_request(
+        request = prepare_array_get_uuid_invalid_chars_request(
             template_url=self.get_uuid_invalid_chars.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1808,21 +1289,6 @@ class ArrayOperations:
 
     get_uuid_invalid_chars.metadata = {"url": "/array/prim/uuid/invalidchars"}  # type: ignore
 
-    def _get_date_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_valid(self, **kwargs) -> List[datetime.date]:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
@@ -1836,7 +1302,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_valid_request(template_url=self.get_date_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_date_valid_request(template_url=self.get_date_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1856,25 +1323,6 @@ class ArrayOperations:
 
     get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
-    def _put_date_valid_request(self, body: List[datetime.date], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_date_valid(self, array_body: List[datetime.date], **kwargs) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
@@ -1892,9 +1340,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[date]")
 
-        request = self._put_date_valid_request(
+        request = prepare_array_put_date_valid_request(
             body=array_body, template_url=self.put_date_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1910,21 +1359,6 @@ class ArrayOperations:
 
     put_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
-    def _get_date_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date/invalidnull")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_invalid_null(self, **kwargs) -> List[datetime.date]:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
@@ -1938,7 +1372,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_invalid_null_request(template_url=self.get_date_invalid_null.metadata["url"], **kwargs)
+        request = prepare_array_get_date_invalid_null_request(
+            template_url=self.get_date_invalid_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1958,21 +1395,6 @@ class ArrayOperations:
 
     get_date_invalid_null.metadata = {"url": "/array/prim/date/invalidnull"}  # type: ignore
 
-    def _get_date_invalid_chars_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date/invalidchars")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_invalid_chars(self, **kwargs) -> List[datetime.date]:
         """Get date array value ['2011-03-22', 'date'].
@@ -1986,9 +1408,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_invalid_chars_request(
+        request = prepare_array_get_date_invalid_chars_request(
             template_url=self.get_date_invalid_chars.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2008,21 +1431,6 @@ class ArrayOperations:
 
     get_date_invalid_chars.metadata = {"url": "/array/prim/date/invalidchars"}  # type: ignore
 
-    def _get_date_time_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date-time/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_time_valid(self, **kwargs) -> List[datetime.datetime]:
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
@@ -2037,7 +1445,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_valid_request(template_url=self.get_date_time_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_date_time_valid_request(
+            template_url=self.get_date_time_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2057,25 +1468,6 @@ class ArrayOperations:
 
     get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
-    def _put_date_time_valid_request(self, body: List[datetime.datetime], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date-time/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_date_time_valid(self, array_body: List[datetime.datetime], **kwargs) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
@@ -2094,9 +1486,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[iso-8601]")
 
-        request = self._put_date_time_valid_request(
+        request = prepare_array_put_date_time_valid_request(
             body=array_body, template_url=self.put_date_time_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2112,21 +1505,6 @@ class ArrayOperations:
 
     put_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
-    def _get_date_time_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date-time/invalidnull")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_time_invalid_null(self, **kwargs) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', null].
@@ -2140,9 +1518,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_invalid_null_request(
+        request = prepare_array_get_date_time_invalid_null_request(
             template_url=self.get_date_time_invalid_null.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2162,21 +1541,6 @@ class ArrayOperations:
 
     get_date_time_invalid_null.metadata = {"url": "/array/prim/date-time/invalidnull"}  # type: ignore
 
-    def _get_date_time_invalid_chars_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date-time/invalidchars")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_time_invalid_chars(self, **kwargs) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
@@ -2190,9 +1554,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_invalid_chars_request(
+        request = prepare_array_get_date_time_invalid_chars_request(
             template_url=self.get_date_time_invalid_chars.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2212,21 +1577,6 @@ class ArrayOperations:
 
     get_date_time_invalid_chars.metadata = {"url": "/array/prim/date-time/invalidchars"}  # type: ignore
 
-    def _get_date_time_rfc1123_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date-time-rfc1123/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(self, **kwargs) -> List[datetime.datetime]:
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
@@ -2241,9 +1591,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_rfc1123_valid_request(
+        request = prepare_array_get_date_time_rfc1123_valid_request(
             template_url=self.get_date_time_rfc1123_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2263,25 +1614,6 @@ class ArrayOperations:
 
     get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    def _put_date_time_rfc1123_valid_request(self, body: List[datetime.datetime], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/date-time-rfc1123/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], **kwargs) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
@@ -2300,9 +1632,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[rfc-1123]")
 
-        request = self._put_date_time_rfc1123_valid_request(
+        request = prepare_array_put_date_time_rfc1123_valid_request(
             body=array_body, template_url=self.put_date_time_rfc1123_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2318,21 +1651,6 @@ class ArrayOperations:
 
     put_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    def _get_duration_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/duration/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_duration_valid(self, **kwargs) -> List[datetime.timedelta]:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
@@ -2346,7 +1664,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_duration_valid_request(template_url=self.get_duration_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_duration_valid_request(
+            template_url=self.get_duration_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2366,25 +1687,6 @@ class ArrayOperations:
 
     get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
-    def _put_duration_valid_request(self, body: List[datetime.timedelta], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/duration/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_duration_valid(self, array_body: List[datetime.timedelta], **kwargs) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
@@ -2402,9 +1704,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[duration]")
 
-        request = self._put_duration_valid_request(
+        request = prepare_array_put_duration_valid_request(
             body=array_body, template_url=self.put_duration_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2420,21 +1723,6 @@ class ArrayOperations:
 
     put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
-    def _get_byte_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/byte/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_byte_valid(self, **kwargs) -> List[bytearray]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
@@ -2449,7 +1737,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_byte_valid_request(template_url=self.get_byte_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_byte_valid_request(template_url=self.get_byte_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2469,25 +1758,6 @@ class ArrayOperations:
 
     get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
-    def _put_byte_valid_request(self, body: List[bytearray], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/byte/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_byte_valid(self, array_body: List[bytearray], **kwargs) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
@@ -2506,9 +1776,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[bytearray]")
 
-        request = self._put_byte_valid_request(
+        request = prepare_array_put_byte_valid_request(
             body=array_body, template_url=self.put_byte_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2524,21 +1795,6 @@ class ArrayOperations:
 
     put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
-    def _get_byte_invalid_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/byte/invalidnull")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_byte_invalid_null(self, **kwargs) -> List[bytearray]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
@@ -2552,7 +1808,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_byte_invalid_null_request(template_url=self.get_byte_invalid_null.metadata["url"], **kwargs)
+        request = prepare_array_get_byte_invalid_null_request(
+            template_url=self.get_byte_invalid_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2572,21 +1831,6 @@ class ArrayOperations:
 
     get_byte_invalid_null.metadata = {"url": "/array/prim/byte/invalidnull"}  # type: ignore
 
-    def _get_base64_url_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/prim/base64url/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_base64_url(self, **kwargs) -> List[bytes]:
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
@@ -2601,7 +1845,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_base64_url_request(template_url=self.get_base64_url.metadata["url"], **kwargs)
+        request = prepare_array_get_base64_url_request(template_url=self.get_base64_url.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2621,21 +1866,6 @@ class ArrayOperations:
 
     get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
-    def _get_complex_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/complex/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_complex_null(self, **kwargs) -> List["_models.Product"]:
         """Get array of complex type null value.
@@ -2649,7 +1879,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_null_request(template_url=self.get_complex_null.metadata["url"], **kwargs)
+        request = prepare_array_get_complex_null_request(template_url=self.get_complex_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2669,21 +1900,6 @@ class ArrayOperations:
 
     get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
 
-    def _get_complex_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/complex/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_complex_empty(self, **kwargs) -> List["_models.Product"]:
         """Get empty array of complex type [].
@@ -2697,7 +1913,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_empty_request(template_url=self.get_complex_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_complex_empty_request(template_url=self.get_complex_empty.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2717,21 +1934,6 @@ class ArrayOperations:
 
     get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
-    def _get_complex_item_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/complex/itemnull")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_complex_item_null(self, **kwargs) -> List["_models.Product"]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
@@ -2746,7 +1948,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_item_null_request(template_url=self.get_complex_item_null.metadata["url"], **kwargs)
+        request = prepare_array_get_complex_item_null_request(
+            template_url=self.get_complex_item_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2766,21 +1971,6 @@ class ArrayOperations:
 
     get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
 
-    def _get_complex_item_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/complex/itemempty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_complex_item_empty(self, **kwargs) -> List["_models.Product"]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
@@ -2795,9 +1985,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_item_empty_request(
+        request = prepare_array_get_complex_item_empty_request(
             template_url=self.get_complex_item_empty.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2817,21 +2008,6 @@ class ArrayOperations:
 
     get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
 
-    def _get_complex_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/complex/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_complex_valid(self, **kwargs) -> List["_models.Product"]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
@@ -2846,7 +2022,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_valid_request(template_url=self.get_complex_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_complex_valid_request(template_url=self.get_complex_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2866,25 +2043,6 @@ class ArrayOperations:
 
     get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
-    def _put_complex_valid_request(self, body: List["_models.Product"], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/complex/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_complex_valid(self, array_body: List["_models.Product"], **kwargs) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
@@ -2903,9 +2061,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[Product]")
 
-        request = self._put_complex_valid_request(
+        request = prepare_array_put_complex_valid_request(
             body=array_body, template_url=self.put_complex_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2921,21 +2080,6 @@ class ArrayOperations:
 
     put_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
-    def _get_array_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/array/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_array_null(self, **kwargs) -> List[List[str]]:
         """Get a null array.
@@ -2949,7 +2093,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_null_request(template_url=self.get_array_null.metadata["url"], **kwargs)
+        request = prepare_array_get_array_null_request(template_url=self.get_array_null.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2969,21 +2114,6 @@ class ArrayOperations:
 
     get_array_null.metadata = {"url": "/array/array/null"}  # type: ignore
 
-    def _get_array_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/array/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_array_empty(self, **kwargs) -> List[List[str]]:
         """Get an empty array [].
@@ -2997,7 +2127,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_empty_request(template_url=self.get_array_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_array_empty_request(template_url=self.get_array_empty.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3017,21 +2148,6 @@ class ArrayOperations:
 
     get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
 
-    def _get_array_item_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/array/itemnull")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_array_item_null(self, **kwargs) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
@@ -3045,7 +2161,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_item_null_request(template_url=self.get_array_item_null.metadata["url"], **kwargs)
+        request = prepare_array_get_array_item_null_request(
+            template_url=self.get_array_item_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3065,21 +2184,6 @@ class ArrayOperations:
 
     get_array_item_null.metadata = {"url": "/array/array/itemnull"}  # type: ignore
 
-    def _get_array_item_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/array/itemempty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_array_item_empty(self, **kwargs) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
@@ -3093,7 +2197,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_item_empty_request(template_url=self.get_array_item_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_array_item_empty_request(
+            template_url=self.get_array_item_empty.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3113,21 +2220,6 @@ class ArrayOperations:
 
     get_array_item_empty.metadata = {"url": "/array/array/itemempty"}  # type: ignore
 
-    def _get_array_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/array/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_array_valid(self, **kwargs) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
@@ -3141,7 +2233,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_valid_request(template_url=self.get_array_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_array_valid_request(template_url=self.get_array_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3161,25 +2254,6 @@ class ArrayOperations:
 
     get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
-    def _put_array_valid_request(self, body: List[List[str]], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/array/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_array_valid(self, array_body: List[List[str]], **kwargs) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
@@ -3197,9 +2271,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[[str]]")
 
-        request = self._put_array_valid_request(
+        request = prepare_array_put_array_valid_request(
             body=array_body, template_url=self.put_array_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3215,21 +2290,6 @@ class ArrayOperations:
 
     put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
-    def _get_dictionary_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/dictionary/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dictionary_null(self, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries with value null.
@@ -3243,7 +2303,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_null_request(template_url=self.get_dictionary_null.metadata["url"], **kwargs)
+        request = prepare_array_get_dictionary_null_request(
+            template_url=self.get_dictionary_null.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3263,21 +2326,6 @@ class ArrayOperations:
 
     get_dictionary_null.metadata = {"url": "/array/dictionary/null"}  # type: ignore
 
-    def _get_dictionary_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/dictionary/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dictionary_empty(self, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [].
@@ -3291,7 +2339,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_empty_request(template_url=self.get_dictionary_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_dictionary_empty_request(
+            template_url=self.get_dictionary_empty.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3311,21 +2362,6 @@ class ArrayOperations:
 
     get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
 
-    def _get_dictionary_item_null_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/dictionary/itemnull")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dictionary_item_null(self, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -3340,9 +2376,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_item_null_request(
+        request = prepare_array_get_dictionary_item_null_request(
             template_url=self.get_dictionary_item_null.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3362,21 +2399,6 @@ class ArrayOperations:
 
     get_dictionary_item_null.metadata = {"url": "/array/dictionary/itemnull"}  # type: ignore
 
-    def _get_dictionary_item_empty_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/dictionary/itemempty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dictionary_item_empty(self, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -3391,9 +2413,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_item_empty_request(
+        request = prepare_array_get_dictionary_item_empty_request(
             template_url=self.get_dictionary_item_empty.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3413,21 +2436,6 @@ class ArrayOperations:
 
     get_dictionary_item_empty.metadata = {"url": "/array/dictionary/itemempty"}  # type: ignore
 
-    def _get_dictionary_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/dictionary/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dictionary_valid(self, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -3442,7 +2450,10 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_valid_request(template_url=self.get_dictionary_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_dictionary_valid_request(
+            template_url=self.get_dictionary_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3462,25 +2473,6 @@ class ArrayOperations:
 
     get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
-    def _put_dictionary_valid_request(self, body: List[Dict[str, str]], **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/array/dictionary/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_dictionary_valid(self, array_body: List[Dict[str, str]], **kwargs) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -3499,9 +2491,10 @@ class ArrayOperations:
 
         array_body = self._serialize.body(array_body, "[{str}]")
 
-        request = self._put_dictionary_valid_request(
+        request = prepare_array_put_dictionary_valid_request(
             body=array_body, template_url=self.put_dictionary_valid.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

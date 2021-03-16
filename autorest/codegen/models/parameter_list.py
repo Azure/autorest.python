@@ -16,10 +16,9 @@ _LOGGER = logging.getLogger(__name__)
 
 class ParameterList(MutableSequence):
     def __init__(
-        self, parameters: Optional[List[Parameter]] = None, implementation: str = "Method"
+        self, parameters: Optional[List[Parameter]] = None
     ) -> None:
         self.parameters = parameters or []
-        self.implementation = implementation
 
     # MutableSequence
 
@@ -62,13 +61,23 @@ class ParameterList(MutableSequence):
         # Should we check if there is two body? Modeler role right?
         return self.get_from_location(ParameterLocation.Body)
 
+    @staticmethod
+    def _wanted_path_parameter(parameter: Parameter):
+        # TODO add 'and parameter.location == "Method"' as requirement to this check once
+        # I can use send_request on operations.
+        # Don't want to duplicate code from send_request.
+        return parameter.location == ParameterLocation.Uri and parameter.rest_api_name != "$host"
+
+    @property
+    def implementation(self) -> str:
+        return "Method"
+
     @property
     def path(self) -> List[Parameter]:
         return [
             parameter
             for parameter in self.parameters
-            if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path]
-            and parameter.rest_api_name != "$host"
+            if self._wanted_path_parameter(parameter)
         ]
 
     @property
@@ -153,3 +162,17 @@ class ParameterList(MutableSequence):
         )
         object_schema = cast(ObjectSchema, self.body[0].schema)
         return f"{self.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
+
+class GlobalParameterList(ParameterList):
+
+    @property
+    def implementation(self) -> str:
+        return "Client"
+
+    @staticmethod
+    def _wanted_path_parameter(parameter: Parameter) -> bool:
+        return (
+            parameter.location == ParameterLocation.Uri and
+            parameter.implementation == "Client" and
+            parameter.rest_api_name != "$host"
+        )

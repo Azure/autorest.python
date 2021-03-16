@@ -1,8 +1,8 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{{ op_tools.preparer_method_signature(operation, preparer, async_mode=async_mode) }}
-{%- if not async_mode %}
-    {{ op_tools.sync_return_type_annotation(operation, "", return_type="HttpRequest") }}
+{{ op_tools.preparer_method_signature(preparer, is_python_3_file=is_python_3_file) }}
+{%- if not is_python_3_file %}
+    {{ op_tools.sync_return_type_annotation("", return_type="HttpRequest") }}
 {% endif %}
 {% if preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
@@ -18,9 +18,10 @@
     url = kwargs.pop("template_url", {{ keywords.escape_str(preparer.url) }})
 {% if preparer.parameters.path %}
     {{ op_tools.path_format_arguments(preparer.parameters.path)|indent }}
-    {{ op_tools.format_path_format_arguments()|indent }}
+    url = _format_url_section(url, **path_format_arguments)
 {% endif %}
 
-    {{ op_tools.query_parameters(preparer, async_mode)|indent }}
-    {{ op_tools.header_parameters(code_model, preparer, async_mode)|indent }}
+    {{ op_tools.query_parameters(preparer, is_python_3_file)|indent }}
+    {{ op_tools.header_parameters(code_model, preparer, is_python_3_file)|indent }}
     {{ op_tools.body_parameters(preparer)|indent }}
+    {{ op_tools.create_http_request(preparer)|indent }}

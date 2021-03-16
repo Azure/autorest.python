@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._protocol import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,21 +48,6 @@ class PolymorphismOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_valid(self, **kwargs) -> "_models.Fish":
         """Get complex types that are polymorphic.
@@ -75,7 +61,8 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = prepare_polymorphism_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -94,25 +81,6 @@ class PolymorphismOperations:
         return deserialized
 
     get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
-
-    def _put_valid_request(self, body: "_models.Fish", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_valid(self, complex_body: "_models.Fish", **kwargs) -> None:
@@ -163,7 +131,10 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Fish")
 
-        request = self._put_valid_request(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = prepare_polymorphism_put_valid_request(
+            body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -179,21 +150,6 @@ class PolymorphismOperations:
 
     put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
-    def _get_dot_syntax_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dot_syntax(self, **kwargs) -> "_models.DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
@@ -207,7 +163,10 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dot_syntax_request(template_url=self.get_dot_syntax.metadata["url"], **kwargs)
+        request = prepare_polymorphism_get_dot_syntax_request(
+            template_url=self.get_dot_syntax.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -227,21 +186,6 @@ class PolymorphismOperations:
 
     get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
 
-    def _get_composed_with_discriminator_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_composed_with_discriminator(self, **kwargs) -> "_models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -257,9 +201,10 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_composed_with_discriminator_request(
+        request = prepare_polymorphism_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -279,21 +224,6 @@ class PolymorphismOperations:
 
     get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
 
-    def _get_composed_without_discriminator_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_composed_without_discriminator(self, **kwargs) -> "_models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -309,9 +239,10 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_composed_without_discriminator_request(
+        request = prepare_polymorphism_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -331,21 +262,6 @@ class PolymorphismOperations:
 
     get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
 
-    def _get_complicated_request(self, **kwargs) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_complicated(self, **kwargs) -> "_models.Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -360,7 +276,10 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complicated_request(template_url=self.get_complicated.metadata["url"], **kwargs)
+        request = prepare_polymorphism_get_complicated_request(
+            template_url=self.get_complicated.metadata["url"], **kwargs
+        )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -380,25 +299,6 @@ class PolymorphismOperations:
 
     get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
-    def _put_complicated_request(self, body: "_models.Salmon", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_complicated(self, complex_body: "_models.Salmon", **kwargs) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -417,9 +317,10 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Salmon")
 
-        request = self._put_complicated_request(
+        request = prepare_polymorphism_put_complicated_request(
             body=complex_body, template_url=self.put_complicated.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -434,25 +335,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, None, {})
 
     put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
-
-    def _put_missing_discriminator_request(self, body: "_models.Salmon", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_missing_discriminator(self, complex_body: "_models.Salmon", **kwargs) -> "_models.Salmon":
@@ -471,9 +353,10 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Salmon")
 
-        request = self._put_missing_discriminator_request(
+        request = prepare_polymorphism_put_missing_discriminator_request(
             body=complex_body, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -492,25 +375,6 @@ class PolymorphismOperations:
         return deserialized
 
     put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
-
-    def _put_valid_missing_required_request(self, body: "_models.Fish", **kwargs) -> HttpRequest:
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_valid_missing_required(self, complex_body: "_models.Fish", **kwargs) -> None:
@@ -556,9 +420,10 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Fish")
 
-        request = self._put_valid_missing_required_request(
+        request = prepare_polymorphism_put_valid_missing_required_request(
             body=complex_body, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
         )
+        request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
