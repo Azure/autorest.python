@@ -90,7 +90,7 @@ def prepare_paging_get_pages_partial_url_operation_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def _get_pages_partial_url_operation_next_request(
+def prepare_paging_get_pages_partial_url_operation_next_request(
     next_link,  # type: str
     **kwargs  # type: Any
 ):

@@ -159,7 +159,7 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = _get_pages_partial_url_operation_next_request(
+                request = prepare_paging_get_pages_partial_url_operation_next_request(
                     next_link=next_link, template_url="/paging/customurl/{nextLink}", **kwargs
                 )
                 path_format_arguments = {

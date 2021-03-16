@@ -84,7 +84,7 @@ def prepare_paging_get_pages_partial_url_operation_request(**kwargs) -> HttpRequ
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def _get_pages_partial_url_operation_next_request(next_link: str, **kwargs) -> HttpRequest:
+def prepare_paging_get_pages_partial_url_operation_next_request(next_link: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

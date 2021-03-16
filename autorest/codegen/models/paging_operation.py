@@ -111,7 +111,6 @@ class PagingOperation(Operation):
         if not self.next_operation:
             return None
         next_preparer = self.next_operation.preparer
-        next_preparer.name = f"_{self.python_name}_next_request"
         return next_preparer
 
     def imports(self, code_model, async_mode: bool) -> FileImport:

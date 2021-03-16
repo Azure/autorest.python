@@ -400,7 +400,7 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _get_with_query_params_next_request(
+                request = prepare_paging_next_operation_with_query_params_request(
                     template_url="/paging/multiple/nextOperationWithQueryParams", **kwargs
                 )
                 request.url = self._client.format_url(request.url)
@@ -925,7 +925,7 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _get_multiple_pages_fragment_next_link_next_request(
+                request = prepare_paging_next_fragment_request(
                     api_version=api_version,
                     tenant=tenant,
                     next_link=next_link,
@@ -1002,7 +1002,7 @@ class PagingOperations(object):
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-                request = _get_multiple_pages_fragment_with_grouping_next_link_next_request(
+                request = prepare_paging_next_fragment_with_grouping_request(
                     api_version=_api_version,
                     tenant=_tenant,
                     next_link=next_link,

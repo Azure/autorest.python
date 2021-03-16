@@ -189,7 +189,7 @@ def prepare_paging_get_with_query_params_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def _get_with_query_params_next_request(
+def prepare_paging_next_operation_with_query_params_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -457,7 +457,7 @@ def prepare_paging_get_multiple_pages_lro_initial_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_fragment_next_link_next_request(
+def prepare_paging_next_fragment_request(
     api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
@@ -486,7 +486,7 @@ def _get_multiple_pages_fragment_next_link_next_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
+def prepare_paging_next_fragment_with_grouping_request(
     api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
