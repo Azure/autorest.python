@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_xml_get_complex_type_ref_no_meta_request(
+def prepare_xml_get_complex_type_ref_no_meta(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -76,7 +76,7 @@ def prepare_xml_get_complex_type_ref_no_meta_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_complex_type_ref_no_meta_request(
+def prepare_xml_put_complex_type_ref_no_meta(
     body,  # type: "_models.RootWithRefAndNoMeta"
     **kwargs  # type: Any
 ):
@@ -99,7 +99,7 @@ def prepare_xml_put_complex_type_ref_no_meta_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_complex_type_ref_with_meta_request(
+def prepare_xml_get_complex_type_ref_with_meta(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -118,7 +118,7 @@ def prepare_xml_get_complex_type_ref_with_meta_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_complex_type_ref_with_meta_request(
+def prepare_xml_put_complex_type_ref_with_meta(
     body,  # type: "_models.RootWithRefAndMeta"
     **kwargs  # type: Any
 ):
@@ -141,7 +141,7 @@ def prepare_xml_put_complex_type_ref_with_meta_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_simple_request(
+def prepare_xml_get_simple(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -160,7 +160,7 @@ def prepare_xml_get_simple_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_simple_request(
+def prepare_xml_put_simple(
     body,  # type: "_models.Slideshow"
     **kwargs  # type: Any
 ):
@@ -185,7 +185,7 @@ def prepare_xml_put_simple_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_wrapped_lists_request(
+def prepare_xml_get_wrapped_lists(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -204,7 +204,7 @@ def prepare_xml_get_wrapped_lists_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_wrapped_lists_request(
+def prepare_xml_put_wrapped_lists(
     body,  # type: "_models.AppleBarrel"
     **kwargs  # type: Any
 ):
@@ -229,7 +229,7 @@ def prepare_xml_put_wrapped_lists_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_headers_request(
+def prepare_xml_get_headers(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -246,7 +246,7 @@ def prepare_xml_get_headers_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_get_empty_list_request(
+def prepare_xml_get_empty_list(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -265,7 +265,7 @@ def prepare_xml_get_empty_list_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_empty_list_request(
+def prepare_xml_put_empty_list(
     body,  # type: "_models.Slideshow"
     **kwargs  # type: Any
 ):
@@ -288,7 +288,7 @@ def prepare_xml_put_empty_list_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_empty_wrapped_lists_request(
+def prepare_xml_get_empty_wrapped_lists(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -307,7 +307,7 @@ def prepare_xml_get_empty_wrapped_lists_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_empty_wrapped_lists_request(
+def prepare_xml_put_empty_wrapped_lists(
     body,  # type: "_models.AppleBarrel"
     **kwargs  # type: Any
 ):
@@ -330,7 +330,7 @@ def prepare_xml_put_empty_wrapped_lists_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_root_list_request(
+def prepare_xml_get_root_list(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -349,7 +349,7 @@ def prepare_xml_get_root_list_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_root_list_request(
+def prepare_xml_put_root_list(
     body,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
@@ -372,7 +372,7 @@ def prepare_xml_put_root_list_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_root_list_single_item_request(
+def prepare_xml_get_root_list_single_item(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -391,7 +391,7 @@ def prepare_xml_get_root_list_single_item_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_root_list_single_item_request(
+def prepare_xml_put_root_list_single_item(
     body,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
@@ -414,7 +414,7 @@ def prepare_xml_put_root_list_single_item_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_empty_root_list_request(
+def prepare_xml_get_empty_root_list(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -433,7 +433,7 @@ def prepare_xml_get_empty_root_list_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_empty_root_list_request(
+def prepare_xml_put_empty_root_list(
     body,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
@@ -456,7 +456,7 @@ def prepare_xml_put_empty_root_list_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_empty_child_element_request(
+def prepare_xml_get_empty_child_element(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -475,7 +475,7 @@ def prepare_xml_get_empty_child_element_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_empty_child_element_request(
+def prepare_xml_put_empty_child_element(
     body,  # type: "_models.Banana"
     **kwargs  # type: Any
 ):
@@ -498,7 +498,7 @@ def prepare_xml_put_empty_child_element_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_list_containers_request(
+def prepare_xml_list_containers(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -519,7 +519,7 @@ def prepare_xml_list_containers_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_get_service_properties_request(
+def prepare_xml_get_service_properties(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -542,7 +542,7 @@ def prepare_xml_get_service_properties_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_service_properties_request(
+def prepare_xml_put_service_properties(
     body,  # type: "_models.StorageServiceProperties"
     **kwargs  # type: Any
 ):
@@ -569,7 +569,7 @@ def prepare_xml_put_service_properties_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_acls_request(
+def prepare_xml_get_acls(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -592,7 +592,7 @@ def prepare_xml_get_acls_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_acls_request(
+def prepare_xml_put_acls(
     body,  # type: List["_models.SignedIdentifier"]
     **kwargs  # type: Any
 ):
@@ -619,7 +619,7 @@ def prepare_xml_put_acls_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_list_blobs_request(
+def prepare_xml_list_blobs(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -642,7 +642,7 @@ def prepare_xml_list_blobs_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_json_input_request(
+def prepare_xml_json_input(
     body,  # type: "_models.JSONInput"
     **kwargs  # type: Any
 ):
@@ -665,7 +665,7 @@ def prepare_xml_json_input_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_json_output_request(
+def prepare_xml_json_output(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -684,7 +684,7 @@ def prepare_xml_json_output_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_get_xms_text_request(
+def prepare_xml_get_xms_text(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -703,7 +703,7 @@ def prepare_xml_get_xms_text_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_get_bytes_request(
+def prepare_xml_get_bytes(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -722,7 +722,7 @@ def prepare_xml_get_bytes_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_binary_request(
+def prepare_xml_put_binary(
     body,  # type: "_models.ModelWithByteProperty"
     **kwargs  # type: Any
 ):
@@ -747,7 +747,7 @@ def prepare_xml_put_binary_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_xml_get_uri_request(
+def prepare_xml_get_uri(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -766,7 +766,7 @@ def prepare_xml_get_uri_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xml_put_uri_request(
+def prepare_xml_put_uri(
     body,  # type: "_models.ModelWithUrlProperty"
     **kwargs  # type: Any
 ):

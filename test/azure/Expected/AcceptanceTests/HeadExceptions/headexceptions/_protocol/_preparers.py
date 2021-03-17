@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_headexception_head200_request(
+def prepare_headexception_head200(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -68,7 +68,7 @@ def prepare_headexception_head200_request(
     return _request("HEAD", url, query_parameters, header_parameters)
 
 
-def prepare_headexception_head204_request(
+def prepare_headexception_head204(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -85,7 +85,7 @@ def prepare_headexception_head204_request(
     return _request("HEAD", url, query_parameters, header_parameters)
 
 
-def prepare_headexception_head404_request(
+def prepare_headexception_head404(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

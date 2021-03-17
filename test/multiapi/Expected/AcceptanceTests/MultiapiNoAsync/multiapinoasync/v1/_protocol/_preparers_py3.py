@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_test_one_request(
+def prepare_test_one(
     id: int,
     message: Optional[str] = None,
     **kwargs
@@ -77,7 +77,7 @@ def prepare_test_one_request(
     return _request("PUT", url, query_parameters, header_parameters)
 
 
-def prepare_test_lro_initial_request(
+def prepare_test_lro_initial(
     body: Optional["_models.Product"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -101,7 +101,7 @@ def prepare_test_lro_initial_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_test_lro_and_paging_initial_request(
+def prepare_test_lro_and_paging_initial(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
     timeout: Optional[int] = 30,
@@ -129,7 +129,7 @@ def prepare_test_lro_and_paging_initial_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_test_different_calls_request(
+def prepare_test_different_calls(
     greeting_in_english: str,
     **kwargs
 ) -> HttpRequest:
@@ -152,7 +152,7 @@ def prepare_test_different_calls_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_operationgroupone_test_two_request(
+def prepare_operationgroupone_test_two(
     **kwargs
 ) -> HttpRequest:
     api_version = "1.0.0"

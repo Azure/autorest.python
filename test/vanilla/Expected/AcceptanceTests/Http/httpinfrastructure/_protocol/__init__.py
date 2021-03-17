@@ -7,348 +7,340 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_httpfailure_get_empty_error_request
-    from ._preparers_py3 import prepare_httpfailure_get_no_model_error_request
-    from ._preparers_py3 import prepare_httpfailure_get_no_model_empty_request
-    from ._preparers_py3 import prepare_httpsuccess_head200_request
-    from ._preparers_py3 import prepare_httpsuccess_get200_request
-    from ._preparers_py3 import prepare_httpsuccess_options200_request
-    from ._preparers_py3 import prepare_httpsuccess_put200_request
-    from ._preparers_py3 import prepare_httpsuccess_patch200_request
-    from ._preparers_py3 import prepare_httpsuccess_post200_request
-    from ._preparers_py3 import prepare_httpsuccess_delete200_request
-    from ._preparers_py3 import prepare_httpsuccess_put201_request
-    from ._preparers_py3 import prepare_httpsuccess_post201_request
-    from ._preparers_py3 import prepare_httpsuccess_put202_request
-    from ._preparers_py3 import prepare_httpsuccess_patch202_request
-    from ._preparers_py3 import prepare_httpsuccess_post202_request
-    from ._preparers_py3 import prepare_httpsuccess_delete202_request
-    from ._preparers_py3 import prepare_httpsuccess_head204_request
-    from ._preparers_py3 import prepare_httpsuccess_put204_request
-    from ._preparers_py3 import prepare_httpsuccess_patch204_request
-    from ._preparers_py3 import prepare_httpsuccess_post204_request
-    from ._preparers_py3 import prepare_httpsuccess_delete204_request
-    from ._preparers_py3 import prepare_httpsuccess_head404_request
-    from ._preparers_py3 import prepare_httpredirects_head300_request
-    from ._preparers_py3 import prepare_httpredirects_get300_request
-    from ._preparers_py3 import prepare_httpredirects_head301_request
-    from ._preparers_py3 import prepare_httpredirects_get301_request
-    from ._preparers_py3 import prepare_httpredirects_put301_request
-    from ._preparers_py3 import prepare_httpredirects_head302_request
-    from ._preparers_py3 import prepare_httpredirects_get302_request
-    from ._preparers_py3 import prepare_httpredirects_patch302_request
-    from ._preparers_py3 import prepare_httpredirects_post303_request
-    from ._preparers_py3 import prepare_httpredirects_head307_request
-    from ._preparers_py3 import prepare_httpredirects_get307_request
-    from ._preparers_py3 import prepare_httpredirects_options307_request
-    from ._preparers_py3 import prepare_httpredirects_put307_request
-    from ._preparers_py3 import prepare_httpredirects_patch307_request
-    from ._preparers_py3 import prepare_httpredirects_post307_request
-    from ._preparers_py3 import prepare_httpredirects_delete307_request
-    from ._preparers_py3 import prepare_httpclientfailure_head400_request
-    from ._preparers_py3 import prepare_httpclientfailure_get400_request
-    from ._preparers_py3 import prepare_httpclientfailure_options400_request
-    from ._preparers_py3 import prepare_httpclientfailure_put400_request
-    from ._preparers_py3 import prepare_httpclientfailure_patch400_request
-    from ._preparers_py3 import prepare_httpclientfailure_post400_request
-    from ._preparers_py3 import prepare_httpclientfailure_delete400_request
-    from ._preparers_py3 import prepare_httpclientfailure_head401_request
-    from ._preparers_py3 import prepare_httpclientfailure_get402_request
-    from ._preparers_py3 import prepare_httpclientfailure_options403_request
-    from ._preparers_py3 import prepare_httpclientfailure_get403_request
-    from ._preparers_py3 import prepare_httpclientfailure_put404_request
-    from ._preparers_py3 import prepare_httpclientfailure_patch405_request
-    from ._preparers_py3 import prepare_httpclientfailure_post406_request
-    from ._preparers_py3 import prepare_httpclientfailure_delete407_request
-    from ._preparers_py3 import prepare_httpclientfailure_put409_request
-    from ._preparers_py3 import prepare_httpclientfailure_head410_request
-    from ._preparers_py3 import prepare_httpclientfailure_get411_request
-    from ._preparers_py3 import prepare_httpclientfailure_options412_request
-    from ._preparers_py3 import prepare_httpclientfailure_get412_request
-    from ._preparers_py3 import prepare_httpclientfailure_put413_request
-    from ._preparers_py3 import prepare_httpclientfailure_patch414_request
-    from ._preparers_py3 import prepare_httpclientfailure_post415_request
-    from ._preparers_py3 import prepare_httpclientfailure_get416_request
-    from ._preparers_py3 import prepare_httpclientfailure_delete417_request
-    from ._preparers_py3 import prepare_httpclientfailure_head429_request
-    from ._preparers_py3 import prepare_httpserverfailure_head501_request
-    from ._preparers_py3 import prepare_httpserverfailure_get501_request
-    from ._preparers_py3 import prepare_httpserverfailure_post505_request
-    from ._preparers_py3 import prepare_httpserverfailure_delete505_request
-    from ._preparers_py3 import prepare_httpretry_head408_request
-    from ._preparers_py3 import prepare_httpretry_put500_request
-    from ._preparers_py3 import prepare_httpretry_patch500_request
-    from ._preparers_py3 import prepare_httpretry_get502_request
-    from ._preparers_py3 import prepare_httpretry_options502_request
-    from ._preparers_py3 import prepare_httpretry_post503_request
-    from ._preparers_py3 import prepare_httpretry_delete503_request
-    from ._preparers_py3 import prepare_httpretry_put504_request
-    from ._preparers_py3 import prepare_httpretry_patch504_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error202_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model201_model_default_error200_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model201_model_default_error201_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model201_model_default_error400_valid_request
-    from ._preparers_py3 import (
-        prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request,
-    )
-    from ._preparers_py3 import (
-        prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request,
-    )
-    from ._preparers_py3 import (
-        prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request,
-    )
-    from ._preparers_py3 import (
-        prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request,
-    )
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_error202_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_error204_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_error400_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none202_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none204_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none400_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none400_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a200_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a200_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a400_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a400_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_none200_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_none200_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_none400_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get_default_none400_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a200_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a200_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a200_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a400_none_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a400_valid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a400_invalid_request
-    from ._preparers_py3 import prepare_multipleresponses_get200_model_a202_valid_request
+    from ._preparers_py3 import prepare_httpfailure_get_empty_error
+    from ._preparers_py3 import prepare_httpfailure_get_no_model_error
+    from ._preparers_py3 import prepare_httpfailure_get_no_model_empty
+    from ._preparers_py3 import prepare_httpsuccess_head200
+    from ._preparers_py3 import prepare_httpsuccess_get200
+    from ._preparers_py3 import prepare_httpsuccess_options200
+    from ._preparers_py3 import prepare_httpsuccess_put200
+    from ._preparers_py3 import prepare_httpsuccess_patch200
+    from ._preparers_py3 import prepare_httpsuccess_post200
+    from ._preparers_py3 import prepare_httpsuccess_delete200
+    from ._preparers_py3 import prepare_httpsuccess_put201
+    from ._preparers_py3 import prepare_httpsuccess_post201
+    from ._preparers_py3 import prepare_httpsuccess_put202
+    from ._preparers_py3 import prepare_httpsuccess_patch202
+    from ._preparers_py3 import prepare_httpsuccess_post202
+    from ._preparers_py3 import prepare_httpsuccess_delete202
+    from ._preparers_py3 import prepare_httpsuccess_head204
+    from ._preparers_py3 import prepare_httpsuccess_put204
+    from ._preparers_py3 import prepare_httpsuccess_patch204
+    from ._preparers_py3 import prepare_httpsuccess_post204
+    from ._preparers_py3 import prepare_httpsuccess_delete204
+    from ._preparers_py3 import prepare_httpsuccess_head404
+    from ._preparers_py3 import prepare_httpredirects_head300
+    from ._preparers_py3 import prepare_httpredirects_get300
+    from ._preparers_py3 import prepare_httpredirects_head301
+    from ._preparers_py3 import prepare_httpredirects_get301
+    from ._preparers_py3 import prepare_httpredirects_put301
+    from ._preparers_py3 import prepare_httpredirects_head302
+    from ._preparers_py3 import prepare_httpredirects_get302
+    from ._preparers_py3 import prepare_httpredirects_patch302
+    from ._preparers_py3 import prepare_httpredirects_post303
+    from ._preparers_py3 import prepare_httpredirects_head307
+    from ._preparers_py3 import prepare_httpredirects_get307
+    from ._preparers_py3 import prepare_httpredirects_options307
+    from ._preparers_py3 import prepare_httpredirects_put307
+    from ._preparers_py3 import prepare_httpredirects_patch307
+    from ._preparers_py3 import prepare_httpredirects_post307
+    from ._preparers_py3 import prepare_httpredirects_delete307
+    from ._preparers_py3 import prepare_httpclientfailure_head400
+    from ._preparers_py3 import prepare_httpclientfailure_get400
+    from ._preparers_py3 import prepare_httpclientfailure_options400
+    from ._preparers_py3 import prepare_httpclientfailure_put400
+    from ._preparers_py3 import prepare_httpclientfailure_patch400
+    from ._preparers_py3 import prepare_httpclientfailure_post400
+    from ._preparers_py3 import prepare_httpclientfailure_delete400
+    from ._preparers_py3 import prepare_httpclientfailure_head401
+    from ._preparers_py3 import prepare_httpclientfailure_get402
+    from ._preparers_py3 import prepare_httpclientfailure_options403
+    from ._preparers_py3 import prepare_httpclientfailure_get403
+    from ._preparers_py3 import prepare_httpclientfailure_put404
+    from ._preparers_py3 import prepare_httpclientfailure_patch405
+    from ._preparers_py3 import prepare_httpclientfailure_post406
+    from ._preparers_py3 import prepare_httpclientfailure_delete407
+    from ._preparers_py3 import prepare_httpclientfailure_put409
+    from ._preparers_py3 import prepare_httpclientfailure_head410
+    from ._preparers_py3 import prepare_httpclientfailure_get411
+    from ._preparers_py3 import prepare_httpclientfailure_options412
+    from ._preparers_py3 import prepare_httpclientfailure_get412
+    from ._preparers_py3 import prepare_httpclientfailure_put413
+    from ._preparers_py3 import prepare_httpclientfailure_patch414
+    from ._preparers_py3 import prepare_httpclientfailure_post415
+    from ._preparers_py3 import prepare_httpclientfailure_get416
+    from ._preparers_py3 import prepare_httpclientfailure_delete417
+    from ._preparers_py3 import prepare_httpclientfailure_head429
+    from ._preparers_py3 import prepare_httpserverfailure_head501
+    from ._preparers_py3 import prepare_httpserverfailure_get501
+    from ._preparers_py3 import prepare_httpserverfailure_post505
+    from ._preparers_py3 import prepare_httpserverfailure_delete505
+    from ._preparers_py3 import prepare_httpretry_head408
+    from ._preparers_py3 import prepare_httpretry_put500
+    from ._preparers_py3 import prepare_httpretry_patch500
+    from ._preparers_py3 import prepare_httpretry_get502
+    from ._preparers_py3 import prepare_httpretry_options502
+    from ._preparers_py3 import prepare_httpretry_post503
+    from ._preparers_py3 import prepare_httpretry_delete503
+    from ._preparers_py3 import prepare_httpretry_put504
+    from ._preparers_py3 import prepare_httpretry_patch504
+    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error200_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error204_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error201_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error202_none
+    from ._preparers_py3 import prepare_multipleresponses_get200_model204_no_model_default_error400_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model201_model_default_error200_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model201_model_default_error201_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model201_model_default_error400_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_error202_none
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_error204_none
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_error400_valid
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none202_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none204_none
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none400_none
+    from ._preparers_py3 import prepare_multipleresponses_get202_none204_none_default_none400_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a200_valid
+    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a200_none
+    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a400_valid
+    from ._preparers_py3 import prepare_multipleresponses_get_default_model_a400_none
+    from ._preparers_py3 import prepare_multipleresponses_get_default_none200_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get_default_none200_none
+    from ._preparers_py3 import prepare_multipleresponses_get_default_none400_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get_default_none400_none
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a200_none
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a200_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a200_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a400_none
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a400_valid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a400_invalid
+    from ._preparers_py3 import prepare_multipleresponses_get200_model_a202_valid
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_httpfailure_get_empty_error_request  # type: ignore
-    from ._preparers import prepare_httpfailure_get_no_model_error_request  # type: ignore
-    from ._preparers import prepare_httpfailure_get_no_model_empty_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_head200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_get200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_options200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_put200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_patch200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_post200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_delete200_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_put201_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_post201_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_put202_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_patch202_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_post202_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_delete202_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_head204_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_put204_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_patch204_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_post204_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_delete204_request  # type: ignore
-    from ._preparers import prepare_httpsuccess_head404_request  # type: ignore
-    from ._preparers import prepare_httpredirects_head300_request  # type: ignore
-    from ._preparers import prepare_httpredirects_get300_request  # type: ignore
-    from ._preparers import prepare_httpredirects_head301_request  # type: ignore
-    from ._preparers import prepare_httpredirects_get301_request  # type: ignore
-    from ._preparers import prepare_httpredirects_put301_request  # type: ignore
-    from ._preparers import prepare_httpredirects_head302_request  # type: ignore
-    from ._preparers import prepare_httpredirects_get302_request  # type: ignore
-    from ._preparers import prepare_httpredirects_patch302_request  # type: ignore
-    from ._preparers import prepare_httpredirects_post303_request  # type: ignore
-    from ._preparers import prepare_httpredirects_head307_request  # type: ignore
-    from ._preparers import prepare_httpredirects_get307_request  # type: ignore
-    from ._preparers import prepare_httpredirects_options307_request  # type: ignore
-    from ._preparers import prepare_httpredirects_put307_request  # type: ignore
-    from ._preparers import prepare_httpredirects_patch307_request  # type: ignore
-    from ._preparers import prepare_httpredirects_post307_request  # type: ignore
-    from ._preparers import prepare_httpredirects_delete307_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_head400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_get400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_options400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_put400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_patch400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_post400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_delete400_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_head401_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_get402_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_options403_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_get403_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_put404_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_patch405_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_post406_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_delete407_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_put409_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_head410_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_get411_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_options412_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_get412_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_put413_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_patch414_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_post415_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_get416_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_delete417_request  # type: ignore
-    from ._preparers import prepare_httpclientfailure_head429_request  # type: ignore
-    from ._preparers import prepare_httpserverfailure_head501_request  # type: ignore
-    from ._preparers import prepare_httpserverfailure_get501_request  # type: ignore
-    from ._preparers import prepare_httpserverfailure_post505_request  # type: ignore
-    from ._preparers import prepare_httpserverfailure_delete505_request  # type: ignore
-    from ._preparers import prepare_httpretry_head408_request  # type: ignore
-    from ._preparers import prepare_httpretry_put500_request  # type: ignore
-    from ._preparers import prepare_httpretry_patch500_request  # type: ignore
-    from ._preparers import prepare_httpretry_get502_request  # type: ignore
-    from ._preparers import prepare_httpretry_options502_request  # type: ignore
-    from ._preparers import prepare_httpretry_post503_request  # type: ignore
-    from ._preparers import prepare_httpretry_delete503_request  # type: ignore
-    from ._preparers import prepare_httpretry_put504_request  # type: ignore
-    from ._preparers import prepare_httpretry_patch504_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error202_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model201_model_default_error200_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model201_model_default_error201_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model201_model_default_error400_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_error202_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_error204_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_error400_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none202_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none204_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none400_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none400_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_model_a200_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_model_a200_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_model_a400_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_model_a400_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_none200_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_none200_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_none400_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get_default_none400_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a200_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a200_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a200_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a400_none_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a400_valid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a400_invalid_request  # type: ignore
-    from ._preparers import prepare_multipleresponses_get200_model_a202_valid_request  # type: ignore
+    from ._preparers import prepare_httpfailure_get_empty_error  # type: ignore
+    from ._preparers import prepare_httpfailure_get_no_model_error  # type: ignore
+    from ._preparers import prepare_httpfailure_get_no_model_empty  # type: ignore
+    from ._preparers import prepare_httpsuccess_head200  # type: ignore
+    from ._preparers import prepare_httpsuccess_get200  # type: ignore
+    from ._preparers import prepare_httpsuccess_options200  # type: ignore
+    from ._preparers import prepare_httpsuccess_put200  # type: ignore
+    from ._preparers import prepare_httpsuccess_patch200  # type: ignore
+    from ._preparers import prepare_httpsuccess_post200  # type: ignore
+    from ._preparers import prepare_httpsuccess_delete200  # type: ignore
+    from ._preparers import prepare_httpsuccess_put201  # type: ignore
+    from ._preparers import prepare_httpsuccess_post201  # type: ignore
+    from ._preparers import prepare_httpsuccess_put202  # type: ignore
+    from ._preparers import prepare_httpsuccess_patch202  # type: ignore
+    from ._preparers import prepare_httpsuccess_post202  # type: ignore
+    from ._preparers import prepare_httpsuccess_delete202  # type: ignore
+    from ._preparers import prepare_httpsuccess_head204  # type: ignore
+    from ._preparers import prepare_httpsuccess_put204  # type: ignore
+    from ._preparers import prepare_httpsuccess_patch204  # type: ignore
+    from ._preparers import prepare_httpsuccess_post204  # type: ignore
+    from ._preparers import prepare_httpsuccess_delete204  # type: ignore
+    from ._preparers import prepare_httpsuccess_head404  # type: ignore
+    from ._preparers import prepare_httpredirects_head300  # type: ignore
+    from ._preparers import prepare_httpredirects_get300  # type: ignore
+    from ._preparers import prepare_httpredirects_head301  # type: ignore
+    from ._preparers import prepare_httpredirects_get301  # type: ignore
+    from ._preparers import prepare_httpredirects_put301  # type: ignore
+    from ._preparers import prepare_httpredirects_head302  # type: ignore
+    from ._preparers import prepare_httpredirects_get302  # type: ignore
+    from ._preparers import prepare_httpredirects_patch302  # type: ignore
+    from ._preparers import prepare_httpredirects_post303  # type: ignore
+    from ._preparers import prepare_httpredirects_head307  # type: ignore
+    from ._preparers import prepare_httpredirects_get307  # type: ignore
+    from ._preparers import prepare_httpredirects_options307  # type: ignore
+    from ._preparers import prepare_httpredirects_put307  # type: ignore
+    from ._preparers import prepare_httpredirects_patch307  # type: ignore
+    from ._preparers import prepare_httpredirects_post307  # type: ignore
+    from ._preparers import prepare_httpredirects_delete307  # type: ignore
+    from ._preparers import prepare_httpclientfailure_head400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_get400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_options400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_put400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_patch400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_post400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_delete400  # type: ignore
+    from ._preparers import prepare_httpclientfailure_head401  # type: ignore
+    from ._preparers import prepare_httpclientfailure_get402  # type: ignore
+    from ._preparers import prepare_httpclientfailure_options403  # type: ignore
+    from ._preparers import prepare_httpclientfailure_get403  # type: ignore
+    from ._preparers import prepare_httpclientfailure_put404  # type: ignore
+    from ._preparers import prepare_httpclientfailure_patch405  # type: ignore
+    from ._preparers import prepare_httpclientfailure_post406  # type: ignore
+    from ._preparers import prepare_httpclientfailure_delete407  # type: ignore
+    from ._preparers import prepare_httpclientfailure_put409  # type: ignore
+    from ._preparers import prepare_httpclientfailure_head410  # type: ignore
+    from ._preparers import prepare_httpclientfailure_get411  # type: ignore
+    from ._preparers import prepare_httpclientfailure_options412  # type: ignore
+    from ._preparers import prepare_httpclientfailure_get412  # type: ignore
+    from ._preparers import prepare_httpclientfailure_put413  # type: ignore
+    from ._preparers import prepare_httpclientfailure_patch414  # type: ignore
+    from ._preparers import prepare_httpclientfailure_post415  # type: ignore
+    from ._preparers import prepare_httpclientfailure_get416  # type: ignore
+    from ._preparers import prepare_httpclientfailure_delete417  # type: ignore
+    from ._preparers import prepare_httpclientfailure_head429  # type: ignore
+    from ._preparers import prepare_httpserverfailure_head501  # type: ignore
+    from ._preparers import prepare_httpserverfailure_get501  # type: ignore
+    from ._preparers import prepare_httpserverfailure_post505  # type: ignore
+    from ._preparers import prepare_httpserverfailure_delete505  # type: ignore
+    from ._preparers import prepare_httpretry_head408  # type: ignore
+    from ._preparers import prepare_httpretry_put500  # type: ignore
+    from ._preparers import prepare_httpretry_patch500  # type: ignore
+    from ._preparers import prepare_httpretry_get502  # type: ignore
+    from ._preparers import prepare_httpretry_options502  # type: ignore
+    from ._preparers import prepare_httpretry_post503  # type: ignore
+    from ._preparers import prepare_httpretry_delete503  # type: ignore
+    from ._preparers import prepare_httpretry_put504  # type: ignore
+    from ._preparers import prepare_httpretry_patch504  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error200_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error204_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error201_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error202_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model204_no_model_default_error400_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model201_model_default_error200_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model201_model_default_error201_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model201_model_default_error400_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_error202_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_error204_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_error400_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none202_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none204_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none400_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get202_none204_none_default_none400_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_model_a200_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_model_a200_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_model_a400_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_model_a400_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_none200_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_none200_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_none400_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get_default_none400_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a200_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a200_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a200_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a400_none  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a400_valid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a400_invalid  # type: ignore
+    from ._preparers import prepare_multipleresponses_get200_model_a202_valid  # type: ignore
 
 __all__ = [
-    "prepare_httpfailure_get_empty_error_request",
-    "prepare_httpfailure_get_no_model_error_request",
-    "prepare_httpfailure_get_no_model_empty_request",
-    "prepare_httpsuccess_head200_request",
-    "prepare_httpsuccess_get200_request",
-    "prepare_httpsuccess_options200_request",
-    "prepare_httpsuccess_put200_request",
-    "prepare_httpsuccess_patch200_request",
-    "prepare_httpsuccess_post200_request",
-    "prepare_httpsuccess_delete200_request",
-    "prepare_httpsuccess_put201_request",
-    "prepare_httpsuccess_post201_request",
-    "prepare_httpsuccess_put202_request",
-    "prepare_httpsuccess_patch202_request",
-    "prepare_httpsuccess_post202_request",
-    "prepare_httpsuccess_delete202_request",
-    "prepare_httpsuccess_head204_request",
-    "prepare_httpsuccess_put204_request",
-    "prepare_httpsuccess_patch204_request",
-    "prepare_httpsuccess_post204_request",
-    "prepare_httpsuccess_delete204_request",
-    "prepare_httpsuccess_head404_request",
-    "prepare_httpredirects_head300_request",
-    "prepare_httpredirects_get300_request",
-    "prepare_httpredirects_head301_request",
-    "prepare_httpredirects_get301_request",
-    "prepare_httpredirects_put301_request",
-    "prepare_httpredirects_head302_request",
-    "prepare_httpredirects_get302_request",
-    "prepare_httpredirects_patch302_request",
-    "prepare_httpredirects_post303_request",
-    "prepare_httpredirects_head307_request",
-    "prepare_httpredirects_get307_request",
-    "prepare_httpredirects_options307_request",
-    "prepare_httpredirects_put307_request",
-    "prepare_httpredirects_patch307_request",
-    "prepare_httpredirects_post307_request",
-    "prepare_httpredirects_delete307_request",
-    "prepare_httpclientfailure_head400_request",
-    "prepare_httpclientfailure_get400_request",
-    "prepare_httpclientfailure_options400_request",
-    "prepare_httpclientfailure_put400_request",
-    "prepare_httpclientfailure_patch400_request",
-    "prepare_httpclientfailure_post400_request",
-    "prepare_httpclientfailure_delete400_request",
-    "prepare_httpclientfailure_head401_request",
-    "prepare_httpclientfailure_get402_request",
-    "prepare_httpclientfailure_options403_request",
-    "prepare_httpclientfailure_get403_request",
-    "prepare_httpclientfailure_put404_request",
-    "prepare_httpclientfailure_patch405_request",
-    "prepare_httpclientfailure_post406_request",
-    "prepare_httpclientfailure_delete407_request",
-    "prepare_httpclientfailure_put409_request",
-    "prepare_httpclientfailure_head410_request",
-    "prepare_httpclientfailure_get411_request",
-    "prepare_httpclientfailure_options412_request",
-    "prepare_httpclientfailure_get412_request",
-    "prepare_httpclientfailure_put413_request",
-    "prepare_httpclientfailure_patch414_request",
-    "prepare_httpclientfailure_post415_request",
-    "prepare_httpclientfailure_get416_request",
-    "prepare_httpclientfailure_delete417_request",
-    "prepare_httpclientfailure_head429_request",
-    "prepare_httpserverfailure_head501_request",
-    "prepare_httpserverfailure_get501_request",
-    "prepare_httpserverfailure_post505_request",
-    "prepare_httpserverfailure_delete505_request",
-    "prepare_httpretry_head408_request",
-    "prepare_httpretry_put500_request",
-    "prepare_httpretry_patch500_request",
-    "prepare_httpretry_get502_request",
-    "prepare_httpretry_options502_request",
-    "prepare_httpretry_post503_request",
-    "prepare_httpretry_delete503_request",
-    "prepare_httpretry_put504_request",
-    "prepare_httpretry_patch504_request",
-    "prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request",
-    "prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request",
-    "prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request",
-    "prepare_multipleresponses_get200_model204_no_model_default_error202_none_request",
-    "prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request",
-    "prepare_multipleresponses_get200_model201_model_default_error200_valid_request",
-    "prepare_multipleresponses_get200_model201_model_default_error201_valid_request",
-    "prepare_multipleresponses_get200_model201_model_default_error400_valid_request",
-    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request",
-    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request",
-    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request",
-    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request",
-    "prepare_multipleresponses_get202_none204_none_default_error202_none_request",
-    "prepare_multipleresponses_get202_none204_none_default_error204_none_request",
-    "prepare_multipleresponses_get202_none204_none_default_error400_valid_request",
-    "prepare_multipleresponses_get202_none204_none_default_none202_invalid_request",
-    "prepare_multipleresponses_get202_none204_none_default_none204_none_request",
-    "prepare_multipleresponses_get202_none204_none_default_none400_none_request",
-    "prepare_multipleresponses_get202_none204_none_default_none400_invalid_request",
-    "prepare_multipleresponses_get_default_model_a200_valid_request",
-    "prepare_multipleresponses_get_default_model_a200_none_request",
-    "prepare_multipleresponses_get_default_model_a400_valid_request",
-    "prepare_multipleresponses_get_default_model_a400_none_request",
-    "prepare_multipleresponses_get_default_none200_invalid_request",
-    "prepare_multipleresponses_get_default_none200_none_request",
-    "prepare_multipleresponses_get_default_none400_invalid_request",
-    "prepare_multipleresponses_get_default_none400_none_request",
-    "prepare_multipleresponses_get200_model_a200_none_request",
-    "prepare_multipleresponses_get200_model_a200_valid_request",
-    "prepare_multipleresponses_get200_model_a200_invalid_request",
-    "prepare_multipleresponses_get200_model_a400_none_request",
-    "prepare_multipleresponses_get200_model_a400_valid_request",
-    "prepare_multipleresponses_get200_model_a400_invalid_request",
-    "prepare_multipleresponses_get200_model_a202_valid_request",
+    "prepare_httpfailure_get_empty_error",
+    "prepare_httpfailure_get_no_model_error",
+    "prepare_httpfailure_get_no_model_empty",
+    "prepare_httpsuccess_head200",
+    "prepare_httpsuccess_get200",
+    "prepare_httpsuccess_options200",
+    "prepare_httpsuccess_put200",
+    "prepare_httpsuccess_patch200",
+    "prepare_httpsuccess_post200",
+    "prepare_httpsuccess_delete200",
+    "prepare_httpsuccess_put201",
+    "prepare_httpsuccess_post201",
+    "prepare_httpsuccess_put202",
+    "prepare_httpsuccess_patch202",
+    "prepare_httpsuccess_post202",
+    "prepare_httpsuccess_delete202",
+    "prepare_httpsuccess_head204",
+    "prepare_httpsuccess_put204",
+    "prepare_httpsuccess_patch204",
+    "prepare_httpsuccess_post204",
+    "prepare_httpsuccess_delete204",
+    "prepare_httpsuccess_head404",
+    "prepare_httpredirects_head300",
+    "prepare_httpredirects_get300",
+    "prepare_httpredirects_head301",
+    "prepare_httpredirects_get301",
+    "prepare_httpredirects_put301",
+    "prepare_httpredirects_head302",
+    "prepare_httpredirects_get302",
+    "prepare_httpredirects_patch302",
+    "prepare_httpredirects_post303",
+    "prepare_httpredirects_head307",
+    "prepare_httpredirects_get307",
+    "prepare_httpredirects_options307",
+    "prepare_httpredirects_put307",
+    "prepare_httpredirects_patch307",
+    "prepare_httpredirects_post307",
+    "prepare_httpredirects_delete307",
+    "prepare_httpclientfailure_head400",
+    "prepare_httpclientfailure_get400",
+    "prepare_httpclientfailure_options400",
+    "prepare_httpclientfailure_put400",
+    "prepare_httpclientfailure_patch400",
+    "prepare_httpclientfailure_post400",
+    "prepare_httpclientfailure_delete400",
+    "prepare_httpclientfailure_head401",
+    "prepare_httpclientfailure_get402",
+    "prepare_httpclientfailure_options403",
+    "prepare_httpclientfailure_get403",
+    "prepare_httpclientfailure_put404",
+    "prepare_httpclientfailure_patch405",
+    "prepare_httpclientfailure_post406",
+    "prepare_httpclientfailure_delete407",
+    "prepare_httpclientfailure_put409",
+    "prepare_httpclientfailure_head410",
+    "prepare_httpclientfailure_get411",
+    "prepare_httpclientfailure_options412",
+    "prepare_httpclientfailure_get412",
+    "prepare_httpclientfailure_put413",
+    "prepare_httpclientfailure_patch414",
+    "prepare_httpclientfailure_post415",
+    "prepare_httpclientfailure_get416",
+    "prepare_httpclientfailure_delete417",
+    "prepare_httpclientfailure_head429",
+    "prepare_httpserverfailure_head501",
+    "prepare_httpserverfailure_get501",
+    "prepare_httpserverfailure_post505",
+    "prepare_httpserverfailure_delete505",
+    "prepare_httpretry_head408",
+    "prepare_httpretry_put500",
+    "prepare_httpretry_patch500",
+    "prepare_httpretry_get502",
+    "prepare_httpretry_options502",
+    "prepare_httpretry_post503",
+    "prepare_httpretry_delete503",
+    "prepare_httpretry_put504",
+    "prepare_httpretry_patch504",
+    "prepare_multipleresponses_get200_model204_no_model_default_error200_valid",
+    "prepare_multipleresponses_get200_model204_no_model_default_error204_valid",
+    "prepare_multipleresponses_get200_model204_no_model_default_error201_invalid",
+    "prepare_multipleresponses_get200_model204_no_model_default_error202_none",
+    "prepare_multipleresponses_get200_model204_no_model_default_error400_valid",
+    "prepare_multipleresponses_get200_model201_model_default_error200_valid",
+    "prepare_multipleresponses_get200_model201_model_default_error201_valid",
+    "prepare_multipleresponses_get200_model201_model_default_error400_valid",
+    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid",
+    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid",
+    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid",
+    "prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid",
+    "prepare_multipleresponses_get202_none204_none_default_error202_none",
+    "prepare_multipleresponses_get202_none204_none_default_error204_none",
+    "prepare_multipleresponses_get202_none204_none_default_error400_valid",
+    "prepare_multipleresponses_get202_none204_none_default_none202_invalid",
+    "prepare_multipleresponses_get202_none204_none_default_none204_none",
+    "prepare_multipleresponses_get202_none204_none_default_none400_none",
+    "prepare_multipleresponses_get202_none204_none_default_none400_invalid",
+    "prepare_multipleresponses_get_default_model_a200_valid",
+    "prepare_multipleresponses_get_default_model_a200_none",
+    "prepare_multipleresponses_get_default_model_a400_valid",
+    "prepare_multipleresponses_get_default_model_a400_none",
+    "prepare_multipleresponses_get_default_none200_invalid",
+    "prepare_multipleresponses_get_default_none200_none",
+    "prepare_multipleresponses_get_default_none400_invalid",
+    "prepare_multipleresponses_get_default_none400_none",
+    "prepare_multipleresponses_get200_model_a200_none",
+    "prepare_multipleresponses_get200_model_a200_valid",
+    "prepare_multipleresponses_get200_model_a200_invalid",
+    "prepare_multipleresponses_get200_model_a400_none",
+    "prepare_multipleresponses_get200_model_a400_valid",
+    "prepare_multipleresponses_get200_model_a400_invalid",
+    "prepare_multipleresponses_get200_model_a202_valid",
 ]

@@ -49,7 +49,7 @@ def _request(
     return request
 
 
-def prepare_test_request(
+def prepare_test(
     id,  # type: int
     **kwargs  # type: Any
 ):

@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_analyze_body_request(
+def prepare_analyze_body(
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
 ):
@@ -94,7 +94,7 @@ def prepare_analyze_body_request(
     return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_content_type_with_encoding_request(
+def prepare_content_type_with_encoding(
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

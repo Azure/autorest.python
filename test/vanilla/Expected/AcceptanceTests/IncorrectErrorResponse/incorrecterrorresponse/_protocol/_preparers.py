@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_get_incorrect_error_from_server_request(
+def prepare_get_incorrect_error_from_server(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

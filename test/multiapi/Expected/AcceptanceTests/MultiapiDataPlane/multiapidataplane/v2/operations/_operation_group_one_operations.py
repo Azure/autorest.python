@@ -68,7 +68,7 @@ class OperationGroupOneOperations(object):
         if parameter_one is not None:
             parameter_one = self._serialize.body(parameter_one, 'ModelTwo')
 
-        request = prepare_operationgroupone_test_two_request(
+        request = prepare_operationgroupone_test_two(
             body=parameter_one,
             template_url=self.test_two.metadata['url'],
             **kwargs
@@ -111,7 +111,7 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_operationgroupone_test_three_request(
+        request = prepare_operationgroupone_test_three(
             template_url=self.test_three.metadata['url'],
             **kwargs
         )

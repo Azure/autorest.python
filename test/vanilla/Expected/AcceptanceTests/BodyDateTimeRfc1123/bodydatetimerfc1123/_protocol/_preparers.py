@@ -53,7 +53,7 @@ def _request(
     return request
 
 
-def prepare_datetimerfc1123_get_null_request(
+def prepare_datetimerfc1123_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -72,7 +72,7 @@ def prepare_datetimerfc1123_get_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_datetimerfc1123_get_invalid_request(
+def prepare_datetimerfc1123_get_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -91,7 +91,7 @@ def prepare_datetimerfc1123_get_invalid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_datetimerfc1123_get_overflow_request(
+def prepare_datetimerfc1123_get_overflow(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -110,7 +110,7 @@ def prepare_datetimerfc1123_get_overflow_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_datetimerfc1123_get_underflow_request(
+def prepare_datetimerfc1123_get_underflow(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -129,7 +129,7 @@ def prepare_datetimerfc1123_get_underflow_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_datetimerfc1123_put_utc_max_date_time_request(
+def prepare_datetimerfc1123_put_utc_max_date_time(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -154,7 +154,7 @@ def prepare_datetimerfc1123_put_utc_max_date_time_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request(
+def prepare_datetimerfc1123_get_utc_lowercase_max_date_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -173,7 +173,7 @@ def prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request(
+def prepare_datetimerfc1123_get_utc_uppercase_max_date_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -192,7 +192,7 @@ def prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_datetimerfc1123_put_utc_min_date_time_request(
+def prepare_datetimerfc1123_put_utc_min_date_time(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -217,7 +217,7 @@ def prepare_datetimerfc1123_put_utc_min_date_time_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_datetimerfc1123_get_utc_min_date_time_request(
+def prepare_datetimerfc1123_get_utc_min_date_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

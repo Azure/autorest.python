@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_formdata_upload_file_request(
+def prepare_formdata_upload_file(
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -82,7 +82,7 @@ def prepare_formdata_upload_file_request(
     return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_formdata_upload_file_via_body_request(
+def prepare_formdata_upload_file_via_body(
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -107,7 +107,7 @@ def prepare_formdata_upload_file_via_body_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_formdata_upload_files_request(
+def prepare_formdata_upload_files(
     body,  # type: List[IO]
     **kwargs  # type: Any
 ):

@@ -52,7 +52,7 @@ def _request(
     return request
 
 
-def prepare_paging_get_pages_partial_url_request(**kwargs) -> HttpRequest:
+def prepare_paging_get_pages_partial_url(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -68,7 +68,7 @@ def prepare_paging_get_pages_partial_url_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paging_get_pages_partial_url_operation_request(**kwargs) -> HttpRequest:
+def prepare_paging_get_pages_partial_url_operation(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -84,7 +84,7 @@ def prepare_paging_get_pages_partial_url_operation_request(**kwargs) -> HttpRequ
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paging_get_pages_partial_url_operation_next_request(next_link: str, **kwargs) -> HttpRequest:
+def prepare_paging_get_pages_partial_url_operation_next(next_link: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

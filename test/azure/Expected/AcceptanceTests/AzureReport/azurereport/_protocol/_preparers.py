@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_get_report_request(
+def prepare_get_report(
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

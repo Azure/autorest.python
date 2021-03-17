@@ -55,7 +55,7 @@ def _request(
     return request
 
 
-def prepare_basic_polling_initial_request(
+def prepare_basic_polling_initial(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -80,7 +80,7 @@ def prepare_basic_polling_initial_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_basic_paging_request(
+def prepare_basic_paging(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

@@ -68,7 +68,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_head400_request(template_url=self.head400.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_head400(template_url=self.head400.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -101,7 +101,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_get400_request(template_url=self.get400.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_get400(template_url=self.get400.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -134,7 +134,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_options400_request(template_url=self.options400.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_options400(template_url=self.options400.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -174,7 +174,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_put400_request(
+        request = prepare_httpclientfailure_put400(
             body=boolean_value, template_url=self.put400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -216,7 +216,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_patch400_request(
+        request = prepare_httpclientfailure_patch400(
             body=boolean_value, template_url=self.patch400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -258,7 +258,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_post400_request(
+        request = prepare_httpclientfailure_post400(
             body=boolean_value, template_url=self.post400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -300,7 +300,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_delete400_request(
+        request = prepare_httpclientfailure_delete400(
             body=boolean_value, template_url=self.delete400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -335,7 +335,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_head401_request(template_url=self.head401.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_head401(template_url=self.head401.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -368,7 +368,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_get402_request(template_url=self.get402.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_get402(template_url=self.get402.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -401,7 +401,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_options403_request(template_url=self.options403.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_options403(template_url=self.options403.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -434,7 +434,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_get403_request(template_url=self.get403.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_get403(template_url=self.get403.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -474,7 +474,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_put404_request(
+        request = prepare_httpclientfailure_put404(
             body=boolean_value, template_url=self.put404.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -516,7 +516,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_patch405_request(
+        request = prepare_httpclientfailure_patch405(
             body=boolean_value, template_url=self.patch405.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -558,7 +558,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_post406_request(
+        request = prepare_httpclientfailure_post406(
             body=boolean_value, template_url=self.post406.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -600,7 +600,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_delete407_request(
+        request = prepare_httpclientfailure_delete407(
             body=boolean_value, template_url=self.delete407.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -642,7 +642,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_put409_request(
+        request = prepare_httpclientfailure_put409(
             body=boolean_value, template_url=self.put409.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -677,7 +677,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_head410_request(template_url=self.head410.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_head410(template_url=self.head410.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -710,7 +710,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_get411_request(template_url=self.get411.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_get411(template_url=self.get411.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -743,7 +743,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_options412_request(template_url=self.options412.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_options412(template_url=self.options412.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -776,7 +776,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_get412_request(template_url=self.get412.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_get412(template_url=self.get412.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -816,7 +816,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_put413_request(
+        request = prepare_httpclientfailure_put413(
             body=boolean_value, template_url=self.put413.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -858,7 +858,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_patch414_request(
+        request = prepare_httpclientfailure_patch414(
             body=boolean_value, template_url=self.patch414.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -900,7 +900,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_post415_request(
+        request = prepare_httpclientfailure_post415(
             body=boolean_value, template_url=self.post415.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -935,7 +935,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_get416_request(template_url=self.get416.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_get416(template_url=self.get416.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -975,7 +975,7 @@ class HttpClientFailureOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpclientfailure_delete417_request(
+        request = prepare_httpclientfailure_delete417(
             body=boolean_value, template_url=self.delete417.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1010,7 +1010,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpclientfailure_head429_request(template_url=self.head429.metadata["url"], **kwargs)
+        request = prepare_httpclientfailure_head429(template_url=self.head429.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

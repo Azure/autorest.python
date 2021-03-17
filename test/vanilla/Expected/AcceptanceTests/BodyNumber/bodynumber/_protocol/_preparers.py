@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_number_get_null_request(
+def prepare_number_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -70,7 +70,7 @@ def prepare_number_get_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_get_invalid_float_request(
+def prepare_number_get_invalid_float(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -89,7 +89,7 @@ def prepare_number_get_invalid_float_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_get_invalid_double_request(
+def prepare_number_get_invalid_double(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -108,7 +108,7 @@ def prepare_number_get_invalid_double_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_get_invalid_decimal_request(
+def prepare_number_get_invalid_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -127,7 +127,7 @@ def prepare_number_get_invalid_decimal_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_float_request(
+def prepare_number_put_big_float(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -152,7 +152,7 @@ def prepare_number_put_big_float_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_float_request(
+def prepare_number_get_big_float(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -171,7 +171,7 @@ def prepare_number_get_big_float_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_double_request(
+def prepare_number_put_big_double(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -196,7 +196,7 @@ def prepare_number_put_big_double_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_double_request(
+def prepare_number_get_big_double(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -215,7 +215,7 @@ def prepare_number_get_big_double_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_double_positive_decimal_request(
+def prepare_number_put_big_double_positive_decimal(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -240,7 +240,7 @@ def prepare_number_put_big_double_positive_decimal_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_double_positive_decimal_request(
+def prepare_number_get_big_double_positive_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -259,7 +259,7 @@ def prepare_number_get_big_double_positive_decimal_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_double_negative_decimal_request(
+def prepare_number_put_big_double_negative_decimal(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -284,7 +284,7 @@ def prepare_number_put_big_double_negative_decimal_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_double_negative_decimal_request(
+def prepare_number_get_big_double_negative_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -303,7 +303,7 @@ def prepare_number_get_big_double_negative_decimal_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_decimal_request(
+def prepare_number_put_big_decimal(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -328,7 +328,7 @@ def prepare_number_put_big_decimal_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_decimal_request(
+def prepare_number_get_big_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -347,7 +347,7 @@ def prepare_number_get_big_decimal_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_decimal_positive_decimal_request(
+def prepare_number_put_big_decimal_positive_decimal(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -372,7 +372,7 @@ def prepare_number_put_big_decimal_positive_decimal_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_decimal_positive_decimal_request(
+def prepare_number_get_big_decimal_positive_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -391,7 +391,7 @@ def prepare_number_get_big_decimal_positive_decimal_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_big_decimal_negative_decimal_request(
+def prepare_number_put_big_decimal_negative_decimal(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -416,7 +416,7 @@ def prepare_number_put_big_decimal_negative_decimal_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_decimal_negative_decimal_request(
+def prepare_number_get_big_decimal_negative_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -435,7 +435,7 @@ def prepare_number_get_big_decimal_negative_decimal_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_small_float_request(
+def prepare_number_put_small_float(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -460,7 +460,7 @@ def prepare_number_put_small_float_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_small_float_request(
+def prepare_number_get_small_float(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -479,7 +479,7 @@ def prepare_number_get_small_float_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_small_double_request(
+def prepare_number_put_small_double(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -504,7 +504,7 @@ def prepare_number_put_small_double_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_small_double_request(
+def prepare_number_get_small_double(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -523,7 +523,7 @@ def prepare_number_get_small_double_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_number_put_small_decimal_request(
+def prepare_number_put_small_decimal(
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -548,7 +548,7 @@ def prepare_number_put_small_decimal_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_small_decimal_request(
+def prepare_number_get_small_decimal(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

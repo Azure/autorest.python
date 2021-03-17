@@ -55,7 +55,7 @@ def _request(
     return request
 
 
-def prepare_test_paging_request(
+def prepare_test_paging(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -75,7 +75,7 @@ def prepare_test_paging_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_test_different_calls_request(
+def prepare_test_different_calls(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
     greeting_in_french=None,  # type: Optional[str]
@@ -105,7 +105,7 @@ def prepare_test_different_calls_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_operationgroupone_test_two_request(
+def prepare_operationgroupone_test_two(
     body=None,  # type: Optional["_models.ModelThree"]
     **kwargs  # type: Any
 ):
@@ -132,7 +132,7 @@ def prepare_operationgroupone_test_two_request(
     return _request("GET", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_operationgrouptwo_test_four_request(
+def prepare_operationgrouptwo_test_four(
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
 ):
@@ -169,7 +169,7 @@ def prepare_operationgrouptwo_test_four_request(
     return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_operationgrouptwo_test_five_request(
+def prepare_operationgrouptwo_test_five(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

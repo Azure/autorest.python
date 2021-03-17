@@ -53,7 +53,7 @@ def _request(
     return request
 
 
-def prepare_time_get_request(**kwargs) -> HttpRequest:
+def prepare_time_get(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -69,7 +69,7 @@ def prepare_time_get_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_time_put_request(body: datetime.time, **kwargs) -> HttpRequest:
+def prepare_time_put(body: datetime.time, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

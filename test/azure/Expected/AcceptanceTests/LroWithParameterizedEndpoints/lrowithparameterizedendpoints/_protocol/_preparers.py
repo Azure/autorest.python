@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_poll_with_parameterized_endpoints_initial_request(
+def prepare_poll_with_parameterized_endpoints_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

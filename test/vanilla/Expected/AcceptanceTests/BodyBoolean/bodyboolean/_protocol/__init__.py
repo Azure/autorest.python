@@ -7,25 +7,25 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_bool_get_true_request
-    from ._preparers_py3 import prepare_bool_put_true_request
-    from ._preparers_py3 import prepare_bool_get_false_request
-    from ._preparers_py3 import prepare_bool_put_false_request
-    from ._preparers_py3 import prepare_bool_get_null_request
-    from ._preparers_py3 import prepare_bool_get_invalid_request
+    from ._preparers_py3 import prepare_bool_get_true
+    from ._preparers_py3 import prepare_bool_put_true
+    from ._preparers_py3 import prepare_bool_get_false
+    from ._preparers_py3 import prepare_bool_put_false
+    from ._preparers_py3 import prepare_bool_get_null
+    from ._preparers_py3 import prepare_bool_get_invalid
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_bool_get_true_request  # type: ignore
-    from ._preparers import prepare_bool_put_true_request  # type: ignore
-    from ._preparers import prepare_bool_get_false_request  # type: ignore
-    from ._preparers import prepare_bool_put_false_request  # type: ignore
-    from ._preparers import prepare_bool_get_null_request  # type: ignore
-    from ._preparers import prepare_bool_get_invalid_request  # type: ignore
+    from ._preparers import prepare_bool_get_true  # type: ignore
+    from ._preparers import prepare_bool_put_true  # type: ignore
+    from ._preparers import prepare_bool_get_false  # type: ignore
+    from ._preparers import prepare_bool_put_false  # type: ignore
+    from ._preparers import prepare_bool_get_null  # type: ignore
+    from ._preparers import prepare_bool_get_invalid  # type: ignore
 
 __all__ = [
-    "prepare_bool_get_true_request",
-    "prepare_bool_put_true_request",
-    "prepare_bool_get_false_request",
-    "prepare_bool_put_false_request",
-    "prepare_bool_get_null_request",
-    "prepare_bool_get_invalid_request",
+    "prepare_bool_get_true",
+    "prepare_bool_put_true",
+    "prepare_bool_get_false",
+    "prepare_bool_put_false",
+    "prepare_bool_get_null",
+    "prepare_bool_get_invalid",
 ]

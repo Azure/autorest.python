@@ -7,25 +7,25 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_pets_create_ap_true_request
-    from ._preparers_py3 import prepare_pets_create_cat_ap_true_request
-    from ._preparers_py3 import prepare_pets_create_ap_object_request
-    from ._preparers_py3 import prepare_pets_create_ap_string_request
-    from ._preparers_py3 import prepare_pets_create_ap_in_properties_request
-    from ._preparers_py3 import prepare_pets_create_ap_in_properties_with_ap_string_request
+    from ._preparers_py3 import prepare_pets_create_ap_true
+    from ._preparers_py3 import prepare_pets_create_cat_ap_true
+    from ._preparers_py3 import prepare_pets_create_ap_object
+    from ._preparers_py3 import prepare_pets_create_ap_string
+    from ._preparers_py3 import prepare_pets_create_ap_in_properties
+    from ._preparers_py3 import prepare_pets_create_ap_in_properties_with_ap_string
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_pets_create_ap_true_request  # type: ignore
-    from ._preparers import prepare_pets_create_cat_ap_true_request  # type: ignore
-    from ._preparers import prepare_pets_create_ap_object_request  # type: ignore
-    from ._preparers import prepare_pets_create_ap_string_request  # type: ignore
-    from ._preparers import prepare_pets_create_ap_in_properties_request  # type: ignore
-    from ._preparers import prepare_pets_create_ap_in_properties_with_ap_string_request  # type: ignore
+    from ._preparers import prepare_pets_create_ap_true  # type: ignore
+    from ._preparers import prepare_pets_create_cat_ap_true  # type: ignore
+    from ._preparers import prepare_pets_create_ap_object  # type: ignore
+    from ._preparers import prepare_pets_create_ap_string  # type: ignore
+    from ._preparers import prepare_pets_create_ap_in_properties  # type: ignore
+    from ._preparers import prepare_pets_create_ap_in_properties_with_ap_string  # type: ignore
 
 __all__ = [
-    "prepare_pets_create_ap_true_request",
-    "prepare_pets_create_cat_ap_true_request",
-    "prepare_pets_create_ap_object_request",
-    "prepare_pets_create_ap_string_request",
-    "prepare_pets_create_ap_in_properties_request",
-    "prepare_pets_create_ap_in_properties_with_ap_string_request",
+    "prepare_pets_create_ap_true",
+    "prepare_pets_create_cat_ap_true",
+    "prepare_pets_create_ap_object",
+    "prepare_pets_create_ap_string",
+    "prepare_pets_create_ap_in_properties",
+    "prepare_pets_create_ap_in_properties_with_ap_string",
 ]

@@ -55,7 +55,7 @@ def _request(
     return request
 
 
-def prepare_test_one_request(
+def prepare_test_one(
     id,  # type: int
     message=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -82,7 +82,7 @@ def prepare_test_one_request(
     return _request("PUT", url, query_parameters, header_parameters)
 
 
-def prepare_test_lro_initial_request(
+def prepare_test_lro_initial(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -107,7 +107,7 @@ def prepare_test_lro_initial_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_test_lro_and_paging_initial_request(
+def prepare_test_lro_and_paging_initial(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
@@ -136,7 +136,7 @@ def prepare_test_lro_and_paging_initial_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_test_different_calls_request(
+def prepare_test_different_calls(
     greeting_in_english,  # type: str
     **kwargs  # type: Any
 ):
@@ -160,7 +160,7 @@ def prepare_test_different_calls_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_operationgroupone_test_two_request(
+def prepare_operationgroupone_test_two(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

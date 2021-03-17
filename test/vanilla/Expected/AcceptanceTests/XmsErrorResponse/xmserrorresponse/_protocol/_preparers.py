@@ -58,7 +58,7 @@ def _request(
     return request
 
 
-def prepare_pet_get_pet_by_id_request(
+def prepare_pet_get_pet_by_id(
     pet_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -82,7 +82,7 @@ def prepare_pet_get_pet_by_id_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_pet_do_something_request(
+def prepare_pet_do_something(
     what_action,  # type: str
     **kwargs  # type: Any
 ):
@@ -106,7 +106,7 @@ def prepare_pet_do_something_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_pet_has_models_param_request(
+def prepare_pet_has_models_param(
     models="value1",  # type: Optional[str]
     **kwargs  # type: Any
 ):

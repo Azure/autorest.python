@@ -61,9 +61,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_enum_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"], **kwargs
-        )
+        request = prepare_enum_get_not_expandable(template_url=self.get_not_expandable.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -101,7 +99,7 @@ class EnumOperations:
 
         string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_enum_put_not_expandable_request(
+        request = prepare_enum_put_not_expandable(
             body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -133,7 +131,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_enum_get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
+        request = prepare_enum_get_referenced(template_url=self.get_referenced.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -171,7 +169,7 @@ class EnumOperations:
 
         enum_string_body = self._serialize.body(enum_string_body, "str")
 
-        request = prepare_enum_put_referenced_request(
+        request = prepare_enum_put_referenced(
             body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -203,7 +201,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_enum_get_referenced_constant_request(
+        request = prepare_enum_get_referenced_constant(
             template_url=self.get_referenced_constant.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -244,7 +242,7 @@ class EnumOperations:
         _enum_string_body = _models.RefColorConstant(field1=field1)
         _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
 
-        request = prepare_enum_put_referenced_constant_request(
+        request = prepare_enum_put_referenced_constant(
             body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

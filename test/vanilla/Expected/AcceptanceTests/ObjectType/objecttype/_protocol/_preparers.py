@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_get_request(
+def prepare_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -70,7 +70,7 @@ def prepare_get_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_put_request(
+def prepare_put(
     body,  # type: object
     **kwargs  # type: Any
 ):

@@ -54,7 +54,7 @@ def _request(
     return request
 
 
-def prepare_xmsclientrequestid_get_request(**kwargs) -> HttpRequest:
+def prepare_xmsclientrequestid_get(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/method/")
@@ -68,7 +68,7 @@ def prepare_xmsclientrequestid_get_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_xmsclientrequestid_param_get_request(x_ms_client_request_id: str, **kwargs) -> HttpRequest:
+def prepare_xmsclientrequestid_param_get(x_ms_client_request_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -87,7 +87,7 @@ def prepare_xmsclientrequestid_param_get_request(x_ms_client_request_id: str, **
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptionincredentials_post_method_global_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptionincredentials_post_method_global_valid(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -110,7 +110,7 @@ def prepare_subscriptionincredentials_post_method_global_valid_request(subscript
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptionincredentials_post_method_global_null_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptionincredentials_post_method_global_null(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -132,7 +132,7 @@ def prepare_subscriptionincredentials_post_method_global_null_request(subscripti
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
+def prepare_subscriptionincredentials_post_method_global_not_provided_valid(
     subscription_id: str, **kwargs
 ) -> HttpRequest:
     api_version = "2015-07-01-preview"
@@ -159,7 +159,7 @@ def prepare_subscriptionincredentials_post_method_global_not_provided_valid_requ
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptionincredentials_post_path_global_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptionincredentials_post_path_global_valid(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -182,7 +182,7 @@ def prepare_subscriptionincredentials_post_path_global_valid_request(subscriptio
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptionincredentials_post_swagger_global_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptionincredentials_post_swagger_global_valid(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -205,7 +205,7 @@ def prepare_subscriptionincredentials_post_swagger_global_valid_request(subscrip
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptioninmethod_post_method_local_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptioninmethod_post_method_local_valid(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -228,7 +228,7 @@ def prepare_subscriptioninmethod_post_method_local_valid_request(subscription_id
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptioninmethod_post_method_local_null_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptioninmethod_post_method_local_null(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -250,7 +250,7 @@ def prepare_subscriptioninmethod_post_method_local_null_request(subscription_id:
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptioninmethod_post_path_local_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptioninmethod_post_path_local_valid(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -272,7 +272,7 @@ def prepare_subscriptioninmethod_post_path_local_valid_request(subscription_id: 
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_subscriptioninmethod_post_swagger_local_valid_request(subscription_id: str, **kwargs) -> HttpRequest:
+def prepare_subscriptioninmethod_post_swagger_local_valid(subscription_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -295,7 +295,7 @@ def prepare_subscriptioninmethod_post_swagger_local_valid_request(subscription_i
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_apiversiondefault_get_method_global_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversiondefault_get_method_global_valid(**kwargs) -> HttpRequest:
     api_version = "2015-07-01-preview"
     accept = "application/json"
 
@@ -313,7 +313,7 @@ def prepare_apiversiondefault_get_method_global_valid_request(**kwargs) -> HttpR
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversiondefault_get_method_global_not_provided_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversiondefault_get_method_global_not_provided_valid(**kwargs) -> HttpRequest:
     api_version = "2015-07-01-preview"
     accept = "application/json"
 
@@ -333,7 +333,7 @@ def prepare_apiversiondefault_get_method_global_not_provided_valid_request(**kwa
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversiondefault_get_path_global_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversiondefault_get_path_global_valid(**kwargs) -> HttpRequest:
     api_version = "2015-07-01-preview"
     accept = "application/json"
 
@@ -351,7 +351,7 @@ def prepare_apiversiondefault_get_path_global_valid_request(**kwargs) -> HttpReq
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversiondefault_get_swagger_global_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversiondefault_get_swagger_global_valid(**kwargs) -> HttpRequest:
     api_version = "2015-07-01-preview"
     accept = "application/json"
 
@@ -369,7 +369,7 @@ def prepare_apiversiondefault_get_swagger_global_valid_request(**kwargs) -> Http
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversionlocal_get_method_local_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversionlocal_get_method_local_valid(**kwargs) -> HttpRequest:
     api_version = "2.0"
     accept = "application/json"
 
@@ -387,7 +387,7 @@ def prepare_apiversionlocal_get_method_local_valid_request(**kwargs) -> HttpRequ
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversionlocal_get_method_local_null_request(api_version: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_apiversionlocal_get_method_local_null(api_version: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -405,7 +405,7 @@ def prepare_apiversionlocal_get_method_local_null_request(api_version: Optional[
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversionlocal_get_path_local_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversionlocal_get_path_local_valid(**kwargs) -> HttpRequest:
     api_version = "2.0"
     accept = "application/json"
 
@@ -423,7 +423,7 @@ def prepare_apiversionlocal_get_path_local_valid_request(**kwargs) -> HttpReques
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_apiversionlocal_get_swagger_local_valid_request(**kwargs) -> HttpRequest:
+def prepare_apiversionlocal_get_swagger_local_valid(**kwargs) -> HttpRequest:
     api_version = "2.0"
     accept = "application/json"
 
@@ -441,7 +441,7 @@ def prepare_apiversionlocal_get_swagger_local_valid_request(**kwargs) -> HttpReq
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_method_path_valid_request(unencoded_path_param: str, **kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_method_path_valid(unencoded_path_param: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -461,7 +461,7 @@ def prepare_skipurlencoding_get_method_path_valid_request(unencoded_path_param: 
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_path_valid_request(unencoded_path_param: str, **kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_path_valid(unencoded_path_param: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -481,7 +481,7 @@ def prepare_skipurlencoding_get_path_valid_request(unencoded_path_param: str, **
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_swagger_path_valid_request(**kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_swagger_path_valid(**kwargs) -> HttpRequest:
     unencoded_path_param = "path1/path2/path3"
     accept = "application/json"
 
@@ -502,7 +502,7 @@ def prepare_skipurlencoding_get_swagger_path_valid_request(**kwargs) -> HttpRequ
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_method_query_valid_request(q1: str, **kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_method_query_valid(q1: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -519,7 +519,7 @@ def prepare_skipurlencoding_get_method_query_valid_request(q1: str, **kwargs) ->
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_method_query_null_request(q1: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_method_query_null(q1: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -537,7 +537,7 @@ def prepare_skipurlencoding_get_method_query_null_request(q1: Optional[str] = No
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_path_query_valid_request(q1: str, **kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_path_query_valid(q1: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -554,7 +554,7 @@ def prepare_skipurlencoding_get_path_query_valid_request(q1: str, **kwargs) -> H
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_skipurlencoding_get_swagger_query_valid_request(**kwargs) -> HttpRequest:
+def prepare_skipurlencoding_get_swagger_query_valid(**kwargs) -> HttpRequest:
     q1 = "value1&q2=value2&q3=value3"
     accept = "application/json"
 
@@ -572,7 +572,7 @@ def prepare_skipurlencoding_get_swagger_query_valid_request(**kwargs) -> HttpReq
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_odata_get_with_filter_request(
+def prepare_odata_get_with_filter(
     filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -596,7 +596,7 @@ def prepare_odata_get_with_filter_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_header_custom_named_request_id_request(foo_client_request_id: str, **kwargs) -> HttpRequest:
+def prepare_header_custom_named_request_id(foo_client_request_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -615,7 +615,7 @@ def prepare_header_custom_named_request_id_request(foo_client_request_id: str, *
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_custom_named_request_id_param_grouping_request(foo_client_request_id: str, **kwargs) -> HttpRequest:
+def prepare_header_custom_named_request_id_param_grouping(foo_client_request_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -634,7 +634,7 @@ def prepare_header_custom_named_request_id_param_grouping_request(foo_client_req
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_custom_named_request_id_head_request(foo_client_request_id: str, **kwargs) -> HttpRequest:
+def prepare_header_custom_named_request_id_head(foo_client_request_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

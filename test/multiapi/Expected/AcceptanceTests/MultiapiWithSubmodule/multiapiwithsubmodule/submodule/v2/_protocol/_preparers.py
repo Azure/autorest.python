@@ -55,7 +55,7 @@ def _request(
     return request
 
 
-def prepare_test_one_request(
+def prepare_test_one(
     id,  # type: int
     message=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -82,7 +82,7 @@ def prepare_test_one_request(
     return _request("PUT", url, query_parameters, header_parameters)
 
 
-def prepare_test_different_calls_request(
+def prepare_test_different_calls(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -109,7 +109,7 @@ def prepare_test_different_calls_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_operationgroupone_test_two_request(
+def prepare_operationgroupone_test_two(
     body=None,  # type: Optional["_models.ModelTwo"]
     **kwargs  # type: Any
 ):
@@ -136,7 +136,7 @@ def prepare_operationgroupone_test_two_request(
     return _request("GET", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_operationgroupone_test_three_request(
+def prepare_operationgroupone_test_three(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -158,7 +158,7 @@ def prepare_operationgroupone_test_three_request(
     return _request("PUT", url, query_parameters, header_parameters)
 
 
-def prepare_operationgrouptwo_test_four_request(
+def prepare_operationgrouptwo_test_four(
     parameter_one,  # type: bool
     **kwargs  # type: Any
 ):

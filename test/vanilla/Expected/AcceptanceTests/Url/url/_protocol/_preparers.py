@@ -59,7 +59,7 @@ def _request(
     return request
 
 
-def prepare_paths_get_boolean_true_request(
+def prepare_paths_get_boolean_true(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -83,7 +83,7 @@ def prepare_paths_get_boolean_true_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_get_boolean_false_request(
+def prepare_paths_get_boolean_false(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -107,7 +107,7 @@ def prepare_paths_get_boolean_false_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_get_int_one_million_request(
+def prepare_paths_get_int_one_million(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -131,7 +131,7 @@ def prepare_paths_get_int_one_million_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_get_int_negative_one_million_request(
+def prepare_paths_get_int_negative_one_million(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -155,7 +155,7 @@ def prepare_paths_get_int_negative_one_million_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_get_ten_billion_request(
+def prepare_paths_get_ten_billion(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -179,7 +179,7 @@ def prepare_paths_get_ten_billion_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_get_negative_ten_billion_request(
+def prepare_paths_get_negative_ten_billion(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -203,7 +203,7 @@ def prepare_paths_get_negative_ten_billion_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_float_scientific_positive_request(
+def prepare_paths_float_scientific_positive(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -227,7 +227,7 @@ def prepare_paths_float_scientific_positive_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_float_scientific_negative_request(
+def prepare_paths_float_scientific_negative(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -251,7 +251,7 @@ def prepare_paths_float_scientific_negative_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_double_decimal_positive_request(
+def prepare_paths_double_decimal_positive(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -275,7 +275,7 @@ def prepare_paths_double_decimal_positive_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_double_decimal_negative_request(
+def prepare_paths_double_decimal_negative(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -299,7 +299,7 @@ def prepare_paths_double_decimal_negative_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_string_unicode_request(
+def prepare_paths_string_unicode(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -323,7 +323,7 @@ def prepare_paths_string_unicode_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_string_url_encoded_request(
+def prepare_paths_string_url_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -349,7 +349,7 @@ def prepare_paths_string_url_encoded_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_string_url_non_encoded_request(
+def prepare_paths_string_url_non_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -373,7 +373,7 @@ def prepare_paths_string_url_non_encoded_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_string_empty_request(
+def prepare_paths_string_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -397,7 +397,7 @@ def prepare_paths_string_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_string_null_request(
+def prepare_paths_string_null(
     string_path,  # type: str
     **kwargs  # type: Any
 ):
@@ -421,7 +421,7 @@ def prepare_paths_string_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_enum_valid_request(
+def prepare_paths_enum_valid(
     enum_path,  # type: Union[str, "_models.UriColor"]
     **kwargs  # type: Any
 ):
@@ -445,7 +445,7 @@ def prepare_paths_enum_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_enum_null_request(
+def prepare_paths_enum_null(
     enum_path,  # type: Union[str, "_models.UriColor"]
     **kwargs  # type: Any
 ):
@@ -469,7 +469,7 @@ def prepare_paths_enum_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_byte_multi_byte_request(
+def prepare_paths_byte_multi_byte(
     byte_path,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -493,7 +493,7 @@ def prepare_paths_byte_multi_byte_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_byte_empty_request(
+def prepare_paths_byte_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -517,7 +517,7 @@ def prepare_paths_byte_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_byte_null_request(
+def prepare_paths_byte_null(
     byte_path,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -541,7 +541,7 @@ def prepare_paths_byte_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_date_valid_request(
+def prepare_paths_date_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -565,7 +565,7 @@ def prepare_paths_date_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_date_null_request(
+def prepare_paths_date_null(
     date_path,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -589,7 +589,7 @@ def prepare_paths_date_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_date_time_valid_request(
+def prepare_paths_date_time_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -613,7 +613,7 @@ def prepare_paths_date_time_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_date_time_null_request(
+def prepare_paths_date_time_null(
     date_time_path,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -637,7 +637,7 @@ def prepare_paths_date_time_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_base64_url_request(
+def prepare_paths_base64_url(
     base64_url_path,  # type: bytes
     **kwargs  # type: Any
 ):
@@ -661,7 +661,7 @@ def prepare_paths_base64_url_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_array_csv_in_path_request(
+def prepare_paths_array_csv_in_path(
     array_path,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -688,7 +688,7 @@ def prepare_paths_array_csv_in_path_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_paths_unix_time_url_request(
+def prepare_paths_unix_time_url(
     unix_time_url_path,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -712,7 +712,7 @@ def prepare_paths_unix_time_url_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_boolean_true_request(
+def prepare_queries_get_boolean_true(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -733,7 +733,7 @@ def prepare_queries_get_boolean_true_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_boolean_false_request(
+def prepare_queries_get_boolean_false(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -754,7 +754,7 @@ def prepare_queries_get_boolean_false_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_boolean_null_request(
+def prepare_queries_get_boolean_null(
     bool_query=None,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -776,7 +776,7 @@ def prepare_queries_get_boolean_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_int_one_million_request(
+def prepare_queries_get_int_one_million(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -797,7 +797,7 @@ def prepare_queries_get_int_one_million_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_int_negative_one_million_request(
+def prepare_queries_get_int_negative_one_million(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -818,7 +818,7 @@ def prepare_queries_get_int_negative_one_million_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_int_null_request(
+def prepare_queries_get_int_null(
     int_query=None,  # type: Optional[int]
     **kwargs  # type: Any
 ):
@@ -840,7 +840,7 @@ def prepare_queries_get_int_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_ten_billion_request(
+def prepare_queries_get_ten_billion(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -861,7 +861,7 @@ def prepare_queries_get_ten_billion_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_negative_ten_billion_request(
+def prepare_queries_get_negative_ten_billion(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -882,7 +882,7 @@ def prepare_queries_get_negative_ten_billion_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_get_long_null_request(
+def prepare_queries_get_long_null(
     long_query=None,  # type: Optional[int]
     **kwargs  # type: Any
 ):
@@ -904,7 +904,7 @@ def prepare_queries_get_long_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_float_scientific_positive_request(
+def prepare_queries_float_scientific_positive(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -925,7 +925,7 @@ def prepare_queries_float_scientific_positive_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_float_scientific_negative_request(
+def prepare_queries_float_scientific_negative(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -946,7 +946,7 @@ def prepare_queries_float_scientific_negative_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_float_null_request(
+def prepare_queries_float_null(
     float_query=None,  # type: Optional[float]
     **kwargs  # type: Any
 ):
@@ -968,7 +968,7 @@ def prepare_queries_float_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_double_decimal_positive_request(
+def prepare_queries_double_decimal_positive(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -989,7 +989,7 @@ def prepare_queries_double_decimal_positive_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_double_decimal_negative_request(
+def prepare_queries_double_decimal_negative(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1010,7 +1010,7 @@ def prepare_queries_double_decimal_negative_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_double_null_request(
+def prepare_queries_double_null(
     double_query=None,  # type: Optional[float]
     **kwargs  # type: Any
 ):
@@ -1032,7 +1032,7 @@ def prepare_queries_double_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_string_unicode_request(
+def prepare_queries_string_unicode(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1053,7 +1053,7 @@ def prepare_queries_string_unicode_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_string_url_encoded_request(
+def prepare_queries_string_url_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1076,7 +1076,7 @@ def prepare_queries_string_url_encoded_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_string_empty_request(
+def prepare_queries_string_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1097,7 +1097,7 @@ def prepare_queries_string_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_string_null_request(
+def prepare_queries_string_null(
     string_query=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -1119,7 +1119,7 @@ def prepare_queries_string_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_enum_valid_request(
+def prepare_queries_enum_valid(
     enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
     **kwargs  # type: Any
 ):
@@ -1141,7 +1141,7 @@ def prepare_queries_enum_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_enum_null_request(
+def prepare_queries_enum_null(
     enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
     **kwargs  # type: Any
 ):
@@ -1163,7 +1163,7 @@ def prepare_queries_enum_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_byte_multi_byte_request(
+def prepare_queries_byte_multi_byte(
     byte_query=None,  # type: Optional[bytearray]
     **kwargs  # type: Any
 ):
@@ -1185,7 +1185,7 @@ def prepare_queries_byte_multi_byte_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_byte_empty_request(
+def prepare_queries_byte_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1206,7 +1206,7 @@ def prepare_queries_byte_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_byte_null_request(
+def prepare_queries_byte_null(
     byte_query=None,  # type: Optional[bytearray]
     **kwargs  # type: Any
 ):
@@ -1228,7 +1228,7 @@ def prepare_queries_byte_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_date_valid_request(
+def prepare_queries_date_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1249,7 +1249,7 @@ def prepare_queries_date_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_date_null_request(
+def prepare_queries_date_null(
     date_query=None,  # type: Optional[datetime.date]
     **kwargs  # type: Any
 ):
@@ -1271,7 +1271,7 @@ def prepare_queries_date_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_date_time_valid_request(
+def prepare_queries_date_time_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1292,7 +1292,7 @@ def prepare_queries_date_time_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_date_time_null_request(
+def prepare_queries_date_time_null(
     date_time_query=None,  # type: Optional[datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -1314,7 +1314,7 @@ def prepare_queries_date_time_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_csv_valid_request(
+def prepare_queries_array_string_csv_valid(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1336,7 +1336,7 @@ def prepare_queries_array_string_csv_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_csv_null_request(
+def prepare_queries_array_string_csv_null(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1358,7 +1358,7 @@ def prepare_queries_array_string_csv_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_csv_empty_request(
+def prepare_queries_array_string_csv_empty(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1380,7 +1380,7 @@ def prepare_queries_array_string_csv_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_no_collection_format_empty_request(
+def prepare_queries_array_string_no_collection_format_empty(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1402,7 +1402,7 @@ def prepare_queries_array_string_no_collection_format_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_ssv_valid_request(
+def prepare_queries_array_string_ssv_valid(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1424,7 +1424,7 @@ def prepare_queries_array_string_ssv_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_tsv_valid_request(
+def prepare_queries_array_string_tsv_valid(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1446,7 +1446,7 @@ def prepare_queries_array_string_tsv_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_pipes_valid_request(
+def prepare_queries_array_string_pipes_valid(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1468,7 +1468,7 @@ def prepare_queries_array_string_pipes_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_pathitems_get_all_with_values_request(
+def prepare_pathitems_get_all_with_values(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1510,7 +1510,7 @@ def prepare_pathitems_get_all_with_values_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_pathitems_get_global_query_null_request(
+def prepare_pathitems_get_global_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1552,7 +1552,7 @@ def prepare_pathitems_get_global_query_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_pathitems_get_global_and_local_query_null_request(
+def prepare_pathitems_get_global_and_local_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1594,7 +1594,7 @@ def prepare_pathitems_get_global_and_local_query_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_pathitems_get_local_path_item_query_null_request(
+def prepare_pathitems_get_local_path_item_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str

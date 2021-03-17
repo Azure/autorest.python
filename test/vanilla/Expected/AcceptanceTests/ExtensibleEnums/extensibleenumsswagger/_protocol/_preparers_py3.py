@@ -54,7 +54,7 @@ def _request(
     return request
 
 
-def prepare_pet_get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
+def prepare_pet_get_by_pet_id(pet_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -74,7 +74,7 @@ def prepare_pet_get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_pet_add_pet_request(body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
+def prepare_pet_add_pet(body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

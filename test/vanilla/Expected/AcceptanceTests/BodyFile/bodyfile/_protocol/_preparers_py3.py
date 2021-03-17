@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_files_get_file_request(**kwargs) -> HttpRequest:
+def prepare_files_get_file(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL
@@ -67,7 +67,7 @@ def prepare_files_get_file_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_files_get_file_large_request(**kwargs) -> HttpRequest:
+def prepare_files_get_file_large(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL
@@ -83,7 +83,7 @@ def prepare_files_get_file_large_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_files_get_empty_file_request(**kwargs) -> HttpRequest:
+def prepare_files_get_empty_file(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL

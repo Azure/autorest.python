@@ -58,7 +58,7 @@ def _request(
     return request
 
 
-def prepare_dictionary_get_null_request(
+def prepare_dictionary_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -77,7 +77,7 @@ def prepare_dictionary_get_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_empty_request(
+def prepare_dictionary_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -96,7 +96,7 @@ def prepare_dictionary_get_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_empty_request(
+def prepare_dictionary_put_empty(
     body,  # type: Dict[str, str]
     **kwargs  # type: Any
 ):
@@ -121,7 +121,7 @@ def prepare_dictionary_put_empty_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_null_value_request(
+def prepare_dictionary_get_null_value(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -140,7 +140,7 @@ def prepare_dictionary_get_null_value_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_null_key_request(
+def prepare_dictionary_get_null_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -159,7 +159,7 @@ def prepare_dictionary_get_null_key_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_empty_string_key_request(
+def prepare_dictionary_get_empty_string_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -178,7 +178,7 @@ def prepare_dictionary_get_empty_string_key_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_invalid_request(
+def prepare_dictionary_get_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -197,7 +197,7 @@ def prepare_dictionary_get_invalid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_boolean_tfft_request(
+def prepare_dictionary_get_boolean_tfft(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -216,7 +216,7 @@ def prepare_dictionary_get_boolean_tfft_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_boolean_tfft_request(
+def prepare_dictionary_put_boolean_tfft(
     body,  # type: Dict[str, bool]
     **kwargs  # type: Any
 ):
@@ -241,7 +241,7 @@ def prepare_dictionary_put_boolean_tfft_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_boolean_invalid_null_request(
+def prepare_dictionary_get_boolean_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -260,7 +260,7 @@ def prepare_dictionary_get_boolean_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_boolean_invalid_string_request(
+def prepare_dictionary_get_boolean_invalid_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -279,7 +279,7 @@ def prepare_dictionary_get_boolean_invalid_string_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_integer_valid_request(
+def prepare_dictionary_get_integer_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -298,7 +298,7 @@ def prepare_dictionary_get_integer_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_integer_valid_request(
+def prepare_dictionary_put_integer_valid(
     body,  # type: Dict[str, int]
     **kwargs  # type: Any
 ):
@@ -323,7 +323,7 @@ def prepare_dictionary_put_integer_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_int_invalid_null_request(
+def prepare_dictionary_get_int_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -342,7 +342,7 @@ def prepare_dictionary_get_int_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_int_invalid_string_request(
+def prepare_dictionary_get_int_invalid_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -361,7 +361,7 @@ def prepare_dictionary_get_int_invalid_string_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_long_valid_request(
+def prepare_dictionary_get_long_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -380,7 +380,7 @@ def prepare_dictionary_get_long_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_long_valid_request(
+def prepare_dictionary_put_long_valid(
     body,  # type: Dict[str, int]
     **kwargs  # type: Any
 ):
@@ -405,7 +405,7 @@ def prepare_dictionary_put_long_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_long_invalid_null_request(
+def prepare_dictionary_get_long_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -424,7 +424,7 @@ def prepare_dictionary_get_long_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_long_invalid_string_request(
+def prepare_dictionary_get_long_invalid_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -443,7 +443,7 @@ def prepare_dictionary_get_long_invalid_string_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_float_valid_request(
+def prepare_dictionary_get_float_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -462,7 +462,7 @@ def prepare_dictionary_get_float_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_float_valid_request(
+def prepare_dictionary_put_float_valid(
     body,  # type: Dict[str, float]
     **kwargs  # type: Any
 ):
@@ -487,7 +487,7 @@ def prepare_dictionary_put_float_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_float_invalid_null_request(
+def prepare_dictionary_get_float_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -506,7 +506,7 @@ def prepare_dictionary_get_float_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_float_invalid_string_request(
+def prepare_dictionary_get_float_invalid_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -525,7 +525,7 @@ def prepare_dictionary_get_float_invalid_string_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_double_valid_request(
+def prepare_dictionary_get_double_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -544,7 +544,7 @@ def prepare_dictionary_get_double_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_double_valid_request(
+def prepare_dictionary_put_double_valid(
     body,  # type: Dict[str, float]
     **kwargs  # type: Any
 ):
@@ -569,7 +569,7 @@ def prepare_dictionary_put_double_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_double_invalid_null_request(
+def prepare_dictionary_get_double_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -588,7 +588,7 @@ def prepare_dictionary_get_double_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_double_invalid_string_request(
+def prepare_dictionary_get_double_invalid_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -607,7 +607,7 @@ def prepare_dictionary_get_double_invalid_string_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_string_valid_request(
+def prepare_dictionary_get_string_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -626,7 +626,7 @@ def prepare_dictionary_get_string_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_string_valid_request(
+def prepare_dictionary_put_string_valid(
     body,  # type: Dict[str, str]
     **kwargs  # type: Any
 ):
@@ -651,7 +651,7 @@ def prepare_dictionary_put_string_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_string_with_null_request(
+def prepare_dictionary_get_string_with_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -670,7 +670,7 @@ def prepare_dictionary_get_string_with_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_string_with_invalid_request(
+def prepare_dictionary_get_string_with_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -689,7 +689,7 @@ def prepare_dictionary_get_string_with_invalid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_date_valid_request(
+def prepare_dictionary_get_date_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -708,7 +708,7 @@ def prepare_dictionary_get_date_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_date_valid_request(
+def prepare_dictionary_put_date_valid(
     body,  # type: Dict[str, datetime.date]
     **kwargs  # type: Any
 ):
@@ -733,7 +733,7 @@ def prepare_dictionary_put_date_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_date_invalid_null_request(
+def prepare_dictionary_get_date_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -752,7 +752,7 @@ def prepare_dictionary_get_date_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_date_invalid_chars_request(
+def prepare_dictionary_get_date_invalid_chars(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -771,7 +771,7 @@ def prepare_dictionary_get_date_invalid_chars_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_date_time_valid_request(
+def prepare_dictionary_get_date_time_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -790,7 +790,7 @@ def prepare_dictionary_get_date_time_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_date_time_valid_request(
+def prepare_dictionary_put_date_time_valid(
     body,  # type: Dict[str, datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -815,7 +815,7 @@ def prepare_dictionary_put_date_time_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_date_time_invalid_null_request(
+def prepare_dictionary_get_date_time_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -834,7 +834,7 @@ def prepare_dictionary_get_date_time_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_date_time_invalid_chars_request(
+def prepare_dictionary_get_date_time_invalid_chars(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -853,7 +853,7 @@ def prepare_dictionary_get_date_time_invalid_chars_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_date_time_rfc1123_valid_request(
+def prepare_dictionary_get_date_time_rfc1123_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -872,7 +872,7 @@ def prepare_dictionary_get_date_time_rfc1123_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_date_time_rfc1123_valid_request(
+def prepare_dictionary_put_date_time_rfc1123_valid(
     body,  # type: Dict[str, datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -897,7 +897,7 @@ def prepare_dictionary_put_date_time_rfc1123_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_duration_valid_request(
+def prepare_dictionary_get_duration_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -916,7 +916,7 @@ def prepare_dictionary_get_duration_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_duration_valid_request(
+def prepare_dictionary_put_duration_valid(
     body,  # type: Dict[str, datetime.timedelta]
     **kwargs  # type: Any
 ):
@@ -941,7 +941,7 @@ def prepare_dictionary_put_duration_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_byte_valid_request(
+def prepare_dictionary_get_byte_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -960,7 +960,7 @@ def prepare_dictionary_get_byte_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_byte_valid_request(
+def prepare_dictionary_put_byte_valid(
     body,  # type: Dict[str, bytearray]
     **kwargs  # type: Any
 ):
@@ -985,7 +985,7 @@ def prepare_dictionary_put_byte_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_byte_invalid_null_request(
+def prepare_dictionary_get_byte_invalid_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1004,7 +1004,7 @@ def prepare_dictionary_get_byte_invalid_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_base64_url_request(
+def prepare_dictionary_get_base64_url(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1023,7 +1023,7 @@ def prepare_dictionary_get_base64_url_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_complex_null_request(
+def prepare_dictionary_get_complex_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1042,7 +1042,7 @@ def prepare_dictionary_get_complex_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_complex_empty_request(
+def prepare_dictionary_get_complex_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1061,7 +1061,7 @@ def prepare_dictionary_get_complex_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_complex_item_null_request(
+def prepare_dictionary_get_complex_item_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1080,7 +1080,7 @@ def prepare_dictionary_get_complex_item_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_complex_item_empty_request(
+def prepare_dictionary_get_complex_item_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1099,7 +1099,7 @@ def prepare_dictionary_get_complex_item_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_complex_valid_request(
+def prepare_dictionary_get_complex_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1118,7 +1118,7 @@ def prepare_dictionary_get_complex_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_complex_valid_request(
+def prepare_dictionary_put_complex_valid(
     body,  # type: Dict[str, "_models.Widget"]
     **kwargs  # type: Any
 ):
@@ -1143,7 +1143,7 @@ def prepare_dictionary_put_complex_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_array_null_request(
+def prepare_dictionary_get_array_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1162,7 +1162,7 @@ def prepare_dictionary_get_array_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_array_empty_request(
+def prepare_dictionary_get_array_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1181,7 +1181,7 @@ def prepare_dictionary_get_array_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_array_item_null_request(
+def prepare_dictionary_get_array_item_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1200,7 +1200,7 @@ def prepare_dictionary_get_array_item_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_array_item_empty_request(
+def prepare_dictionary_get_array_item_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1219,7 +1219,7 @@ def prepare_dictionary_get_array_item_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_array_valid_request(
+def prepare_dictionary_get_array_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1238,7 +1238,7 @@ def prepare_dictionary_get_array_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_array_valid_request(
+def prepare_dictionary_put_array_valid(
     body,  # type: Dict[str, List[str]]
     **kwargs  # type: Any
 ):
@@ -1263,7 +1263,7 @@ def prepare_dictionary_put_array_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_dictionary_null_request(
+def prepare_dictionary_get_dictionary_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1282,7 +1282,7 @@ def prepare_dictionary_get_dictionary_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_dictionary_empty_request(
+def prepare_dictionary_get_dictionary_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1301,7 +1301,7 @@ def prepare_dictionary_get_dictionary_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_dictionary_item_null_request(
+def prepare_dictionary_get_dictionary_item_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1320,7 +1320,7 @@ def prepare_dictionary_get_dictionary_item_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_dictionary_item_empty_request(
+def prepare_dictionary_get_dictionary_item_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1339,7 +1339,7 @@ def prepare_dictionary_get_dictionary_item_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_dictionary_valid_request(
+def prepare_dictionary_get_dictionary_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1358,7 +1358,7 @@ def prepare_dictionary_get_dictionary_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_dictionary_valid_request(
+def prepare_dictionary_put_dictionary_valid(
     body,  # type: Dict[str, Dict[str, str]]
     **kwargs  # type: Any
 ):

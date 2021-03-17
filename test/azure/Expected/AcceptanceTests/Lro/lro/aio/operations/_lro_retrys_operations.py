@@ -61,7 +61,7 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = prepare_lroretrys_put201_creating_succeeded200_initial_request(
+        request = prepare_lroretrys_put201_creating_succeeded200_initial(
             body=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -154,7 +154,7 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = prepare_lroretrys_put_async_relative_retry_succeeded_initial_request(
+        request = prepare_lroretrys_put_async_relative_retry_succeeded_initial(
             body=product, template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -253,7 +253,7 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_lroretrys_delete_provisioning202_accepted200_succeeded_initial_request(
+        request = prepare_lroretrys_delete_provisioning202_accepted200_succeeded_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -341,7 +341,7 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_lroretrys_delete202_retry200_initial_request(
+        request = prepare_lroretrys_delete202_retry200_initial(
             template_url=self._delete202_retry200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -415,7 +415,7 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_lroretrys_delete_async_relative_retry_succeeded_initial_request(
+        request = prepare_lroretrys_delete_async_relative_retry_succeeded_initial(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -495,7 +495,7 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = prepare_lroretrys_post202_retry200_initial_request(
+        request = prepare_lroretrys_post202_retry200_initial(
             body=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -578,7 +578,7 @@ class LRORetrysOperations:
         if product is not None:
             product = self._serialize.body(product, "Product")
 
-        request = prepare_lroretrys_post_async_relative_retry_succeeded_initial_request(
+        request = prepare_lroretrys_post_async_relative_retry_succeeded_initial(
             body=product, template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

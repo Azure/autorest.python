@@ -45,7 +45,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if resource_array is not None:
             resource_array = self._serialize.body(resource_array, "[Resource]")
 
-        request = prepare_put_array_request(body=resource_array, template_url=self.put_array.metadata["url"], **kwargs)
+        request = prepare_put_array(body=resource_array, template_url=self.put_array.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -75,7 +75,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_get_array_request(template_url=self.get_array.metadata["url"], **kwargs)
+        request = prepare_get_array(template_url=self.get_array.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -117,7 +117,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if resource_array is not None:
             resource_array = self._serialize.body(resource_array, "[WrappedProduct]")
 
-        request = prepare_put_wrapped_array_request(
+        request = prepare_put_wrapped_array(
             body=resource_array, template_url=self.put_wrapped_array.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -150,7 +150,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_get_wrapped_array_request(template_url=self.get_wrapped_array.metadata["url"], **kwargs)
+        request = prepare_get_wrapped_array(template_url=self.get_wrapped_array.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -191,7 +191,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if resource_dictionary is not None:
             resource_dictionary = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
 
-        request = prepare_put_dictionary_request(
+        request = prepare_put_dictionary(
             body=resource_dictionary, template_url=self.put_dictionary.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -223,7 +223,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_get_dictionary_request(template_url=self.get_dictionary.metadata["url"], **kwargs)
+        request = prepare_get_dictionary(template_url=self.get_dictionary.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -264,7 +264,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if resource_complex_object is not None:
             resource_complex_object = self._serialize.body(resource_complex_object, "ResourceCollection")
 
-        request = prepare_put_resource_collection_request(
+        request = prepare_put_resource_collection(
             body=resource_complex_object, template_url=self.put_resource_collection.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -296,9 +296,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_get_resource_collection_request(
-            template_url=self.get_resource_collection.metadata["url"], **kwargs
-        )
+        request = prepare_get_resource_collection(template_url=self.get_resource_collection.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -339,7 +337,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if simple_body_product is not None:
             simple_body_product = self._serialize.body(simple_body_product, "SimpleProduct")
 
-        request = prepare_put_simple_product_request(
+        request = prepare_put_simple_product(
             body=simple_body_product, template_url=self.put_simple_product.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -405,7 +403,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if _simple_body_product is not None:
             _simple_body_product = self._serialize.body(_simple_body_product, "SimpleProduct")
 
-        request = prepare_post_flattened_simple_product_request(
+        request = prepare_post_flattened_simple_product(
             body=_simple_body_product, template_url=self.post_flattened_simple_product.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -470,7 +468,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if _simple_body_product is not None:
             _simple_body_product = self._serialize.body(_simple_body_product, "SimpleProduct")
 
-        request = prepare_put_simple_product_with_grouping_request(
+        request = prepare_put_simple_product_with_grouping(
             name=_name,
             body=_simple_body_product,
             template_url=self.put_simple_product_with_grouping.metadata["url"],

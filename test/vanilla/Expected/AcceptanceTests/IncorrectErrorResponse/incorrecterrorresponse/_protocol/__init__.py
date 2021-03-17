@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_get_incorrect_error_from_server_request
+    from ._preparers_py3 import prepare_get_incorrect_error_from_server
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_get_incorrect_error_from_server_request  # type: ignore
+    from ._preparers import prepare_get_incorrect_error_from_server  # type: ignore
 
 __all__ = [
-    "prepare_get_incorrect_error_from_server_request",
+    "prepare_get_incorrect_error_from_server",
 ]

@@ -7,97 +7,97 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_xmsclientrequestid_get_request
-    from ._preparers_py3 import prepare_xmsclientrequestid_param_get_request
-    from ._preparers_py3 import prepare_subscriptionincredentials_post_method_global_valid_request
-    from ._preparers_py3 import prepare_subscriptionincredentials_post_method_global_null_request
-    from ._preparers_py3 import prepare_subscriptionincredentials_post_method_global_not_provided_valid_request
-    from ._preparers_py3 import prepare_subscriptionincredentials_post_path_global_valid_request
-    from ._preparers_py3 import prepare_subscriptionincredentials_post_swagger_global_valid_request
-    from ._preparers_py3 import prepare_subscriptioninmethod_post_method_local_valid_request
-    from ._preparers_py3 import prepare_subscriptioninmethod_post_method_local_null_request
-    from ._preparers_py3 import prepare_subscriptioninmethod_post_path_local_valid_request
-    from ._preparers_py3 import prepare_subscriptioninmethod_post_swagger_local_valid_request
-    from ._preparers_py3 import prepare_apiversiondefault_get_method_global_valid_request
-    from ._preparers_py3 import prepare_apiversiondefault_get_method_global_not_provided_valid_request
-    from ._preparers_py3 import prepare_apiversiondefault_get_path_global_valid_request
-    from ._preparers_py3 import prepare_apiversiondefault_get_swagger_global_valid_request
-    from ._preparers_py3 import prepare_apiversionlocal_get_method_local_valid_request
-    from ._preparers_py3 import prepare_apiversionlocal_get_method_local_null_request
-    from ._preparers_py3 import prepare_apiversionlocal_get_path_local_valid_request
-    from ._preparers_py3 import prepare_apiversionlocal_get_swagger_local_valid_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_method_path_valid_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_path_valid_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_swagger_path_valid_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_method_query_valid_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_method_query_null_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_path_query_valid_request
-    from ._preparers_py3 import prepare_skipurlencoding_get_swagger_query_valid_request
-    from ._preparers_py3 import prepare_odata_get_with_filter_request
-    from ._preparers_py3 import prepare_header_custom_named_request_id_request
-    from ._preparers_py3 import prepare_header_custom_named_request_id_param_grouping_request
-    from ._preparers_py3 import prepare_header_custom_named_request_id_head_request
+    from ._preparers_py3 import prepare_xmsclientrequestid_get
+    from ._preparers_py3 import prepare_xmsclientrequestid_param_get
+    from ._preparers_py3 import prepare_subscriptionincredentials_post_method_global_valid
+    from ._preparers_py3 import prepare_subscriptionincredentials_post_method_global_null
+    from ._preparers_py3 import prepare_subscriptionincredentials_post_method_global_not_provided_valid
+    from ._preparers_py3 import prepare_subscriptionincredentials_post_path_global_valid
+    from ._preparers_py3 import prepare_subscriptionincredentials_post_swagger_global_valid
+    from ._preparers_py3 import prepare_subscriptioninmethod_post_method_local_valid
+    from ._preparers_py3 import prepare_subscriptioninmethod_post_method_local_null
+    from ._preparers_py3 import prepare_subscriptioninmethod_post_path_local_valid
+    from ._preparers_py3 import prepare_subscriptioninmethod_post_swagger_local_valid
+    from ._preparers_py3 import prepare_apiversiondefault_get_method_global_valid
+    from ._preparers_py3 import prepare_apiversiondefault_get_method_global_not_provided_valid
+    from ._preparers_py3 import prepare_apiversiondefault_get_path_global_valid
+    from ._preparers_py3 import prepare_apiversiondefault_get_swagger_global_valid
+    from ._preparers_py3 import prepare_apiversionlocal_get_method_local_valid
+    from ._preparers_py3 import prepare_apiversionlocal_get_method_local_null
+    from ._preparers_py3 import prepare_apiversionlocal_get_path_local_valid
+    from ._preparers_py3 import prepare_apiversionlocal_get_swagger_local_valid
+    from ._preparers_py3 import prepare_skipurlencoding_get_method_path_valid
+    from ._preparers_py3 import prepare_skipurlencoding_get_path_valid
+    from ._preparers_py3 import prepare_skipurlencoding_get_swagger_path_valid
+    from ._preparers_py3 import prepare_skipurlencoding_get_method_query_valid
+    from ._preparers_py3 import prepare_skipurlencoding_get_method_query_null
+    from ._preparers_py3 import prepare_skipurlencoding_get_path_query_valid
+    from ._preparers_py3 import prepare_skipurlencoding_get_swagger_query_valid
+    from ._preparers_py3 import prepare_odata_get_with_filter
+    from ._preparers_py3 import prepare_header_custom_named_request_id
+    from ._preparers_py3 import prepare_header_custom_named_request_id_param_grouping
+    from ._preparers_py3 import prepare_header_custom_named_request_id_head
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_xmsclientrequestid_get_request  # type: ignore
-    from ._preparers import prepare_xmsclientrequestid_param_get_request  # type: ignore
-    from ._preparers import prepare_subscriptionincredentials_post_method_global_valid_request  # type: ignore
-    from ._preparers import prepare_subscriptionincredentials_post_method_global_null_request  # type: ignore
-    from ._preparers import prepare_subscriptionincredentials_post_method_global_not_provided_valid_request  # type: ignore
-    from ._preparers import prepare_subscriptionincredentials_post_path_global_valid_request  # type: ignore
-    from ._preparers import prepare_subscriptionincredentials_post_swagger_global_valid_request  # type: ignore
-    from ._preparers import prepare_subscriptioninmethod_post_method_local_valid_request  # type: ignore
-    from ._preparers import prepare_subscriptioninmethod_post_method_local_null_request  # type: ignore
-    from ._preparers import prepare_subscriptioninmethod_post_path_local_valid_request  # type: ignore
-    from ._preparers import prepare_subscriptioninmethod_post_swagger_local_valid_request  # type: ignore
-    from ._preparers import prepare_apiversiondefault_get_method_global_valid_request  # type: ignore
-    from ._preparers import prepare_apiversiondefault_get_method_global_not_provided_valid_request  # type: ignore
-    from ._preparers import prepare_apiversiondefault_get_path_global_valid_request  # type: ignore
-    from ._preparers import prepare_apiversiondefault_get_swagger_global_valid_request  # type: ignore
-    from ._preparers import prepare_apiversionlocal_get_method_local_valid_request  # type: ignore
-    from ._preparers import prepare_apiversionlocal_get_method_local_null_request  # type: ignore
-    from ._preparers import prepare_apiversionlocal_get_path_local_valid_request  # type: ignore
-    from ._preparers import prepare_apiversionlocal_get_swagger_local_valid_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_method_path_valid_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_path_valid_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_swagger_path_valid_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_method_query_valid_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_method_query_null_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_path_query_valid_request  # type: ignore
-    from ._preparers import prepare_skipurlencoding_get_swagger_query_valid_request  # type: ignore
-    from ._preparers import prepare_odata_get_with_filter_request  # type: ignore
-    from ._preparers import prepare_header_custom_named_request_id_request  # type: ignore
-    from ._preparers import prepare_header_custom_named_request_id_param_grouping_request  # type: ignore
-    from ._preparers import prepare_header_custom_named_request_id_head_request  # type: ignore
+    from ._preparers import prepare_xmsclientrequestid_get  # type: ignore
+    from ._preparers import prepare_xmsclientrequestid_param_get  # type: ignore
+    from ._preparers import prepare_subscriptionincredentials_post_method_global_valid  # type: ignore
+    from ._preparers import prepare_subscriptionincredentials_post_method_global_null  # type: ignore
+    from ._preparers import prepare_subscriptionincredentials_post_method_global_not_provided_valid  # type: ignore
+    from ._preparers import prepare_subscriptionincredentials_post_path_global_valid  # type: ignore
+    from ._preparers import prepare_subscriptionincredentials_post_swagger_global_valid  # type: ignore
+    from ._preparers import prepare_subscriptioninmethod_post_method_local_valid  # type: ignore
+    from ._preparers import prepare_subscriptioninmethod_post_method_local_null  # type: ignore
+    from ._preparers import prepare_subscriptioninmethod_post_path_local_valid  # type: ignore
+    from ._preparers import prepare_subscriptioninmethod_post_swagger_local_valid  # type: ignore
+    from ._preparers import prepare_apiversiondefault_get_method_global_valid  # type: ignore
+    from ._preparers import prepare_apiversiondefault_get_method_global_not_provided_valid  # type: ignore
+    from ._preparers import prepare_apiversiondefault_get_path_global_valid  # type: ignore
+    from ._preparers import prepare_apiversiondefault_get_swagger_global_valid  # type: ignore
+    from ._preparers import prepare_apiversionlocal_get_method_local_valid  # type: ignore
+    from ._preparers import prepare_apiversionlocal_get_method_local_null  # type: ignore
+    from ._preparers import prepare_apiversionlocal_get_path_local_valid  # type: ignore
+    from ._preparers import prepare_apiversionlocal_get_swagger_local_valid  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_method_path_valid  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_path_valid  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_swagger_path_valid  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_method_query_valid  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_method_query_null  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_path_query_valid  # type: ignore
+    from ._preparers import prepare_skipurlencoding_get_swagger_query_valid  # type: ignore
+    from ._preparers import prepare_odata_get_with_filter  # type: ignore
+    from ._preparers import prepare_header_custom_named_request_id  # type: ignore
+    from ._preparers import prepare_header_custom_named_request_id_param_grouping  # type: ignore
+    from ._preparers import prepare_header_custom_named_request_id_head  # type: ignore
 
 __all__ = [
-    "prepare_xmsclientrequestid_get_request",
-    "prepare_xmsclientrequestid_param_get_request",
-    "prepare_subscriptionincredentials_post_method_global_valid_request",
-    "prepare_subscriptionincredentials_post_method_global_null_request",
-    "prepare_subscriptionincredentials_post_method_global_not_provided_valid_request",
-    "prepare_subscriptionincredentials_post_path_global_valid_request",
-    "prepare_subscriptionincredentials_post_swagger_global_valid_request",
-    "prepare_subscriptioninmethod_post_method_local_valid_request",
-    "prepare_subscriptioninmethod_post_method_local_null_request",
-    "prepare_subscriptioninmethod_post_path_local_valid_request",
-    "prepare_subscriptioninmethod_post_swagger_local_valid_request",
-    "prepare_apiversiondefault_get_method_global_valid_request",
-    "prepare_apiversiondefault_get_method_global_not_provided_valid_request",
-    "prepare_apiversiondefault_get_path_global_valid_request",
-    "prepare_apiversiondefault_get_swagger_global_valid_request",
-    "prepare_apiversionlocal_get_method_local_valid_request",
-    "prepare_apiversionlocal_get_method_local_null_request",
-    "prepare_apiversionlocal_get_path_local_valid_request",
-    "prepare_apiversionlocal_get_swagger_local_valid_request",
-    "prepare_skipurlencoding_get_method_path_valid_request",
-    "prepare_skipurlencoding_get_path_valid_request",
-    "prepare_skipurlencoding_get_swagger_path_valid_request",
-    "prepare_skipurlencoding_get_method_query_valid_request",
-    "prepare_skipurlencoding_get_method_query_null_request",
-    "prepare_skipurlencoding_get_path_query_valid_request",
-    "prepare_skipurlencoding_get_swagger_query_valid_request",
-    "prepare_odata_get_with_filter_request",
-    "prepare_header_custom_named_request_id_request",
-    "prepare_header_custom_named_request_id_param_grouping_request",
-    "prepare_header_custom_named_request_id_head_request",
+    "prepare_xmsclientrequestid_get",
+    "prepare_xmsclientrequestid_param_get",
+    "prepare_subscriptionincredentials_post_method_global_valid",
+    "prepare_subscriptionincredentials_post_method_global_null",
+    "prepare_subscriptionincredentials_post_method_global_not_provided_valid",
+    "prepare_subscriptionincredentials_post_path_global_valid",
+    "prepare_subscriptionincredentials_post_swagger_global_valid",
+    "prepare_subscriptioninmethod_post_method_local_valid",
+    "prepare_subscriptioninmethod_post_method_local_null",
+    "prepare_subscriptioninmethod_post_path_local_valid",
+    "prepare_subscriptioninmethod_post_swagger_local_valid",
+    "prepare_apiversiondefault_get_method_global_valid",
+    "prepare_apiversiondefault_get_method_global_not_provided_valid",
+    "prepare_apiversiondefault_get_path_global_valid",
+    "prepare_apiversiondefault_get_swagger_global_valid",
+    "prepare_apiversionlocal_get_method_local_valid",
+    "prepare_apiversionlocal_get_method_local_null",
+    "prepare_apiversionlocal_get_path_local_valid",
+    "prepare_apiversionlocal_get_swagger_local_valid",
+    "prepare_skipurlencoding_get_method_path_valid",
+    "prepare_skipurlencoding_get_path_valid",
+    "prepare_skipurlencoding_get_swagger_path_valid",
+    "prepare_skipurlencoding_get_method_query_valid",
+    "prepare_skipurlencoding_get_method_query_null",
+    "prepare_skipurlencoding_get_path_query_valid",
+    "prepare_skipurlencoding_get_swagger_query_valid",
+    "prepare_odata_get_with_filter",
+    "prepare_header_custom_named_request_id",
+    "prepare_header_custom_named_request_id_param_grouping",
+    "prepare_header_custom_named_request_id_head",
 ]

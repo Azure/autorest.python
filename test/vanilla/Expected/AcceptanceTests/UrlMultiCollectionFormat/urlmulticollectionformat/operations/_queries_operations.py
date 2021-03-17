@@ -72,7 +72,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_queries_array_string_multi_null_request(
+        request = prepare_queries_array_string_multi_null(
             array_query=array_query, template_url=self.array_string_multi_null.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -111,7 +111,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_queries_array_string_multi_empty_request(
+        request = prepare_queries_array_string_multi_empty(
             array_query=array_query, template_url=self.array_string_multi_empty.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -152,7 +152,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_queries_array_string_multi_valid_request(
+        request = prepare_queries_array_string_multi_valid(
             array_query=array_query, template_url=self.array_string_multi_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

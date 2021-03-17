@@ -60,7 +60,7 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_operationgrouptwo_test_four_request(
+        request = prepare_operationgrouptwo_test_four(
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],
             **kwargs

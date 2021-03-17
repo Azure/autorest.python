@@ -68,7 +68,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_string_get_null(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -112,9 +112,7 @@ class StringOperations(object):
         if string_body is not None:
             string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_null_request(
-            body=string_body, template_url=self.put_null.metadata["url"], **kwargs
-        )
+        request = prepare_string_put_null(body=string_body, template_url=self.put_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -147,7 +145,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_string_get_empty(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -187,9 +185,7 @@ class StringOperations(object):
         string_body = ""
         string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_empty_request(
-            body=string_body, template_url=self.put_empty.metadata["url"], **kwargs
-        )
+        request = prepare_string_put_empty(body=string_body, template_url=self.put_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -222,7 +218,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_mbcs_request(template_url=self.get_mbcs.metadata["url"], **kwargs)
+        request = prepare_string_get_mbcs(template_url=self.get_mbcs.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -262,9 +258,7 @@ class StringOperations(object):
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_mbcs_request(
-            body=string_body, template_url=self.put_mbcs.metadata["url"], **kwargs
-        )
+        request = prepare_string_put_mbcs(body=string_body, template_url=self.put_mbcs.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -299,7 +293,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_whitespace_request(template_url=self.get_whitespace.metadata["url"], **kwargs)
+        request = prepare_string_get_whitespace(template_url=self.get_whitespace.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -341,7 +335,7 @@ class StringOperations(object):
         string_body = "    Now is the time for all good men to come to the aid of their country    "
         string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_whitespace_request(
+        request = prepare_string_put_whitespace(
             body=string_body, template_url=self.put_whitespace.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -376,7 +370,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
+        request = prepare_string_get_not_provided(template_url=self.get_not_provided.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -413,9 +407,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"], **kwargs
-        )
+        request = prepare_string_get_base64_encoded(template_url=self.get_base64_encoded.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -452,7 +444,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_base64_url_encoded_request(
+        request = prepare_string_get_base64_url_encoded(
             template_url=self.get_base64_url_encoded.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -497,7 +489,7 @@ class StringOperations(object):
 
         string_body = self._serialize.body(string_body, "base64")
 
-        request = prepare_string_put_base64_url_encoded_request(
+        request = prepare_string_put_base64_url_encoded(
             body=string_body, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -532,7 +524,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_string_get_null_base64_url_encoded_request(
+        request = prepare_string_get_null_base64_url_encoded(
             template_url=self.get_null_base64_url_encoded.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

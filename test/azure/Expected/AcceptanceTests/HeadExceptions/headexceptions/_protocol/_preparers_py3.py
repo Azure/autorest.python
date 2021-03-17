@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_headexception_head200_request(**kwargs) -> HttpRequest:
+def prepare_headexception_head200(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/200")
@@ -65,7 +65,7 @@ def prepare_headexception_head200_request(**kwargs) -> HttpRequest:
     return _request("HEAD", url, query_parameters, header_parameters)
 
 
-def prepare_headexception_head204_request(**kwargs) -> HttpRequest:
+def prepare_headexception_head204(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/204")
@@ -79,7 +79,7 @@ def prepare_headexception_head204_request(**kwargs) -> HttpRequest:
     return _request("HEAD", url, query_parameters, header_parameters)
 
 
-def prepare_headexception_head404_request(**kwargs) -> HttpRequest:
+def prepare_headexception_head404(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/404")

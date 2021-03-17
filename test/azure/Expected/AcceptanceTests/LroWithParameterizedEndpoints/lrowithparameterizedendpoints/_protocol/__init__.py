@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_poll_with_parameterized_endpoints_initial_request
+    from ._preparers_py3 import prepare_poll_with_parameterized_endpoints_initial
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_poll_with_parameterized_endpoints_initial_request  # type: ignore
+    from ._preparers import prepare_poll_with_parameterized_endpoints_initial  # type: ignore
 
 __all__ = [
-    "prepare_poll_with_parameterized_endpoints_initial_request",
+    "prepare_poll_with_parameterized_endpoints_initial",
 ]

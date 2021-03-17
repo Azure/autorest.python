@@ -81,7 +81,7 @@ class AvailabilitySetsOperations(object):
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         _tags = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = prepare_availabilitysets_update_request(
+        request = prepare_availabilitysets_update(
             resource_group_name=resource_group_name,
             avset=avset,
             body=_tags,

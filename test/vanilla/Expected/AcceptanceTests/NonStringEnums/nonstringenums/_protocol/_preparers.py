@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_int_put_request(
+def prepare_int_put(
     body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
     **kwargs  # type: Any
 ):
@@ -82,7 +82,7 @@ def prepare_int_put_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_int_get_request(
+def prepare_int_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -101,7 +101,7 @@ def prepare_int_get_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_float_put_request(
+def prepare_float_put(
     body=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
     **kwargs  # type: Any
 ):
@@ -126,7 +126,7 @@ def prepare_float_put_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_float_get_request(
+def prepare_float_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

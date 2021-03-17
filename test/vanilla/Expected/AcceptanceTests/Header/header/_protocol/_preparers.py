@@ -58,7 +58,7 @@ def _request(
     return request
 
 
-def prepare_header_param_existing_key_request(
+def prepare_header_param_existing_key(
     user_agent_parameter,  # type: str
     **kwargs  # type: Any
 ):
@@ -79,7 +79,7 @@ def prepare_header_param_existing_key_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_existing_key_request(
+def prepare_header_response_existing_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -98,7 +98,7 @@ def prepare_header_response_existing_key_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_protected_key_request(
+def prepare_header_param_protected_key(
     content_type,  # type: str
     **kwargs  # type: Any
 ):
@@ -119,7 +119,7 @@ def prepare_header_param_protected_key_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_protected_key_request(
+def prepare_header_response_protected_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -138,7 +138,7 @@ def prepare_header_response_protected_key_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_integer_request(
+def prepare_header_param_integer(
     scenario,  # type: str
     value,  # type: int
     **kwargs  # type: Any
@@ -161,7 +161,7 @@ def prepare_header_param_integer_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_integer_request(
+def prepare_header_response_integer(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -182,7 +182,7 @@ def prepare_header_response_integer_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_long_request(
+def prepare_header_param_long(
     scenario,  # type: str
     value,  # type: int
     **kwargs  # type: Any
@@ -205,7 +205,7 @@ def prepare_header_param_long_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_long_request(
+def prepare_header_response_long(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -226,7 +226,7 @@ def prepare_header_response_long_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_float_request(
+def prepare_header_param_float(
     scenario,  # type: str
     value,  # type: float
     **kwargs  # type: Any
@@ -249,7 +249,7 @@ def prepare_header_param_float_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_float_request(
+def prepare_header_response_float(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -270,7 +270,7 @@ def prepare_header_response_float_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_double_request(
+def prepare_header_param_double(
     scenario,  # type: str
     value,  # type: float
     **kwargs  # type: Any
@@ -293,7 +293,7 @@ def prepare_header_param_double_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_double_request(
+def prepare_header_response_double(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -314,7 +314,7 @@ def prepare_header_response_double_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_bool_request(
+def prepare_header_param_bool(
     scenario,  # type: str
     value,  # type: bool
     **kwargs  # type: Any
@@ -337,7 +337,7 @@ def prepare_header_param_bool_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_bool_request(
+def prepare_header_response_bool(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -358,7 +358,7 @@ def prepare_header_response_bool_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_string_request(
+def prepare_header_param_string(
     scenario,  # type: str
     value=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -382,7 +382,7 @@ def prepare_header_param_string_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_string_request(
+def prepare_header_response_string(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -403,7 +403,7 @@ def prepare_header_response_string_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_date_request(
+def prepare_header_param_date(
     scenario,  # type: str
     value,  # type: datetime.date
     **kwargs  # type: Any
@@ -426,7 +426,7 @@ def prepare_header_param_date_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_date_request(
+def prepare_header_response_date(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -447,7 +447,7 @@ def prepare_header_response_date_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_datetime_request(
+def prepare_header_param_datetime(
     scenario,  # type: str
     value,  # type: datetime.datetime
     **kwargs  # type: Any
@@ -470,7 +470,7 @@ def prepare_header_param_datetime_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_datetime_request(
+def prepare_header_response_datetime(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -491,7 +491,7 @@ def prepare_header_response_datetime_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_datetime_rfc1123_request(
+def prepare_header_param_datetime_rfc1123(
     scenario,  # type: str
     value=None,  # type: Optional[datetime.datetime]
     **kwargs  # type: Any
@@ -515,7 +515,7 @@ def prepare_header_param_datetime_rfc1123_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_datetime_rfc1123_request(
+def prepare_header_response_datetime_rfc1123(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -536,7 +536,7 @@ def prepare_header_response_datetime_rfc1123_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_duration_request(
+def prepare_header_param_duration(
     scenario,  # type: str
     value,  # type: datetime.timedelta
     **kwargs  # type: Any
@@ -559,7 +559,7 @@ def prepare_header_param_duration_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_duration_request(
+def prepare_header_response_duration(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -580,7 +580,7 @@ def prepare_header_response_duration_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_byte_request(
+def prepare_header_param_byte(
     scenario,  # type: str
     value,  # type: bytearray
     **kwargs  # type: Any
@@ -603,7 +603,7 @@ def prepare_header_param_byte_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_byte_request(
+def prepare_header_response_byte(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -624,7 +624,7 @@ def prepare_header_response_byte_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_param_enum_request(
+def prepare_header_param_enum(
     scenario,  # type: str
     value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
     **kwargs  # type: Any
@@ -648,7 +648,7 @@ def prepare_header_param_enum_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_response_enum_request(
+def prepare_header_response_enum(
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -669,7 +669,7 @@ def prepare_header_response_enum_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_header_custom_request_id_request(
+def prepare_header_custom_request_id(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

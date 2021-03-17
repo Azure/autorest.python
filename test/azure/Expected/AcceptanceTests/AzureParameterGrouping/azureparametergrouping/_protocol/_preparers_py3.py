@@ -54,7 +54,7 @@ def _request(
     return request
 
 
-def prepare_parametergrouping_post_required_request(
+def prepare_parametergrouping_post_required(
     path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -85,7 +85,7 @@ def prepare_parametergrouping_post_required_request(
     return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_parametergrouping_post_optional_request(
+def prepare_parametergrouping_post_optional(
     custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -107,7 +107,7 @@ def prepare_parametergrouping_post_optional_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_parametergrouping_post_multi_param_groups_request(
+def prepare_parametergrouping_post_multi_param_groups(
     header_one: Optional[str] = None,
     query_one: Optional[int] = 30,
     header_two: Optional[str] = None,
@@ -137,7 +137,7 @@ def prepare_parametergrouping_post_multi_param_groups_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_parametergrouping_post_shared_parameter_group_object_request(
+def prepare_parametergrouping_post_shared_parameter_group_object(
     header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"

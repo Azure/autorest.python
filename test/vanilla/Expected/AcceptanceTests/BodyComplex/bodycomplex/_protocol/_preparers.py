@@ -58,7 +58,7 @@ def _request(
     return request
 
 
-def prepare_basic_get_valid_request(
+def prepare_basic_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -77,7 +77,7 @@ def prepare_basic_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_basic_put_valid_request(
+def prepare_basic_put_valid(
     body,  # type: "_models.Basic"
     **kwargs  # type: Any
 ):
@@ -104,7 +104,7 @@ def prepare_basic_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_basic_get_invalid_request(
+def prepare_basic_get_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -123,7 +123,7 @@ def prepare_basic_get_invalid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_basic_get_empty_request(
+def prepare_basic_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -142,7 +142,7 @@ def prepare_basic_get_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_basic_get_null_request(
+def prepare_basic_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -161,7 +161,7 @@ def prepare_basic_get_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_basic_get_not_provided_request(
+def prepare_basic_get_not_provided(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -180,7 +180,7 @@ def prepare_basic_get_not_provided_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_get_int_request(
+def prepare_primitive_get_int(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -199,7 +199,7 @@ def prepare_primitive_get_int_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_int_request(
+def prepare_primitive_put_int(
     body,  # type: "_models.IntWrapper"
     **kwargs  # type: Any
 ):
@@ -224,7 +224,7 @@ def prepare_primitive_put_int_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_long_request(
+def prepare_primitive_get_long(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -243,7 +243,7 @@ def prepare_primitive_get_long_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_long_request(
+def prepare_primitive_put_long(
     body,  # type: "_models.LongWrapper"
     **kwargs  # type: Any
 ):
@@ -268,7 +268,7 @@ def prepare_primitive_put_long_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_float_request(
+def prepare_primitive_get_float(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -287,7 +287,7 @@ def prepare_primitive_get_float_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_float_request(
+def prepare_primitive_put_float(
     body,  # type: "_models.FloatWrapper"
     **kwargs  # type: Any
 ):
@@ -312,7 +312,7 @@ def prepare_primitive_put_float_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_double_request(
+def prepare_primitive_get_double(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -331,7 +331,7 @@ def prepare_primitive_get_double_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_double_request(
+def prepare_primitive_put_double(
     body,  # type: "_models.DoubleWrapper"
     **kwargs  # type: Any
 ):
@@ -356,7 +356,7 @@ def prepare_primitive_put_double_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_bool_request(
+def prepare_primitive_get_bool(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -375,7 +375,7 @@ def prepare_primitive_get_bool_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_bool_request(
+def prepare_primitive_put_bool(
     body,  # type: "_models.BooleanWrapper"
     **kwargs  # type: Any
 ):
@@ -400,7 +400,7 @@ def prepare_primitive_put_bool_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_string_request(
+def prepare_primitive_get_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -419,7 +419,7 @@ def prepare_primitive_get_string_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_string_request(
+def prepare_primitive_put_string(
     body,  # type: "_models.StringWrapper"
     **kwargs  # type: Any
 ):
@@ -444,7 +444,7 @@ def prepare_primitive_put_string_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_date_request(
+def prepare_primitive_get_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -463,7 +463,7 @@ def prepare_primitive_get_date_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_date_request(
+def prepare_primitive_put_date(
     body,  # type: "_models.DateWrapper"
     **kwargs  # type: Any
 ):
@@ -488,7 +488,7 @@ def prepare_primitive_put_date_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_date_time_request(
+def prepare_primitive_get_date_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -507,7 +507,7 @@ def prepare_primitive_get_date_time_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_date_time_request(
+def prepare_primitive_put_date_time(
     body,  # type: "_models.DatetimeWrapper"
     **kwargs  # type: Any
 ):
@@ -532,7 +532,7 @@ def prepare_primitive_put_date_time_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_date_time_rfc1123_request(
+def prepare_primitive_get_date_time_rfc1123(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -551,7 +551,7 @@ def prepare_primitive_get_date_time_rfc1123_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_date_time_rfc1123_request(
+def prepare_primitive_put_date_time_rfc1123(
     body,  # type: "_models.Datetimerfc1123Wrapper"
     **kwargs  # type: Any
 ):
@@ -576,7 +576,7 @@ def prepare_primitive_put_date_time_rfc1123_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_duration_request(
+def prepare_primitive_get_duration(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -595,7 +595,7 @@ def prepare_primitive_get_duration_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_duration_request(
+def prepare_primitive_put_duration(
     body,  # type: "_models.DurationWrapper"
     **kwargs  # type: Any
 ):
@@ -620,7 +620,7 @@ def prepare_primitive_put_duration_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_primitive_get_byte_request(
+def prepare_primitive_get_byte(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -639,7 +639,7 @@ def prepare_primitive_get_byte_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_primitive_put_byte_request(
+def prepare_primitive_put_byte(
     body,  # type: "_models.ByteWrapper"
     **kwargs  # type: Any
 ):
@@ -664,7 +664,7 @@ def prepare_primitive_put_byte_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_array_get_valid_request(
+def prepare_array_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -683,7 +683,7 @@ def prepare_array_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_array_put_valid_request(
+def prepare_array_put_valid(
     body,  # type: "_models.ArrayWrapper"
     **kwargs  # type: Any
 ):
@@ -708,7 +708,7 @@ def prepare_array_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_array_get_empty_request(
+def prepare_array_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -727,7 +727,7 @@ def prepare_array_get_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_array_put_empty_request(
+def prepare_array_put_empty(
     body,  # type: "_models.ArrayWrapper"
     **kwargs  # type: Any
 ):
@@ -752,7 +752,7 @@ def prepare_array_put_empty_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_array_get_not_provided_request(
+def prepare_array_get_not_provided(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -771,7 +771,7 @@ def prepare_array_get_not_provided_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_valid_request(
+def prepare_dictionary_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -790,7 +790,7 @@ def prepare_dictionary_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_valid_request(
+def prepare_dictionary_put_valid(
     body,  # type: "_models.DictionaryWrapper"
     **kwargs  # type: Any
 ):
@@ -815,7 +815,7 @@ def prepare_dictionary_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_empty_request(
+def prepare_dictionary_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -834,7 +834,7 @@ def prepare_dictionary_get_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_put_empty_request(
+def prepare_dictionary_put_empty(
     body,  # type: "_models.DictionaryWrapper"
     **kwargs  # type: Any
 ):
@@ -859,7 +859,7 @@ def prepare_dictionary_put_empty_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_dictionary_get_null_request(
+def prepare_dictionary_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -878,7 +878,7 @@ def prepare_dictionary_get_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_dictionary_get_not_provided_request(
+def prepare_dictionary_get_not_provided(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -897,7 +897,7 @@ def prepare_dictionary_get_not_provided_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_inheritance_get_valid_request(
+def prepare_inheritance_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -916,7 +916,7 @@ def prepare_inheritance_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_inheritance_put_valid_request(
+def prepare_inheritance_put_valid(
     body,  # type: "_models.Siamese"
     **kwargs  # type: Any
 ):
@@ -941,7 +941,7 @@ def prepare_inheritance_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_polymorphism_get_valid_request(
+def prepare_polymorphism_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -960,7 +960,7 @@ def prepare_polymorphism_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_polymorphism_put_valid_request(
+def prepare_polymorphism_put_valid(
     body,  # type: "_models.Fish"
     **kwargs  # type: Any
 ):
@@ -985,7 +985,7 @@ def prepare_polymorphism_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_polymorphism_get_dot_syntax_request(
+def prepare_polymorphism_get_dot_syntax(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1004,7 +1004,7 @@ def prepare_polymorphism_get_dot_syntax_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_polymorphism_get_composed_with_discriminator_request(
+def prepare_polymorphism_get_composed_with_discriminator(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1023,7 +1023,7 @@ def prepare_polymorphism_get_composed_with_discriminator_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_polymorphism_get_composed_without_discriminator_request(
+def prepare_polymorphism_get_composed_without_discriminator(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1042,7 +1042,7 @@ def prepare_polymorphism_get_composed_without_discriminator_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_polymorphism_get_complicated_request(
+def prepare_polymorphism_get_complicated(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1061,7 +1061,7 @@ def prepare_polymorphism_get_complicated_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_polymorphism_put_complicated_request(
+def prepare_polymorphism_put_complicated(
     body,  # type: "_models.Salmon"
     **kwargs  # type: Any
 ):
@@ -1086,7 +1086,7 @@ def prepare_polymorphism_put_complicated_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_polymorphism_put_missing_discriminator_request(
+def prepare_polymorphism_put_missing_discriminator(
     body,  # type: "_models.Salmon"
     **kwargs  # type: Any
 ):
@@ -1111,7 +1111,7 @@ def prepare_polymorphism_put_missing_discriminator_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_polymorphism_put_valid_missing_required_request(
+def prepare_polymorphism_put_valid_missing_required(
     body,  # type: "_models.Fish"
     **kwargs  # type: Any
 ):
@@ -1136,7 +1136,7 @@ def prepare_polymorphism_put_valid_missing_required_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_polymorphicrecursive_get_valid_request(
+def prepare_polymorphicrecursive_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1155,7 +1155,7 @@ def prepare_polymorphicrecursive_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_polymorphicrecursive_put_valid_request(
+def prepare_polymorphicrecursive_put_valid(
     body,  # type: "_models.Fish"
     **kwargs  # type: Any
 ):
@@ -1180,7 +1180,7 @@ def prepare_polymorphicrecursive_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_readonlyproperty_get_valid_request(
+def prepare_readonlyproperty_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1199,7 +1199,7 @@ def prepare_readonlyproperty_get_valid_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_readonlyproperty_put_valid_request(
+def prepare_readonlyproperty_put_valid(
     body,  # type: "_models.ReadonlyObj"
     **kwargs  # type: Any
 ):
@@ -1224,7 +1224,7 @@ def prepare_readonlyproperty_put_valid_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_flattencomplex_get_valid_request(
+def prepare_flattencomplex_get_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

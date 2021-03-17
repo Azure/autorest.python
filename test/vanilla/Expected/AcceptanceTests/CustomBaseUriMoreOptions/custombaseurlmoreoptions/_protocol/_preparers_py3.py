@@ -54,7 +54,7 @@ def _request(
     return request
 
 
-def prepare_paths_get_empty_request(
+def prepare_paths_get_empty(
     key_name: str, subscription_id: str, key_version: Optional[str] = "v1", **kwargs
 ) -> HttpRequest:
     accept = "application/json"

@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_basic_polling_initial_request(
+def prepare_basic_polling_initial(
     body: Optional["_models.Product"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -75,7 +75,7 @@ def prepare_basic_polling_initial_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_basic_paging_request(
+def prepare_basic_paging(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"

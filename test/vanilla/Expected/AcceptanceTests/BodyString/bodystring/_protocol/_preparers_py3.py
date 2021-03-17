@@ -53,7 +53,7 @@ def _request(
     return request
 
 
-def prepare_string_get_null_request(**kwargs) -> HttpRequest:
+def prepare_string_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -69,7 +69,7 @@ def prepare_string_get_null_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_null_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_string_put_null(body: Optional[str] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -90,7 +90,7 @@ def prepare_string_put_null_request(body: Optional[str] = None, **kwargs) -> Htt
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_empty_request(**kwargs) -> HttpRequest:
+def prepare_string_get_empty(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -106,7 +106,7 @@ def prepare_string_get_empty_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_empty_request(body: str, **kwargs) -> HttpRequest:
+def prepare_string_put_empty(body: str, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -127,7 +127,7 @@ def prepare_string_put_empty_request(body: str, **kwargs) -> HttpRequest:
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_mbcs_request(**kwargs) -> HttpRequest:
+def prepare_string_get_mbcs(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -143,7 +143,7 @@ def prepare_string_get_mbcs_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_mbcs_request(body: str, **kwargs) -> HttpRequest:
+def prepare_string_put_mbcs(body: str, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -164,7 +164,7 @@ def prepare_string_put_mbcs_request(body: str, **kwargs) -> HttpRequest:
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_whitespace_request(**kwargs) -> HttpRequest:
+def prepare_string_get_whitespace(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -180,7 +180,7 @@ def prepare_string_get_whitespace_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_whitespace_request(body: str, **kwargs) -> HttpRequest:
+def prepare_string_put_whitespace(body: str, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -201,7 +201,7 @@ def prepare_string_put_whitespace_request(body: str, **kwargs) -> HttpRequest:
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_not_provided_request(**kwargs) -> HttpRequest:
+def prepare_string_get_not_provided(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -217,7 +217,7 @@ def prepare_string_get_not_provided_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_get_base64_encoded_request(**kwargs) -> HttpRequest:
+def prepare_string_get_base64_encoded(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -233,7 +233,7 @@ def prepare_string_get_base64_encoded_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_get_base64_url_encoded_request(**kwargs) -> HttpRequest:
+def prepare_string_get_base64_url_encoded(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -249,7 +249,7 @@ def prepare_string_get_base64_url_encoded_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_base64_url_encoded_request(body: bytes, **kwargs) -> HttpRequest:
+def prepare_string_put_base64_url_encoded(body: bytes, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -270,7 +270,7 @@ def prepare_string_put_base64_url_encoded_request(body: bytes, **kwargs) -> Http
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_null_base64_url_encoded_request(**kwargs) -> HttpRequest:
+def prepare_string_get_null_base64_url_encoded(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -286,7 +286,7 @@ def prepare_string_get_null_base64_url_encoded_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_get_not_expandable_request(**kwargs) -> HttpRequest:
+def prepare_enum_get_not_expandable(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -302,7 +302,7 @@ def prepare_enum_get_not_expandable_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_put_not_expandable_request(body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
+def prepare_enum_put_not_expandable(body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -323,7 +323,7 @@ def prepare_enum_put_not_expandable_request(body: Union[str, "_models.Colors"], 
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_enum_get_referenced_request(**kwargs) -> HttpRequest:
+def prepare_enum_get_referenced(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -339,7 +339,7 @@ def prepare_enum_get_referenced_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_put_referenced_request(body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
+def prepare_enum_put_referenced(body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -360,7 +360,7 @@ def prepare_enum_put_referenced_request(body: Union[str, "_models.Colors"], **kw
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_enum_get_referenced_constant_request(**kwargs) -> HttpRequest:
+def prepare_enum_get_referenced_constant(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -376,7 +376,7 @@ def prepare_enum_get_referenced_constant_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_put_referenced_constant_request(body: "_models.RefColorConstant", **kwargs) -> HttpRequest:
+def prepare_enum_put_referenced_constant(body: "_models.RefColorConstant", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

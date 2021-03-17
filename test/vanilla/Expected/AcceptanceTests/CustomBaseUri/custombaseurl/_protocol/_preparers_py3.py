@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_paths_get_empty_request(**kwargs) -> HttpRequest:
+def prepare_paths_get_empty(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

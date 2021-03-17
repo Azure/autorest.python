@@ -51,7 +51,7 @@ def _request(
     return request
 
 
-def prepare_bool_get_true_request(**kwargs) -> HttpRequest:
+def prepare_bool_get_true(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -67,7 +67,7 @@ def prepare_bool_get_true_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_bool_put_true_request(body: bool, **kwargs) -> HttpRequest:
+def prepare_bool_put_true(body: bool, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -88,7 +88,7 @@ def prepare_bool_put_true_request(body: bool, **kwargs) -> HttpRequest:
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_bool_get_false_request(**kwargs) -> HttpRequest:
+def prepare_bool_get_false(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -104,7 +104,7 @@ def prepare_bool_get_false_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_bool_put_false_request(body: bool, **kwargs) -> HttpRequest:
+def prepare_bool_put_false(body: bool, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -125,7 +125,7 @@ def prepare_bool_put_false_request(body: bool, **kwargs) -> HttpRequest:
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_bool_get_null_request(**kwargs) -> HttpRequest:
+def prepare_bool_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -141,7 +141,7 @@ def prepare_bool_get_null_request(**kwargs) -> HttpRequest:
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_bool_get_invalid_request(**kwargs) -> HttpRequest:
+def prepare_bool_get_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

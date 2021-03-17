@@ -58,7 +58,7 @@ def _request(
     return request
 
 
-def prepare_parametergrouping_post_required_request(
+def prepare_parametergrouping_post_required(
     path,  # type: str
     body,  # type: int
     custom_header=None,  # type: Optional[str]
@@ -94,7 +94,7 @@ def prepare_parametergrouping_post_required_request(
     return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_parametergrouping_post_optional_request(
+def prepare_parametergrouping_post_optional(
     custom_header=None,  # type: Optional[str]
     query=30,  # type: Optional[int]
     **kwargs  # type: Any
@@ -119,7 +119,7 @@ def prepare_parametergrouping_post_optional_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_parametergrouping_post_multi_param_groups_request(
+def prepare_parametergrouping_post_multi_param_groups(
     header_one=None,  # type: Optional[str]
     query_one=30,  # type: Optional[int]
     header_two=None,  # type: Optional[str]
@@ -150,7 +150,7 @@ def prepare_parametergrouping_post_multi_param_groups_request(
     return _request("POST", url, query_parameters, header_parameters)
 
 
-def prepare_parametergrouping_post_shared_parameter_group_object_request(
+def prepare_parametergrouping_post_shared_parameter_group_object(
     header_one=None,  # type: Optional[str]
     query_one=30,  # type: Optional[int]
     **kwargs  # type: Any

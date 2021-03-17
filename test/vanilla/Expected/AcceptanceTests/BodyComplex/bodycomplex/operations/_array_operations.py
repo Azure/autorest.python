@@ -68,7 +68,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_array_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = prepare_array_get_valid(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -112,9 +112,7 @@ class ArrayOperations(object):
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = prepare_array_put_valid_request(
-            body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
-        )
+        request = prepare_array_put_valid(body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -147,7 +145,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_array_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_array_get_empty(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -191,9 +189,7 @@ class ArrayOperations(object):
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = prepare_array_put_empty_request(
-            body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
-        )
+        request = prepare_array_put_empty(body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -226,7 +222,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_array_get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
+        request = prepare_array_get_not_provided(template_url=self.get_not_provided.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

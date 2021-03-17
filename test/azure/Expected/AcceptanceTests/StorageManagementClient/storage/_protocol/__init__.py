@@ -7,37 +7,37 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_storageaccounts_check_name_availability_request
-    from ._preparers_py3 import prepare_storageaccounts_create_initial_request
-    from ._preparers_py3 import prepare_storageaccounts_delete_request
-    from ._preparers_py3 import prepare_storageaccounts_get_properties_request
-    from ._preparers_py3 import prepare_storageaccounts_update_request
-    from ._preparers_py3 import prepare_storageaccounts_list_keys_request
-    from ._preparers_py3 import prepare_storageaccounts_list_request
-    from ._preparers_py3 import prepare_storageaccounts_list_by_resource_group_request
-    from ._preparers_py3 import prepare_storageaccounts_regenerate_key_request
-    from ._preparers_py3 import prepare_usage_list_request
+    from ._preparers_py3 import prepare_storageaccounts_check_name_availability
+    from ._preparers_py3 import prepare_storageaccounts_create_initial
+    from ._preparers_py3 import prepare_storageaccounts_delete
+    from ._preparers_py3 import prepare_storageaccounts_get_properties
+    from ._preparers_py3 import prepare_storageaccounts_update
+    from ._preparers_py3 import prepare_storageaccounts_list_keys
+    from ._preparers_py3 import prepare_storageaccounts_list
+    from ._preparers_py3 import prepare_storageaccounts_list_by_resource_group
+    from ._preparers_py3 import prepare_storageaccounts_regenerate_key
+    from ._preparers_py3 import prepare_usage_list
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_storageaccounts_check_name_availability_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_create_initial_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_delete_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_get_properties_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_update_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_list_keys_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_list_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_list_by_resource_group_request  # type: ignore
-    from ._preparers import prepare_storageaccounts_regenerate_key_request  # type: ignore
-    from ._preparers import prepare_usage_list_request  # type: ignore
+    from ._preparers import prepare_storageaccounts_check_name_availability  # type: ignore
+    from ._preparers import prepare_storageaccounts_create_initial  # type: ignore
+    from ._preparers import prepare_storageaccounts_delete  # type: ignore
+    from ._preparers import prepare_storageaccounts_get_properties  # type: ignore
+    from ._preparers import prepare_storageaccounts_update  # type: ignore
+    from ._preparers import prepare_storageaccounts_list_keys  # type: ignore
+    from ._preparers import prepare_storageaccounts_list  # type: ignore
+    from ._preparers import prepare_storageaccounts_list_by_resource_group  # type: ignore
+    from ._preparers import prepare_storageaccounts_regenerate_key  # type: ignore
+    from ._preparers import prepare_usage_list  # type: ignore
 
 __all__ = [
-    "prepare_storageaccounts_check_name_availability_request",
-    "prepare_storageaccounts_create_initial_request",
-    "prepare_storageaccounts_delete_request",
-    "prepare_storageaccounts_get_properties_request",
-    "prepare_storageaccounts_update_request",
-    "prepare_storageaccounts_list_keys_request",
-    "prepare_storageaccounts_list_request",
-    "prepare_storageaccounts_list_by_resource_group_request",
-    "prepare_storageaccounts_regenerate_key_request",
-    "prepare_usage_list_request",
+    "prepare_storageaccounts_check_name_availability",
+    "prepare_storageaccounts_create_initial",
+    "prepare_storageaccounts_delete",
+    "prepare_storageaccounts_get_properties",
+    "prepare_storageaccounts_update",
+    "prepare_storageaccounts_list_keys",
+    "prepare_storageaccounts_list",
+    "prepare_storageaccounts_list_by_resource_group",
+    "prepare_storageaccounts_regenerate_key",
+    "prepare_usage_list",
 ]

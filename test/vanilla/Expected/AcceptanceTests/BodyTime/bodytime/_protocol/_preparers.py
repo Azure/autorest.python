@@ -53,7 +53,7 @@ def _request(
     return request
 
 
-def prepare_time_get_request(
+def prepare_time_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -72,7 +72,7 @@ def prepare_time_get_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_time_put_request(
+def prepare_time_put(
     body,  # type: datetime.time
     **kwargs  # type: Any
 ):

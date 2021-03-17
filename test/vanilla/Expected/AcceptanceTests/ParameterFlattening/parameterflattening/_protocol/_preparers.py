@@ -58,7 +58,7 @@ def _request(
     return request
 
 
-def prepare_availabilitysets_update_request(
+def prepare_availabilitysets_update(
     resource_group_name,  # type: str
     avset,  # type: str
     body,  # type: "_models.AvailabilitySetUpdateParameters"

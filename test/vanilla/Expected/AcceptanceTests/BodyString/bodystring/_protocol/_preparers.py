@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_string_get_null_request(
+def prepare_string_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -76,7 +76,7 @@ def prepare_string_get_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_null_request(
+def prepare_string_put_null(
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -101,7 +101,7 @@ def prepare_string_put_null_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_empty_request(
+def prepare_string_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -120,7 +120,7 @@ def prepare_string_get_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_empty_request(
+def prepare_string_put_empty(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -145,7 +145,7 @@ def prepare_string_put_empty_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_mbcs_request(
+def prepare_string_get_mbcs(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -164,7 +164,7 @@ def prepare_string_get_mbcs_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_mbcs_request(
+def prepare_string_put_mbcs(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -189,7 +189,7 @@ def prepare_string_put_mbcs_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_whitespace_request(
+def prepare_string_get_whitespace(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -208,7 +208,7 @@ def prepare_string_get_whitespace_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_whitespace_request(
+def prepare_string_put_whitespace(
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -233,7 +233,7 @@ def prepare_string_put_whitespace_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_not_provided_request(
+def prepare_string_get_not_provided(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -252,7 +252,7 @@ def prepare_string_get_not_provided_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_get_base64_encoded_request(
+def prepare_string_get_base64_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -271,7 +271,7 @@ def prepare_string_get_base64_encoded_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_get_base64_url_encoded_request(
+def prepare_string_get_base64_url_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -290,7 +290,7 @@ def prepare_string_get_base64_url_encoded_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_string_put_base64_url_encoded_request(
+def prepare_string_put_base64_url_encoded(
     body,  # type: bytes
     **kwargs  # type: Any
 ):
@@ -315,7 +315,7 @@ def prepare_string_put_base64_url_encoded_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_string_get_null_base64_url_encoded_request(
+def prepare_string_get_null_base64_url_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -334,7 +334,7 @@ def prepare_string_get_null_base64_url_encoded_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_get_not_expandable_request(
+def prepare_enum_get_not_expandable(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -353,7 +353,7 @@ def prepare_enum_get_not_expandable_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_put_not_expandable_request(
+def prepare_enum_put_not_expandable(
     body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
@@ -378,7 +378,7 @@ def prepare_enum_put_not_expandable_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_enum_get_referenced_request(
+def prepare_enum_get_referenced(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -397,7 +397,7 @@ def prepare_enum_get_referenced_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_put_referenced_request(
+def prepare_enum_put_referenced(
     body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
@@ -422,7 +422,7 @@ def prepare_enum_put_referenced_request(
     return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def prepare_enum_get_referenced_constant_request(
+def prepare_enum_get_referenced_constant(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -441,7 +441,7 @@ def prepare_enum_get_referenced_constant_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_enum_put_referenced_constant_request(
+def prepare_enum_put_referenced_constant(
     body,  # type: "_models.RefColorConstant"
     **kwargs  # type: Any
 ):

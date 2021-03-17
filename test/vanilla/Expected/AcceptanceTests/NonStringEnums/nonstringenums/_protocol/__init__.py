@@ -7,19 +7,19 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_int_put_request
-    from ._preparers_py3 import prepare_int_get_request
-    from ._preparers_py3 import prepare_float_put_request
-    from ._preparers_py3 import prepare_float_get_request
+    from ._preparers_py3 import prepare_int_put
+    from ._preparers_py3 import prepare_int_get
+    from ._preparers_py3 import prepare_float_put
+    from ._preparers_py3 import prepare_float_get
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_int_put_request  # type: ignore
-    from ._preparers import prepare_int_get_request  # type: ignore
-    from ._preparers import prepare_float_put_request  # type: ignore
-    from ._preparers import prepare_float_get_request  # type: ignore
+    from ._preparers import prepare_int_put  # type: ignore
+    from ._preparers import prepare_int_get  # type: ignore
+    from ._preparers import prepare_float_put  # type: ignore
+    from ._preparers import prepare_float_get  # type: ignore
 
 __all__ = [
-    "prepare_int_put_request",
-    "prepare_int_get_request",
-    "prepare_float_put_request",
-    "prepare_float_get_request",
+    "prepare_int_put",
+    "prepare_int_get",
+    "prepare_float_put",
+    "prepare_float_get",
 ]

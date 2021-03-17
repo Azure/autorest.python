@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_queries_array_string_multi_null_request(
+def prepare_queries_array_string_multi_null(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -81,7 +81,7 @@ def prepare_queries_array_string_multi_null_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_multi_empty_request(
+def prepare_queries_array_string_multi_empty(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -105,7 +105,7 @@ def prepare_queries_array_string_multi_empty_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_queries_array_string_multi_valid_request(
+def prepare_queries_array_string_multi_valid(
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):

@@ -79,7 +79,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_pathitems_get_all_with_values_request(
+        request = prepare_pathitems_get_all_with_values(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -136,7 +136,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_pathitems_get_global_query_null_request(
+        request = prepare_pathitems_get_global_query_null(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -193,7 +193,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_pathitems_get_global_and_local_query_null_request(
+        request = prepare_pathitems_get_global_and_local_query_null(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -249,7 +249,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_pathitems_get_local_path_item_query_null_request(
+        request = prepare_pathitems_get_local_path_item_query_null(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,

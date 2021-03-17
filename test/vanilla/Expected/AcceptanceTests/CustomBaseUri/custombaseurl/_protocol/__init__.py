@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_paths_get_empty_request
+    from ._preparers_py3 import prepare_paths_get_empty
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_paths_get_empty_request  # type: ignore
+    from ._preparers import prepare_paths_get_empty  # type: ignore
 
 __all__ = [
-    "prepare_paths_get_empty_request",
+    "prepare_paths_get_empty",
 ]

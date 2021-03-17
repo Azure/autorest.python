@@ -57,7 +57,7 @@ def _request(
     return request
 
 
-def prepare_get_report_request(
+def prepare_get_report(
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -79,7 +79,7 @@ def prepare_get_report_request(
     return _request("GET", url, query_parameters, header_parameters)
 
 
-def prepare_get_optional_report_request(
+def prepare_get_optional_report(
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

@@ -74,7 +74,7 @@ class StorageAccountsOperations:
 
         account_name = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
-        request = prepare_storageaccounts_check_name_availability_request(
+        request = prepare_storageaccounts_check_name_availability(
             subscription_id=self._config.subscription_id,
             body=account_name,
             template_url=self.check_name_availability.metadata["url"],
@@ -112,7 +112,7 @@ class StorageAccountsOperations:
 
         parameters = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
-        request = prepare_storageaccounts_create_initial_request(
+        request = prepare_storageaccounts_create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -232,7 +232,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_storageaccounts_delete_request(
+        request = prepare_storageaccounts_delete(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -275,7 +275,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_storageaccounts_get_properties_request(
+        request = prepare_storageaccounts_get_properties(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -337,7 +337,7 @@ class StorageAccountsOperations:
 
         parameters = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
-        request = prepare_storageaccounts_update_request(
+        request = prepare_storageaccounts_update(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -381,7 +381,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_storageaccounts_list_keys_request(
+        request = prepare_storageaccounts_list_keys(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -423,13 +423,13 @@ class StorageAccountsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = prepare_storageaccounts_list_request(
+                request = prepare_storageaccounts_list(
                     subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
                 )
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = prepare_storageaccounts_list_request(
+                request = prepare_storageaccounts_list(
                     subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
                 )
                 request.url = self._client.format_url(request.url)
@@ -482,7 +482,7 @@ class StorageAccountsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = prepare_storageaccounts_list_by_resource_group_request(
+                request = prepare_storageaccounts_list_by_resource_group(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
@@ -491,7 +491,7 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = prepare_storageaccounts_list_by_resource_group_request(
+                request = prepare_storageaccounts_list_by_resource_group(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
@@ -557,7 +557,7 @@ class StorageAccountsOperations:
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         _regenerate_key = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
 
-        request = prepare_storageaccounts_regenerate_key_request(
+        request = prepare_storageaccounts_regenerate_key(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
