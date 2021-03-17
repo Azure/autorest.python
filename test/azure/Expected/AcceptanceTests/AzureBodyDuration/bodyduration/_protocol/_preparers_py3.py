@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_duration_get_null_request(**kwargs) -> HttpRequest:
+def prepare_duration_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def prepare_duration_get_null_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_duration_put_positive_duration_request(body: datetime.timedelta, **kwargs) -> HttpRequest:
+def prepare_duration_put_positive_duration(body: datetime.timedelta, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -54,7 +54,7 @@ def prepare_duration_put_positive_duration_request(body: datetime.timedelta, **k
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_duration_get_positive_duration_request(**kwargs) -> HttpRequest:
+def prepare_duration_get_positive_duration(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -74,7 +74,7 @@ def prepare_duration_get_positive_duration_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_duration_get_invalid_request(**kwargs) -> HttpRequest:
+def prepare_duration_get_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

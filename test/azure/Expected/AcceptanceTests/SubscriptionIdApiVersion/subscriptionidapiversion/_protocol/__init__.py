@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_group_get_sample_resource_group_request
+    from ._preparers_py3 import prepare_group_get_sample_resource_group
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_group_get_sample_resource_group_request  # type: ignore
+    from ._preparers import prepare_group_get_sample_resource_group  # type: ignore
 
 __all__ = [
-    "prepare_group_get_sample_resource_group_request",
+    "prepare_group_get_sample_resource_group",
 ]

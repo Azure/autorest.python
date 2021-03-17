@@ -62,7 +62,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpsuccess_head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_head200(template_url=self.head200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -92,7 +92,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpsuccess_get200_request(template_url=self.get200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_get200(template_url=self.get200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -126,7 +126,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpsuccess_options200_request(template_url=self.options200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_options200(template_url=self.options200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -165,9 +165,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put200_request(
-            body=boolean_value, template_url=self.put200.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_put200(body=boolean_value, template_url=self.put200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -202,9 +200,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_patch200_request(
-            body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_patch200(body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -239,9 +235,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post200_request(
-            body=boolean_value, template_url=self.post200.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_post200(body=boolean_value, template_url=self.post200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -276,7 +270,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_delete200_request(
+        request = prepare_httpsuccess_delete200(
             body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -313,9 +307,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put201_request(
-            body=boolean_value, template_url=self.put201.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_put201(body=boolean_value, template_url=self.put201.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -350,9 +342,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post201_request(
-            body=boolean_value, template_url=self.post201.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_post201(body=boolean_value, template_url=self.post201.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -387,9 +377,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put202_request(
-            body=boolean_value, template_url=self.put202.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_put202(body=boolean_value, template_url=self.put202.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -424,9 +412,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_patch202_request(
-            body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_patch202(body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -461,9 +447,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post202_request(
-            body=boolean_value, template_url=self.post202.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_post202(body=boolean_value, template_url=self.post202.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -498,7 +482,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_delete202_request(
+        request = prepare_httpsuccess_delete202(
             body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -530,7 +514,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpsuccess_head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_head204(template_url=self.head204.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -565,9 +549,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put204_request(
-            body=boolean_value, template_url=self.put204.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_put204(body=boolean_value, template_url=self.put204.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -602,9 +584,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_patch204_request(
-            body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_patch204(body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -639,9 +619,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post204_request(
-            body=boolean_value, template_url=self.post204.metadata["url"], **kwargs
-        )
+        request = prepare_httpsuccess_post204(body=boolean_value, template_url=self.post204.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -676,7 +654,7 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_delete204_request(
+        request = prepare_httpsuccess_delete204(
             body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -708,7 +686,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_httpsuccess_head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_head404(template_url=self.head404.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_pet_get_pet_by_id_request(
+def prepare_pet_get_pet_by_id(
     pet_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -46,7 +46,7 @@ def prepare_pet_get_pet_by_id_request(
     )
 
 
-def prepare_pet_do_something_request(
+def prepare_pet_do_something(
     what_action,  # type: str
     **kwargs  # type: Any
 ):
@@ -74,7 +74,7 @@ def prepare_pet_do_something_request(
     )
 
 
-def prepare_pet_has_models_param_request(
+def prepare_pet_has_models_param(
     models="value1",  # type: Optional[str]
     **kwargs  # type: Any
 ):

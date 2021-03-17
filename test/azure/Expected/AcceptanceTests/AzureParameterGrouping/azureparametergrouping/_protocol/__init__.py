@@ -7,19 +7,19 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_parametergrouping_post_required_request
-    from ._preparers_py3 import prepare_parametergrouping_post_optional_request
-    from ._preparers_py3 import prepare_parametergrouping_post_multi_param_groups_request
-    from ._preparers_py3 import prepare_parametergrouping_post_shared_parameter_group_object_request
+    from ._preparers_py3 import prepare_parametergrouping_post_required
+    from ._preparers_py3 import prepare_parametergrouping_post_optional
+    from ._preparers_py3 import prepare_parametergrouping_post_multi_param_groups
+    from ._preparers_py3 import prepare_parametergrouping_post_shared_parameter_group_object
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_parametergrouping_post_required_request  # type: ignore
-    from ._preparers import prepare_parametergrouping_post_optional_request  # type: ignore
-    from ._preparers import prepare_parametergrouping_post_multi_param_groups_request  # type: ignore
-    from ._preparers import prepare_parametergrouping_post_shared_parameter_group_object_request  # type: ignore
+    from ._preparers import prepare_parametergrouping_post_required  # type: ignore
+    from ._preparers import prepare_parametergrouping_post_optional  # type: ignore
+    from ._preparers import prepare_parametergrouping_post_multi_param_groups  # type: ignore
+    from ._preparers import prepare_parametergrouping_post_shared_parameter_group_object  # type: ignore
 
 __all__ = [
-    "prepare_parametergrouping_post_required_request",
-    "prepare_parametergrouping_post_optional_request",
-    "prepare_parametergrouping_post_multi_param_groups_request",
-    "prepare_parametergrouping_post_shared_parameter_group_object_request",
+    "prepare_parametergrouping_post_required",
+    "prepare_parametergrouping_post_optional",
+    "prepare_parametergrouping_post_multi_param_groups",
+    "prepare_parametergrouping_post_shared_parameter_group_object",
 ]

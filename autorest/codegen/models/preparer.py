@@ -127,7 +127,6 @@ class Preparer(BaseModel):
             "prepare",
             yaml_data["language"]["python"]["operationGroupName"],
             yaml_data["language"]["python"]["name"],
-            "request"
         ]
         name = "_".join([n for n in names if n])
 

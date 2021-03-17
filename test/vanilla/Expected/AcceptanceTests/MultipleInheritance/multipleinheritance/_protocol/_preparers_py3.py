@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_get_horse_request(**kwargs) -> HttpRequest:
+def prepare_get_horse(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -31,7 +31,7 @@ def prepare_get_horse_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_put_horse_request(body: "_models.Horse", **kwargs) -> HttpRequest:
+def prepare_put_horse(body: "_models.Horse", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -52,7 +52,7 @@ def prepare_put_horse_request(body: "_models.Horse", **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_pet_request(**kwargs) -> HttpRequest:
+def prepare_get_pet(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -72,7 +72,7 @@ def prepare_get_pet_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_put_pet_request(body: "_models.Pet", **kwargs) -> HttpRequest:
+def prepare_put_pet(body: "_models.Pet", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -93,7 +93,7 @@ def prepare_put_pet_request(body: "_models.Pet", **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_feline_request(**kwargs) -> HttpRequest:
+def prepare_get_feline(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -113,7 +113,7 @@ def prepare_get_feline_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_put_feline_request(body: "_models.Feline", **kwargs) -> HttpRequest:
+def prepare_put_feline(body: "_models.Feline", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -134,7 +134,7 @@ def prepare_put_feline_request(body: "_models.Feline", **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_cat_request(**kwargs) -> HttpRequest:
+def prepare_get_cat(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -154,7 +154,7 @@ def prepare_get_cat_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_put_cat_request(body: "_models.Cat", **kwargs) -> HttpRequest:
+def prepare_put_cat(body: "_models.Cat", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -175,7 +175,7 @@ def prepare_put_cat_request(body: "_models.Cat", **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_kitten_request(**kwargs) -> HttpRequest:
+def prepare_get_kitten(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -195,7 +195,7 @@ def prepare_get_kitten_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_put_kitten_request(body: "_models.Kitten", **kwargs) -> HttpRequest:
+def prepare_put_kitten(body: "_models.Kitten", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

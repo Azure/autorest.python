@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_paths_get_empty_request(
+def prepare_paths_get_empty(
     key_name,  # type: str
     subscription_id,  # type: str
     key_version="v1",  # type: Optional[str]

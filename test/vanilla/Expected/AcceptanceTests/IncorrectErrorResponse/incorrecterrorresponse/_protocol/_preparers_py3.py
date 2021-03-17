@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_get_incorrect_error_from_server_request(**kwargs) -> HttpRequest:
+def prepare_get_incorrect_error_from_server(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/incorrectError")

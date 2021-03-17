@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_byte_get_null_request(
+def prepare_byte_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -34,7 +34,7 @@ def prepare_byte_get_null_request(
     )
 
 
-def prepare_byte_get_empty_request(
+def prepare_byte_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -57,7 +57,7 @@ def prepare_byte_get_empty_request(
     )
 
 
-def prepare_byte_get_non_ascii_request(
+def prepare_byte_get_non_ascii(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -80,7 +80,7 @@ def prepare_byte_get_non_ascii_request(
     )
 
 
-def prepare_byte_put_non_ascii_request(
+def prepare_byte_put_non_ascii(
     body,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -105,7 +105,7 @@ def prepare_byte_put_non_ascii_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_byte_get_invalid_request(
+def prepare_byte_get_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

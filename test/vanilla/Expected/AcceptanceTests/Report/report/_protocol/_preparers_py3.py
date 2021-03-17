@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_get_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_get_report(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -36,7 +36,7 @@ def prepare_get_report_request(qualifier: Optional[str] = None, **kwargs) -> Htt
     )
 
 
-def prepare_get_optional_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_get_optional_report(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

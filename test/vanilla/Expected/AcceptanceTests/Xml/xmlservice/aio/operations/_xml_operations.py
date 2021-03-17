@@ -62,7 +62,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_complex_type_ref_no_meta_request(
+        request = prepare_xml_get_complex_type_ref_no_meta(
             template_url=self.get_complex_type_ref_no_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -101,7 +101,7 @@ class XmlOperations:
 
         model = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
-        request = prepare_xml_put_complex_type_ref_no_meta_request(
+        request = prepare_xml_put_complex_type_ref_no_meta(
             body=model, template_url=self.put_complex_type_ref_no_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -132,7 +132,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_complex_type_ref_with_meta_request(
+        request = prepare_xml_get_complex_type_ref_with_meta(
             template_url=self.get_complex_type_ref_with_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -171,7 +171,7 @@ class XmlOperations:
 
         model = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
-        request = prepare_xml_put_complex_type_ref_with_meta_request(
+        request = prepare_xml_put_complex_type_ref_with_meta(
             body=model, template_url=self.put_complex_type_ref_with_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -202,7 +202,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_simple_request(template_url=self.get_simple.metadata["url"], **kwargs)
+        request = prepare_xml_get_simple(template_url=self.get_simple.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -240,7 +240,7 @@ class XmlOperations:
 
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = prepare_xml_put_simple_request(body=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
+        request = prepare_xml_put_simple(body=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -270,7 +270,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_wrapped_lists_request(template_url=self.get_wrapped_lists.metadata["url"], **kwargs)
+        request = prepare_xml_get_wrapped_lists(template_url=self.get_wrapped_lists.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -307,7 +307,7 @@ class XmlOperations:
 
         wrapped_lists = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
-        request = prepare_xml_put_wrapped_lists_request(
+        request = prepare_xml_put_wrapped_lists(
             body=wrapped_lists, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -339,7 +339,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_headers_request(template_url=self.get_headers.metadata["url"], **kwargs)
+        request = prepare_xml_get_headers(template_url=self.get_headers.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -371,7 +371,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_empty_list_request(template_url=self.get_empty_list.metadata["url"], **kwargs)
+        request = prepare_xml_get_empty_list(template_url=self.get_empty_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -408,9 +408,7 @@ class XmlOperations:
 
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = prepare_xml_put_empty_list_request(
-            body=slideshow, template_url=self.put_empty_list.metadata["url"], **kwargs
-        )
+        request = prepare_xml_put_empty_list(body=slideshow, template_url=self.put_empty_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -439,7 +437,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_empty_wrapped_lists_request(
+        request = prepare_xml_get_empty_wrapped_lists(
             template_url=self.get_empty_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -478,7 +476,7 @@ class XmlOperations:
 
         apple_barrel = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
-        request = prepare_xml_put_empty_wrapped_lists_request(
+        request = prepare_xml_put_empty_wrapped_lists(
             body=apple_barrel, template_url=self.put_empty_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -509,7 +507,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_root_list_request(template_url=self.get_root_list.metadata["url"], **kwargs)
+        request = prepare_xml_get_root_list(template_url=self.get_root_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -547,9 +545,7 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = prepare_xml_put_root_list_request(
-            body=bananas, template_url=self.put_root_list.metadata["url"], **kwargs
-        )
+        request = prepare_xml_put_root_list(body=bananas, template_url=self.put_root_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -578,7 +574,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_root_list_single_item_request(
+        request = prepare_xml_get_root_list_single_item(
             template_url=self.get_root_list_single_item.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -618,7 +614,7 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = prepare_xml_put_root_list_single_item_request(
+        request = prepare_xml_put_root_list_single_item(
             body=bananas, template_url=self.put_root_list_single_item.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -649,9 +645,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_empty_root_list_request(
-            template_url=self.get_empty_root_list.metadata["url"], **kwargs
-        )
+        request = prepare_xml_get_empty_root_list(template_url=self.get_empty_root_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -689,7 +683,7 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = prepare_xml_put_empty_root_list_request(
+        request = prepare_xml_put_empty_root_list(
             body=bananas, template_url=self.put_empty_root_list.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -720,7 +714,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_empty_child_element_request(
+        request = prepare_xml_get_empty_child_element(
             template_url=self.get_empty_child_element.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -759,7 +753,7 @@ class XmlOperations:
 
         banana = self._serialize.body(banana, "Banana", is_xml=True)
 
-        request = prepare_xml_put_empty_child_element_request(
+        request = prepare_xml_put_empty_child_element(
             body=banana, template_url=self.put_empty_child_element.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -790,7 +784,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_list_containers_request(template_url=self.list_containers.metadata["url"], **kwargs)
+        request = prepare_xml_list_containers(template_url=self.list_containers.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -823,9 +817,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_service_properties_request(
-            template_url=self.get_service_properties.metadata["url"], **kwargs
-        )
+        request = prepare_xml_get_service_properties(template_url=self.get_service_properties.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -862,7 +854,7 @@ class XmlOperations:
 
         properties = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
-        request = prepare_xml_put_service_properties_request(
+        request = prepare_xml_put_service_properties(
             body=properties, template_url=self.put_service_properties.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -893,7 +885,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_acls_request(template_url=self.get_acls.metadata["url"], **kwargs)
+        request = prepare_xml_get_acls(template_url=self.get_acls.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -933,7 +925,7 @@ class XmlOperations:
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
 
-        request = prepare_xml_put_acls_request(body=properties, template_url=self.put_acls.metadata["url"], **kwargs)
+        request = prepare_xml_put_acls(body=properties, template_url=self.put_acls.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -962,7 +954,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_list_blobs_request(template_url=self.list_blobs.metadata["url"], **kwargs)
+        request = prepare_xml_list_blobs(template_url=self.list_blobs.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1001,9 +993,7 @@ class XmlOperations:
         _properties = _models.JSONInput(id=id)
         _properties = self._serialize.body(_properties, "JSONInput")
 
-        request = prepare_xml_json_input_request(
-            body=_properties, template_url=self.json_input.metadata["url"], **kwargs
-        )
+        request = prepare_xml_json_input(body=_properties, template_url=self.json_input.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1032,7 +1022,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_json_output_request(template_url=self.json_output.metadata["url"], **kwargs)
+        request = prepare_xml_json_output(template_url=self.json_output.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1066,7 +1056,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_xms_text_request(template_url=self.get_xms_text.metadata["url"], **kwargs)
+        request = prepare_xml_get_xms_text(template_url=self.get_xms_text.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1099,7 +1089,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_bytes_request(template_url=self.get_bytes.metadata["url"], **kwargs)
+        request = prepare_xml_get_bytes(template_url=self.get_bytes.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1138,9 +1128,7 @@ class XmlOperations:
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
         _slideshow = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
-        request = prepare_xml_put_binary_request(
-            body=_slideshow, template_url=self.put_binary.metadata["url"], **kwargs
-        )
+        request = prepare_xml_put_binary(body=_slideshow, template_url=self.put_binary.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1170,7 +1158,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_xml_get_uri_request(template_url=self.get_uri.metadata["url"], **kwargs)
+        request = prepare_xml_get_uri(template_url=self.get_uri.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1209,7 +1197,7 @@ class XmlOperations:
         _model = _models.ModelWithUrlProperty(url=url)
         _model = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
-        request = prepare_xml_put_uri_request(body=_model, template_url=self.put_uri.metadata["url"], **kwargs)
+        request = prepare_xml_put_uri(body=_model, template_url=self.put_uri.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

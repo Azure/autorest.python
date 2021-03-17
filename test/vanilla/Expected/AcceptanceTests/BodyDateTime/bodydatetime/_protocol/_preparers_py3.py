@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_datetime_get_null_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def prepare_datetime_get_null_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_datetime_get_invalid_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -53,7 +53,7 @@ def prepare_datetime_get_invalid_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_datetime_get_overflow_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_overflow(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -73,7 +73,7 @@ def prepare_datetime_get_overflow_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_datetime_get_underflow_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_underflow(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -93,7 +93,7 @@ def prepare_datetime_get_underflow_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_datetime_put_utc_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_utc_max_date_time(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -114,7 +114,7 @@ def prepare_datetime_put_utc_max_date_time_request(body: datetime.datetime, **kw
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_put_utc_max_date_time7_digits_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_utc_max_date_time7_digits(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -135,7 +135,7 @@ def prepare_datetime_put_utc_max_date_time7_digits_request(body: datetime.dateti
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_get_utc_lowercase_max_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_utc_lowercase_max_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -155,7 +155,7 @@ def prepare_datetime_get_utc_lowercase_max_date_time_request(**kwargs) -> HttpRe
     )
 
 
-def prepare_datetime_get_utc_uppercase_max_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_utc_uppercase_max_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -175,7 +175,7 @@ def prepare_datetime_get_utc_uppercase_max_date_time_request(**kwargs) -> HttpRe
     )
 
 
-def prepare_datetime_get_utc_uppercase_max_date_time7_digits_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_utc_uppercase_max_date_time7_digits(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -195,7 +195,7 @@ def prepare_datetime_get_utc_uppercase_max_date_time7_digits_request(**kwargs) -
     )
 
 
-def prepare_datetime_put_local_positive_offset_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_local_positive_offset_max_date_time(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -216,7 +216,7 @@ def prepare_datetime_put_local_positive_offset_max_date_time_request(body: datet
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_get_local_positive_offset_lowercase_max_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_positive_offset_lowercase_max_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -236,7 +236,7 @@ def prepare_datetime_get_local_positive_offset_lowercase_max_date_time_request(*
     )
 
 
-def prepare_datetime_get_local_positive_offset_uppercase_max_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_positive_offset_uppercase_max_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -256,7 +256,7 @@ def prepare_datetime_get_local_positive_offset_uppercase_max_date_time_request(*
     )
 
 
-def prepare_datetime_put_local_negative_offset_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_local_negative_offset_max_date_time(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -277,7 +277,7 @@ def prepare_datetime_put_local_negative_offset_max_date_time_request(body: datet
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_get_local_negative_offset_uppercase_max_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_negative_offset_uppercase_max_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -297,7 +297,7 @@ def prepare_datetime_get_local_negative_offset_uppercase_max_date_time_request(*
     )
 
 
-def prepare_datetime_get_local_negative_offset_lowercase_max_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_negative_offset_lowercase_max_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -317,7 +317,7 @@ def prepare_datetime_get_local_negative_offset_lowercase_max_date_time_request(*
     )
 
 
-def prepare_datetime_put_utc_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_utc_min_date_time(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -338,7 +338,7 @@ def prepare_datetime_put_utc_min_date_time_request(body: datetime.datetime, **kw
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_get_utc_min_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_utc_min_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -358,7 +358,7 @@ def prepare_datetime_get_utc_min_date_time_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_datetime_put_local_positive_offset_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_local_positive_offset_min_date_time(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -379,7 +379,7 @@ def prepare_datetime_put_local_positive_offset_min_date_time_request(body: datet
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_get_local_positive_offset_min_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_positive_offset_min_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -399,7 +399,7 @@ def prepare_datetime_get_local_positive_offset_min_date_time_request(**kwargs) -
     )
 
 
-def prepare_datetime_put_local_negative_offset_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_datetime_put_local_negative_offset_min_date_time(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -420,7 +420,7 @@ def prepare_datetime_put_local_negative_offset_min_date_time_request(body: datet
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_datetime_get_local_negative_offset_min_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_negative_offset_min_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -440,7 +440,7 @@ def prepare_datetime_get_local_negative_offset_min_date_time_request(**kwargs) -
     )
 
 
-def prepare_datetime_get_local_no_offset_min_date_time_request(**kwargs) -> HttpRequest:
+def prepare_datetime_get_local_no_offset_min_date_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

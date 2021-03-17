@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_contants_put_no_model_as_string_no_required_two_value_no_default_request(
+def prepare_contants_put_no_model_as_string_no_required_two_value_no_default(
     input=None,  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
     **kwargs  # type: Any
 ):
@@ -41,7 +41,7 @@ def prepare_contants_put_no_model_as_string_no_required_two_value_no_default_req
     )
 
 
-def prepare_contants_put_no_model_as_string_no_required_two_value_default_request(
+def prepare_contants_put_no_model_as_string_no_required_two_value_default(
     input="value1",  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
     **kwargs  # type: Any
 ):
@@ -65,7 +65,7 @@ def prepare_contants_put_no_model_as_string_no_required_two_value_default_reques
     )
 
 
-def prepare_contants_put_no_model_as_string_no_required_one_value_no_default_request(
+def prepare_contants_put_no_model_as_string_no_required_one_value_no_default(
     input="value1",  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -89,7 +89,7 @@ def prepare_contants_put_no_model_as_string_no_required_one_value_no_default_req
     )
 
 
-def prepare_contants_put_no_model_as_string_no_required_one_value_default_request(
+def prepare_contants_put_no_model_as_string_no_required_one_value_default(
     input="value1",  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -113,7 +113,7 @@ def prepare_contants_put_no_model_as_string_no_required_one_value_default_reques
     )
 
 
-def prepare_contants_put_no_model_as_string_required_two_value_no_default_request(
+def prepare_contants_put_no_model_as_string_required_two_value_no_default(
     input,  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
     **kwargs  # type: Any
 ):
@@ -136,7 +136,7 @@ def prepare_contants_put_no_model_as_string_required_two_value_no_default_reques
     )
 
 
-def prepare_contants_put_no_model_as_string_required_two_value_default_request(
+def prepare_contants_put_no_model_as_string_required_two_value_default(
     input="value1",  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
     **kwargs  # type: Any
 ):
@@ -159,7 +159,7 @@ def prepare_contants_put_no_model_as_string_required_two_value_default_request(
     )
 
 
-def prepare_contants_put_no_model_as_string_required_one_value_no_default_request(
+def prepare_contants_put_no_model_as_string_required_one_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -182,7 +182,7 @@ def prepare_contants_put_no_model_as_string_required_one_value_no_default_reques
     )
 
 
-def prepare_contants_put_no_model_as_string_required_one_value_default_request(
+def prepare_contants_put_no_model_as_string_required_one_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -205,7 +205,7 @@ def prepare_contants_put_no_model_as_string_required_one_value_default_request(
     )
 
 
-def prepare_contants_put_model_as_string_no_required_two_value_no_default_request(
+def prepare_contants_put_model_as_string_no_required_two_value_no_default(
     input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
     **kwargs  # type: Any
 ):
@@ -229,7 +229,7 @@ def prepare_contants_put_model_as_string_no_required_two_value_no_default_reques
     )
 
 
-def prepare_contants_put_model_as_string_no_required_two_value_default_request(
+def prepare_contants_put_model_as_string_no_required_two_value_default(
     input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
     **kwargs  # type: Any
 ):
@@ -253,7 +253,7 @@ def prepare_contants_put_model_as_string_no_required_two_value_default_request(
     )
 
 
-def prepare_contants_put_model_as_string_no_required_one_value_no_default_request(
+def prepare_contants_put_model_as_string_no_required_one_value_no_default(
     input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
     **kwargs  # type: Any
 ):
@@ -277,7 +277,7 @@ def prepare_contants_put_model_as_string_no_required_one_value_no_default_reques
     )
 
 
-def prepare_contants_put_model_as_string_no_required_one_value_default_request(
+def prepare_contants_put_model_as_string_no_required_one_value_default(
     input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
     **kwargs  # type: Any
 ):
@@ -301,7 +301,7 @@ def prepare_contants_put_model_as_string_no_required_one_value_default_request(
     )
 
 
-def prepare_contants_put_model_as_string_required_two_value_no_default_request(
+def prepare_contants_put_model_as_string_required_two_value_no_default(
     input,  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
     **kwargs  # type: Any
 ):
@@ -324,7 +324,7 @@ def prepare_contants_put_model_as_string_required_two_value_no_default_request(
     )
 
 
-def prepare_contants_put_model_as_string_required_two_value_default_request(
+def prepare_contants_put_model_as_string_required_two_value_default(
     input="value1",  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
     **kwargs  # type: Any
 ):
@@ -347,7 +347,7 @@ def prepare_contants_put_model_as_string_required_two_value_default_request(
     )
 
 
-def prepare_contants_put_model_as_string_required_one_value_no_default_request(
+def prepare_contants_put_model_as_string_required_one_value_no_default(
     input,  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
     **kwargs  # type: Any
 ):
@@ -370,7 +370,7 @@ def prepare_contants_put_model_as_string_required_one_value_no_default_request(
     )
 
 
-def prepare_contants_put_model_as_string_required_one_value_default_request(
+def prepare_contants_put_model_as_string_required_one_value_default(
     input="value1",  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
     **kwargs  # type: Any
 ):

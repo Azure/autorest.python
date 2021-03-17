@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_storageaccounts_check_name_availability_request(
+def prepare_storageaccounts_check_name_availability(
     subscription_id,  # type: str
     body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
     **kwargs  # type: Any
@@ -54,7 +54,7 @@ def prepare_storageaccounts_check_name_availability_request(
     )
 
 
-def prepare_storageaccounts_create_initial_request(
+def prepare_storageaccounts_create_initial(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -93,7 +93,7 @@ def prepare_storageaccounts_create_initial_request(
     return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_storageaccounts_delete_request(
+def prepare_storageaccounts_delete(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -128,7 +128,7 @@ def prepare_storageaccounts_delete_request(
     )
 
 
-def prepare_storageaccounts_get_properties_request(
+def prepare_storageaccounts_get_properties(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -166,7 +166,7 @@ def prepare_storageaccounts_get_properties_request(
     )
 
 
-def prepare_storageaccounts_update_request(
+def prepare_storageaccounts_update(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -207,7 +207,7 @@ def prepare_storageaccounts_update_request(
     )
 
 
-def prepare_storageaccounts_list_keys_request(
+def prepare_storageaccounts_list_keys(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -245,7 +245,7 @@ def prepare_storageaccounts_list_keys_request(
     )
 
 
-def prepare_storageaccounts_list_request(
+def prepare_storageaccounts_list(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -276,7 +276,7 @@ def prepare_storageaccounts_list_request(
     )
 
 
-def prepare_storageaccounts_list_by_resource_group_request(
+def prepare_storageaccounts_list_by_resource_group(
     resource_group_name,  # type: str
     subscription_id,  # type: str
     **kwargs  # type: Any
@@ -312,7 +312,7 @@ def prepare_storageaccounts_list_by_resource_group_request(
     )
 
 
-def prepare_storageaccounts_regenerate_key_request(
+def prepare_storageaccounts_regenerate_key(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -353,7 +353,7 @@ def prepare_storageaccounts_regenerate_key_request(
     )
 
 
-def prepare_usage_list_request(
+def prepare_usage_list(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):

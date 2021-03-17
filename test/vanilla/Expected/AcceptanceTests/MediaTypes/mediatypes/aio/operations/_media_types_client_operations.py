@@ -46,7 +46,7 @@ class MediaTypesClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = prepare_analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
+        request = prepare_analyze_body(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -84,7 +84,7 @@ class MediaTypesClientOperationsMixin:
         if input is not None:
             input = self._serialize.body(input, "str")
 
-        request = prepare_content_type_with_encoding_request(
+        request = prepare_content_type_with_encoding(
             body=input, template_url=self.content_type_with_encoding.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

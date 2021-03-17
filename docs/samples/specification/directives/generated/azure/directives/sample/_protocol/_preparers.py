@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_basic_polling_initial_request(
+def prepare_basic_polling_initial(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -47,7 +47,7 @@ def prepare_basic_polling_initial_request(
     )
 
 
-def prepare_basic_paging_request(
+def prepare_basic_paging(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_int_put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
+def prepare_int_put(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -34,7 +34,7 @@ def prepare_int_put_request(body: Optional[Union[int, "_models.IntEnum"]] = None
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_get_request(**kwargs) -> HttpRequest:
+def prepare_int_get(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -54,7 +54,7 @@ def prepare_int_get_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_float_put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
+def prepare_float_put(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -75,7 +75,7 @@ def prepare_float_put_request(body: Optional[Union[float, "_models.FloatEnum"]] 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_float_get_request(**kwargs) -> HttpRequest:
+def prepare_float_get(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

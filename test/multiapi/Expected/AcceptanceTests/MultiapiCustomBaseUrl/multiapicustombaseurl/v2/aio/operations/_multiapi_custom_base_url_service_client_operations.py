@@ -42,7 +42,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_request(
+        request = prepare_test(
             id=id,
             template_url=self.test.metadata['url'],
             **kwargs

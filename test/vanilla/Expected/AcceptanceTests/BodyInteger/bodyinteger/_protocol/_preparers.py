@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_int_get_null_request(
+def prepare_int_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -36,7 +36,7 @@ def prepare_int_get_null_request(
     )
 
 
-def prepare_int_get_invalid_request(
+def prepare_int_get_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -59,7 +59,7 @@ def prepare_int_get_invalid_request(
     )
 
 
-def prepare_int_get_overflow_int32_request(
+def prepare_int_get_overflow_int32(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -82,7 +82,7 @@ def prepare_int_get_overflow_int32_request(
     )
 
 
-def prepare_int_get_underflow_int32_request(
+def prepare_int_get_underflow_int32(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -105,7 +105,7 @@ def prepare_int_get_underflow_int32_request(
     )
 
 
-def prepare_int_get_overflow_int64_request(
+def prepare_int_get_overflow_int64(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -128,7 +128,7 @@ def prepare_int_get_overflow_int64_request(
     )
 
 
-def prepare_int_get_underflow_int64_request(
+def prepare_int_get_underflow_int64(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -151,7 +151,7 @@ def prepare_int_get_underflow_int64_request(
     )
 
 
-def prepare_int_put_max32_request(
+def prepare_int_put_max32(
     body,  # type: int
     **kwargs  # type: Any
 ):
@@ -176,7 +176,7 @@ def prepare_int_put_max32_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_max64_request(
+def prepare_int_put_max64(
     body,  # type: int
     **kwargs  # type: Any
 ):
@@ -201,7 +201,7 @@ def prepare_int_put_max64_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_min32_request(
+def prepare_int_put_min32(
     body,  # type: int
     **kwargs  # type: Any
 ):
@@ -226,7 +226,7 @@ def prepare_int_put_min32_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_min64_request(
+def prepare_int_put_min64(
     body,  # type: int
     **kwargs  # type: Any
 ):
@@ -251,7 +251,7 @@ def prepare_int_put_min64_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_get_unix_time_request(
+def prepare_int_get_unix_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -274,7 +274,7 @@ def prepare_int_get_unix_time_request(
     )
 
 
-def prepare_int_put_unix_time_date_request(
+def prepare_int_put_unix_time_date(
     body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -299,7 +299,7 @@ def prepare_int_put_unix_time_date_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_get_invalid_unix_time_request(
+def prepare_int_get_invalid_unix_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -322,7 +322,7 @@ def prepare_int_get_invalid_unix_time_request(
     )
 
 
-def prepare_int_get_null_unix_time_request(
+def prepare_int_get_null_unix_time(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

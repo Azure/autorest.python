@@ -44,7 +44,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_one_request(
+        request = prepare_test_one(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -93,7 +93,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_different_calls_request(
+        request = prepare_test_different_calls(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             template_url=self.test_different_calls.metadata['url'],

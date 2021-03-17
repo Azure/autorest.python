@@ -365,5 +365,5 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation in operation_group.operations:
                 preparer = self._lookup_preparer(id(operation.yaml_data))
                 if isinstance(operation, LROOperation):
-                    preparer.name = preparer.name[:preparer.name.rfind("_request")] + "_initial" + "_request"
+                    preparer.name = preparer.name + "_initial"
                 operation.preparer = preparer

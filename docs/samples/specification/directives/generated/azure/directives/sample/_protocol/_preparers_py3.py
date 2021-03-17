@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_basic_polling_initial_request(
+def prepare_basic_polling_initial(
     body: Optional["_models.Product"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -42,7 +42,7 @@ def prepare_basic_polling_initial_request(
     )
 
 
-def prepare_basic_paging_request(
+def prepare_basic_paging(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"

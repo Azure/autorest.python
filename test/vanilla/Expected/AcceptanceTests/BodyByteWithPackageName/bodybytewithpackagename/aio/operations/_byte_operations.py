@@ -62,7 +62,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_byte_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = prepare_byte_get_null(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -96,7 +96,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_byte_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = prepare_byte_get_empty(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -130,7 +130,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_byte_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
+        request = prepare_byte_get_non_ascii(template_url=self.get_non_ascii.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -168,9 +168,7 @@ class ByteOperations:
 
         byte_body = self._serialize.body(byte_body, "bytearray")
 
-        request = prepare_byte_put_non_ascii_request(
-            body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs
-        )
+        request = prepare_byte_put_non_ascii(body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -200,7 +198,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_byte_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = prepare_byte_get_invalid(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_paths_get_empty_request(
+def prepare_paths_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

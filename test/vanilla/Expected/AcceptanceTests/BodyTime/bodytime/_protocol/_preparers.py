@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_time_get_request(
+def prepare_time_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -36,7 +36,7 @@ def prepare_time_get_request(
     )
 
 
-def prepare_time_put_request(
+def prepare_time_put(
     body,  # type: datetime.time
     **kwargs  # type: Any
 ):

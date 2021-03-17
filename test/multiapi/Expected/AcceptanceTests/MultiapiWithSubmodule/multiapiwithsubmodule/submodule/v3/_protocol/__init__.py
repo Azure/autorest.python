@@ -7,22 +7,22 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_test_paging_request
-    from ._preparers_py3 import prepare_test_different_calls_request
-    from ._preparers_py3 import prepare_operationgroupone_test_two_request
-    from ._preparers_py3 import prepare_operationgrouptwo_test_four_request
-    from ._preparers_py3 import prepare_operationgrouptwo_test_five_request
+    from ._preparers_py3 import prepare_test_paging
+    from ._preparers_py3 import prepare_test_different_calls
+    from ._preparers_py3 import prepare_operationgroupone_test_two
+    from ._preparers_py3 import prepare_operationgrouptwo_test_four
+    from ._preparers_py3 import prepare_operationgrouptwo_test_five
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_test_paging_request  # type: ignore
-    from ._preparers import prepare_test_different_calls_request  # type: ignore
-    from ._preparers import prepare_operationgroupone_test_two_request  # type: ignore
-    from ._preparers import prepare_operationgrouptwo_test_four_request  # type: ignore
-    from ._preparers import prepare_operationgrouptwo_test_five_request  # type: ignore
+    from ._preparers import prepare_test_paging  # type: ignore
+    from ._preparers import prepare_test_different_calls  # type: ignore
+    from ._preparers import prepare_operationgroupone_test_two  # type: ignore
+    from ._preparers import prepare_operationgrouptwo_test_four  # type: ignore
+    from ._preparers import prepare_operationgrouptwo_test_five  # type: ignore
 
 __all__ = [
-    'prepare_test_paging_request',
-    'prepare_test_different_calls_request',
-    'prepare_operationgroupone_test_two_request',
-    'prepare_operationgrouptwo_test_four_request',
-    'prepare_operationgrouptwo_test_five_request',
+    'prepare_test_paging',
+    'prepare_test_different_calls',
+    'prepare_operationgroupone_test_two',
+    'prepare_operationgrouptwo_test_four',
+    'prepare_operationgrouptwo_test_five',
 ]

@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_httpsuccess_head200_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_head200(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/200")
@@ -28,7 +28,7 @@ def prepare_httpsuccess_head200_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_head204_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_head204(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/204")
@@ -45,7 +45,7 @@ def prepare_httpsuccess_head204_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_head404_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_head404(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/404")

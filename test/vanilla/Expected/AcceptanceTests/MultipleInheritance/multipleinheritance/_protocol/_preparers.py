@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_get_horse_request(
+def prepare_get_horse(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -34,7 +34,7 @@ def prepare_get_horse_request(
     )
 
 
-def prepare_put_horse_request(
+def prepare_put_horse(
     body,  # type: "_models.Horse"
     **kwargs  # type: Any
 ):
@@ -59,7 +59,7 @@ def prepare_put_horse_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_pet_request(
+def prepare_get_pet(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -82,7 +82,7 @@ def prepare_get_pet_request(
     )
 
 
-def prepare_put_pet_request(
+def prepare_put_pet(
     body,  # type: "_models.Pet"
     **kwargs  # type: Any
 ):
@@ -107,7 +107,7 @@ def prepare_put_pet_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_feline_request(
+def prepare_get_feline(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ def prepare_get_feline_request(
     )
 
 
-def prepare_put_feline_request(
+def prepare_put_feline(
     body,  # type: "_models.Feline"
     **kwargs  # type: Any
 ):
@@ -155,7 +155,7 @@ def prepare_put_feline_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_cat_request(
+def prepare_get_cat(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -178,7 +178,7 @@ def prepare_get_cat_request(
     )
 
 
-def prepare_put_cat_request(
+def prepare_put_cat(
     body,  # type: "_models.Cat"
     **kwargs  # type: Any
 ):
@@ -203,7 +203,7 @@ def prepare_put_cat_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_get_kitten_request(
+def prepare_get_kitten(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -226,7 +226,7 @@ def prepare_get_kitten_request(
     )
 
 
-def prepare_put_kitten_request(
+def prepare_put_kitten(
     body,  # type: "_models.Kitten"
     **kwargs  # type: Any
 ):

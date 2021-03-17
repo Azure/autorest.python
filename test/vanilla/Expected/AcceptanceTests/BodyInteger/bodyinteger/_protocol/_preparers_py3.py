@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_int_get_null_request(**kwargs) -> HttpRequest:
+def prepare_int_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def prepare_int_get_null_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_get_invalid_request(**kwargs) -> HttpRequest:
+def prepare_int_get_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -53,7 +53,7 @@ def prepare_int_get_invalid_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_get_overflow_int32_request(**kwargs) -> HttpRequest:
+def prepare_int_get_overflow_int32(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -73,7 +73,7 @@ def prepare_int_get_overflow_int32_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_get_underflow_int32_request(**kwargs) -> HttpRequest:
+def prepare_int_get_underflow_int32(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -93,7 +93,7 @@ def prepare_int_get_underflow_int32_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_get_overflow_int64_request(**kwargs) -> HttpRequest:
+def prepare_int_get_overflow_int64(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -113,7 +113,7 @@ def prepare_int_get_overflow_int64_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_get_underflow_int64_request(**kwargs) -> HttpRequest:
+def prepare_int_get_underflow_int64(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -133,7 +133,7 @@ def prepare_int_get_underflow_int64_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_put_max32_request(body: int, **kwargs) -> HttpRequest:
+def prepare_int_put_max32(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -154,7 +154,7 @@ def prepare_int_put_max32_request(body: int, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_max64_request(body: int, **kwargs) -> HttpRequest:
+def prepare_int_put_max64(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -175,7 +175,7 @@ def prepare_int_put_max64_request(body: int, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_min32_request(body: int, **kwargs) -> HttpRequest:
+def prepare_int_put_min32(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -196,7 +196,7 @@ def prepare_int_put_min32_request(body: int, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_min64_request(body: int, **kwargs) -> HttpRequest:
+def prepare_int_put_min64(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -217,7 +217,7 @@ def prepare_int_put_min64_request(body: int, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_get_unix_time_request(**kwargs) -> HttpRequest:
+def prepare_int_get_unix_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -237,7 +237,7 @@ def prepare_int_get_unix_time_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_put_unix_time_date_request(body: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_int_put_unix_time_date(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -258,7 +258,7 @@ def prepare_int_put_unix_time_date_request(body: datetime.datetime, **kwargs) ->
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_get_invalid_unix_time_request(**kwargs) -> HttpRequest:
+def prepare_int_get_invalid_unix_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -278,7 +278,7 @@ def prepare_int_get_invalid_unix_time_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_int_get_null_unix_time_request(**kwargs) -> HttpRequest:
+def prepare_int_get_null_unix_time(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

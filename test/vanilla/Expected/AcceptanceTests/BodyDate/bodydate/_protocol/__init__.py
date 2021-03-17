@@ -7,31 +7,31 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_date_get_null_request
-    from ._preparers_py3 import prepare_date_get_invalid_date_request
-    from ._preparers_py3 import prepare_date_get_overflow_date_request
-    from ._preparers_py3 import prepare_date_get_underflow_date_request
-    from ._preparers_py3 import prepare_date_put_max_date_request
-    from ._preparers_py3 import prepare_date_get_max_date_request
-    from ._preparers_py3 import prepare_date_put_min_date_request
-    from ._preparers_py3 import prepare_date_get_min_date_request
+    from ._preparers_py3 import prepare_date_get_null
+    from ._preparers_py3 import prepare_date_get_invalid_date
+    from ._preparers_py3 import prepare_date_get_overflow_date
+    from ._preparers_py3 import prepare_date_get_underflow_date
+    from ._preparers_py3 import prepare_date_put_max_date
+    from ._preparers_py3 import prepare_date_get_max_date
+    from ._preparers_py3 import prepare_date_put_min_date
+    from ._preparers_py3 import prepare_date_get_min_date
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_date_get_null_request  # type: ignore
-    from ._preparers import prepare_date_get_invalid_date_request  # type: ignore
-    from ._preparers import prepare_date_get_overflow_date_request  # type: ignore
-    from ._preparers import prepare_date_get_underflow_date_request  # type: ignore
-    from ._preparers import prepare_date_put_max_date_request  # type: ignore
-    from ._preparers import prepare_date_get_max_date_request  # type: ignore
-    from ._preparers import prepare_date_put_min_date_request  # type: ignore
-    from ._preparers import prepare_date_get_min_date_request  # type: ignore
+    from ._preparers import prepare_date_get_null  # type: ignore
+    from ._preparers import prepare_date_get_invalid_date  # type: ignore
+    from ._preparers import prepare_date_get_overflow_date  # type: ignore
+    from ._preparers import prepare_date_get_underflow_date  # type: ignore
+    from ._preparers import prepare_date_put_max_date  # type: ignore
+    from ._preparers import prepare_date_get_max_date  # type: ignore
+    from ._preparers import prepare_date_put_min_date  # type: ignore
+    from ._preparers import prepare_date_get_min_date  # type: ignore
 
 __all__ = [
-    "prepare_date_get_null_request",
-    "prepare_date_get_invalid_date_request",
-    "prepare_date_get_overflow_date_request",
-    "prepare_date_get_underflow_date_request",
-    "prepare_date_put_max_date_request",
-    "prepare_date_get_max_date_request",
-    "prepare_date_put_min_date_request",
-    "prepare_date_get_min_date_request",
+    "prepare_date_get_null",
+    "prepare_date_get_invalid_date",
+    "prepare_date_get_overflow_date",
+    "prepare_date_get_underflow_date",
+    "prepare_date_put_max_date",
+    "prepare_date_get_max_date",
+    "prepare_date_put_min_date",
+    "prepare_date_get_min_date",
 ]

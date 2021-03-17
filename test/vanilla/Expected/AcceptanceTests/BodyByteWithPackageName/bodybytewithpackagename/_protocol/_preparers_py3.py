@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_byte_get_null_request(**kwargs) -> HttpRequest:
+def prepare_byte_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -31,7 +31,7 @@ def prepare_byte_get_null_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_byte_get_empty_request(**kwargs) -> HttpRequest:
+def prepare_byte_get_empty(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -51,7 +51,7 @@ def prepare_byte_get_empty_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_byte_get_non_ascii_request(**kwargs) -> HttpRequest:
+def prepare_byte_get_non_ascii(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -71,7 +71,7 @@ def prepare_byte_get_non_ascii_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_byte_put_non_ascii_request(body: bytearray, **kwargs) -> HttpRequest:
+def prepare_byte_put_non_ascii(body: bytearray, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -92,7 +92,7 @@ def prepare_byte_put_non_ascii_request(body: bytearray, **kwargs) -> HttpRequest
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_byte_get_invalid_request(**kwargs) -> HttpRequest:
+def prepare_byte_get_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_number_get_null_request(**kwargs) -> HttpRequest:
+def prepare_number_get_null(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -31,7 +31,7 @@ def prepare_number_get_null_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_get_invalid_float_request(**kwargs) -> HttpRequest:
+def prepare_number_get_invalid_float(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -51,7 +51,7 @@ def prepare_number_get_invalid_float_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_get_invalid_double_request(**kwargs) -> HttpRequest:
+def prepare_number_get_invalid_double(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -71,7 +71,7 @@ def prepare_number_get_invalid_double_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_get_invalid_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_invalid_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -91,7 +91,7 @@ def prepare_number_get_invalid_decimal_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_float_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_float(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -112,7 +112,7 @@ def prepare_number_put_big_float_request(body: float, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_float_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_float(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -132,7 +132,7 @@ def prepare_number_get_big_float_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_double_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_double(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -153,7 +153,7 @@ def prepare_number_put_big_double_request(body: float, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_double_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_double(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -173,7 +173,7 @@ def prepare_number_get_big_double_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_double_positive_decimal_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_double_positive_decimal(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -194,7 +194,7 @@ def prepare_number_put_big_double_positive_decimal_request(body: float, **kwargs
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_double_positive_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_double_positive_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -214,7 +214,7 @@ def prepare_number_get_big_double_positive_decimal_request(**kwargs) -> HttpRequ
     )
 
 
-def prepare_number_put_big_double_negative_decimal_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_double_negative_decimal(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -235,7 +235,7 @@ def prepare_number_put_big_double_negative_decimal_request(body: float, **kwargs
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_double_negative_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_double_negative_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -255,7 +255,7 @@ def prepare_number_get_big_double_negative_decimal_request(**kwargs) -> HttpRequ
     )
 
 
-def prepare_number_put_big_decimal_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_decimal(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -276,7 +276,7 @@ def prepare_number_put_big_decimal_request(body: float, **kwargs) -> HttpRequest
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -296,7 +296,7 @@ def prepare_number_get_big_decimal_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_decimal_positive_decimal_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_decimal_positive_decimal(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -317,7 +317,7 @@ def prepare_number_put_big_decimal_positive_decimal_request(body: float, **kwarg
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_decimal_positive_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_decimal_positive_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -337,7 +337,7 @@ def prepare_number_get_big_decimal_positive_decimal_request(**kwargs) -> HttpReq
     )
 
 
-def prepare_number_put_big_decimal_negative_decimal_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_big_decimal_negative_decimal(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -358,7 +358,7 @@ def prepare_number_put_big_decimal_negative_decimal_request(body: float, **kwarg
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_big_decimal_negative_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_big_decimal_negative_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -378,7 +378,7 @@ def prepare_number_get_big_decimal_negative_decimal_request(**kwargs) -> HttpReq
     )
 
 
-def prepare_number_put_small_float_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_small_float(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -399,7 +399,7 @@ def prepare_number_put_small_float_request(body: float, **kwargs) -> HttpRequest
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_small_float_request(**kwargs) -> HttpRequest:
+def prepare_number_get_small_float(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -419,7 +419,7 @@ def prepare_number_get_small_float_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_put_small_double_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_small_double(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -440,7 +440,7 @@ def prepare_number_put_small_double_request(body: float, **kwargs) -> HttpReques
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_small_double_request(**kwargs) -> HttpRequest:
+def prepare_number_get_small_double(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -460,7 +460,7 @@ def prepare_number_get_small_double_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_number_put_small_decimal_request(body: float, **kwargs) -> HttpRequest:
+def prepare_number_put_small_decimal(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -481,7 +481,7 @@ def prepare_number_put_small_decimal_request(body: float, **kwargs) -> HttpReque
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_number_get_small_decimal_request(**kwargs) -> HttpRequest:
+def prepare_number_get_small_decimal(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

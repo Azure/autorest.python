@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_poll_with_parameterized_endpoints_initial_request(**kwargs) -> HttpRequest:
+def prepare_poll_with_parameterized_endpoints_initial(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

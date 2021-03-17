@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_bool_get_true_request(
+def prepare_bool_get_true(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -34,7 +34,7 @@ def prepare_bool_get_true_request(
     )
 
 
-def prepare_bool_put_true_request(
+def prepare_bool_put_true(
     body,  # type: bool
     **kwargs  # type: Any
 ):
@@ -59,7 +59,7 @@ def prepare_bool_put_true_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_bool_get_false_request(
+def prepare_bool_get_false(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -82,7 +82,7 @@ def prepare_bool_get_false_request(
     )
 
 
-def prepare_bool_put_false_request(
+def prepare_bool_put_false(
     body,  # type: bool
     **kwargs  # type: Any
 ):
@@ -107,7 +107,7 @@ def prepare_bool_put_false_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_bool_get_null_request(
+def prepare_bool_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ def prepare_bool_get_null_request(
     )
 
 
-def prepare_bool_get_invalid_request(
+def prepare_bool_get_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

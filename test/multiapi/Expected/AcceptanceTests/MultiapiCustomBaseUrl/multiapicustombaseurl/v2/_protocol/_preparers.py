@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_test_request(
+def prepare_test(
     id,  # type: int
     **kwargs  # type: Any
 ):

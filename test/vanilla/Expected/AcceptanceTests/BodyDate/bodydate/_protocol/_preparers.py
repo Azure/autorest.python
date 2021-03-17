@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_date_get_null_request(
+def prepare_date_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -36,7 +36,7 @@ def prepare_date_get_null_request(
     )
 
 
-def prepare_date_get_invalid_date_request(
+def prepare_date_get_invalid_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -59,7 +59,7 @@ def prepare_date_get_invalid_date_request(
     )
 
 
-def prepare_date_get_overflow_date_request(
+def prepare_date_get_overflow_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -82,7 +82,7 @@ def prepare_date_get_overflow_date_request(
     )
 
 
-def prepare_date_get_underflow_date_request(
+def prepare_date_get_underflow_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -105,7 +105,7 @@ def prepare_date_get_underflow_date_request(
     )
 
 
-def prepare_date_put_max_date_request(
+def prepare_date_put_max_date(
     body,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -130,7 +130,7 @@ def prepare_date_put_max_date_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_date_get_max_date_request(
+def prepare_date_get_max_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -153,7 +153,7 @@ def prepare_date_get_max_date_request(
     )
 
 
-def prepare_date_put_min_date_request(
+def prepare_date_put_min_date(
     body,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -178,7 +178,7 @@ def prepare_date_put_min_date_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_date_get_min_date_request(
+def prepare_date_get_min_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

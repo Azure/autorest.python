@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_xmsclientrequestid_get_request(
+def prepare_xmsclientrequestid_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -38,7 +38,7 @@ def prepare_xmsclientrequestid_get_request(
     )
 
 
-def prepare_xmsclientrequestid_param_get_request(
+def prepare_xmsclientrequestid_param_get(
     x_ms_client_request_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -65,7 +65,7 @@ def prepare_xmsclientrequestid_param_get_request(
     )
 
 
-def prepare_subscriptionincredentials_post_method_global_valid_request(
+def prepare_subscriptionincredentials_post_method_global_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -96,7 +96,7 @@ def prepare_subscriptionincredentials_post_method_global_valid_request(
     )
 
 
-def prepare_subscriptionincredentials_post_method_global_null_request(
+def prepare_subscriptionincredentials_post_method_global_null(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -126,7 +126,7 @@ def prepare_subscriptionincredentials_post_method_global_null_request(
     )
 
 
-def prepare_subscriptionincredentials_post_method_global_not_provided_valid_request(
+def prepare_subscriptionincredentials_post_method_global_not_provided_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -160,7 +160,7 @@ def prepare_subscriptionincredentials_post_method_global_not_provided_valid_requ
     )
 
 
-def prepare_subscriptionincredentials_post_path_global_valid_request(
+def prepare_subscriptionincredentials_post_path_global_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -191,7 +191,7 @@ def prepare_subscriptionincredentials_post_path_global_valid_request(
     )
 
 
-def prepare_subscriptionincredentials_post_swagger_global_valid_request(
+def prepare_subscriptionincredentials_post_swagger_global_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -222,7 +222,7 @@ def prepare_subscriptionincredentials_post_swagger_global_valid_request(
     )
 
 
-def prepare_subscriptioninmethod_post_method_local_valid_request(
+def prepare_subscriptioninmethod_post_method_local_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -253,7 +253,7 @@ def prepare_subscriptioninmethod_post_method_local_valid_request(
     )
 
 
-def prepare_subscriptioninmethod_post_method_local_null_request(
+def prepare_subscriptioninmethod_post_method_local_null(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -283,7 +283,7 @@ def prepare_subscriptioninmethod_post_method_local_null_request(
     )
 
 
-def prepare_subscriptioninmethod_post_path_local_valid_request(
+def prepare_subscriptioninmethod_post_path_local_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -313,7 +313,7 @@ def prepare_subscriptioninmethod_post_path_local_valid_request(
     )
 
 
-def prepare_subscriptioninmethod_post_swagger_local_valid_request(
+def prepare_subscriptioninmethod_post_swagger_local_valid(
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -344,7 +344,7 @@ def prepare_subscriptioninmethod_post_swagger_local_valid_request(
     )
 
 
-def prepare_apiversiondefault_get_method_global_valid_request(
+def prepare_apiversiondefault_get_method_global_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -370,7 +370,7 @@ def prepare_apiversiondefault_get_method_global_valid_request(
     )
 
 
-def prepare_apiversiondefault_get_method_global_not_provided_valid_request(
+def prepare_apiversiondefault_get_method_global_not_provided_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -398,7 +398,7 @@ def prepare_apiversiondefault_get_method_global_not_provided_valid_request(
     )
 
 
-def prepare_apiversiondefault_get_path_global_valid_request(
+def prepare_apiversiondefault_get_path_global_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -424,7 +424,7 @@ def prepare_apiversiondefault_get_path_global_valid_request(
     )
 
 
-def prepare_apiversiondefault_get_swagger_global_valid_request(
+def prepare_apiversiondefault_get_swagger_global_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -450,7 +450,7 @@ def prepare_apiversiondefault_get_swagger_global_valid_request(
     )
 
 
-def prepare_apiversionlocal_get_method_local_valid_request(
+def prepare_apiversionlocal_get_method_local_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -476,7 +476,7 @@ def prepare_apiversionlocal_get_method_local_valid_request(
     )
 
 
-def prepare_apiversionlocal_get_method_local_null_request(
+def prepare_apiversionlocal_get_method_local_null(
     api_version=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -503,7 +503,7 @@ def prepare_apiversionlocal_get_method_local_null_request(
     )
 
 
-def prepare_apiversionlocal_get_path_local_valid_request(
+def prepare_apiversionlocal_get_path_local_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -529,7 +529,7 @@ def prepare_apiversionlocal_get_path_local_valid_request(
     )
 
 
-def prepare_apiversionlocal_get_swagger_local_valid_request(
+def prepare_apiversionlocal_get_swagger_local_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -555,7 +555,7 @@ def prepare_apiversionlocal_get_swagger_local_valid_request(
     )
 
 
-def prepare_skipurlencoding_get_method_path_valid_request(
+def prepare_skipurlencoding_get_method_path_valid(
     unencoded_path_param,  # type: str
     **kwargs  # type: Any
 ):
@@ -583,7 +583,7 @@ def prepare_skipurlencoding_get_method_path_valid_request(
     )
 
 
-def prepare_skipurlencoding_get_path_valid_request(
+def prepare_skipurlencoding_get_path_valid(
     unencoded_path_param,  # type: str
     **kwargs  # type: Any
 ):
@@ -611,7 +611,7 @@ def prepare_skipurlencoding_get_path_valid_request(
     )
 
 
-def prepare_skipurlencoding_get_swagger_path_valid_request(
+def prepare_skipurlencoding_get_swagger_path_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -639,7 +639,7 @@ def prepare_skipurlencoding_get_swagger_path_valid_request(
     )
 
 
-def prepare_skipurlencoding_get_method_query_valid_request(
+def prepare_skipurlencoding_get_method_query_valid(
     q1,  # type: str
     **kwargs  # type: Any
 ):
@@ -665,7 +665,7 @@ def prepare_skipurlencoding_get_method_query_valid_request(
     )
 
 
-def prepare_skipurlencoding_get_method_query_null_request(
+def prepare_skipurlencoding_get_method_query_null(
     q1=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -692,7 +692,7 @@ def prepare_skipurlencoding_get_method_query_null_request(
     )
 
 
-def prepare_skipurlencoding_get_path_query_valid_request(
+def prepare_skipurlencoding_get_path_query_valid(
     q1,  # type: str
     **kwargs  # type: Any
 ):
@@ -718,7 +718,7 @@ def prepare_skipurlencoding_get_path_query_valid_request(
     )
 
 
-def prepare_skipurlencoding_get_swagger_query_valid_request(
+def prepare_skipurlencoding_get_swagger_query_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -744,7 +744,7 @@ def prepare_skipurlencoding_get_swagger_query_valid_request(
     )
 
 
-def prepare_odata_get_with_filter_request(
+def prepare_odata_get_with_filter(
     filter=None,  # type: Optional[str]
     top=None,  # type: Optional[int]
     orderby=None,  # type: Optional[str]
@@ -777,7 +777,7 @@ def prepare_odata_get_with_filter_request(
     )
 
 
-def prepare_header_custom_named_request_id_request(
+def prepare_header_custom_named_request_id(
     foo_client_request_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -804,7 +804,7 @@ def prepare_header_custom_named_request_id_request(
     )
 
 
-def prepare_header_custom_named_request_id_param_grouping_request(
+def prepare_header_custom_named_request_id_param_grouping(
     foo_client_request_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -831,7 +831,7 @@ def prepare_header_custom_named_request_id_param_grouping_request(
     )
 
 
-def prepare_header_custom_named_request_id_head_request(
+def prepare_header_custom_named_request_id_head(
     foo_client_request_id,  # type: str
     **kwargs  # type: Any
 ):

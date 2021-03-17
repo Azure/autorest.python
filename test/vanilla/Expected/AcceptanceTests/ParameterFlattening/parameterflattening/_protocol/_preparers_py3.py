@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_availabilitysets_update_request(
+def prepare_availabilitysets_update(
     resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")

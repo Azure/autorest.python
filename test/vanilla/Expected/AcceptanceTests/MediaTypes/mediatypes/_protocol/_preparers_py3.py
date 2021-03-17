@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
+def prepare_analyze_body(body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -46,7 +46,7 @@ def prepare_analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]]
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_content_type_with_encoding_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_content_type_with_encoding(body: Optional[str] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "text/plain")
     accept = "application/json"
 

@@ -53,7 +53,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_one_request(
+        request = prepare_test_one(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -90,7 +90,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if product is not None:
             product = self._serialize.body(product, 'Product')
 
-        request = prepare_test_lro_initial_request(
+        request = prepare_test_lro_initial(
             body=product,
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
@@ -196,7 +196,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
-        request = prepare_test_lro_and_paging_initial_request(
+        request = prepare_test_lro_and_paging_initial(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -259,7 +259,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = prepare_test_lro_and_paging_initial_request(
+                request = prepare_test_lro_and_paging_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -275,7 +275,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                request = prepare_test_lro_and_paging_initial_request(
+                request = prepare_test_lro_and_paging_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -374,7 +374,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_different_calls_request(
+        request = prepare_test_different_calls(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
             **kwargs

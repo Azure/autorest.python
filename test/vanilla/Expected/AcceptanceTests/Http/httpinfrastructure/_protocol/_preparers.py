@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_httpfailure_get_empty_error_request(
+def prepare_httpfailure_get_empty_error(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -40,7 +40,7 @@ def prepare_httpfailure_get_empty_error_request(
     )
 
 
-def prepare_httpfailure_get_no_model_error_request(
+def prepare_httpfailure_get_no_model_error(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -63,7 +63,7 @@ def prepare_httpfailure_get_no_model_error_request(
     )
 
 
-def prepare_httpfailure_get_no_model_empty_request(
+def prepare_httpfailure_get_no_model_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -86,7 +86,7 @@ def prepare_httpfailure_get_no_model_empty_request(
     )
 
 
-def prepare_httpsuccess_head200_request(
+def prepare_httpsuccess_head200(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -109,7 +109,7 @@ def prepare_httpsuccess_head200_request(
     )
 
 
-def prepare_httpsuccess_get200_request(
+def prepare_httpsuccess_get200(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -132,7 +132,7 @@ def prepare_httpsuccess_get200_request(
     )
 
 
-def prepare_httpsuccess_options200_request(
+def prepare_httpsuccess_options200(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -155,7 +155,7 @@ def prepare_httpsuccess_options200_request(
     )
 
 
-def prepare_httpsuccess_put200_request(
+def prepare_httpsuccess_put200(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -180,7 +180,7 @@ def prepare_httpsuccess_put200_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch200_request(
+def prepare_httpsuccess_patch200(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -205,7 +205,7 @@ def prepare_httpsuccess_patch200_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post200_request(
+def prepare_httpsuccess_post200(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -230,7 +230,7 @@ def prepare_httpsuccess_post200_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete200_request(
+def prepare_httpsuccess_delete200(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -255,7 +255,7 @@ def prepare_httpsuccess_delete200_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_put201_request(
+def prepare_httpsuccess_put201(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -280,7 +280,7 @@ def prepare_httpsuccess_put201_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post201_request(
+def prepare_httpsuccess_post201(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -305,7 +305,7 @@ def prepare_httpsuccess_post201_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_put202_request(
+def prepare_httpsuccess_put202(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -330,7 +330,7 @@ def prepare_httpsuccess_put202_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch202_request(
+def prepare_httpsuccess_patch202(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -355,7 +355,7 @@ def prepare_httpsuccess_patch202_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post202_request(
+def prepare_httpsuccess_post202(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -380,7 +380,7 @@ def prepare_httpsuccess_post202_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete202_request(
+def prepare_httpsuccess_delete202(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -405,7 +405,7 @@ def prepare_httpsuccess_delete202_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_head204_request(
+def prepare_httpsuccess_head204(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -428,7 +428,7 @@ def prepare_httpsuccess_head204_request(
     )
 
 
-def prepare_httpsuccess_put204_request(
+def prepare_httpsuccess_put204(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -453,7 +453,7 @@ def prepare_httpsuccess_put204_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch204_request(
+def prepare_httpsuccess_patch204(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -478,7 +478,7 @@ def prepare_httpsuccess_patch204_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post204_request(
+def prepare_httpsuccess_post204(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -503,7 +503,7 @@ def prepare_httpsuccess_post204_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete204_request(
+def prepare_httpsuccess_delete204(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -528,7 +528,7 @@ def prepare_httpsuccess_delete204_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_head404_request(
+def prepare_httpsuccess_head404(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -551,7 +551,7 @@ def prepare_httpsuccess_head404_request(
     )
 
 
-def prepare_httpredirects_head300_request(
+def prepare_httpredirects_head300(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -574,7 +574,7 @@ def prepare_httpredirects_head300_request(
     )
 
 
-def prepare_httpredirects_get300_request(
+def prepare_httpredirects_get300(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -597,7 +597,7 @@ def prepare_httpredirects_get300_request(
     )
 
 
-def prepare_httpredirects_head301_request(
+def prepare_httpredirects_head301(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -620,7 +620,7 @@ def prepare_httpredirects_head301_request(
     )
 
 
-def prepare_httpredirects_get301_request(
+def prepare_httpredirects_get301(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -643,7 +643,7 @@ def prepare_httpredirects_get301_request(
     )
 
 
-def prepare_httpredirects_put301_request(
+def prepare_httpredirects_put301(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -668,7 +668,7 @@ def prepare_httpredirects_put301_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_head302_request(
+def prepare_httpredirects_head302(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -691,7 +691,7 @@ def prepare_httpredirects_head302_request(
     )
 
 
-def prepare_httpredirects_get302_request(
+def prepare_httpredirects_get302(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -714,7 +714,7 @@ def prepare_httpredirects_get302_request(
     )
 
 
-def prepare_httpredirects_patch302_request(
+def prepare_httpredirects_patch302(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -739,7 +739,7 @@ def prepare_httpredirects_patch302_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_post303_request(
+def prepare_httpredirects_post303(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -764,7 +764,7 @@ def prepare_httpredirects_post303_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_head307_request(
+def prepare_httpredirects_head307(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -787,7 +787,7 @@ def prepare_httpredirects_head307_request(
     )
 
 
-def prepare_httpredirects_get307_request(
+def prepare_httpredirects_get307(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -810,7 +810,7 @@ def prepare_httpredirects_get307_request(
     )
 
 
-def prepare_httpredirects_options307_request(
+def prepare_httpredirects_options307(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -833,7 +833,7 @@ def prepare_httpredirects_options307_request(
     )
 
 
-def prepare_httpredirects_put307_request(
+def prepare_httpredirects_put307(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -858,7 +858,7 @@ def prepare_httpredirects_put307_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_patch307_request(
+def prepare_httpredirects_patch307(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -883,7 +883,7 @@ def prepare_httpredirects_patch307_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_post307_request(
+def prepare_httpredirects_post307(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -908,7 +908,7 @@ def prepare_httpredirects_post307_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_delete307_request(
+def prepare_httpredirects_delete307(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -933,7 +933,7 @@ def prepare_httpredirects_delete307_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head400_request(
+def prepare_httpclientfailure_head400(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -956,7 +956,7 @@ def prepare_httpclientfailure_head400_request(
     )
 
 
-def prepare_httpclientfailure_get400_request(
+def prepare_httpclientfailure_get400(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -979,7 +979,7 @@ def prepare_httpclientfailure_get400_request(
     )
 
 
-def prepare_httpclientfailure_options400_request(
+def prepare_httpclientfailure_options400(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1002,7 +1002,7 @@ def prepare_httpclientfailure_options400_request(
     )
 
 
-def prepare_httpclientfailure_put400_request(
+def prepare_httpclientfailure_put400(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1027,7 +1027,7 @@ def prepare_httpclientfailure_put400_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch400_request(
+def prepare_httpclientfailure_patch400(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1052,7 +1052,7 @@ def prepare_httpclientfailure_patch400_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post400_request(
+def prepare_httpclientfailure_post400(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1077,7 +1077,7 @@ def prepare_httpclientfailure_post400_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_delete400_request(
+def prepare_httpclientfailure_delete400(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1102,7 +1102,7 @@ def prepare_httpclientfailure_delete400_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head401_request(
+def prepare_httpclientfailure_head401(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1125,7 +1125,7 @@ def prepare_httpclientfailure_head401_request(
     )
 
 
-def prepare_httpclientfailure_get402_request(
+def prepare_httpclientfailure_get402(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1148,7 +1148,7 @@ def prepare_httpclientfailure_get402_request(
     )
 
 
-def prepare_httpclientfailure_options403_request(
+def prepare_httpclientfailure_options403(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1171,7 +1171,7 @@ def prepare_httpclientfailure_options403_request(
     )
 
 
-def prepare_httpclientfailure_get403_request(
+def prepare_httpclientfailure_get403(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1194,7 +1194,7 @@ def prepare_httpclientfailure_get403_request(
     )
 
 
-def prepare_httpclientfailure_put404_request(
+def prepare_httpclientfailure_put404(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1219,7 +1219,7 @@ def prepare_httpclientfailure_put404_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch405_request(
+def prepare_httpclientfailure_patch405(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1244,7 +1244,7 @@ def prepare_httpclientfailure_patch405_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post406_request(
+def prepare_httpclientfailure_post406(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1269,7 +1269,7 @@ def prepare_httpclientfailure_post406_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_delete407_request(
+def prepare_httpclientfailure_delete407(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1294,7 +1294,7 @@ def prepare_httpclientfailure_delete407_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_put409_request(
+def prepare_httpclientfailure_put409(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1319,7 +1319,7 @@ def prepare_httpclientfailure_put409_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head410_request(
+def prepare_httpclientfailure_head410(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1342,7 +1342,7 @@ def prepare_httpclientfailure_head410_request(
     )
 
 
-def prepare_httpclientfailure_get411_request(
+def prepare_httpclientfailure_get411(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1365,7 +1365,7 @@ def prepare_httpclientfailure_get411_request(
     )
 
 
-def prepare_httpclientfailure_options412_request(
+def prepare_httpclientfailure_options412(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1388,7 +1388,7 @@ def prepare_httpclientfailure_options412_request(
     )
 
 
-def prepare_httpclientfailure_get412_request(
+def prepare_httpclientfailure_get412(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1411,7 +1411,7 @@ def prepare_httpclientfailure_get412_request(
     )
 
 
-def prepare_httpclientfailure_put413_request(
+def prepare_httpclientfailure_put413(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1436,7 +1436,7 @@ def prepare_httpclientfailure_put413_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch414_request(
+def prepare_httpclientfailure_patch414(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1461,7 +1461,7 @@ def prepare_httpclientfailure_patch414_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post415_request(
+def prepare_httpclientfailure_post415(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1486,7 +1486,7 @@ def prepare_httpclientfailure_post415_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_get416_request(
+def prepare_httpclientfailure_get416(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1509,7 +1509,7 @@ def prepare_httpclientfailure_get416_request(
     )
 
 
-def prepare_httpclientfailure_delete417_request(
+def prepare_httpclientfailure_delete417(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1534,7 +1534,7 @@ def prepare_httpclientfailure_delete417_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head429_request(
+def prepare_httpclientfailure_head429(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1557,7 +1557,7 @@ def prepare_httpclientfailure_head429_request(
     )
 
 
-def prepare_httpserverfailure_head501_request(
+def prepare_httpserverfailure_head501(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1580,7 +1580,7 @@ def prepare_httpserverfailure_head501_request(
     )
 
 
-def prepare_httpserverfailure_get501_request(
+def prepare_httpserverfailure_get501(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1603,7 +1603,7 @@ def prepare_httpserverfailure_get501_request(
     )
 
 
-def prepare_httpserverfailure_post505_request(
+def prepare_httpserverfailure_post505(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1628,7 +1628,7 @@ def prepare_httpserverfailure_post505_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpserverfailure_delete505_request(
+def prepare_httpserverfailure_delete505(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1653,7 +1653,7 @@ def prepare_httpserverfailure_delete505_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_head408_request(
+def prepare_httpretry_head408(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1676,7 +1676,7 @@ def prepare_httpretry_head408_request(
     )
 
 
-def prepare_httpretry_put500_request(
+def prepare_httpretry_put500(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1701,7 +1701,7 @@ def prepare_httpretry_put500_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_patch500_request(
+def prepare_httpretry_patch500(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1726,7 +1726,7 @@ def prepare_httpretry_patch500_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_get502_request(
+def prepare_httpretry_get502(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1749,7 +1749,7 @@ def prepare_httpretry_get502_request(
     )
 
 
-def prepare_httpretry_options502_request(
+def prepare_httpretry_options502(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1772,7 +1772,7 @@ def prepare_httpretry_options502_request(
     )
 
 
-def prepare_httpretry_post503_request(
+def prepare_httpretry_post503(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1797,7 +1797,7 @@ def prepare_httpretry_post503_request(
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_delete503_request(
+def prepare_httpretry_delete503(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1822,7 +1822,7 @@ def prepare_httpretry_delete503_request(
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_put504_request(
+def prepare_httpretry_put504(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1847,7 +1847,7 @@ def prepare_httpretry_put504_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_patch504_request(
+def prepare_httpretry_patch504(
     body=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -1872,7 +1872,7 @@ def prepare_httpretry_patch504_request(
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request(
+def prepare_multipleresponses_get200_model204_no_model_default_error200_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1895,7 +1895,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error200_valid_re
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request(
+def prepare_multipleresponses_get200_model204_no_model_default_error204_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1918,7 +1918,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error204_valid_re
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request(
+def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1941,7 +1941,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error202_none_request(
+def prepare_multipleresponses_get200_model204_no_model_default_error202_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1964,7 +1964,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error202_none_req
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request(
+def prepare_multipleresponses_get200_model204_no_model_default_error400_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1987,7 +1987,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error400_valid_re
     )
 
 
-def prepare_multipleresponses_get200_model201_model_default_error200_valid_request(
+def prepare_multipleresponses_get200_model201_model_default_error200_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2010,7 +2010,7 @@ def prepare_multipleresponses_get200_model201_model_default_error200_valid_reque
     )
 
 
-def prepare_multipleresponses_get200_model201_model_default_error201_valid_request(
+def prepare_multipleresponses_get200_model201_model_default_error201_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2033,7 +2033,7 @@ def prepare_multipleresponses_get200_model201_model_default_error201_valid_reque
     )
 
 
-def prepare_multipleresponses_get200_model201_model_default_error400_valid_request(
+def prepare_multipleresponses_get200_model201_model_default_error400_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2056,7 +2056,7 @@ def prepare_multipleresponses_get200_model201_model_default_error400_valid_reque
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2079,7 +2079,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2102,7 +2102,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2125,7 +2125,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2148,7 +2148,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_error202_none_request(
+def prepare_multipleresponses_get202_none204_none_default_error202_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2171,7 +2171,7 @@ def prepare_multipleresponses_get202_none204_none_default_error202_none_request(
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_error204_none_request(
+def prepare_multipleresponses_get202_none204_none_default_error204_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2194,7 +2194,7 @@ def prepare_multipleresponses_get202_none204_none_default_error204_none_request(
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_error400_valid_request(
+def prepare_multipleresponses_get202_none204_none_default_error400_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2217,7 +2217,7 @@ def prepare_multipleresponses_get202_none204_none_default_error400_valid_request
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none202_invalid_request(
+def prepare_multipleresponses_get202_none204_none_default_none202_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2237,7 +2237,7 @@ def prepare_multipleresponses_get202_none204_none_default_none202_invalid_reques
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none204_none_request(
+def prepare_multipleresponses_get202_none204_none_default_none204_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2257,7 +2257,7 @@ def prepare_multipleresponses_get202_none204_none_default_none204_none_request(
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none400_none_request(
+def prepare_multipleresponses_get202_none204_none_default_none400_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2277,7 +2277,7 @@ def prepare_multipleresponses_get202_none204_none_default_none400_none_request(
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none400_invalid_request(
+def prepare_multipleresponses_get202_none204_none_default_none400_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2297,7 +2297,7 @@ def prepare_multipleresponses_get202_none204_none_default_none400_invalid_reques
     )
 
 
-def prepare_multipleresponses_get_default_model_a200_valid_request(
+def prepare_multipleresponses_get_default_model_a200_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2320,7 +2320,7 @@ def prepare_multipleresponses_get_default_model_a200_valid_request(
     )
 
 
-def prepare_multipleresponses_get_default_model_a200_none_request(
+def prepare_multipleresponses_get_default_model_a200_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2343,7 +2343,7 @@ def prepare_multipleresponses_get_default_model_a200_none_request(
     )
 
 
-def prepare_multipleresponses_get_default_model_a400_valid_request(
+def prepare_multipleresponses_get_default_model_a400_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2366,7 +2366,7 @@ def prepare_multipleresponses_get_default_model_a400_valid_request(
     )
 
 
-def prepare_multipleresponses_get_default_model_a400_none_request(
+def prepare_multipleresponses_get_default_model_a400_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2389,7 +2389,7 @@ def prepare_multipleresponses_get_default_model_a400_none_request(
     )
 
 
-def prepare_multipleresponses_get_default_none200_invalid_request(
+def prepare_multipleresponses_get_default_none200_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2409,7 +2409,7 @@ def prepare_multipleresponses_get_default_none200_invalid_request(
     )
 
 
-def prepare_multipleresponses_get_default_none200_none_request(
+def prepare_multipleresponses_get_default_none200_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2429,7 +2429,7 @@ def prepare_multipleresponses_get_default_none200_none_request(
     )
 
 
-def prepare_multipleresponses_get_default_none400_invalid_request(
+def prepare_multipleresponses_get_default_none400_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2449,7 +2449,7 @@ def prepare_multipleresponses_get_default_none400_invalid_request(
     )
 
 
-def prepare_multipleresponses_get_default_none400_none_request(
+def prepare_multipleresponses_get_default_none400_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2469,7 +2469,7 @@ def prepare_multipleresponses_get_default_none400_none_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a200_none_request(
+def prepare_multipleresponses_get200_model_a200_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2492,7 +2492,7 @@ def prepare_multipleresponses_get200_model_a200_none_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a200_valid_request(
+def prepare_multipleresponses_get200_model_a200_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2515,7 +2515,7 @@ def prepare_multipleresponses_get200_model_a200_valid_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a200_invalid_request(
+def prepare_multipleresponses_get200_model_a200_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2538,7 +2538,7 @@ def prepare_multipleresponses_get200_model_a200_invalid_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a400_none_request(
+def prepare_multipleresponses_get200_model_a400_none(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2561,7 +2561,7 @@ def prepare_multipleresponses_get200_model_a400_none_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a400_valid_request(
+def prepare_multipleresponses_get200_model_a400_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2584,7 +2584,7 @@ def prepare_multipleresponses_get200_model_a400_valid_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a400_invalid_request(
+def prepare_multipleresponses_get200_model_a400_invalid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -2607,7 +2607,7 @@ def prepare_multipleresponses_get200_model_a400_invalid_request(
     )
 
 
-def prepare_multipleresponses_get200_model_a202_valid_request(
+def prepare_multipleresponses_get200_model_a202_valid(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_httpfailure_get_empty_error_request(**kwargs) -> HttpRequest:
+def prepare_httpfailure_get_empty_error(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +33,7 @@ def prepare_httpfailure_get_empty_error_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpfailure_get_no_model_error_request(**kwargs) -> HttpRequest:
+def prepare_httpfailure_get_no_model_error(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -53,7 +53,7 @@ def prepare_httpfailure_get_no_model_error_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpfailure_get_no_model_empty_request(**kwargs) -> HttpRequest:
+def prepare_httpfailure_get_no_model_empty(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -73,7 +73,7 @@ def prepare_httpfailure_get_no_model_empty_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_head200_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_head200(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -93,7 +93,7 @@ def prepare_httpsuccess_head200_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_get200_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_get200(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -113,7 +113,7 @@ def prepare_httpsuccess_get200_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_options200_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_options200(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -133,7 +133,7 @@ def prepare_httpsuccess_options200_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_put200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_put200(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -154,7 +154,7 @@ def prepare_httpsuccess_put200_request(body: Optional[bool] = True, **kwargs) ->
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_patch200(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -175,7 +175,7 @@ def prepare_httpsuccess_patch200_request(body: Optional[bool] = True, **kwargs) 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_post200(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -196,7 +196,7 @@ def prepare_httpsuccess_post200_request(body: Optional[bool] = True, **kwargs) -
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_delete200(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -217,7 +217,7 @@ def prepare_httpsuccess_delete200_request(body: Optional[bool] = True, **kwargs)
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_put201_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_put201(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -238,7 +238,7 @@ def prepare_httpsuccess_put201_request(body: Optional[bool] = True, **kwargs) ->
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post201_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_post201(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -259,7 +259,7 @@ def prepare_httpsuccess_post201_request(body: Optional[bool] = True, **kwargs) -
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_put202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_put202(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -280,7 +280,7 @@ def prepare_httpsuccess_put202_request(body: Optional[bool] = True, **kwargs) ->
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_patch202(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -301,7 +301,7 @@ def prepare_httpsuccess_patch202_request(body: Optional[bool] = True, **kwargs) 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_post202(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -322,7 +322,7 @@ def prepare_httpsuccess_post202_request(body: Optional[bool] = True, **kwargs) -
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_delete202(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -343,7 +343,7 @@ def prepare_httpsuccess_delete202_request(body: Optional[bool] = True, **kwargs)
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_head204_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_head204(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -363,7 +363,7 @@ def prepare_httpsuccess_head204_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_put204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_put204(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -384,7 +384,7 @@ def prepare_httpsuccess_put204_request(body: Optional[bool] = True, **kwargs) ->
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_patch204(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -405,7 +405,7 @@ def prepare_httpsuccess_patch204_request(body: Optional[bool] = True, **kwargs) 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_post204(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -426,7 +426,7 @@ def prepare_httpsuccess_post204_request(body: Optional[bool] = True, **kwargs) -
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpsuccess_delete204(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -447,7 +447,7 @@ def prepare_httpsuccess_delete204_request(body: Optional[bool] = True, **kwargs)
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_head404_request(**kwargs) -> HttpRequest:
+def prepare_httpsuccess_head404(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -467,7 +467,7 @@ def prepare_httpsuccess_head404_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_head300_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_head300(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -487,7 +487,7 @@ def prepare_httpredirects_head300_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_get300_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_get300(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -507,7 +507,7 @@ def prepare_httpredirects_get300_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_head301_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_head301(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -527,7 +527,7 @@ def prepare_httpredirects_head301_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_get301_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_get301(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -547,7 +547,7 @@ def prepare_httpredirects_get301_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_put301_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_put301(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -568,7 +568,7 @@ def prepare_httpredirects_put301_request(body: Optional[bool] = True, **kwargs) 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_head302_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_head302(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -588,7 +588,7 @@ def prepare_httpredirects_head302_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_get302_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_get302(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -608,7 +608,7 @@ def prepare_httpredirects_get302_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_patch302_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_patch302(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -629,7 +629,7 @@ def prepare_httpredirects_patch302_request(body: Optional[bool] = True, **kwargs
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_post303_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_post303(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -650,7 +650,7 @@ def prepare_httpredirects_post303_request(body: Optional[bool] = True, **kwargs)
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_head307_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_head307(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -670,7 +670,7 @@ def prepare_httpredirects_head307_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_get307_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_get307(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -690,7 +690,7 @@ def prepare_httpredirects_get307_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_options307_request(**kwargs) -> HttpRequest:
+def prepare_httpredirects_options307(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -710,7 +710,7 @@ def prepare_httpredirects_options307_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_put307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_put307(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -731,7 +731,7 @@ def prepare_httpredirects_put307_request(body: Optional[bool] = True, **kwargs) 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_patch307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_patch307(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -752,7 +752,7 @@ def prepare_httpredirects_patch307_request(body: Optional[bool] = True, **kwargs
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_post307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_post307(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -773,7 +773,7 @@ def prepare_httpredirects_post307_request(body: Optional[bool] = True, **kwargs)
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_delete307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpredirects_delete307(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -794,7 +794,7 @@ def prepare_httpredirects_delete307_request(body: Optional[bool] = True, **kwarg
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head400_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_head400(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -814,7 +814,7 @@ def prepare_httpclientfailure_head400_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_get400_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_get400(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -834,7 +834,7 @@ def prepare_httpclientfailure_get400_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_options400_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_options400(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -854,7 +854,7 @@ def prepare_httpclientfailure_options400_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_put400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_put400(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -875,7 +875,7 @@ def prepare_httpclientfailure_put400_request(body: Optional[bool] = True, **kwar
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_patch400(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -896,7 +896,7 @@ def prepare_httpclientfailure_patch400_request(body: Optional[bool] = True, **kw
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_post400(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -917,7 +917,7 @@ def prepare_httpclientfailure_post400_request(body: Optional[bool] = True, **kwa
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_delete400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_delete400(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -938,7 +938,7 @@ def prepare_httpclientfailure_delete400_request(body: Optional[bool] = True, **k
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head401_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_head401(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -958,7 +958,7 @@ def prepare_httpclientfailure_head401_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_get402_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_get402(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -978,7 +978,7 @@ def prepare_httpclientfailure_get402_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_options403_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_options403(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -998,7 +998,7 @@ def prepare_httpclientfailure_options403_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_get403_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_get403(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1018,7 +1018,7 @@ def prepare_httpclientfailure_get403_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_put404_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_put404(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1039,7 +1039,7 @@ def prepare_httpclientfailure_put404_request(body: Optional[bool] = True, **kwar
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch405_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_patch405(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1060,7 +1060,7 @@ def prepare_httpclientfailure_patch405_request(body: Optional[bool] = True, **kw
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post406_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_post406(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1081,7 +1081,7 @@ def prepare_httpclientfailure_post406_request(body: Optional[bool] = True, **kwa
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_delete407_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_delete407(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1102,7 +1102,7 @@ def prepare_httpclientfailure_delete407_request(body: Optional[bool] = True, **k
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_put409_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_put409(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1123,7 +1123,7 @@ def prepare_httpclientfailure_put409_request(body: Optional[bool] = True, **kwar
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head410_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_head410(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1143,7 +1143,7 @@ def prepare_httpclientfailure_head410_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_get411_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_get411(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1163,7 +1163,7 @@ def prepare_httpclientfailure_get411_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_options412_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_options412(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1183,7 +1183,7 @@ def prepare_httpclientfailure_options412_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_get412_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_get412(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1203,7 +1203,7 @@ def prepare_httpclientfailure_get412_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_put413_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_put413(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1224,7 +1224,7 @@ def prepare_httpclientfailure_put413_request(body: Optional[bool] = True, **kwar
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch414_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_patch414(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1245,7 +1245,7 @@ def prepare_httpclientfailure_patch414_request(body: Optional[bool] = True, **kw
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post415_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_post415(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1266,7 +1266,7 @@ def prepare_httpclientfailure_post415_request(body: Optional[bool] = True, **kwa
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_get416_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_get416(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1286,7 +1286,7 @@ def prepare_httpclientfailure_get416_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_delete417_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpclientfailure_delete417(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1307,7 +1307,7 @@ def prepare_httpclientfailure_delete417_request(body: Optional[bool] = True, **k
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_head429_request(**kwargs) -> HttpRequest:
+def prepare_httpclientfailure_head429(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1327,7 +1327,7 @@ def prepare_httpclientfailure_head429_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpserverfailure_head501_request(**kwargs) -> HttpRequest:
+def prepare_httpserverfailure_head501(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1347,7 +1347,7 @@ def prepare_httpserverfailure_head501_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpserverfailure_get501_request(**kwargs) -> HttpRequest:
+def prepare_httpserverfailure_get501(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1367,7 +1367,7 @@ def prepare_httpserverfailure_get501_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpserverfailure_post505_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpserverfailure_post505(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1388,7 +1388,7 @@ def prepare_httpserverfailure_post505_request(body: Optional[bool] = True, **kwa
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpserverfailure_delete505_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpserverfailure_delete505(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1409,7 +1409,7 @@ def prepare_httpserverfailure_delete505_request(body: Optional[bool] = True, **k
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_head408_request(**kwargs) -> HttpRequest:
+def prepare_httpretry_head408(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1429,7 +1429,7 @@ def prepare_httpretry_head408_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpretry_put500_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpretry_put500(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1450,7 +1450,7 @@ def prepare_httpretry_put500_request(body: Optional[bool] = True, **kwargs) -> H
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_patch500_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpretry_patch500(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1471,7 +1471,7 @@ def prepare_httpretry_patch500_request(body: Optional[bool] = True, **kwargs) ->
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_get502_request(**kwargs) -> HttpRequest:
+def prepare_httpretry_get502(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1491,7 +1491,7 @@ def prepare_httpretry_get502_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpretry_options502_request(**kwargs) -> HttpRequest:
+def prepare_httpretry_options502(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1511,7 +1511,7 @@ def prepare_httpretry_options502_request(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_httpretry_post503_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpretry_post503(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1532,7 +1532,7 @@ def prepare_httpretry_post503_request(body: Optional[bool] = True, **kwargs) -> 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_delete503_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpretry_delete503(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1553,7 +1553,7 @@ def prepare_httpretry_delete503_request(body: Optional[bool] = True, **kwargs) -
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_put504_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpretry_put504(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1574,7 +1574,7 @@ def prepare_httpretry_put504_request(body: Optional[bool] = True, **kwargs) -> H
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_patch504_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def prepare_httpretry_patch504(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1595,7 +1595,7 @@ def prepare_httpretry_patch504_request(body: Optional[bool] = True, **kwargs) ->
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model204_no_model_default_error200_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1615,7 +1615,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error200_valid_re
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model204_no_model_default_error204_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1635,7 +1635,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error204_valid_re
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1655,7 +1655,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error202_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model204_no_model_default_error202_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1675,7 +1675,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error202_none_req
     )
 
 
-def prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model204_no_model_default_error400_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1695,7 +1695,7 @@ def prepare_multipleresponses_get200_model204_no_model_default_error400_valid_re
     )
 
 
-def prepare_multipleresponses_get200_model201_model_default_error200_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model201_model_default_error200_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1715,7 +1715,7 @@ def prepare_multipleresponses_get200_model201_model_default_error200_valid_reque
     )
 
 
-def prepare_multipleresponses_get200_model201_model_default_error201_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model201_model_default_error201_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1735,7 +1735,7 @@ def prepare_multipleresponses_get200_model201_model_default_error201_valid_reque
     )
 
 
-def prepare_multipleresponses_get200_model201_model_default_error400_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model201_model_default_error400_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1755,9 +1755,7 @@ def prepare_multipleresponses_get200_model201_model_default_error400_valid_reque
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
-    **kwargs,
-) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1777,9 +1775,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
-    **kwargs,
-) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1799,9 +1795,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
-    **kwargs,
-) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1821,9 +1815,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
-    **kwargs,
-) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1843,7 +1835,7 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_error202_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_error202_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1863,7 +1855,7 @@ def prepare_multipleresponses_get202_none204_none_default_error202_none_request(
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_error204_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_error204_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1883,7 +1875,7 @@ def prepare_multipleresponses_get202_none204_none_default_error204_none_request(
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_error400_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_error400_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1903,7 +1895,7 @@ def prepare_multipleresponses_get202_none204_none_default_error400_valid_request
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none202_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_none202_invalid(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
@@ -1920,7 +1912,7 @@ def prepare_multipleresponses_get202_none204_none_default_none202_invalid_reques
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none204_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_none204_none(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
@@ -1937,7 +1929,7 @@ def prepare_multipleresponses_get202_none204_none_default_none204_none_request(*
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none400_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_none400_none(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
@@ -1954,7 +1946,7 @@ def prepare_multipleresponses_get202_none204_none_default_none400_none_request(*
     )
 
 
-def prepare_multipleresponses_get202_none204_none_default_none400_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get202_none204_none_default_none400_invalid(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
@@ -1971,7 +1963,7 @@ def prepare_multipleresponses_get202_none204_none_default_none400_invalid_reques
     )
 
 
-def prepare_multipleresponses_get_default_model_a200_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_model_a200_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1991,7 +1983,7 @@ def prepare_multipleresponses_get_default_model_a200_valid_request(**kwargs) -> 
     )
 
 
-def prepare_multipleresponses_get_default_model_a200_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_model_a200_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2011,7 +2003,7 @@ def prepare_multipleresponses_get_default_model_a200_none_request(**kwargs) -> H
     )
 
 
-def prepare_multipleresponses_get_default_model_a400_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_model_a400_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2031,7 +2023,7 @@ def prepare_multipleresponses_get_default_model_a400_valid_request(**kwargs) -> 
     )
 
 
-def prepare_multipleresponses_get_default_model_a400_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_model_a400_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2051,7 +2043,7 @@ def prepare_multipleresponses_get_default_model_a400_none_request(**kwargs) -> H
     )
 
 
-def prepare_multipleresponses_get_default_none200_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_none200_invalid(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
@@ -2068,7 +2060,7 @@ def prepare_multipleresponses_get_default_none200_invalid_request(**kwargs) -> H
     )
 
 
-def prepare_multipleresponses_get_default_none200_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_none200_none(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/none")
@@ -2085,7 +2077,7 @@ def prepare_multipleresponses_get_default_none200_none_request(**kwargs) -> Http
     )
 
 
-def prepare_multipleresponses_get_default_none400_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_none400_invalid(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
@@ -2102,7 +2094,7 @@ def prepare_multipleresponses_get_default_none400_invalid_request(**kwargs) -> H
     )
 
 
-def prepare_multipleresponses_get_default_none400_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get_default_none400_none(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/none")
@@ -2119,7 +2111,7 @@ def prepare_multipleresponses_get_default_none400_none_request(**kwargs) -> Http
     )
 
 
-def prepare_multipleresponses_get200_model_a200_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a200_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2139,7 +2131,7 @@ def prepare_multipleresponses_get200_model_a200_none_request(**kwargs) -> HttpRe
     )
 
 
-def prepare_multipleresponses_get200_model_a200_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a200_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2159,7 +2151,7 @@ def prepare_multipleresponses_get200_model_a200_valid_request(**kwargs) -> HttpR
     )
 
 
-def prepare_multipleresponses_get200_model_a200_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a200_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2179,7 +2171,7 @@ def prepare_multipleresponses_get200_model_a200_invalid_request(**kwargs) -> Htt
     )
 
 
-def prepare_multipleresponses_get200_model_a400_none_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a400_none(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2199,7 +2191,7 @@ def prepare_multipleresponses_get200_model_a400_none_request(**kwargs) -> HttpRe
     )
 
 
-def prepare_multipleresponses_get200_model_a400_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a400_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2219,7 +2211,7 @@ def prepare_multipleresponses_get200_model_a400_valid_request(**kwargs) -> HttpR
     )
 
 
-def prepare_multipleresponses_get200_model_a400_invalid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a400_invalid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -2239,7 +2231,7 @@ def prepare_multipleresponses_get200_model_a400_invalid_request(**kwargs) -> Htt
     )
 
 
-def prepare_multipleresponses_get200_model_a202_valid_request(**kwargs) -> HttpRequest:
+def prepare_multipleresponses_get200_model_a202_valid(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

@@ -62,7 +62,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_files_get_file_request(template_url=self.get_file.metadata["url"], **kwargs)
+        request = prepare_files_get_file(template_url=self.get_file.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -96,7 +96,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_files_get_file_large_request(template_url=self.get_file_large.metadata["url"], **kwargs)
+        request = prepare_files_get_file_large(template_url=self.get_file_large.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -130,7 +130,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_files_get_empty_file_request(template_url=self.get_empty_file.metadata["url"], **kwargs)
+        request = prepare_files_get_empty_file(template_url=self.get_empty_file.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

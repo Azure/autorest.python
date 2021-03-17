@@ -64,7 +64,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_put_optional_binary_body_request(
+        request = prepare_explicit_put_optional_binary_body(
             body=body_parameter, template_url=self.put_optional_binary_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -98,7 +98,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_put_required_binary_body_request(
+        request = prepare_explicit_put_required_binary_body(
             body=body_parameter, template_url=self.put_required_binary_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -135,7 +135,7 @@ class ExplicitOperations:
 
         body_parameter = self._serialize.body(body_parameter, "int")
 
-        request = prepare_explicit_post_required_integer_parameter_request(
+        request = prepare_explicit_post_required_integer_parameter(
             body=body_parameter, template_url=self.post_required_integer_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -172,7 +172,7 @@ class ExplicitOperations:
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "int")
 
-        request = prepare_explicit_post_optional_integer_parameter_request(
+        request = prepare_explicit_post_optional_integer_parameter(
             body=body_parameter, template_url=self.post_optional_integer_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -210,7 +210,7 @@ class ExplicitOperations:
         _body_parameter = _models.IntWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "IntWrapper")
 
-        request = prepare_explicit_post_required_integer_property_request(
+        request = prepare_explicit_post_required_integer_property(
             body=_body_parameter, template_url=self.post_required_integer_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -248,7 +248,7 @@ class ExplicitOperations:
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "IntOptionalWrapper")
 
-        request = prepare_explicit_post_optional_integer_property_request(
+        request = prepare_explicit_post_optional_integer_property(
             body=_body_parameter, template_url=self.post_optional_integer_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -283,7 +283,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_post_required_integer_header_request(
+        request = prepare_explicit_post_required_integer_header(
             header_parameter=header_parameter, template_url=self.post_required_integer_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -317,7 +317,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_post_optional_integer_header_request(
+        request = prepare_explicit_post_optional_integer_header(
             header_parameter=header_parameter, template_url=self.post_optional_integer_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -354,7 +354,7 @@ class ExplicitOperations:
 
         body_parameter = self._serialize.body(body_parameter, "str")
 
-        request = prepare_explicit_post_required_string_parameter_request(
+        request = prepare_explicit_post_required_string_parameter(
             body=body_parameter, template_url=self.post_required_string_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -391,7 +391,7 @@ class ExplicitOperations:
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "str")
 
-        request = prepare_explicit_post_optional_string_parameter_request(
+        request = prepare_explicit_post_optional_string_parameter(
             body=body_parameter, template_url=self.post_optional_string_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -429,7 +429,7 @@ class ExplicitOperations:
         _body_parameter = _models.StringWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "StringWrapper")
 
-        request = prepare_explicit_post_required_string_property_request(
+        request = prepare_explicit_post_required_string_property(
             body=_body_parameter, template_url=self.post_required_string_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -467,7 +467,7 @@ class ExplicitOperations:
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "StringOptionalWrapper")
 
-        request = prepare_explicit_post_optional_string_property_request(
+        request = prepare_explicit_post_optional_string_property(
             body=_body_parameter, template_url=self.post_optional_string_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -502,7 +502,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_post_required_string_header_request(
+        request = prepare_explicit_post_required_string_header(
             header_parameter=header_parameter, template_url=self.post_required_string_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -536,7 +536,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_post_optional_string_header_request(
+        request = prepare_explicit_post_optional_string_header(
             body_parameter=body_parameter, template_url=self.post_optional_string_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -573,7 +573,7 @@ class ExplicitOperations:
 
         body_parameter = self._serialize.body(body_parameter, "Product")
 
-        request = prepare_explicit_post_required_class_parameter_request(
+        request = prepare_explicit_post_required_class_parameter(
             body=body_parameter, template_url=self.post_required_class_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -610,7 +610,7 @@ class ExplicitOperations:
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "Product")
 
-        request = prepare_explicit_post_optional_class_parameter_request(
+        request = prepare_explicit_post_optional_class_parameter(
             body=body_parameter, template_url=self.post_optional_class_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -648,7 +648,7 @@ class ExplicitOperations:
         _body_parameter = _models.ClassWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "ClassWrapper")
 
-        request = prepare_explicit_post_required_class_property_request(
+        request = prepare_explicit_post_required_class_property(
             body=_body_parameter, template_url=self.post_required_class_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -686,7 +686,7 @@ class ExplicitOperations:
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
 
-        request = prepare_explicit_post_optional_class_property_request(
+        request = prepare_explicit_post_optional_class_property(
             body=_body_parameter, template_url=self.post_optional_class_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -723,7 +723,7 @@ class ExplicitOperations:
 
         body_parameter = self._serialize.body(body_parameter, "[str]")
 
-        request = prepare_explicit_post_required_array_parameter_request(
+        request = prepare_explicit_post_required_array_parameter(
             body=body_parameter, template_url=self.post_required_array_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -760,7 +760,7 @@ class ExplicitOperations:
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "[str]")
 
-        request = prepare_explicit_post_optional_array_parameter_request(
+        request = prepare_explicit_post_optional_array_parameter(
             body=body_parameter, template_url=self.post_optional_array_parameter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -798,7 +798,7 @@ class ExplicitOperations:
         _body_parameter = _models.ArrayWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "ArrayWrapper")
 
-        request = prepare_explicit_post_required_array_property_request(
+        request = prepare_explicit_post_required_array_property(
             body=_body_parameter, template_url=self.post_required_array_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -836,7 +836,7 @@ class ExplicitOperations:
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")
 
-        request = prepare_explicit_post_optional_array_property_request(
+        request = prepare_explicit_post_optional_array_property(
             body=_body_parameter, template_url=self.post_optional_array_property.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -871,7 +871,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_post_required_array_header_request(
+        request = prepare_explicit_post_required_array_header(
             header_parameter=header_parameter, template_url=self.post_required_array_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -905,7 +905,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_explicit_post_optional_array_header_request(
+        request = prepare_explicit_post_optional_array_header(
             header_parameter=header_parameter, template_url=self.post_optional_array_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

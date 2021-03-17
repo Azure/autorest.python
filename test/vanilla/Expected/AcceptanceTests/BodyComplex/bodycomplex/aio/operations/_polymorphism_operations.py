@@ -62,7 +62,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_polymorphism_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = prepare_polymorphism_get_valid(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -132,7 +132,7 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Fish")
 
-        request = prepare_polymorphism_put_valid_request(
+        request = prepare_polymorphism_put_valid(
             body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -164,9 +164,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_polymorphism_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"], **kwargs
-        )
+        request = prepare_polymorphism_get_dot_syntax(template_url=self.get_dot_syntax.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -202,7 +200,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_polymorphism_get_composed_with_discriminator_request(
+        request = prepare_polymorphism_get_composed_with_discriminator(
             template_url=self.get_composed_with_discriminator.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -240,7 +238,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_polymorphism_get_composed_without_discriminator_request(
+        request = prepare_polymorphism_get_composed_without_discriminator(
             template_url=self.get_composed_without_discriminator.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -277,9 +275,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_polymorphism_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"], **kwargs
-        )
+        request = prepare_polymorphism_get_complicated(template_url=self.get_complicated.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -318,7 +314,7 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Salmon")
 
-        request = prepare_polymorphism_put_complicated_request(
+        request = prepare_polymorphism_put_complicated(
             body=complex_body, template_url=self.put_complicated.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -354,7 +350,7 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Salmon")
 
-        request = prepare_polymorphism_put_missing_discriminator_request(
+        request = prepare_polymorphism_put_missing_discriminator(
             body=complex_body, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -421,7 +417,7 @@ class PolymorphismOperations:
 
         complex_body = self._serialize.body(complex_body, "Fish")
 
-        request = prepare_polymorphism_put_valid_missing_required_request(
+        request = prepare_polymorphism_put_valid_missing_required(
             body=complex_body, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

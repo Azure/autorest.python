@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_paging_get_no_item_name_pages_request(
+def prepare_paging_get_no_item_name_pages(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -42,7 +42,7 @@ def prepare_paging_get_no_item_name_pages_request(
     )
 
 
-def prepare_paging_get_null_next_link_name_pages_request(
+def prepare_paging_get_null_next_link_name_pages(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -66,7 +66,7 @@ def prepare_paging_get_null_next_link_name_pages_request(
     )
 
 
-def prepare_paging_get_single_pages_request(
+def prepare_paging_get_single_pages(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -90,7 +90,7 @@ def prepare_paging_get_single_pages_request(
     )
 
 
-def prepare_paging_first_response_empty_request(
+def prepare_paging_first_response_empty(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -114,7 +114,7 @@ def prepare_paging_first_response_empty_request(
     )
 
 
-def prepare_paging_get_multiple_pages_request(
+def prepare_paging_get_multiple_pages(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
@@ -147,7 +147,7 @@ def prepare_paging_get_multiple_pages_request(
     )
 
 
-def prepare_paging_get_with_query_params_request(
+def prepare_paging_get_with_query_params(
     required_query_parameter,  # type: int
     **kwargs  # type: Any
 ):
@@ -176,7 +176,7 @@ def prepare_paging_get_with_query_params_request(
     )
 
 
-def prepare_paging_next_operation_with_query_params_request(
+def prepare_paging_next_operation_with_query_params(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -203,7 +203,7 @@ def prepare_paging_next_operation_with_query_params_request(
     )
 
 
-def prepare_paging_get_odata_multiple_pages_request(
+def prepare_paging_get_odata_multiple_pages(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
@@ -236,7 +236,7 @@ def prepare_paging_get_odata_multiple_pages_request(
     )
 
 
-def prepare_paging_get_multiple_pages_with_offset_request(
+def prepare_paging_get_multiple_pages_with_offset(
     offset,  # type: int
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
@@ -274,7 +274,7 @@ def prepare_paging_get_multiple_pages_with_offset_request(
     )
 
 
-def prepare_paging_get_multiple_pages_retry_first_request(
+def prepare_paging_get_multiple_pages_retry_first(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -298,7 +298,7 @@ def prepare_paging_get_multiple_pages_retry_first_request(
     )
 
 
-def prepare_paging_get_multiple_pages_retry_second_request(
+def prepare_paging_get_multiple_pages_retry_second(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -322,7 +322,7 @@ def prepare_paging_get_multiple_pages_retry_second_request(
     )
 
 
-def prepare_paging_get_single_pages_failure_request(
+def prepare_paging_get_single_pages_failure(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -346,7 +346,7 @@ def prepare_paging_get_single_pages_failure_request(
     )
 
 
-def prepare_paging_get_multiple_pages_failure_request(
+def prepare_paging_get_multiple_pages_failure(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -370,7 +370,7 @@ def prepare_paging_get_multiple_pages_failure_request(
     )
 
 
-def prepare_paging_get_multiple_pages_failure_uri_request(
+def prepare_paging_get_multiple_pages_failure_uri(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -394,7 +394,7 @@ def prepare_paging_get_multiple_pages_failure_uri_request(
     )
 
 
-def prepare_paging_get_multiple_pages_fragment_next_link_request(
+def prepare_paging_get_multiple_pages_fragment_next_link(
     api_version,  # type: str
     tenant,  # type: str
     **kwargs  # type: Any
@@ -426,7 +426,7 @@ def prepare_paging_get_multiple_pages_fragment_next_link_request(
     )
 
 
-def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
+def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link(
     api_version,  # type: str
     tenant,  # type: str
     **kwargs  # type: Any
@@ -458,7 +458,7 @@ def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
     )
 
 
-def prepare_paging_get_multiple_pages_lro_initial_request(
+def prepare_paging_get_multiple_pages_lro_initial(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
@@ -491,7 +491,7 @@ def prepare_paging_get_multiple_pages_lro_initial_request(
     )
 
 
-def prepare_paging_next_fragment_request(
+def prepare_paging_next_fragment(
     api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
@@ -525,7 +525,7 @@ def prepare_paging_next_fragment_request(
     )
 
 
-def prepare_paging_next_fragment_with_grouping_request(
+def prepare_paging_next_fragment_with_grouping(
     api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
@@ -559,7 +559,7 @@ def prepare_paging_next_fragment_with_grouping_request(
     )
 
 
-def prepare_paging_get_paging_model_with_item_name_with_xms_client_name_request(
+def prepare_paging_get_paging_model_with_item_name_with_xms_client_name(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

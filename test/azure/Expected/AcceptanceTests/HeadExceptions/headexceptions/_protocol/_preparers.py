@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_headexception_head200_request(
+def prepare_headexception_head200(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -31,7 +31,7 @@ def prepare_headexception_head200_request(
     )
 
 
-def prepare_headexception_head204_request(
+def prepare_headexception_head204(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -51,7 +51,7 @@ def prepare_headexception_head204_request(
     )
 
 
-def prepare_headexception_head404_request(
+def prepare_headexception_head404(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest

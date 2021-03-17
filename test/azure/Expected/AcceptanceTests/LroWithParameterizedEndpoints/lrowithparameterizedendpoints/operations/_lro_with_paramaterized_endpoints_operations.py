@@ -44,7 +44,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_poll_with_parameterized_endpoints_initial_request(
+        request = prepare_poll_with_parameterized_endpoints_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
         )
         path_format_arguments = {

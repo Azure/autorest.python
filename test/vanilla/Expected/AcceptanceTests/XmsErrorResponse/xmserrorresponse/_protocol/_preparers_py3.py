@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_pet_get_pet_by_id_request(pet_id: str, **kwargs) -> HttpRequest:
+def prepare_pet_get_pet_by_id(pet_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -38,7 +38,7 @@ def prepare_pet_get_pet_by_id_request(pet_id: str, **kwargs) -> HttpRequest:
     )
 
 
-def prepare_pet_do_something_request(what_action: str, **kwargs) -> HttpRequest:
+def prepare_pet_do_something(what_action: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -62,7 +62,7 @@ def prepare_pet_do_something_request(what_action: str, **kwargs) -> HttpRequest:
     )
 
 
-def prepare_pet_has_models_param_request(models: Optional[str] = "value1", **kwargs) -> HttpRequest:
+def prepare_pet_has_models_param(models: Optional[str] = "value1", **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

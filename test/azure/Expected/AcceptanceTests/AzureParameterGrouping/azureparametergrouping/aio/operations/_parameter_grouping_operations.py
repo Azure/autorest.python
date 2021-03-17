@@ -77,7 +77,7 @@ class ParameterGroupingOperations:
             _body = parameter_grouping_post_required_parameters.body
         _body = self._serialize.body(_body, "int")
 
-        request = prepare_parametergrouping_post_required_request(
+        request = prepare_parametergrouping_post_required(
             path=_path,
             body=_body,
             custom_header=_custom_header,
@@ -125,7 +125,7 @@ class ParameterGroupingOperations:
         if parameter_grouping_post_optional_parameters is not None:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
-        request = prepare_parametergrouping_post_optional_request(
+        request = prepare_parametergrouping_post_optional(
             custom_header=_custom_header, query=_query, template_url=self.post_optional.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -178,7 +178,7 @@ class ParameterGroupingOperations:
         if parameter_grouping_post_multi_param_groups_second_param_group is not None:
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
-        request = prepare_parametergrouping_post_multi_param_groups_request(
+        request = prepare_parametergrouping_post_multi_param_groups(
             header_one=_header_one,
             query_one=_query_one,
             header_two=_header_two,
@@ -224,7 +224,7 @@ class ParameterGroupingOperations:
         if first_parameter_group is not None:
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
-        request = prepare_parametergrouping_post_shared_parameter_group_object_request(
+        request = prepare_parametergrouping_post_shared_parameter_group_object(
             header_one=_header_one,
             query_one=_query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],

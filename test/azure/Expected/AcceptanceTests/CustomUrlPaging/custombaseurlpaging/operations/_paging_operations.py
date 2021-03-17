@@ -77,7 +77,7 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = prepare_paging_get_pages_partial_url_request(
+                request = prepare_paging_get_pages_partial_url(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -87,7 +87,7 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = prepare_paging_get_pages_partial_url_request(
+                request = prepare_paging_get_pages_partial_url(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -150,7 +150,7 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = prepare_paging_get_pages_partial_url_operation_request(
+                request = prepare_paging_get_pages_partial_url_operation(
                     template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -160,7 +160,7 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = prepare_paging_get_pages_partial_url_operation_next_request(
+                request = prepare_paging_get_pages_partial_url_operation_next(
                     next_link=next_link, template_url="/paging/customurl/{nextLink}", **kwargs
                 )
                 path_format_arguments = {

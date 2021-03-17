@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_paging_get_no_item_name_pages_request(
+def prepare_paging_get_no_item_name_pages(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -37,7 +37,7 @@ def prepare_paging_get_no_item_name_pages_request(
     )
 
 
-def prepare_paging_get_null_next_link_name_pages_request(
+def prepare_paging_get_null_next_link_name_pages(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -60,7 +60,7 @@ def prepare_paging_get_null_next_link_name_pages_request(
     )
 
 
-def prepare_paging_get_single_pages_request(
+def prepare_paging_get_single_pages(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -83,7 +83,7 @@ def prepare_paging_get_single_pages_request(
     )
 
 
-def prepare_paging_first_response_empty_request(
+def prepare_paging_first_response_empty(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -106,7 +106,7 @@ def prepare_paging_first_response_empty_request(
     )
 
 
-def prepare_paging_get_multiple_pages_request(
+def prepare_paging_get_multiple_pages(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
     timeout: Optional[int] = 30,
@@ -138,7 +138,7 @@ def prepare_paging_get_multiple_pages_request(
     )
 
 
-def prepare_paging_get_with_query_params_request(
+def prepare_paging_get_with_query_params(
     required_query_parameter: int,
     **kwargs
 ) -> HttpRequest:
@@ -166,7 +166,7 @@ def prepare_paging_get_with_query_params_request(
     )
 
 
-def prepare_paging_next_operation_with_query_params_request(
+def prepare_paging_next_operation_with_query_params(
     **kwargs
 ) -> HttpRequest:
     query_constant = True
@@ -192,7 +192,7 @@ def prepare_paging_next_operation_with_query_params_request(
     )
 
 
-def prepare_paging_get_odata_multiple_pages_request(
+def prepare_paging_get_odata_multiple_pages(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
     timeout: Optional[int] = 30,
@@ -224,7 +224,7 @@ def prepare_paging_get_odata_multiple_pages_request(
     )
 
 
-def prepare_paging_get_multiple_pages_with_offset_request(
+def prepare_paging_get_multiple_pages_with_offset(
     offset: int,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -261,7 +261,7 @@ def prepare_paging_get_multiple_pages_with_offset_request(
     )
 
 
-def prepare_paging_get_multiple_pages_retry_first_request(
+def prepare_paging_get_multiple_pages_retry_first(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -284,7 +284,7 @@ def prepare_paging_get_multiple_pages_retry_first_request(
     )
 
 
-def prepare_paging_get_multiple_pages_retry_second_request(
+def prepare_paging_get_multiple_pages_retry_second(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -307,7 +307,7 @@ def prepare_paging_get_multiple_pages_retry_second_request(
     )
 
 
-def prepare_paging_get_single_pages_failure_request(
+def prepare_paging_get_single_pages_failure(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -330,7 +330,7 @@ def prepare_paging_get_single_pages_failure_request(
     )
 
 
-def prepare_paging_get_multiple_pages_failure_request(
+def prepare_paging_get_multiple_pages_failure(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -353,7 +353,7 @@ def prepare_paging_get_multiple_pages_failure_request(
     )
 
 
-def prepare_paging_get_multiple_pages_failure_uri_request(
+def prepare_paging_get_multiple_pages_failure_uri(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -376,7 +376,7 @@ def prepare_paging_get_multiple_pages_failure_uri_request(
     )
 
 
-def prepare_paging_get_multiple_pages_fragment_next_link_request(
+def prepare_paging_get_multiple_pages_fragment_next_link(
     api_version: str,
     tenant: str,
     **kwargs
@@ -407,7 +407,7 @@ def prepare_paging_get_multiple_pages_fragment_next_link_request(
     )
 
 
-def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
+def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link(
     api_version: str,
     tenant: str,
     **kwargs
@@ -438,7 +438,7 @@ def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
     )
 
 
-def prepare_paging_get_multiple_pages_lro_initial_request(
+def prepare_paging_get_multiple_pages_lro_initial(
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
     timeout: Optional[int] = 30,
@@ -470,7 +470,7 @@ def prepare_paging_get_multiple_pages_lro_initial_request(
     )
 
 
-def prepare_paging_next_fragment_request(
+def prepare_paging_next_fragment(
     api_version: str,
     tenant: str,
     next_link: str,
@@ -503,7 +503,7 @@ def prepare_paging_next_fragment_request(
     )
 
 
-def prepare_paging_next_fragment_with_grouping_request(
+def prepare_paging_next_fragment_with_grouping(
     api_version: str,
     tenant: str,
     next_link: str,
@@ -536,7 +536,7 @@ def prepare_paging_next_fragment_with_grouping_request(
     )
 
 
-def prepare_paging_get_paging_model_with_item_name_with_xms_client_name_request(
+def prepare_paging_get_paging_model_with_item_name_with_xms_client_name(
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"

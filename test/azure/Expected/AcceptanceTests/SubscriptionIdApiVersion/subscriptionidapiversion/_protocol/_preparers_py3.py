@@ -12,9 +12,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_group_get_sample_resource_group_request(
-    subscription_id: str, resource_group_name: str, **kwargs
-) -> HttpRequest:
+def prepare_group_get_sample_resource_group(subscription_id: str, resource_group_name: str, **kwargs) -> HttpRequest:
     api_version = "2014-04-01-preview"
     accept = "application/json"
 

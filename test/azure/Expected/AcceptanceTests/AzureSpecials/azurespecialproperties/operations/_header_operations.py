@@ -74,7 +74,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_custom_named_request_id_request(
+        request = prepare_header_custom_named_request_id(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
             **kwargs
@@ -122,7 +122,7 @@ class HeaderOperations(object):
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
-        request = prepare_header_custom_named_request_id_param_grouping_request(
+        request = prepare_header_custom_named_request_id_param_grouping(
             foo_client_request_id=_foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
             **kwargs
@@ -166,7 +166,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_custom_named_request_id_head_request(
+        request = prepare_header_custom_named_request_id_head(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
             **kwargs

@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_formdata_upload_file_request(body: IO, **kwargs) -> HttpRequest:
+def prepare_formdata_upload_file(body: IO, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 
@@ -34,7 +34,7 @@ def prepare_formdata_upload_file_request(body: IO, **kwargs) -> HttpRequest:
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_formdata_upload_file_via_body_request(body: IO, **kwargs) -> HttpRequest:
+def prepare_formdata_upload_file_via_body(body: IO, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/octet-stream, application/json"
 
@@ -55,7 +55,7 @@ def prepare_formdata_upload_file_via_body_request(body: IO, **kwargs) -> HttpReq
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_formdata_upload_files_request(body: List[IO], **kwargs) -> HttpRequest:
+def prepare_formdata_upload_files(body: List[IO], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 

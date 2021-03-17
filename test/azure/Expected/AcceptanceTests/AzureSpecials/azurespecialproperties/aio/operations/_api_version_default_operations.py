@@ -63,7 +63,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_apiversiondefault_get_method_global_valid_request(
+        request = prepare_apiversiondefault_get_method_global_valid(
             template_url=self.get_method_global_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -95,7 +95,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_apiversiondefault_get_method_global_not_provided_valid_request(
+        request = prepare_apiversiondefault_get_method_global_not_provided_valid(
             template_url=self.get_method_global_not_provided_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -127,7 +127,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_apiversiondefault_get_path_global_valid_request(
+        request = prepare_apiversiondefault_get_path_global_valid(
             template_url=self.get_path_global_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -159,7 +159,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_apiversiondefault_get_swagger_global_valid_request(
+        request = prepare_apiversiondefault_get_swagger_global_valid(
             template_url=self.get_swagger_global_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

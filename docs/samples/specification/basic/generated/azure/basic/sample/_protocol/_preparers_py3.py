@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_httpsuccess_head200_request(
+def prepare_httpsuccess_head200(
     **kwargs
 ) -> HttpRequest:
 
@@ -31,7 +31,7 @@ def prepare_httpsuccess_head200_request(
     )
 
 
-def prepare_httpsuccess_head204_request(
+def prepare_httpsuccess_head204(
     **kwargs
 ) -> HttpRequest:
 
@@ -51,7 +51,7 @@ def prepare_httpsuccess_head204_request(
     )
 
 
-def prepare_httpsuccess_head404_request(
+def prepare_httpsuccess_head404(
     **kwargs
 ) -> HttpRequest:
 

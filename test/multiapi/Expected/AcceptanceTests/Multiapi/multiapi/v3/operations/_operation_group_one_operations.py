@@ -70,7 +70,7 @@ class OperationGroupOneOperations(object):
         if parameter_one is not None:
             parameter_one = self._serialize.body(parameter_one, 'ModelThree')
 
-        request = prepare_operationgroupone_test_two_request(
+        request = prepare_operationgroupone_test_two(
             body=parameter_one,
             template_url=self.test_two.metadata['url'],
             **kwargs

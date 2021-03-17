@@ -7,34 +7,34 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_datetimerfc1123_get_null_request
-    from ._preparers_py3 import prepare_datetimerfc1123_get_invalid_request
-    from ._preparers_py3 import prepare_datetimerfc1123_get_overflow_request
-    from ._preparers_py3 import prepare_datetimerfc1123_get_underflow_request
-    from ._preparers_py3 import prepare_datetimerfc1123_put_utc_max_date_time_request
-    from ._preparers_py3 import prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request
-    from ._preparers_py3 import prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request
-    from ._preparers_py3 import prepare_datetimerfc1123_put_utc_min_date_time_request
-    from ._preparers_py3 import prepare_datetimerfc1123_get_utc_min_date_time_request
+    from ._preparers_py3 import prepare_datetimerfc1123_get_null
+    from ._preparers_py3 import prepare_datetimerfc1123_get_invalid
+    from ._preparers_py3 import prepare_datetimerfc1123_get_overflow
+    from ._preparers_py3 import prepare_datetimerfc1123_get_underflow
+    from ._preparers_py3 import prepare_datetimerfc1123_put_utc_max_date_time
+    from ._preparers_py3 import prepare_datetimerfc1123_get_utc_lowercase_max_date_time
+    from ._preparers_py3 import prepare_datetimerfc1123_get_utc_uppercase_max_date_time
+    from ._preparers_py3 import prepare_datetimerfc1123_put_utc_min_date_time
+    from ._preparers_py3 import prepare_datetimerfc1123_get_utc_min_date_time
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_datetimerfc1123_get_null_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_get_invalid_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_get_overflow_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_get_underflow_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_put_utc_max_date_time_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_put_utc_min_date_time_request  # type: ignore
-    from ._preparers import prepare_datetimerfc1123_get_utc_min_date_time_request  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_null  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_invalid  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_overflow  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_underflow  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_put_utc_max_date_time  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_utc_lowercase_max_date_time  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_utc_uppercase_max_date_time  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_put_utc_min_date_time  # type: ignore
+    from ._preparers import prepare_datetimerfc1123_get_utc_min_date_time  # type: ignore
 
 __all__ = [
-    "prepare_datetimerfc1123_get_null_request",
-    "prepare_datetimerfc1123_get_invalid_request",
-    "prepare_datetimerfc1123_get_overflow_request",
-    "prepare_datetimerfc1123_get_underflow_request",
-    "prepare_datetimerfc1123_put_utc_max_date_time_request",
-    "prepare_datetimerfc1123_get_utc_lowercase_max_date_time_request",
-    "prepare_datetimerfc1123_get_utc_uppercase_max_date_time_request",
-    "prepare_datetimerfc1123_put_utc_min_date_time_request",
-    "prepare_datetimerfc1123_get_utc_min_date_time_request",
+    "prepare_datetimerfc1123_get_null",
+    "prepare_datetimerfc1123_get_invalid",
+    "prepare_datetimerfc1123_get_overflow",
+    "prepare_datetimerfc1123_get_underflow",
+    "prepare_datetimerfc1123_put_utc_max_date_time",
+    "prepare_datetimerfc1123_get_utc_lowercase_max_date_time",
+    "prepare_datetimerfc1123_get_utc_uppercase_max_date_time",
+    "prepare_datetimerfc1123_put_utc_min_date_time",
+    "prepare_datetimerfc1123_get_utc_min_date_time",
 ]

@@ -11,7 +11,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_pets_create_ap_true_request(body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
+def prepare_pets_create_ap_true(body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -32,7 +32,7 @@ def prepare_pets_create_ap_true_request(body: "_models.PetAPTrue", **kwargs) -> 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_cat_ap_true_request(body: "_models.CatAPTrue", **kwargs) -> HttpRequest:
+def prepare_pets_create_cat_ap_true(body: "_models.CatAPTrue", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -53,7 +53,7 @@ def prepare_pets_create_cat_ap_true_request(body: "_models.CatAPTrue", **kwargs)
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_object_request(body: "_models.PetAPObject", **kwargs) -> HttpRequest:
+def prepare_pets_create_ap_object(body: "_models.PetAPObject", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -74,7 +74,7 @@ def prepare_pets_create_ap_object_request(body: "_models.PetAPObject", **kwargs)
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_string_request(body: "_models.PetAPString", **kwargs) -> HttpRequest:
+def prepare_pets_create_ap_string(body: "_models.PetAPString", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -95,7 +95,7 @@ def prepare_pets_create_ap_string_request(body: "_models.PetAPString", **kwargs)
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_in_properties_request(body: "_models.PetAPInProperties", **kwargs) -> HttpRequest:
+def prepare_pets_create_ap_in_properties(body: "_models.PetAPInProperties", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -116,7 +116,7 @@ def prepare_pets_create_ap_in_properties_request(body: "_models.PetAPInPropertie
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_in_properties_with_ap_string_request(
+def prepare_pets_create_ap_in_properties_with_ap_string(
     body: "_models.PetAPInPropertiesWithAPString", **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")

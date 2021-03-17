@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 
 
-def prepare_test_one_request(
+def prepare_test_one(
     id,  # type: int
     message=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -49,7 +49,7 @@ def prepare_test_one_request(
     )
 
 
-def prepare_test_different_calls_request(
+def prepare_test_different_calls(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -81,7 +81,7 @@ def prepare_test_different_calls_request(
     )
 
 
-def prepare_operationgroupone_test_two_request(
+def prepare_operationgroupone_test_two(
     body=None,  # type: Optional["_models.ModelTwo"]
     **kwargs  # type: Any
 ):
@@ -114,7 +114,7 @@ def prepare_operationgroupone_test_two_request(
     )
 
 
-def prepare_operationgroupone_test_three_request(
+def prepare_operationgroupone_test_three(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -141,7 +141,7 @@ def prepare_operationgroupone_test_three_request(
     )
 
 
-def prepare_operationgrouptwo_test_four_request(
+def prepare_operationgrouptwo_test_four(
     parameter_one,  # type: bool
     **kwargs  # type: Any
 ):
