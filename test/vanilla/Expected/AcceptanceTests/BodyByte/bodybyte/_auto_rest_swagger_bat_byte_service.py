@@ -15,7 +15,8 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.pipeline.transport import HttpRequest, HttpResponse
+    from azure.core.pipeline.transport import HttpResponse
+    from azure.core.protocol import HttpRequest
 
 from ._configuration import AutoRestSwaggerBATByteServiceConfiguration
 from .operations import ByteOperations
@@ -53,7 +54,7 @@ class AutoRestSwaggerBATByteService(object):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :type http_request: ~azure.core.protocol.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.HttpResponse

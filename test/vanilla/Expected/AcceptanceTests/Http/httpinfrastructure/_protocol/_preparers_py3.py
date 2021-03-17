@@ -7,50 +7,10 @@
 # --------------------------------------------------------------------------
 from typing import Optional
 
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
-
-import xml.etree.ElementTree as ET
-
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
 
 
 def prepare_httpfailure_get_empty_error_request(**kwargs) -> HttpRequest:
@@ -66,7 +26,11 @@ def prepare_httpfailure_get_empty_error_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpfailure_get_no_model_error_request(**kwargs) -> HttpRequest:
@@ -82,7 +46,11 @@ def prepare_httpfailure_get_no_model_error_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpfailure_get_no_model_empty_request(**kwargs) -> HttpRequest:
@@ -98,7 +66,11 @@ def prepare_httpfailure_get_no_model_empty_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpsuccess_head200_request(**kwargs) -> HttpRequest:
@@ -114,7 +86,11 @@ def prepare_httpsuccess_head200_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpsuccess_get200_request(**kwargs) -> HttpRequest:
@@ -130,7 +106,11 @@ def prepare_httpsuccess_get200_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpsuccess_options200_request(**kwargs) -> HttpRequest:
@@ -146,7 +126,11 @@ def prepare_httpsuccess_options200_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("OPTIONS", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpsuccess_put200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -165,9 +149,9 @@ def prepare_httpsuccess_put200_request(body: Optional[bool] = True, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_patch200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -186,9 +170,9 @@ def prepare_httpsuccess_patch200_request(body: Optional[bool] = True, **kwargs) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_post200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -207,9 +191,9 @@ def prepare_httpsuccess_post200_request(body: Optional[bool] = True, **kwargs) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_delete200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -228,9 +212,9 @@ def prepare_httpsuccess_delete200_request(body: Optional[bool] = True, **kwargs)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_put201_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -249,9 +233,9 @@ def prepare_httpsuccess_put201_request(body: Optional[bool] = True, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_post201_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -270,9 +254,9 @@ def prepare_httpsuccess_post201_request(body: Optional[bool] = True, **kwargs) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_put202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -291,9 +275,9 @@ def prepare_httpsuccess_put202_request(body: Optional[bool] = True, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_patch202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -312,9 +296,9 @@ def prepare_httpsuccess_patch202_request(body: Optional[bool] = True, **kwargs) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_post202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -333,9 +317,9 @@ def prepare_httpsuccess_post202_request(body: Optional[bool] = True, **kwargs) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_delete202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -354,9 +338,9 @@ def prepare_httpsuccess_delete202_request(body: Optional[bool] = True, **kwargs)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_head204_request(**kwargs) -> HttpRequest:
@@ -372,7 +356,11 @@ def prepare_httpsuccess_head204_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpsuccess_put204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -391,9 +379,9 @@ def prepare_httpsuccess_put204_request(body: Optional[bool] = True, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_patch204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -412,9 +400,9 @@ def prepare_httpsuccess_patch204_request(body: Optional[bool] = True, **kwargs) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_post204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -433,9 +421,9 @@ def prepare_httpsuccess_post204_request(body: Optional[bool] = True, **kwargs) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_delete204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -454,9 +442,9 @@ def prepare_httpsuccess_delete204_request(body: Optional[bool] = True, **kwargs)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpsuccess_head404_request(**kwargs) -> HttpRequest:
@@ -472,7 +460,11 @@ def prepare_httpsuccess_head404_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_head300_request(**kwargs) -> HttpRequest:
@@ -488,7 +480,11 @@ def prepare_httpredirects_head300_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_get300_request(**kwargs) -> HttpRequest:
@@ -504,7 +500,11 @@ def prepare_httpredirects_get300_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_head301_request(**kwargs) -> HttpRequest:
@@ -520,7 +520,11 @@ def prepare_httpredirects_head301_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_get301_request(**kwargs) -> HttpRequest:
@@ -536,7 +540,11 @@ def prepare_httpredirects_get301_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_put301_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -555,9 +563,9 @@ def prepare_httpredirects_put301_request(body: Optional[bool] = True, **kwargs) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpredirects_head302_request(**kwargs) -> HttpRequest:
@@ -573,7 +581,11 @@ def prepare_httpredirects_head302_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_get302_request(**kwargs) -> HttpRequest:
@@ -589,7 +601,11 @@ def prepare_httpredirects_get302_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_patch302_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -608,9 +624,9 @@ def prepare_httpredirects_patch302_request(body: Optional[bool] = True, **kwargs
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpredirects_post303_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -629,9 +645,9 @@ def prepare_httpredirects_post303_request(body: Optional[bool] = True, **kwargs)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpredirects_head307_request(**kwargs) -> HttpRequest:
@@ -647,7 +663,11 @@ def prepare_httpredirects_head307_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_get307_request(**kwargs) -> HttpRequest:
@@ -663,7 +683,11 @@ def prepare_httpredirects_get307_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_options307_request(**kwargs) -> HttpRequest:
@@ -679,7 +703,11 @@ def prepare_httpredirects_options307_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("OPTIONS", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpredirects_put307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -698,9 +726,9 @@ def prepare_httpredirects_put307_request(body: Optional[bool] = True, **kwargs) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpredirects_patch307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -719,9 +747,9 @@ def prepare_httpredirects_patch307_request(body: Optional[bool] = True, **kwargs
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpredirects_post307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -740,9 +768,9 @@ def prepare_httpredirects_post307_request(body: Optional[bool] = True, **kwargs)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpredirects_delete307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -761,9 +789,9 @@ def prepare_httpredirects_delete307_request(body: Optional[bool] = True, **kwarg
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_head400_request(**kwargs) -> HttpRequest:
@@ -779,7 +807,11 @@ def prepare_httpclientfailure_head400_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_get400_request(**kwargs) -> HttpRequest:
@@ -795,7 +827,11 @@ def prepare_httpclientfailure_get400_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_options400_request(**kwargs) -> HttpRequest:
@@ -811,7 +847,11 @@ def prepare_httpclientfailure_options400_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("OPTIONS", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_put400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -830,9 +870,9 @@ def prepare_httpclientfailure_put400_request(body: Optional[bool] = True, **kwar
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_patch400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -851,9 +891,9 @@ def prepare_httpclientfailure_patch400_request(body: Optional[bool] = True, **kw
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_post400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -872,9 +912,9 @@ def prepare_httpclientfailure_post400_request(body: Optional[bool] = True, **kwa
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_delete400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -893,9 +933,9 @@ def prepare_httpclientfailure_delete400_request(body: Optional[bool] = True, **k
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_head401_request(**kwargs) -> HttpRequest:
@@ -911,7 +951,11 @@ def prepare_httpclientfailure_head401_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_get402_request(**kwargs) -> HttpRequest:
@@ -927,7 +971,11 @@ def prepare_httpclientfailure_get402_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_options403_request(**kwargs) -> HttpRequest:
@@ -943,7 +991,11 @@ def prepare_httpclientfailure_options403_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("OPTIONS", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_get403_request(**kwargs) -> HttpRequest:
@@ -959,7 +1011,11 @@ def prepare_httpclientfailure_get403_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_put404_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -978,9 +1034,9 @@ def prepare_httpclientfailure_put404_request(body: Optional[bool] = True, **kwar
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_patch405_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -999,9 +1055,9 @@ def prepare_httpclientfailure_patch405_request(body: Optional[bool] = True, **kw
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_post406_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1020,9 +1076,9 @@ def prepare_httpclientfailure_post406_request(body: Optional[bool] = True, **kwa
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_delete407_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1041,9 +1097,9 @@ def prepare_httpclientfailure_delete407_request(body: Optional[bool] = True, **k
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_put409_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1062,9 +1118,9 @@ def prepare_httpclientfailure_put409_request(body: Optional[bool] = True, **kwar
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_head410_request(**kwargs) -> HttpRequest:
@@ -1080,7 +1136,11 @@ def prepare_httpclientfailure_head410_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_get411_request(**kwargs) -> HttpRequest:
@@ -1096,7 +1156,11 @@ def prepare_httpclientfailure_get411_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_options412_request(**kwargs) -> HttpRequest:
@@ -1112,7 +1176,11 @@ def prepare_httpclientfailure_options412_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("OPTIONS", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_get412_request(**kwargs) -> HttpRequest:
@@ -1128,7 +1196,11 @@ def prepare_httpclientfailure_get412_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_put413_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1147,9 +1219,9 @@ def prepare_httpclientfailure_put413_request(body: Optional[bool] = True, **kwar
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_patch414_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1168,9 +1240,9 @@ def prepare_httpclientfailure_patch414_request(body: Optional[bool] = True, **kw
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_post415_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1189,9 +1261,9 @@ def prepare_httpclientfailure_post415_request(body: Optional[bool] = True, **kwa
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_get416_request(**kwargs) -> HttpRequest:
@@ -1207,7 +1279,11 @@ def prepare_httpclientfailure_get416_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpclientfailure_delete417_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1226,9 +1302,9 @@ def prepare_httpclientfailure_delete417_request(body: Optional[bool] = True, **k
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpclientfailure_head429_request(**kwargs) -> HttpRequest:
@@ -1244,7 +1320,11 @@ def prepare_httpclientfailure_head429_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpserverfailure_head501_request(**kwargs) -> HttpRequest:
@@ -1260,7 +1340,11 @@ def prepare_httpserverfailure_head501_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpserverfailure_get501_request(**kwargs) -> HttpRequest:
@@ -1276,7 +1360,11 @@ def prepare_httpserverfailure_get501_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpserverfailure_post505_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1295,9 +1383,9 @@ def prepare_httpserverfailure_post505_request(body: Optional[bool] = True, **kwa
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpserverfailure_delete505_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1316,9 +1404,9 @@ def prepare_httpserverfailure_delete505_request(body: Optional[bool] = True, **k
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpretry_head408_request(**kwargs) -> HttpRequest:
@@ -1334,7 +1422,11 @@ def prepare_httpretry_head408_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("HEAD", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpretry_put500_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1353,9 +1445,9 @@ def prepare_httpretry_put500_request(body: Optional[bool] = True, **kwargs) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpretry_patch500_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1374,9 +1466,9 @@ def prepare_httpretry_patch500_request(body: Optional[bool] = True, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpretry_get502_request(**kwargs) -> HttpRequest:
@@ -1392,7 +1484,11 @@ def prepare_httpretry_get502_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpretry_options502_request(**kwargs) -> HttpRequest:
@@ -1408,7 +1504,11 @@ def prepare_httpretry_options502_request(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("OPTIONS", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="OPTIONS",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_httpretry_post503_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1427,9 +1527,9 @@ def prepare_httpretry_post503_request(body: Optional[bool] = True, **kwargs) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpretry_delete503_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1448,9 +1548,9 @@ def prepare_httpretry_delete503_request(body: Optional[bool] = True, **kwargs) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("DELETE", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpretry_put504_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1469,9 +1569,9 @@ def prepare_httpretry_put504_request(body: Optional[bool] = True, **kwargs) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_httpretry_patch504_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
@@ -1490,9 +1590,9 @@ def prepare_httpretry_patch504_request(body: Optional[bool] = True, **kwargs) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error200_valid_request(**kwargs) -> HttpRequest:
@@ -1508,7 +1608,11 @@ def prepare_multipleresponses_get200_model204_no_model_default_error200_valid_re
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error204_valid_request(**kwargs) -> HttpRequest:
@@ -1524,7 +1628,11 @@ def prepare_multipleresponses_get200_model204_no_model_default_error204_valid_re
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_request(**kwargs) -> HttpRequest:
@@ -1540,7 +1648,11 @@ def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid_
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error202_none_request(**kwargs) -> HttpRequest:
@@ -1556,7 +1668,11 @@ def prepare_multipleresponses_get200_model204_no_model_default_error202_none_req
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error400_valid_request(**kwargs) -> HttpRequest:
@@ -1572,7 +1688,11 @@ def prepare_multipleresponses_get200_model204_no_model_default_error400_valid_re
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model201_model_default_error200_valid_request(**kwargs) -> HttpRequest:
@@ -1588,7 +1708,11 @@ def prepare_multipleresponses_get200_model201_model_default_error200_valid_reque
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model201_model_default_error201_valid_request(**kwargs) -> HttpRequest:
@@ -1604,7 +1728,11 @@ def prepare_multipleresponses_get200_model201_model_default_error201_valid_reque
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model201_model_default_error400_valid_request(**kwargs) -> HttpRequest:
@@ -1620,7 +1748,11 @@ def prepare_multipleresponses_get200_model201_model_default_error400_valid_reque
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
@@ -1638,7 +1770,11 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
@@ -1656,7 +1792,11 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
@@ -1674,7 +1814,11 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
@@ -1692,7 +1836,11 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_error202_none_request(**kwargs) -> HttpRequest:
@@ -1708,7 +1856,11 @@ def prepare_multipleresponses_get202_none204_none_default_error202_none_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_error204_none_request(**kwargs) -> HttpRequest:
@@ -1724,7 +1876,11 @@ def prepare_multipleresponses_get202_none204_none_default_error204_none_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_error400_valid_request(**kwargs) -> HttpRequest:
@@ -1740,7 +1896,11 @@ def prepare_multipleresponses_get202_none204_none_default_error400_valid_request
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_none202_invalid_request(**kwargs) -> HttpRequest:
@@ -1754,7 +1914,10 @@ def prepare_multipleresponses_get202_none204_none_default_none202_invalid_reques
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_none204_none_request(**kwargs) -> HttpRequest:
@@ -1768,7 +1931,10 @@ def prepare_multipleresponses_get202_none204_none_default_none204_none_request(*
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_none400_none_request(**kwargs) -> HttpRequest:
@@ -1782,7 +1948,10 @@ def prepare_multipleresponses_get202_none204_none_default_none400_none_request(*
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get202_none204_none_default_none400_invalid_request(**kwargs) -> HttpRequest:
@@ -1796,7 +1965,10 @@ def prepare_multipleresponses_get202_none204_none_default_none400_invalid_reques
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get_default_model_a200_valid_request(**kwargs) -> HttpRequest:
@@ -1812,7 +1984,11 @@ def prepare_multipleresponses_get_default_model_a200_valid_request(**kwargs) -> 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get_default_model_a200_none_request(**kwargs) -> HttpRequest:
@@ -1828,7 +2004,11 @@ def prepare_multipleresponses_get_default_model_a200_none_request(**kwargs) -> H
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get_default_model_a400_valid_request(**kwargs) -> HttpRequest:
@@ -1844,7 +2024,11 @@ def prepare_multipleresponses_get_default_model_a400_valid_request(**kwargs) -> 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get_default_model_a400_none_request(**kwargs) -> HttpRequest:
@@ -1860,7 +2044,11 @@ def prepare_multipleresponses_get_default_model_a400_none_request(**kwargs) -> H
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get_default_none200_invalid_request(**kwargs) -> HttpRequest:
@@ -1874,7 +2062,10 @@ def prepare_multipleresponses_get_default_none200_invalid_request(**kwargs) -> H
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get_default_none200_none_request(**kwargs) -> HttpRequest:
@@ -1888,7 +2079,10 @@ def prepare_multipleresponses_get_default_none200_none_request(**kwargs) -> Http
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get_default_none400_invalid_request(**kwargs) -> HttpRequest:
@@ -1902,7 +2096,10 @@ def prepare_multipleresponses_get_default_none400_invalid_request(**kwargs) -> H
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get_default_none400_none_request(**kwargs) -> HttpRequest:
@@ -1916,7 +2113,10 @@ def prepare_multipleresponses_get_default_none400_none_request(**kwargs) -> Http
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_multipleresponses_get200_model_a200_none_request(**kwargs) -> HttpRequest:
@@ -1932,7 +2132,11 @@ def prepare_multipleresponses_get200_model_a200_none_request(**kwargs) -> HttpRe
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a200_valid_request(**kwargs) -> HttpRequest:
@@ -1948,7 +2152,11 @@ def prepare_multipleresponses_get200_model_a200_valid_request(**kwargs) -> HttpR
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a200_invalid_request(**kwargs) -> HttpRequest:
@@ -1964,7 +2172,11 @@ def prepare_multipleresponses_get200_model_a200_invalid_request(**kwargs) -> Htt
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a400_none_request(**kwargs) -> HttpRequest:
@@ -1980,7 +2192,11 @@ def prepare_multipleresponses_get200_model_a400_none_request(**kwargs) -> HttpRe
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a400_valid_request(**kwargs) -> HttpRequest:
@@ -1996,7 +2212,11 @@ def prepare_multipleresponses_get200_model_a400_valid_request(**kwargs) -> HttpR
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a400_invalid_request(**kwargs) -> HttpRequest:
@@ -2012,7 +2232,11 @@ def prepare_multipleresponses_get200_model_a400_invalid_request(**kwargs) -> Htt
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_multipleresponses_get200_model_a202_valid_request(**kwargs) -> HttpRequest:
@@ -2028,4 +2252,8 @@ def prepare_multipleresponses_get200_model_a202_valid_request(**kwargs) -> HttpR
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )

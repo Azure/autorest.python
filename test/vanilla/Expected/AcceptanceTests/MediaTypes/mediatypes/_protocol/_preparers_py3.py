@@ -7,50 +7,10 @@
 # --------------------------------------------------------------------------
 from typing import IO, Optional, Union
 
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
-
-import xml.etree.ElementTree as ET
-
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
 
 
 def prepare_analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
@@ -70,11 +30,11 @@ def prepare_analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]]
 
     if header_parameters["Content-Type"].split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["stream_content"] = body
+        body_content_kwargs["content"] = body
 
     elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
+        body_content_kwargs["json"] = body
     else:
         raise ValueError(
             "The content_type '{}' is not one of the allowed values: "
@@ -83,7 +43,7 @@ def prepare_analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]]
             )
         )
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_content_type_with_encoding_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -104,4 +64,4 @@ def prepare_content_type_with_encoding_request(body: Optional[str] = None, **kwa
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)

@@ -170,11 +170,12 @@ if {{ preparer.parameters.body[0].serialized_name }} is not None:
 {% macro set_body_content_kwarg(preparer, schema_request) %}
 body_content_kwargs = {}  # type: Dict[str, Any]
 {% if preparer.multipart %}
-body_content_kwargs['form_content'] = {{ preparer.parameters.body[0].serialized_name }}
+body_content_kwargs['files'] = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.is_stream_request %}
-body_content_kwargs['stream_content'] = {{ preparer.parameters.body[0].serialized_name }}
+body_content_kwargs['content'] = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-body_content_kwargs['content'] = body{% endif %}{% endmacro %}
+{% set body_kwarg = "json" if "application/json" in schema_request.pre_semicolon_media_types else "content" %}
+body_content_kwargs['{{ body_kwarg }}'] = body{% endif %}{% endmacro %}
 
 {# write body parameters #}
 {% macro body_parameters(preparer) %}
@@ -195,8 +196,19 @@ else:
 
 {# create HTTPRequest #}
 {% macro create_http_request(preparer) %}
-{% set body_content_kwargs_signature = ", **body_content_kwargs" if preparer.parameters.has_body else "" %}
-return _request("{{ preparer.method }}", url, query_parameters, header_parameters{{ body_content_kwargs_signature }})
+return HttpRequest(
+    method="{{ preparer.method }}",
+    url=url,
+    {% if preparer.parameters.query %}
+    params=query_parameters,
+    {% endif %}
+    {% if preparer.parameters.headers %}
+    headers=header_parameters,
+    {% endif %}
+    {% if preparer.parameters.has_body %}
+    **body_content_kwargs
+    {% endif %}
+)
 {% endmacro %}
 
 

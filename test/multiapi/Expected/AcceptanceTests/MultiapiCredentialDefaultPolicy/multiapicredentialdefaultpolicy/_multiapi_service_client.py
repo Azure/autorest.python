@@ -24,7 +24,8 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import AzureKeyCredential
-    from azure.core.pipeline.transport import HttpRequest, HttpResponse
+    from azure.core.pipeline.transport import HttpResponse
+    from azure.core.protocol import HttpRequest
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):

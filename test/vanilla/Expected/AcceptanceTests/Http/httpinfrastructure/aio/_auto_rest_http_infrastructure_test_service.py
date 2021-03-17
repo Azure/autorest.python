@@ -9,7 +9,8 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.protocol import HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
@@ -72,7 +73,7 @@ class AutoRestHttpInfrastructureTestService(object):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :type http_request: ~azure.core.protocol.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse

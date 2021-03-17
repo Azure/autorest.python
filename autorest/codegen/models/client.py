@@ -36,7 +36,7 @@ class Client:
                 "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         file_import.add_from_import(
-            "azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
+            "azure.core.protocol", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
         any_optional_gp = any(not gp.required for gp in code_model.global_parameters)
 
