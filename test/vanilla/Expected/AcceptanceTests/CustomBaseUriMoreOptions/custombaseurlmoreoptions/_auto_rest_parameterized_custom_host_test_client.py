@@ -15,8 +15,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
-    from azure.core.pipeline.transport import HttpResponse
-    from azure.core.protocol import HttpRequest
+    from azure.core.protocol import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 from .operations import PathsOperations
@@ -60,7 +59,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         :type http_request: ~azure.core.protocol.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        :rtype: ~azure.core.protocol.HttpResponse
         """
         path_format_arguments = {
             "dnsSuffix": self._serialize.url(
@@ -70,7 +69,11 @@ class AutoRestParameterizedCustomHostTestClient(object):
         http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
         stream = kwargs.pop("stream", True)
         pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+        return HttpResponse(
+            status_code=pipeline_response.http_response.status_code,
+            request=http_request,
+            _internal_response=pipeline_response.http_response,
+        )
 
     def close(self):
         # type: () -> None

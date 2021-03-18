@@ -83,7 +83,7 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
-    {% set http_response = "AsyncHttpResponse" if async_mode else "HttpResponse" %}
+    {% set http_response = keywords.async_class + "HttpResponse" %}
     {{ keywords.def }} _send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
         {% if not async_mode %}
         # type: (HttpRequest, Any) -> {{ http_response }}
@@ -94,7 +94,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         :type http_request: ~azure.core.protocol.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.{{ http_response }}
+        :rtype: ~azure.core.protocol.{{ http_response }}
         """
         {% if code_model.global_parameters.path %}
         {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
@@ -104,7 +104,11 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% endif %}
         stream = kwargs.pop("stream", True)
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+        return {{ keywords.async_class }}HttpResponse(
+            status_code=pipeline_response.http_response.status_code,
+            request=http_request,
+            _internal_response=pipeline_response.http_response
+        )
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

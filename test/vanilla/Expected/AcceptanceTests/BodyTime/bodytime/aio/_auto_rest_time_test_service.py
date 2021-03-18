@@ -9,8 +9,7 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline.transport import AsyncHttpResponse
-from azure.core.protocol import HttpRequest
+from azure.core.protocol import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestTimeTestServiceConfiguration
@@ -46,12 +45,16 @@ class AutoRestTimeTestService(object):
         :type http_request: ~azure.core.protocol.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
+        :rtype: ~azure.core.protocol.AsyncHttpResponse
         """
         http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)
         pipeline_response = await self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+        return AsyncHttpResponse(
+            status_code=pipeline_response.http_response.status_code,
+            request=http_request,
+            _internal_response=pipeline_response.http_response,
+        )
 
     async def close(self) -> None:
         await self._client.close()

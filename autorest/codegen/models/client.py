@@ -29,11 +29,11 @@ class Client:
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if async_mode:
             file_import.add_from_import(
-                "azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
+                "azure.core.protocol", "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         else:
             file_import.add_from_import(
-                "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
+                "azure.core.protocol", "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         file_import.add_from_import(
             "azure.core.protocol", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
