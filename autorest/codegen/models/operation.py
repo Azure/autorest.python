@@ -45,10 +45,13 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
             response_media_types[xml_media_types[0]] = None
     return response_media_types
 
+def _get_m4_header_params_by_name(name: str, parameters: List[Parameter]) -> List[Parameter]:
+    return [p for p in parameters if p.serialized_name == name]
+
 def _remove_multiple_m4_header_parameters(parameters: List[Parameter]) -> List[Parameter]:
     m4_header_params_in_schema = {
-        k: [p for p in parameters if p.serialized_name == k]
-        for k in _M4_HEADER_PARAMETERS
+        k: _get_m4_header_params_by_name(k, parameters)
+        for k in _M4_HEADER_PARAMETERS if _get_m4_header_params_by_name(k, parameters)
     }
     remaining_params = [p for p in parameters if p.serialized_name not in _M4_HEADER_PARAMETERS]
     json_m4_header_params = {

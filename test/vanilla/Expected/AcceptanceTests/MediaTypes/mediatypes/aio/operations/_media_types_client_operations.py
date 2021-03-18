@@ -95,6 +95,71 @@ class MediaTypesClientOperationsMixin:
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
+    async def analyze_body_no_accept_header(
+        self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs
+    ) -> None:
+        """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
+        type.
+
+        :param input: Input parameter.
+        :type input: IO or ~mediatypes.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.analyze_body_no_accept_header.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if header_parameters["Content-Type"].split(";")[0] in [
+            "application/pdf",
+            "image/jpeg",
+            "image/png",
+            "image/tiff",
+        ]:
+            body_content_kwargs["stream_content"] = input
+        elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
+            if input is not None:
+                body_content = self._serialize.body(input, "SourcePath")
+            else:
+                body_content = None
+            body_content_kwargs["content"] = body_content
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(
+                    header_parameters["Content-Type"]
+                )
+            )
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    analyze_body_no_accept_header.metadata = {"url": "/mediatypes/analyzeNoAccept"}  # type: ignore
+
+    @distributed_trace_async
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs) -> str:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
