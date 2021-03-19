@@ -26,7 +26,7 @@
 import io
 import json
 import pytest
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.rest import HttpRequest
 
 from os.path import dirname, pardir, join, realpath
 import pytest

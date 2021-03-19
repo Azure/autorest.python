@@ -10,11 +10,12 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -44,7 +45,7 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
@@ -65,7 +66,7 @@ class OperationGroupTwoOperations:
 
         content_type = kwargs.get("content_type", "application/json")
         request = prepare_operationgrouptwo_test_four(
-            body=input,
+            input=input,
             template_url=self.test_four.metadata['url'],
             **kwargs
         )
@@ -87,7 +88,7 @@ class OperationGroupTwoOperations:
 
     async def test_five(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 

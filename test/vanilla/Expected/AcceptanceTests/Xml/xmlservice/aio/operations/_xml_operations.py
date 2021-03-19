@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class XmlOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_complex_type_ref_no_meta(self, **kwargs) -> "_models.RootWithRefAndNoMeta":
+    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> "_models.RootWithRefAndNoMeta":
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +85,7 @@ class XmlOperations:
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_no_meta(self, model: "_models.RootWithRefAndNoMeta", **kwargs) -> None:
+    async def put_complex_type_ref_no_meta(self, model: "_models.RootWithRefAndNoMeta", **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
@@ -101,7 +102,7 @@ class XmlOperations:
         model = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = prepare_xml_put_complex_type_ref_no_meta(
-            body=model, template_url=self.put_complex_type_ref_no_meta.metadata["url"], **kwargs
+            model=model, template_url=self.put_complex_type_ref_no_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -119,7 +120,7 @@ class XmlOperations:
     put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_type_ref_with_meta(self, **kwargs) -> "_models.RootWithRefAndMeta":
+    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> "_models.RootWithRefAndMeta":
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -154,7 +155,7 @@ class XmlOperations:
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_with_meta(self, model: "_models.RootWithRefAndMeta", **kwargs) -> None:
+    async def put_complex_type_ref_with_meta(self, model: "_models.RootWithRefAndMeta", **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
@@ -171,7 +172,7 @@ class XmlOperations:
         model = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = prepare_xml_put_complex_type_ref_with_meta(
-            body=model, template_url=self.put_complex_type_ref_with_meta.metadata["url"], **kwargs
+            model=model, template_url=self.put_complex_type_ref_with_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -189,7 +190,7 @@ class XmlOperations:
     put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def get_simple(self, **kwargs) -> "_models.Slideshow":
+    async def get_simple(self, **kwargs: Any) -> "_models.Slideshow":
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -223,7 +224,7 @@ class XmlOperations:
     get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
-    async def put_simple(self, slideshow: "_models.Slideshow", **kwargs) -> None:
+    async def put_simple(self, slideshow: "_models.Slideshow", **kwargs: Any) -> None:
         """Put a simple XML document.
 
         :param slideshow:
@@ -239,7 +240,7 @@ class XmlOperations:
 
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = prepare_xml_put_simple(body=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
+        request = prepare_xml_put_simple(slideshow=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -257,7 +258,7 @@ class XmlOperations:
     put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
-    async def get_wrapped_lists(self, **kwargs) -> "_models.AppleBarrel":
+    async def get_wrapped_lists(self, **kwargs: Any) -> "_models.AppleBarrel":
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -290,7 +291,7 @@ class XmlOperations:
     get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def put_wrapped_lists(self, wrapped_lists: "_models.AppleBarrel", **kwargs) -> None:
+    async def put_wrapped_lists(self, wrapped_lists: "_models.AppleBarrel", **kwargs: Any) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
@@ -307,7 +308,7 @@ class XmlOperations:
         wrapped_lists = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = prepare_xml_put_wrapped_lists(
-            body=wrapped_lists, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
+            wrapped_lists=wrapped_lists, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -326,7 +327,7 @@ class XmlOperations:
     put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def get_headers(self, **kwargs) -> None:
+    async def get_headers(self, **kwargs: Any) -> None:
         """Get strongly-typed response headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -358,7 +359,7 @@ class XmlOperations:
     get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_list(self, **kwargs) -> "_models.Slideshow":
+    async def get_empty_list(self, **kwargs: Any) -> "_models.Slideshow":
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -391,7 +392,7 @@ class XmlOperations:
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_list(self, slideshow: "_models.Slideshow", **kwargs) -> None:
+    async def put_empty_list(self, slideshow: "_models.Slideshow", **kwargs: Any) -> None:
         """Puts an empty list.
 
         :param slideshow:
@@ -407,7 +408,9 @@ class XmlOperations:
 
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = prepare_xml_put_empty_list(body=slideshow, template_url=self.put_empty_list.metadata["url"], **kwargs)
+        request = prepare_xml_put_empty_list(
+            slideshow=slideshow, template_url=self.put_empty_list.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -424,7 +427,7 @@ class XmlOperations:
     put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_wrapped_lists(self, **kwargs) -> "_models.AppleBarrel":
+    async def get_empty_wrapped_lists(self, **kwargs: Any) -> "_models.AppleBarrel":
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -459,7 +462,7 @@ class XmlOperations:
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_wrapped_lists(self, apple_barrel: "_models.AppleBarrel", **kwargs) -> None:
+    async def put_empty_wrapped_lists(self, apple_barrel: "_models.AppleBarrel", **kwargs: Any) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
@@ -476,7 +479,7 @@ class XmlOperations:
         apple_barrel = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = prepare_xml_put_empty_wrapped_lists(
-            body=apple_barrel, template_url=self.put_empty_wrapped_lists.metadata["url"], **kwargs
+            apple_barrel=apple_barrel, template_url=self.put_empty_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -494,7 +497,7 @@ class XmlOperations:
     put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def get_root_list(self, **kwargs) -> List["_models.Banana"]:
+    async def get_root_list(self, **kwargs: Any) -> List["_models.Banana"]:
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -527,7 +530,7 @@ class XmlOperations:
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list(self, bananas: List["_models.Banana"], **kwargs) -> None:
+    async def put_root_list(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
         """Puts a list as the root element.
 
         :param bananas:
@@ -544,7 +547,7 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = prepare_xml_put_root_list(body=bananas, template_url=self.put_root_list.metadata["url"], **kwargs)
+        request = prepare_xml_put_root_list(bananas=bananas, template_url=self.put_root_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -561,7 +564,7 @@ class XmlOperations:
     put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def get_root_list_single_item(self, **kwargs) -> List["_models.Banana"]:
+    async def get_root_list_single_item(self, **kwargs: Any) -> List["_models.Banana"]:
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -596,7 +599,7 @@ class XmlOperations:
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list_single_item(self, bananas: List["_models.Banana"], **kwargs) -> None:
+    async def put_root_list_single_item(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
         """Puts a list with a single item.
 
         :param bananas:
@@ -614,7 +617,7 @@ class XmlOperations:
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = prepare_xml_put_root_list_single_item(
-            body=bananas, template_url=self.put_root_list_single_item.metadata["url"], **kwargs
+            bananas=bananas, template_url=self.put_root_list_single_item.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -632,7 +635,7 @@ class XmlOperations:
     put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_root_list(self, **kwargs) -> List["_models.Banana"]:
+    async def get_empty_root_list(self, **kwargs: Any) -> List["_models.Banana"]:
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -665,7 +668,7 @@ class XmlOperations:
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_root_list(self, bananas: List["_models.Banana"], **kwargs) -> None:
+    async def put_empty_root_list(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
@@ -683,7 +686,7 @@ class XmlOperations:
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = prepare_xml_put_empty_root_list(
-            body=bananas, template_url=self.put_empty_root_list.metadata["url"], **kwargs
+            bananas=bananas, template_url=self.put_empty_root_list.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -701,7 +704,7 @@ class XmlOperations:
     put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_child_element(self, **kwargs) -> "_models.Banana":
+    async def get_empty_child_element(self, **kwargs: Any) -> "_models.Banana":
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -736,7 +739,7 @@ class XmlOperations:
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_child_element(self, banana: "_models.Banana", **kwargs) -> None:
+    async def put_empty_child_element(self, banana: "_models.Banana", **kwargs: Any) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
@@ -753,7 +756,7 @@ class XmlOperations:
         banana = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = prepare_xml_put_empty_child_element(
-            body=banana, template_url=self.put_empty_child_element.metadata["url"], **kwargs
+            banana=banana, template_url=self.put_empty_child_element.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -771,7 +774,7 @@ class XmlOperations:
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def list_containers(self, **kwargs) -> "_models.ListContainersResponse":
+    async def list_containers(self, **kwargs: Any) -> "_models.ListContainersResponse":
         """Lists containers in a storage account.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -804,7 +807,7 @@ class XmlOperations:
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_service_properties(self, **kwargs) -> "_models.StorageServiceProperties":
+    async def get_service_properties(self, **kwargs: Any) -> "_models.StorageServiceProperties":
         """Gets storage service properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -837,7 +840,7 @@ class XmlOperations:
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(self, properties: "_models.StorageServiceProperties", **kwargs) -> None:
+    async def put_service_properties(self, properties: "_models.StorageServiceProperties", **kwargs: Any) -> None:
         """Puts storage service properties.
 
         :param properties:
@@ -854,7 +857,7 @@ class XmlOperations:
         properties = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = prepare_xml_put_service_properties(
-            body=properties, template_url=self.put_service_properties.metadata["url"], **kwargs
+            properties=properties, template_url=self.put_service_properties.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -872,7 +875,7 @@ class XmlOperations:
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_acls(self, **kwargs) -> List["_models.SignedIdentifier"]:
+    async def get_acls(self, **kwargs: Any) -> List["_models.SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -905,7 +908,7 @@ class XmlOperations:
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(self, properties: List["_models.SignedIdentifier"], **kwargs) -> None:
+    async def put_acls(self, properties: List["_models.SignedIdentifier"], **kwargs: Any) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -924,7 +927,7 @@ class XmlOperations:
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
 
-        request = prepare_xml_put_acls(body=properties, template_url=self.put_acls.metadata["url"], **kwargs)
+        request = prepare_xml_put_acls(properties=properties, template_url=self.put_acls.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -941,7 +944,7 @@ class XmlOperations:
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def list_blobs(self, **kwargs) -> "_models.ListBlobsResponse":
+    async def list_blobs(self, **kwargs: Any) -> "_models.ListBlobsResponse":
         """Lists blobs in a storage container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -974,7 +977,7 @@ class XmlOperations:
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def json_input(self, id: Optional[int] = None, **kwargs) -> None:
+    async def json_input(self, id: Optional[int] = None, **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -992,7 +995,7 @@ class XmlOperations:
         _properties = _models.JSONInput(id=id)
         _properties = self._serialize.body(_properties, "JSONInput")
 
-        request = prepare_xml_json_input(body=_properties, template_url=self.json_input.metadata["url"], **kwargs)
+        request = prepare_xml_json_input(properties=_properties, template_url=self.json_input.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1009,7 +1012,7 @@ class XmlOperations:
     json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
     @distributed_trace_async
-    async def json_output(self, **kwargs) -> "_models.JSONOutput":
+    async def json_output(self, **kwargs: Any) -> "_models.JSONOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1042,7 +1045,7 @@ class XmlOperations:
     json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
     @distributed_trace_async
-    async def get_xms_text(self, **kwargs) -> "_models.ObjectWithXMsTextProperty":
+    async def get_xms_text(self, **kwargs: Any) -> "_models.ObjectWithXMsTextProperty":
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
@@ -1076,7 +1079,7 @@ class XmlOperations:
     get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
     @distributed_trace_async
-    async def get_bytes(self, **kwargs) -> "_models.ModelWithByteProperty":
+    async def get_bytes(self, **kwargs: Any) -> "_models.ModelWithByteProperty":
         """Get an XML document with binary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1110,7 +1113,7 @@ class XmlOperations:
     get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
-    async def put_binary(self, bytes: Optional[bytearray] = None, **kwargs) -> None:
+    async def put_binary(self, bytes: Optional[bytearray] = None, **kwargs: Any) -> None:
         """Put an XML document with binary property.
 
         :param bytes:
@@ -1127,7 +1130,7 @@ class XmlOperations:
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
         _slideshow = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
-        request = prepare_xml_put_binary(body=_slideshow, template_url=self.put_binary.metadata["url"], **kwargs)
+        request = prepare_xml_put_binary(slideshow=_slideshow, template_url=self.put_binary.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1145,7 +1148,7 @@ class XmlOperations:
     put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
-    async def get_uri(self, **kwargs) -> "_models.ModelWithUrlProperty":
+    async def get_uri(self, **kwargs: Any) -> "_models.ModelWithUrlProperty":
         """Get an XML document with uri property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1179,7 +1182,7 @@ class XmlOperations:
     get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace_async
-    async def put_uri(self, url: Optional[str] = None, **kwargs) -> None:
+    async def put_uri(self, url: Optional[str] = None, **kwargs: Any) -> None:
         """Put an XML document with uri property.
 
         :param url:
@@ -1196,7 +1199,7 @@ class XmlOperations:
         _model = _models.ModelWithUrlProperty(url=url)
         _model = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
-        request = prepare_xml_put_uri(body=_model, template_url=self.put_uri.metadata["url"], **kwargs)
+        request = prepare_xml_put_uri(model=_model, template_url=self.put_uri.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

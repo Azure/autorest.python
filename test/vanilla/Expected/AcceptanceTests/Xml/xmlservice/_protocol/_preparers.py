@@ -7,54 +7,14 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import List, Optional
+    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
-
-import xml.etree.ElementTree as ET
-
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
 
 
 def prepare_xml_get_complex_type_ref_no_meta(
@@ -73,12 +33,16 @@ def prepare_xml_get_complex_type_ref_no_meta(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_complex_type_ref_no_meta(
-    body,  # type: "_models.RootWithRefAndNoMeta"
-    **kwargs  # type: Any
+    model,  # type: "_models.RootWithRefAndNoMeta"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -94,9 +58,9 @@ def prepare_xml_put_complex_type_ref_no_meta(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = model
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_complex_type_ref_with_meta(
@@ -115,12 +79,16 @@ def prepare_xml_get_complex_type_ref_with_meta(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_complex_type_ref_with_meta(
-    body,  # type: "_models.RootWithRefAndMeta"
-    **kwargs  # type: Any
+    model,  # type: "_models.RootWithRefAndMeta"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -136,9 +104,9 @@ def prepare_xml_put_complex_type_ref_with_meta(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = model
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_simple(
@@ -157,12 +125,16 @@ def prepare_xml_get_simple(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_simple(
-    body,  # type: "_models.Slideshow"
-    **kwargs  # type: Any
+    slideshow,  # type: "_models.Slideshow"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -180,9 +152,9 @@ def prepare_xml_put_simple(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = slideshow
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_wrapped_lists(
@@ -201,12 +173,16 @@ def prepare_xml_get_wrapped_lists(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_wrapped_lists(
-    body,  # type: "_models.AppleBarrel"
-    **kwargs  # type: Any
+    wrapped_lists,  # type: "_models.AppleBarrel"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -224,9 +200,9 @@ def prepare_xml_put_wrapped_lists(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = wrapped_lists
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_headers(
@@ -243,7 +219,10 @@ def prepare_xml_get_headers(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+    )
 
 
 def prepare_xml_get_empty_list(
@@ -262,12 +241,16 @@ def prepare_xml_get_empty_list(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_empty_list(
-    body,  # type: "_models.Slideshow"
-    **kwargs  # type: Any
+    slideshow,  # type: "_models.Slideshow"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -283,9 +266,9 @@ def prepare_xml_put_empty_list(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = slideshow
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_empty_wrapped_lists(
@@ -304,12 +287,16 @@ def prepare_xml_get_empty_wrapped_lists(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_empty_wrapped_lists(
-    body,  # type: "_models.AppleBarrel"
-    **kwargs  # type: Any
+    apple_barrel,  # type: "_models.AppleBarrel"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -325,9 +312,9 @@ def prepare_xml_put_empty_wrapped_lists(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = apple_barrel
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_root_list(
@@ -346,12 +333,16 @@ def prepare_xml_get_root_list(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_root_list(
-    body,  # type: List["_models.Banana"]
-    **kwargs  # type: Any
+    bananas,  # type: List["_models.Banana"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -367,9 +358,9 @@ def prepare_xml_put_root_list(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = bananas
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_root_list_single_item(
@@ -388,12 +379,16 @@ def prepare_xml_get_root_list_single_item(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_root_list_single_item(
-    body,  # type: List["_models.Banana"]
-    **kwargs  # type: Any
+    bananas,  # type: List["_models.Banana"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -409,9 +404,9 @@ def prepare_xml_put_root_list_single_item(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = bananas
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_empty_root_list(
@@ -430,12 +425,16 @@ def prepare_xml_get_empty_root_list(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_empty_root_list(
-    body,  # type: List["_models.Banana"]
-    **kwargs  # type: Any
+    bananas,  # type: List["_models.Banana"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -451,9 +450,9 @@ def prepare_xml_put_empty_root_list(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = bananas
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_empty_child_element(
@@ -472,12 +471,16 @@ def prepare_xml_get_empty_child_element(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_empty_child_element(
-    body,  # type: "_models.Banana"
-    **kwargs  # type: Any
+    banana,  # type: "_models.Banana"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -493,9 +496,9 @@ def prepare_xml_put_empty_child_element(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = banana
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_list_containers(
@@ -516,7 +519,12 @@ def prepare_xml_list_containers(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_get_service_properties(
@@ -539,12 +547,17 @@ def prepare_xml_get_service_properties(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_service_properties(
-    body,  # type: "_models.StorageServiceProperties"
-    **kwargs  # type: Any
+    properties,  # type: "_models.StorageServiceProperties"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     comp = "properties"
@@ -564,9 +577,9 @@ def prepare_xml_put_service_properties(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = properties
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_acls(
@@ -589,12 +602,17 @@ def prepare_xml_get_acls(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_acls(
-    body,  # type: List["_models.SignedIdentifier"]
-    **kwargs  # type: Any
+    properties,  # type: List["_models.SignedIdentifier"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     comp = "acl"
@@ -614,9 +632,9 @@ def prepare_xml_put_acls(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = properties
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_list_blobs(
@@ -639,12 +657,17 @@ def prepare_xml_list_blobs(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_json_input(
-    body,  # type: "_models.JSONInput"
-    **kwargs  # type: Any
+    properties,  # type: "_models.JSONInput"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -660,9 +683,9 @@ def prepare_xml_json_input(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = properties
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_json_output(
@@ -681,7 +704,11 @@ def prepare_xml_json_output(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_get_xms_text(
@@ -700,7 +727,11 @@ def prepare_xml_get_xms_text(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_get_bytes(
@@ -719,12 +750,16 @@ def prepare_xml_get_bytes(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_binary(
-    body,  # type: "_models.ModelWithByteProperty"
-    **kwargs  # type: Any
+    slideshow,  # type: "_models.ModelWithByteProperty"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -742,9 +777,9 @@ def prepare_xml_put_binary(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = slideshow
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_xml_get_uri(
@@ -763,12 +798,16 @@ def prepare_xml_get_uri(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_xml_put_uri(
-    body,  # type: "_models.ModelWithUrlProperty"
-    **kwargs  # type: Any
+    model,  # type: "_models.ModelWithUrlProperty"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -786,6 +825,6 @@ def prepare_xml_put_uri(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = model
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

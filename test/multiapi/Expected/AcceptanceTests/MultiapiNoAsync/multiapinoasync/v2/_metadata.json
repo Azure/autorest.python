@@ -10,8 +10,8 @@
         "azure_arm": true,
         "has_lro_operations": false,
         "client_side_validation": false,
-        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"ARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"]}}}",
-        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"AsyncARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"]}}}"
+        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core.rest\": [\"HttpResponse\"], \"azure.mgmt.core\": [\"ARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}, \"stdlib\": {\"copy\": [\"deepcopy\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.rest\": [\"HttpRequest\"]}}}",
+        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"AsyncARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}, \"stdlib\": {\"copy\": [\"deepcopy\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.rest\": [\"AsyncHttpResponse\", \"HttpRequest\"]}}}"
     },
     "global_parameters": {
         "sync": {
@@ -90,8 +90,8 @@
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"ClientAuthenticationError\", \"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"]}, \"stdlib\": {\"warnings\": [null]}, \"local\": {\".._protocol\": [\"*\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\"]}}}",
-        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"ClientAuthenticationError\", \"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"]}, \"stdlib\": {\"warnings\": [null]}, \"local\": {\"..._protocol\": [\"*\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\"]}}}",
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"ClientAuthenticationError\", \"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.rest\": [\"HttpRequest\"], \"azure.core.pipeline.transport\": [\"HttpResponse\"]}, \"stdlib\": {\"warnings\": [null]}, \"local\": {\".._rest\": [\"*\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"ClientAuthenticationError\", \"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.rest\": [\"HttpRequest\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\"]}, \"stdlib\": {\"warnings\": [null]}, \"local\": {\"..._rest\": [\"*\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\"]}}}",
         "operations": {
             "test_one" : {
                 "sync": {
@@ -100,7 +100,7 @@
                 },
                 "async": {
                     "coroutine": true,
-                    "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e \"_models.ModelTwo\":\n",
+                    "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs: Any\n) -\u003e \"_models.ModelTwo\":\n",
                     "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo, or the result of cls(response)\n:rtype: ~multiapinoasync.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "call": "id, message"
@@ -112,7 +112,7 @@
                 },
                 "async": {
                     "coroutine": true,
-                    "signature": "async def test_different_calls(\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    **kwargs\n) -\u003e None:\n",
+                    "signature": "async def test_different_calls(\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    **kwargs: Any\n) -\u003e None:\n",
                     "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test.\n:type greeting_in_chinese: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "call": "greeting_in_english, greeting_in_chinese"

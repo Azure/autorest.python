@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class ByteOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> bytearray:
+    async def get_null(self, **kwargs: Any) -> bytearray:
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -83,7 +84,7 @@ class ByteOperations:
     get_null.metadata = {"url": "/byte/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs) -> bytearray:
+    async def get_empty(self, **kwargs: Any) -> bytearray:
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -117,7 +118,7 @@ class ByteOperations:
     get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_non_ascii(self, **kwargs) -> bytearray:
+    async def get_non_ascii(self, **kwargs: Any) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -151,7 +152,7 @@ class ByteOperations:
     get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
-    async def put_non_ascii(self, byte_body: bytearray, **kwargs) -> None:
+    async def put_non_ascii(self, byte_body: bytearray, **kwargs: Any) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -167,7 +168,9 @@ class ByteOperations:
 
         byte_body = self._serialize.body(byte_body, "bytearray")
 
-        request = prepare_byte_put_non_ascii(body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs)
+        request = prepare_byte_put_non_ascii(
+            byte_body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -185,7 +188,7 @@ class ByteOperations:
     put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> bytearray:
+    async def get_invalid(self, **kwargs: Any) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

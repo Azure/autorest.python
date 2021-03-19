@@ -10,12 +10,13 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
+from azure.core.rest import HttpRequest
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,7 +43,7 @@ class PollingPagingExampleOperationsMixin(object):
             product = self._serialize.body(product, 'Product')
 
         request = prepare_basic_polling_initial(
-            body=product,
+            product=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
         )

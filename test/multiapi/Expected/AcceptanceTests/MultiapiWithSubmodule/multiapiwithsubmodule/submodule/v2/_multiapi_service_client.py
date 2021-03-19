@@ -6,8 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from copy import deepcopy
 from typing import TYPE_CHECKING
 
+from azure.core.rest import HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -16,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import TokenCredential
-    from azure.core.pipeline.transport import HttpRequest, HttpResponse
+    from azure.core.rest import HttpRequest
 
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin
@@ -34,7 +36,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :vartype operation_group_two: multiapiwithsubmodule.submodule.v2.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(
@@ -64,15 +67,20 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.pipeline.transport.HttpRequest
-        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
+        :type http_request: ~azure.core.rest.HttpRequest
+        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        :rtype: ~azure.core.rest.HttpResponse
         """
-        http_request.url = self._client.format_url(http_request.url)
-        stream = kwargs.pop("stream", True)
-        pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+        request_copy = deepcopy(http_request)
+        request_copy.url = self._client.format_url(request_copy.url)
+        stream_response = kwargs.pop("stream_response", True)
+        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        return HttpResponse(
+            status_code=pipeline_response.http_response.status_code,
+            request=request_copy,
+            _internal_response=pipeline_response.http_response
+        )
 
     def close(self):
         # type: () -> None

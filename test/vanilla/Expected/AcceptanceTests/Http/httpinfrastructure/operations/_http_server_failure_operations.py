@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -142,7 +143,7 @@ class HttpServerFailureOperations(object):
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpserverfailure_post505(
-            body=boolean_value, template_url=self.post505.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.post505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -184,7 +185,7 @@ class HttpServerFailureOperations(object):
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpserverfailure_delete505(
-            body=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

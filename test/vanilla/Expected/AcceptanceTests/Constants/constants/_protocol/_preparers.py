@@ -7,61 +7,23 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+    from typing import Any, Optional, Union
 
 _SERIALIZER = Serializer()
 
-import xml.etree.ElementTree as ET
-
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
-
 
 def prepare_contants_put_no_model_as_string_no_required_two_value_no_default(
-    input=None,  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop(
+        "input", None
+    )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault")
@@ -74,14 +36,20 @@ def prepare_contants_put_no_model_as_string_no_required_two_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_no_required_two_value_default(
-    input="value1",  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop(
+        "input", "value1"
+    )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
@@ -94,14 +62,18 @@ def prepare_contants_put_no_model_as_string_no_required_two_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_no_required_one_value_no_default(
-    input="value1",  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input", "value1")  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueNoDefault")
@@ -114,14 +86,18 @@ def prepare_contants_put_no_model_as_string_no_required_one_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_no_required_one_value_default(
-    input="value1",  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input", "value1")  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
@@ -134,14 +110,18 @@ def prepare_contants_put_no_model_as_string_no_required_one_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_required_two_value_no_default(
-    input,  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
@@ -153,14 +133,18 @@ def prepare_contants_put_no_model_as_string_required_two_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_required_two_value_default(
-    input="value1",  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input", "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueDefault")
@@ -172,7 +156,11 @@ def prepare_contants_put_no_model_as_string_required_two_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_required_one_value_no_default(
@@ -191,7 +179,11 @@ def prepare_contants_put_no_model_as_string_required_one_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_no_model_as_string_required_one_value_default(
@@ -210,14 +202,20 @@ def prepare_contants_put_no_model_as_string_required_one_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_no_required_two_value_no_default(
-    input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop(
+        "input", None
+    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueNoDefault")
@@ -230,14 +228,20 @@ def prepare_contants_put_model_as_string_no_required_two_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_no_required_two_value_default(
-    input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop(
+        "input", "value1"
+    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
@@ -250,14 +254,20 @@ def prepare_contants_put_model_as_string_no_required_two_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_no_required_one_value_no_default(
-    input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop(
+        "input", None
+    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueNoDefault")
@@ -270,14 +280,20 @@ def prepare_contants_put_model_as_string_no_required_one_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_no_required_one_value_default(
-    input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop(
+        "input", "value1"
+    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
@@ -290,14 +306,18 @@ def prepare_contants_put_model_as_string_no_required_one_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_required_two_value_no_default(
-    input,  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
@@ -309,14 +329,18 @@ def prepare_contants_put_model_as_string_required_two_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_required_two_value_default(
-    input="value1",  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueDefault")
@@ -328,14 +352,18 @@ def prepare_contants_put_model_as_string_required_two_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_required_one_value_no_default(
-    input,  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
@@ -347,14 +375,18 @@ def prepare_contants_put_model_as_string_required_one_value_no_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_contants_put_model_as_string_required_one_value_default(
-    input="value1",  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueDefault")
@@ -366,4 +398,8 @@ def prepare_contants_put_model_as_string_required_one_value_default(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+    )

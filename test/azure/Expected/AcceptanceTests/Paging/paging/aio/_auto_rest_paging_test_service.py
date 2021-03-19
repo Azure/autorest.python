@@ -6,10 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
@@ -22,7 +23,8 @@ class AutoRestPagingTestService(object):
 
     :ivar paging: PagingOperations operations
     :vartype paging: paging.aio.operations.PagingOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
@@ -43,15 +45,20 @@ class AutoRestPagingTestService(object):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.pipeline.transport.HttpRequest
-        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
+        :type http_request: ~azure.core.rest.HttpRequest
+        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
+        :rtype: ~azure.core.rest.AsyncHttpResponse
         """
-        http_request.url = self._client.format_url(http_request.url)
-        stream = kwargs.pop("stream", True)
-        pipeline_response = await self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+        request_copy = deepcopy(http_request)
+        request_copy.url = self._client.format_url(request_copy.url)
+        stream_response = kwargs.pop("stream_response", True)
+        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        return AsyncHttpResponse(
+            status_code=pipeline_response.http_response.status_code,
+            request=request_copy,
+            _internal_response=pipeline_response.http_response,
+        )
 
     async def close(self) -> None:
         await self._client.close()

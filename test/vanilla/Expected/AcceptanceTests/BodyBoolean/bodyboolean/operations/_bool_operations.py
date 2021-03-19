@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -108,7 +109,7 @@ class BoolOperations(object):
         bool_body = True
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = prepare_bool_put_true(body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
+        request = prepare_bool_put_true(bool_body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -181,7 +182,7 @@ class BoolOperations(object):
         bool_body = False
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = prepare_bool_put_false(body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
+        request = prepare_bool_put_false(bool_body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

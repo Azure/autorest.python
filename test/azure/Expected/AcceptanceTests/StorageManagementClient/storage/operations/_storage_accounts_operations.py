@@ -17,14 +17,15 @@ from azure.core.exceptions import (
 )
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -82,7 +83,7 @@ class StorageAccountsOperations(object):
 
         request = prepare_storageaccounts_check_name_availability(
             subscription_id=self._config.subscription_id,
-            body=account_name,
+            account_name=account_name,
             template_url=self.check_name_availability.metadata["url"],
             **kwargs
         )
@@ -123,7 +124,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            body=parameters,
+            parameters=parameters,
             template_url=self._creat_initial.metadata["url"],
             **kwargs
         )
@@ -362,7 +363,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            body=parameters,
+            parameters=parameters,
             template_url=self.update.metadata["url"],
             **kwargs
         )
@@ -595,7 +596,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            body=_regenerate_key,
+            regenerate_key=_regenerate_key,
             template_url=self.regenerate_key.metadata["url"],
             **kwargs
         )

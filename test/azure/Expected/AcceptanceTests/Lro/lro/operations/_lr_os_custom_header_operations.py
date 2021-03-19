@@ -16,14 +16,15 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -69,7 +70,7 @@ class LROsCustomHeaderOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lroscustomheader_put_async_retry_succeeded_initial(
-            body=product, template_url=self._put_async_retry_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -178,7 +179,7 @@ class LROsCustomHeaderOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lroscustomheader_put201_creating_succeeded200_initial(
-            body=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -276,7 +277,7 @@ class LROsCustomHeaderOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lroscustomheader_post202_retry200_initial(
-            body=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -366,7 +367,7 @@ class LROsCustomHeaderOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lroscustomheader_post_async_retry_succeeded_initial(
-            body=product, template_url=self._post_async_retry_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

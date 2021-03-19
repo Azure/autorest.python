@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class DictionaryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.DictionaryWrapper":
+    async def get_valid(self, **kwargs: Any) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -83,7 +84,7 @@ class DictionaryOperations:
     get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, default_program: Optional[Dict[str, str]] = None, **kwargs) -> None:
+    async def put_valid(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
         """Put complex types with dictionary property.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -101,7 +102,7 @@ class DictionaryOperations:
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = prepare_dictionary_put_valid(
-            body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+            complex_body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -120,7 +121,7 @@ class DictionaryOperations:
     put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs) -> "_models.DictionaryWrapper":
+    async def get_empty(self, **kwargs: Any) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -154,7 +155,7 @@ class DictionaryOperations:
     get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, default_program: Optional[Dict[str, str]] = None, **kwargs) -> None:
+    async def put_empty(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -172,7 +173,7 @@ class DictionaryOperations:
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = prepare_dictionary_put_empty(
-            body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
+            complex_body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -191,7 +192,7 @@ class DictionaryOperations:
     put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> "_models.DictionaryWrapper":
+    async def get_null(self, **kwargs: Any) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -225,7 +226,7 @@ class DictionaryOperations:
     get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs) -> "_models.DictionaryWrapper":
+    async def get_not_provided(self, **kwargs: Any) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

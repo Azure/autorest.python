@@ -17,11 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,7 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, **kwargs) -> None:
+    async def get_boolean_true(self, **kwargs: Any) -> None:
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -80,7 +81,7 @@ class PathsOperations:
     get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_false(self, **kwargs) -> None:
+    async def get_boolean_false(self, **kwargs: Any) -> None:
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -110,7 +111,7 @@ class PathsOperations:
     get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_one_million(self, **kwargs) -> None:
+    async def get_int_one_million(self, **kwargs: Any) -> None:
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -140,7 +141,7 @@ class PathsOperations:
     get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, **kwargs) -> None:
+    async def get_int_negative_one_million(self, **kwargs: Any) -> None:
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -172,7 +173,7 @@ class PathsOperations:
     get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_ten_billion(self, **kwargs) -> None:
+    async def get_ten_billion(self, **kwargs: Any) -> None:
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -202,7 +203,7 @@ class PathsOperations:
     get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, **kwargs) -> None:
+    async def get_negative_ten_billion(self, **kwargs: Any) -> None:
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -234,7 +235,7 @@ class PathsOperations:
     get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_positive(self, **kwargs) -> None:
+    async def float_scientific_positive(self, **kwargs: Any) -> None:
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -266,7 +267,7 @@ class PathsOperations:
     float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_negative(self, **kwargs) -> None:
+    async def float_scientific_negative(self, **kwargs: Any) -> None:
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -298,7 +299,7 @@ class PathsOperations:
     float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_positive(self, **kwargs) -> None:
+    async def double_decimal_positive(self, **kwargs: Any) -> None:
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -330,7 +331,7 @@ class PathsOperations:
     double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_negative(self, **kwargs) -> None:
+    async def double_decimal_negative(self, **kwargs: Any) -> None:
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -362,7 +363,7 @@ class PathsOperations:
     double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_unicode(self, **kwargs) -> None:
+    async def string_unicode(self, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -392,7 +393,7 @@ class PathsOperations:
     string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_encoded(self, **kwargs) -> None:
+    async def string_url_encoded(self, **kwargs: Any) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -422,7 +423,7 @@ class PathsOperations:
     string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_non_encoded(self, **kwargs) -> None:
+    async def string_url_non_encoded(self, **kwargs: Any) -> None:
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
@@ -456,7 +457,7 @@ class PathsOperations:
     string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_empty(self, **kwargs) -> None:
+    async def string_empty(self, **kwargs: Any) -> None:
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -486,7 +487,7 @@ class PathsOperations:
     string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_null(self, string_path: str, **kwargs) -> None:
+    async def string_null(self, string_path: str, **kwargs: Any) -> None:
         """Get null (should throw).
 
         :param string_path: null string value.
@@ -520,7 +521,7 @@ class PathsOperations:
     string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def enum_valid(self, enum_path: Union[str, "_models.UriColor"], **kwargs) -> None:
+    async def enum_valid(self, enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> None:
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green.
@@ -552,7 +553,7 @@ class PathsOperations:
     enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def enum_null(self, enum_path: Union[str, "_models.UriColor"], **kwargs) -> None:
+    async def enum_null(self, enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> None:
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw.
@@ -584,7 +585,7 @@ class PathsOperations:
     enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_multi_byte(self, byte_path: bytearray, **kwargs) -> None:
+    async def byte_multi_byte(self, byte_path: bytearray, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -618,7 +619,7 @@ class PathsOperations:
     byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_empty(self, **kwargs) -> None:
+    async def byte_empty(self, **kwargs: Any) -> None:
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -648,7 +649,7 @@ class PathsOperations:
     byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_null(self, byte_path: bytearray, **kwargs) -> None:
+    async def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw).
@@ -680,7 +681,7 @@ class PathsOperations:
     byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_valid(self, **kwargs) -> None:
+    async def date_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -710,7 +711,7 @@ class PathsOperations:
     date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_null(self, date_path: datetime.date, **kwargs) -> None:
+    async def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
@@ -743,7 +744,7 @@ class PathsOperations:
     date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_valid(self, **kwargs) -> None:
+    async def date_time_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -773,7 +774,7 @@ class PathsOperations:
     date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_null(self, date_time_path: datetime.datetime, **kwargs) -> None:
+    async def date_time_null(self, date_time_path: datetime.datetime, **kwargs: Any) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         :param date_time_path: null as date-time.
@@ -807,7 +808,7 @@ class PathsOperations:
     date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def base64_url(self, base64_url_path: bytes, **kwargs) -> None:
+    async def base64_url(self, base64_url_path: bytes, **kwargs: Any) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value.
@@ -841,7 +842,7 @@ class PathsOperations:
     base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def array_csv_in_path(self, array_path: List[str], **kwargs) -> None:
+    async def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
         array format.
 
@@ -877,7 +878,7 @@ class PathsOperations:
     array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs) -> None:
+    async def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs: Any) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value.

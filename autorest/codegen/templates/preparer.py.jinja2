@@ -3,6 +3,11 @@
 {{ op_tools.preparer_method_signature(preparer, is_python_3_file=is_python_3_file) }}
 {%- if not is_python_3_file %}
     {{ op_tools.sync_return_type_annotation("", return_type="HttpRequest") }}
+    {% if preparer.parameters.kwargs %}
+        {% for kwarg in preparer.parameters.kwargs %}
+    {{ kwarg.pop_from_kwarg }}
+        {% endfor %}
+    {% endif %}
 {% endif %}
 {% if preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}

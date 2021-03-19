@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -112,7 +113,7 @@ class StringOperations(object):
         if string_body is not None:
             string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_null(body=string_body, template_url=self.put_null.metadata["url"], **kwargs)
+        request = prepare_string_put_null(string_body=string_body, template_url=self.put_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -185,7 +186,9 @@ class StringOperations(object):
         string_body = ""
         string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_empty(body=string_body, template_url=self.put_empty.metadata["url"], **kwargs)
+        request = prepare_string_put_empty(
+            string_body=string_body, template_url=self.put_empty.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -258,7 +261,7 @@ class StringOperations(object):
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         string_body = self._serialize.body(string_body, "str")
 
-        request = prepare_string_put_mbcs(body=string_body, template_url=self.put_mbcs.metadata["url"], **kwargs)
+        request = prepare_string_put_mbcs(string_body=string_body, template_url=self.put_mbcs.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -336,7 +339,7 @@ class StringOperations(object):
         string_body = self._serialize.body(string_body, "str")
 
         request = prepare_string_put_whitespace(
-            body=string_body, template_url=self.put_whitespace.metadata["url"], **kwargs
+            string_body=string_body, template_url=self.put_whitespace.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -490,7 +493,7 @@ class StringOperations(object):
         string_body = self._serialize.body(string_body, "base64")
 
         request = prepare_string_put_base64_url_encoded(
-            body=string_body, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
+            string_body=string_body, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

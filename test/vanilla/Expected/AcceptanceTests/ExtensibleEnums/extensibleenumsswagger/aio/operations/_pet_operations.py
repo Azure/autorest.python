@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs) -> "_models.Pet":
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> "_models.Pet":
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -84,7 +85,7 @@ class PetOperations:
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs) -> "_models.Pet":
+    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> "_models.Pet":
         """add pet.
 
         :param pet_param: pet param.
@@ -101,7 +102,7 @@ class PetOperations:
         if pet_param is not None:
             pet_param = self._serialize.body(pet_param, "Pet")
 
-        request = prepare_pet_add_pet(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
+        request = prepare_pet_add_pet(pet_param=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class BoolOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_true(self, **kwargs) -> bool:
+    async def get_true(self, **kwargs: Any) -> bool:
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -83,7 +84,7 @@ class BoolOperations:
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def put_true(self, **kwargs) -> None:
+    async def put_true(self, **kwargs: Any) -> None:
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +99,7 @@ class BoolOperations:
         bool_body = True
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = prepare_bool_put_true(body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
+        request = prepare_bool_put_true(bool_body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -116,7 +117,7 @@ class BoolOperations:
     put_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_false(self, **kwargs) -> bool:
+    async def get_false(self, **kwargs: Any) -> bool:
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -150,7 +151,7 @@ class BoolOperations:
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def put_false(self, **kwargs) -> None:
+    async def put_false(self, **kwargs: Any) -> None:
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -165,7 +166,7 @@ class BoolOperations:
         bool_body = False
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = prepare_bool_put_false(body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
+        request = prepare_bool_put_false(bool_body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -183,7 +184,7 @@ class BoolOperations:
     put_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[bool]:
+    async def get_null(self, **kwargs: Any) -> Optional[bool]:
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -217,7 +218,7 @@ class BoolOperations:
     get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> bool:
+    async def get_invalid(self, **kwargs: Any) -> bool:
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

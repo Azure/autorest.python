@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -55,7 +56,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
@@ -112,7 +113,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -169,7 +170,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -226,7 +227,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery='globalStringQuery',

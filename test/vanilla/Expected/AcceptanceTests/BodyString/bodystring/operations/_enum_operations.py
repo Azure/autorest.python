@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -112,7 +113,7 @@ class EnumOperations(object):
         string_body = self._serialize.body(string_body, "str")
 
         request = prepare_enum_put_not_expandable(
-            body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
+            string_body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -190,7 +191,7 @@ class EnumOperations(object):
         enum_string_body = self._serialize.body(enum_string_body, "str")
 
         request = prepare_enum_put_referenced(
-            body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
+            enum_string_body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -271,7 +272,7 @@ class EnumOperations(object):
         _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = prepare_enum_put_referenced_constant(
-            body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
+            enum_string_body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

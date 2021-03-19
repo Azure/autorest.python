@@ -7,60 +7,20 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.pipeline.transport import HttpRequest
 from azure.core.pipeline.transport._base import _format_url_section
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import IO, List, Optional
+    from typing import Any, IO, List, Optional
 
 _SERIALIZER = Serializer()
-
-import xml.etree.ElementTree as ET
-
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
 
 
 def prepare_implicit_get_required_path(
     path_parameter,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -79,14 +39,18 @@ def prepare_implicit_get_required_path(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_implicit_put_optional_query(
-    query_parameter=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -101,14 +65,19 @@ def prepare_implicit_put_optional_query(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_implicit_put_optional_header(
-    query_parameter=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -123,12 +92,16 @@ def prepare_implicit_put_optional_header(
         header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("PUT", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_implicit_put_optional_body(
-    body=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional[str]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -146,14 +119,14 @@ def prepare_implicit_put_optional_body(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_implicit_put_optional_binary_body(
-    body=None,  # type: Optional[IO]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional[IO]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/octet-stream")
@@ -171,14 +144,14 @@ def prepare_implicit_put_optional_binary_body(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["stream_content"] = body
+    body_content_kwargs["content"] = body_parameter
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_implicit_get_required_global_path(
     required_global_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -197,14 +170,18 @@ def prepare_implicit_get_required_global_path(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_implicit_get_required_global_query(
-    required_global_query,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    required_global_query = kwargs.pop("required_global_query")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -218,14 +195,19 @@ def prepare_implicit_get_required_global_query(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_implicit_get_optional_global_query(
-    optional_global_query=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    optional_global_query = kwargs.pop("optional_global_query", None)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -242,12 +224,17 @@ def prepare_implicit_get_optional_global_query(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_explicit_put_optional_binary_body(
-    body=None,  # type: Optional[IO]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional[IO]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/octet-stream")
@@ -265,14 +252,14 @@ def prepare_explicit_put_optional_binary_body(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["stream_content"] = body
+    body_content_kwargs["content"] = body_parameter
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_put_required_binary_body(
-    body,  # type: IO
-    **kwargs  # type: Any
+    body_parameter,  # type: IO
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/octet-stream")
@@ -290,14 +277,14 @@ def prepare_explicit_put_required_binary_body(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["stream_content"] = body
+    body_content_kwargs["content"] = body_parameter
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_integer_parameter(
-    body,  # type: int
-    **kwargs  # type: Any
+    body_parameter,  # type: int
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -315,14 +302,14 @@ def prepare_explicit_post_required_integer_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_integer_parameter(
-    body=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional[int]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -340,14 +327,14 @@ def prepare_explicit_post_optional_integer_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_integer_property(
-    body,  # type: "_models.IntWrapper"
-    **kwargs  # type: Any
+    body_parameter,  # type: "_models.IntWrapper"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -365,14 +352,14 @@ def prepare_explicit_post_required_integer_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_integer_property(
-    body=None,  # type: Optional["_models.IntOptionalWrapper"]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional["_models.IntOptionalWrapper"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -390,16 +377,16 @@ def prepare_explicit_post_optional_integer_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_integer_header(
-    header_parameter,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter")  # type: int
     accept = "application/json"
 
     # Construct URL
@@ -413,14 +400,18 @@ def prepare_explicit_post_required_integer_header(
     header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_explicit_post_optional_integer_header(
-    header_parameter=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -435,12 +426,16 @@ def prepare_explicit_post_optional_integer_header(
         header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_explicit_post_required_string_parameter(
-    body,  # type: str
-    **kwargs  # type: Any
+    body_parameter,  # type: str
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -458,14 +453,14 @@ def prepare_explicit_post_required_string_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_string_parameter(
-    body=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional[str]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -483,14 +478,14 @@ def prepare_explicit_post_optional_string_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_string_property(
-    body,  # type: "_models.StringWrapper"
-    **kwargs  # type: Any
+    body_parameter,  # type: "_models.StringWrapper"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -508,14 +503,14 @@ def prepare_explicit_post_required_string_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_string_property(
-    body=None,  # type: Optional["_models.StringOptionalWrapper"]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional["_models.StringOptionalWrapper"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -533,16 +528,16 @@ def prepare_explicit_post_optional_string_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_string_header(
-    header_parameter,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -556,14 +551,18 @@ def prepare_explicit_post_required_string_header(
     header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_explicit_post_optional_string_header(
-    body_parameter=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    body_parameter = kwargs.pop("body_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -578,12 +577,16 @@ def prepare_explicit_post_optional_string_header(
         header_parameters["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_explicit_post_required_class_parameter(
-    body,  # type: "_models.Product"
-    **kwargs  # type: Any
+    body_parameter,  # type: "_models.Product"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -601,14 +604,14 @@ def prepare_explicit_post_required_class_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_class_parameter(
-    body=None,  # type: Optional["_models.Product"]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional["_models.Product"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -626,14 +629,14 @@ def prepare_explicit_post_optional_class_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_class_property(
-    body,  # type: "_models.ClassWrapper"
-    **kwargs  # type: Any
+    body_parameter,  # type: "_models.ClassWrapper"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -651,14 +654,14 @@ def prepare_explicit_post_required_class_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_class_property(
-    body=None,  # type: Optional["_models.ClassOptionalWrapper"]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional["_models.ClassOptionalWrapper"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -676,14 +679,14 @@ def prepare_explicit_post_optional_class_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_array_parameter(
-    body,  # type: List[str]
-    **kwargs  # type: Any
+    body_parameter,  # type: List[str]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -701,14 +704,14 @@ def prepare_explicit_post_required_array_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_array_parameter(
-    body=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional[List[str]]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -726,14 +729,14 @@ def prepare_explicit_post_optional_array_parameter(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_array_property(
-    body,  # type: "_models.ArrayWrapper"
-    **kwargs  # type: Any
+    body_parameter,  # type: "_models.ArrayWrapper"
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -751,14 +754,14 @@ def prepare_explicit_post_required_array_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_optional_array_property(
-    body=None,  # type: Optional["_models.ArrayOptionalWrapper"]
-    **kwargs  # type: Any
+    body_parameter=None,  # type: Optional["_models.ArrayOptionalWrapper"]
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -776,16 +779,16 @@ def prepare_explicit_post_optional_array_property(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = body_parameter
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_explicit_post_required_array_header(
-    header_parameter,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter")  # type: List[str]
     accept = "application/json"
 
     # Construct URL
@@ -799,14 +802,18 @@ def prepare_explicit_post_required_array_header(
     header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+    )
 
 
 def prepare_explicit_post_optional_array_header(
-    header_parameter=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -823,4 +830,8 @@ def prepare_explicit_post_optional_array_header(
         )
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+    )

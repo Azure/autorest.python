@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -28,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MediaTypesClientOperationsMixin:
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> str:
+    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
@@ -45,7 +46,7 @@ class MediaTypesClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        request = prepare_analyze_body(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
+        request = prepare_analyze_body(input=input, template_url=self.analyze_body.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -66,7 +67,7 @@ class MediaTypesClientOperationsMixin:
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs) -> str:
+    async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
@@ -84,7 +85,7 @@ class MediaTypesClientOperationsMixin:
             input = self._serialize.body(input, "str")
 
         request = prepare_content_type_with_encoding(
-            body=input, template_url=self.content_type_with_encoding.metadata["url"], **kwargs
+            input=input, template_url=self.content_type_with_encoding.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

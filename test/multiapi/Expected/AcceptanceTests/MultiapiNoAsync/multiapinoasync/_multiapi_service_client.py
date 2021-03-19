@@ -9,8 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from copy import deepcopy
 from typing import TYPE_CHECKING
 
+from azure.core.rest import HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
@@ -24,7 +26,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import TokenCredential
-    from azure.core.pipeline.transport import HttpRequest, HttpResponse
+    from azure.core.rest import HttpRequest
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):

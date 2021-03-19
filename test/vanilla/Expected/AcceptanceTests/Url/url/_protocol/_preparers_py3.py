@@ -6,56 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
-from azure.core.pipeline.transport import HttpRequest
 from azure.core.pipeline.transport._base import _format_url_section
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
 
-import xml.etree.ElementTree as ET
 
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
-
-
-def prepare_paths_get_boolean_true(**kwargs) -> HttpRequest:
+def prepare_paths_get_boolean_true(**kwargs: Any) -> HttpRequest:
     bool_path = True
     accept = "application/json"
 
@@ -73,10 +33,14 @@ def prepare_paths_get_boolean_true(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_get_boolean_false(**kwargs) -> HttpRequest:
+def prepare_paths_get_boolean_false(**kwargs: Any) -> HttpRequest:
     bool_path = False
     accept = "application/json"
 
@@ -94,10 +58,14 @@ def prepare_paths_get_boolean_false(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_get_int_one_million(**kwargs) -> HttpRequest:
+def prepare_paths_get_int_one_million(**kwargs: Any) -> HttpRequest:
     int_path = 1000000
     accept = "application/json"
 
@@ -115,10 +83,14 @@ def prepare_paths_get_int_one_million(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_get_int_negative_one_million(**kwargs) -> HttpRequest:
+def prepare_paths_get_int_negative_one_million(**kwargs: Any) -> HttpRequest:
     int_path = -1000000
     accept = "application/json"
 
@@ -136,10 +108,14 @@ def prepare_paths_get_int_negative_one_million(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_get_ten_billion(**kwargs) -> HttpRequest:
+def prepare_paths_get_ten_billion(**kwargs: Any) -> HttpRequest:
     long_path = 10000000000
     accept = "application/json"
 
@@ -157,10 +133,14 @@ def prepare_paths_get_ten_billion(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_get_negative_ten_billion(**kwargs) -> HttpRequest:
+def prepare_paths_get_negative_ten_billion(**kwargs: Any) -> HttpRequest:
     long_path = -10000000000
     accept = "application/json"
 
@@ -178,10 +158,14 @@ def prepare_paths_get_negative_ten_billion(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_float_scientific_positive(**kwargs) -> HttpRequest:
+def prepare_paths_float_scientific_positive(**kwargs: Any) -> HttpRequest:
     float_path = 103400000000000000000
     accept = "application/json"
 
@@ -199,10 +183,14 @@ def prepare_paths_float_scientific_positive(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_float_scientific_negative(**kwargs) -> HttpRequest:
+def prepare_paths_float_scientific_negative(**kwargs: Any) -> HttpRequest:
     float_path = -1.034e-20
     accept = "application/json"
 
@@ -220,10 +208,14 @@ def prepare_paths_float_scientific_negative(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_double_decimal_positive(**kwargs) -> HttpRequest:
+def prepare_paths_double_decimal_positive(**kwargs: Any) -> HttpRequest:
     double_path = 9999999.999
     accept = "application/json"
 
@@ -241,10 +233,14 @@ def prepare_paths_double_decimal_positive(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_double_decimal_negative(**kwargs) -> HttpRequest:
+def prepare_paths_double_decimal_negative(**kwargs: Any) -> HttpRequest:
     double_path = -9999999.999
     accept = "application/json"
 
@@ -262,10 +258,14 @@ def prepare_paths_double_decimal_negative(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_string_unicode(**kwargs) -> HttpRequest:
+def prepare_paths_string_unicode(**kwargs: Any) -> HttpRequest:
     string_path = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -283,10 +283,14 @@ def prepare_paths_string_unicode(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_string_url_encoded(**kwargs) -> HttpRequest:
+def prepare_paths_string_url_encoded(**kwargs: Any) -> HttpRequest:
     string_path = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -306,10 +310,14 @@ def prepare_paths_string_url_encoded(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_string_url_non_encoded(**kwargs) -> HttpRequest:
+def prepare_paths_string_url_non_encoded(**kwargs: Any) -> HttpRequest:
     string_path = "begin!*'();:@&=+$,end"
     accept = "application/json"
 
@@ -327,10 +335,14 @@ def prepare_paths_string_url_non_encoded(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_string_empty(**kwargs) -> HttpRequest:
+def prepare_paths_string_empty(**kwargs: Any) -> HttpRequest:
     string_path = ""
     accept = "application/json"
 
@@ -348,10 +360,14 @@ def prepare_paths_string_empty(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_string_null(string_path: str, **kwargs) -> HttpRequest:
+def prepare_paths_string_null(string_path: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -368,10 +384,14 @@ def prepare_paths_string_null(string_path: str, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_enum_valid(enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
+def prepare_paths_enum_valid(enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -388,10 +408,14 @@ def prepare_paths_enum_valid(enum_path: Union[str, "_models.UriColor"], **kwargs
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_enum_null(enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
+def prepare_paths_enum_null(enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -408,10 +432,14 @@ def prepare_paths_enum_null(enum_path: Union[str, "_models.UriColor"], **kwargs)
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_byte_multi_byte(byte_path: bytearray, **kwargs) -> HttpRequest:
+def prepare_paths_byte_multi_byte(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -428,10 +456,14 @@ def prepare_paths_byte_multi_byte(byte_path: bytearray, **kwargs) -> HttpRequest
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_byte_empty(**kwargs) -> HttpRequest:
+def prepare_paths_byte_empty(**kwargs: Any) -> HttpRequest:
     byte_path = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -449,10 +481,14 @@ def prepare_paths_byte_empty(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_byte_null(byte_path: bytearray, **kwargs) -> HttpRequest:
+def prepare_paths_byte_null(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -469,10 +505,14 @@ def prepare_paths_byte_null(byte_path: bytearray, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_date_valid(**kwargs) -> HttpRequest:
+def prepare_paths_date_valid(**kwargs: Any) -> HttpRequest:
     date_path = "2012-01-01"
     accept = "application/json"
 
@@ -490,10 +530,14 @@ def prepare_paths_date_valid(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_date_null(date_path: datetime.date, **kwargs) -> HttpRequest:
+def prepare_paths_date_null(date_path: datetime.date, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -510,10 +554,14 @@ def prepare_paths_date_null(date_path: datetime.date, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_date_time_valid(**kwargs) -> HttpRequest:
+def prepare_paths_date_time_valid(**kwargs: Any) -> HttpRequest:
     date_time_path = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -531,10 +579,14 @@ def prepare_paths_date_time_valid(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_date_time_null(date_time_path: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_paths_date_time_null(date_time_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -551,10 +603,14 @@ def prepare_paths_date_time_null(date_time_path: datetime.datetime, **kwargs) ->
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_base64_url(base64_url_path: bytes, **kwargs) -> HttpRequest:
+def prepare_paths_base64_url(base64_url_path: bytes, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -571,10 +627,14 @@ def prepare_paths_base64_url(base64_url_path: bytes, **kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_array_csv_in_path(array_path: List[str], **kwargs) -> HttpRequest:
+def prepare_paths_array_csv_in_path(array_path: List[str], **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -594,10 +654,14 @@ def prepare_paths_array_csv_in_path(array_path: List[str], **kwargs) -> HttpRequ
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_paths_unix_time_url(unix_time_url_path: datetime.datetime, **kwargs) -> HttpRequest:
+def prepare_paths_unix_time_url(unix_time_url_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -614,10 +678,14 @@ def prepare_paths_unix_time_url(unix_time_url_path: datetime.datetime, **kwargs)
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_boolean_true(**kwargs) -> HttpRequest:
+def prepare_queries_get_boolean_true(**kwargs: Any) -> HttpRequest:
     bool_query = True
     accept = "application/json"
 
@@ -632,10 +700,15 @@ def prepare_queries_get_boolean_true(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_boolean_false(**kwargs) -> HttpRequest:
+def prepare_queries_get_boolean_false(**kwargs: Any) -> HttpRequest:
     bool_query = False
     accept = "application/json"
 
@@ -650,10 +723,15 @@ def prepare_queries_get_boolean_false(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_boolean_null(bool_query: Optional[bool] = None, **kwargs) -> HttpRequest:
+def prepare_queries_get_boolean_null(*, bool_query: Optional[bool] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -668,10 +746,15 @@ def prepare_queries_get_boolean_null(bool_query: Optional[bool] = None, **kwargs
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_int_one_million(**kwargs) -> HttpRequest:
+def prepare_queries_get_int_one_million(**kwargs: Any) -> HttpRequest:
     int_query = 1000000
     accept = "application/json"
 
@@ -686,10 +769,15 @@ def prepare_queries_get_int_one_million(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_int_negative_one_million(**kwargs) -> HttpRequest:
+def prepare_queries_get_int_negative_one_million(**kwargs: Any) -> HttpRequest:
     int_query = -1000000
     accept = "application/json"
 
@@ -704,10 +792,15 @@ def prepare_queries_get_int_negative_one_million(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_int_null(int_query: Optional[int] = None, **kwargs) -> HttpRequest:
+def prepare_queries_get_int_null(*, int_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -722,10 +815,15 @@ def prepare_queries_get_int_null(int_query: Optional[int] = None, **kwargs) -> H
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_ten_billion(**kwargs) -> HttpRequest:
+def prepare_queries_get_ten_billion(**kwargs: Any) -> HttpRequest:
     long_query = 10000000000
     accept = "application/json"
 
@@ -740,10 +838,15 @@ def prepare_queries_get_ten_billion(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_negative_ten_billion(**kwargs) -> HttpRequest:
+def prepare_queries_get_negative_ten_billion(**kwargs: Any) -> HttpRequest:
     long_query = -10000000000
     accept = "application/json"
 
@@ -758,10 +861,15 @@ def prepare_queries_get_negative_ten_billion(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_get_long_null(long_query: Optional[int] = None, **kwargs) -> HttpRequest:
+def prepare_queries_get_long_null(*, long_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -776,10 +884,15 @@ def prepare_queries_get_long_null(long_query: Optional[int] = None, **kwargs) ->
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_float_scientific_positive(**kwargs) -> HttpRequest:
+def prepare_queries_float_scientific_positive(**kwargs: Any) -> HttpRequest:
     float_query = 103400000000000000000
     accept = "application/json"
 
@@ -794,10 +907,15 @@ def prepare_queries_float_scientific_positive(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_float_scientific_negative(**kwargs) -> HttpRequest:
+def prepare_queries_float_scientific_negative(**kwargs: Any) -> HttpRequest:
     float_query = -1.034e-20
     accept = "application/json"
 
@@ -812,10 +930,15 @@ def prepare_queries_float_scientific_negative(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_float_null(float_query: Optional[float] = None, **kwargs) -> HttpRequest:
+def prepare_queries_float_null(*, float_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -830,10 +953,15 @@ def prepare_queries_float_null(float_query: Optional[float] = None, **kwargs) ->
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_double_decimal_positive(**kwargs) -> HttpRequest:
+def prepare_queries_double_decimal_positive(**kwargs: Any) -> HttpRequest:
     double_query = 9999999.999
     accept = "application/json"
 
@@ -848,10 +976,15 @@ def prepare_queries_double_decimal_positive(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_double_decimal_negative(**kwargs) -> HttpRequest:
+def prepare_queries_double_decimal_negative(**kwargs: Any) -> HttpRequest:
     double_query = -9999999.999
     accept = "application/json"
 
@@ -866,10 +999,15 @@ def prepare_queries_double_decimal_negative(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_double_null(double_query: Optional[float] = None, **kwargs) -> HttpRequest:
+def prepare_queries_double_null(*, double_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -884,10 +1022,15 @@ def prepare_queries_double_null(double_query: Optional[float] = None, **kwargs) 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_string_unicode(**kwargs) -> HttpRequest:
+def prepare_queries_string_unicode(**kwargs: Any) -> HttpRequest:
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -902,10 +1045,15 @@ def prepare_queries_string_unicode(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_string_url_encoded(**kwargs) -> HttpRequest:
+def prepare_queries_string_url_encoded(**kwargs: Any) -> HttpRequest:
     string_query = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -922,10 +1070,15 @@ def prepare_queries_string_url_encoded(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_string_empty(**kwargs) -> HttpRequest:
+def prepare_queries_string_empty(**kwargs: Any) -> HttpRequest:
     string_query = ""
     accept = "application/json"
 
@@ -940,10 +1093,15 @@ def prepare_queries_string_empty(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_string_null(string_query: Optional[str] = None, **kwargs) -> HttpRequest:
+def prepare_queries_string_null(*, string_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -958,10 +1116,17 @@ def prepare_queries_string_null(string_query: Optional[str] = None, **kwargs) ->
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_enum_valid(enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_enum_valid(
+    *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -976,10 +1141,17 @@ def prepare_queries_enum_valid(enum_query: Optional[Union[str, "_models.UriColor
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_enum_null(enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_enum_null(
+    *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -994,10 +1166,15 @@ def prepare_queries_enum_null(enum_query: Optional[Union[str, "_models.UriColor"
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_byte_multi_byte(byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
+def prepare_queries_byte_multi_byte(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1012,10 +1189,15 @@ def prepare_queries_byte_multi_byte(byte_query: Optional[bytearray] = None, **kw
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_byte_empty(**kwargs) -> HttpRequest:
+def prepare_queries_byte_empty(**kwargs: Any) -> HttpRequest:
     byte_query = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -1030,10 +1212,15 @@ def prepare_queries_byte_empty(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_byte_null(byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
+def prepare_queries_byte_null(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1048,10 +1235,15 @@ def prepare_queries_byte_null(byte_query: Optional[bytearray] = None, **kwargs) 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_date_valid(**kwargs) -> HttpRequest:
+def prepare_queries_date_valid(**kwargs: Any) -> HttpRequest:
     date_query = "2012-01-01"
     accept = "application/json"
 
@@ -1066,10 +1258,15 @@ def prepare_queries_date_valid(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_date_null(date_query: Optional[datetime.date] = None, **kwargs) -> HttpRequest:
+def prepare_queries_date_null(*, date_query: Optional[datetime.date] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1084,10 +1281,15 @@ def prepare_queries_date_null(date_query: Optional[datetime.date] = None, **kwar
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_date_time_valid(**kwargs) -> HttpRequest:
+def prepare_queries_date_time_valid(**kwargs: Any) -> HttpRequest:
     date_time_query = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -1102,10 +1304,17 @@ def prepare_queries_date_time_valid(**kwargs) -> HttpRequest:
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_date_time_null(date_time_query: Optional[datetime.datetime] = None, **kwargs) -> HttpRequest:
+def prepare_queries_date_time_null(
+    *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1120,10 +1329,15 @@ def prepare_queries_date_time_null(date_time_query: Optional[datetime.datetime] 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_array_string_csv_valid(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_array_string_csv_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1138,10 +1352,15 @@ def prepare_queries_array_string_csv_valid(array_query: Optional[List[str]] = No
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_array_string_csv_null(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_array_string_csv_null(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1156,10 +1375,15 @@ def prepare_queries_array_string_csv_null(array_query: Optional[List[str]] = Non
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_array_string_csv_empty(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_array_string_csv_empty(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1174,11 +1398,16 @@ def prepare_queries_array_string_csv_empty(array_query: Optional[List[str]] = No
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_queries_array_string_no_collection_format_empty(
-    array_query: Optional[List[str]] = None, **kwargs
+    *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -1194,10 +1423,15 @@ def prepare_queries_array_string_no_collection_format_empty(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_array_string_ssv_valid(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_array_string_ssv_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1212,10 +1446,15 @@ def prepare_queries_array_string_ssv_valid(array_query: Optional[List[str]] = No
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_array_string_tsv_valid(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_array_string_tsv_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1230,10 +1469,15 @@ def prepare_queries_array_string_tsv_valid(array_query: Optional[List[str]] = No
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
-def prepare_queries_array_string_pipes_valid(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def prepare_queries_array_string_pipes_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1248,17 +1492,23 @@ def prepare_queries_array_string_pipes_valid(array_query: Optional[List[str]] = 
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_pathitems_get_all_with_values(
     path_item_string_path: str,
     global_string_path: str,
     local_string_path: str,
+    *,
     path_item_string_query: Optional[str] = None,
     global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -1289,17 +1539,23 @@ def prepare_pathitems_get_all_with_values(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_pathitems_get_global_query_null(
     path_item_string_path: str,
     global_string_path: str,
     local_string_path: str,
+    *,
     path_item_string_query: Optional[str] = None,
     global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -1330,17 +1586,23 @@ def prepare_pathitems_get_global_query_null(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_pathitems_get_global_and_local_query_null(
     path_item_string_path: str,
     global_string_path: str,
     local_string_path: str,
+    *,
     path_item_string_query: Optional[str] = None,
     global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -1371,17 +1633,23 @@ def prepare_pathitems_get_global_and_local_query_null(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_pathitems_get_local_path_item_query_null(
     path_item_string_path: str,
     global_string_path: str,
     local_string_path: str,
+    *,
     path_item_string_query: Optional[str] = None,
     global_string_query: Optional[str] = None,
     local_string_query: Optional[str] = None,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -1412,4 +1680,9 @@ def prepare_pathitems_get_local_path_item_query_null(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )

@@ -17,11 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,7 @@ class DatetimeOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[datetime.datetime]:
+    async def get_null(self, **kwargs: Any) -> Optional[datetime.datetime]:
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +85,7 @@ class DatetimeOperations:
     get_null.metadata = {"url": "/datetime/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> datetime.datetime:
+    async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -118,7 +119,7 @@ class DatetimeOperations:
     get_invalid.metadata = {"url": "/datetime/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow(self, **kwargs) -> datetime.datetime:
+    async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +153,7 @@ class DatetimeOperations:
     get_overflow.metadata = {"url": "/datetime/overflow"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow(self, **kwargs) -> datetime.datetime:
+    async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -186,7 +187,7 @@ class DatetimeOperations:
     get_underflow.metadata = {"url": "/datetime/underflow"}  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value 9999-12-31T23:59:59.999Z.
 
         :param datetime_body: datetime body.
@@ -203,7 +204,7 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_utc_max_date_time(
-            body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -222,7 +223,7 @@ class DatetimeOperations:
     put_utc_max_date_time.metadata = {"url": "/datetime/max/utc"}  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_max_date_time7_digits(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_utc_max_date_time7_digits(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -242,7 +243,7 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_utc_max_date_time7_digits(
-            body=datetime_body, template_url=self.put_utc_max_date_time7_digits.metadata["url"], **kwargs
+            datetime_body=datetime_body, template_url=self.put_utc_max_date_time7_digits.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -261,7 +262,7 @@ class DatetimeOperations:
     put_utc_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_lowercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -297,7 +298,7 @@ class DatetimeOperations:
     get_utc_lowercase_max_date_time.metadata = {"url": "/datetime/max/utc/lowercase"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_uppercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value 9999-12-31T23:59:59.999Z.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -333,7 +334,7 @@ class DatetimeOperations:
     get_utc_uppercase_max_date_time.metadata = {"url": "/datetime/max/utc/uppercase"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_uppercase_max_date_time7_digits(self, **kwargs) -> datetime.datetime:
+    async def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -372,7 +373,7 @@ class DatetimeOperations:
     get_utc_uppercase_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms/uppercase"}  # type: ignore
 
     @distributed_trace_async
-    async def put_local_positive_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_local_positive_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
         :param datetime_body: datetime body.
@@ -389,7 +390,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_positive_offset_max_date_time(
-            body=datetime_body, template_url=self.put_local_positive_offset_max_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -408,7 +411,7 @@ class DatetimeOperations:
     put_local_positive_offset_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_positive_offset_lowercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_positive_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -444,7 +447,7 @@ class DatetimeOperations:
     get_local_positive_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/lowercase"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_positive_offset_uppercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_positive_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -480,7 +483,7 @@ class DatetimeOperations:
     get_local_positive_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}  # type: ignore
 
     @distributed_trace_async
-    async def put_local_negative_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_local_negative_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
         :param datetime_body: datetime body.
@@ -497,7 +500,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_negative_offset_max_date_time(
-            body=datetime_body, template_url=self.put_local_negative_offset_max_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -516,7 +521,7 @@ class DatetimeOperations:
     put_local_negative_offset_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_negative_offset_uppercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_negative_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -552,7 +557,7 @@ class DatetimeOperations:
     get_local_negative_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/uppercase"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_negative_offset_lowercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_negative_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -588,7 +593,7 @@ class DatetimeOperations:
     get_local_negative_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body: datetime body.
@@ -605,7 +610,7 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_utc_min_date_time(
-            body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -624,7 +629,7 @@ class DatetimeOperations:
     put_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_min_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00Z.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -660,7 +665,7 @@ class DatetimeOperations:
     get_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
     @distributed_trace_async
-    async def put_local_positive_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_local_positive_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body: datetime body.
@@ -677,7 +682,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_positive_offset_min_date_time(
-            body=datetime_body, template_url=self.put_local_positive_offset_min_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -696,7 +703,7 @@ class DatetimeOperations:
     put_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_positive_offset_min_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_positive_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -732,7 +739,7 @@ class DatetimeOperations:
     get_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
     @distributed_trace_async
-    async def put_local_negative_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_local_negative_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body: datetime body.
@@ -749,7 +756,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_negative_offset_min_date_time(
-            body=datetime_body, template_url=self.put_local_negative_offset_min_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -768,7 +777,7 @@ class DatetimeOperations:
     put_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_negative_offset_min_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_negative_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -804,7 +813,7 @@ class DatetimeOperations:
     get_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_no_offset_min_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_local_no_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

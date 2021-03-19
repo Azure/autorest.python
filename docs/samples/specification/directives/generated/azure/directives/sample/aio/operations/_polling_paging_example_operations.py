@@ -11,12 +11,13 @@ import warnings
 from azure.core.async_paging import AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
+from azure.core.rest import HttpRequest
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -26,7 +27,7 @@ class PollingPagingExampleOperationsMixin:
     async def _basic_poll_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> Optional["_models.Product"]:
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {
@@ -38,7 +39,7 @@ class PollingPagingExampleOperationsMixin:
             product = self._serialize.body(product, 'Product')
 
         request = prepare_basic_polling_initial(
-            body=product,
+            product=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
         )
@@ -66,7 +67,7 @@ class PollingPagingExampleOperationsMixin:
     async def begin_basic_polling(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncCustomPoller["_models.Product"]:
         """A simple polling operation.
 
@@ -125,7 +126,7 @@ class PollingPagingExampleOperationsMixin:
 
     def basic_paging(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A simple paging operation.
 

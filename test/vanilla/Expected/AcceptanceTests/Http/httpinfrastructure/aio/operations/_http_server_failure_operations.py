@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class HttpServerFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head501(self, **kwargs) -> None:
+    async def head501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -79,7 +80,7 @@ class HttpServerFailureOperations:
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
-    async def get501(self, **kwargs) -> None:
+    async def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -109,7 +110,7 @@ class HttpServerFailureOperations:
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
-    async def post505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -127,7 +128,7 @@ class HttpServerFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpserverfailure_post505(
-            body=boolean_value, template_url=self.post505.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.post505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -146,7 +147,7 @@ class HttpServerFailureOperations:
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace_async
-    async def delete505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -164,7 +165,7 @@ class HttpServerFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpserverfailure_delete505(
-            body=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

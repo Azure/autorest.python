@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class FilesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_file(self, **kwargs) -> IO:
+    async def get_file(self, **kwargs: Any) -> IO:
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -83,7 +84,7 @@ class FilesOperations:
     get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_file_large(self, **kwargs) -> IO:
+    async def get_file_large(self, **kwargs: Any) -> IO:
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -117,7 +118,7 @@ class FilesOperations:
     get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_file(self, **kwargs) -> IO:
+    async def get_empty_file(self, **kwargs: Any) -> IO:
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class PetsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs) -> "_models.PetAPTrue":
+    async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs: Any) -> "_models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -66,7 +67,7 @@ class PetsOperations:
         create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = prepare_pets_create_ap_true(
-            body=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -89,7 +90,7 @@ class PetsOperations:
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs) -> "_models.CatAPTrue":
+    async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs: Any) -> "_models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -106,7 +107,7 @@ class PetsOperations:
         create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = prepare_pets_create_cat_ap_true(
-            body=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -129,7 +130,7 @@ class PetsOperations:
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs) -> "_models.PetAPObject":
+    async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs: Any) -> "_models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -146,7 +147,7 @@ class PetsOperations:
         create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
         request = prepare_pets_create_ap_object(
-            body=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -169,7 +170,7 @@ class PetsOperations:
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs) -> "_models.PetAPString":
+    async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs: Any) -> "_models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -186,7 +187,7 @@ class PetsOperations:
         create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
         request = prepare_pets_create_ap_string(
-            body=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -210,7 +211,7 @@ class PetsOperations:
 
     @distributed_trace_async
     async def create_ap_in_properties(
-        self, create_parameters: "_models.PetAPInProperties", **kwargs
+        self, create_parameters: "_models.PetAPInProperties", **kwargs: Any
     ) -> "_models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
 
@@ -228,7 +229,7 @@ class PetsOperations:
         create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = prepare_pets_create_ap_in_properties(
-            body=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -252,7 +253,7 @@ class PetsOperations:
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs
+        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
     ) -> "_models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
 
@@ -270,7 +271,9 @@ class PetsOperations:
         create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = prepare_pets_create_ap_in_properties_with_ap_string(
-            body=create_parameters, template_url=self.create_ap_in_properties_with_ap_string.metadata["url"], **kwargs
+            create_parameters=create_parameters,
+            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

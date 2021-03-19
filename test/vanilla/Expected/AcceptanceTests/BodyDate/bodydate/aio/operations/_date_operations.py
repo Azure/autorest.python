@@ -17,11 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,7 @@ class DateOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[datetime.date]:
+    async def get_null(self, **kwargs: Any) -> Optional[datetime.date]:
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +85,7 @@ class DateOperations:
     get_null.metadata = {"url": "/date/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_date(self, **kwargs) -> datetime.date:
+    async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -118,7 +119,7 @@ class DateOperations:
     get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow_date(self, **kwargs) -> datetime.date:
+    async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +153,7 @@ class DateOperations:
     get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow_date(self, **kwargs) -> datetime.date:
+    async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -186,7 +187,7 @@ class DateOperations:
     get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
     @distributed_trace_async
-    async def put_max_date(self, date_body: datetime.date, **kwargs) -> None:
+    async def put_max_date(self, date_body: datetime.date, **kwargs: Any) -> None:
         """Put max date value 9999-12-31.
 
         :param date_body: date body.
@@ -202,7 +203,9 @@ class DateOperations:
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = prepare_date_put_max_date(body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs)
+        request = prepare_date_put_max_date(
+            date_body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -220,7 +223,7 @@ class DateOperations:
     put_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace_async
-    async def get_max_date(self, **kwargs) -> datetime.date:
+    async def get_max_date(self, **kwargs: Any) -> datetime.date:
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -254,7 +257,7 @@ class DateOperations:
     get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace_async
-    async def put_min_date(self, date_body: datetime.date, **kwargs) -> None:
+    async def put_min_date(self, date_body: datetime.date, **kwargs: Any) -> None:
         """Put min date value 0000-01-01.
 
         :param date_body: date body.
@@ -270,7 +273,9 @@ class DateOperations:
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = prepare_date_put_min_date(body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs)
+        request = prepare_date_put_min_date(
+            date_body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -288,7 +293,7 @@ class DateOperations:
     put_min_date.metadata = {"url": "/date/min"}  # type: ignore
 
     @distributed_trace_async
-    async def get_min_date(self, **kwargs) -> datetime.date:
+    async def get_min_date(self, **kwargs: Any) -> datetime.date:
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

@@ -16,12 +16,13 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,7 @@ class SkipUrlEncodingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_path_valid(self, unencoded_path_param: str, **kwargs) -> None:
+    async def get_method_path_valid(self, unencoded_path_param: str, **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -84,7 +85,7 @@ class SkipUrlEncodingOperations:
     get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_valid(self, unencoded_path_param: str, **kwargs) -> None:
+    async def get_path_valid(self, unencoded_path_param: str, **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -118,7 +119,7 @@ class SkipUrlEncodingOperations:
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, **kwargs) -> None:
+    async def get_swagger_path_valid(self, **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -150,7 +151,7 @@ class SkipUrlEncodingOperations:
     get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_query_valid(self, q1: str, **kwargs) -> None:
+    async def get_method_query_valid(self, q1: str, **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -184,7 +185,7 @@ class SkipUrlEncodingOperations:
     get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_query_null(self, q1: Optional[str] = None, **kwargs) -> None:
+    async def get_method_query_null(self, q1: Optional[str] = None, **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null.
@@ -218,7 +219,7 @@ class SkipUrlEncodingOperations:
     get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_query_valid(self, q1: str, **kwargs) -> None:
+    async def get_path_query_valid(self, q1: str, **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -252,7 +253,7 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, **kwargs) -> None:
+    async def get_swagger_query_valid(self, **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

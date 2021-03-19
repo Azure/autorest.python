@@ -14,7 +14,7 @@ from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import GlobalParameterList
-from .models.protocol import Protocol
+from .models.rest import Rest
 from .serializers import JinjaSerializer
 
 
@@ -82,18 +82,18 @@ class CodeGenerator(Plugin):
             # UGLY as hell.....
             if yaml_data.get("operationGroups"):
                 first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                code_model.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                code_model.service_client.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
-            code_model.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
+            code_model.service_client.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
 
         # Create operations
         if yaml_data.get("operationGroups"):
             code_model.operation_groups = [
                 OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
             ]
-            code_model.protocol = Protocol.from_yaml(yaml_data, code_model=code_model)
+            code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")

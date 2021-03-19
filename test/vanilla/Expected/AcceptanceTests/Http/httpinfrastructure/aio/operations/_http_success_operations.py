@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class HttpSuccessOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, **kwargs) -> None:
+    async def head200(self, **kwargs: Any) -> None:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -79,7 +80,7 @@ class HttpSuccessOperations:
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def get200(self, **kwargs) -> bool:
+    async def get200(self, **kwargs: Any) -> bool:
         """Get 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -113,7 +114,7 @@ class HttpSuccessOperations:
     get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def options200(self, **kwargs) -> bool:
+    async def options200(self, **kwargs: Any) -> bool:
         """Options 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -147,7 +148,7 @@ class HttpSuccessOperations:
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def put200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true.
@@ -164,7 +165,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put200(body=boolean_value, template_url=self.put200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put200(
+            boolean_value=boolean_value, template_url=self.put200.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -182,7 +185,7 @@ class HttpSuccessOperations:
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def patch200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true.
@@ -199,7 +202,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_patch200(body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_patch200(
+            boolean_value=boolean_value, template_url=self.patch200.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -217,7 +222,7 @@ class HttpSuccessOperations:
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def post200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true.
@@ -234,7 +239,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post200(body=boolean_value, template_url=self.post200.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post200(
+            boolean_value=boolean_value, template_url=self.post200.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -252,7 +259,7 @@ class HttpSuccessOperations:
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def delete200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true.
@@ -270,7 +277,7 @@ class HttpSuccessOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpsuccess_delete200(
-            body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete200.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -289,7 +296,7 @@ class HttpSuccessOperations:
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def put201(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true.
@@ -306,7 +313,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put201(body=boolean_value, template_url=self.put201.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put201(
+            boolean_value=boolean_value, template_url=self.put201.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -324,7 +333,7 @@ class HttpSuccessOperations:
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
-    async def post201(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true.
@@ -341,7 +350,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post201(body=boolean_value, template_url=self.post201.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post201(
+            boolean_value=boolean_value, template_url=self.post201.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -359,7 +370,7 @@ class HttpSuccessOperations:
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
-    async def put202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true.
@@ -376,7 +387,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put202(body=boolean_value, template_url=self.put202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put202(
+            boolean_value=boolean_value, template_url=self.put202.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -394,7 +407,7 @@ class HttpSuccessOperations:
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def patch202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true.
@@ -411,7 +424,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_patch202(body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_patch202(
+            boolean_value=boolean_value, template_url=self.patch202.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -429,7 +444,7 @@ class HttpSuccessOperations:
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def post202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true.
@@ -446,7 +461,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post202(body=boolean_value, template_url=self.post202.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post202(
+            boolean_value=boolean_value, template_url=self.post202.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -464,7 +481,7 @@ class HttpSuccessOperations:
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def delete202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true.
@@ -482,7 +499,7 @@ class HttpSuccessOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpsuccess_delete202(
-            body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete202.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -501,7 +518,7 @@ class HttpSuccessOperations:
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs) -> None:
+    async def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -531,7 +548,7 @@ class HttpSuccessOperations:
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def put204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -548,7 +565,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_put204(body=boolean_value, template_url=self.put204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_put204(
+            boolean_value=boolean_value, template_url=self.put204.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -566,7 +585,7 @@ class HttpSuccessOperations:
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def patch204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -583,7 +602,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_patch204(body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_patch204(
+            boolean_value=boolean_value, template_url=self.patch204.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -601,7 +622,7 @@ class HttpSuccessOperations:
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def post204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -618,7 +639,9 @@ class HttpSuccessOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpsuccess_post204(body=boolean_value, template_url=self.post204.metadata["url"], **kwargs)
+        request = prepare_httpsuccess_post204(
+            boolean_value=boolean_value, template_url=self.post204.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -636,7 +659,7 @@ class HttpSuccessOperations:
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def delete204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -654,7 +677,7 @@ class HttpSuccessOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpsuccess_delete204(
-            body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete204.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -673,7 +696,7 @@ class HttpSuccessOperations:
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs) -> None:
+    async def head404(self, **kwargs: Any) -> None:
         """Return 404 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

@@ -10,10 +10,11 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -24,7 +25,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
@@ -73,7 +74,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
 

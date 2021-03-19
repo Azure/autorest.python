@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -193,7 +194,7 @@ class ImplicitOperations(object):
             body_parameter = self._serialize.body(body_parameter, "str")
 
         request = prepare_implicit_put_optional_body(
-            body=body_parameter, template_url=self.put_optional_body.metadata["url"], **kwargs
+            body_parameter=body_parameter, template_url=self.put_optional_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -232,7 +233,7 @@ class ImplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = prepare_implicit_put_optional_binary_body(
-            body=body_parameter, template_url=self.put_optional_binary_body.metadata["url"], **kwargs
+            body_parameter=body_parameter, template_url=self.put_optional_binary_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

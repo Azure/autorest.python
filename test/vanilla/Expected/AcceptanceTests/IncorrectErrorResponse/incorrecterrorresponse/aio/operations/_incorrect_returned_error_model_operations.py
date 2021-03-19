@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -28,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class IncorrectReturnedErrorModelOperationsMixin:
     @distributed_trace_async
-    async def get_incorrect_error_from_server(self, **kwargs) -> None:
+    async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
         """Get an error response from the server that is not as described in our Error object. Want to
         swallow the deserialization error and still return an HttpResponseError to the users.
 

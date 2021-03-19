@@ -16,14 +16,15 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -69,7 +70,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put200_succeeded_initial(
-            body=product, template_url=self._put200_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put200_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -163,7 +164,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put201_succeeded_initial(
-            body=product, template_url=self._put201_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put201_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -345,7 +346,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put200_succeeded_no_state_initial(
-            body=product, template_url=self._put200_succeeded_no_stat_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put200_succeeded_no_stat_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -437,7 +438,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put202_retry200_initial(
-            body=product, template_url=self._put202_retry200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put202_retry200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -530,7 +531,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put201_creating_succeeded200_initial(
-            body=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put201_creating_succeeded200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -627,7 +628,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put200_updating_succeeded204_initial(
-            body=product, template_url=self._put200_updating_succeeded204_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put200_updating_succeeded204_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -720,7 +721,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put201_creating_failed200_initial(
-            body=product, template_url=self._put201_creating_failed200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put201_creating_failed200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -817,7 +818,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put200_acceptedcanceled200_initial(
-            body=product, template_url=self._put200_acceptedcanceled200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put200_acceptedcanceled200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -910,7 +911,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put_no_header_in_retry_initial(
-            body=product, template_url=self._put_no_header_in_retry_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_no_header_in_retry_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1009,7 +1010,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put_async_retry_succeeded_initial(
-            body=product, template_url=self._put_async_retry_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1117,7 +1118,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put_async_no_retry_succeeded_initial(
-            body=product, template_url=self._put_async_no_retry_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1223,7 +1224,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put_async_retry_failed_initial(
-            body=product, template_url=self._put_async_retry_failed_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_async_retry_failed_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1331,7 +1332,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put_async_no_retrycanceled_initial(
-            body=product, template_url=self._put_async_no_retrycanceled_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_async_no_retrycanceled_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1437,7 +1438,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_put_async_no_header_in_retry_initial(
-            body=product, template_url=self._put_async_no_header_in_retry_initial.metadata["url"], **kwargs
+            product=product, template_url=self._put_async_no_header_in_retry_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1541,7 +1542,7 @@ class LROsOperations(object):
             sku = self._serialize.body(sku, "Sku")
 
         request = prepare_lros_put_non_resource_initial(
-            body=sku, template_url=self._put_non_resourc_initial.metadata["url"], **kwargs
+            sku=sku, template_url=self._put_non_resourc_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1632,7 +1633,7 @@ class LROsOperations(object):
             sku = self._serialize.body(sku, "Sku")
 
         request = prepare_lros_put_async_non_resource_initial(
-            body=sku, template_url=self._put_async_non_resourc_initial.metadata["url"], **kwargs
+            sku=sku, template_url=self._put_async_non_resourc_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1724,7 +1725,7 @@ class LROsOperations(object):
             _product = self._serialize.body(_product, "SubProduct")
 
         request = prepare_lros_put_sub_resource_initial(
-            body=_product, template_url=self._put_sub_resourc_initial.metadata["url"], **kwargs
+            product=_product, template_url=self._put_sub_resourc_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1818,7 +1819,7 @@ class LROsOperations(object):
             _product = self._serialize.body(_product, "SubProduct")
 
         request = prepare_lros_put_async_sub_resource_initial(
-            body=_product, template_url=self._put_async_sub_resourc_initial.metadata["url"], **kwargs
+            product=_product, template_url=self._put_async_sub_resourc_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -3021,7 +3022,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_post202_retry200_initial(
-            body=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -3110,7 +3111,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_post202_no_retry204_initial(
-            body=product, template_url=self._post202_no_retry204_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post202_no_retry204_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -3465,7 +3466,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_post_async_retry_succeeded_initial(
-            body=product, template_url=self._post_async_retry_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post_async_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -3568,7 +3569,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_post_async_no_retry_succeeded_initial(
-            body=product, template_url=self._post_async_no_retry_succeeded_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post_async_no_retry_succeeded_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -3671,7 +3672,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_post_async_retry_failed_initial(
-            body=product, template_url=self._post_async_retry_failed_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post_async_retry_failed_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -3764,7 +3765,7 @@ class LROsOperations(object):
             product = self._serialize.body(product, "Product")
 
         request = prepare_lros_post_async_retrycanceled_initial(
-            body=product, template_url=self._post_async_retrycanceled_initial.metadata["url"], **kwargs
+            product=product, template_url=self._post_async_retrycanceled_initial.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

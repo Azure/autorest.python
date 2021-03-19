@@ -10,9 +10,10 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -37,7 +38,7 @@ class HttpSuccessOperations:
 
     async def head200(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 200 status code if successful.
 
@@ -73,7 +74,7 @@ class HttpSuccessOperations:
 
     async def head204(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 204 status code if successful.
 
@@ -109,7 +110,7 @@ class HttpSuccessOperations:
 
     async def head404(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 404 status code if successful.
 

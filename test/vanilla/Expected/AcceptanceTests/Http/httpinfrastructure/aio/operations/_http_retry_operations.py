@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class HttpRetryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head408(self, **kwargs) -> None:
+    async def head408(self, **kwargs: Any) -> None:
         """Return 408 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -79,7 +80,7 @@ class HttpRetryOperations:
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
     @distributed_trace_async
-    async def put500(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -96,7 +97,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_put500(body=boolean_value, template_url=self.put500.metadata["url"], **kwargs)
+        request = prepare_httpretry_put500(
+            boolean_value=boolean_value, template_url=self.put500.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -114,7 +117,7 @@ class HttpRetryOperations:
     put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace_async
-    async def patch500(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -131,7 +134,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_patch500(body=boolean_value, template_url=self.patch500.metadata["url"], **kwargs)
+        request = prepare_httpretry_patch500(
+            boolean_value=boolean_value, template_url=self.patch500.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -149,7 +154,7 @@ class HttpRetryOperations:
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace_async
-    async def get502(self, **kwargs) -> None:
+    async def get502(self, **kwargs: Any) -> None:
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -179,7 +184,7 @@ class HttpRetryOperations:
     get502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace_async
-    async def options502(self, **kwargs) -> bool:
+    async def options502(self, **kwargs: Any) -> bool:
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -213,7 +218,7 @@ class HttpRetryOperations:
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace_async
-    async def post503(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -230,7 +235,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_post503(body=boolean_value, template_url=self.post503.metadata["url"], **kwargs)
+        request = prepare_httpretry_post503(
+            boolean_value=boolean_value, template_url=self.post503.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -248,7 +255,7 @@ class HttpRetryOperations:
     post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace_async
-    async def delete503(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -265,7 +272,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_delete503(body=boolean_value, template_url=self.delete503.metadata["url"], **kwargs)
+        request = prepare_httpretry_delete503(
+            boolean_value=boolean_value, template_url=self.delete503.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -283,7 +292,7 @@ class HttpRetryOperations:
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace_async
-    async def put504(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -300,7 +309,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_put504(body=boolean_value, template_url=self.put504.metadata["url"], **kwargs)
+        request = prepare_httpretry_put504(
+            boolean_value=boolean_value, template_url=self.put504.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -318,7 +329,7 @@ class HttpRetryOperations:
     put504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace_async
-    async def patch504(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -335,7 +346,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_patch504(body=boolean_value, template_url=self.patch504.metadata["url"], **kwargs)
+        request = prepare_httpretry_patch504(
+            boolean_value=boolean_value, template_url=self.patch504.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

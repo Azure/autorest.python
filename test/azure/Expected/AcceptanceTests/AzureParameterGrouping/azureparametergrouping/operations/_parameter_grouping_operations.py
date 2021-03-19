@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -85,9 +86,9 @@ class ParameterGroupingOperations(object):
 
         request = prepare_parametergrouping_post_required(
             path=_path,
-            body=_body,
             custom_header=_custom_header,
             query=_query,
+            body=_body,
             template_url=self.post_required.metadata["url"],
             **kwargs
         )

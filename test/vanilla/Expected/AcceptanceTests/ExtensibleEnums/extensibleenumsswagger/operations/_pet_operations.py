@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -115,7 +116,7 @@ class PetOperations(object):
         if pet_param is not None:
             pet_param = self._serialize.body(pet_param, "Pet")
 
-        request = prepare_pet_add_pet(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
+        request = prepare_pet_add_pet(pet_param=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

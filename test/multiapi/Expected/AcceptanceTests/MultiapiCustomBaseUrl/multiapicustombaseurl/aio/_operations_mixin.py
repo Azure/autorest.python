@@ -14,9 +14,10 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 
-from ..._protocol import *
+from ..._rest import *
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
@@ -24,7 +25,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
     async def test(
         self,
         id: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.

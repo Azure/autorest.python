@@ -16,12 +16,13 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,7 @@ class SubscriptionInCredentialsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_method_global_valid(self, **kwargs) -> None:
+    async def post_method_global_valid(self, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -85,7 +86,7 @@ class SubscriptionInCredentialsOperations:
     post_method_global_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_null(self, **kwargs) -> None:
+    async def post_method_global_null(self, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         null, and client-side validation should prevent you from making this call.
 
@@ -120,7 +121,7 @@ class SubscriptionInCredentialsOperations:
     post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_not_provided_valid(self, **kwargs) -> None:
+    async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -155,7 +156,7 @@ class SubscriptionInCredentialsOperations:
     post_method_global_not_provided_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_path_global_valid(self, **kwargs) -> None:
+    async def post_path_global_valid(self, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -190,7 +191,7 @@ class SubscriptionInCredentialsOperations:
     post_path_global_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_swagger_global_valid(self, **kwargs) -> None:
+    async def post_swagger_global_valid(self, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 

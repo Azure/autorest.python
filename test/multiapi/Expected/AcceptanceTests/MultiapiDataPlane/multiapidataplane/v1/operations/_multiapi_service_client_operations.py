@@ -11,12 +11,13 @@ import warnings
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
+from azure.core.rest import HttpRequest
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -89,7 +90,7 @@ class MultiapiServiceClientOperationsMixin(object):
             product = self._serialize.body(product, 'Product')
 
         request = prepare_test_lro_initial(
-            body=product,
+            product=product,
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
         )

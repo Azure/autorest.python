@@ -16,10 +16,11 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -27,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
-    async def get(self, **kwargs) -> object:
+    async def get(self, **kwargs: Any) -> object:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
@@ -62,7 +63,7 @@ class ObjectTypeClientOperationsMixin:
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, put_object: object, **kwargs) -> None:
+    async def put(self, put_object: object, **kwargs: Any) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 
@@ -79,7 +80,7 @@ class ObjectTypeClientOperationsMixin:
 
         put_object = self._serialize.body(put_object, "object")
 
-        request = prepare_put(body=put_object, template_url=self.put.metadata["url"], **kwargs)
+        request = prepare_put(put_object=put_object, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

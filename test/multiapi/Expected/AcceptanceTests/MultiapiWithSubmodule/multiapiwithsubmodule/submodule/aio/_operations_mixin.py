@@ -15,12 +15,13 @@ import warnings
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
+from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ..._protocol import *
+from ..._rest import *
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -28,7 +29,7 @@ class MultiapiServiceClientOperationsMixin(object):
     async def begin_test_lro(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
@@ -61,7 +62,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
@@ -97,7 +98,7 @@ class MultiapiServiceClientOperationsMixin(object):
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
         greeting_in_french: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
 
@@ -133,7 +134,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
@@ -163,7 +164,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def test_paging(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncItemPaged["_models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
 

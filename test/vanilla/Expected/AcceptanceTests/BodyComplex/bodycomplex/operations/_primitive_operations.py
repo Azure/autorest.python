@@ -17,11 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -112,7 +113,9 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "IntWrapper")
 
-        request = prepare_primitive_put_int(body=complex_body, template_url=self.put_int.metadata["url"], **kwargs)
+        request = prepare_primitive_put_int(
+            complex_body=complex_body, template_url=self.put_int.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -188,7 +191,9 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "LongWrapper")
 
-        request = prepare_primitive_put_long(body=complex_body, template_url=self.put_long.metadata["url"], **kwargs)
+        request = prepare_primitive_put_long(
+            complex_body=complex_body, template_url=self.put_long.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -264,7 +269,9 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "FloatWrapper")
 
-        request = prepare_primitive_put_float(body=complex_body, template_url=self.put_float.metadata["url"], **kwargs)
+        request = prepare_primitive_put_float(
+            complex_body=complex_body, template_url=self.put_float.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -342,7 +349,7 @@ class PrimitiveOperations(object):
         complex_body = self._serialize.body(complex_body, "DoubleWrapper")
 
         request = prepare_primitive_put_double(
-            body=complex_body, template_url=self.put_double.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -419,7 +426,9 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "BooleanWrapper")
 
-        request = prepare_primitive_put_bool(body=complex_body, template_url=self.put_bool.metadata["url"], **kwargs)
+        request = prepare_primitive_put_bool(
+            complex_body=complex_body, template_url=self.put_bool.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -496,7 +505,7 @@ class PrimitiveOperations(object):
         complex_body = self._serialize.body(complex_body, "StringWrapper")
 
         request = prepare_primitive_put_string(
-            body=complex_body, template_url=self.put_string.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -573,7 +582,9 @@ class PrimitiveOperations(object):
 
         complex_body = self._serialize.body(complex_body, "DateWrapper")
 
-        request = prepare_primitive_put_date(body=complex_body, template_url=self.put_date.metadata["url"], **kwargs)
+        request = prepare_primitive_put_date(
+            complex_body=complex_body, template_url=self.put_date.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -650,7 +661,7 @@ class PrimitiveOperations(object):
         complex_body = self._serialize.body(complex_body, "DatetimeWrapper")
 
         request = prepare_primitive_put_date_time(
-            body=complex_body, template_url=self.put_date_time.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -731,7 +742,7 @@ class PrimitiveOperations(object):
         complex_body = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
         request = prepare_primitive_put_date_time_rfc1123(
-            body=complex_body, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -810,7 +821,7 @@ class PrimitiveOperations(object):
         _complex_body = self._serialize.body(_complex_body, "DurationWrapper")
 
         request = prepare_primitive_put_duration(
-            body=_complex_body, template_url=self.put_duration.metadata["url"], **kwargs
+            complex_body=_complex_body, template_url=self.put_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -888,7 +899,9 @@ class PrimitiveOperations(object):
         _complex_body = _models.ByteWrapper(field=field)
         _complex_body = self._serialize.body(_complex_body, "ByteWrapper")
 
-        request = prepare_primitive_put_byte(body=_complex_body, template_url=self.put_byte.metadata["url"], **kwargs)
+        request = prepare_primitive_put_byte(
+            complex_body=_complex_body, template_url=self.put_byte.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

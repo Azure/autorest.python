@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -229,7 +230,9 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_put301(body=boolean_value, template_url=self.put301.metadata["url"], **kwargs)
+        request = prepare_httpredirects_put301(
+            boolean_value=boolean_value, template_url=self.put301.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -348,7 +351,7 @@ class HttpRedirectsOperations(object):
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpredirects_patch302(
-            body=boolean_value, template_url=self.patch302.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch302.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -393,7 +396,9 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_post303(body=boolean_value, template_url=self.post303.metadata["url"], **kwargs)
+        request = prepare_httpredirects_post303(
+            boolean_value=boolean_value, template_url=self.post303.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -548,7 +553,9 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_put307(body=boolean_value, template_url=self.put307.metadata["url"], **kwargs)
+        request = prepare_httpredirects_put307(
+            boolean_value=boolean_value, template_url=self.put307.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -593,7 +600,7 @@ class HttpRedirectsOperations(object):
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpredirects_patch307(
-            body=boolean_value, template_url=self.patch307.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch307.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -638,7 +645,9 @@ class HttpRedirectsOperations(object):
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_post307(body=boolean_value, template_url=self.post307.metadata["url"], **kwargs)
+        request = prepare_httpredirects_post307(
+            boolean_value=boolean_value, template_url=self.post307.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -683,7 +692,7 @@ class HttpRedirectsOperations(object):
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpredirects_delete307(
-            body=boolean_value, template_url=self.delete307.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete307.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

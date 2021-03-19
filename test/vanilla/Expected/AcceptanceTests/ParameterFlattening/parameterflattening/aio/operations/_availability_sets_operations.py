@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class AvailabilitySetsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs) -> None:
+    async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs: Any) -> None:
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -73,7 +74,7 @@ class AvailabilitySetsOperations:
         request = prepare_availabilitysets_update(
             resource_group_name=resource_group_name,
             avset=avset,
-            body=_tags,
+            tags=_tags,
             template_url=self.update.metadata["url"],
             **kwargs
         )

@@ -10,10 +10,11 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -43,7 +44,7 @@ class OperationGroupOneOperations:
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelThree"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ModelThree":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
@@ -64,7 +65,7 @@ class OperationGroupOneOperations:
             parameter_one = self._serialize.body(parameter_one, 'ModelThree')
 
         request = prepare_operationgroupone_test_two(
-            body=parameter_one,
+            parameter_one=parameter_one,
             template_url=self.test_two.metadata['url'],
             **kwargs
         )

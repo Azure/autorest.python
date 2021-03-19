@@ -17,11 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,7 @@ class DurationOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[datetime.timedelta]:
+    async def get_null(self, **kwargs: Any) -> Optional[datetime.timedelta]:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +85,7 @@ class DurationOperations:
     get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
     @distributed_trace_async
-    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs) -> None:
+    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs: Any) -> None:
         """Put a positive duration value.
 
         :param duration_body: duration body.
@@ -101,7 +102,7 @@ class DurationOperations:
         duration_body = self._serialize.body(duration_body, "duration")
 
         request = prepare_duration_put_positive_duration(
-            body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
+            duration_body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -120,7 +121,7 @@ class DurationOperations:
     put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace_async
-    async def get_positive_duration(self, **kwargs) -> datetime.timedelta:
+    async def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -156,7 +157,7 @@ class DurationOperations:
     get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> datetime.timedelta:
+    async def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

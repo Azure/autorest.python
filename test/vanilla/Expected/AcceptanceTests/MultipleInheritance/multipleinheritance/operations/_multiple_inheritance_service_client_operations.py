@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -90,7 +91,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         horse = self._serialize.body(horse, "Horse")
 
-        request = prepare_put_horse(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request = prepare_put_horse(horse=horse, template_url=self.put_horse.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -170,7 +171,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _pet = _models.Pet(name=name)
         _pet = self._serialize.body(_pet, "Pet")
 
-        request = prepare_put_pet(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request = prepare_put_pet(pet=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -249,7 +250,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         feline = self._serialize.body(feline, "Feline")
 
-        request = prepare_put_feline(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request = prepare_put_feline(feline=feline, template_url=self.put_feline.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -328,7 +329,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         cat = self._serialize.body(cat, "Cat")
 
-        request = prepare_put_cat(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request = prepare_put_cat(cat=cat, template_url=self.put_cat.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -410,7 +411,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         kitten = self._serialize.body(kitten, "Kitten")
 
-        request = prepare_put_kitten(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request = prepare_put_kitten(kitten=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

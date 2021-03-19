@@ -6,10 +6,13 @@
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
+def _get_m4_params_by_name(name: str, parameters):
+    return [p for p in parameters if p.serialized_name == name]
+
 def _remove_multiple_m4_header_parameters(parameters):
     m4_header_params_in_schema = {
-        k: [p for p in parameters if p.serialized_name == k]
-        for k in _M4_HEADER_PARAMETERS
+        k: _get_m4_params_by_name(k, parameters)
+        for k in _M4_HEADER_PARAMETERS if _get_m4_params_by_name(k, parameters)
     }
     remaining_params = [p for p in parameters if p.serialized_name not in _M4_HEADER_PARAMETERS]
     json_m4_header_params = {
@@ -34,7 +37,7 @@ def get_converted_parameters(yaml_data, parameter_converter):
         for yaml in request.get("parameters", []):
             parameter = parameter_converter(yaml)
             if yaml["language"]["python"]["name"] in _M4_HEADER_PARAMETERS:
-                parameter.is_kwarg = True
+                parameter.is_hidden_kwarg = True
                 parameters.append(parameter)
             elif multiple_requests:
                 multiple_media_type_parameters.append(parameter)

@@ -7,60 +7,20 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.pipeline.transport import HttpRequest
 from azure.core.pipeline.transport._base import _format_url_section
+from azure.core.protocol import HttpRequest
 from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+    from typing import Any, Optional, Union
 
 _SERIALIZER = Serializer()
-
-import xml.etree.ElementTree as ET
-
-
-def _request(
-    method,
-    url,
-    params=None,
-    headers=None,
-    content=None,
-    form_content=None,
-    stream_content=None,
-):
-    request = HttpRequest(method, url, headers=headers)
-
-    if params:
-        request.format_parameters(params)
-
-    if content is not None:
-        content_type = request.headers.get("Content-Type")
-        if isinstance(content, ET.Element):
-            request.set_xml_body(content)
-        # https://github.com/Azure/azure-sdk-for-python/issues/12137
-        # A string is valid JSON, make the difference between text
-        # and a plain JSON string.
-        # Content-Type is a good indicator of intent from user
-        elif content_type and content_type.startswith("text/"):
-            request.set_text_body(content)
-        else:
-            try:
-                request.set_json_body(content)
-            except TypeError:
-                request.data = content
-
-    if form_content:
-        request.set_formdata_body(form_content)
-    elif stream_content:
-        request.set_streamed_data_body(stream_content)
-
-    return request
 
 
 def prepare_storageaccounts_check_name_availability(
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
+    account_name,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -87,16 +47,18 @@ def prepare_storageaccounts_check_name_availability(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = account_name
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(
+        method="POST", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs
+    )
 
 
 def prepare_storageaccounts_create_initial(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountCreateParameters"
+    parameters,  # type: "_models.StorageAccountCreateParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -126,9 +88,9 @@ def prepare_storageaccounts_create_initial(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = parameters
 
-    return _request("PUT", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_storageaccounts_delete(
@@ -159,7 +121,11 @@ def prepare_storageaccounts_delete(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
-    return _request("DELETE", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        params=query_parameters,
+    )
 
 
 def prepare_storageaccounts_get_properties(
@@ -192,14 +158,19 @@ def prepare_storageaccounts_get_properties(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_storageaccounts_update(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountUpdateParameters"
+    parameters,  # type: "_models.StorageAccountUpdateParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -229,9 +200,11 @@ def prepare_storageaccounts_update(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = parameters
 
-    return _request("PATCH", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(
+        method="PATCH", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs
+    )
 
 
 def prepare_storageaccounts_list_keys(
@@ -264,7 +237,12 @@ def prepare_storageaccounts_list_keys(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("POST", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_storageaccounts_list(
@@ -290,7 +268,12 @@ def prepare_storageaccounts_list(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_storageaccounts_list_by_resource_group(
@@ -321,14 +304,19 @@ def prepare_storageaccounts_list_by_resource_group(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )
 
 
 def prepare_storageaccounts_regenerate_key(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountRegenerateKeyParameters"
+    regenerate_key,  # type: "_models.StorageAccountRegenerateKeyParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -358,9 +346,11 @@ def prepare_storageaccounts_regenerate_key(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["json"] = regenerate_key
 
-    return _request("POST", url, query_parameters, header_parameters, **body_content_kwargs)
+    return HttpRequest(
+        method="POST", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs
+    )
 
 
 def prepare_usage_list(
@@ -386,4 +376,9 @@ def prepare_usage_list(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return _request("GET", url, query_parameters, header_parameters)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+    )

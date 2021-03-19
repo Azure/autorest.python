@@ -17,11 +17,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._protocol import *
+from .._rest import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -113,7 +114,7 @@ class DurationOperations(object):
         duration_body = self._serialize.body(duration_body, "duration")
 
         request = prepare_duration_put_positive_duration(
-            body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
+            duration_body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

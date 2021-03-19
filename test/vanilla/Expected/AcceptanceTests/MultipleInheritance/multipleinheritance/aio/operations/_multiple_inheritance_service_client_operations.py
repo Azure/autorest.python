@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -28,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
-    async def get_horse(self, **kwargs) -> "_models.Horse":
+    async def get_horse(self, **kwargs: Any) -> "_models.Horse":
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -62,7 +63,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace_async
-    async def put_horse(self, horse: "_models.Horse", **kwargs) -> str:
+    async def put_horse(self, horse: "_models.Horse", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
@@ -78,7 +79,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         horse = self._serialize.body(horse, "Horse")
 
-        request = prepare_put_horse(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request = prepare_put_horse(horse=horse, template_url=self.put_horse.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -99,7 +100,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace_async
-    async def get_pet(self, **kwargs) -> "_models.Pet":
+    async def get_pet(self, **kwargs: Any) -> "_models.Pet":
         """Get a pet with name 'Peanut'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -133,7 +134,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace_async
-    async def put_pet(self, name: str, **kwargs) -> str:
+    async def put_pet(self, name: str, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
         :param name:
@@ -150,7 +151,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _pet = _models.Pet(name=name)
         _pet = self._serialize.body(_pet, "Pet")
 
-        request = prepare_put_pet(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request = prepare_put_pet(pet=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -171,7 +172,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace_async
-    async def get_feline(self, **kwargs) -> "_models.Feline":
+    async def get_feline(self, **kwargs: Any) -> "_models.Feline":
         """Get a feline where meows and hisses are true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -205,7 +206,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace_async
-    async def put_feline(self, feline: "_models.Feline", **kwargs) -> str:
+    async def put_feline(self, feline: "_models.Feline", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
@@ -221,7 +222,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         feline = self._serialize.body(feline, "Feline")
 
-        request = prepare_put_feline(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request = prepare_put_feline(feline=feline, template_url=self.put_feline.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -242,7 +243,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace_async
-    async def get_cat(self, **kwargs) -> "_models.Cat":
+    async def get_cat(self, **kwargs: Any) -> "_models.Cat":
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -276,7 +277,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace_async
-    async def put_cat(self, cat: "_models.Cat", **kwargs) -> str:
+    async def put_cat(self, cat: "_models.Cat", **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -292,7 +293,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         cat = self._serialize.body(cat, "Cat")
 
-        request = prepare_put_cat(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request = prepare_put_cat(cat=cat, template_url=self.put_cat.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -313,7 +314,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace_async
-    async def get_kitten(self, **kwargs) -> "_models.Kitten":
+    async def get_kitten(self, **kwargs: Any) -> "_models.Kitten":
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
@@ -348,7 +349,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace_async
-    async def put_kitten(self, kitten: "_models.Kitten", **kwargs) -> str:
+    async def put_kitten(self, kitten: "_models.Kitten", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
@@ -366,7 +367,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         kitten = self._serialize.body(kitten, "Kitten")
 
-        request = prepare_put_kitten(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request = prepare_put_kitten(kitten=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

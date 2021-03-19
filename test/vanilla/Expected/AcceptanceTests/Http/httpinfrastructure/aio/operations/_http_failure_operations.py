@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class HttpFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty_error(self, **kwargs) -> bool:
+    async def get_empty_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -83,7 +84,7 @@ class HttpFailureOperations:
     get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
     @distributed_trace_async
-    async def get_no_model_error(self, **kwargs) -> bool:
+    async def get_no_model_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -116,7 +117,7 @@ class HttpFailureOperations:
     get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
     @distributed_trace_async
-    async def get_no_model_empty(self, **kwargs) -> bool:
+    async def get_no_model_empty(self, **kwargs: Any) -> bool:
         """Get empty response from server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

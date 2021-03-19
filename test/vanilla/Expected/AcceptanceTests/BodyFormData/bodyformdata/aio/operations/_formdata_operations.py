@@ -16,11 +16,12 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._protocol import *
+from ..._rest import *
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +50,7 @@ class FormdataOperations:
         self._config = config
 
     @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
+    async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -70,7 +71,9 @@ class FormdataOperations:
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = prepare_formdata_upload_file(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request = prepare_formdata_upload_file(
+            file_content=_body, template_url=self.upload_file.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -92,7 +95,7 @@ class FormdataOperations:
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
+    async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -107,7 +110,7 @@ class FormdataOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = prepare_formdata_upload_file_via_body(
-            body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
+            file_content=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -130,7 +133,7 @@ class FormdataOperations:
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs) -> IO:
+    async def upload_files(self, file_content: List[IO], **kwargs: Any) -> IO:
         """Upload multiple files.
 
         :param file_content: Files to upload.
@@ -148,7 +151,9 @@ class FormdataOperations:
         _body = {
             "fileContent": file_content,
         }
-        request = prepare_formdata_upload_files(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request = prepare_formdata_upload_files(
+            file_content=_body, template_url=self.upload_files.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
