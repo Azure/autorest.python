@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_pets_create_ap_true(body: "_models.PetAPTrue", **kwargs: Any) -> HttpRequest:
+def prepare_pets_create_ap_true(create_parameters: "_models.PetAPTrue", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -29,12 +29,12 @@ def prepare_pets_create_ap_true(body: "_models.PetAPTrue", **kwargs: Any) -> Htt
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = create_parameters
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_cat_ap_true(body: "_models.CatAPTrue", **kwargs: Any) -> HttpRequest:
+def prepare_pets_create_cat_ap_true(create_parameters: "_models.CatAPTrue", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -50,12 +50,12 @@ def prepare_pets_create_cat_ap_true(body: "_models.CatAPTrue", **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = create_parameters
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_object(body: "_models.PetAPObject", **kwargs: Any) -> HttpRequest:
+def prepare_pets_create_ap_object(create_parameters: "_models.PetAPObject", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -71,12 +71,12 @@ def prepare_pets_create_ap_object(body: "_models.PetAPObject", **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = create_parameters
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_string(body: "_models.PetAPString", **kwargs: Any) -> HttpRequest:
+def prepare_pets_create_ap_string(create_parameters: "_models.PetAPString", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -92,12 +92,12 @@ def prepare_pets_create_ap_string(body: "_models.PetAPString", **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = create_parameters
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_pets_create_ap_in_properties(body: "_models.PetAPInProperties", **kwargs: Any) -> HttpRequest:
+def prepare_pets_create_ap_in_properties(create_parameters: "_models.PetAPInProperties", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -113,13 +113,13 @@ def prepare_pets_create_ap_in_properties(body: "_models.PetAPInProperties", **kw
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = create_parameters
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_pets_create_ap_in_properties_with_ap_string(
-    body: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
+    create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -136,6 +136,6 @@ def prepare_pets_create_ap_in_properties_with_ap_string(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = create_parameters
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

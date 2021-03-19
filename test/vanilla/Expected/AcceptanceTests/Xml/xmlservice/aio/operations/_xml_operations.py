@@ -102,7 +102,7 @@ class XmlOperations:
         model = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = prepare_xml_put_complex_type_ref_no_meta(
-            body=model, template_url=self.put_complex_type_ref_no_meta.metadata["url"], **kwargs
+            model=model, template_url=self.put_complex_type_ref_no_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -172,7 +172,7 @@ class XmlOperations:
         model = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = prepare_xml_put_complex_type_ref_with_meta(
-            body=model, template_url=self.put_complex_type_ref_with_meta.metadata["url"], **kwargs
+            model=model, template_url=self.put_complex_type_ref_with_meta.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -240,7 +240,7 @@ class XmlOperations:
 
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = prepare_xml_put_simple(body=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
+        request = prepare_xml_put_simple(slideshow=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -308,7 +308,7 @@ class XmlOperations:
         wrapped_lists = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = prepare_xml_put_wrapped_lists(
-            body=wrapped_lists, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
+            wrapped_lists=wrapped_lists, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -408,7 +408,9 @@ class XmlOperations:
 
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = prepare_xml_put_empty_list(body=slideshow, template_url=self.put_empty_list.metadata["url"], **kwargs)
+        request = prepare_xml_put_empty_list(
+            slideshow=slideshow, template_url=self.put_empty_list.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -477,7 +479,7 @@ class XmlOperations:
         apple_barrel = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = prepare_xml_put_empty_wrapped_lists(
-            body=apple_barrel, template_url=self.put_empty_wrapped_lists.metadata["url"], **kwargs
+            apple_barrel=apple_barrel, template_url=self.put_empty_wrapped_lists.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -545,7 +547,7 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = prepare_xml_put_root_list(body=bananas, template_url=self.put_root_list.metadata["url"], **kwargs)
+        request = prepare_xml_put_root_list(bananas=bananas, template_url=self.put_root_list.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -615,7 +617,7 @@ class XmlOperations:
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = prepare_xml_put_root_list_single_item(
-            body=bananas, template_url=self.put_root_list_single_item.metadata["url"], **kwargs
+            bananas=bananas, template_url=self.put_root_list_single_item.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -684,7 +686,7 @@ class XmlOperations:
         bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = prepare_xml_put_empty_root_list(
-            body=bananas, template_url=self.put_empty_root_list.metadata["url"], **kwargs
+            bananas=bananas, template_url=self.put_empty_root_list.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -754,7 +756,7 @@ class XmlOperations:
         banana = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = prepare_xml_put_empty_child_element(
-            body=banana, template_url=self.put_empty_child_element.metadata["url"], **kwargs
+            banana=banana, template_url=self.put_empty_child_element.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -855,7 +857,7 @@ class XmlOperations:
         properties = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = prepare_xml_put_service_properties(
-            body=properties, template_url=self.put_service_properties.metadata["url"], **kwargs
+            properties=properties, template_url=self.put_service_properties.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -925,7 +927,7 @@ class XmlOperations:
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
 
-        request = prepare_xml_put_acls(body=properties, template_url=self.put_acls.metadata["url"], **kwargs)
+        request = prepare_xml_put_acls(properties=properties, template_url=self.put_acls.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -993,7 +995,7 @@ class XmlOperations:
         _properties = _models.JSONInput(id=id)
         _properties = self._serialize.body(_properties, "JSONInput")
 
-        request = prepare_xml_json_input(body=_properties, template_url=self.json_input.metadata["url"], **kwargs)
+        request = prepare_xml_json_input(properties=_properties, template_url=self.json_input.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1128,7 +1130,7 @@ class XmlOperations:
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
         _slideshow = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
-        request = prepare_xml_put_binary(body=_slideshow, template_url=self.put_binary.metadata["url"], **kwargs)
+        request = prepare_xml_put_binary(slideshow=_slideshow, template_url=self.put_binary.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1197,7 +1199,7 @@ class XmlOperations:
         _model = _models.ModelWithUrlProperty(url=url)
         _model = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
-        request = prepare_xml_put_uri(body=_model, template_url=self.put_uri.metadata["url"], **kwargs)
+        request = prepare_xml_put_uri(model=_model, template_url=self.put_uri.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

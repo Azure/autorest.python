@@ -33,7 +33,7 @@ def prepare_get_horse(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_horse(body: "_models.Horse", **kwargs: Any) -> HttpRequest:
+def prepare_put_horse(horse: "_models.Horse", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -49,7 +49,7 @@ def prepare_put_horse(body: "_models.Horse", **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = horse
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -74,7 +74,7 @@ def prepare_get_pet(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_pet(body: "_models.Pet", **kwargs: Any) -> HttpRequest:
+def prepare_put_pet(pet: "_models.Pet", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -90,7 +90,7 @@ def prepare_put_pet(body: "_models.Pet", **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = pet
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -115,7 +115,7 @@ def prepare_get_feline(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_feline(body: "_models.Feline", **kwargs: Any) -> HttpRequest:
+def prepare_put_feline(feline: "_models.Feline", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -131,7 +131,7 @@ def prepare_put_feline(body: "_models.Feline", **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = feline
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -156,7 +156,7 @@ def prepare_get_cat(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_cat(body: "_models.Cat", **kwargs: Any) -> HttpRequest:
+def prepare_put_cat(cat: "_models.Cat", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -172,7 +172,7 @@ def prepare_put_cat(body: "_models.Cat", **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = cat
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -197,7 +197,7 @@ def prepare_get_kitten(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_kitten(body: "_models.Kitten", **kwargs: Any) -> HttpRequest:
+def prepare_put_kitten(kitten: "_models.Kitten", **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -213,6 +213,6 @@ def prepare_put_kitten(body: "_models.Kitten", **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = kitten
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

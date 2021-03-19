@@ -41,7 +41,7 @@ def prepare_bool_get_true(
 
 
 def prepare_bool_put_true(
-    body,  # type: bool
+    bool_body,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -60,7 +60,7 @@ def prepare_bool_put_true(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = bool_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -89,7 +89,7 @@ def prepare_bool_get_false(
 
 
 def prepare_bool_put_false(
-    body,  # type: bool
+    bool_body,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -108,7 +108,7 @@ def prepare_bool_put_false(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = bool_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

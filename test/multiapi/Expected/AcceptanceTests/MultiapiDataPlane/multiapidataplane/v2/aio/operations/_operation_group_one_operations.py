@@ -65,7 +65,7 @@ class OperationGroupOneOperations:
             parameter_one = self._serialize.body(parameter_one, 'ModelTwo')
 
         request = prepare_operationgroupone_test_two(
-            body=parameter_one,
+            parameter_one=parameter_one,
             template_url=self.test_two.metadata['url'],
             **kwargs
         )

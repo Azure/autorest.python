@@ -204,7 +204,7 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_utc_max_date_time(
-            body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -243,7 +243,7 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_utc_max_date_time7_digits(
-            body=datetime_body, template_url=self.put_utc_max_date_time7_digits.metadata["url"], **kwargs
+            datetime_body=datetime_body, template_url=self.put_utc_max_date_time7_digits.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -390,7 +390,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_positive_offset_max_date_time(
-            body=datetime_body, template_url=self.put_local_positive_offset_max_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -498,7 +500,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_negative_offset_max_date_time(
-            body=datetime_body, template_url=self.put_local_negative_offset_max_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -606,7 +610,7 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_utc_min_date_time(
-            body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -678,7 +682,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_positive_offset_min_date_time(
-            body=datetime_body, template_url=self.put_local_positive_offset_min_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -750,7 +756,9 @@ class DatetimeOperations:
         datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = prepare_datetime_put_local_negative_offset_min_date_time(
-            body=datetime_body, template_url=self.put_local_negative_offset_min_date_time.metadata["url"], **kwargs
+            datetime_body=datetime_body,
+            template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

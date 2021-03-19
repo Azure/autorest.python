@@ -168,7 +168,9 @@ class ByteOperations:
 
         byte_body = self._serialize.body(byte_body, "bytearray")
 
-        request = prepare_byte_put_non_ascii(body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs)
+        request = prepare_byte_put_non_ascii(
+            byte_body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

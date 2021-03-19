@@ -81,7 +81,9 @@ class FormdataOperations(object):
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = prepare_formdata_upload_file(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
+        request = prepare_formdata_upload_file(
+            file_content=_body, template_url=self.upload_file.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -123,7 +125,7 @@ class FormdataOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = prepare_formdata_upload_file_via_body(
-            body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
+            file_content=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -169,7 +171,9 @@ class FormdataOperations(object):
         _body = {
             "fileContent": file_content,
         }
-        request = prepare_formdata_upload_files(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
+        request = prepare_formdata_upload_files(
+            file_content=_body, template_url=self.upload_files.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

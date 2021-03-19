@@ -103,7 +103,7 @@ class InheritanceOperations:
         complex_body = self._serialize.body(complex_body, "Siamese")
 
         request = prepare_inheritance_put_valid(
-            body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

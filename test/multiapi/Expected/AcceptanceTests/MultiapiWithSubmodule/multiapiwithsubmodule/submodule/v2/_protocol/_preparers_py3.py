@@ -78,7 +78,7 @@ def prepare_test_different_calls(
 
 
 def prepare_operationgroupone_test_two(
-    body: Optional["_models.ModelTwo"] = None,
+    parameter_one: Optional["_models.ModelTwo"] = None,
     **kwargs: Any
 ) -> HttpRequest:
     api_version = "2.0.0"
@@ -98,7 +98,7 @@ def prepare_operationgroupone_test_two(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs['json'] = body
+    body_content_kwargs['json'] = parameter_one
 
     return HttpRequest(
         method="GET",

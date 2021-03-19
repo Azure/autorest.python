@@ -109,7 +109,7 @@ class BoolOperations(object):
         bool_body = True
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = prepare_bool_put_true(body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
+        request = prepare_bool_put_true(bool_body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -182,7 +182,7 @@ class BoolOperations(object):
         bool_body = False
         bool_body = self._serialize.body(bool_body, "bool")
 
-        request = prepare_bool_put_false(body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
+        request = prepare_bool_put_false(bool_body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -50,7 +50,7 @@ def prepare_test_one(
 
 
 def prepare_test_lro_initial(
-    body=None,  # type: Optional["_models.Product"]
+    product=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -69,7 +69,7 @@ def prepare_test_lro_initial(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs['json'] = body
+    body_content_kwargs['json'] = product
 
     return HttpRequest(
         method="PUT",

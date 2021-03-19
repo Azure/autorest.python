@@ -102,7 +102,7 @@ class DictionaryOperations:
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = prepare_dictionary_put_valid(
-            body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+            complex_body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -173,7 +173,7 @@ class DictionaryOperations:
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = prepare_dictionary_put_empty(
-            body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
+            complex_body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

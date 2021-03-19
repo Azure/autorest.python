@@ -39,7 +39,7 @@ class PollingPagingExampleOperationsMixin:
             product = self._serialize.body(product, 'Product')
 
         request = prepare_basic_polling_initial(
-            body=product,
+            product=product,
             template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
         )

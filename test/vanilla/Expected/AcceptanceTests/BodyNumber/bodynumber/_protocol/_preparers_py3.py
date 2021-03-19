@@ -93,7 +93,7 @@ def prepare_number_get_invalid_decimal(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_float(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_float(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -109,7 +109,7 @@ def prepare_number_put_big_float(body: float, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -134,7 +134,7 @@ def prepare_number_get_big_float(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_double(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_double(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -150,7 +150,7 @@ def prepare_number_put_big_double(body: float, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -175,7 +175,7 @@ def prepare_number_get_big_double(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_double_positive_decimal(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_double_positive_decimal(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -191,7 +191,7 @@ def prepare_number_put_big_double_positive_decimal(body: float, **kwargs: Any) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -216,7 +216,7 @@ def prepare_number_get_big_double_positive_decimal(**kwargs: Any) -> HttpRequest
     )
 
 
-def prepare_number_put_big_double_negative_decimal(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_double_negative_decimal(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -232,7 +232,7 @@ def prepare_number_put_big_double_negative_decimal(body: float, **kwargs: Any) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -257,7 +257,7 @@ def prepare_number_get_big_double_negative_decimal(**kwargs: Any) -> HttpRequest
     )
 
 
-def prepare_number_put_big_decimal(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_decimal(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -273,7 +273,7 @@ def prepare_number_put_big_decimal(body: float, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -298,7 +298,7 @@ def prepare_number_get_big_decimal(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_number_put_big_decimal_positive_decimal(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_decimal_positive_decimal(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -314,7 +314,7 @@ def prepare_number_put_big_decimal_positive_decimal(body: float, **kwargs: Any) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -339,7 +339,7 @@ def prepare_number_get_big_decimal_positive_decimal(**kwargs: Any) -> HttpReques
     )
 
 
-def prepare_number_put_big_decimal_negative_decimal(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_big_decimal_negative_decimal(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -355,7 +355,7 @@ def prepare_number_put_big_decimal_negative_decimal(body: float, **kwargs: Any) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -380,7 +380,7 @@ def prepare_number_get_big_decimal_negative_decimal(**kwargs: Any) -> HttpReques
     )
 
 
-def prepare_number_put_small_float(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_small_float(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -396,7 +396,7 @@ def prepare_number_put_small_float(body: float, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -421,7 +421,7 @@ def prepare_number_get_small_float(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_number_put_small_double(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_small_double(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -437,7 +437,7 @@ def prepare_number_put_small_double(body: float, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -462,7 +462,7 @@ def prepare_number_get_small_double(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_number_put_small_decimal(body: float, **kwargs: Any) -> HttpRequest:
+def prepare_number_put_small_decimal(number_body: float, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -478,7 +478,7 @@ def prepare_number_put_small_decimal(body: float, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = number_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

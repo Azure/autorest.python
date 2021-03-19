@@ -101,7 +101,7 @@ class EnumOperations:
         string_body = self._serialize.body(string_body, "str")
 
         request = prepare_enum_put_not_expandable(
-            body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
+            string_body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -171,7 +171,7 @@ class EnumOperations:
         enum_string_body = self._serialize.body(enum_string_body, "str")
 
         request = prepare_enum_put_referenced(
-            body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
+            enum_string_body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -244,7 +244,7 @@ class EnumOperations:
         _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = prepare_enum_put_referenced_constant(
-            body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
+            enum_string_body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

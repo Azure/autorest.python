@@ -72,7 +72,7 @@ def prepare_test_different_calls(
 
 
 def prepare_operationgroupone_test_two(
-    body: Optional["_models.ModelThree"] = None,
+    parameter_one: Optional["_models.ModelThree"] = None,
     **kwargs: Any
 ) -> HttpRequest:
     api_version = "3.0.0"
@@ -92,7 +92,7 @@ def prepare_operationgroupone_test_two(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs['json'] = body
+    body_content_kwargs['json'] = parameter_one
 
     return HttpRequest(
         method="GET",
@@ -104,7 +104,7 @@ def prepare_operationgroupone_test_two(
 
 
 def prepare_operationgrouptwo_test_four(
-    body: Optional[Union[IO, "_models.SourcePath"]] = None,
+    input: Optional[Union[IO, "_models.SourcePath"]] = None,
     **kwargs: Any
 ) -> HttpRequest:
     api_version = "3.0.0"
@@ -125,11 +125,11 @@ def prepare_operationgrouptwo_test_four(
 
     if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
+        body_content_kwargs['content'] = input
 
     elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['json'] = body
+        body_content_kwargs['json'] = input
     else:
         raise ValueError(
             "The content_type '{}' is not one of the allowed values: "

@@ -133,7 +133,7 @@ def prepare_httpsuccess_options200(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_put200(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_put200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -149,12 +149,12 @@ def prepare_httpsuccess_put200(body: Optional[bool] = True, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch200(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_patch200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -170,12 +170,12 @@ def prepare_httpsuccess_patch200(body: Optional[bool] = True, **kwargs: Any) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post200(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_post200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -191,12 +191,12 @@ def prepare_httpsuccess_post200(body: Optional[bool] = True, **kwargs: Any) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete200(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_delete200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -212,12 +212,12 @@ def prepare_httpsuccess_delete200(body: Optional[bool] = True, **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_put201(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_put201(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -233,12 +233,12 @@ def prepare_httpsuccess_put201(body: Optional[bool] = True, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post201(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_post201(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -254,12 +254,12 @@ def prepare_httpsuccess_post201(body: Optional[bool] = True, **kwargs: Any) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_put202(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_put202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -275,12 +275,12 @@ def prepare_httpsuccess_put202(body: Optional[bool] = True, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch202(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_patch202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -296,12 +296,12 @@ def prepare_httpsuccess_patch202(body: Optional[bool] = True, **kwargs: Any) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post202(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_post202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -317,12 +317,12 @@ def prepare_httpsuccess_post202(body: Optional[bool] = True, **kwargs: Any) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete202(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_delete202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -338,7 +338,7 @@ def prepare_httpsuccess_delete202(body: Optional[bool] = True, **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -363,7 +363,7 @@ def prepare_httpsuccess_head204(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpsuccess_put204(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_put204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -379,12 +379,12 @@ def prepare_httpsuccess_put204(body: Optional[bool] = True, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_patch204(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_patch204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -400,12 +400,12 @@ def prepare_httpsuccess_patch204(body: Optional[bool] = True, **kwargs: Any) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_post204(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_post204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -421,12 +421,12 @@ def prepare_httpsuccess_post204(body: Optional[bool] = True, **kwargs: Any) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpsuccess_delete204(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpsuccess_delete204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -442,7 +442,7 @@ def prepare_httpsuccess_delete204(body: Optional[bool] = True, **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -547,7 +547,7 @@ def prepare_httpredirects_get301(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_put301(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_put301(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -563,7 +563,7 @@ def prepare_httpredirects_put301(body: Optional[bool] = True, **kwargs: Any) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -608,7 +608,7 @@ def prepare_httpredirects_get302(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_patch302(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_patch302(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -624,12 +624,12 @@ def prepare_httpredirects_patch302(body: Optional[bool] = True, **kwargs: Any) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_post303(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_post303(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -645,7 +645,7 @@ def prepare_httpredirects_post303(body: Optional[bool] = True, **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -710,7 +710,7 @@ def prepare_httpredirects_options307(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpredirects_put307(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_put307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -726,12 +726,12 @@ def prepare_httpredirects_put307(body: Optional[bool] = True, **kwargs: Any) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_patch307(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_patch307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -747,12 +747,12 @@ def prepare_httpredirects_patch307(body: Optional[bool] = True, **kwargs: Any) -
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_post307(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_post307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -768,12 +768,12 @@ def prepare_httpredirects_post307(body: Optional[bool] = True, **kwargs: Any) ->
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpredirects_delete307(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpredirects_delete307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -789,7 +789,7 @@ def prepare_httpredirects_delete307(body: Optional[bool] = True, **kwargs: Any) 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -854,7 +854,7 @@ def prepare_httpclientfailure_options400(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_put400(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_put400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -870,12 +870,12 @@ def prepare_httpclientfailure_put400(body: Optional[bool] = True, **kwargs: Any)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch400(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_patch400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -891,12 +891,12 @@ def prepare_httpclientfailure_patch400(body: Optional[bool] = True, **kwargs: An
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post400(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_post400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -912,12 +912,12 @@ def prepare_httpclientfailure_post400(body: Optional[bool] = True, **kwargs: Any
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_delete400(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_delete400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -933,7 +933,7 @@ def prepare_httpclientfailure_delete400(body: Optional[bool] = True, **kwargs: A
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1018,7 +1018,7 @@ def prepare_httpclientfailure_get403(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_put404(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_put404(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1034,12 +1034,12 @@ def prepare_httpclientfailure_put404(body: Optional[bool] = True, **kwargs: Any)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch405(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_patch405(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1055,12 +1055,12 @@ def prepare_httpclientfailure_patch405(body: Optional[bool] = True, **kwargs: An
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post406(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_post406(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1076,12 +1076,12 @@ def prepare_httpclientfailure_post406(body: Optional[bool] = True, **kwargs: Any
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_delete407(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_delete407(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1097,12 +1097,12 @@ def prepare_httpclientfailure_delete407(body: Optional[bool] = True, **kwargs: A
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_put409(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_put409(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1118,7 +1118,7 @@ def prepare_httpclientfailure_put409(body: Optional[bool] = True, **kwargs: Any)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1203,7 +1203,7 @@ def prepare_httpclientfailure_get412(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_put413(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_put413(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1219,12 +1219,12 @@ def prepare_httpclientfailure_put413(body: Optional[bool] = True, **kwargs: Any)
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_patch414(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_patch414(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1240,12 +1240,12 @@ def prepare_httpclientfailure_patch414(body: Optional[bool] = True, **kwargs: An
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpclientfailure_post415(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_post415(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1261,7 +1261,7 @@ def prepare_httpclientfailure_post415(body: Optional[bool] = True, **kwargs: Any
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1286,7 +1286,7 @@ def prepare_httpclientfailure_get416(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpclientfailure_delete417(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpclientfailure_delete417(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1302,7 +1302,7 @@ def prepare_httpclientfailure_delete417(body: Optional[bool] = True, **kwargs: A
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1367,7 +1367,7 @@ def prepare_httpserverfailure_get501(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpserverfailure_post505(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpserverfailure_post505(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1383,12 +1383,12 @@ def prepare_httpserverfailure_post505(body: Optional[bool] = True, **kwargs: Any
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpserverfailure_delete505(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpserverfailure_delete505(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1404,7 +1404,7 @@ def prepare_httpserverfailure_delete505(body: Optional[bool] = True, **kwargs: A
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1429,7 +1429,7 @@ def prepare_httpretry_head408(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpretry_put500(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpretry_put500(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1445,12 +1445,12 @@ def prepare_httpretry_put500(body: Optional[bool] = True, **kwargs: Any) -> Http
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_patch500(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpretry_patch500(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1466,7 +1466,7 @@ def prepare_httpretry_patch500(body: Optional[bool] = True, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1511,7 +1511,7 @@ def prepare_httpretry_options502(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_httpretry_post503(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpretry_post503(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1527,12 +1527,12 @@ def prepare_httpretry_post503(body: Optional[bool] = True, **kwargs: Any) -> Htt
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_delete503(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpretry_delete503(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1548,12 +1548,12 @@ def prepare_httpretry_delete503(body: Optional[bool] = True, **kwargs: Any) -> H
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_put504(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpretry_put504(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1569,12 +1569,12 @@ def prepare_httpretry_put504(body: Optional[bool] = True, **kwargs: Any) -> Http
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_httpretry_patch504(body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+def prepare_httpretry_patch504(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1590,7 +1590,7 @@ def prepare_httpretry_patch504(body: Optional[bool] = True, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = boolean_value
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)
 

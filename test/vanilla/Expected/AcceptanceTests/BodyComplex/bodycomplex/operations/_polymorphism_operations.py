@@ -145,7 +145,7 @@ class PolymorphismOperations(object):
         complex_body = self._serialize.body(complex_body, "Fish")
 
         request = prepare_polymorphism_put_valid(
-            body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -344,7 +344,7 @@ class PolymorphismOperations(object):
         complex_body = self._serialize.body(complex_body, "Salmon")
 
         request = prepare_polymorphism_put_complicated(
-            body=complex_body, template_url=self.put_complicated.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_complicated.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -385,7 +385,7 @@ class PolymorphismOperations(object):
         complex_body = self._serialize.body(complex_body, "Salmon")
 
         request = prepare_polymorphism_put_missing_discriminator(
-            body=complex_body, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -457,7 +457,7 @@ class PolymorphismOperations(object):
         complex_body = self._serialize.body(complex_body, "Fish")
 
         request = prepare_polymorphism_put_valid_missing_required(
-            body=complex_body, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
+            complex_body=complex_body, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

@@ -18,7 +18,7 @@ _SERIALIZER = Serializer()
 
 
 def prepare_int_put(
-    body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
+    input=None,  # type: Optional[Union[int, "_models.IntEnum"]]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -37,7 +37,7 @@ def prepare_int_put(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = input
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -66,7 +66,7 @@ def prepare_int_get(
 
 
 def prepare_float_put(
-    body=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
+    input=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -85,7 +85,7 @@ def prepare_float_put(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = input
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

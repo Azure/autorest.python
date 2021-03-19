@@ -101,7 +101,9 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = prepare_array_put_valid(body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = prepare_array_put_valid(
+            complex_body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -170,7 +172,9 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = prepare_array_put_empty(body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs)
+        request = prepare_array_put_empty(
+            complex_body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

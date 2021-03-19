@@ -87,7 +87,7 @@ def prepare_byte_get_non_ascii(
 
 
 def prepare_byte_put_non_ascii(
-    body,  # type: bytearray
+    byte_body,  # type: bytearray
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -106,7 +106,7 @@ def prepare_byte_put_non_ascii(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = byte_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

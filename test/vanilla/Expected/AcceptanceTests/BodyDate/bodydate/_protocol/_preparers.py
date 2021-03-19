@@ -111,7 +111,7 @@ def prepare_date_get_underflow_date(
 
 
 def prepare_date_put_max_date(
-    body,  # type: datetime.date
+    date_body,  # type: datetime.date
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ def prepare_date_put_max_date(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = date_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -159,7 +159,7 @@ def prepare_date_get_max_date(
 
 
 def prepare_date_put_min_date(
-    body,  # type: datetime.date
+    date_body,  # type: datetime.date
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -178,7 +178,7 @@ def prepare_date_put_min_date(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = date_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

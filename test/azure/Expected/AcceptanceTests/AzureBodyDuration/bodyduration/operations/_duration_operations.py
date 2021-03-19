@@ -114,7 +114,7 @@ class DurationOperations(object):
         duration_body = self._serialize.body(duration_body, "duration")
 
         request = prepare_duration_put_positive_duration(
-            body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
+            duration_body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

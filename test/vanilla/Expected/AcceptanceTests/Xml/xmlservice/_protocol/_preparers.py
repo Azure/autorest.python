@@ -41,7 +41,7 @@ def prepare_xml_get_complex_type_ref_no_meta(
 
 
 def prepare_xml_put_complex_type_ref_no_meta(
-    body,  # type: "_models.RootWithRefAndNoMeta"
+    model,  # type: "_models.RootWithRefAndNoMeta"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -58,7 +58,7 @@ def prepare_xml_put_complex_type_ref_no_meta(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = model
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -87,7 +87,7 @@ def prepare_xml_get_complex_type_ref_with_meta(
 
 
 def prepare_xml_put_complex_type_ref_with_meta(
-    body,  # type: "_models.RootWithRefAndMeta"
+    model,  # type: "_models.RootWithRefAndMeta"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -104,7 +104,7 @@ def prepare_xml_put_complex_type_ref_with_meta(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = model
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -133,7 +133,7 @@ def prepare_xml_get_simple(
 
 
 def prepare_xml_put_simple(
-    body,  # type: "_models.Slideshow"
+    slideshow,  # type: "_models.Slideshow"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -152,7 +152,7 @@ def prepare_xml_put_simple(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = slideshow
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -181,7 +181,7 @@ def prepare_xml_get_wrapped_lists(
 
 
 def prepare_xml_put_wrapped_lists(
-    body,  # type: "_models.AppleBarrel"
+    wrapped_lists,  # type: "_models.AppleBarrel"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -200,7 +200,7 @@ def prepare_xml_put_wrapped_lists(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = wrapped_lists
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -249,7 +249,7 @@ def prepare_xml_get_empty_list(
 
 
 def prepare_xml_put_empty_list(
-    body,  # type: "_models.Slideshow"
+    slideshow,  # type: "_models.Slideshow"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -266,7 +266,7 @@ def prepare_xml_put_empty_list(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = slideshow
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -295,7 +295,7 @@ def prepare_xml_get_empty_wrapped_lists(
 
 
 def prepare_xml_put_empty_wrapped_lists(
-    body,  # type: "_models.AppleBarrel"
+    apple_barrel,  # type: "_models.AppleBarrel"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -312,7 +312,7 @@ def prepare_xml_put_empty_wrapped_lists(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = apple_barrel
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -341,7 +341,7 @@ def prepare_xml_get_root_list(
 
 
 def prepare_xml_put_root_list(
-    body,  # type: List["_models.Banana"]
+    bananas,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -358,7 +358,7 @@ def prepare_xml_put_root_list(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = bananas
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -387,7 +387,7 @@ def prepare_xml_get_root_list_single_item(
 
 
 def prepare_xml_put_root_list_single_item(
-    body,  # type: List["_models.Banana"]
+    bananas,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -404,7 +404,7 @@ def prepare_xml_put_root_list_single_item(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = bananas
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -433,7 +433,7 @@ def prepare_xml_get_empty_root_list(
 
 
 def prepare_xml_put_empty_root_list(
-    body,  # type: List["_models.Banana"]
+    bananas,  # type: List["_models.Banana"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -450,7 +450,7 @@ def prepare_xml_put_empty_root_list(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = bananas
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -479,7 +479,7 @@ def prepare_xml_get_empty_child_element(
 
 
 def prepare_xml_put_empty_child_element(
-    body,  # type: "_models.Banana"
+    banana,  # type: "_models.Banana"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -496,7 +496,7 @@ def prepare_xml_put_empty_child_element(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = banana
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -556,7 +556,7 @@ def prepare_xml_get_service_properties(
 
 
 def prepare_xml_put_service_properties(
-    body,  # type: "_models.StorageServiceProperties"
+    properties,  # type: "_models.StorageServiceProperties"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -577,7 +577,7 @@ def prepare_xml_put_service_properties(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = properties
 
     return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
@@ -611,7 +611,7 @@ def prepare_xml_get_acls(
 
 
 def prepare_xml_put_acls(
-    body,  # type: List["_models.SignedIdentifier"]
+    properties,  # type: List["_models.SignedIdentifier"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -632,7 +632,7 @@ def prepare_xml_put_acls(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = properties
 
     return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
@@ -666,7 +666,7 @@ def prepare_xml_list_blobs(
 
 
 def prepare_xml_json_input(
-    body,  # type: "_models.JSONInput"
+    properties,  # type: "_models.JSONInput"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -683,7 +683,7 @@ def prepare_xml_json_input(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = properties
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -758,7 +758,7 @@ def prepare_xml_get_bytes(
 
 
 def prepare_xml_put_binary(
-    body,  # type: "_models.ModelWithByteProperty"
+    slideshow,  # type: "_models.ModelWithByteProperty"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -777,7 +777,7 @@ def prepare_xml_put_binary(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = slideshow
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -806,7 +806,7 @@ def prepare_xml_get_uri(
 
 
 def prepare_xml_put_uri(
-    body,  # type: "_models.ModelWithUrlProperty"
+    model,  # type: "_models.ModelWithUrlProperty"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -825,6 +825,6 @@ def prepare_xml_put_uri(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = model
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

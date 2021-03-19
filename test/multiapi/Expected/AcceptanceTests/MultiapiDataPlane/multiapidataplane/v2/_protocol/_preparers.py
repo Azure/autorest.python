@@ -82,7 +82,7 @@ def prepare_test_different_calls(
 
 
 def prepare_operationgroupone_test_two(
-    body=None,  # type: Optional["_models.ModelTwo"]
+    parameter_one=None,  # type: Optional["_models.ModelTwo"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -103,7 +103,7 @@ def prepare_operationgroupone_test_two(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs['json'] = body
+    body_content_kwargs['json'] = parameter_one
 
     return HttpRequest(
         method="GET",

@@ -33,7 +33,7 @@ def prepare_bool_get_true(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_bool_put_true(body: bool, **kwargs: Any) -> HttpRequest:
+def prepare_bool_put_true(bool_body: bool, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -49,7 +49,7 @@ def prepare_bool_put_true(body: bool, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = bool_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -74,7 +74,7 @@ def prepare_bool_get_false(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_bool_put_false(body: bool, **kwargs: Any) -> HttpRequest:
+def prepare_bool_put_false(bool_body: bool, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -90,7 +90,7 @@ def prepare_bool_put_false(body: bool, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = bool_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

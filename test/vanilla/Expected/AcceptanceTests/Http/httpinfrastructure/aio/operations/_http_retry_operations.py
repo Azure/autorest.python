@@ -97,7 +97,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_put500(body=boolean_value, template_url=self.put500.metadata["url"], **kwargs)
+        request = prepare_httpretry_put500(
+            boolean_value=boolean_value, template_url=self.put500.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -132,7 +134,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_patch500(body=boolean_value, template_url=self.patch500.metadata["url"], **kwargs)
+        request = prepare_httpretry_patch500(
+            boolean_value=boolean_value, template_url=self.patch500.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -231,7 +235,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_post503(body=boolean_value, template_url=self.post503.metadata["url"], **kwargs)
+        request = prepare_httpretry_post503(
+            boolean_value=boolean_value, template_url=self.post503.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -266,7 +272,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_delete503(body=boolean_value, template_url=self.delete503.metadata["url"], **kwargs)
+        request = prepare_httpretry_delete503(
+            boolean_value=boolean_value, template_url=self.delete503.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -301,7 +309,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_put504(body=boolean_value, template_url=self.put504.metadata["url"], **kwargs)
+        request = prepare_httpretry_put504(
+            boolean_value=boolean_value, template_url=self.put504.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -336,7 +346,9 @@ class HttpRetryOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpretry_patch504(body=boolean_value, template_url=self.patch504.metadata["url"], **kwargs)
+        request = prepare_httpretry_patch504(
+            boolean_value=boolean_value, template_url=self.patch504.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -224,7 +224,9 @@ class DateOperations(object):
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = prepare_date_put_max_date(body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs)
+        request = prepare_date_put_max_date(
+            date_body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -300,7 +302,9 @@ class DateOperations(object):
 
         date_body = self._serialize.body(date_body, "date")
 
-        request = prepare_date_put_min_date(body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs)
+        request = prepare_date_put_min_date(
+            date_body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

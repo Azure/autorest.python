@@ -94,7 +94,7 @@ def prepare_date_get_underflow_date(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_date_put_max_date(body: datetime.date, **kwargs: Any) -> HttpRequest:
+def prepare_date_put_max_date(date_body: datetime.date, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -110,7 +110,7 @@ def prepare_date_put_max_date(body: datetime.date, **kwargs: Any) -> HttpRequest
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = date_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -135,7 +135,7 @@ def prepare_date_get_max_date(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_date_put_min_date(body: datetime.date, **kwargs: Any) -> HttpRequest:
+def prepare_date_put_min_date(date_body: datetime.date, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -151,7 +151,7 @@ def prepare_date_put_min_date(body: datetime.date, **kwargs: Any) -> HttpRequest
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = date_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

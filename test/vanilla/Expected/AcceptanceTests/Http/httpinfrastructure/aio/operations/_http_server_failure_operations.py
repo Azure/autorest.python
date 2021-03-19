@@ -128,7 +128,7 @@ class HttpServerFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpserverfailure_post505(
-            body=boolean_value, template_url=self.post505.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.post505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -165,7 +165,7 @@ class HttpServerFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpserverfailure_delete505(
-            body=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

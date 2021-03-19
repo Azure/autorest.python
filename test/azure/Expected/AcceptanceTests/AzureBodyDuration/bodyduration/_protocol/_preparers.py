@@ -42,7 +42,7 @@ def prepare_duration_get_null(
 
 
 def prepare_duration_put_positive_duration(
-    body,  # type: datetime.timedelta
+    duration_body,  # type: datetime.timedelta
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -61,7 +61,7 @@ def prepare_duration_put_positive_duration(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = duration_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

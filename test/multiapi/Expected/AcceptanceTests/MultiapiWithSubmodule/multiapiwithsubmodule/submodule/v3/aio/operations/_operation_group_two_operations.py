@@ -66,7 +66,7 @@ class OperationGroupTwoOperations:
 
         content_type = kwargs.get("content_type", "application/json")
         request = prepare_operationgrouptwo_test_four(
-            body=input,
+            input=input,
             template_url=self.test_four.metadata['url'],
             **kwargs
         )

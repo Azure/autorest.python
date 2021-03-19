@@ -157,7 +157,7 @@ def prepare_int_get_underflow_int64(
 
 
 def prepare_int_put_max32(
-    body,  # type: int
+    int_body,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -176,13 +176,13 @@ def prepare_int_put_max32(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_int_put_max64(
-    body,  # type: int
+    int_body,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -201,13 +201,13 @@ def prepare_int_put_max64(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_int_put_min32(
-    body,  # type: int
+    int_body,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -226,13 +226,13 @@ def prepare_int_put_min32(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_int_put_min64(
-    body,  # type: int
+    int_body,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -251,7 +251,7 @@ def prepare_int_put_min64(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -280,7 +280,7 @@ def prepare_int_get_unix_time(
 
 
 def prepare_int_put_unix_time_date(
-    body,  # type: datetime.datetime
+    int_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -299,7 +299,7 @@ def prepare_int_put_unix_time_date(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

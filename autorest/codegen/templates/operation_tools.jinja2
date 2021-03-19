@@ -174,7 +174,7 @@ body_content_kwargs['files'] = {{ preparer.parameters.body[0].serialized_name }}
 body_content_kwargs['content'] = {{ preparer.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
 {% set body_kwarg = "json" if "application/json" in schema_request.pre_semicolon_media_types else "content" %}
-body_content_kwargs['{{ body_kwarg }}'] = body{% endif %}{% endmacro %}
+body_content_kwargs['{{ body_kwarg }}'] = {{ preparer.parameters.body[0].serialized_name }}{% endif %}{% endmacro %}
 
 {# write body parameters #}
 {% macro body_parameters(preparer) %}

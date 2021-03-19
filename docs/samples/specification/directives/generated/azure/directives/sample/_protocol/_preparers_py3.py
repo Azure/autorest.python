@@ -14,7 +14,7 @@ _SERIALIZER = Serializer()
 
 
 def prepare_basic_polling_initial(
-    body: Optional["_models.Product"] = None,
+    product: Optional["_models.Product"] = None,
     **kwargs: Any
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
@@ -32,7 +32,7 @@ def prepare_basic_polling_initial(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs['json'] = body
+    body_content_kwargs['json'] = product
 
     return HttpRequest(
         method="PUT",

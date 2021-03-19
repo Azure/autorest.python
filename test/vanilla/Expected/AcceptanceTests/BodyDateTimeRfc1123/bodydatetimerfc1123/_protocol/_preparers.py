@@ -111,7 +111,7 @@ def prepare_datetimerfc1123_get_underflow(
 
 
 def prepare_datetimerfc1123_put_utc_max_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ def prepare_datetimerfc1123_put_utc_max_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -182,7 +182,7 @@ def prepare_datetimerfc1123_get_utc_uppercase_max_date_time(
 
 
 def prepare_datetimerfc1123_put_utc_min_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -201,7 +201,7 @@ def prepare_datetimerfc1123_put_utc_min_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

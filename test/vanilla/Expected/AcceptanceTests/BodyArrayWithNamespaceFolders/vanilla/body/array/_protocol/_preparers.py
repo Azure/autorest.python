@@ -88,7 +88,7 @@ def prepare_array_get_empty(
 
 
 def prepare_array_put_empty(
-    body,  # type: List[str]
+    array_body,  # type: List[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -107,7 +107,7 @@ def prepare_array_put_empty(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -136,7 +136,7 @@ def prepare_array_get_boolean_tfft(
 
 
 def prepare_array_put_boolean_tfft(
-    body,  # type: List[bool]
+    array_body,  # type: List[bool]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -155,7 +155,7 @@ def prepare_array_put_boolean_tfft(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -230,7 +230,7 @@ def prepare_array_get_integer_valid(
 
 
 def prepare_array_put_integer_valid(
-    body,  # type: List[int]
+    array_body,  # type: List[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -249,7 +249,7 @@ def prepare_array_put_integer_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -324,7 +324,7 @@ def prepare_array_get_long_valid(
 
 
 def prepare_array_put_long_valid(
-    body,  # type: List[int]
+    array_body,  # type: List[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -343,7 +343,7 @@ def prepare_array_put_long_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -418,7 +418,7 @@ def prepare_array_get_float_valid(
 
 
 def prepare_array_put_float_valid(
-    body,  # type: List[float]
+    array_body,  # type: List[float]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -437,7 +437,7 @@ def prepare_array_put_float_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -512,7 +512,7 @@ def prepare_array_get_double_valid(
 
 
 def prepare_array_put_double_valid(
-    body,  # type: List[float]
+    array_body,  # type: List[float]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -531,7 +531,7 @@ def prepare_array_put_double_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -606,7 +606,7 @@ def prepare_array_get_string_valid(
 
 
 def prepare_array_put_string_valid(
-    body,  # type: List[str]
+    array_body,  # type: List[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -625,7 +625,7 @@ def prepare_array_put_string_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -654,7 +654,7 @@ def prepare_array_get_enum_valid(
 
 
 def prepare_array_put_enum_valid(
-    body,  # type: List[Union[str, "_models.FooEnum"]]
+    array_body,  # type: List[Union[str, "_models.FooEnum"]]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -673,7 +673,7 @@ def prepare_array_put_enum_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -702,7 +702,7 @@ def prepare_array_get_string_enum_valid(
 
 
 def prepare_array_put_string_enum_valid(
-    body,  # type: List[Union[str, "_models.Enum1"]]
+    array_body,  # type: List[Union[str, "_models.Enum1"]]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -721,7 +721,7 @@ def prepare_array_put_string_enum_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -796,7 +796,7 @@ def prepare_array_get_uuid_valid(
 
 
 def prepare_array_put_uuid_valid(
-    body,  # type: List[str]
+    array_body,  # type: List[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -815,7 +815,7 @@ def prepare_array_put_uuid_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -867,7 +867,7 @@ def prepare_array_get_date_valid(
 
 
 def prepare_array_put_date_valid(
-    body,  # type: List[datetime.date]
+    array_body,  # type: List[datetime.date]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -886,7 +886,7 @@ def prepare_array_put_date_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -961,7 +961,7 @@ def prepare_array_get_date_time_valid(
 
 
 def prepare_array_put_date_time_valid(
-    body,  # type: List[datetime.datetime]
+    array_body,  # type: List[datetime.datetime]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -980,7 +980,7 @@ def prepare_array_put_date_time_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1055,7 +1055,7 @@ def prepare_array_get_date_time_rfc1123_valid(
 
 
 def prepare_array_put_date_time_rfc1123_valid(
-    body,  # type: List[datetime.datetime]
+    array_body,  # type: List[datetime.datetime]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1074,7 +1074,7 @@ def prepare_array_put_date_time_rfc1123_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1103,7 +1103,7 @@ def prepare_array_get_duration_valid(
 
 
 def prepare_array_put_duration_valid(
-    body,  # type: List[datetime.timedelta]
+    array_body,  # type: List[datetime.timedelta]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1122,7 +1122,7 @@ def prepare_array_put_duration_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1151,7 +1151,7 @@ def prepare_array_get_byte_valid(
 
 
 def prepare_array_put_byte_valid(
-    body,  # type: List[bytearray]
+    array_body,  # type: List[bytearray]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1170,7 +1170,7 @@ def prepare_array_put_byte_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1337,7 +1337,7 @@ def prepare_array_get_complex_valid(
 
 
 def prepare_array_put_complex_valid(
-    body,  # type: List["_models.Product"]
+    array_body,  # type: List["_models.Product"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1356,7 +1356,7 @@ def prepare_array_put_complex_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1477,7 +1477,7 @@ def prepare_array_get_array_valid(
 
 
 def prepare_array_put_array_valid(
-    body,  # type: List[List[str]]
+    array_body,  # type: List[List[str]]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1496,7 +1496,7 @@ def prepare_array_put_array_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -1617,7 +1617,7 @@ def prepare_array_get_dictionary_valid(
 
 
 def prepare_array_put_dictionary_valid(
-    body,  # type: List[Dict[str, str]]
+    array_body,  # type: List[Dict[str, str]]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1636,6 +1636,6 @@ def prepare_array_put_dictionary_valid(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = array_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

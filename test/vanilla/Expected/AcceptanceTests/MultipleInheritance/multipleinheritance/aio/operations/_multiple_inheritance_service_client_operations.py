@@ -79,7 +79,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         horse = self._serialize.body(horse, "Horse")
 
-        request = prepare_put_horse(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
+        request = prepare_put_horse(horse=horse, template_url=self.put_horse.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -151,7 +151,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _pet = _models.Pet(name=name)
         _pet = self._serialize.body(_pet, "Pet")
 
-        request = prepare_put_pet(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
+        request = prepare_put_pet(pet=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -222,7 +222,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         feline = self._serialize.body(feline, "Feline")
 
-        request = prepare_put_feline(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
+        request = prepare_put_feline(feline=feline, template_url=self.put_feline.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -293,7 +293,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         cat = self._serialize.body(cat, "Cat")
 
-        request = prepare_put_cat(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
+        request = prepare_put_cat(cat=cat, template_url=self.put_cat.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -367,7 +367,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         kitten = self._serialize.body(kitten, "Kitten")
 
-        request = prepare_put_kitten(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
+        request = prepare_put_kitten(kitten=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -76,7 +76,7 @@ class PetsOperations(object):
         create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = prepare_pets_create_ap_true(
-            body=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -121,7 +121,7 @@ class PetsOperations(object):
         create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = prepare_pets_create_cat_ap_true(
-            body=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -166,7 +166,7 @@ class PetsOperations(object):
         create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
         request = prepare_pets_create_ap_object(
-            body=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -211,7 +211,7 @@ class PetsOperations(object):
         create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
         request = prepare_pets_create_ap_string(
-            body=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -256,7 +256,7 @@ class PetsOperations(object):
         create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = prepare_pets_create_ap_in_properties(
-            body=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
+            create_parameters=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -301,7 +301,9 @@ class PetsOperations(object):
         create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = prepare_pets_create_ap_in_properties_with_ap_string(
-            body=create_parameters, template_url=self.create_ap_in_properties_with_ap_string.metadata["url"], **kwargs
+            create_parameters=create_parameters,
+            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

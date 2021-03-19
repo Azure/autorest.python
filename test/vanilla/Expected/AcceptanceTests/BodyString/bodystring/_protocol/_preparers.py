@@ -41,7 +41,7 @@ def prepare_string_get_null(
 
 
 def prepare_string_put_null(
-    body=None,  # type: Optional[str]
+    string_body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -60,7 +60,7 @@ def prepare_string_put_null(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -89,7 +89,7 @@ def prepare_string_get_empty(
 
 
 def prepare_string_put_empty(
-    body,  # type: str
+    string_body,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -108,7 +108,7 @@ def prepare_string_put_empty(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -137,7 +137,7 @@ def prepare_string_get_mbcs(
 
 
 def prepare_string_put_mbcs(
-    body,  # type: str
+    string_body,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -156,7 +156,7 @@ def prepare_string_put_mbcs(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -185,7 +185,7 @@ def prepare_string_get_whitespace(
 
 
 def prepare_string_put_whitespace(
-    body,  # type: str
+    string_body,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -204,7 +204,7 @@ def prepare_string_put_whitespace(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -279,7 +279,7 @@ def prepare_string_get_base64_url_encoded(
 
 
 def prepare_string_put_base64_url_encoded(
-    body,  # type: bytes
+    string_body,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -298,7 +298,7 @@ def prepare_string_put_base64_url_encoded(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -350,7 +350,7 @@ def prepare_enum_get_not_expandable(
 
 
 def prepare_enum_put_not_expandable(
-    body,  # type: Union[str, "_models.Colors"]
+    string_body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -369,7 +369,7 @@ def prepare_enum_put_not_expandable(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -398,7 +398,7 @@ def prepare_enum_get_referenced(
 
 
 def prepare_enum_put_referenced(
-    body,  # type: Union[str, "_models.Colors"]
+    enum_string_body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -417,7 +417,7 @@ def prepare_enum_put_referenced(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = enum_string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -446,7 +446,7 @@ def prepare_enum_get_referenced_constant(
 
 
 def prepare_enum_put_referenced_constant(
-    body,  # type: "_models.RefColorConstant"
+    enum_string_body,  # type: "_models.RefColorConstant"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -465,6 +465,6 @@ def prepare_enum_put_referenced_constant(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = enum_string_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

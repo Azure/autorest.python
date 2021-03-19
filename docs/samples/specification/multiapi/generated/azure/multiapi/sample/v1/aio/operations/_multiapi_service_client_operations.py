@@ -85,7 +85,7 @@ class MultiapiServiceClientOperationsMixin:
             product = self._serialize.body(product, 'Product')
 
         request = prepare_test_lro_initial(
-            body=product,
+            product=product,
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
         )

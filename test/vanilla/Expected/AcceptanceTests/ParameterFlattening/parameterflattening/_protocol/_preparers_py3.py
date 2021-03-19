@@ -15,7 +15,7 @@ _SERIALIZER = Serializer()
 
 
 def prepare_availabilitysets_update(
-    resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs: Any
+    resource_group_name: str, avset: str, tags: "_models.AvailabilitySetUpdateParameters", **kwargs: Any
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
 
@@ -35,6 +35,6 @@ def prepare_availabilitysets_update(
     header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = tags
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **body_content_kwargs)

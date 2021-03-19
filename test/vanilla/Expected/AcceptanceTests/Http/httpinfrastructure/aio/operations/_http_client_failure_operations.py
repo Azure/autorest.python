@@ -158,7 +158,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_put400(
-            body=boolean_value, template_url=self.put400.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.put400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -195,7 +195,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_patch400(
-            body=boolean_value, template_url=self.patch400.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -232,7 +232,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_post400(
-            body=boolean_value, template_url=self.post400.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.post400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -269,7 +269,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_delete400(
-            body=boolean_value, template_url=self.delete400.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete400.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -426,7 +426,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_put404(
-            body=boolean_value, template_url=self.put404.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.put404.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -463,7 +463,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_patch405(
-            body=boolean_value, template_url=self.patch405.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch405.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -500,7 +500,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_post406(
-            body=boolean_value, template_url=self.post406.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.post406.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -537,7 +537,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_delete407(
-            body=boolean_value, template_url=self.delete407.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete407.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -574,7 +574,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_put409(
-            body=boolean_value, template_url=self.put409.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.put409.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -731,7 +731,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_put413(
-            body=boolean_value, template_url=self.put413.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.put413.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -768,7 +768,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_patch414(
-            body=boolean_value, template_url=self.patch414.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch414.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -805,7 +805,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_post415(
-            body=boolean_value, template_url=self.post415.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.post415.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -872,7 +872,7 @@ class HttpClientFailureOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpclientfailure_delete417(
-            body=boolean_value, template_url=self.delete417.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete417.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

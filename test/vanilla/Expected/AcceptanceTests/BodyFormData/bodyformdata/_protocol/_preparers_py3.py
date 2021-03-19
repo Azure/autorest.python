@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_formdata_upload_file(body: IO, **kwargs: Any) -> HttpRequest:
+def prepare_formdata_upload_file(file_content: IO, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 
@@ -29,12 +29,12 @@ def prepare_formdata_upload_file(body: IO, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["files"] = body
+    body_content_kwargs["files"] = file_content
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_formdata_upload_file_via_body(body: IO, **kwargs: Any) -> HttpRequest:
+def prepare_formdata_upload_file_via_body(file_content: IO, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/octet-stream, application/json"
 
@@ -50,12 +50,12 @@ def prepare_formdata_upload_file_via_body(body: IO, **kwargs: Any) -> HttpReques
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = file_content
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_formdata_upload_files(body: List[IO], **kwargs: Any) -> HttpRequest:
+def prepare_formdata_upload_files(file_content: List[IO], **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 
@@ -71,6 +71,6 @@ def prepare_formdata_upload_files(body: List[IO], **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["files"] = body
+    body_content_kwargs["files"] = file_content
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)

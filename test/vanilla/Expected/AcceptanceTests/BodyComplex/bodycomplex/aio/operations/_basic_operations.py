@@ -100,7 +100,9 @@ class BasicOperations:
 
         complex_body = self._serialize.body(complex_body, "Basic")
 
-        request = prepare_basic_put_valid(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
+        request = prepare_basic_put_valid(
+            complex_body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

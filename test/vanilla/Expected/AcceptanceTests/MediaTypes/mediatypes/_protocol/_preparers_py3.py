@@ -13,7 +13,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_analyze_body(body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> HttpRequest:
+def prepare_analyze_body(input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -30,11 +30,11 @@ def prepare_analyze_body(body: Optional[Union[IO, "_models.SourcePath"]] = None,
 
     if header_parameters["Content-Type"].split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
+        body_content_kwargs["content"] = input
 
     elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["json"] = body
+        body_content_kwargs["json"] = input
     else:
         raise ValueError(
             "The content_type '{}' is not one of the allowed values: "
@@ -46,7 +46,7 @@ def prepare_analyze_body(body: Optional[Union[IO, "_models.SourcePath"]] = None,
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_content_type_with_encoding(body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def prepare_content_type_with_encoding(input: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "text/plain")
     accept = "application/json"
 
@@ -62,6 +62,6 @@ def prepare_content_type_with_encoding(body: Optional[str] = None, **kwargs: Any
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = body
+    body_content_kwargs["content"] = input
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)

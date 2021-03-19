@@ -42,7 +42,7 @@ def prepare_time_get(
 
 
 def prepare_time_put(
-    body,  # type: datetime.time
+    time_body,  # type: datetime.time
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -61,6 +61,6 @@ def prepare_time_put(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = time_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

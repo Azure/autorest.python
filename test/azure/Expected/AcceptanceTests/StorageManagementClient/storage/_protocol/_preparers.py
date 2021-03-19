@@ -20,7 +20,7 @@ _SERIALIZER = Serializer()
 
 def prepare_storageaccounts_check_name_availability(
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
+    account_name,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -47,7 +47,7 @@ def prepare_storageaccounts_check_name_availability(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = account_name
 
     return HttpRequest(
         method="POST", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs
@@ -58,7 +58,7 @@ def prepare_storageaccounts_create_initial(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountCreateParameters"
+    parameters,  # type: "_models.StorageAccountCreateParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -88,7 +88,7 @@ def prepare_storageaccounts_create_initial(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = parameters
 
     return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs)
 
@@ -170,7 +170,7 @@ def prepare_storageaccounts_update(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountUpdateParameters"
+    parameters,  # type: "_models.StorageAccountUpdateParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -200,7 +200,7 @@ def prepare_storageaccounts_update(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = parameters
 
     return HttpRequest(
         method="PATCH", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs
@@ -316,7 +316,7 @@ def prepare_storageaccounts_regenerate_key(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    body,  # type: "_models.StorageAccountRegenerateKeyParameters"
+    regenerate_key,  # type: "_models.StorageAccountRegenerateKeyParameters"
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -346,7 +346,7 @@ def prepare_storageaccounts_regenerate_key(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = regenerate_key
 
     return HttpRequest(
         method="POST", url=url, params=query_parameters, headers=header_parameters, **body_content_kwargs

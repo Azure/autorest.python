@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_put_array(body: Optional[List["_models.Resource"]] = None, **kwargs: Any) -> HttpRequest:
+def prepare_put_array(resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -30,7 +30,7 @@ def prepare_put_array(body: Optional[List["_models.Resource"]] = None, **kwargs:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = resource_array
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -55,7 +55,9 @@ def prepare_get_array(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_wrapped_array(body: Optional[List["_models.WrappedProduct"]] = None, **kwargs: Any) -> HttpRequest:
+def prepare_put_wrapped_array(
+    resource_array: Optional[List["_models.WrappedProduct"]] = None, **kwargs: Any
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -71,7 +73,7 @@ def prepare_put_wrapped_array(body: Optional[List["_models.WrappedProduct"]] = N
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = resource_array
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -96,7 +98,9 @@ def prepare_get_wrapped_array(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_dictionary(body: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs: Any) -> HttpRequest:
+def prepare_put_dictionary(
+    resource_dictionary: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs: Any
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -112,7 +116,7 @@ def prepare_put_dictionary(body: Optional[Dict[str, "_models.FlattenedProduct"]]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = resource_dictionary
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -137,7 +141,9 @@ def prepare_get_dictionary(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_resource_collection(body: Optional["_models.ResourceCollection"] = None, **kwargs: Any) -> HttpRequest:
+def prepare_put_resource_collection(
+    resource_complex_object: Optional["_models.ResourceCollection"] = None, **kwargs: Any
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -153,7 +159,7 @@ def prepare_put_resource_collection(body: Optional["_models.ResourceCollection"]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = resource_complex_object
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -178,7 +184,9 @@ def prepare_get_resource_collection(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put_simple_product(body: Optional["_models.SimpleProduct"] = None, **kwargs: Any) -> HttpRequest:
+def prepare_put_simple_product(
+    simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs: Any
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -194,12 +202,14 @@ def prepare_put_simple_product(body: Optional["_models.SimpleProduct"] = None, *
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = simple_body_product
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_post_flattened_simple_product(body: Optional["_models.SimpleProduct"] = None, **kwargs: Any) -> HttpRequest:
+def prepare_post_flattened_simple_product(
+    simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs: Any
+) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -215,13 +225,13 @@ def prepare_post_flattened_simple_product(body: Optional["_models.SimpleProduct"
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = simple_body_product
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_put_simple_product_with_grouping(
-    name: str, body: Optional["_models.SimpleProduct"] = None, **kwargs: Any
+    name: str, simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs: Any
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -242,6 +252,6 @@ def prepare_put_simple_product_with_grouping(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = simple_body_product
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

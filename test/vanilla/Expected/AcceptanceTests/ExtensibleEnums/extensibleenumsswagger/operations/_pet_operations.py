@@ -116,7 +116,7 @@ class PetOperations(object):
         if pet_param is not None:
             pet_param = self._serialize.body(pet_param, "Pet")
 
-        request = prepare_pet_add_pet(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
+        request = prepare_pet_add_pet(pet_param=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

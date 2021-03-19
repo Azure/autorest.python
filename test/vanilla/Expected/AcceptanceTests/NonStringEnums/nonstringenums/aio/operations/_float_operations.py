@@ -63,7 +63,7 @@ class FloatOperations:
         if input is not None:
             input = self._serialize.body(input, "float")
 
-        request = prepare_float_put(body=input, template_url=self.put.metadata["url"], **kwargs)
+        request = prepare_float_put(input=input, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

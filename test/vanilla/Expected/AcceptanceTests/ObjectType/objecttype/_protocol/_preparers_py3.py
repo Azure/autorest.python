@@ -33,7 +33,7 @@ def prepare_get(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_put(body: object, **kwargs: Any) -> HttpRequest:
+def prepare_put(put_object: object, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -49,6 +49,6 @@ def prepare_put(body: object, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = put_object
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)

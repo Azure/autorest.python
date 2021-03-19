@@ -134,7 +134,7 @@ def prepare_int_get_underflow_int64(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_int_put_max32(body: int, **kwargs: Any) -> HttpRequest:
+def prepare_int_put_max32(int_body: int, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -150,12 +150,12 @@ def prepare_int_put_max32(body: int, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_max64(body: int, **kwargs: Any) -> HttpRequest:
+def prepare_int_put_max64(int_body: int, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -171,12 +171,12 @@ def prepare_int_put_max64(body: int, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_min32(body: int, **kwargs: Any) -> HttpRequest:
+def prepare_int_put_min32(int_body: int, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -192,12 +192,12 @@ def prepare_int_put_min32(body: int, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_int_put_min64(body: int, **kwargs: Any) -> HttpRequest:
+def prepare_int_put_min64(int_body: int, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -213,7 +213,7 @@ def prepare_int_put_min64(body: int, **kwargs: Any) -> HttpRequest:
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -238,7 +238,7 @@ def prepare_int_get_unix_time(**kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_int_put_unix_time_date(body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def prepare_int_put_unix_time_date(int_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -254,7 +254,7 @@ def prepare_int_put_unix_time_date(body: datetime.datetime, **kwargs: Any) -> Ht
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = int_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

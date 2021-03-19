@@ -113,7 +113,7 @@ class TimeOperations(object):
 
         time_body = self._serialize.body(time_body, "time")
 
-        request = prepare_time_put(body=time_body, template_url=self.put.metadata["url"], **kwargs)
+        request = prepare_time_put(time_body=time_body, template_url=self.put.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

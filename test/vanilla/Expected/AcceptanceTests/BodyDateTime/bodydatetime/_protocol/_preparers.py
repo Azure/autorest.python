@@ -111,7 +111,7 @@ def prepare_datetime_get_underflow(
 
 
 def prepare_datetime_put_utc_max_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -130,13 +130,13 @@ def prepare_datetime_put_utc_max_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
 def prepare_datetime_put_utc_max_date_time7_digits(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -155,7 +155,7 @@ def prepare_datetime_put_utc_max_date_time7_digits(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -230,7 +230,7 @@ def prepare_datetime_get_utc_uppercase_max_date_time7_digits(
 
 
 def prepare_datetime_put_local_positive_offset_max_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -249,7 +249,7 @@ def prepare_datetime_put_local_positive_offset_max_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -301,7 +301,7 @@ def prepare_datetime_get_local_positive_offset_uppercase_max_date_time(
 
 
 def prepare_datetime_put_local_negative_offset_max_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -320,7 +320,7 @@ def prepare_datetime_put_local_negative_offset_max_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -372,7 +372,7 @@ def prepare_datetime_get_local_negative_offset_lowercase_max_date_time(
 
 
 def prepare_datetime_put_utc_min_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -391,7 +391,7 @@ def prepare_datetime_put_utc_min_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -420,7 +420,7 @@ def prepare_datetime_get_utc_min_date_time(
 
 
 def prepare_datetime_put_local_positive_offset_min_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -439,7 +439,7 @@ def prepare_datetime_put_local_positive_offset_min_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
@@ -468,7 +468,7 @@ def prepare_datetime_get_local_positive_offset_min_date_time(
 
 
 def prepare_datetime_put_local_negative_offset_min_date_time(
-    body,  # type: datetime.datetime
+    datetime_body,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -487,7 +487,7 @@ def prepare_datetime_put_local_negative_offset_min_date_time(
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = datetime_body
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 

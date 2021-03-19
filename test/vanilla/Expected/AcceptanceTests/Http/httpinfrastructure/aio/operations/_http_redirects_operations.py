@@ -209,7 +209,9 @@ class HttpRedirectsOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_put301(body=boolean_value, template_url=self.put301.metadata["url"], **kwargs)
+        request = prepare_httpredirects_put301(
+            boolean_value=boolean_value, template_url=self.put301.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -317,7 +319,7 @@ class HttpRedirectsOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpredirects_patch302(
-            body=boolean_value, template_url=self.patch302.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch302.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -357,7 +359,9 @@ class HttpRedirectsOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_post303(body=boolean_value, template_url=self.post303.metadata["url"], **kwargs)
+        request = prepare_httpredirects_post303(
+            boolean_value=boolean_value, template_url=self.post303.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -498,7 +502,9 @@ class HttpRedirectsOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_put307(body=boolean_value, template_url=self.put307.metadata["url"], **kwargs)
+        request = prepare_httpredirects_put307(
+            boolean_value=boolean_value, template_url=self.put307.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -538,7 +544,7 @@ class HttpRedirectsOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpredirects_patch307(
-            body=boolean_value, template_url=self.patch307.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.patch307.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -578,7 +584,9 @@ class HttpRedirectsOperations:
         if boolean_value is not None:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
-        request = prepare_httpredirects_post307(body=boolean_value, template_url=self.post307.metadata["url"], **kwargs)
+        request = prepare_httpredirects_post307(
+            boolean_value=boolean_value, template_url=self.post307.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -618,7 +626,7 @@ class HttpRedirectsOperations:
             boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = prepare_httpredirects_delete307(
-            body=boolean_value, template_url=self.delete307.metadata["url"], **kwargs
+            boolean_value=boolean_value, template_url=self.delete307.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

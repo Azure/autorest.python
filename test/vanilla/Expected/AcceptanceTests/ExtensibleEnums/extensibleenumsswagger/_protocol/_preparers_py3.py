@@ -38,7 +38,7 @@ def prepare_pet_get_by_pet_id(pet_id: str, **kwargs: Any) -> HttpRequest:
     )
 
 
-def prepare_pet_add_pet(body: Optional["_models.Pet"] = None, **kwargs: Any) -> HttpRequest:
+def prepare_pet_add_pet(pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -54,6 +54,6 @@ def prepare_pet_add_pet(body: Optional["_models.Pet"] = None, **kwargs: Any) -> 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["json"] = body
+    body_content_kwargs["json"] = pet_param
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)

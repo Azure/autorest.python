@@ -74,7 +74,7 @@ class AvailabilitySetsOperations:
         request = prepare_availabilitysets_update(
             resource_group_name=resource_group_name,
             avset=avset,
-            body=_tags,
+            tags=_tags,
             template_url=self.update.metadata["url"],
             **kwargs
         )

@@ -271,7 +271,7 @@ class IntOperations:
 
         int_body = self._serialize.body(int_body, "int")
 
-        request = prepare_int_put_max32(body=int_body, template_url=self.put_max32.metadata["url"], **kwargs)
+        request = prepare_int_put_max32(int_body=int_body, template_url=self.put_max32.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -305,7 +305,7 @@ class IntOperations:
 
         int_body = self._serialize.body(int_body, "long")
 
-        request = prepare_int_put_max64(body=int_body, template_url=self.put_max64.metadata["url"], **kwargs)
+        request = prepare_int_put_max64(int_body=int_body, template_url=self.put_max64.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -339,7 +339,7 @@ class IntOperations:
 
         int_body = self._serialize.body(int_body, "int")
 
-        request = prepare_int_put_min32(body=int_body, template_url=self.put_min32.metadata["url"], **kwargs)
+        request = prepare_int_put_min32(int_body=int_body, template_url=self.put_min32.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -373,7 +373,7 @@ class IntOperations:
 
         int_body = self._serialize.body(int_body, "long")
 
-        request = prepare_int_put_min64(body=int_body, template_url=self.put_min64.metadata["url"], **kwargs)
+        request = prepare_int_put_min64(int_body=int_body, template_url=self.put_min64.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -442,7 +442,7 @@ class IntOperations:
         int_body = self._serialize.body(int_body, "unix-time")
 
         request = prepare_int_put_unix_time_date(
-            body=int_body, template_url=self.put_unix_time_date.metadata["url"], **kwargs
+            int_body=int_body, template_url=self.put_unix_time_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

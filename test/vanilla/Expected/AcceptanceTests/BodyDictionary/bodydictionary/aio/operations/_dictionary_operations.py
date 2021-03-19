@@ -135,7 +135,9 @@ class DictionaryOperations:
 
         array_body = self._serialize.body(array_body, "{str}")
 
-        request = prepare_dictionary_put_empty(body=array_body, template_url=self.put_empty.metadata["url"], **kwargs)
+        request = prepare_dictionary_put_empty(
+            array_body=array_body, template_url=self.put_empty.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -342,7 +344,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{bool}")
 
         request = prepare_dictionary_put_boolean_tfft(
-            body=array_body, template_url=self.put_boolean_tfft.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_boolean_tfft.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -484,7 +486,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{int}")
 
         request = prepare_dictionary_put_integer_valid(
-            body=array_body, template_url=self.put_integer_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_integer_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -626,7 +628,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{long}")
 
         request = prepare_dictionary_put_long_valid(
-            body=array_body, template_url=self.put_long_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_long_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -768,7 +770,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{float}")
 
         request = prepare_dictionary_put_float_valid(
-            body=array_body, template_url=self.put_float_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_float_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -910,7 +912,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{float}")
 
         request = prepare_dictionary_put_double_valid(
-            body=array_body, template_url=self.put_double_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_double_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1052,7 +1054,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{str}")
 
         request = prepare_dictionary_put_string_valid(
-            body=array_body, template_url=self.put_string_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_string_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1194,7 +1196,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{date}")
 
         request = prepare_dictionary_put_date_valid(
-            body=array_body, template_url=self.put_date_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_date_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1340,7 +1342,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{iso-8601}")
 
         request = prepare_dictionary_put_date_time_valid(
-            body=array_body, template_url=self.put_date_time_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_date_time_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1486,7 +1488,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{rfc-1123}")
 
         request = prepare_dictionary_put_date_time_rfc1123_valid(
-            body=array_body, template_url=self.put_date_time_rfc1123_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_date_time_rfc1123_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1556,7 +1558,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{duration}")
 
         request = prepare_dictionary_put_duration_valid(
-            body=array_body, template_url=self.put_duration_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_duration_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1628,7 +1630,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{bytearray}")
 
         request = prepare_dictionary_put_byte_valid(
-            body=array_body, template_url=self.put_byte_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_byte_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -1914,7 +1916,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{Widget}")
 
         request = prepare_dictionary_put_complex_valid(
-            body=array_body, template_url=self.put_complex_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_complex_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -2126,7 +2128,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{[str]}")
 
         request = prepare_dictionary_put_array_valid(
-            body=array_body, template_url=self.put_array_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_array_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -2348,7 +2350,7 @@ class DictionaryOperations:
         array_body = self._serialize.body(array_body, "{{str}}")
 
         request = prepare_dictionary_put_dictionary_valid(
-            body=array_body, template_url=self.put_dictionary_valid.metadata["url"], **kwargs
+            array_body=array_body, template_url=self.put_dictionary_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

@@ -203,7 +203,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_float(
-            body=number_body, template_url=self.put_big_float.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -273,7 +273,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_double(
-            body=number_body, template_url=self.put_big_double.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -342,7 +342,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_double_positive_decimal(
-            body=number_body, template_url=self.put_big_double_positive_decimal.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_double_positive_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -413,7 +413,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_double_negative_decimal(
-            body=number_body, template_url=self.put_big_double_negative_decimal.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_double_negative_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -485,7 +485,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_decimal(
-            body=number_body, template_url=self.put_big_decimal.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -554,7 +554,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_decimal_positive_decimal(
-            body=number_body, template_url=self.put_big_decimal_positive_decimal.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_decimal_positive_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -625,7 +625,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_big_decimal_negative_decimal(
-            body=number_body, template_url=self.put_big_decimal_negative_decimal.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_big_decimal_negative_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -697,7 +697,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_small_float(
-            body=number_body, template_url=self.put_small_float.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_small_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -767,7 +767,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_small_double(
-            body=number_body, template_url=self.put_small_double.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_small_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -837,7 +837,7 @@ class NumberOperations:
         number_body = self._serialize.body(number_body, "float")
 
         request = prepare_number_put_small_decimal(
-            body=number_body, template_url=self.put_small_decimal.metadata["url"], **kwargs
+            number_body=number_body, template_url=self.put_small_decimal.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

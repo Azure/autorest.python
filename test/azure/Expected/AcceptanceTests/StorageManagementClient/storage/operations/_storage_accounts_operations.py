@@ -83,7 +83,7 @@ class StorageAccountsOperations(object):
 
         request = prepare_storageaccounts_check_name_availability(
             subscription_id=self._config.subscription_id,
-            body=account_name,
+            account_name=account_name,
             template_url=self.check_name_availability.metadata["url"],
             **kwargs
         )
@@ -124,7 +124,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            body=parameters,
+            parameters=parameters,
             template_url=self._creat_initial.metadata["url"],
             **kwargs
         )
@@ -363,7 +363,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            body=parameters,
+            parameters=parameters,
             template_url=self.update.metadata["url"],
             **kwargs
         )
@@ -596,7 +596,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            body=_regenerate_key,
+            regenerate_key=_regenerate_key,
             template_url=self.regenerate_key.metadata["url"],
             **kwargs
         )

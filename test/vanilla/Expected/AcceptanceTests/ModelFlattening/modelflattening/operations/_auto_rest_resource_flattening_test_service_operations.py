@@ -55,7 +55,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if resource_array is not None:
             resource_array = self._serialize.body(resource_array, "[Resource]")
 
-        request = prepare_put_array(body=resource_array, template_url=self.put_array.metadata["url"], **kwargs)
+        request = prepare_put_array(
+            resource_array=resource_array, template_url=self.put_array.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -134,7 +136,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             resource_array = self._serialize.body(resource_array, "[WrappedProduct]")
 
         request = prepare_put_wrapped_array(
-            body=resource_array, template_url=self.put_wrapped_array.metadata["url"], **kwargs
+            resource_array=resource_array, template_url=self.put_wrapped_array.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -214,7 +216,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             resource_dictionary = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
 
         request = prepare_put_dictionary(
-            body=resource_dictionary, template_url=self.put_dictionary.metadata["url"], **kwargs
+            resource_dictionary=resource_dictionary, template_url=self.put_dictionary.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -293,7 +295,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             resource_complex_object = self._serialize.body(resource_complex_object, "ResourceCollection")
 
         request = prepare_put_resource_collection(
-            body=resource_complex_object, template_url=self.put_resource_collection.metadata["url"], **kwargs
+            resource_complex_object=resource_complex_object,
+            template_url=self.put_resource_collection.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -372,7 +376,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             simple_body_product = self._serialize.body(simple_body_product, "SimpleProduct")
 
         request = prepare_put_simple_product(
-            body=simple_body_product, template_url=self.put_simple_product.metadata["url"], **kwargs
+            simple_body_product=simple_body_product, template_url=self.put_simple_product.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -439,7 +443,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             _simple_body_product = self._serialize.body(_simple_body_product, "SimpleProduct")
 
         request = prepare_post_flattened_simple_product(
-            body=_simple_body_product, template_url=self.post_flattened_simple_product.metadata["url"], **kwargs
+            simple_body_product=_simple_body_product,
+            template_url=self.post_flattened_simple_product.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -508,7 +514,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = prepare_put_simple_product_with_grouping(
             name=_name,
-            body=_simple_body_product,
+            simple_body_product=_simple_body_product,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
             **kwargs
         )
