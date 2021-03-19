@@ -30,7 +30,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
     def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
         base_url = "{vault}{secret}{dnsSuffix}"
-        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
+        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix ** kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

@@ -153,16 +153,11 @@ class ParameterList(MutableSequence):
         return positional + kwargs
 
     def method_signature_positional(self, async_mode: bool) -> List[str]:
-        positional_params = self.get_from_predicate(
-            lambda parameter: parameter in self.method and not parameter.is_kwarg
-        )
-        return [parameter.method_signature(async_mode) for parameter in positional_params]
+        return [parameter.method_signature(async_mode) for parameter in self.method if not parameter.is_kwarg]
 
     @property
     def kwargs(self) -> List[Parameter]:
-        return self.get_from_predicate(
-            lambda parameter: parameter in self.method and parameter.is_kwarg
-        )
+        return [p for p in self.method if p.is_kwarg]
 
     def method_signature_kwargs(self, async_mode: bool) -> List[str]:
         leftover_kwargs_typing = ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]

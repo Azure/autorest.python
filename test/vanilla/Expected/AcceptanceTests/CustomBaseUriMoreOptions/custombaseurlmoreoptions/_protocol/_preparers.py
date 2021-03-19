@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -21,10 +21,10 @@ _SERIALIZER = Serializer()
 def prepare_paths_get_empty(
     key_name,  # type: str
     subscription_id,  # type: str
-    key_version="v1",  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
