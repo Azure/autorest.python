@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core.credentials import AzureKeyCredential

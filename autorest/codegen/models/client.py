@@ -65,6 +65,7 @@ class Client:
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
             file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.TYPING)
+        file_import.add_from_import("copy", "deepcopy", ImportType.STDLIB)
 
         return file_import
 

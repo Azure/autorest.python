@@ -88,7 +88,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.{{ http_response }}
         """
-        request_copy = deepcopy(http_reqest)
+        request_copy = deepcopy(http_request)
         {% if code_model.global_parameters.path %}
         {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
         {{ op_tools.format_path_format_arguments(url_name="request_copy.url")|indent(8) }}

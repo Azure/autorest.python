@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient

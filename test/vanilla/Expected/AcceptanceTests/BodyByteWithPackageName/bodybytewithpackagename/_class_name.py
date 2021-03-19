@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
@@ -56,16 +57,17 @@ class ClassName(object):
 
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.rest.HttpRequest
-        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
+        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
-        http_request.url = self._client.format_url(http_request.url)
-        stream = kwargs.pop("stream", True)
-        pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
+        request_copy = deepcopy(http_request)
+        request_copy.url = self._client.format_url(request_copy.url)
+        stream_response = kwargs.pop("stream_response", True)
+        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
-            request=http_request,
+            request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
 
