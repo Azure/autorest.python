@@ -9,6 +9,7 @@
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.protocol import HttpResponse
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -16,7 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import TokenCredential
-    from azure.core.protocol import HttpRequest, HttpResponse
+    from azure.core.protocol import HttpRequest
 
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin
