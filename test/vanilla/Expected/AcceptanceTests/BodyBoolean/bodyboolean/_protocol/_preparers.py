@@ -42,7 +42,7 @@ def prepare_bool_get_true(
 
 def prepare_bool_put_true(
     bool_body,  # type: bool
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -90,7 +90,7 @@ def prepare_bool_get_false(
 
 def prepare_bool_put_false(
     bool_body,  # type: bool
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

@@ -19,7 +19,7 @@ _SERIALIZER = Serializer()
 
 def prepare_int_put(
     input=None,  # type: Optional[Union[int, "_models.IntEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -67,7 +67,7 @@ def prepare_int_get(
 
 def prepare_float_put(
     input=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

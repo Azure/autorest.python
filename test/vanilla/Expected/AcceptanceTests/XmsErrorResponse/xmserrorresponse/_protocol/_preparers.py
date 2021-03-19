@@ -20,7 +20,7 @@ _SERIALIZER = Serializer()
 
 def prepare_pet_get_pet_by_id(
     pet_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -48,7 +48,7 @@ def prepare_pet_get_pet_by_id(
 
 def prepare_pet_do_something(
     what_action,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

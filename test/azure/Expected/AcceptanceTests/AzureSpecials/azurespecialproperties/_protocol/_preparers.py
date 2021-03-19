@@ -67,7 +67,7 @@ def prepare_xmsclientrequestid_param_get(
 
 def prepare_subscriptionincredentials_post_method_global_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -98,7 +98,7 @@ def prepare_subscriptionincredentials_post_method_global_valid(
 
 def prepare_subscriptionincredentials_post_method_global_null(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -128,7 +128,7 @@ def prepare_subscriptionincredentials_post_method_global_null(
 
 def prepare_subscriptionincredentials_post_method_global_not_provided_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -162,7 +162,7 @@ def prepare_subscriptionincredentials_post_method_global_not_provided_valid(
 
 def prepare_subscriptionincredentials_post_path_global_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -193,7 +193,7 @@ def prepare_subscriptionincredentials_post_path_global_valid(
 
 def prepare_subscriptionincredentials_post_swagger_global_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -224,7 +224,7 @@ def prepare_subscriptionincredentials_post_swagger_global_valid(
 
 def prepare_subscriptioninmethod_post_method_local_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -255,7 +255,7 @@ def prepare_subscriptioninmethod_post_method_local_valid(
 
 def prepare_subscriptioninmethod_post_method_local_null(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -285,7 +285,7 @@ def prepare_subscriptioninmethod_post_method_local_null(
 
 def prepare_subscriptioninmethod_post_path_local_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -315,7 +315,7 @@ def prepare_subscriptioninmethod_post_path_local_valid(
 
 def prepare_subscriptioninmethod_post_swagger_local_valid(
     subscription_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -557,7 +557,7 @@ def prepare_apiversionlocal_get_swagger_local_valid(
 
 def prepare_skipurlencoding_get_method_path_valid(
     unencoded_path_param,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -585,7 +585,7 @@ def prepare_skipurlencoding_get_method_path_valid(
 
 def prepare_skipurlencoding_get_path_valid(
     unencoded_path_param,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

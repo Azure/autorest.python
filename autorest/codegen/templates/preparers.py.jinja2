@@ -4,7 +4,7 @@
 
 _SERIALIZER = Serializer()
 
-{% for preparer in code_model.protocol.preparers %}
+{% for preparer in code_model.rest.preparers %}
 
 {% include "preparer.py.jinja2" %}
 {% endfor %}

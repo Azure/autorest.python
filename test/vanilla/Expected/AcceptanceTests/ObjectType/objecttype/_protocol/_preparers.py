@@ -42,7 +42,7 @@ def prepare_get(
 
 def prepare_put(
     put_object,  # type: object
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

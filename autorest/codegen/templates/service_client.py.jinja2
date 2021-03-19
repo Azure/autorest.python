@@ -83,10 +83,10 @@ class {{ code_model.class_name }}({{ base_class }}):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.protocol.HttpRequest
+        :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.protocol.{{ http_response }}
+        :rtype: ~azure.core.rest.{{ http_response }}
         """
         {% if code_model.global_parameters.path %}
         {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}

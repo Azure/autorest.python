@@ -88,7 +88,7 @@ def prepare_byte_get_non_ascii(
 
 def prepare_byte_put_non_ascii(
     byte_body,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

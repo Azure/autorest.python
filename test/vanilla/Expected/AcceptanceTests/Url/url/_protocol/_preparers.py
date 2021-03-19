@@ -415,7 +415,7 @@ def prepare_paths_string_empty(
 
 def prepare_paths_string_null(
     string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -443,7 +443,7 @@ def prepare_paths_string_null(
 
 def prepare_paths_enum_valid(
     enum_path,  # type: Union[str, "_models.UriColor"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -471,7 +471,7 @@ def prepare_paths_enum_valid(
 
 def prepare_paths_enum_null(
     enum_path,  # type: Union[str, "_models.UriColor"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -499,7 +499,7 @@ def prepare_paths_enum_null(
 
 def prepare_paths_byte_multi_byte(
     byte_path,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -555,7 +555,7 @@ def prepare_paths_byte_empty(
 
 def prepare_paths_byte_null(
     byte_path,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -611,7 +611,7 @@ def prepare_paths_date_valid(
 
 def prepare_paths_date_null(
     date_path,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -667,7 +667,7 @@ def prepare_paths_date_time_valid(
 
 def prepare_paths_date_time_null(
     date_time_path,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -695,7 +695,7 @@ def prepare_paths_date_time_null(
 
 def prepare_paths_base64_url(
     base64_url_path,  # type: bytes
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -723,7 +723,7 @@ def prepare_paths_base64_url(
 
 def prepare_paths_array_csv_in_path(
     array_path,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -754,7 +754,7 @@ def prepare_paths_array_csv_in_path(
 
 def prepare_paths_unix_time_url(
     unix_time_url_path,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1715,7 +1715,7 @@ def prepare_pathitems_get_all_with_values(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
@@ -1762,7 +1762,7 @@ def prepare_pathitems_get_global_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
@@ -1809,7 +1809,7 @@ def prepare_pathitems_get_global_and_local_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
@@ -1856,7 +1856,7 @@ def prepare_pathitems_get_local_path_item_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]

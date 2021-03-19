@@ -21,7 +21,7 @@ _SERIALIZER = Serializer()
 def prepare_parametergrouping_post_required(
     path,  # type: str
     body,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]

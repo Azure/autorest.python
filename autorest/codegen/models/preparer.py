@@ -110,7 +110,7 @@ class Preparer(BaseModel):
             for parameter in self.multiple_media_type_parameters:
                 file_import.merge(parameter.imports())
         file_import.add_from_import(
-            "azure.core.protocol",
+            "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )

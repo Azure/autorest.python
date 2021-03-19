@@ -22,7 +22,7 @@ from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
 from .preparer import Preparer
-from .protocol import Protocol
+from .rest import Rest
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -85,7 +85,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
         self.service_client: Client = Client(GlobalParameterList())
-        self._protocol: Optional[Protocol] = None
+        self._rest: Optional[Rest] = None
         self.preparer_ids: Dict[int, Preparer] = {}
 
     @property
@@ -97,14 +97,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.service_client.parameters = val
 
     @property
-    def protocol(self) -> Protocol:
-        if not self._protocol:
-            raise ValueError("protocol is None. Can not call it, you first have to set it.")
-        return self._protocol
+    def rest(self) -> Rest:
+        if not self._rest:
+            raise ValueError("rest is None. Can not call it, you first have to set it.")
+        return self._rest
 
-    @protocol.setter
-    def protocol(self, p: Protocol) -> None:
-        self._protocol = p
+    @rest.setter
+    def rest(self, p: Rest) -> None:
+        self._rest = p
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.

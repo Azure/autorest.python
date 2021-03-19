@@ -43,7 +43,7 @@ def prepare_basic_get_valid(
 
 def prepare_basic_put_valid(
     complex_body,  # type: "_models.Basic"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2016-02-29"
@@ -185,7 +185,7 @@ def prepare_primitive_get_int(
 
 def prepare_primitive_put_int(
     complex_body,  # type: "_models.IntWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -233,7 +233,7 @@ def prepare_primitive_get_long(
 
 def prepare_primitive_put_long(
     complex_body,  # type: "_models.LongWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -281,7 +281,7 @@ def prepare_primitive_get_float(
 
 def prepare_primitive_put_float(
     complex_body,  # type: "_models.FloatWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -329,7 +329,7 @@ def prepare_primitive_get_double(
 
 def prepare_primitive_put_double(
     complex_body,  # type: "_models.DoubleWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -377,7 +377,7 @@ def prepare_primitive_get_bool(
 
 def prepare_primitive_put_bool(
     complex_body,  # type: "_models.BooleanWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -425,7 +425,7 @@ def prepare_primitive_get_string(
 
 def prepare_primitive_put_string(
     complex_body,  # type: "_models.StringWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -473,7 +473,7 @@ def prepare_primitive_get_date(
 
 def prepare_primitive_put_date(
     complex_body,  # type: "_models.DateWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -521,7 +521,7 @@ def prepare_primitive_get_date_time(
 
 def prepare_primitive_put_date_time(
     complex_body,  # type: "_models.DatetimeWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -569,7 +569,7 @@ def prepare_primitive_get_date_time_rfc1123(
 
 def prepare_primitive_put_date_time_rfc1123(
     complex_body,  # type: "_models.Datetimerfc1123Wrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -617,7 +617,7 @@ def prepare_primitive_get_duration(
 
 def prepare_primitive_put_duration(
     complex_body,  # type: "_models.DurationWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -665,7 +665,7 @@ def prepare_primitive_get_byte(
 
 def prepare_primitive_put_byte(
     complex_body,  # type: "_models.ByteWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -713,7 +713,7 @@ def prepare_array_get_valid(
 
 def prepare_array_put_valid(
     complex_body,  # type: "_models.ArrayWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -761,7 +761,7 @@ def prepare_array_get_empty(
 
 def prepare_array_put_empty(
     complex_body,  # type: "_models.ArrayWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -832,7 +832,7 @@ def prepare_dictionary_get_valid(
 
 def prepare_dictionary_put_valid(
     complex_body,  # type: "_models.DictionaryWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -880,7 +880,7 @@ def prepare_dictionary_get_empty(
 
 def prepare_dictionary_put_empty(
     complex_body,  # type: "_models.DictionaryWrapper"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -974,7 +974,7 @@ def prepare_inheritance_get_valid(
 
 def prepare_inheritance_put_valid(
     complex_body,  # type: "_models.Siamese"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1022,7 +1022,7 @@ def prepare_polymorphism_get_valid(
 
 def prepare_polymorphism_put_valid(
     complex_body,  # type: "_models.Fish"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1139,7 +1139,7 @@ def prepare_polymorphism_get_complicated(
 
 def prepare_polymorphism_put_complicated(
     complex_body,  # type: "_models.Salmon"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1164,7 +1164,7 @@ def prepare_polymorphism_put_complicated(
 
 def prepare_polymorphism_put_missing_discriminator(
     complex_body,  # type: "_models.Salmon"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1189,7 +1189,7 @@ def prepare_polymorphism_put_missing_discriminator(
 
 def prepare_polymorphism_put_valid_missing_required(
     complex_body,  # type: "_models.Fish"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1237,7 +1237,7 @@ def prepare_polymorphicrecursive_get_valid(
 
 def prepare_polymorphicrecursive_put_valid(
     complex_body,  # type: "_models.Fish"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1285,7 +1285,7 @@ def prepare_readonlyproperty_get_valid(
 
 def prepare_readonlyproperty_put_valid(
     complex_body,  # type: "_models.ReadonlyObj"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

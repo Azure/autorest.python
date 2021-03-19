@@ -157,7 +157,7 @@ def prepare_httpsuccess_options200(
 
 def prepare_httpsuccess_put200(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -182,7 +182,7 @@ def prepare_httpsuccess_put200(
 
 def prepare_httpsuccess_patch200(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -207,7 +207,7 @@ def prepare_httpsuccess_patch200(
 
 def prepare_httpsuccess_post200(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -232,7 +232,7 @@ def prepare_httpsuccess_post200(
 
 def prepare_httpsuccess_delete200(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -257,7 +257,7 @@ def prepare_httpsuccess_delete200(
 
 def prepare_httpsuccess_put201(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -282,7 +282,7 @@ def prepare_httpsuccess_put201(
 
 def prepare_httpsuccess_post201(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -307,7 +307,7 @@ def prepare_httpsuccess_post201(
 
 def prepare_httpsuccess_put202(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -332,7 +332,7 @@ def prepare_httpsuccess_put202(
 
 def prepare_httpsuccess_patch202(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -357,7 +357,7 @@ def prepare_httpsuccess_patch202(
 
 def prepare_httpsuccess_post202(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -382,7 +382,7 @@ def prepare_httpsuccess_post202(
 
 def prepare_httpsuccess_delete202(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -430,7 +430,7 @@ def prepare_httpsuccess_head204(
 
 def prepare_httpsuccess_put204(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -455,7 +455,7 @@ def prepare_httpsuccess_put204(
 
 def prepare_httpsuccess_patch204(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -480,7 +480,7 @@ def prepare_httpsuccess_patch204(
 
 def prepare_httpsuccess_post204(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -505,7 +505,7 @@ def prepare_httpsuccess_post204(
 
 def prepare_httpsuccess_delete204(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -645,7 +645,7 @@ def prepare_httpredirects_get301(
 
 def prepare_httpredirects_put301(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -716,7 +716,7 @@ def prepare_httpredirects_get302(
 
 def prepare_httpredirects_patch302(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -741,7 +741,7 @@ def prepare_httpredirects_patch302(
 
 def prepare_httpredirects_post303(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -835,7 +835,7 @@ def prepare_httpredirects_options307(
 
 def prepare_httpredirects_put307(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -860,7 +860,7 @@ def prepare_httpredirects_put307(
 
 def prepare_httpredirects_patch307(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -885,7 +885,7 @@ def prepare_httpredirects_patch307(
 
 def prepare_httpredirects_post307(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -910,7 +910,7 @@ def prepare_httpredirects_post307(
 
 def prepare_httpredirects_delete307(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1004,7 +1004,7 @@ def prepare_httpclientfailure_options400(
 
 def prepare_httpclientfailure_put400(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1029,7 +1029,7 @@ def prepare_httpclientfailure_put400(
 
 def prepare_httpclientfailure_patch400(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1054,7 +1054,7 @@ def prepare_httpclientfailure_patch400(
 
 def prepare_httpclientfailure_post400(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1079,7 +1079,7 @@ def prepare_httpclientfailure_post400(
 
 def prepare_httpclientfailure_delete400(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1196,7 +1196,7 @@ def prepare_httpclientfailure_get403(
 
 def prepare_httpclientfailure_put404(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1221,7 +1221,7 @@ def prepare_httpclientfailure_put404(
 
 def prepare_httpclientfailure_patch405(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1246,7 +1246,7 @@ def prepare_httpclientfailure_patch405(
 
 def prepare_httpclientfailure_post406(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1271,7 +1271,7 @@ def prepare_httpclientfailure_post406(
 
 def prepare_httpclientfailure_delete407(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1296,7 +1296,7 @@ def prepare_httpclientfailure_delete407(
 
 def prepare_httpclientfailure_put409(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1413,7 +1413,7 @@ def prepare_httpclientfailure_get412(
 
 def prepare_httpclientfailure_put413(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1438,7 +1438,7 @@ def prepare_httpclientfailure_put413(
 
 def prepare_httpclientfailure_patch414(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1463,7 +1463,7 @@ def prepare_httpclientfailure_patch414(
 
 def prepare_httpclientfailure_post415(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1511,7 +1511,7 @@ def prepare_httpclientfailure_get416(
 
 def prepare_httpclientfailure_delete417(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1605,7 +1605,7 @@ def prepare_httpserverfailure_get501(
 
 def prepare_httpserverfailure_post505(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1630,7 +1630,7 @@ def prepare_httpserverfailure_post505(
 
 def prepare_httpserverfailure_delete505(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1678,7 +1678,7 @@ def prepare_httpretry_head408(
 
 def prepare_httpretry_put500(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1703,7 +1703,7 @@ def prepare_httpretry_put500(
 
 def prepare_httpretry_patch500(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1774,7 +1774,7 @@ def prepare_httpretry_options502(
 
 def prepare_httpretry_post503(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1799,7 +1799,7 @@ def prepare_httpretry_post503(
 
 def prepare_httpretry_delete503(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1824,7 +1824,7 @@ def prepare_httpretry_delete503(
 
 def prepare_httpretry_put504(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -1849,7 +1849,7 @@ def prepare_httpretry_put504(
 
 def prepare_httpretry_patch504(
     boolean_value=True,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

@@ -43,7 +43,7 @@ def prepare_time_get(
 
 def prepare_time_put(
     time_body,  # type: datetime.time
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

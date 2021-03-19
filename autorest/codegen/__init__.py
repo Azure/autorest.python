@@ -14,7 +14,7 @@ from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import GlobalParameterList
-from .models.protocol import Protocol
+from .models.rest import Rest
 from .serializers import JinjaSerializer
 
 
@@ -93,7 +93,7 @@ class CodeGenerator(Plugin):
             code_model.operation_groups = [
                 OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
             ]
-            code_model.protocol = Protocol.from_yaml(yaml_data, code_model=code_model)
+            code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")

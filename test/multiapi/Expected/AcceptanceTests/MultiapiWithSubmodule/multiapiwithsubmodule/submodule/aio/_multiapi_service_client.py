@@ -11,7 +11,7 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
-from azure.core.protocol import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin

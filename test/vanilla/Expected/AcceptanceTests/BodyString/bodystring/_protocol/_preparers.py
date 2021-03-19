@@ -42,7 +42,7 @@ def prepare_string_get_null(
 
 def prepare_string_put_null(
     string_body=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -90,7 +90,7 @@ def prepare_string_get_empty(
 
 def prepare_string_put_empty(
     string_body,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -138,7 +138,7 @@ def prepare_string_get_mbcs(
 
 def prepare_string_put_mbcs(
     string_body,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -186,7 +186,7 @@ def prepare_string_get_whitespace(
 
 def prepare_string_put_whitespace(
     string_body,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -280,7 +280,7 @@ def prepare_string_get_base64_url_encoded(
 
 def prepare_string_put_base64_url_encoded(
     string_body,  # type: bytes
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -351,7 +351,7 @@ def prepare_enum_get_not_expandable(
 
 def prepare_enum_put_not_expandable(
     string_body,  # type: Union[str, "_models.Colors"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -399,7 +399,7 @@ def prepare_enum_get_referenced(
 
 def prepare_enum_put_referenced(
     enum_string_body,  # type: Union[str, "_models.Colors"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -447,7 +447,7 @@ def prepare_enum_get_referenced_constant(
 
 def prepare_enum_put_referenced_constant(
     enum_string_body,  # type: "_models.RefColorConstant"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

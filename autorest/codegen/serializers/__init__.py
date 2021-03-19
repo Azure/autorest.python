@@ -18,7 +18,7 @@ from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_group_serializer import OperationGroupSerializer
 from .metadata_serializer import MetadataSerializer
-from .protocol_serializer import ProtocolPython3Serializer, ProtocolGenericSerializer, ProtocolSerializer
+from .rest_serializer import RestPython3Serializer, RestGenericSerializer, RestSerializer
 
 __all__ = [
     "JinjaSerializer",
@@ -67,7 +67,7 @@ class JinjaSerializer:
                 self._serialize_and_write_metadata(
                     code_model, env=env, namespace_path=namespace_path
                 )
-            self._serialize_and_write_protocol_layer(code_model, env, namespace_path)
+            self._serialize_and_write_rest_layer(code_model, env, namespace_path)
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
@@ -88,26 +88,26 @@ class JinjaSerializer:
             models_path / Path("__init__.py"), ModelInitSerializer(code_model=code_model, env=env).serialize()
         )
 
-    def _serialize_and_write_protocol_layer(
+    def _serialize_and_write_rest_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        protocol_path = namespace_path / Path("_protocol")
+        rest_path = namespace_path / Path("_rest")
 
         # write generic preparers file
         self._autorestapi.write_file(
-            protocol_path / Path("_preparers.py"),
-            ProtocolGenericSerializer(code_model=code_model, env=env).serialize_preparers()
+            rest_path / Path("_preparers.py"),
+            RestGenericSerializer(code_model=code_model, env=env).serialize_preparers()
         )
 
         # write python3 preparers file
         self._autorestapi.write_file(
-            protocol_path / Path("_preparers_py3.py"),
-            ProtocolPython3Serializer(code_model=code_model, env=env).serialize_preparers()
+            rest_path / Path("_preparers_py3.py"),
+            RestPython3Serializer(code_model=code_model, env=env).serialize_preparers()
         )
 
-        # write protocol init file
+        # write rest init file
         self._autorestapi.write_file(
-            protocol_path / Path("__init__.py"), ProtocolSerializer(code_model=code_model, env=env).serialize_init()
+            rest_path / Path("__init__.py"), RestSerializer(code_model=code_model, env=env).serialize_init()
         )
 
     def _serialize_and_write_operations_folder(

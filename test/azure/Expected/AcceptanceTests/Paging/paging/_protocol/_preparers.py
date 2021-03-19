@@ -232,7 +232,7 @@ def prepare_paging_get_odata_multiple_pages(
 
 def prepare_paging_get_multiple_pages_with_offset(
     offset,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
@@ -384,7 +384,7 @@ def prepare_paging_get_multiple_pages_failure_uri(
 
 def prepare_paging_get_multiple_pages_fragment_next_link(
     tenant,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = kwargs.pop("api_version")  # type: str
@@ -415,7 +415,7 @@ def prepare_paging_get_multiple_pages_fragment_next_link(
 
 def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link(
     tenant,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = kwargs.pop("api_version")  # type: str
@@ -479,7 +479,7 @@ def prepare_paging_get_multiple_pages_lro_initial(
 def prepare_paging_next_fragment(
     tenant,  # type: str
     next_link,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = kwargs.pop("api_version")  # type: str
@@ -512,7 +512,7 @@ def prepare_paging_next_fragment(
 def prepare_paging_next_fragment_with_grouping(
     tenant,  # type: str
     next_link,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = kwargs.pop("api_version")  # type: str

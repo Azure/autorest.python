@@ -43,7 +43,7 @@ def prepare_duration_get_null(
 
 def prepare_duration_put_positive_duration(
     duration_body,  # type: datetime.timedelta
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

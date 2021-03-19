@@ -112,7 +112,7 @@ def prepare_datetime_get_underflow(
 
 def prepare_datetime_put_utc_max_date_time(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -137,7 +137,7 @@ def prepare_datetime_put_utc_max_date_time(
 
 def prepare_datetime_put_utc_max_date_time7_digits(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -231,7 +231,7 @@ def prepare_datetime_get_utc_uppercase_max_date_time7_digits(
 
 def prepare_datetime_put_local_positive_offset_max_date_time(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -302,7 +302,7 @@ def prepare_datetime_get_local_positive_offset_uppercase_max_date_time(
 
 def prepare_datetime_put_local_negative_offset_max_date_time(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -373,7 +373,7 @@ def prepare_datetime_get_local_negative_offset_lowercase_max_date_time(
 
 def prepare_datetime_put_utc_min_date_time(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -421,7 +421,7 @@ def prepare_datetime_get_utc_min_date_time(
 
 def prepare_datetime_put_local_positive_offset_min_date_time(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -469,7 +469,7 @@ def prepare_datetime_get_local_positive_offset_min_date_time(
 
 def prepare_datetime_put_local_negative_offset_min_date_time(
     datetime_body,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

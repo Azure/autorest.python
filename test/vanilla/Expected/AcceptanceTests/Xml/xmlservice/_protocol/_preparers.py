@@ -42,7 +42,7 @@ def prepare_xml_get_complex_type_ref_no_meta(
 
 def prepare_xml_put_complex_type_ref_no_meta(
     model,  # type: "_models.RootWithRefAndNoMeta"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -88,7 +88,7 @@ def prepare_xml_get_complex_type_ref_with_meta(
 
 def prepare_xml_put_complex_type_ref_with_meta(
     model,  # type: "_models.RootWithRefAndMeta"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -134,7 +134,7 @@ def prepare_xml_get_simple(
 
 def prepare_xml_put_simple(
     slideshow,  # type: "_models.Slideshow"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -182,7 +182,7 @@ def prepare_xml_get_wrapped_lists(
 
 def prepare_xml_put_wrapped_lists(
     wrapped_lists,  # type: "_models.AppleBarrel"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -250,7 +250,7 @@ def prepare_xml_get_empty_list(
 
 def prepare_xml_put_empty_list(
     slideshow,  # type: "_models.Slideshow"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -296,7 +296,7 @@ def prepare_xml_get_empty_wrapped_lists(
 
 def prepare_xml_put_empty_wrapped_lists(
     apple_barrel,  # type: "_models.AppleBarrel"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -342,7 +342,7 @@ def prepare_xml_get_root_list(
 
 def prepare_xml_put_root_list(
     bananas,  # type: List["_models.Banana"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -388,7 +388,7 @@ def prepare_xml_get_root_list_single_item(
 
 def prepare_xml_put_root_list_single_item(
     bananas,  # type: List["_models.Banana"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -434,7 +434,7 @@ def prepare_xml_get_empty_root_list(
 
 def prepare_xml_put_empty_root_list(
     bananas,  # type: List["_models.Banana"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -480,7 +480,7 @@ def prepare_xml_get_empty_child_element(
 
 def prepare_xml_put_empty_child_element(
     banana,  # type: "_models.Banana"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -557,7 +557,7 @@ def prepare_xml_get_service_properties(
 
 def prepare_xml_put_service_properties(
     properties,  # type: "_models.StorageServiceProperties"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     comp = "properties"
@@ -612,7 +612,7 @@ def prepare_xml_get_acls(
 
 def prepare_xml_put_acls(
     properties,  # type: List["_models.SignedIdentifier"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     comp = "acl"
@@ -667,7 +667,7 @@ def prepare_xml_list_blobs(
 
 def prepare_xml_json_input(
     properties,  # type: "_models.JSONInput"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -759,7 +759,7 @@ def prepare_xml_get_bytes(
 
 def prepare_xml_put_binary(
     slideshow,  # type: "_models.ModelWithByteProperty"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")
@@ -807,7 +807,7 @@ def prepare_xml_get_uri(
 
 def prepare_xml_put_uri(
     model,  # type: "_models.ModelWithUrlProperty"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/xml")

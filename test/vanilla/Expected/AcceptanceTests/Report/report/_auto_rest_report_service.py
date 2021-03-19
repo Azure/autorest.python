@@ -9,14 +9,14 @@
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.protocol import HttpResponse
+from azure.core.rest import HttpResponse
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.protocol import HttpRequest
+    from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestReportServiceConfiguration
 from .operations import AutoRestReportServiceOperationsMixin
@@ -51,10 +51,10 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.protocol.HttpRequest
+        :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.protocol.HttpResponse
+        :rtype: ~azure.core.rest.HttpResponse
         """
         http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)

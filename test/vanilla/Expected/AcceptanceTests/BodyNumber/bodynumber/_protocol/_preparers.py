@@ -111,7 +111,7 @@ def prepare_number_get_invalid_decimal(
 
 def prepare_number_put_big_float(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -159,7 +159,7 @@ def prepare_number_get_big_float(
 
 def prepare_number_put_big_double(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -207,7 +207,7 @@ def prepare_number_get_big_double(
 
 def prepare_number_put_big_double_positive_decimal(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -255,7 +255,7 @@ def prepare_number_get_big_double_positive_decimal(
 
 def prepare_number_put_big_double_negative_decimal(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -303,7 +303,7 @@ def prepare_number_get_big_double_negative_decimal(
 
 def prepare_number_put_big_decimal(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -351,7 +351,7 @@ def prepare_number_get_big_decimal(
 
 def prepare_number_put_big_decimal_positive_decimal(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -399,7 +399,7 @@ def prepare_number_get_big_decimal_positive_decimal(
 
 def prepare_number_put_big_decimal_negative_decimal(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -447,7 +447,7 @@ def prepare_number_get_big_decimal_negative_decimal(
 
 def prepare_number_put_small_float(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -495,7 +495,7 @@ def prepare_number_get_small_float(
 
 def prepare_number_put_small_double(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -543,7 +543,7 @@ def prepare_number_get_small_double(
 
 def prepare_number_put_small_decimal(
     number_body,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

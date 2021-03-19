@@ -20,7 +20,7 @@ _SERIALIZER = Serializer()
 
 def prepare_put_array(
     resource_array=None,  # type: Optional[List["_models.Resource"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -68,7 +68,7 @@ def prepare_get_array(
 
 def prepare_put_wrapped_array(
     resource_array=None,  # type: Optional[List["_models.WrappedProduct"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -116,7 +116,7 @@ def prepare_get_wrapped_array(
 
 def prepare_put_dictionary(
     resource_dictionary=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -164,7 +164,7 @@ def prepare_get_dictionary(
 
 def prepare_put_resource_collection(
     resource_complex_object=None,  # type: Optional["_models.ResourceCollection"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -212,7 +212,7 @@ def prepare_get_resource_collection(
 
 def prepare_put_simple_product(
     simple_body_product=None,  # type: Optional["_models.SimpleProduct"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -237,7 +237,7 @@ def prepare_put_simple_product(
 
 def prepare_post_flattened_simple_product(
     simple_body_product=None,  # type: Optional["_models.SimpleProduct"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -263,7 +263,7 @@ def prepare_post_flattened_simple_product(
 def prepare_put_simple_product_with_grouping(
     name,  # type: str
     simple_body_product=None,  # type: Optional["_models.SimpleProduct"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

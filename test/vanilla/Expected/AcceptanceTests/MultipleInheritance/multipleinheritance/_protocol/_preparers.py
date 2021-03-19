@@ -42,7 +42,7 @@ def prepare_get_horse(
 
 def prepare_put_horse(
     horse,  # type: "_models.Horse"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -90,7 +90,7 @@ def prepare_get_pet(
 
 def prepare_put_pet(
     pet,  # type: "_models.Pet"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -138,7 +138,7 @@ def prepare_get_feline(
 
 def prepare_put_feline(
     feline,  # type: "_models.Feline"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -186,7 +186,7 @@ def prepare_get_cat(
 
 def prepare_put_cat(
     cat,  # type: "_models.Cat"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")
@@ -234,7 +234,7 @@ def prepare_get_kitten(
 
 def prepare_put_kitten(
     kitten,  # type: "_models.Kitten"
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop("content_type", "application/json")

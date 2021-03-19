@@ -9,7 +9,7 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.protocol import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
@@ -43,10 +43,10 @@ class AutoRestSwaggerBATDictionaryService(object):
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.protocol.HttpRequest
+        :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.protocol.AsyncHttpResponse
+        :rtype: ~azure.core.rest.AsyncHttpResponse
         """
         http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)
