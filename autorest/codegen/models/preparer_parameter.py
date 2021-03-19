@@ -24,7 +24,7 @@ class PreparerParameter(Parameter):
             # If I'm a flattened property of a body, don't want me, want the body param
             or self.target_property_name
             # If I'm a kwarg, don't include in the signature
-            or self.is_kwarg
+            or self.is_hidden_kwarg
             or not self.in_method_code
         )
 
@@ -59,6 +59,10 @@ class PreparerParameter(Parameter):
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):
         return f'_SERIALIZER.{function_name}({parameters_line})'
+
+    @property
+    def is_kwarg(self) -> bool:
+        return not self.location == ParameterLocation.Path
 
     @property
     def full_serialized_name(self) -> str:

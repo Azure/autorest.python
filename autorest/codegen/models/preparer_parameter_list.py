@@ -30,7 +30,7 @@ class PreparerParameterList(ParameterList):
 
     @property
     def method(self) -> List[Parameter]:
-        """The list of parameter used in method signature.
+        """The list of parameter used in method signature. Includes both positional and kwargs
         """
         signature_parameters_no_default_value = []
         signature_parameters_default_value = []

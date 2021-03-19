@@ -39,6 +39,12 @@ class ParameterList(MutableSequence):
     def insert(self, index: int, value: Parameter) -> None:
         self.parameters.insert(index, value)
 
+    def append(self, val: Parameter) -> None:
+        self.parameters.append(val)
+
+    def extend(self, val: Parameter) -> None:
+        self.parameters.extend(val)
+
     # Parameter helpers
 
     def has_any_location(self, location: ParameterLocation) -> bool:
@@ -142,7 +148,29 @@ class ParameterList(MutableSequence):
         return signature_parameters
 
     def method_signature(self, async_mode: bool) -> List[str]:
-        return [parameter.method_signature(async_mode) for parameter in self.method]
+        positional = self.method_signature_positional(async_mode)
+        kwargs = self.method_signature_kwargs(async_mode)
+        return positional + kwargs
+
+    def method_signature_positional(self, async_mode: bool) -> List[str]:
+        positional_params = self.get_from_predicate(
+            lambda parameter: parameter in self.method and not parameter.is_kwarg
+        )
+        return [parameter.method_signature(async_mode) for parameter in positional_params]
+
+    @property
+    def kwargs(self) -> List[Parameter]:
+        return self.get_from_predicate(
+            lambda parameter: parameter in self.method and parameter.is_kwarg
+        )
+
+    def method_signature_kwargs(self, async_mode: bool) -> List[str]:
+        leftover_kwargs_typing = ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]
+        if not async_mode:
+            return leftover_kwargs_typing
+        kwargs_signature = [parameter.method_signature(async_mode) for parameter in self.kwargs]
+        asterisk = ["*,"] if kwargs_signature else []
+        return asterisk + kwargs_signature + leftover_kwargs_typing
 
     @property
     def is_flattened(self) -> bool:

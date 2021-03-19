@@ -4,15 +4,10 @@
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for param_signature in code_model.global_parameters.method_signature(async_mode) %}
+    {% for param_signature in code_model.service_client.method_parameters_signature(async_mode) %}
     {{ param_signature }}
     {% endfor %}
-    {% if code_model.base_url %}
-    {{ code_model.base_url_method_signature(async_mode) }}
-    {% endif %}
-    {{ keywords.kwargs_declaration }}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
-{% set config_signature = code_model.global_parameters.method|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters.method else "") %}
 {% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
 {% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}
 {% set base_class = mixin_operation_group_name() if has_mixin_operation_group else "object" %}
@@ -42,13 +37,10 @@ class {{ code_model.class_name }}({{ base_class }}):
     :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}
     {% endif %}
     {% endfor %}
-{% for parameter in code_model.global_parameters.method %}
+{% for parameter in code_model.service_client.method_parameters %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
     :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
-    {% if not code_model.custom_base_url %}
-    :param str base_url: Service URL
-    {% endif %}
     {% if code_model.has_lro_operations %}
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {% endif %}
@@ -58,13 +50,13 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% if not async_mode %}
         # type: (...) -> None
         {% endif %}
-        {% if not code_model.base_url %}
-        base_url = {{ keywords.escape_str(code_model.custom_base_url) }}
+        {% if not code_model.service_client.base_url %}
+        base_url = {{ keywords.escape_str(code_model.service_client.custom_base_url) }}
         {% else %}
         if not base_url:
-            base_url = {{ keywords.escape_str(code_model.base_url) }}
+            base_url = {{ keywords.escape_str(code_model.service_client.base_url) }}
         {% endif %}
-        self._config = {{ code_model.class_name }}Configuration({{ config_signature }}**kwargs)
+        self._config = {{ code_model.class_name }}Configuration({{ code_model.service_client.config_initialization }})
         self._client = {{ code_model.service_client.pipeline_class(code_model, async_mode) }}(base_url=base_url, config=self._config, **kwargs)
 
         {% if code_model.sorted_schemas %}

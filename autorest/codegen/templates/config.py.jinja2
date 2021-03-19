@@ -6,7 +6,6 @@ def __init__(
     {% for param_signature in code_model.global_parameters.method_signature(async_mode) %}
     {{ param_signature }}
     {% endfor %}
-    {{ keywords.kwargs_declaration }}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
 # coding=utf-8

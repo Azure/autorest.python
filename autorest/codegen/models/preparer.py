@@ -10,7 +10,7 @@ from .constant_schema import ConstantSchema
 from .preparer_parameter import PreparerParameter
 from .preparer_parameter_list import PreparerParameterList
 from .schema_request import SchemaRequest
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .utils import get_converted_parameters
 
 
@@ -118,6 +118,9 @@ class Preparer(BaseModel):
             file_import.add_from_import(
                 "azure.core.pipeline.transport._base", "_format_url_section", ImportType.AZURECORE
             )
+        file_import.add_from_import(
+            "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+        )
         return file_import
 
     @classmethod

@@ -82,11 +82,11 @@ class CodeGenerator(Plugin):
             # UGLY as hell.....
             if yaml_data.get("operationGroups"):
                 first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                code_model.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                code_model.service_client.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
-            code_model.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
+            code_model.service_client.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
 
         # Create operations
         if yaml_data.get("operationGroups"):

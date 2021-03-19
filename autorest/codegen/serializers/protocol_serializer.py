@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from jinja2 import Environment
-
+from abc import abstractmethod
 from .import_serializer import FileImportSerializer
 from ..models import CodeModel
 
@@ -16,19 +16,38 @@ class ProtocolSerializer:
         self.code_model = code_model
         self.env = env
 
-    def serialize_preparers(self, is_python_3_file: bool) -> str:
+    @abstractmethod
+    def serialize_preparers(self) -> str:
+        ...
 
+    def serialize_init(self) -> str:
+        template = self.env.get_template("protocol_init.py.jinja2")
+        return template.render(code_model=self.code_model)
+
+class ProtocolPython3Serializer(ProtocolSerializer):
+
+    def serialize_preparers(self) -> str:
         template = self.env.get_template("preparers.py.jinja2")
 
         return template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(
                 self.code_model.protocol.imports(),
-                is_python_3_file=is_python_3_file
+                is_python_3_file=True
             ),
-            is_python_3_file=is_python_3_file,
+            is_python_3_file=True,
         )
 
-    def serialize_init(self) -> str:
-        template = self.env.get_template("protocol_init.py.jinja2")
-        return template.render(code_model=self.code_model)
+class ProtocolGenericSerializer(ProtocolSerializer):
+    
+    def serialize_preparers(self) -> str:
+        template = self.env.get_template("preparers.py.jinja2")
+
+        return template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(
+                self.code_model.protocol.imports(),
+                is_python_3_file=False
+            ),
+            is_python_3_file=False,
+        )

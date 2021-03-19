@@ -81,7 +81,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self._client_default_value = client_default_value
-        self.is_kwarg: bool = False
+        self.is_hidden_kwarg: bool = False
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
@@ -173,7 +173,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             # If I'm body and it's flattened, I'm not either
             or (self.location == ParameterLocation.Body and self.flattened)
             # If I'm a kwarg, don't include in the signature
-            or self.is_kwarg
+            or self.is_hidden_kwarg
         )
 
     @property
@@ -244,16 +244,24 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def docstring_type(self) -> str:
         return self.multiple_media_types_docstring_type or self.schema.docstring_type
 
+    def _has_default_value(self):
+        return self.default_value is not None or not self.required
+
     def method_signature(self, async_mode: bool) -> str:
-        has_default_value = self.default_value is not None or not self.required
         if async_mode:
-            if has_default_value:
+            if self._has_default_value():
                 return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
             return f"{self.serialized_name}: {self.type_annotation},"
-        if has_default_value:
+        if self._has_default_value():
             return f"{self.serialized_name}={self.default_value_declaration},  # type: {self.type_annotation}"
         return f"{self.serialized_name},  # type: {self.type_annotation}"
 
+    @property
+    def pop_from_kwarg(self) -> str:
+        # Only entering if we're not python3 file
+        if self._has_default_value():
+            return f"{self.serialized_name} = kwargs.pop('{self.serialized_name}', {self.default_value_declaration})  # type: {self.type_annotation}"
+        return f"{self.serialized_name} = kwargs.pop('{self.serialized_name}')  # type: {self.type_annotation}"
 
     @property
     def full_serialized_name(self) -> str:
@@ -261,6 +269,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.implementation == "Client":
             origin_name = f"self._config.{self.serialized_name}"
         return origin_name
+
+    @property
+    def is_kwarg(self) -> bool:
+        return False
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":

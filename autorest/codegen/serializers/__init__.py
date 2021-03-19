@@ -18,7 +18,7 @@ from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_group_serializer import OperationGroupSerializer
 from .metadata_serializer import MetadataSerializer
-from .protocol_serializer import ProtocolSerializer
+from .protocol_serializer import ProtocolPython3Serializer, ProtocolGenericSerializer, ProtocolSerializer
 
 __all__ = [
     "JinjaSerializer",
@@ -96,13 +96,13 @@ class JinjaSerializer:
         # write generic preparers file
         self._autorestapi.write_file(
             protocol_path / Path("_preparers.py"),
-            ProtocolSerializer(code_model=code_model, env=env).serialize_preparers(is_python_3_file=False)
+            ProtocolGenericSerializer(code_model=code_model, env=env).serialize_preparers()
         )
 
         # write python3 preparers file
         self._autorestapi.write_file(
             protocol_path / Path("_preparers_py3.py"),
-            ProtocolSerializer(code_model=code_model, env=env).serialize_preparers(is_python_3_file=True)
+            ProtocolPython3Serializer(code_model=code_model, env=env).serialize_preparers()
         )
 
         # write protocol init file

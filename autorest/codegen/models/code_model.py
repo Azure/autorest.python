@@ -17,7 +17,7 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
-from .parameter_list import ParameterList
+from .parameter_list import GlobalParameterList, ParameterList
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
@@ -82,12 +82,19 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
-        self.global_parameters: ParameterList = ParameterList()
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
-        self.service_client: Client = Client()
+        self.service_client: Client = Client(GlobalParameterList())
         self._protocol: Optional[Protocol] = None
         self.preparer_ids: Dict[int, Preparer] = {}
+
+    @property
+    def global_parameters(self) -> GlobalParameterList:
+        return self.service_client.parameters
+
+    @global_parameters.setter
+    def global_parameters(self, val: GlobalParameterList) -> None:
+        self.service_client.parameters = val
 
     @property
     def protocol(self) -> Protocol:
