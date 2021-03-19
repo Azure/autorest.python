@@ -11,6 +11,7 @@
 
 from typing import TYPE_CHECKING
 
+from azure.core.protocol import HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
@@ -24,7 +25,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import AzureKeyCredential
-    from azure.core.protocol import HttpRequest, HttpResponse
+    from azure.core.protocol import HttpRequest
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
