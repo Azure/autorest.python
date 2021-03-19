@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 

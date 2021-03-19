@@ -22,7 +22,8 @@ class AutoRestSwaggerBATArrayService(object):
 
     :ivar array: ArrayOperations operations
     :vartype array: bodyarray.aio.operations.ArrayOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:

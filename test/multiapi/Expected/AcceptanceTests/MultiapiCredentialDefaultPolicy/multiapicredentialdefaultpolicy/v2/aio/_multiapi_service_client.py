@@ -29,7 +29,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :vartype operation_group_two: multiapicredentialdefaultpolicy.v2.aio.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.AzureKeyCredential
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

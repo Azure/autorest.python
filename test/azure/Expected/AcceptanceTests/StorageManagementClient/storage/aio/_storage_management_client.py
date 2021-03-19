@@ -33,7 +33,8 @@ class StorageManagementClient(object):
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 

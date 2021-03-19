@@ -35,7 +35,7 @@ class PreparerParameterList(ParameterList):
         signature_parameters_no_default_value = []
         signature_parameters_default_value = []
 
-        seen_body = False
+        body_param = None
 
         # Want all method parameters.
         # Also allow client parameters if they're going to be used in the request body.
@@ -49,15 +49,19 @@ class PreparerParameterList(ParameterList):
                 continue
             if parameter.in_method_signature:
                 if parameter.location == ParameterLocation.Body:
-                    if seen_body:
+                    if body_param:
                         continue
-                    seen_body = True
-                if not parameter.default_value and parameter.required:
+                    body_param = parameter
+                elif not parameter.default_value and parameter.required:
                     signature_parameters_no_default_value.append(parameter)
                 else:
                     signature_parameters_default_value.append(parameter)
 
+        # put body at the end of all parameters. This way, when we generate with only path and body being positional,
+        # we will make sure body is the last positional
         signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
+        if body_param:
+            signature_parameters.append(body_param)
         return signature_parameters
 
     @staticmethod

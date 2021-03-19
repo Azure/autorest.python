@@ -20,7 +20,8 @@ from .. import models
 class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
     """Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
 
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:

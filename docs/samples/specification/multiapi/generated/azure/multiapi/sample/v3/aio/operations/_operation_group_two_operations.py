@@ -45,7 +45,7 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
@@ -88,7 +88,7 @@ class OperationGroupTwoOperations:
 
     async def test_five(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 

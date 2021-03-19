@@ -50,7 +50,7 @@ class EnumOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_not_expandable(self, **kwargs) -> Union[str, "_models.Colors"]:
+    async def get_not_expandable(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +84,7 @@ class EnumOperations:
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs) -> None:
+    async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body.
@@ -120,7 +120,7 @@ class EnumOperations:
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced(self, **kwargs) -> Union[str, "_models.Colors"]:
+    async def get_referenced(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -154,7 +154,7 @@ class EnumOperations:
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs) -> None:
+    async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body.
@@ -190,7 +190,7 @@ class EnumOperations:
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs) -> "_models.RefColorConstant":
+    async def get_referenced_constant(self, **kwargs: Any) -> "_models.RefColorConstant":
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -226,7 +226,7 @@ class EnumOperations:
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs) -> None:
+    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs: Any) -> None:
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.

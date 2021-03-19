@@ -28,7 +28,8 @@ class AutoRestSwaggerBATFormDataService(object):
 
     :ivar formdata: FormdataOperations operations
     :vartype formdata: bodyformdata.operations.FormdataOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

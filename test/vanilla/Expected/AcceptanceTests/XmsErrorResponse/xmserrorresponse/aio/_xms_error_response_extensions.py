@@ -22,7 +22,8 @@ class XMSErrorResponseExtensions(object):
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponse.aio.operations.PetOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:

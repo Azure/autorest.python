@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -75,10 +75,10 @@ def prepare_pet_do_something(
 
 
 def prepare_pet_has_models_param(
-    models="value1",  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    models = kwargs.pop("models", "value1")  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL

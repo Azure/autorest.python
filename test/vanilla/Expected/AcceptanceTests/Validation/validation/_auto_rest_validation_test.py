@@ -28,7 +28,8 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

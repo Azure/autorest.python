@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -115,12 +115,12 @@ def prepare_paging_first_response_empty(
 
 
 def prepare_paging_get_multiple_pages(
-    client_request_id=None,  # type: Optional[str]
-    maxresults=None,  # type: Optional[int]
-    timeout=30,  # type: Optional[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -148,10 +148,10 @@ def prepare_paging_get_multiple_pages(
 
 
 def prepare_paging_get_with_query_params(
-    required_query_parameter,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
     query_constant = True
     accept = "application/json"
 
@@ -204,12 +204,12 @@ def prepare_paging_next_operation_with_query_params(
 
 
 def prepare_paging_get_odata_multiple_pages(
-    client_request_id=None,  # type: Optional[str]
-    maxresults=None,  # type: Optional[int]
-    timeout=30,  # type: Optional[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -238,12 +238,12 @@ def prepare_paging_get_odata_multiple_pages(
 
 def prepare_paging_get_multiple_pages_with_offset(
     offset,  # type: int
-    client_request_id=None,  # type: Optional[str]
-    maxresults=None,  # type: Optional[int]
-    timeout=30,  # type: Optional[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -395,11 +395,11 @@ def prepare_paging_get_multiple_pages_failure_uri(
 
 
 def prepare_paging_get_multiple_pages_fragment_next_link(
-    api_version,  # type: str
     tenant,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -427,11 +427,11 @@ def prepare_paging_get_multiple_pages_fragment_next_link(
 
 
 def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link(
-    api_version,  # type: str
     tenant,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -459,12 +459,12 @@ def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link(
 
 
 def prepare_paging_get_multiple_pages_lro_initial(
-    client_request_id=None,  # type: Optional[str]
-    maxresults=None,  # type: Optional[int]
-    timeout=30,  # type: Optional[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -492,12 +492,12 @@ def prepare_paging_get_multiple_pages_lro_initial(
 
 
 def prepare_paging_next_fragment(
-    api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -526,12 +526,12 @@ def prepare_paging_next_fragment(
 
 
 def prepare_paging_next_fragment_with_grouping(
-    api_version,  # type: str
     tenant,  # type: str
     next_link,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
     accept = "application/json"
 
     # Construct URL

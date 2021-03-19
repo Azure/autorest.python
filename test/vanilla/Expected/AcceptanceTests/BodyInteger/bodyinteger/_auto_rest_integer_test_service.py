@@ -28,7 +28,8 @@ class AutoRestIntegerTestService(object):
 
     :ivar int: IntOperations operations
     :vartype int: bodyinteger.operations.IntOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

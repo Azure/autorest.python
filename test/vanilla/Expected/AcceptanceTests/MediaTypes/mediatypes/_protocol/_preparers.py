@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import IO, Optional, Union
+    from typing import Any, IO, Optional, Union
 
 _SERIALIZER = Serializer()
 

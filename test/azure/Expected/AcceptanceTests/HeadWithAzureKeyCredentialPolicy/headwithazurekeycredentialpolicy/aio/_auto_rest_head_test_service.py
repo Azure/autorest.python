@@ -28,7 +28,8 @@ class AutoRestHeadTestService(object):
     :vartype http_success: headwithazurekeycredentialpolicy.aio.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.AzureKeyCredential
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, credential: AzureKeyCredential, base_url: Optional[str] = None, **kwargs: Any) -> None:

@@ -30,7 +30,8 @@ class MicrosoftAzureTestUrl(object):
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

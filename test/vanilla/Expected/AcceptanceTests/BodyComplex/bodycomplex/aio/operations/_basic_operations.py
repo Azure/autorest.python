@@ -50,7 +50,7 @@ class BasicOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.Basic":
+    async def get_valid(self, **kwargs: Any) -> "_models.Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +84,7 @@ class BasicOperations:
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Basic", **kwargs) -> None:
+    async def put_valid(self, complex_body: "_models.Basic", **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -118,7 +118,7 @@ class BasicOperations:
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> "_models.Basic":
+    async def get_invalid(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +152,7 @@ class BasicOperations:
     get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs) -> "_models.Basic":
+    async def get_empty(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -186,7 +186,7 @@ class BasicOperations:
     get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> "_models.Basic":
+    async def get_null(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -220,7 +220,7 @@ class BasicOperations:
     get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs) -> "_models.Basic":
+    async def get_not_provided(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

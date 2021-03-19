@@ -50,7 +50,7 @@ class NumberOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[float]:
+    async def get_null(self, **kwargs: Any) -> Optional[float]:
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,7 +84,7 @@ class NumberOperations:
     get_null.metadata = {"url": "/number/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_float(self, **kwargs) -> float:
+    async def get_invalid_float(self, **kwargs: Any) -> float:
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -118,7 +118,7 @@ class NumberOperations:
     get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_double(self, **kwargs) -> float:
+    async def get_invalid_double(self, **kwargs: Any) -> float:
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +152,7 @@ class NumberOperations:
     get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_decimal(self, **kwargs) -> float:
+    async def get_invalid_decimal(self, **kwargs: Any) -> float:
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -186,7 +186,7 @@ class NumberOperations:
     get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_float(self, number_body: float, **kwargs) -> None:
+    async def put_big_float(self, number_body: float, **kwargs: Any) -> None:
         """Put big float value 3.402823e+20.
 
         :param number_body: number body.
@@ -222,7 +222,7 @@ class NumberOperations:
     put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_float(self, **kwargs) -> float:
+    async def get_big_float(self, **kwargs: Any) -> float:
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -256,7 +256,7 @@ class NumberOperations:
     get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double(self, number_body: float, **kwargs) -> None:
+    async def put_big_double(self, number_body: float, **kwargs: Any) -> None:
         """Put big double value 2.5976931e+101.
 
         :param number_body: number body.
@@ -292,7 +292,7 @@ class NumberOperations:
     put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_double(self, **kwargs) -> float:
+    async def get_big_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -326,7 +326,7 @@ class NumberOperations:
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double_positive_decimal(self, **kwargs) -> None:
+    async def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
         """Put big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -361,7 +361,7 @@ class NumberOperations:
     put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_double_positive_decimal(self, **kwargs) -> float:
+    async def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -397,7 +397,7 @@ class NumberOperations:
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double_negative_decimal(self, **kwargs) -> None:
+    async def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
         """Put big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -432,7 +432,7 @@ class NumberOperations:
     put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_double_negative_decimal(self, **kwargs) -> float:
+    async def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -468,7 +468,7 @@ class NumberOperations:
     get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal(self, number_body: float, **kwargs) -> None:
+    async def put_big_decimal(self, number_body: float, **kwargs: Any) -> None:
         """Put big decimal value 2.5976931e+101.
 
         :param number_body: number body.
@@ -504,7 +504,7 @@ class NumberOperations:
     put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_decimal(self, **kwargs) -> float:
+    async def get_big_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -538,7 +538,7 @@ class NumberOperations:
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal_positive_decimal(self, **kwargs) -> None:
+    async def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -573,7 +573,7 @@ class NumberOperations:
     put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_decimal_positive_decimal(self, **kwargs) -> float:
+    async def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -609,7 +609,7 @@ class NumberOperations:
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal_negative_decimal(self, **kwargs) -> None:
+    async def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -644,7 +644,7 @@ class NumberOperations:
     put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def get_big_decimal_negative_decimal(self, **kwargs) -> float:
+    async def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -680,7 +680,7 @@ class NumberOperations:
     get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def put_small_float(self, number_body: float, **kwargs) -> None:
+    async def put_small_float(self, number_body: float, **kwargs: Any) -> None:
         """Put small float value 3.402823e-20.
 
         :param number_body: number body.
@@ -716,7 +716,7 @@ class NumberOperations:
     put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace_async
-    async def get_small_float(self, **kwargs) -> float:
+    async def get_small_float(self, **kwargs: Any) -> float:
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -750,7 +750,7 @@ class NumberOperations:
     get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace_async
-    async def put_small_double(self, number_body: float, **kwargs) -> None:
+    async def put_small_double(self, number_body: float, **kwargs: Any) -> None:
         """Put small double value 2.5976931e-101.
 
         :param number_body: number body.
@@ -786,7 +786,7 @@ class NumberOperations:
     put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace_async
-    async def get_small_double(self, **kwargs) -> float:
+    async def get_small_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -820,7 +820,7 @@ class NumberOperations:
     get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace_async
-    async def put_small_decimal(self, number_body: float, **kwargs) -> None:
+    async def put_small_decimal(self, number_body: float, **kwargs: Any) -> None:
         """Put small decimal value 2.5976931e-101.
 
         :param number_body: number body.
@@ -856,7 +856,7 @@ class NumberOperations:
     put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
     @distributed_trace_async
-    async def get_small_decimal(self, **kwargs) -> float:
+    async def get_small_decimal(self, **kwargs: Any) -> float:
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

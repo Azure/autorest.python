@@ -28,7 +28,8 @@ class AutoRestParameterFlattening(object):
 
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets: parameterflattening.operations.AvailabilitySetsOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

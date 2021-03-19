@@ -28,7 +28,8 @@ class AutoRestSwaggerBATXMLService(object):
 
     :ivar xml: XmlOperations operations
     :vartype xml: xmlservice.operations.XmlOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

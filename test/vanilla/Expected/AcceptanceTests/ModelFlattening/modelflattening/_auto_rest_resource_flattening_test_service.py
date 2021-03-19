@@ -26,7 +26,8 @@ from . import models
 class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin):
     """Resource Flattening for AutoRest.
 
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

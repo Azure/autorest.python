@@ -51,7 +51,7 @@ class IntOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[int]:
+    async def get_null(self, **kwargs: Any) -> Optional[int]:
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -85,7 +85,7 @@ class IntOperations:
     get_null.metadata = {"url": "/int/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> int:
+    async def get_invalid(self, **kwargs: Any) -> int:
         """Get invalid Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -119,7 +119,7 @@ class IntOperations:
     get_invalid.metadata = {"url": "/int/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow_int32(self, **kwargs) -> int:
+    async def get_overflow_int32(self, **kwargs: Any) -> int:
         """Get overflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -153,7 +153,7 @@ class IntOperations:
     get_overflow_int32.metadata = {"url": "/int/overflowint32"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow_int32(self, **kwargs) -> int:
+    async def get_underflow_int32(self, **kwargs: Any) -> int:
         """Get underflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -187,7 +187,7 @@ class IntOperations:
     get_underflow_int32.metadata = {"url": "/int/underflowint32"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow_int64(self, **kwargs) -> int:
+    async def get_overflow_int64(self, **kwargs: Any) -> int:
         """Get overflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -221,7 +221,7 @@ class IntOperations:
     get_overflow_int64.metadata = {"url": "/int/overflowint64"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow_int64(self, **kwargs) -> int:
+    async def get_underflow_int64(self, **kwargs: Any) -> int:
         """Get underflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -255,7 +255,7 @@ class IntOperations:
     get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
     @distributed_trace_async
-    async def put_max32(self, int_body: int, **kwargs) -> None:
+    async def put_max32(self, int_body: int, **kwargs: Any) -> None:
         """Put max int32 value.
 
         :param int_body: int body.
@@ -289,7 +289,7 @@ class IntOperations:
     put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
     @distributed_trace_async
-    async def put_max64(self, int_body: int, **kwargs) -> None:
+    async def put_max64(self, int_body: int, **kwargs: Any) -> None:
         """Put max int64 value.
 
         :param int_body: int body.
@@ -323,7 +323,7 @@ class IntOperations:
     put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
 
     @distributed_trace_async
-    async def put_min32(self, int_body: int, **kwargs) -> None:
+    async def put_min32(self, int_body: int, **kwargs: Any) -> None:
         """Put min int32 value.
 
         :param int_body: int body.
@@ -357,7 +357,7 @@ class IntOperations:
     put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
     @distributed_trace_async
-    async def put_min64(self, int_body: int, **kwargs) -> None:
+    async def put_min64(self, int_body: int, **kwargs: Any) -> None:
         """Put min int64 value.
 
         :param int_body: int body.
@@ -391,7 +391,7 @@ class IntOperations:
     put_min64.metadata = {"url": "/int/min/64"}  # type: ignore
 
     @distributed_trace_async
-    async def get_unix_time(self, **kwargs) -> datetime.datetime:
+    async def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -425,7 +425,7 @@ class IntOperations:
     get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def put_unix_time_date(self, int_body: datetime.datetime, **kwargs) -> None:
+    async def put_unix_time_date(self, int_body: datetime.datetime, **kwargs: Any) -> None:
         """Put datetime encoded as Unix time.
 
         :param int_body: int body.
@@ -461,7 +461,7 @@ class IntOperations:
     put_unix_time_date.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_unix_time(self, **kwargs) -> datetime.datetime:
+    async def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -495,7 +495,7 @@ class IntOperations:
     get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null_unix_time(self, **kwargs) -> Optional[datetime.datetime]:
+    async def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

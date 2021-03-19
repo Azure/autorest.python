@@ -56,7 +56,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
@@ -113,7 +113,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -170,7 +170,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
@@ -227,7 +227,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery='globalStringQuery',

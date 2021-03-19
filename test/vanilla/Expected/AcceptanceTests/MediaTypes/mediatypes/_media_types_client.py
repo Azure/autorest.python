@@ -26,7 +26,8 @@ from . import models
 class MediaTypesClient(MediaTypesClientOperationsMixin):
     """Play with produces/consumes and media-types in general.
 
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

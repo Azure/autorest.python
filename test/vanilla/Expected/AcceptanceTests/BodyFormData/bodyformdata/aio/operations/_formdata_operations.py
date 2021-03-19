@@ -50,7 +50,7 @@ class FormdataOperations:
         self._config = config
 
     @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
+    async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -93,7 +93,7 @@ class FormdataOperations:
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
+    async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -131,7 +131,7 @@ class FormdataOperations:
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs) -> IO:
+    async def upload_files(self, file_content: List[IO], **kwargs: Any) -> IO:
         """Upload multiple files.
 
         :param file_content: Files to upload.

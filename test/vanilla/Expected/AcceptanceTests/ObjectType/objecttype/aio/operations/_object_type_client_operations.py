@@ -28,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
-    async def get(self, **kwargs) -> object:
+    async def get(self, **kwargs: Any) -> object:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
@@ -63,7 +63,7 @@ class ObjectTypeClientOperationsMixin:
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, put_object: object, **kwargs) -> None:
+    async def put(self, put_object: object, **kwargs: Any) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 

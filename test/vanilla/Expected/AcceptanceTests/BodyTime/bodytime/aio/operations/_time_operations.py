@@ -51,7 +51,7 @@ class TimeOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get(self, **kwargs) -> datetime.time:
+    async def get(self, **kwargs: Any) -> datetime.time:
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -85,7 +85,7 @@ class TimeOperations:
     get.metadata = {"url": "/time/get"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, time_body: datetime.time, **kwargs) -> str:
+    async def put(self, time_body: datetime.time, **kwargs: Any) -> str:
         """Put time value "08:07:56".
 
         :param time_body: Put time value "08:07:56" in parameter to pass testserver.

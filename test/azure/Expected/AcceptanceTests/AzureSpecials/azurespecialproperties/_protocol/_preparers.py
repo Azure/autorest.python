@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -39,10 +39,10 @@ def prepare_xmsclientrequestid_get(
 
 
 def prepare_xmsclientrequestid_param_get(
-    x_ms_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    x_ms_client_request_id = kwargs.pop("x_ms_client_request_id")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -477,10 +477,10 @@ def prepare_apiversionlocal_get_method_local_valid(
 
 
 def prepare_apiversionlocal_get_method_local_null(
-    api_version=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop("api_version", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -640,10 +640,10 @@ def prepare_skipurlencoding_get_swagger_path_valid(
 
 
 def prepare_skipurlencoding_get_method_query_valid(
-    q1,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    q1 = kwargs.pop("q1")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -666,10 +666,10 @@ def prepare_skipurlencoding_get_method_query_valid(
 
 
 def prepare_skipurlencoding_get_method_query_null(
-    q1=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    q1 = kwargs.pop("q1", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -693,10 +693,10 @@ def prepare_skipurlencoding_get_method_query_null(
 
 
 def prepare_skipurlencoding_get_path_query_valid(
-    q1,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    q1 = kwargs.pop("q1")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -745,12 +745,12 @@ def prepare_skipurlencoding_get_swagger_query_valid(
 
 
 def prepare_odata_get_with_filter(
-    filter=None,  # type: Optional[str]
-    top=None,  # type: Optional[int]
-    orderby=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    filter = kwargs.pop("filter", None)  # type: Optional[str]
+    top = kwargs.pop("top", None)  # type: Optional[int]
+    orderby = kwargs.pop("orderby", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -778,10 +778,10 @@ def prepare_odata_get_with_filter(
 
 
 def prepare_header_custom_named_request_id(
-    foo_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -805,10 +805,10 @@ def prepare_header_custom_named_request_id(
 
 
 def prepare_header_custom_named_request_id_param_grouping(
-    foo_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -832,10 +832,10 @@ def prepare_header_custom_named_request_id_param_grouping(
 
 
 def prepare_header_custom_named_request_id_head(
-    foo_client_request_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
     accept = "application/json"
 
     # Construct URL

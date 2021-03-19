@@ -30,7 +30,8 @@ class AutoRestHeadExceptionTestService(object):
     :vartype head_exception: headexceptions.operations.HeadExceptionOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

@@ -62,7 +62,10 @@ class PreparerParameter(Parameter):
 
     @property
     def is_kwarg(self) -> bool:
-        return not self.location == ParameterLocation.Path
+        return not (
+            self.location == ParameterLocation.Path or
+            self.location == ParameterLocation.Body
+        )
 
     @property
     def full_serialized_name(self) -> str:

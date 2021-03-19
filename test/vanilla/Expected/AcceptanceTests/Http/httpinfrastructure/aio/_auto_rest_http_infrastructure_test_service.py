@@ -40,7 +40,8 @@ class AutoRestHttpInfrastructureTestService(object):
     :vartype http_retry: httpinfrastructure.aio.operations.HttpRetryOperations
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses: httpinfrastructure.aio.operations.MultipleResponsesOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:

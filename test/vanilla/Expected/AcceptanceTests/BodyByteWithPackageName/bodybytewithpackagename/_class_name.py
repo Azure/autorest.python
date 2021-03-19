@@ -9,13 +9,14 @@
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.protocol import HttpResponse
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.protocol import HttpRequest, HttpResponse
+    from azure.core.protocol import HttpRequest
 
 from ._configuration import ClassNameConfiguration
 from .operations import ByteOperations
@@ -27,7 +28,8 @@ class ClassName(object):
 
     :ivar byte: ByteOperations operations
     :vartype byte: bodybytewithpackagename.operations.ByteOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

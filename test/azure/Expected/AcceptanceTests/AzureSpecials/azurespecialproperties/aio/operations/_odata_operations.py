@@ -52,7 +52,7 @@ class OdataOperations:
 
     @distributed_trace_async
     async def get_with_filter(
-        self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
+        self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 

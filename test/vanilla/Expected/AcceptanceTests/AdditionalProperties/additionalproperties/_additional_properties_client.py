@@ -28,7 +28,8 @@ class AdditionalPropertiesClient(object):
 
     :ivar pets: PetsOperations operations
     :vartype pets: additionalproperties.operations.PetsOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

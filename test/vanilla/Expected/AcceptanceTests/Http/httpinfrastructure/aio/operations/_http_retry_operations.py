@@ -50,7 +50,7 @@ class HttpRetryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head408(self, **kwargs) -> None:
+    async def head408(self, **kwargs: Any) -> None:
         """Return 408 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -80,7 +80,7 @@ class HttpRetryOperations:
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
     @distributed_trace_async
-    async def put500(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -115,7 +115,7 @@ class HttpRetryOperations:
     put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace_async
-    async def patch500(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -150,7 +150,7 @@ class HttpRetryOperations:
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace_async
-    async def get502(self, **kwargs) -> None:
+    async def get502(self, **kwargs: Any) -> None:
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -180,7 +180,7 @@ class HttpRetryOperations:
     get502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace_async
-    async def options502(self, **kwargs) -> bool:
+    async def options502(self, **kwargs: Any) -> bool:
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -214,7 +214,7 @@ class HttpRetryOperations:
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace_async
-    async def post503(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -249,7 +249,7 @@ class HttpRetryOperations:
     post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace_async
-    async def delete503(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -284,7 +284,7 @@ class HttpRetryOperations:
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace_async
-    async def put504(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -319,7 +319,7 @@ class HttpRetryOperations:
     put504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace_async
-    async def patch504(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.

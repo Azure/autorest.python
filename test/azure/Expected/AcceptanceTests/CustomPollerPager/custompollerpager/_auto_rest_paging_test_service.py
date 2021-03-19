@@ -8,6 +8,7 @@
 
 from typing import TYPE_CHECKING
 
+from azure.core.protocol import HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -16,7 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     from azure.core.credentials import TokenCredential
-    from azure.core.protocol import HttpRequest, HttpResponse
+    from azure.core.protocol import HttpRequest
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
@@ -30,7 +31,8 @@ class AutoRestPagingTestService(object):
     :vartype paging: custompollerpager.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 

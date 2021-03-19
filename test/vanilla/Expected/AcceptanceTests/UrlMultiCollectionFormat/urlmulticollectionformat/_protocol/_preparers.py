@@ -12,16 +12,16 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import List, Optional
+    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
 
 
 def prepare_queries_array_string_multi_null(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -47,10 +47,10 @@ def prepare_queries_array_string_multi_null(
 
 
 def prepare_queries_array_string_multi_empty(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -76,10 +76,10 @@ def prepare_queries_array_string_multi_empty(
 
 
 def prepare_queries_array_string_multi_valid(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL

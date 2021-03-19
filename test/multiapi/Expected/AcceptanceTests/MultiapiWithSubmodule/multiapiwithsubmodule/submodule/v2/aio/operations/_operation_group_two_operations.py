@@ -45,7 +45,7 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         parameter_one: bool,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 

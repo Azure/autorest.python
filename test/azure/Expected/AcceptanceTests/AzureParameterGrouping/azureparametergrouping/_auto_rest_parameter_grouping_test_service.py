@@ -28,7 +28,8 @@ class AutoRestParameterGroupingTestService(object):
 
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping: azureparametergrouping.operations.ParameterGroupingOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

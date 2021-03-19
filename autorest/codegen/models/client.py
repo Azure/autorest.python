@@ -91,4 +91,7 @@ class Client:
 
     @property
     def config_initialization(self) -> str:
-        return ", ".join([p.serialized_name for p in self.parameters.method]) + "**kwargs"
+        method = ", ".join([p.serialized_name for p in self.parameters.method])
+        if method:
+            return method + ", **kwargs"
+        return "**kwargs"

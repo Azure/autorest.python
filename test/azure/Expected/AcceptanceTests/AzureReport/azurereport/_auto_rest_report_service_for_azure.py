@@ -26,7 +26,8 @@ from . import models
 class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest.
 
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

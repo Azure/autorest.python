@@ -28,7 +28,8 @@ class AutoRestDateTestService(object):
 
     :ivar date: DateOperations operations
     :vartype date: bodydate.operations.DateOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

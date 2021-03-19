@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import IO, List, Optional
+    from typing import Any, IO, List, Optional
 
 _SERIALIZER = Serializer()
 
@@ -47,10 +47,10 @@ def prepare_implicit_get_required_path(
 
 
 def prepare_implicit_put_optional_query(
-    query_parameter=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -74,10 +74,10 @@ def prepare_implicit_put_optional_query(
 
 
 def prepare_implicit_put_optional_header(
-    query_parameter=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -178,10 +178,10 @@ def prepare_implicit_get_required_global_path(
 
 
 def prepare_implicit_get_required_global_query(
-    required_global_query,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    required_global_query = kwargs.pop("required_global_query")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -204,10 +204,10 @@ def prepare_implicit_get_required_global_query(
 
 
 def prepare_implicit_get_optional_global_query(
-    optional_global_query=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    optional_global_query = kwargs.pop("optional_global_query", None)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -383,10 +383,10 @@ def prepare_explicit_post_optional_integer_property(
 
 
 def prepare_explicit_post_required_integer_header(
-    header_parameter,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter")  # type: int
     accept = "application/json"
 
     # Construct URL
@@ -408,10 +408,10 @@ def prepare_explicit_post_required_integer_header(
 
 
 def prepare_explicit_post_optional_integer_header(
-    header_parameter=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -534,10 +534,10 @@ def prepare_explicit_post_optional_string_property(
 
 
 def prepare_explicit_post_required_string_header(
-    header_parameter,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -559,10 +559,10 @@ def prepare_explicit_post_required_string_header(
 
 
 def prepare_explicit_post_optional_string_header(
-    body_parameter=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    body_parameter = kwargs.pop("body_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -785,10 +785,10 @@ def prepare_explicit_post_optional_array_property(
 
 
 def prepare_explicit_post_required_array_header(
-    header_parameter,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter")  # type: List[str]
     accept = "application/json"
 
     # Construct URL
@@ -810,10 +810,10 @@ def prepare_explicit_post_required_array_header(
 
 
 def prepare_explicit_post_optional_array_header(
-    header_parameter=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL

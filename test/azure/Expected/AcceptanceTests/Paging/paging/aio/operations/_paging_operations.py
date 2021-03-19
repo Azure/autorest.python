@@ -54,7 +54,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_no_item_name_pages(self, **kwargs) -> AsyncIterable["_models.ProductResultValue"]:
+    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.ProductResultValue"]:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -108,7 +108,7 @@ class PagingOperations:
     get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}  # type: ignore
 
     @distributed_trace
-    def get_null_next_link_name_pages(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -162,7 +162,7 @@ class PagingOperations:
     get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_single_pages(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -212,7 +212,7 @@ class PagingOperations:
     get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
-    def first_response_empty(self, **kwargs) -> AsyncIterable["_models.ProductResultValue"]:
+    def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.ProductResultValue"]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -271,7 +271,7 @@ class PagingOperations:
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional["_models.PagingGetMultiplePagesOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a nextLink that has 10 pages.
 
@@ -350,7 +350,9 @@ class PagingOperations:
     get_multiple_pages.metadata = {"url": "/paging/multiple"}  # type: ignore
 
     @distributed_trace
-    def get_with_query_params(self, required_query_parameter: int, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_with_query_params(
+        self, required_query_parameter: int, **kwargs: Any
+    ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -411,7 +413,7 @@ class PagingOperations:
         self,
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional["_models.PagingGetOdataMultiplePagesOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.OdataProductResult"]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
@@ -494,7 +496,7 @@ class PagingOperations:
         self,
         paging_get_multiple_pages_with_offset_options: "_models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a nextLink that has 10 pages.
 
@@ -579,7 +581,7 @@ class PagingOperations:
     get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_first(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -634,7 +636,7 @@ class PagingOperations:
     get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_second(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -689,7 +691,7 @@ class PagingOperations:
     get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages_failure(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -743,7 +745,7 @@ class PagingOperations:
     get_single_pages_failure.metadata = {"url": "/paging/single/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -797,7 +799,7 @@ class PagingOperations:
     get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -852,7 +854,7 @@ class PagingOperations:
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
-        self, api_version: str, tenant: str, **kwargs
+        self, api_version: str, tenant: str, **kwargs: Any
     ) -> AsyncIterable["_models.OdataProductResult"]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
@@ -916,7 +918,7 @@ class PagingOperations:
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
-        self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs
+        self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs: Any
     ) -> AsyncIterable["_models.OdataProductResult"]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
@@ -992,7 +994,7 @@ class PagingOperations:
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ProductResult":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1034,7 +1036,7 @@ class PagingOperations:
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller[AsyncItemPaged["_models.ProductResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
@@ -1157,7 +1159,7 @@ class PagingOperations:
 
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> AsyncIterable["_models.ProductResultValueWithXMSClientName"]:
         """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
         name 'indexes'.

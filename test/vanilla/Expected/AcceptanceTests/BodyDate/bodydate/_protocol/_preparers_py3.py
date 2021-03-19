@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import Any
 
 from azure.core.protocol import HttpRequest
 from msrest import Serializer
@@ -13,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_date_get_null(**kwargs) -> HttpRequest:
+def prepare_date_get_null(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +34,7 @@ def prepare_date_get_null(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_date_get_invalid_date(**kwargs) -> HttpRequest:
+def prepare_date_get_invalid_date(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -53,7 +54,7 @@ def prepare_date_get_invalid_date(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_date_get_overflow_date(**kwargs) -> HttpRequest:
+def prepare_date_get_overflow_date(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -73,7 +74,7 @@ def prepare_date_get_overflow_date(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_date_get_underflow_date(**kwargs) -> HttpRequest:
+def prepare_date_get_underflow_date(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -93,7 +94,7 @@ def prepare_date_get_underflow_date(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_date_put_max_date(body: datetime.date, **kwargs) -> HttpRequest:
+def prepare_date_put_max_date(body: datetime.date, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -114,7 +115,7 @@ def prepare_date_put_max_date(body: datetime.date, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_date_get_max_date(**kwargs) -> HttpRequest:
+def prepare_date_get_max_date(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -134,7 +135,7 @@ def prepare_date_get_max_date(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_date_put_min_date(body: datetime.date, **kwargs) -> HttpRequest:
+def prepare_date_put_min_date(body: datetime.date, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -155,7 +156,7 @@ def prepare_date_put_min_date(body: datetime.date, **kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **body_content_kwargs)
 
 
-def prepare_date_get_min_date(**kwargs) -> HttpRequest:
+def prepare_date_get_min_date(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

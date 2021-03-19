@@ -86,9 +86,9 @@ class ParameterGroupingOperations(object):
 
         request = prepare_parametergrouping_post_required(
             path=_path,
-            body=_body,
             custom_header=_custom_header,
             query=_query,
+            body=_body,
             template_url=self.post_required.metadata["url"],
             **kwargs
         )

@@ -13,16 +13,16 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+    from typing import Any, Optional, Union
 
 _SERIALIZER = Serializer()
 
 
 def prepare_header_param_existing_key(
-    user_agent_parameter,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    user_agent_parameter = kwargs.pop("user_agent_parameter")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -67,10 +67,10 @@ def prepare_header_response_existing_key(
 
 
 def prepare_header_param_protected_key(
-    content_type,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -115,11 +115,11 @@ def prepare_header_response_protected_key(
 
 
 def prepare_header_param_integer(
-    scenario,  # type: str
-    value,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: int
     accept = "application/json"
 
     # Construct URL
@@ -142,10 +142,10 @@ def prepare_header_param_integer(
 
 
 def prepare_header_response_integer(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -167,11 +167,11 @@ def prepare_header_response_integer(
 
 
 def prepare_header_param_long(
-    scenario,  # type: str
-    value,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: int
     accept = "application/json"
 
     # Construct URL
@@ -194,10 +194,10 @@ def prepare_header_param_long(
 
 
 def prepare_header_response_long(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -219,11 +219,11 @@ def prepare_header_response_long(
 
 
 def prepare_header_param_float(
-    scenario,  # type: str
-    value,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: float
     accept = "application/json"
 
     # Construct URL
@@ -246,10 +246,10 @@ def prepare_header_param_float(
 
 
 def prepare_header_response_float(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -271,11 +271,11 @@ def prepare_header_response_float(
 
 
 def prepare_header_param_double(
-    scenario,  # type: str
-    value,  # type: float
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: float
     accept = "application/json"
 
     # Construct URL
@@ -298,10 +298,10 @@ def prepare_header_param_double(
 
 
 def prepare_header_response_double(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -323,11 +323,11 @@ def prepare_header_response_double(
 
 
 def prepare_header_param_bool(
-    scenario,  # type: str
-    value,  # type: bool
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: bool
     accept = "application/json"
 
     # Construct URL
@@ -350,10 +350,10 @@ def prepare_header_param_bool(
 
 
 def prepare_header_response_bool(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -375,11 +375,11 @@ def prepare_header_response_bool(
 
 
 def prepare_header_param_string(
-    scenario,  # type: str
-    value=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -403,10 +403,10 @@ def prepare_header_param_string(
 
 
 def prepare_header_response_string(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -428,11 +428,11 @@ def prepare_header_response_string(
 
 
 def prepare_header_param_date(
-    scenario,  # type: str
-    value,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: datetime.date
     accept = "application/json"
 
     # Construct URL
@@ -455,10 +455,10 @@ def prepare_header_param_date(
 
 
 def prepare_header_response_date(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -480,11 +480,11 @@ def prepare_header_response_date(
 
 
 def prepare_header_param_datetime(
-    scenario,  # type: str
-    value,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: datetime.datetime
     accept = "application/json"
 
     # Construct URL
@@ -507,10 +507,10 @@ def prepare_header_param_datetime(
 
 
 def prepare_header_response_datetime(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -532,11 +532,11 @@ def prepare_header_response_datetime(
 
 
 def prepare_header_param_datetime_rfc1123(
-    scenario,  # type: str
-    value=None,  # type: Optional[datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value", None)  # type: Optional[datetime.datetime]
     accept = "application/json"
 
     # Construct URL
@@ -560,10 +560,10 @@ def prepare_header_param_datetime_rfc1123(
 
 
 def prepare_header_response_datetime_rfc1123(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -585,11 +585,11 @@ def prepare_header_response_datetime_rfc1123(
 
 
 def prepare_header_param_duration(
-    scenario,  # type: str
-    value,  # type: datetime.timedelta
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: datetime.timedelta
     accept = "application/json"
 
     # Construct URL
@@ -612,10 +612,10 @@ def prepare_header_param_duration(
 
 
 def prepare_header_response_duration(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -637,11 +637,11 @@ def prepare_header_response_duration(
 
 
 def prepare_header_param_byte(
-    scenario,  # type: str
-    value,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value")  # type: bytearray
     accept = "application/json"
 
     # Construct URL
@@ -664,10 +664,10 @@ def prepare_header_param_byte(
 
 
 def prepare_header_response_byte(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL
@@ -689,11 +689,11 @@ def prepare_header_response_byte(
 
 
 def prepare_header_param_enum(
-    scenario,  # type: str
-    value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
+    value = kwargs.pop("value", None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
     accept = "application/json"
 
     # Construct URL
@@ -717,10 +717,10 @@ def prepare_header_param_enum(
 
 
 def prepare_header_response_enum(
-    scenario,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
     # Construct URL

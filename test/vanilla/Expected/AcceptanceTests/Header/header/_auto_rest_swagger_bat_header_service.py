@@ -28,7 +28,8 @@ class AutoRestSwaggerBATHeaderService(object):
 
     :ivar header: HeaderOperations operations
     :vartype header: header.operations.HeaderOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

@@ -46,7 +46,7 @@ class HttpSuccessOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, **kwargs) -> None:
+    async def head200(self, **kwargs: Any) -> None:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -76,7 +76,7 @@ class HttpSuccessOperations:
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs) -> None:
+    async def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -106,7 +106,7 @@ class HttpSuccessOperations:
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs) -> None:
+    async def head404(self, **kwargs: Any) -> None:
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

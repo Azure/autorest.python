@@ -6,9 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import TYPE_CHECKING
 
 from azure.core.protocol import HttpRequest
 from msrest import Serializer
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 _SERIALIZER = Serializer()
 

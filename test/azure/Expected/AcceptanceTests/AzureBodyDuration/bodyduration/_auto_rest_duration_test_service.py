@@ -28,7 +28,8 @@ class AutoRestDurationTestService(object):
 
     :ivar duration: DurationOperations operations
     :vartype duration: bodyduration.operations.DurationOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

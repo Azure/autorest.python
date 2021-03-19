@@ -50,7 +50,7 @@ class HttpServerFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head501(self, **kwargs) -> None:
+    async def head501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -80,7 +80,7 @@ class HttpServerFailureOperations:
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
-    async def get501(self, **kwargs) -> None:
+    async def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -110,7 +110,7 @@ class HttpServerFailureOperations:
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
-    async def post505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -147,7 +147,7 @@ class HttpServerFailureOperations:
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace_async
-    async def delete505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.

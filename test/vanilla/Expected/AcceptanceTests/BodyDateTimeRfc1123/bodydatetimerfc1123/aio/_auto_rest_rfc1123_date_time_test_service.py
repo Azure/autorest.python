@@ -22,7 +22,8 @@ class AutoRestRFC1123DateTimeTestService(object):
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:

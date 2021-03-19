@@ -28,7 +28,8 @@ class PetStoreInc(object):
 
     :ivar pet: PetOperations operations
     :vartype pet: extensibleenumsswagger.operations.PetOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

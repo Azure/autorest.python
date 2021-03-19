@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import IO, Optional, Union
+    from typing import Any, IO, Optional, Union
 
 _SERIALIZER = Serializer()
 
@@ -42,12 +42,12 @@ def prepare_test_paging(
 
 
 def prepare_test_different_calls(
-    greeting_in_english,  # type: str
-    greeting_in_chinese=None,  # type: Optional[str]
-    greeting_in_french=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
+    greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
     api_version = "3.0.0"
     accept = "application/json"
 

@@ -12,17 +12,17 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
 
 def prepare_test_one(
-    id,  # type: int
-    message=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    id = kwargs.pop('id')  # type: int
+    message = kwargs.pop('message', None)  # type: Optional[str]
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -80,12 +80,12 @@ def prepare_test_lro_initial(
 
 
 def prepare_test_lro_and_paging_initial(
-    client_request_id=None,  # type: Optional[str]
-    maxresults=None,  # type: Optional[int]
-    timeout=30,  # type: Optional[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -113,10 +113,10 @@ def prepare_test_lro_and_paging_initial(
 
 
 def prepare_test_different_calls(
-    greeting_in_english,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     api_version = "1.0.0"
     accept = "application/json"
 

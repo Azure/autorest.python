@@ -28,7 +28,8 @@ class AutoRestSwaggerBATFileService(object):
 
     :ivar files: FilesOperations operations
     :vartype files: bodyfile.operations.FilesOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

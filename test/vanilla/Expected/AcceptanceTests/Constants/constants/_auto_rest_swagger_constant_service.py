@@ -28,7 +28,8 @@ class AutoRestSwaggerConstantService(object):
 
     :ivar contants: ContantsOperations operations
     :vartype contants: constants.operations.ContantsOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

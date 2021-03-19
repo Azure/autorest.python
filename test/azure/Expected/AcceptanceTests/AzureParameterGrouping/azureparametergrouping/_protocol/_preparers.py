@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -21,11 +21,11 @@ _SERIALIZER = Serializer()
 def prepare_parametergrouping_post_required(
     path,  # type: str
     body,  # type: int
-    custom_header=None,  # type: Optional[str]
-    query=30,  # type: Optional[int]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]
+    query = kwargs.pop("query", 30)  # type: Optional[int]
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -57,11 +57,11 @@ def prepare_parametergrouping_post_required(
 
 
 def prepare_parametergrouping_post_optional(
-    custom_header=None,  # type: Optional[str]
-    query=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]
+    query = kwargs.pop("query", 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -87,13 +87,13 @@ def prepare_parametergrouping_post_optional(
 
 
 def prepare_parametergrouping_post_multi_param_groups(
-    header_one=None,  # type: Optional[str]
-    query_one=30,  # type: Optional[int]
-    header_two=None,  # type: Optional[str]
-    query_two=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_one = kwargs.pop("header_one", None)  # type: Optional[str]
+    query_one = kwargs.pop("query_one", 30)  # type: Optional[int]
+    header_two = kwargs.pop("header_two", None)  # type: Optional[str]
+    query_two = kwargs.pop("query_two", 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -123,11 +123,11 @@ def prepare_parametergrouping_post_multi_param_groups(
 
 
 def prepare_parametergrouping_post_shared_parameter_group_object(
-    header_one=None,  # type: Optional[str]
-    query_one=30,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    header_one = kwargs.pop("header_one", None)  # type: Optional[str]
+    query_one = kwargs.pop("query_one", 30)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL

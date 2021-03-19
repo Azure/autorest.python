@@ -25,7 +25,8 @@ class AutoRestHeadTestService(object):
 
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: azure.basic.sample.aio.operations.HttpSuccessOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

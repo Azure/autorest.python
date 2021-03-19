@@ -20,7 +20,8 @@ from .. import models
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.
 
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 

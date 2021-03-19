@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import Any
 
 from azure.core.protocol import HttpRequest
 from msrest import Serializer
@@ -13,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_time_get(**kwargs) -> HttpRequest:
+def prepare_time_get(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -33,7 +34,7 @@ def prepare_time_get(**kwargs) -> HttpRequest:
     )
 
 
-def prepare_time_put(body: datetime.time, **kwargs) -> HttpRequest:
+def prepare_time_put(body: datetime.time, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

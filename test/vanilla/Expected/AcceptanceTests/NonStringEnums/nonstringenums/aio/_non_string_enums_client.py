@@ -28,7 +28,8 @@ class NonStringEnumsClient(object):
     :vartype int: nonstringenums.aio.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: nonstringenums.aio.operations.FloatOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:

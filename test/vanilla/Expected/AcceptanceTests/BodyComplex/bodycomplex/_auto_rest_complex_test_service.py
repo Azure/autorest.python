@@ -52,7 +52,8 @@ class AutoRestComplexTestService(object):
     :vartype readonlyproperty: bodycomplex.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplex.operations.FlattencomplexOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

@@ -14,7 +14,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import List, Optional, Union
+    from typing import Any, List, Optional, Union
 
 _SERIALIZER = Serializer()
 
@@ -833,10 +833,10 @@ def prepare_queries_get_boolean_false(
 
 
 def prepare_queries_get_boolean_null(
-    bool_query=None,  # type: Optional[bool]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    bool_query = kwargs.pop("bool_query", None)  # type: Optional[bool]
     accept = "application/json"
 
     # Construct URL
@@ -912,10 +912,10 @@ def prepare_queries_get_int_negative_one_million(
 
 
 def prepare_queries_get_int_null(
-    int_query=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    int_query = kwargs.pop("int_query", None)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -991,10 +991,10 @@ def prepare_queries_get_negative_ten_billion(
 
 
 def prepare_queries_get_long_null(
-    long_query=None,  # type: Optional[int]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    long_query = kwargs.pop("long_query", None)  # type: Optional[int]
     accept = "application/json"
 
     # Construct URL
@@ -1070,10 +1070,10 @@ def prepare_queries_float_scientific_negative(
 
 
 def prepare_queries_float_null(
-    float_query=None,  # type: Optional[float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    float_query = kwargs.pop("float_query", None)  # type: Optional[float]
     accept = "application/json"
 
     # Construct URL
@@ -1149,10 +1149,10 @@ def prepare_queries_double_decimal_negative(
 
 
 def prepare_queries_double_null(
-    double_query=None,  # type: Optional[float]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    double_query = kwargs.pop("double_query", None)  # type: Optional[float]
     accept = "application/json"
 
     # Construct URL
@@ -1256,10 +1256,10 @@ def prepare_queries_string_empty(
 
 
 def prepare_queries_string_null(
-    string_query=None,  # type: Optional[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    string_query = kwargs.pop("string_query", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -1283,10 +1283,10 @@ def prepare_queries_string_null(
 
 
 def prepare_queries_enum_valid(
-    enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    enum_query = kwargs.pop("enum_query", None)  # type: Optional[Union[str, "_models.UriColor"]]
     accept = "application/json"
 
     # Construct URL
@@ -1310,10 +1310,10 @@ def prepare_queries_enum_valid(
 
 
 def prepare_queries_enum_null(
-    enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    enum_query = kwargs.pop("enum_query", None)  # type: Optional[Union[str, "_models.UriColor"]]
     accept = "application/json"
 
     # Construct URL
@@ -1337,10 +1337,10 @@ def prepare_queries_enum_null(
 
 
 def prepare_queries_byte_multi_byte(
-    byte_query=None,  # type: Optional[bytearray]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    byte_query = kwargs.pop("byte_query", None)  # type: Optional[bytearray]
     accept = "application/json"
 
     # Construct URL
@@ -1390,10 +1390,10 @@ def prepare_queries_byte_empty(
 
 
 def prepare_queries_byte_null(
-    byte_query=None,  # type: Optional[bytearray]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    byte_query = kwargs.pop("byte_query", None)  # type: Optional[bytearray]
     accept = "application/json"
 
     # Construct URL
@@ -1443,10 +1443,10 @@ def prepare_queries_date_valid(
 
 
 def prepare_queries_date_null(
-    date_query=None,  # type: Optional[datetime.date]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    date_query = kwargs.pop("date_query", None)  # type: Optional[datetime.date]
     accept = "application/json"
 
     # Construct URL
@@ -1496,10 +1496,10 @@ def prepare_queries_date_time_valid(
 
 
 def prepare_queries_date_time_null(
-    date_time_query=None,  # type: Optional[datetime.datetime]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    date_time_query = kwargs.pop("date_time_query", None)  # type: Optional[datetime.datetime]
     accept = "application/json"
 
     # Construct URL
@@ -1523,10 +1523,10 @@ def prepare_queries_date_time_null(
 
 
 def prepare_queries_array_string_csv_valid(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1550,10 +1550,10 @@ def prepare_queries_array_string_csv_valid(
 
 
 def prepare_queries_array_string_csv_null(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1577,10 +1577,10 @@ def prepare_queries_array_string_csv_null(
 
 
 def prepare_queries_array_string_csv_empty(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1604,10 +1604,10 @@ def prepare_queries_array_string_csv_empty(
 
 
 def prepare_queries_array_string_no_collection_format_empty(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1631,10 +1631,10 @@ def prepare_queries_array_string_no_collection_format_empty(
 
 
 def prepare_queries_array_string_ssv_valid(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1658,10 +1658,10 @@ def prepare_queries_array_string_ssv_valid(
 
 
 def prepare_queries_array_string_tsv_valid(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1685,10 +1685,10 @@ def prepare_queries_array_string_tsv_valid(
 
 
 def prepare_queries_array_string_pipes_valid(
-    array_query=None,  # type: Optional[List[str]]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
     accept = "application/json"
 
     # Construct URL
@@ -1715,12 +1715,12 @@ def prepare_pathitems_get_all_with_values(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    path_item_string_query=None,  # type: Optional[str]
-    global_string_query=None,  # type: Optional[str]
-    local_string_query=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
+    global_string_query = kwargs.pop("global_string_query", None)  # type: Optional[str]
+    local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -1762,12 +1762,12 @@ def prepare_pathitems_get_global_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    path_item_string_query=None,  # type: Optional[str]
-    global_string_query=None,  # type: Optional[str]
-    local_string_query=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
+    global_string_query = kwargs.pop("global_string_query", None)  # type: Optional[str]
+    local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -1809,12 +1809,12 @@ def prepare_pathitems_get_global_and_local_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    path_item_string_query=None,  # type: Optional[str]
-    global_string_query=None,  # type: Optional[str]
-    local_string_query=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
+    global_string_query = kwargs.pop("global_string_query", None)  # type: Optional[str]
+    local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL
@@ -1856,12 +1856,12 @@ def prepare_pathitems_get_local_path_item_query_null(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
-    path_item_string_query=None,  # type: Optional[str]
-    global_string_query=None,  # type: Optional[str]
-    local_string_query=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    path_item_string_query = kwargs.pop("path_item_string_query", None)  # type: Optional[str]
+    global_string_query = kwargs.pop("global_string_query", None)  # type: Optional[str]
+    local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
     accept = "application/json"
 
     # Construct URL

@@ -31,7 +31,8 @@ class AutoRestRequiredOptionalTestService(object):
     :type required_global_query: str
     :param optional_global_query: number of items to skip.
     :type optional_global_query: int
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(

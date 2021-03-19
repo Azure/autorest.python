@@ -29,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
-    async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
+    async def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -67,7 +67,7 @@ class AutoRestReportServiceOperationsMixin:
     get_report.metadata = {"url": "/report"}  # type: ignore
 
     @distributed_trace_async
-    async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
+    async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get optional test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in

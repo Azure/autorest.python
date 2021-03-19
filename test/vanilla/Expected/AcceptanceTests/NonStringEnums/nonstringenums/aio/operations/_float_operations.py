@@ -46,7 +46,7 @@ class FloatOperations:
         self._config = config
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> str:
+    async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
         :param input: Input float enum.
@@ -84,7 +84,7 @@ class FloatOperations:
     put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs) -> Union[float, "_models.FloatEnum"]:
+    async def get(self, **kwargs: Any) -> Union[float, "_models.FloatEnum"]:
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

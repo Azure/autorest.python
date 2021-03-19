@@ -12,17 +12,17 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
 
 def prepare_test_one(
-    id,  # type: int
-    message=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    id = kwargs.pop('id')  # type: int
+    message = kwargs.pop('message', None)  # type: Optional[str]
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -50,11 +50,11 @@ def prepare_test_one(
 
 
 def prepare_test_different_calls(
-    greeting_in_english,  # type: str
-    greeting_in_chinese=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -142,10 +142,10 @@ def prepare_operationgroupone_test_three(
 
 
 def prepare_operationgrouptwo_test_four(
-    parameter_one,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    parameter_one = kwargs.pop('parameter_one')  # type: bool
     api_version = "2.0.0"
     accept = "application/json"
 

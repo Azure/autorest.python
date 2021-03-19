@@ -52,7 +52,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -121,7 +121,9 @@ class PagingOperations:
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url_operation(
+        self, account_name: str, **kwargs: Any
+    ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
