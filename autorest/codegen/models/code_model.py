@@ -70,7 +70,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
 
-    def __init__(self, options: Dict[str, Any]) -> None:
+    def __init__(self, low_level_client: bool, options: Dict[str, Any]) -> None:
+        self.low_level_client = low_level_client
         self.options = options
         self.module_name: str = ""
         self.class_name: str = ""
@@ -320,14 +321,21 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 for obj in chain(
                     operation.parameters,
                     operation.multiple_media_type_parameters or [],
-                    operation.preparer.parameters,
-                    operation.preparer.multiple_media_type_parameters or [],
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
-                    chain.from_iterable(request.parameters for request in operation.preparer.schema_requests)
                 ):
                     self._populate_schema(obj)
+
+    def add_schema_link_to_preparer(self) -> None:
+        for preparer in self.rest.preparers:
+            for obj in chain(
+                    preparer.parameters,
+                    preparer.multiple_media_type_parameters or [],
+                    chain.from_iterable(request.parameters for request in preparer.schema_requests)
+                ):
+                    self._populate_schema(obj)
+
 
     def add_schema_link_to_global_parameters(self) -> None:
         for parameter in self.global_parameters:
@@ -338,7 +346,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
                     _convert_multiple_media_type_parameters(operation)
-                    _convert_multiple_media_type_parameters(operation.preparer)
+        for preparer in self.rest.preparers:
+            if preparer.multiple_media_type_parameters:
+                _convert_multiple_media_type_parameters(preparer)
 
     @property
     def has_lro_operations(self) -> bool:

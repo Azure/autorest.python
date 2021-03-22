@@ -60,9 +60,30 @@ class CodeGenerator(Plugin):
                     exceptions_set.add(id(exception["schema"]))
         return exceptions_set
 
+    def _build_convenience_layer(self, yaml_data: Dict[str, Any], code_model: CodeModel) -> CodeModel:
+        # Create operations
+        if yaml_data.get("operationGroups"):
+            code_model.operation_groups = [
+                OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
+            ]
+        if yaml_data.get("schemas"):
+            # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+
+            code_model.add_inheritance_to_models()
+            code_model.sort_schemas()
+            code_model.add_schema_link_to_operation()
+
+
+        # LRO operation
+        code_model.format_lro_operations()
+        code_model.remove_next_operation()
+
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
-        code_model = CodeModel(options)
+        code_model = CodeModel(
+            low_level_client=self._autorestapi.get_boolean_value("low-level-client", False),
+            options=options
+        )
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
         code_model.description = (
@@ -88,12 +109,17 @@ class CodeGenerator(Plugin):
             code_model.global_parameters.remove(dollar_host_parameter)
             code_model.service_client.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
 
-        # Create operations
         if yaml_data.get("operationGroups"):
-            code_model.operation_groups = [
-                OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
-            ]
             code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
+        if yaml_data.get("schemas"):
+            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
+
+            for type_list in yaml_data["schemas"].values():
+                for schema in type_list:
+                    build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
+            code_model.add_schema_link_to_preparer()
+            code_model.add_schema_link_to_global_parameters()
+            code_model.generate_single_parameter_from_multiple_media_types()
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -102,24 +128,8 @@ class CodeGenerator(Plugin):
             namespace = yaml_data["info"]["python_title"]
         code_model.namespace = namespace
 
-        if yaml_data.get("schemas"):
-            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
-
-            for type_list in yaml_data["schemas"].values():
-                for schema in type_list:
-                    build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
-            # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-
-            code_model.link_operation_to_preparer()
-            code_model.add_inheritance_to_models()
-            code_model.sort_schemas()
-            code_model.add_schema_link_to_operation()
-            code_model.add_schema_link_to_global_parameters()
-            code_model.generate_single_parameter_from_multiple_media_types()
-
-        # LRO operation
-        code_model.format_lro_operations()
-        code_model.remove_next_operation()
+        if not code_model.low_level_client:
+            self._build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
             code_model.add_credential_global_parameter()
