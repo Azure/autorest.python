@@ -43,6 +43,20 @@ class AutoRestSwaggerBATFileService(object):
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
 
+        We have helper methods to create requests specific to this service in `bodyfile.rest`.
+        Use these helper methods to create the request you pass to this method. See our example below:
+
+        >>> from bodyfile.rest import prepare_files_get_file
+        >>> request = prepare_files_get_file()
+        <HttpRequest [GET], url: '/files/stream/nonempty'>
+        >>> response = await client.send_request(request)
+        <AsyncHttpResponse: 200 OK>
+
+        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+
+        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
+        and pass it in.
+
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.

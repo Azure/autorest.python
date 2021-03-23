@@ -43,6 +43,20 @@ class AutoRestSwaggerConstantService(object):
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
 
+        We have helper methods to create requests specific to this service in `constants.rest`.
+        Use these helper methods to create the request you pass to this method. See our example below:
+
+        >>> from constants.rest import prepare_contants_put_no_model_as_string_no_required_two_value_no_default
+        >>> request = prepare_contants_put_no_model_as_string_no_required_two_value_no_default(input)
+        <HttpRequest [PUT], url: '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault'>
+        >>> response = await client.send_request(request)
+        <AsyncHttpResponse: 200 OK>
+
+        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+
+        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
+        and pass it in.
+
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.

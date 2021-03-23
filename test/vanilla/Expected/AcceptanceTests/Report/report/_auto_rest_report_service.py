@@ -51,6 +51,20 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
         # type: (HttpRequest, Any) -> HttpResponse
         """Runs the network request through the client's chained policies.
 
+        We have helper methods to create requests specific to this service in `report.rest`.
+        Use these helper methods to create the request you pass to this method. See our example below:
+
+        >>> from report.rest import prepare_get_report
+        >>> request = prepare_get_report(qualifier)
+        <HttpRequest [GET], url: '/report'>
+        >>> response = client.send_request(request)
+        <HttpResponse: 200 OK>
+
+        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+
+        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
+        and pass it in.
+
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.

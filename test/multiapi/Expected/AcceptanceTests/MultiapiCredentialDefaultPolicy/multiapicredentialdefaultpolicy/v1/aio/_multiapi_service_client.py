@@ -54,6 +54,20 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
 
+        We have helper methods to create requests specific to this service in `multiapicredentialdefaultpolicy.v1.rest`.
+        Use these helper methods to create the request you pass to this method. See our example below:
+
+        >>> from multiapicredentialdefaultpolicy.v1.rest import prepare_test_one
+        >>> request = prepare_test_one(id, message)
+        <HttpRequest [PUT], url: '/multiapi/testOneEndpoint'>
+        >>> response = await client.send_request(request)
+        <AsyncHttpResponse: 200 OK>
+
+        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+
+        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
+        and pass it in.
+
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.rest.HttpRequest
         :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
