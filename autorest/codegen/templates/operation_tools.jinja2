@@ -39,6 +39,17 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 :keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.constant_declaration }}.
  Allowed values are: "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
+{# Param docstring #}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+
+{% macro method_docstring(parameters, preparer) %}
+{% for parameter in parameters %}
+{%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+{{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
+{% endfor %}
+:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+{% endfor %}{%- endmacro -%}
+
 {# error map handling #}
 {% macro error_map(operation, code_model) %}
 {%if operation.status_code_exceptions %}
