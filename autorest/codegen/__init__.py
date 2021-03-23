@@ -72,6 +72,8 @@ class CodeGenerator(Plugin):
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
+            code_model.link_operation_to_preparer()
+            code_model.generate_single_parameter_from_multiple_media_types_operation()
 
 
         # LRO operation
@@ -119,7 +121,7 @@ class CodeGenerator(Plugin):
                     build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
             code_model.add_schema_link_to_preparer()
             code_model.add_schema_link_to_global_parameters()
-            code_model.generate_single_parameter_from_multiple_media_types()
+            code_model.generate_single_parameter_from_multiple_media_types_preparer()
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")

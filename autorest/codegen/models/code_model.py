@@ -341,14 +341,16 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for parameter in self.global_parameters:
             self._populate_schema(parameter)
 
-    def generate_single_parameter_from_multiple_media_types(self) -> None:
+    def generate_single_parameter_from_multiple_media_types_preparer(self) -> None:
+        for preparer in self.rest.preparers:
+            if preparer.multiple_media_type_parameters:
+                _convert_multiple_media_type_parameters(preparer)
+
+    def generate_single_parameter_from_multiple_media_types_operation(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
                     _convert_multiple_media_type_parameters(operation)
-        for preparer in self.rest.preparers:
-            if preparer.multiple_media_type_parameters:
-                _convert_multiple_media_type_parameters(preparer)
 
     @property
     def has_lro_operations(self) -> bool:
