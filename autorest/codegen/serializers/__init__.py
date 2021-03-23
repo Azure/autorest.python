@@ -95,7 +95,8 @@ class JinjaSerializer:
     def _serialize_and_write_rest_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        rest_path = namespace_path / Path("_rest")
+        folder_name = "rest" if code_model.options["johan"] else "_rest"
+        rest_path = namespace_path / Path(folder_name)
 
         # write generic preparers file
         self._autorestapi.write_file(

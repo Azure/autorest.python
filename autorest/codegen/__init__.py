@@ -261,7 +261,8 @@ class CodeGenerator(Plugin):
             "credential_default_policy_type": credential_default_policy_type,
             "credential_default_policy_type_has_async_version": (
                 _get_credential_default_policy_type_has_async_version(credential_default_policy_type)
-            )
+            ),
+            "johan": self._autorestapi.get_boolean_value("johan", False),
         }
 
         if options["basic_setup_py"] and not options["package_version"]:
