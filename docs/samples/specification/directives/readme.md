@@ -16,9 +16,9 @@ clear-output-folder: true
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/polling"].put'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/polling"].put'
+      transform: >
         $["x-python-custom-poller-sync"] = "my.library.CustomPoller";
         $["x-python-custom-poller-async"] = "my.library.aio.AsyncCustomPoller"
 ```
@@ -27,9 +27,9 @@ directive:
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/polling"].put'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/polling"].put'
+      transform: >
         $["x-python-custom-default-polling-method-sync"] = "my.library.CustomDefaultPollingMethod";
         $["x-python-custom-default-polling-method-async"] = "my.library.aio.AsyncCustomDefaultPollingMethod"
 ```
@@ -39,9 +39,9 @@ directive:
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/paging"].get'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/paging"].get'
+      transform: >
         $["x-python-custom-pager-sync"] = "my.library.CustomPager";
         $["x-python-custom-pager-async"] = "my.library.aio.AsyncCustomPager"
 ```
@@ -50,8 +50,8 @@ directive:
 
 ```yaml
 directive:
-    from: swagger-document
-    where: '$.paths["/basic/paging"].get'
-    transform: >
+    - from: swagger-document
+      where: '$.paths["/basic/paging"].get'
+      transform: >
         $["x-python-custom-default-paging-method"] = "my.library.CustomDefaultPagingMethod";
 ```

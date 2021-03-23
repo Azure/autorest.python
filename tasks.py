@@ -9,6 +9,8 @@ from typing import Any, Dict, Optional
 from enum import Enum, auto
 from colorama import init, Fore
 from invoke import task, run
+import shutil
+import re
 
 init()
 class _SwaggerGroup(Enum):
@@ -176,7 +178,6 @@ def _run_autorest(cmds, debug):
         with Pool() as pool:
             result = pool.map(_run_single_autorest, cmds)
         success = all(result)
-
     if not success:
         raise SystemExit("Autorest generation fails")
 
@@ -186,6 +187,9 @@ def _run_single_autorest(cmd_line, debug=False):
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
         return True
     print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
+
+    output_folder = re.findall(r"--output-folder=([^\s]+)", cmd_line)[0]
+    shutil.rmtree(output_folder, ignore_errors=True)
     return False
 
 def _regenerate(

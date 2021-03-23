@@ -27,7 +27,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: 3.0.6371
+version: ^3.1.0
 use-extension:
   "@autorest/modelerfour": ^4.15.456
 
@@ -58,18 +58,12 @@ modelerfour:
 
 pipeline:
   python:
-    # doesn't process anything, just makes it so that the 'python:' config section loads early.
+    # Doesn't process anything, just makes it so that the 'python:' config section is loaded and available for the next plugins.
     pass-thru: true
-    input: openapi-document/multi-api/identity
-
-  modelerfour:
-    # in order that the modelerfour/flattener/grouper/etc picks up
-    # configuration nested under python: in the user's config,
-    # we have to make modeler four pull from the 'python' task.
-    input: python
+    input: modelerfour/identity
 
   python/m2r:
-    input: modelerfour/identity
+    input: python
 
   python/namer:
     input: python/m2r
@@ -126,6 +120,39 @@ scope-black/emitter:
   output-uri-expr: $key
 
 output-artifact: python-files
+```
+
+# Help
+
+```yaml
+help-content:
+  python: # type: Help as defined in autorest-core/help.ts
+    activationScope: python
+    categoryFriendlyName: Python Generator
+    settings:
+      - key: python-sdks-folder
+        description: The path to the root directory of your azure-sdk-for-python clone. Be sure to note that we include `sdk` in the folder path.
+      - key: black
+        description: Runs black formatting on your generated files. Defaults to `false`.
+        type: string
+      - key: basic-setup-py
+        description: Whether to generate a build script for setuptools to package your SDK.  Defaults to `false`, generally not suggested if you are going to wrap the generated code
+        type: bool
+      - key: multiapi
+        description: Whether to generate a multiapi client.
+        type: bool
+      - key: default-api
+        description: In the case of `--multiapi`, you can override the default service API version with this flag. If not specified, we use the latest GA service version as the default API.
+        type: string
+      - key: no-namespace-folders
+        description: Specify if you don't want pkgutil-style namespace folders. Defaults to `false`.
+        type: bool
+      - key: credential-default-policy-type
+        description: Specify the default credential policy (authentication policy) for your client. Use in conjunction with `--add-credential`. Currently only supports `BearerTokenCredentialPolicy` and `AzureKeyCredentialPolicy`. Default value is `BearerTokenCredentialPolicy`. `--credential-scopes` is tied with `BearerTokenCredentialPolicy`, do not pass them in if you want `AzureKeyCredentialPolicy`.
+        type: string
+      - key: credential-key-header-name
+        description: The name of the header which will pass the credential. Use if you have `--credential-default-policy-type` set to `AzureKeyCredentialPolicy`. For example, if generating cognitive services code, you might use `--credential-key-header-name=Ocp-Apim-Subscription-Key`
+        type: string
 ```
 
 <!-- LINKS -->
