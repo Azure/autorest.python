@@ -71,10 +71,9 @@ class CodeGenerator(Plugin):
 
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
-            code_model.add_schema_link_to_operation()
             code_model.link_operation_to_preparer()
+            code_model.add_schema_link_to_operation()
             code_model.generate_single_parameter_from_multiple_media_types_operation()
-
 
         # LRO operation
         code_model.format_lro_operations()
@@ -111,8 +110,14 @@ class CodeGenerator(Plugin):
             code_model.global_parameters.remove(dollar_host_parameter)
             code_model.service_client.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
 
-        if yaml_data.get("operationGroups"):
-            code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
+        # Get my namespace
+        namespace = self._autorestapi.get_value("namespace")
+        _LOGGER.debug("Namespace parameter was %s", namespace)
+        if not namespace:
+            namespace = yaml_data["info"]["python_title"]
+        code_model.namespace = namespace
+
+        code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
         if yaml_data.get("schemas"):
             exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
 
@@ -122,13 +127,6 @@ class CodeGenerator(Plugin):
             code_model.add_schema_link_to_preparer()
             code_model.add_schema_link_to_global_parameters()
             code_model.generate_single_parameter_from_multiple_media_types_preparer()
-
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = yaml_data["info"]["python_title"]
-        code_model.namespace = namespace
 
         if not code_model.low_level_client:
             self._build_convenience_layer(yaml_data=yaml_data, code_model=code_model)

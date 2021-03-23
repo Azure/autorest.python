@@ -284,7 +284,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self._add_exceptions_from_inheritance()
 
     def _populate_target_property(self, parameter: Parameter) -> None:
-        for obj in self.sorted_schemas:
+        for obj in self.schemas.values():
             for prop in obj.properties:
                 if prop.id == parameter.target_property_name:
                     parameter.target_property_name = prop.name

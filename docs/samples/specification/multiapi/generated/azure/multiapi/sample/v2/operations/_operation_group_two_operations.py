@@ -31,7 +31,7 @@ class OperationGroupTwoOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.models
+    :type models: ~azure.multiapi.sample.v2.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.

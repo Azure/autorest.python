@@ -36,7 +36,7 @@ class MultiapiServiceClientOperationsMixin:
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
-        :rtype: ~azure.multiapi.sample.models.ModelTwo
+        :rtype: ~azure.multiapi.sample.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]

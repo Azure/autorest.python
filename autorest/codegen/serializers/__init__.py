@@ -50,16 +50,16 @@ class JinjaSerializer:
                 self._autorestapi.read_file(namespace_path / "_patch.py")
             )
 
+        self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+        if code_model.rest.preparers:
+            self._serialize_and_write_rest_layer(code_model=code_model, env=env, namespace_path=namespace_path)
+            if not code_model.options["no_async"]:
+                self._serialize_and_write_aio_top_level_folder(
+                    code_model=code_model, env=env, namespace_path=namespace_path,
+                )
+
         if not code_model.low_level_client:
             self._serialize_and_write_convenience_layer(code_model=code_model, env=env, namespace_path=namespace_path)
-
-
-        self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-        self._serialize_and_write_rest_layer(code_model=code_model, env=env, namespace_path=namespace_path)
-        if not code_model.options["no_async"]:
-            self._serialize_and_write_aio_top_level_folder(
-                code_model=code_model, env=env, namespace_path=namespace_path,
-            )
 
     def _serialize_and_write_convenience_layer(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         if code_model.schemas or code_model.enums:
@@ -71,7 +71,6 @@ class JinjaSerializer:
                 self._serialize_and_write_metadata(
                     code_model, env=env, namespace_path=namespace_path
                 )
-
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder

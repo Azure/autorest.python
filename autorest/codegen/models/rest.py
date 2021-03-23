@@ -28,11 +28,13 @@ class Rest(BaseModel):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Protocol":
-        preparers = [
-            Preparer.from_yaml(operation_yaml, code_model=code_model)
-            for og_group in yaml_data["operationGroups"]
-            for operation_yaml in og_group["operations"]
-        ]
+        preparers = []
+        if yaml_data.get("operationGroups"):
+            preparers = [
+                Preparer.from_yaml(operation_yaml, code_model=code_model)
+                for og_group in yaml_data["operationGroups"]
+                for operation_yaml in og_group["operations"]
+            ]
 
         return cls(
             yaml_data=yaml_data,

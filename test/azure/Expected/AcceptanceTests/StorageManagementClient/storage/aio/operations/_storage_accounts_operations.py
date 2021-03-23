@@ -440,7 +440,7 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
-                request.method = "get"
+                request._internal_request.method = "GET"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -505,7 +505,7 @@ class StorageAccountsOperations:
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
-                request.method = "get"
+                request._internal_request.method = "GET"
                 request.url = self._client.format_url(next_link)
             return request
 
