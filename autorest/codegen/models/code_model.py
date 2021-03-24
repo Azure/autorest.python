@@ -331,7 +331,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for preparer in self.rest.preparers:
             for obj in chain(
                     preparer.parameters,
-                    preparer.multiple_media_type_parameters or [],
                     chain.from_iterable(request.parameters for request in preparer.schema_requests)
                 ):
                     self._populate_schema(obj)
@@ -340,11 +339,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     def add_schema_link_to_global_parameters(self) -> None:
         for parameter in self.global_parameters:
             self._populate_schema(parameter)
-
-    def generate_single_parameter_from_multiple_media_types_preparer(self) -> None:
-        for preparer in self.rest.preparers:
-            if preparer.multiple_media_type_parameters:
-                _convert_multiple_media_type_parameters(preparer)
 
     def generate_single_parameter_from_multiple_media_types_operation(self) -> None:
         for operation_group in self.operation_groups:

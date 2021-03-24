@@ -85,6 +85,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
+        self.is_partial_body = yaml_data.get("isPartialBody", False)
 
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):
@@ -146,6 +147,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if not isinstance(self.schema, ConstantSchema):
             return False
         return self.required
+
+    @property
+    def is_multipart(self) -> bool:
+        return self.yaml_data["language"]["python"].get("multipart", False)
 
     @property
     def constant_declaration(self) -> str:

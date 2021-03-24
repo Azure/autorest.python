@@ -126,7 +126,6 @@ class CodeGenerator(Plugin):
                     build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
             code_model.add_schema_link_to_preparer()
             code_model.add_schema_link_to_global_parameters()
-            code_model.generate_single_parameter_from_multiple_media_types_preparer()
 
         if not code_model.low_level_client:
             self._build_convenience_layer(yaml_data=yaml_data, code_model=code_model)

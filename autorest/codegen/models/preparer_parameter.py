@@ -30,7 +30,7 @@ class PreparerParameter(Parameter):
 
     @property
     def name_in_high_level_operation(self) -> str:
-        if self.yaml_data["language"]["python"].get("multipart", False):
+        if self.is_multipart:
             return "_body"
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
@@ -62,10 +62,7 @@ class PreparerParameter(Parameter):
 
     @property
     def is_kwarg(self) -> bool:
-        return not (
-            self.location == ParameterLocation.Path or
-            self.location == ParameterLocation.Body
-        )
+        return not self.location == ParameterLocation.Path
 
     @property
     def full_serialized_name(self) -> str:

@@ -47,7 +47,6 @@ class Preparer(BaseModel):
         multipart: bool,
         schema_requests: List[SchemaRequest],
         parameters: PreparerParameterList,
-        multiple_media_type_parameters: PreparerParameterList,
         description: str,
         summary: str,
     ):
@@ -58,21 +57,12 @@ class Preparer(BaseModel):
         self.multipart = multipart
         self.schema_requests = schema_requests
         self.parameters = parameters
-        self.multiple_media_type_parameters = multiple_media_type_parameters
         self.description = description
         self.summary = summary
 
     @property
     def content_type(self) -> str:
-        try:
-            return next(iter(
-                [
-                    p.schema.get_declaration(cast(ConstantSchema, p.schema).value)
-                    for p in self.parameters.constant if p.serialized_name == "content_type"
-                ]
-            ))
-        except StopIteration:
-            raise ValueError(f"Preparer {self.name} does not have a content type")
+        return self.parameters.content_type
 
     @property
     def is_stream(self) -> bool:
@@ -89,30 +79,15 @@ class Preparer(BaseModel):
     def has_body_param_with_object_schema(self) -> bool:
         try:
             parameters = self.parameters.body
-            if self.multiple_media_type_parameters and self.multiple_media_type_parameters.has_body:
-                parameters += self.multiple_media_type_parameters.body
             return any([p for p in parameters if p.has_object_schema])
         except ValueError:
             return False
-
-    @property
-    def body_param_name(self) -> str:
-        if not self.parameters.has_body:
-            raise ValueError("This property is only applicable if your preparer has a body")
-        if "json" in self.content_type:
-            return "json"
-        if self.is_stream:
-            return "stream"
-        return "data"
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
-        if self.multiple_media_type_parameters:
-            for parameter in self.multiple_media_type_parameters:
-                file_import.merge(parameter.imports())
         file_import.add_from_import(
             "azure.core.rest",
             "HttpRequest",
@@ -148,8 +123,7 @@ class Preparer(BaseModel):
             method=first_request["protocol"]["http"]["method"].upper(),
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
-            parameters=PreparerParameterList(parameters),
-            multiple_media_type_parameters=PreparerParameterList(multiple_media_type_parameters),
+            parameters=PreparerParameterList(parameters + multiple_media_type_parameters),
             description=yaml_data["language"]["python"]["description"],
             summary=yaml_data["language"]["python"].get("summary"),
         )

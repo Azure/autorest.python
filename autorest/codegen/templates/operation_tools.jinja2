@@ -205,7 +205,7 @@ else:
     {% endif %}{% endif %}{% endmacro %}
 
 {# create HTTPRequest #}
-{% macro create_http_request(preparer) %}
+{% macro create_http_request(preparer, is_python_3_file) %}
 return HttpRequest(
     method="{{ preparer.method }}",
     url=url,
@@ -216,8 +216,13 @@ return HttpRequest(
     headers=header_parameters,
     {% endif %}
     {% if preparer.parameters.has_body %}
-    **body_content_kwargs
+        {% if is_python_3_file %}
+            {% for body_kwarg in preparer.parameters.body_kwarg_names | list %}
+    {{ body_kwarg }}={{ body_kwarg }},
+            {% endfor %}
+        {% endif %}
     {% endif %}
+    **kwargs
 )
 {% endmacro %}
 

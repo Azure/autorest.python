@@ -20,9 +20,6 @@
     {% if preparer.parameters.method %}
     {{ op_tools.method_docstring(preparer.parameters.method, preparer) | indent }}
     {%- endif %}
-    {% if (preparer.schema_requests | length) > 1 %}
-    {{ op_tools.content_type_docstring(preparer) | indent }}
-    {% endif %}
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -37,7 +34,7 @@
 {% if preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% if constant_parameter.serialized_name == "content_type" %}
-    content_type = kwargs.pop("content_type", {{ constant_parameter.constant_declaration }})
+    content_type = kwargs.pop("content_type", None)
     {% else %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endif %}
@@ -53,5 +50,4 @@
 
     {{ op_tools.query_parameters(preparer, is_python_3_file)|indent }}
     {{ op_tools.header_parameters(code_model, preparer, is_python_3_file)|indent }}
-    {{ op_tools.body_parameters(preparer)|indent }}
-    {{ op_tools.create_http_request(preparer)|indent }}
+    {{ op_tools.create_http_request(preparer, is_python_3_file)|indent }}

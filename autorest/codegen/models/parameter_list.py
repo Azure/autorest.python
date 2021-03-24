@@ -9,6 +9,7 @@ from typing import cast, List, Callable, Optional
 
 from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -125,6 +126,31 @@ class ParameterList(MutableSequence):
     def constant_bodies(self) -> List[Parameter]:
         constants = self.constant
         return [c for c in constants if c.location == ParameterLocation.Body]
+
+    @property
+    def has_multipart(self) -> bool:
+        return any(self.get_from_predicate(lambda parameter: parameter.is_multipart))
+
+    @property
+    def has_partial_body(self) -> bool:
+        return any(self.get_from_predicate(lambda parameter: parameter.is_partial_body))
+
+    @property
+    def content_type_parameter(self) -> Parameter:
+        try:
+            return next(iter(
+                [
+                    p
+                    for p in self.constant if p.serialized_name == "content_type"
+                ]
+            ))
+        except StopIteration:
+            raise ValueError(f"No content type parameter")
+
+    @property
+    def content_type(self) -> str:
+        content_type_parameter = self.content_type_parameter
+        return content_type_parameter.schema.get_declaration(cast(ConstantSchema, content_type_parameter.schema).value)
 
     @property
     def method(self) -> List[Parameter]:
