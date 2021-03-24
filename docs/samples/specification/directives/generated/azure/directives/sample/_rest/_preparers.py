@@ -22,6 +22,16 @@ def prepare_basic_polling_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A simple polling operation.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~azure.directives.sample.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -51,6 +61,14 @@ def prepare_basic_paging(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A simple paging operation.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

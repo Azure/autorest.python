@@ -24,6 +24,18 @@ def prepare_group_get_sample_resource_group(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Provides a resouce group with name 'testgroup101' and location 'West US'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param subscription_id: Subscription Id.
+    :type subscription_id: str
+    :param resource_group_name: Resource Group name 'testgroup101'.
+    :type resource_group_name: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2014-04-01-preview"
     accept = "application/json"
 

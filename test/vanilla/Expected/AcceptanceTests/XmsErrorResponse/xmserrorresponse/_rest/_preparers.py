@@ -23,6 +23,16 @@ def prepare_pet_get_pet_by_id(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets pets by id.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param pet_id: pet id.
+    :type pet_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -51,6 +61,16 @@ def prepare_pet_do_something(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Asks pet to do something.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param what_action: what action the pet should do.
+    :type what_action: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -78,6 +98,18 @@ def prepare_pet_has_models_param(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
+    conflict with the input param name 'models'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param models: Make sure model deserialization doesn't conflict with this param name, which has
+     input name 'models'. Use client default value in call.
+    :type models: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     models = kwargs.pop("models", "value1")  # type: Optional[str]
     accept = "application/json"
 

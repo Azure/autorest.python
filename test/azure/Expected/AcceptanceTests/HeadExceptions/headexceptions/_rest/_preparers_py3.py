@@ -14,6 +14,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_headexception_head200(**kwargs: Any) -> HttpRequest:
+    """Return 200 status code if successful.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/200")
@@ -31,6 +39,14 @@ def prepare_headexception_head200(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_headexception_head204(**kwargs: Any) -> HttpRequest:
+    """Return 204 status code if successful.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/204")
@@ -48,6 +64,14 @@ def prepare_headexception_head204(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_headexception_head404(**kwargs: Any) -> HttpRequest:
+    """Return 404 status code if successful.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/success/404")

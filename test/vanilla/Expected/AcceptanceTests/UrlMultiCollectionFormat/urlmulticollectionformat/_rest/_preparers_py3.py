@@ -14,6 +14,16 @@ _SERIALIZER = Serializer()
 
 
 def prepare_queries_array_string_multi_null(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get a null array of string using the multi-array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: a null array of string using the multi-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -39,6 +49,16 @@ def prepare_queries_array_string_multi_null(*, array_query: Optional[List[str]] 
 
 
 def prepare_queries_array_string_multi_empty(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an empty array [] of string using the multi-array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an empty array [] of string using the multi-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -64,6 +84,18 @@ def prepare_queries_array_string_multi_empty(*, array_query: Optional[List[str]]
 
 
 def prepare_queries_array_string_multi_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+    mult-array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+     ''] using the mult-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

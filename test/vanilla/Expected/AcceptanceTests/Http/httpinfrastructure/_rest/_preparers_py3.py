@@ -14,6 +14,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_httpfailure_get_empty_error(**kwargs: Any) -> HttpRequest:
+    """Get empty error form server.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -34,6 +42,14 @@ def prepare_httpfailure_get_empty_error(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpfailure_get_no_model_error(**kwargs: Any) -> HttpRequest:
+    """Get empty error form server.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -54,6 +70,14 @@ def prepare_httpfailure_get_no_model_error(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpfailure_get_no_model_empty(**kwargs: Any) -> HttpRequest:
+    """Get empty response from server.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -74,6 +98,14 @@ def prepare_httpfailure_get_no_model_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpsuccess_head200(**kwargs: Any) -> HttpRequest:
+    """Return 200 status code if successful.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -94,6 +126,14 @@ def prepare_httpsuccess_head200(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpsuccess_get200(**kwargs: Any) -> HttpRequest:
+    """Get 200 success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -114,6 +154,14 @@ def prepare_httpsuccess_get200(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpsuccess_options200(**kwargs: Any) -> HttpRequest:
+    """Options 200 success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -134,6 +182,16 @@ def prepare_httpsuccess_options200(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpsuccess_put200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Put boolean value true returning 200 success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -155,6 +213,16 @@ def prepare_httpsuccess_put200(boolean_value: Optional[bool] = True, **kwargs: A
 
 
 def prepare_httpsuccess_patch200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Patch true Boolean value in request returning 200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -176,6 +244,16 @@ def prepare_httpsuccess_patch200(boolean_value: Optional[bool] = True, **kwargs:
 
 
 def prepare_httpsuccess_post200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Post bollean value true in request that returns a 200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -197,6 +275,16 @@ def prepare_httpsuccess_post200(boolean_value: Optional[bool] = True, **kwargs: 
 
 
 def prepare_httpsuccess_delete200(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Delete simple boolean value true returns 200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -218,6 +306,16 @@ def prepare_httpsuccess_delete200(boolean_value: Optional[bool] = True, **kwargs
 
 
 def prepare_httpsuccess_put201(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Put true Boolean value in request returns 201.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -239,6 +337,16 @@ def prepare_httpsuccess_put201(boolean_value: Optional[bool] = True, **kwargs: A
 
 
 def prepare_httpsuccess_post201(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Post true Boolean value in request returns 201 (Created).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -260,6 +368,16 @@ def prepare_httpsuccess_post201(boolean_value: Optional[bool] = True, **kwargs: 
 
 
 def prepare_httpsuccess_put202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Put true Boolean value in request returns 202 (Accepted).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -281,6 +399,16 @@ def prepare_httpsuccess_put202(boolean_value: Optional[bool] = True, **kwargs: A
 
 
 def prepare_httpsuccess_patch202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Patch true Boolean value in request returns 202.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -302,6 +430,16 @@ def prepare_httpsuccess_patch202(boolean_value: Optional[bool] = True, **kwargs:
 
 
 def prepare_httpsuccess_post202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Post true Boolean value in request returns 202 (Accepted).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -323,6 +461,16 @@ def prepare_httpsuccess_post202(boolean_value: Optional[bool] = True, **kwargs: 
 
 
 def prepare_httpsuccess_delete202(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Delete true Boolean value in request returns 202 (accepted).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -344,6 +492,14 @@ def prepare_httpsuccess_delete202(boolean_value: Optional[bool] = True, **kwargs
 
 
 def prepare_httpsuccess_head204(**kwargs: Any) -> HttpRequest:
+    """Return 204 status code if successful.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -364,6 +520,16 @@ def prepare_httpsuccess_head204(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpsuccess_put204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Put true Boolean value in request returns 204 (no content).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -385,6 +551,16 @@ def prepare_httpsuccess_put204(boolean_value: Optional[bool] = True, **kwargs: A
 
 
 def prepare_httpsuccess_patch204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Patch true Boolean value in request returns 204 (no content).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -406,6 +582,16 @@ def prepare_httpsuccess_patch204(boolean_value: Optional[bool] = True, **kwargs:
 
 
 def prepare_httpsuccess_post204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Post true Boolean value in request returns 204 (no content).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -427,6 +613,16 @@ def prepare_httpsuccess_post204(boolean_value: Optional[bool] = True, **kwargs: 
 
 
 def prepare_httpsuccess_delete204(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Delete true Boolean value in request returns 204 (no content).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -448,6 +644,14 @@ def prepare_httpsuccess_delete204(boolean_value: Optional[bool] = True, **kwargs
 
 
 def prepare_httpsuccess_head404(**kwargs: Any) -> HttpRequest:
+    """Return 404 status code.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -468,6 +672,14 @@ def prepare_httpsuccess_head404(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_head300(**kwargs: Any) -> HttpRequest:
+    """Return 300 status code and redirect to /http/success/200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -488,6 +700,14 @@ def prepare_httpredirects_head300(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_get300(**kwargs: Any) -> HttpRequest:
+    """Return 300 status code and redirect to /http/success/200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -508,6 +728,14 @@ def prepare_httpredirects_get300(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_head301(**kwargs: Any) -> HttpRequest:
+    """Return 301 status code and redirect to /http/success/200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -528,6 +756,14 @@ def prepare_httpredirects_head301(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_get301(**kwargs: Any) -> HttpRequest:
+    """Return 301 status code and redirect to /http/success/200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -548,6 +784,17 @@ def prepare_httpredirects_get301(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_put301(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Put true Boolean value in request returns 301.  This request should not be automatically
+    redirected, but should return the received 301 to the caller for evaluation.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -569,6 +816,14 @@ def prepare_httpredirects_put301(boolean_value: Optional[bool] = True, **kwargs:
 
 
 def prepare_httpredirects_head302(**kwargs: Any) -> HttpRequest:
+    """Return 302 status code and redirect to /http/success/200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -589,6 +844,14 @@ def prepare_httpredirects_head302(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_get302(**kwargs: Any) -> HttpRequest:
+    """Return 302 status code and redirect to /http/success/200.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -609,6 +872,17 @@ def prepare_httpredirects_get302(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_patch302(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Patch true Boolean value in request returns 302.  This request should not be automatically
+    redirected, but should return the received 302 to the caller for evaluation.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -630,6 +904,17 @@ def prepare_httpredirects_patch302(boolean_value: Optional[bool] = True, **kwarg
 
 
 def prepare_httpredirects_post303(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Post true Boolean value in request returns 303.  This request should be automatically
+    redirected usign a get, ultimately returning a 200 status code.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -651,6 +936,14 @@ def prepare_httpredirects_post303(boolean_value: Optional[bool] = True, **kwargs
 
 
 def prepare_httpredirects_head307(**kwargs: Any) -> HttpRequest:
+    """Redirect with 307, resulting in a 200 success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -671,6 +964,14 @@ def prepare_httpredirects_head307(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_get307(**kwargs: Any) -> HttpRequest:
+    """Redirect get with 307, resulting in a 200 success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -691,6 +992,14 @@ def prepare_httpredirects_get307(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_options307(**kwargs: Any) -> HttpRequest:
+    """options redirected with 307, resulting in a 200 after redirect.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -711,6 +1020,16 @@ def prepare_httpredirects_options307(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpredirects_put307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Put redirected with 307, resulting in a 200 after redirect.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -732,6 +1051,16 @@ def prepare_httpredirects_put307(boolean_value: Optional[bool] = True, **kwargs:
 
 
 def prepare_httpredirects_patch307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Patch redirected with 307, resulting in a 200 after redirect.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -753,6 +1082,16 @@ def prepare_httpredirects_patch307(boolean_value: Optional[bool] = True, **kwarg
 
 
 def prepare_httpredirects_post307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Post redirected with 307, resulting in a 200 after redirect.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -774,6 +1113,16 @@ def prepare_httpredirects_post307(boolean_value: Optional[bool] = True, **kwargs
 
 
 def prepare_httpredirects_delete307(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Delete redirected with 307, resulting in a 200 after redirect.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -795,6 +1144,14 @@ def prepare_httpredirects_delete307(boolean_value: Optional[bool] = True, **kwar
 
 
 def prepare_httpclientfailure_head400(**kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -815,6 +1172,14 @@ def prepare_httpclientfailure_head400(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_get400(**kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -835,6 +1200,14 @@ def prepare_httpclientfailure_get400(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_options400(**kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -855,6 +1228,16 @@ def prepare_httpclientfailure_options400(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_put400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -876,6 +1259,16 @@ def prepare_httpclientfailure_put400(boolean_value: Optional[bool] = True, **kwa
 
 
 def prepare_httpclientfailure_patch400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -897,6 +1290,16 @@ def prepare_httpclientfailure_patch400(boolean_value: Optional[bool] = True, **k
 
 
 def prepare_httpclientfailure_post400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -918,6 +1321,16 @@ def prepare_httpclientfailure_post400(boolean_value: Optional[bool] = True, **kw
 
 
 def prepare_httpclientfailure_delete400(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 400 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -939,6 +1352,14 @@ def prepare_httpclientfailure_delete400(boolean_value: Optional[bool] = True, **
 
 
 def prepare_httpclientfailure_head401(**kwargs: Any) -> HttpRequest:
+    """Return 401 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -959,6 +1380,14 @@ def prepare_httpclientfailure_head401(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_get402(**kwargs: Any) -> HttpRequest:
+    """Return 402 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -979,6 +1408,14 @@ def prepare_httpclientfailure_get402(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_options403(**kwargs: Any) -> HttpRequest:
+    """Return 403 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -999,6 +1436,14 @@ def prepare_httpclientfailure_options403(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_get403(**kwargs: Any) -> HttpRequest:
+    """Return 403 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1019,6 +1464,16 @@ def prepare_httpclientfailure_get403(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_put404(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 404 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1040,6 +1495,16 @@ def prepare_httpclientfailure_put404(boolean_value: Optional[bool] = True, **kwa
 
 
 def prepare_httpclientfailure_patch405(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 405 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1061,6 +1526,16 @@ def prepare_httpclientfailure_patch405(boolean_value: Optional[bool] = True, **k
 
 
 def prepare_httpclientfailure_post406(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 406 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1082,6 +1557,16 @@ def prepare_httpclientfailure_post406(boolean_value: Optional[bool] = True, **kw
 
 
 def prepare_httpclientfailure_delete407(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 407 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1103,6 +1588,16 @@ def prepare_httpclientfailure_delete407(boolean_value: Optional[bool] = True, **
 
 
 def prepare_httpclientfailure_put409(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 409 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1124,6 +1619,14 @@ def prepare_httpclientfailure_put409(boolean_value: Optional[bool] = True, **kwa
 
 
 def prepare_httpclientfailure_head410(**kwargs: Any) -> HttpRequest:
+    """Return 410 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1144,6 +1647,14 @@ def prepare_httpclientfailure_head410(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_get411(**kwargs: Any) -> HttpRequest:
+    """Return 411 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1164,6 +1675,14 @@ def prepare_httpclientfailure_get411(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_options412(**kwargs: Any) -> HttpRequest:
+    """Return 412 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1184,6 +1703,14 @@ def prepare_httpclientfailure_options412(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_get412(**kwargs: Any) -> HttpRequest:
+    """Return 412 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1204,6 +1731,16 @@ def prepare_httpclientfailure_get412(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_put413(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 413 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1225,6 +1762,16 @@ def prepare_httpclientfailure_put413(boolean_value: Optional[bool] = True, **kwa
 
 
 def prepare_httpclientfailure_patch414(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 414 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1246,6 +1793,16 @@ def prepare_httpclientfailure_patch414(boolean_value: Optional[bool] = True, **k
 
 
 def prepare_httpclientfailure_post415(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 415 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1267,6 +1824,14 @@ def prepare_httpclientfailure_post415(boolean_value: Optional[bool] = True, **kw
 
 
 def prepare_httpclientfailure_get416(**kwargs: Any) -> HttpRequest:
+    """Return 416 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1287,6 +1852,16 @@ def prepare_httpclientfailure_get416(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpclientfailure_delete417(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 417 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1308,6 +1883,14 @@ def prepare_httpclientfailure_delete417(boolean_value: Optional[bool] = True, **
 
 
 def prepare_httpclientfailure_head429(**kwargs: Any) -> HttpRequest:
+    """Return 429 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1328,6 +1911,14 @@ def prepare_httpclientfailure_head429(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpserverfailure_head501(**kwargs: Any) -> HttpRequest:
+    """Return 501 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1348,6 +1939,14 @@ def prepare_httpserverfailure_head501(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpserverfailure_get501(**kwargs: Any) -> HttpRequest:
+    """Return 501 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1368,6 +1967,16 @@ def prepare_httpserverfailure_get501(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpserverfailure_post505(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 505 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1389,6 +1998,16 @@ def prepare_httpserverfailure_post505(boolean_value: Optional[bool] = True, **kw
 
 
 def prepare_httpserverfailure_delete505(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 505 status code - should be represented in the client as an error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1410,6 +2029,14 @@ def prepare_httpserverfailure_delete505(boolean_value: Optional[bool] = True, **
 
 
 def prepare_httpretry_head408(**kwargs: Any) -> HttpRequest:
+    """Return 408 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1430,6 +2057,16 @@ def prepare_httpretry_head408(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpretry_put500(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 500 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1451,6 +2088,16 @@ def prepare_httpretry_put500(boolean_value: Optional[bool] = True, **kwargs: Any
 
 
 def prepare_httpretry_patch500(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 500 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1472,6 +2119,14 @@ def prepare_httpretry_patch500(boolean_value: Optional[bool] = True, **kwargs: A
 
 
 def prepare_httpretry_get502(**kwargs: Any) -> HttpRequest:
+    """Return 502 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1492,6 +2147,14 @@ def prepare_httpretry_get502(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpretry_options502(**kwargs: Any) -> HttpRequest:
+    """Return 502 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1512,6 +2175,16 @@ def prepare_httpretry_options502(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_httpretry_post503(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 503 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1533,6 +2206,16 @@ def prepare_httpretry_post503(boolean_value: Optional[bool] = True, **kwargs: An
 
 
 def prepare_httpretry_delete503(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 503 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1554,6 +2237,16 @@ def prepare_httpretry_delete503(boolean_value: Optional[bool] = True, **kwargs: 
 
 
 def prepare_httpretry_put504(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 504 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1575,6 +2268,16 @@ def prepare_httpretry_put504(boolean_value: Optional[bool] = True, **kwargs: Any
 
 
 def prepare_httpretry_patch504(boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    """Return 504 status code, then 200 after retry.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param boolean_value: Simple boolean value true.
+    :type boolean_value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1596,6 +2299,14 @@ def prepare_httpretry_patch504(boolean_value: Optional[bool] = True, **kwargs: A
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error200_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with valid payload: {'statusCode': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1616,6 +2327,14 @@ def prepare_multipleresponses_get200_model204_no_model_default_error200_valid(**
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error204_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 204 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1636,6 +2355,14 @@ def prepare_multipleresponses_get200_model204_no_model_default_error204_valid(**
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 201 response with valid payload: {'statusCode': '201'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1656,6 +2383,14 @@ def prepare_multipleresponses_get200_model204_no_model_default_error201_invalid(
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error202_none(**kwargs: Any) -> HttpRequest:
+    """Send a 202 response with no payload:.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1676,6 +2411,14 @@ def prepare_multipleresponses_get200_model204_no_model_default_error202_none(**k
 
 
 def prepare_multipleresponses_get200_model204_no_model_default_error400_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1696,6 +2439,14 @@ def prepare_multipleresponses_get200_model204_no_model_default_error400_valid(**
 
 
 def prepare_multipleresponses_get200_model201_model_default_error200_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with valid payload: {'statusCode': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1716,6 +2467,14 @@ def prepare_multipleresponses_get200_model201_model_default_error200_valid(**kwa
 
 
 def prepare_multipleresponses_get200_model201_model_default_error201_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1736,6 +2495,14 @@ def prepare_multipleresponses_get200_model201_model_default_error201_valid(**kwa
 
 
 def prepare_multipleresponses_get200_model201_model_default_error400_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1756,6 +2523,14 @@ def prepare_multipleresponses_get200_model201_model_default_error400_valid(**kwa
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with valid payload: {'statusCode': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1776,6 +2551,14 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with valid payload: {'httpCode': '201'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1796,6 +2579,14 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1816,6 +2607,14 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
 
 
 def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1836,6 +2635,14 @@ def prepare_multipleresponses_get200_model_a201_model_c404_model_d_default_error
 
 
 def prepare_multipleresponses_get202_none204_none_default_error202_none(**kwargs: Any) -> HttpRequest:
+    """Send a 202 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1856,6 +2663,14 @@ def prepare_multipleresponses_get202_none204_none_default_error202_none(**kwargs
 
 
 def prepare_multipleresponses_get202_none204_none_default_error204_none(**kwargs: Any) -> HttpRequest:
+    """Send a 204 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1876,6 +2691,14 @@ def prepare_multipleresponses_get202_none204_none_default_error204_none(**kwargs
 
 
 def prepare_multipleresponses_get202_none204_none_default_error400_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1896,6 +2719,14 @@ def prepare_multipleresponses_get202_none204_none_default_error400_valid(**kwarg
 
 
 def prepare_multipleresponses_get202_none204_none_default_none202_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 202 response with an unexpected payload {'property': 'value'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
@@ -1913,6 +2744,14 @@ def prepare_multipleresponses_get202_none204_none_default_none202_invalid(**kwar
 
 
 def prepare_multipleresponses_get202_none204_none_default_none204_none(**kwargs: Any) -> HttpRequest:
+    """Send a 204 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
@@ -1930,6 +2769,14 @@ def prepare_multipleresponses_get202_none204_none_default_none204_none(**kwargs:
 
 
 def prepare_multipleresponses_get202_none204_none_default_none400_none(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
@@ -1947,6 +2794,14 @@ def prepare_multipleresponses_get202_none204_none_default_none400_none(**kwargs:
 
 
 def prepare_multipleresponses_get202_none204_none_default_none400_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with an unexpected payload {'property': 'value'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
@@ -1964,6 +2819,14 @@ def prepare_multipleresponses_get202_none204_none_default_none400_invalid(**kwar
 
 
 def prepare_multipleresponses_get_default_model_a200_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with valid payload: {'statusCode': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1984,6 +2847,14 @@ def prepare_multipleresponses_get_default_model_a200_valid(**kwargs: Any) -> Htt
 
 
 def prepare_multipleresponses_get_default_model_a200_none(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2004,6 +2875,14 @@ def prepare_multipleresponses_get_default_model_a200_none(**kwargs: Any) -> Http
 
 
 def prepare_multipleresponses_get_default_model_a400_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with valid payload: {'statusCode': '400'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2024,6 +2903,14 @@ def prepare_multipleresponses_get_default_model_a400_valid(**kwargs: Any) -> Htt
 
 
 def prepare_multipleresponses_get_default_model_a400_none(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2044,6 +2931,14 @@ def prepare_multipleresponses_get_default_model_a400_none(**kwargs: Any) -> Http
 
 
 def prepare_multipleresponses_get_default_none200_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with invalid payload: {'statusCode': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
@@ -2061,6 +2956,14 @@ def prepare_multipleresponses_get_default_none200_invalid(**kwargs: Any) -> Http
 
 
 def prepare_multipleresponses_get_default_none200_none(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/none")
@@ -2078,6 +2981,14 @@ def prepare_multipleresponses_get_default_none200_none(**kwargs: Any) -> HttpReq
 
 
 def prepare_multipleresponses_get_default_none400_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with valid payload: {'statusCode': '400'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
@@ -2095,6 +3006,14 @@ def prepare_multipleresponses_get_default_none400_invalid(**kwargs: Any) -> Http
 
 
 def prepare_multipleresponses_get_default_none400_none(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/none")
@@ -2112,6 +3031,15 @@ def prepare_multipleresponses_get_default_none400_none(**kwargs: Any) -> HttpReq
 
 
 def prepare_multipleresponses_get200_model_a200_none(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with no payload, when a payload is expected - client should return a null
+    object of thde type for model A.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2132,6 +3060,14 @@ def prepare_multipleresponses_get200_model_a200_none(**kwargs: Any) -> HttpReque
 
 
 def prepare_multipleresponses_get200_model_a200_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with payload {'statusCode': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2152,6 +3088,14 @@ def prepare_multipleresponses_get200_model_a200_valid(**kwargs: Any) -> HttpRequ
 
 
 def prepare_multipleresponses_get200_model_a200_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2172,6 +3116,14 @@ def prepare_multipleresponses_get200_model_a200_invalid(**kwargs: Any) -> HttpRe
 
 
 def prepare_multipleresponses_get200_model_a400_none(**kwargs: Any) -> HttpRequest:
+    """Send a 400 response with no payload client should treat as an http error with no error model.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2192,6 +3144,14 @@ def prepare_multipleresponses_get200_model_a400_none(**kwargs: Any) -> HttpReque
 
 
 def prepare_multipleresponses_get200_model_a400_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with payload {'statusCode': '400'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2212,6 +3172,14 @@ def prepare_multipleresponses_get200_model_a400_valid(**kwargs: Any) -> HttpRequ
 
 
 def prepare_multipleresponses_get200_model_a400_invalid(**kwargs: Any) -> HttpRequest:
+    """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -2232,6 +3200,14 @@ def prepare_multipleresponses_get200_model_a400_invalid(**kwargs: Any) -> HttpRe
 
 
 def prepare_multipleresponses_get200_model_a202_valid(**kwargs: Any) -> HttpRequest:
+    """Send a 202 response with payload {'statusCode': '202'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

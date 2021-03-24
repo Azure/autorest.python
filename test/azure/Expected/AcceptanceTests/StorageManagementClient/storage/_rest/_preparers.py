@@ -24,6 +24,21 @@ def prepare_storageaccounts_check_name_availability(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Checks that account name is valid and is not in use.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
+    :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json, text/json"
@@ -62,6 +77,28 @@ def prepare_storageaccounts_create_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Asynchronously creates a new storage account with the specified parameters. Existing accounts
+    cannot be updated with this API and should instead use the Update Storage Account API. If an
+    account is already created and subsequent PUT request is issued with exact same set of
+    properties, then HTTP 200 would be returned.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :param parameters: The parameters to provide for the created account.
+    :type parameters: ~storage.models.StorageAccountCreateParameters
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json, text/json"
@@ -100,6 +137,23 @@ def prepare_storageaccounts_delete(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Deletes a storage account in Microsoft Azure.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
 
     # Construct URL
@@ -135,6 +189,25 @@ def prepare_storageaccounts_get_properties(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Returns the properties for the specified storage account including but not limited to name,
+    account type, location, and account status. The ListKeys operation should be used to retrieve
+    storage keys.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -174,6 +247,32 @@ def prepare_storageaccounts_update(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Updates the account type or tags for a storage account. It can also be used to add a custom
+    domain (note that custom domains cannot be added via the Create operation). Only one custom
+    domain is supported per storage account. This API can only be used to update one of tags,
+    accountType, or customDomain per call. To update multiple of these properties, call the API
+    multiple times with one change per call. This call does not change the storage keys for the
+    account. If you want to change storage account keys, use the RegenerateKey operation. The
+    location and name of the storage account cannot be changed after creation.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :param parameters: The parameters to update on the account. Note that only one property can be
+     changed at a time using this API.
+    :type parameters: ~storage.models.StorageAccountUpdateParameters
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json, text/json"
@@ -214,6 +313,21 @@ def prepare_storageaccounts_list_keys(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Lists the access keys for the specified storage account.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -250,6 +364,18 @@ def prepare_storageaccounts_list(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Lists all the storage accounts available under the subscription. Note that storage keys are not
+    returned; use the ListKeys operation for this.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -282,6 +408,20 @@ def prepare_storageaccounts_list_by_resource_group(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Lists all the storage accounts available under the given resource group. Note that storage keys
+    are not returned; use the ListKeys operation for this.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -320,6 +460,25 @@ def prepare_storageaccounts_regenerate_key(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Regenerates the access keys for the specified storage account.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :param regenerate_key: Specifies name of the key which should be regenerated.
+    :type regenerate_key: ~storage.models.StorageAccountRegenerateKeyParameters
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json, text/json"
@@ -358,6 +517,17 @@ def prepare_usage_list(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets the current usage count and the limit for the resources under the subscription.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
+    :type subscription_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 

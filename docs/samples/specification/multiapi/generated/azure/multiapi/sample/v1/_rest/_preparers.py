@@ -21,6 +21,18 @@ def prepare_test_one(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """TestOne should be in an FirstVersionOperationsMixin.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param id: An int parameter.
+    :type id: int
+    :param message: An optional string parameter.
+    :type message: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', None)  # type: Optional[str]
     api_version = "1.0.0"
@@ -54,6 +66,16 @@ def prepare_test_lro_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put in whatever shape of Product you want, will return a Product with id equal to 100.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~azure.multiapi.sample.v1.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -83,6 +105,21 @@ def prepare_test_lro_and_paging_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A long-running paging operation that includes a nextLink that has 10 pages.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param client_request_id:
+    :type client_request_id: str
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
     timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
@@ -116,6 +153,16 @@ def prepare_test_different_calls(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Has added parameters across the API versions.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param greeting_in_english: pass in 'hello' to pass test.
+    :type greeting_in_english: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     api_version = "1.0.0"
     accept = "application/json"
@@ -145,6 +192,14 @@ def prepare_operationgroupone_test_two(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """TestTwo should be in OperationGroupOneOperations.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "1.0.0"
     accept = "application/json"
 

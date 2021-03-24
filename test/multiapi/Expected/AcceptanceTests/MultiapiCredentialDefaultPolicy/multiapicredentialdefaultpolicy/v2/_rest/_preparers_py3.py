@@ -19,6 +19,18 @@ def prepare_test_one(
     message: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param id: An int parameter.
+    :type id: int
+    :param message: An optional string parameter.
+    :type message: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -51,6 +63,18 @@ def prepare_test_different_calls(
     greeting_in_chinese: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """Has added parameters across the API versions.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param greeting_in_english: pass in 'hello' to pass test.
+    :type greeting_in_english: str
+    :param greeting_in_chinese: pass in 'nihao' to pass test.
+    :type greeting_in_chinese: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -81,6 +105,16 @@ def prepare_operationgroupone_test_two(
     parameter_one: Optional["_models.ModelTwo"] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param parameter_one: A ModelTwo parameter.
+    :type parameter_one: ~multiapicredentialdefaultpolicy.v2.models.ModelTwo
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2.0.0"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -112,6 +146,14 @@ def prepare_operationgroupone_test_two(
 def prepare_operationgroupone_test_three(
     **kwargs: Any
 ) -> HttpRequest:
+    """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2.0.0"
     accept = "application/json"
 
@@ -140,6 +182,16 @@ def prepare_operationgrouptwo_test_four(
     parameter_one: bool,
     **kwargs: Any
 ) -> HttpRequest:
+    """TestFour should be in OperationGroupTwoOperations.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param parameter_one: A boolean parameter.
+    :type parameter_one: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2.0.0"
     accept = "application/json"
 

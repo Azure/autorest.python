@@ -21,6 +21,15 @@ def prepare_get_incorrect_error_from_server(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get an error response from the server that is not as described in our Error object. Want to
+    swallow the deserialization error and still return an HttpResponseError to the users.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/incorrectError")

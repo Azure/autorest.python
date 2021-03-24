@@ -22,6 +22,16 @@ def prepare_int_put(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put an int enum.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input: Input int enum.
+    :type input: str or ~nonstringenums.models.IntEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -46,6 +56,14 @@ def prepare_int_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get an int enum.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -70,6 +88,16 @@ def prepare_float_put(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put a float enum.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input: Input float enum.
+    :type input: str or ~nonstringenums.models.FloatEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -94,6 +122,14 @@ def prepare_float_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a float enum.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

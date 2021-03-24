@@ -14,6 +14,16 @@ _SERIALIZER = Serializer()
 
 
 def prepare_pets_create_ap_true(create_parameters: "_models.PetAPTrue", **kwargs: Any) -> HttpRequest:
+    """Create a Pet which contains more properties than what is defined.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param create_parameters:
+    :type create_parameters: ~additionalproperties.models.PetAPTrue
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -35,6 +45,16 @@ def prepare_pets_create_ap_true(create_parameters: "_models.PetAPTrue", **kwargs
 
 
 def prepare_pets_create_cat_ap_true(create_parameters: "_models.CatAPTrue", **kwargs: Any) -> HttpRequest:
+    """Create a CatAPTrue which contains more properties than what is defined.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param create_parameters:
+    :type create_parameters: ~additionalproperties.models.CatAPTrue
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -56,6 +76,16 @@ def prepare_pets_create_cat_ap_true(create_parameters: "_models.CatAPTrue", **kw
 
 
 def prepare_pets_create_ap_object(create_parameters: "_models.PetAPObject", **kwargs: Any) -> HttpRequest:
+    """Create a Pet which contains more properties than what is defined.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param create_parameters:
+    :type create_parameters: ~additionalproperties.models.PetAPObject
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -77,6 +107,16 @@ def prepare_pets_create_ap_object(create_parameters: "_models.PetAPObject", **kw
 
 
 def prepare_pets_create_ap_string(create_parameters: "_models.PetAPString", **kwargs: Any) -> HttpRequest:
+    """Create a Pet which contains more properties than what is defined.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param create_parameters:
+    :type create_parameters: ~additionalproperties.models.PetAPString
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -98,6 +138,16 @@ def prepare_pets_create_ap_string(create_parameters: "_models.PetAPString", **kw
 
 
 def prepare_pets_create_ap_in_properties(create_parameters: "_models.PetAPInProperties", **kwargs: Any) -> HttpRequest:
+    """Create a Pet which contains more properties than what is defined.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param create_parameters:
+    :type create_parameters: ~additionalproperties.models.PetAPInProperties
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -121,6 +171,16 @@ def prepare_pets_create_ap_in_properties(create_parameters: "_models.PetAPInProp
 def prepare_pets_create_ap_in_properties_with_ap_string(
     create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
 ) -> HttpRequest:
+    """Create a Pet which contains more properties than what is defined.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param create_parameters:
+    :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

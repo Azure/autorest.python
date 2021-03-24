@@ -22,6 +22,14 @@ def prepare_time_get(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get time value "11:34:56".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -46,6 +54,16 @@ def prepare_time_put(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put time value "08:07:56".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param time_body: Put time value "08:07:56" in parameter to pass testserver.
+    :type time_body: ~datetime.time
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

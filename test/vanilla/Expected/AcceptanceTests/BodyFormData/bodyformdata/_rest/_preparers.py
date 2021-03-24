@@ -22,6 +22,16 @@ def prepare_formdata_upload_file(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Upload file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param file_content: File to upload.
+    :type file_content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 
@@ -47,6 +57,16 @@ def prepare_formdata_upload_file_via_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Upload file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param file_content: File to upload.
+    :type file_content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/octet-stream, application/json"
 
@@ -72,6 +92,16 @@ def prepare_formdata_upload_files(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Upload multiple files.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param file_content: Files to upload.
+    :type file_content: list[IO]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 

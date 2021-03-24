@@ -14,6 +14,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_byte_get_null(**kwargs: Any) -> HttpRequest:
+    """Get null byte value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -34,6 +42,14 @@ def prepare_byte_get_null(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_byte_get_empty(**kwargs: Any) -> HttpRequest:
+    """Get empty byte value ''.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -54,6 +70,14 @@ def prepare_byte_get_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_byte_get_non_ascii(**kwargs: Any) -> HttpRequest:
+    """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -74,6 +98,16 @@ def prepare_byte_get_non_ascii(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_byte_put_non_ascii(byte_body: bytearray, **kwargs: Any) -> HttpRequest:
+    """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+    :type byte_body: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -95,6 +129,14 @@ def prepare_byte_put_non_ascii(byte_body: bytearray, **kwargs: Any) -> HttpReque
 
 
 def prepare_byte_get_invalid(**kwargs: Any) -> HttpRequest:
+    """Get invalid byte value ':::SWAGGER::::'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

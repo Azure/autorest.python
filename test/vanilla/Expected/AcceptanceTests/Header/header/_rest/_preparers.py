@@ -22,6 +22,16 @@ def prepare_header_param_existing_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header value "User-Agent": "overwrite".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
+    :type user_agent_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     user_agent_parameter = kwargs.pop("user_agent_parameter")  # type: str
     accept = "application/json"
 
@@ -47,6 +57,14 @@ def prepare_header_response_existing_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "User-Agent": "overwrite".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -70,6 +88,16 @@ def prepare_header_param_protected_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header value "Content-Type": "text/html".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param content_type: Send a post request with header value "Content-Type": "text/html".
+    :type content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type")  # type: str
     accept = "application/json"
 
@@ -95,6 +123,14 @@ def prepare_header_response_protected_key(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "Content-Type": "text/html".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -118,6 +154,19 @@ def prepare_header_param_integer(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
+    "negative", "value": -2.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :param value: Send a post request with header values 1 or -2.
+    :type value: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: int
     accept = "application/json"
@@ -145,6 +194,16 @@ def prepare_header_response_integer(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "value": 1 or -2.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -170,6 +229,19 @@ def prepare_header_param_long(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
+    "negative", "value": -2.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :param value: Send a post request with header values 105 or -2.
+    :type value: long
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: int
     accept = "application/json"
@@ -197,6 +269,16 @@ def prepare_header_response_long(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "value": 105 or -2.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -222,6 +304,19 @@ def prepare_header_param_float(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
+    "negative", "value": -3.0.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :param value: Send a post request with header values 0.07 or -3.0.
+    :type value: float
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: float
     accept = "application/json"
@@ -249,6 +344,16 @@ def prepare_header_response_float(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "value": 0.07 or -3.0.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -274,6 +379,19 @@ def prepare_header_param_double(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
+    "negative", "value": -3.0.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :param value: Send a post request with header values 7e120 or -3.0.
+    :type value: float
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: float
     accept = "application/json"
@@ -301,6 +419,16 @@ def prepare_header_response_double(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "value": 7e120 or -3.0.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -326,6 +454,19 @@ def prepare_header_param_bool(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "true", "value": true or "scenario":
+    "false", "value": false.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "true" or "false".
+    :type scenario: str
+    :param value: Send a post request with header values true or false.
+    :type value: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: bool
     accept = "application/json"
@@ -353,6 +494,16 @@ def prepare_header_response_bool(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header value "value": true or false.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "true" or "false".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -378,6 +529,21 @@ def prepare_header_param_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
+    over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+     "empty".
+    :type scenario: str
+    :param value: Send a post request with header values "The quick brown fox jumps over the lazy
+     dog" or null or "".
+    :type value: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value", None)  # type: Optional[str]
     accept = "application/json"
@@ -406,6 +572,17 @@ def prepare_header_response_string(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+     "empty".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -431,6 +608,19 @@ def prepare_header_param_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
+    "scenario": "min", "value": "0001-01-01".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "min".
+    :type scenario: str
+    :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
+    :type value: ~datetime.date
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: datetime.date
     accept = "application/json"
@@ -458,6 +648,16 @@ def prepare_header_response_date(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "2010-01-01" or "0001-01-01".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "min".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -483,6 +683,20 @@ def prepare_header_param_datetime(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
+    "scenario": "min", "value": "0001-01-01T00:00:00Z".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "min".
+    :type scenario: str
+    :param value: Send a post request with header values "2010-01-01T12:34:56Z" or
+     "0001-01-01T00:00:00Z".
+    :type value: ~datetime.datetime
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: datetime.datetime
     accept = "application/json"
@@ -510,6 +724,16 @@ def prepare_header_response_datetime(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "min".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -535,6 +759,20 @@ def prepare_header_param_datetime_rfc1123(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
+    GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "min".
+    :type scenario: str
+    :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
+     01 Jan 0001 00:00:00 GMT".
+    :type value: ~datetime.datetime
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value", None)  # type: Optional[datetime.datetime]
     accept = "application/json"
@@ -563,6 +801,17 @@ def prepare_header_response_datetime_rfc1123(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
+    GMT".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "min".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -588,6 +837,18 @@ def prepare_header_param_duration(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid".
+    :type scenario: str
+    :param value: Send a post request with header values "P123DT22H14M12.011S".
+    :type value: ~datetime.timedelta
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: datetime.timedelta
     accept = "application/json"
@@ -615,6 +876,16 @@ def prepare_header_response_duration(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "P123DT22H14M12.011S".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -640,6 +911,18 @@ def prepare_header_param_byte(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid".
+    :type scenario: str
+    :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
+    :type value: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value")  # type: bytearray
     accept = "application/json"
@@ -667,6 +950,16 @@ def prepare_header_response_byte(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -692,6 +985,20 @@ def prepare_header_param_enum(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
+    "null", "value": null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+     "empty".
+    :type scenario: str
+    :param value: Send a post request with header values 'GREY'.
+    :type value: str or ~header.models.GreyscaleColors
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     value = kwargs.pop("value", None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
     accept = "application/json"
@@ -720,6 +1027,17 @@ def prepare_header_response_enum(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a response with header values "GREY" or null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+     "empty".
+    :type scenario: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     scenario = kwargs.pop("scenario")  # type: str
     accept = "application/json"
 
@@ -745,6 +1063,15 @@ def prepare_header_custom_request_id(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
+    request.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

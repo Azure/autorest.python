@@ -15,6 +15,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_int_get_null(**kwargs: Any) -> HttpRequest:
+    """Get null Int value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -35,6 +43,14 @@ def prepare_int_get_null(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_invalid(**kwargs: Any) -> HttpRequest:
+    """Get invalid Int value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -55,6 +71,14 @@ def prepare_int_get_invalid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_overflow_int32(**kwargs: Any) -> HttpRequest:
+    """Get overflow Int32 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -75,6 +99,14 @@ def prepare_int_get_overflow_int32(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_underflow_int32(**kwargs: Any) -> HttpRequest:
+    """Get underflow Int32 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -95,6 +127,14 @@ def prepare_int_get_underflow_int32(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_overflow_int64(**kwargs: Any) -> HttpRequest:
+    """Get overflow Int64 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -115,6 +155,14 @@ def prepare_int_get_overflow_int64(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_underflow_int64(**kwargs: Any) -> HttpRequest:
+    """Get underflow Int64 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -135,6 +183,16 @@ def prepare_int_get_underflow_int64(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_put_max32(int_body: int, **kwargs: Any) -> HttpRequest:
+    """Put max int32 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param int_body: int body.
+    :type int_body: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -156,6 +214,16 @@ def prepare_int_put_max32(int_body: int, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_put_max64(int_body: int, **kwargs: Any) -> HttpRequest:
+    """Put max int64 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param int_body: int body.
+    :type int_body: long
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -177,6 +245,16 @@ def prepare_int_put_max64(int_body: int, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_put_min32(int_body: int, **kwargs: Any) -> HttpRequest:
+    """Put min int32 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param int_body: int body.
+    :type int_body: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -198,6 +276,16 @@ def prepare_int_put_min32(int_body: int, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_put_min64(int_body: int, **kwargs: Any) -> HttpRequest:
+    """Put min int64 value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param int_body: int body.
+    :type int_body: long
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -219,6 +307,14 @@ def prepare_int_put_min64(int_body: int, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_unix_time(**kwargs: Any) -> HttpRequest:
+    """Get datetime encoded as Unix time value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -239,6 +335,16 @@ def prepare_int_get_unix_time(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_put_unix_time_date(int_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    """Put datetime encoded as Unix time.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param int_body: int body.
+    :type int_body: ~datetime.datetime
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -260,6 +366,14 @@ def prepare_int_put_unix_time_date(int_body: datetime.datetime, **kwargs: Any) -
 
 
 def prepare_int_get_invalid_unix_time(**kwargs: Any) -> HttpRequest:
+    """Get invalid Unix time value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -280,6 +394,14 @@ def prepare_int_get_invalid_unix_time(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_int_get_null_unix_time(**kwargs: Any) -> HttpRequest:
+    """Get null Unix time value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

@@ -21,6 +21,14 @@ def prepare_test_paging(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Returns ModelThree with optionalProperty 'paged'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -45,6 +53,20 @@ def prepare_test_different_calls(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Has added parameters across the API versions.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param greeting_in_english: pass in 'hello' to pass test.
+    :type greeting_in_english: str
+    :param greeting_in_chinese: pass in 'nihao' to pass test.
+    :type greeting_in_chinese: str
+    :param greeting_in_french: pass in 'bonjour' to pass test.
+    :type greeting_in_french: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
     greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
@@ -81,6 +103,16 @@ def prepare_operationgroupone_test_two(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param parameter_one: A ModelThree parameter.
+    :type parameter_one: ~multiapi.v3.models.ModelThree
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "3.0.0"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -114,6 +146,18 @@ def prepare_operationgrouptwo_test_four(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """TestFour should be in OperationGroupTwoOperations.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input: Input parameter.
+    :type input: IO or ~multiapi.v3.models.SourcePath
+    :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+     Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "3.0.0"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -156,6 +200,14 @@ def prepare_operationgrouptwo_test_five(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """TestFive should be in OperationGroupTwoOperations.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "3.0.0"
     accept = "application/json"
 

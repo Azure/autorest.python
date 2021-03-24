@@ -21,6 +21,18 @@ def prepare_get_report(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get test coverage report.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
+     for Python). The only effect is, that generators that run all tests several times, can
+     distinguish the generated reports.
+    :type qualifier: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
     accept = "application/json"
 
@@ -48,6 +60,18 @@ def prepare_get_optional_report(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get optional test coverage report.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
+     for Python). The only effect is, that generators that run all tests several times, can
+     distinguish the generated reports.
+    :type qualifier: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
     accept = "application/json"
 

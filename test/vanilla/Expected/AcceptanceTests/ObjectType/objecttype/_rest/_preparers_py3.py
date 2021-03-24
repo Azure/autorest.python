@@ -14,6 +14,15 @@ _SERIALIZER = Serializer()
 
 
 def prepare_get(**kwargs: Any) -> HttpRequest:
+    """Basic get that returns an object. Returns object { 'message': 'An object was successfully
+    returned' }.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -34,6 +43,17 @@ def prepare_get(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_put(put_object: object, **kwargs: Any) -> HttpRequest:
+    """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
+    object error.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+    :type put_object: object
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

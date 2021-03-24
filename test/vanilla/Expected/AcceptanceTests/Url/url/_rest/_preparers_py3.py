@@ -16,6 +16,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_paths_get_boolean_true(**kwargs: Any) -> HttpRequest:
+    """Get true Boolean value on path.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     bool_path = True
     accept = "application/json"
 
@@ -41,6 +49,14 @@ def prepare_paths_get_boolean_true(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_get_boolean_false(**kwargs: Any) -> HttpRequest:
+    """Get false Boolean value on path.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     bool_path = False
     accept = "application/json"
 
@@ -66,6 +82,14 @@ def prepare_paths_get_boolean_false(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_get_int_one_million(**kwargs: Any) -> HttpRequest:
+    """Get '1000000' integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     int_path = 1000000
     accept = "application/json"
 
@@ -91,6 +115,14 @@ def prepare_paths_get_int_one_million(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_get_int_negative_one_million(**kwargs: Any) -> HttpRequest:
+    """Get '-1000000' integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     int_path = -1000000
     accept = "application/json"
 
@@ -116,6 +148,14 @@ def prepare_paths_get_int_negative_one_million(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_get_ten_billion(**kwargs: Any) -> HttpRequest:
+    """Get '10000000000' 64 bit integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     long_path = 10000000000
     accept = "application/json"
 
@@ -141,6 +181,14 @@ def prepare_paths_get_ten_billion(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_get_negative_ten_billion(**kwargs: Any) -> HttpRequest:
+    """Get '-10000000000' 64 bit integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     long_path = -10000000000
     accept = "application/json"
 
@@ -166,6 +214,14 @@ def prepare_paths_get_negative_ten_billion(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_float_scientific_positive(**kwargs: Any) -> HttpRequest:
+    """Get '1.034E+20' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     float_path = 103400000000000000000
     accept = "application/json"
 
@@ -191,6 +247,14 @@ def prepare_paths_float_scientific_positive(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_float_scientific_negative(**kwargs: Any) -> HttpRequest:
+    """Get '-1.034E-20' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     float_path = -1.034e-20
     accept = "application/json"
 
@@ -216,6 +280,14 @@ def prepare_paths_float_scientific_negative(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_double_decimal_positive(**kwargs: Any) -> HttpRequest:
+    """Get '9999999.999' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     double_path = 9999999.999
     accept = "application/json"
 
@@ -241,6 +313,14 @@ def prepare_paths_double_decimal_positive(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_double_decimal_negative(**kwargs: Any) -> HttpRequest:
+    """Get '-9999999.999' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     double_path = -9999999.999
     accept = "application/json"
 
@@ -266,6 +346,14 @@ def prepare_paths_double_decimal_negative(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_string_unicode(**kwargs: Any) -> HttpRequest:
+    """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_path = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -291,6 +379,14 @@ def prepare_paths_string_unicode(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_string_url_encoded(**kwargs: Any) -> HttpRequest:
+    """Get 'begin!*'();:@ &=+$,/?#[]end.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_path = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -318,6 +414,16 @@ def prepare_paths_string_url_encoded(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_string_url_non_encoded(**kwargs: Any) -> HttpRequest:
+    """Get 'begin!*'();:@&=+$,end.
+
+    https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_path = "begin!*'();:@&=+$,end"
     accept = "application/json"
 
@@ -343,6 +449,14 @@ def prepare_paths_string_url_non_encoded(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_string_empty(**kwargs: Any) -> HttpRequest:
+    """Get ''.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_path = ""
     accept = "application/json"
 
@@ -368,6 +482,16 @@ def prepare_paths_string_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_string_null(string_path: str, **kwargs: Any) -> HttpRequest:
+    """Get null (should throw).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_path: null string value.
+    :type string_path: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -392,6 +516,16 @@ def prepare_paths_string_null(string_path: str, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_enum_valid(enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> HttpRequest:
+    """Get using uri with 'green color' in path parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param enum_path: send the value green.
+    :type enum_path: str or ~url.models.UriColor
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -416,6 +550,16 @@ def prepare_paths_enum_valid(enum_path: Union[str, "_models.UriColor"], **kwargs
 
 
 def prepare_paths_enum_null(enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> HttpRequest:
+    """Get null (should throw on the client before the request is sent on wire).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param enum_path: send null should throw.
+    :type enum_path: str or ~url.models.UriColor
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -440,6 +584,16 @@ def prepare_paths_enum_null(enum_path: Union[str, "_models.UriColor"], **kwargs:
 
 
 def prepare_paths_byte_multi_byte(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
+    """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+    :type byte_path: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -464,6 +618,14 @@ def prepare_paths_byte_multi_byte(byte_path: bytearray, **kwargs: Any) -> HttpRe
 
 
 def prepare_paths_byte_empty(**kwargs: Any) -> HttpRequest:
+    """Get '' as byte array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     byte_path = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -489,6 +651,16 @@ def prepare_paths_byte_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_byte_null(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
+    """Get null as byte array (should throw).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param byte_path: null as byte array (should throw).
+    :type byte_path: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -513,6 +685,14 @@ def prepare_paths_byte_null(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_date_valid(**kwargs: Any) -> HttpRequest:
+    """Get '2012-01-01' as date.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     date_path = "2012-01-01"
     accept = "application/json"
 
@@ -538,6 +718,17 @@ def prepare_paths_date_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_date_null(date_path: datetime.date, **kwargs: Any) -> HttpRequest:
+    """Get null as date - this should throw or be unusable on the client side, depending on date
+    representation.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param date_path: null as date (should throw).
+    :type date_path: ~datetime.date
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -562,6 +753,14 @@ def prepare_paths_date_null(date_path: datetime.date, **kwargs: Any) -> HttpRequ
 
 
 def prepare_paths_date_time_valid(**kwargs: Any) -> HttpRequest:
+    """Get '2012-01-01T01:01:01Z' as date-time.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     date_time_path = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -587,6 +786,16 @@ def prepare_paths_date_time_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_paths_date_time_null(date_time_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    """Get null as date-time, should be disallowed or throw depending on representation of date-time.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param date_time_path: null as date-time.
+    :type date_time_path: ~datetime.datetime
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -611,6 +820,16 @@ def prepare_paths_date_time_null(date_time_path: datetime.datetime, **kwargs: An
 
 
 def prepare_paths_base64_url(base64_url_path: bytes, **kwargs: Any) -> HttpRequest:
+    """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param base64_url_path: base64url encoded value.
+    :type base64_url_path: bytes
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -635,6 +854,18 @@ def prepare_paths_base64_url(base64_url_path: bytes, **kwargs: Any) -> HttpReque
 
 
 def prepare_paths_array_csv_in_path(array_path: List[str], **kwargs: Any) -> HttpRequest:
+    """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
+    array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+     using the csv-array format.
+    :type array_path: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -662,6 +893,16 @@ def prepare_paths_array_csv_in_path(array_path: List[str], **kwargs: Any) -> Htt
 
 
 def prepare_paths_unix_time_url(unix_time_url_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param unix_time_url_path: Unix time encoded value.
+    :type unix_time_url_path: ~datetime.datetime
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -686,6 +927,14 @@ def prepare_paths_unix_time_url(unix_time_url_path: datetime.datetime, **kwargs:
 
 
 def prepare_queries_get_boolean_true(**kwargs: Any) -> HttpRequest:
+    """Get true Boolean value on path.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     bool_query = True
     accept = "application/json"
 
@@ -709,6 +958,14 @@ def prepare_queries_get_boolean_true(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_get_boolean_false(**kwargs: Any) -> HttpRequest:
+    """Get false Boolean value on path.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     bool_query = False
     accept = "application/json"
 
@@ -732,6 +989,16 @@ def prepare_queries_get_boolean_false(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_get_boolean_null(*, bool_query: Optional[bool] = None, **kwargs: Any) -> HttpRequest:
+    """Get null Boolean value on query (query string should be absent).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param bool_query: null boolean value.
+    :type bool_query: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -755,6 +1022,14 @@ def prepare_queries_get_boolean_null(*, bool_query: Optional[bool] = None, **kwa
 
 
 def prepare_queries_get_int_one_million(**kwargs: Any) -> HttpRequest:
+    """Get '1000000' integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     int_query = 1000000
     accept = "application/json"
 
@@ -778,6 +1053,14 @@ def prepare_queries_get_int_one_million(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_get_int_negative_one_million(**kwargs: Any) -> HttpRequest:
+    """Get '-1000000' integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     int_query = -1000000
     accept = "application/json"
 
@@ -801,6 +1084,16 @@ def prepare_queries_get_int_negative_one_million(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_get_int_null(*, int_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+    """Get null integer value (no query parameter).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param int_query: null integer value.
+    :type int_query: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -824,6 +1117,14 @@ def prepare_queries_get_int_null(*, int_query: Optional[int] = None, **kwargs: A
 
 
 def prepare_queries_get_ten_billion(**kwargs: Any) -> HttpRequest:
+    """Get '10000000000' 64 bit integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     long_query = 10000000000
     accept = "application/json"
 
@@ -847,6 +1148,14 @@ def prepare_queries_get_ten_billion(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_get_negative_ten_billion(**kwargs: Any) -> HttpRequest:
+    """Get '-10000000000' 64 bit integer value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     long_query = -10000000000
     accept = "application/json"
 
@@ -870,6 +1179,16 @@ def prepare_queries_get_negative_ten_billion(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_get_long_null(*, long_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+    """Get 'null 64 bit integer value (no query param in uri).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param long_query: null 64 bit integer value.
+    :type long_query: long
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -893,6 +1212,14 @@ def prepare_queries_get_long_null(*, long_query: Optional[int] = None, **kwargs:
 
 
 def prepare_queries_float_scientific_positive(**kwargs: Any) -> HttpRequest:
+    """Get '1.034E+20' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     float_query = 103400000000000000000
     accept = "application/json"
 
@@ -916,6 +1243,14 @@ def prepare_queries_float_scientific_positive(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_float_scientific_negative(**kwargs: Any) -> HttpRequest:
+    """Get '-1.034E-20' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     float_query = -1.034e-20
     accept = "application/json"
 
@@ -939,6 +1274,16 @@ def prepare_queries_float_scientific_negative(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_float_null(*, float_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+    """Get null numeric value (no query parameter).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param float_query: null numeric value.
+    :type float_query: float
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -962,6 +1307,14 @@ def prepare_queries_float_null(*, float_query: Optional[float] = None, **kwargs:
 
 
 def prepare_queries_double_decimal_positive(**kwargs: Any) -> HttpRequest:
+    """Get '9999999.999' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     double_query = 9999999.999
     accept = "application/json"
 
@@ -985,6 +1338,14 @@ def prepare_queries_double_decimal_positive(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_double_decimal_negative(**kwargs: Any) -> HttpRequest:
+    """Get '-9999999.999' numeric value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     double_query = -9999999.999
     accept = "application/json"
 
@@ -1008,6 +1369,16 @@ def prepare_queries_double_decimal_negative(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_double_null(*, double_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+    """Get null numeric value (no query parameter).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param double_query: null numeric value.
+    :type double_query: float
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1031,6 +1402,14 @@ def prepare_queries_double_null(*, double_query: Optional[float] = None, **kwarg
 
 
 def prepare_queries_string_unicode(**kwargs: Any) -> HttpRequest:
+    """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -1054,6 +1433,14 @@ def prepare_queries_string_unicode(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_string_url_encoded(**kwargs: Any) -> HttpRequest:
+    """Get 'begin!*'();:@ &=+$,/?#[]end.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_query = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -1079,6 +1466,14 @@ def prepare_queries_string_url_encoded(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_string_empty(**kwargs: Any) -> HttpRequest:
+    """Get ''.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     string_query = ""
     accept = "application/json"
 
@@ -1102,6 +1497,16 @@ def prepare_queries_string_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_string_null(*, string_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    """Get null (no query parameter in url).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_query: null string value.
+    :type string_query: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1127,6 +1532,16 @@ def prepare_queries_string_null(*, string_query: Optional[str] = None, **kwargs:
 def prepare_queries_enum_valid(
     *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
 ) -> HttpRequest:
+    """Get using uri with query parameter 'green color'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param enum_query: 'green color' enum value.
+    :type enum_query: str or ~url.models.UriColor
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1152,6 +1567,16 @@ def prepare_queries_enum_valid(
 def prepare_queries_enum_null(
     *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
 ) -> HttpRequest:
+    """Get null (no query parameter in url).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param enum_query: null string value.
+    :type enum_query: str or ~url.models.UriColor
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1175,6 +1600,16 @@ def prepare_queries_enum_null(
 
 
 def prepare_queries_byte_multi_byte(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
+    """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+    :type byte_query: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1198,6 +1633,14 @@ def prepare_queries_byte_multi_byte(*, byte_query: Optional[bytearray] = None, *
 
 
 def prepare_queries_byte_empty(**kwargs: Any) -> HttpRequest:
+    """Get '' as byte array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     byte_query = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -1221,6 +1664,16 @@ def prepare_queries_byte_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_byte_null(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
+    """Get null as byte array (no query parameters in uri).
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param byte_query: null as byte array (no query parameters in uri).
+    :type byte_query: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1244,6 +1697,14 @@ def prepare_queries_byte_null(*, byte_query: Optional[bytearray] = None, **kwarg
 
 
 def prepare_queries_date_valid(**kwargs: Any) -> HttpRequest:
+    """Get '2012-01-01' as date.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     date_query = "2012-01-01"
     accept = "application/json"
 
@@ -1267,6 +1728,16 @@ def prepare_queries_date_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_queries_date_null(*, date_query: Optional[datetime.date] = None, **kwargs: Any) -> HttpRequest:
+    """Get null as date - this should result in no query parameters in uri.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param date_query: null as date (no query parameters in uri).
+    :type date_query: ~datetime.date
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1290,6 +1761,14 @@ def prepare_queries_date_null(*, date_query: Optional[datetime.date] = None, **k
 
 
 def prepare_queries_date_time_valid(**kwargs: Any) -> HttpRequest:
+    """Get '2012-01-01T01:01:01Z' as date-time.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     date_time_query = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -1315,6 +1794,16 @@ def prepare_queries_date_time_valid(**kwargs: Any) -> HttpRequest:
 def prepare_queries_date_time_null(
     *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
+    """Get null as date-time, should result in no query parameters in uri.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param date_time_query: null as date-time (no query parameters).
+    :type date_time_query: ~datetime.datetime
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1338,6 +1827,18 @@ def prepare_queries_date_time_null(
 
 
 def prepare_queries_array_string_csv_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
+    array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+     ''] using the csv-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1361,6 +1862,16 @@ def prepare_queries_array_string_csv_valid(*, array_query: Optional[List[str]] =
 
 
 def prepare_queries_array_string_csv_null(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get a null array of string using the csv-array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: a null array of string using the csv-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1384,6 +1895,16 @@ def prepare_queries_array_string_csv_null(*, array_query: Optional[List[str]] = 
 
 
 def prepare_queries_array_string_csv_empty(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an empty array [] of string using the csv-array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an empty array [] of string using the csv-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1409,6 +1930,17 @@ def prepare_queries_array_string_csv_empty(*, array_query: Optional[List[str]] =
 def prepare_queries_array_string_no_collection_format_empty(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
+    """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
+    'bonjour'] for the 'arrayQuery' parameter to the service.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1432,6 +1964,18 @@ def prepare_queries_array_string_no_collection_format_empty(
 
 
 def prepare_queries_array_string_ssv_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-
+    array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+     ''] using the ssv-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1455,6 +1999,18 @@ def prepare_queries_array_string_ssv_valid(*, array_query: Optional[List[str]] =
 
 
 def prepare_queries_array_string_tsv_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-
+    array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+     ''] using the tsv-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1478,6 +2034,18 @@ def prepare_queries_array_string_tsv_valid(*, array_query: Optional[List[str]] =
 
 
 def prepare_queries_array_string_pipes_valid(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+    """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+    pipes-array format.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+     ''] using the pipes-array format.
+    :type array_query: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1510,6 +2078,29 @@ def prepare_pathitems_get_all_with_values(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+    localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+    pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+    :type path_item_string_path: str
+    :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+    :type global_string_path: str
+    :param local_string_path: should contain value 'localStringPath'.
+    :type local_string_path: str
+    :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+     parameter.
+    :type path_item_string_query: str
+    :param global_string_query: should contain value null.
+    :type global_string_query: str
+    :param local_string_query: should contain value 'localStringQuery'.
+    :type local_string_query: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1557,6 +2148,29 @@ def prepare_pathitems_get_global_query_null(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+    localStringPath='localStringPath', globalStringQuery=null,
+    pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+    :type path_item_string_path: str
+    :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+    :type global_string_path: str
+    :param local_string_path: should contain value 'localStringPath'.
+    :type local_string_path: str
+    :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+     parameter.
+    :type path_item_string_query: str
+    :param global_string_query: should contain value null.
+    :type global_string_query: str
+    :param local_string_query: should contain value 'localStringQuery'.
+    :type local_string_query: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1604,6 +2218,29 @@ def prepare_pathitems_get_global_and_local_query_null(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
+    localStringPath='localStringPath', globalStringQuery=null,
+    pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+    :type path_item_string_path: str
+    :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+    :type global_string_path: str
+    :param local_string_path: should contain value 'localStringPath'.
+    :type local_string_path: str
+    :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+     parameter.
+    :type path_item_string_query: str
+    :param global_string_query: should contain value null.
+    :type global_string_query: str
+    :param local_string_query: should contain null value.
+    :type local_string_query: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1651,6 +2288,28 @@ def prepare_pathitems_get_local_path_item_query_null(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
+    """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+    localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+    pathItemStringQuery=null, localStringQuery=null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+    :type path_item_string_path: str
+    :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+    :type global_string_path: str
+    :param local_string_path: should contain value 'localStringPath'.
+    :type local_string_path: str
+    :param path_item_string_query: should contain value null.
+    :type path_item_string_query: str
+    :param global_string_query: should contain value null.
+    :type global_string_query: str
+    :param local_string_query: should contain value null.
+    :type local_string_query: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

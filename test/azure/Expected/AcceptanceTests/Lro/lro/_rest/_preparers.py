@@ -22,6 +22,17 @@ def prepare_lros_put200_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -47,6 +58,17 @@ def prepare_lros_put201_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 201 to the initial request, with an entity that
+    contains ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -71,6 +93,15 @@ def prepare_lros_post202_list_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 202 with empty body to first request, returns a 200
+    with body [{ 'id': '100', 'name': 'foo' }].
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -95,6 +126,17 @@ def prepare_lros_put200_succeeded_no_state_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    does not contain ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -120,6 +162,18 @@ def prepare_lros_put202_retry200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 202 to the initial request, with a location header
+    that points to a polling URL that returns a 200 and an entity that doesn't contains
+    ProvisioningState.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -145,6 +199,18 @@ def prepare_lros_put201_creating_succeeded200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 201 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -170,6 +236,18 @@ def prepare_lros_put200_updating_succeeded204_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 201 to the initial request, with an entity that
+    contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -195,6 +273,18 @@ def prepare_lros_put201_creating_failed200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 201 to the initial request, with an entity that
+    contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Failed’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -220,6 +310,18 @@ def prepare_lros_put200_acceptedcanceled200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 201 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Canceled’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -245,6 +347,17 @@ def prepare_lros_put_no_header_in_retry_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 202 to the initial request with location header.
+    Subsequent calls to operation status do not contain location header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -270,6 +383,18 @@ def prepare_lros_put_async_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -295,6 +420,18 @@ def prepare_lros_put_async_no_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -320,6 +457,18 @@ def prepare_lros_put_async_retry_failed_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -345,6 +494,18 @@ def prepare_lros_put_async_no_retrycanceled_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -370,6 +531,18 @@ def prepare_lros_put_async_no_header_in_retry_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 202 to the initial request with Azure-
+    AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation
+    header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -395,6 +568,16 @@ def prepare_lros_put_non_resource_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request with non resource.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param sku: sku to put.
+    :type sku: ~lro.models.Sku
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -420,6 +603,16 @@ def prepare_lros_put_async_non_resource_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request with non resource.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param sku: Sku to put.
+    :type sku: ~lro.models.Sku
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -445,6 +638,16 @@ def prepare_lros_put_sub_resource_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request with sub resource.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Sub Product to put.
+    :type product: ~lro.models.SubProduct
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -470,6 +673,16 @@ def prepare_lros_put_async_sub_resource_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request with sub resource.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Sub Product to put.
+    :type product: ~lro.models.SubProduct
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -494,6 +707,16 @@ def prepare_lros_delete_provisioning202_accepted200_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -517,6 +740,16 @@ def prepare_lros_delete_provisioning202_deleting_failed200_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Failed’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -540,6 +773,16 @@ def prepare_lros_delete_provisioning202_deletingcanceled200_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+    ‘200’ with ProvisioningState=’Canceled’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -563,6 +806,14 @@ def prepare_lros_delete204_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete succeeds and returns right away.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -586,6 +837,15 @@ def prepare_lros_delete202_retry200_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Polls return this
+    value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -609,6 +869,15 @@ def prepare_lros_delete202_no_retry204_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Polls return this
+    value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -632,6 +901,15 @@ def prepare_lros_delete_no_header_in_retry_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a location header in the initial request.
+    Subsequent calls to operation status do not contain location header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -655,6 +933,15 @@ def prepare_lros_delete_async_no_header_in_retry_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns an Azure-AsyncOperation header in the initial
+    request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -678,6 +965,15 @@ def prepare_lros_delete_async_retry_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -701,6 +997,15 @@ def prepare_lros_delete_async_no_retry_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -724,6 +1029,15 @@ def prepare_lros_delete_async_retry_failed_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -747,6 +1061,15 @@ def prepare_lros_delete_async_retrycanceled_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -770,6 +1093,15 @@ def prepare_lros_post200_with_payload_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with 'Location'
+    header. Poll returns a 200 with a response body after success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -794,6 +1126,17 @@ def prepare_lros_post202_retry200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with 'Location' and
+    'Retry-After' headers, Polls return a 200 with a response body after success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -819,6 +1162,17 @@ def prepare_lros_post202_no_retry204_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with 'Location'
+    header, 204 with noresponse body after success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -843,6 +1197,16 @@ def prepare_lros_post_double_headers_final_location_get_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request with both Location and
+    Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
+    object.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -866,6 +1230,16 @@ def prepare_lros_post_double_headers_final_azure_header_get_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request with both Location and
+    Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
+    final object.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -889,6 +1263,16 @@ def prepare_lros_post_double_headers_final_azure_header_get_default_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request with both Location and
+    Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
+    final object if you support initial Autorest behavior.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -913,6 +1297,18 @@ def prepare_lros_post_async_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -938,6 +1334,18 @@ def prepare_lros_post_async_no_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -963,6 +1371,18 @@ def prepare_lros_post_async_retry_failed_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -988,6 +1408,18 @@ def prepare_lros_post_async_retrycanceled_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1013,6 +1445,18 @@ def prepare_lroretrys_put201_creating_succeeded200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 500, then a 201 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+    returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1038,6 +1482,18 @@ def prepare_lroretrys_put_async_relative_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 500, then a 200 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
+    AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1062,6 +1518,16 @@ def prepare_lroretrys_delete_provisioning202_accepted200_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 500, then a  202 to the initial request, with an
+    entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
+    returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1085,6 +1551,15 @@ def prepare_lroretrys_delete202_retry200_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
+    return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1108,6 +1583,15 @@ def prepare_lroretrys_delete_async_relative_retry_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
+    endpoint indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1132,6 +1616,17 @@ def prepare_lroretrys_post202_retry200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 500, then a 202 to the initial request, with
+    'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1157,6 +1652,18 @@ def prepare_lroretrys_post_async_relative_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 500, then a 202 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
+    AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1182,6 +1689,16 @@ def prepare_lrosads_put_non_retry400_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 400 to the initial request.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1207,6 +1724,17 @@ def prepare_lrosads_put_non_retry201_creating400_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+    201 response code.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1232,6 +1760,17 @@ def prepare_lrosads_put_non_retry201_creating400_invalid_json_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+    201 response code.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1257,6 +1796,17 @@ def prepare_lrosads_put_async_relative_retry400_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+    endpoint indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1281,6 +1831,14 @@ def prepare_lrosads_delete_non_retry400_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 400 with an error body.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1304,6 +1862,14 @@ def prepare_lrosads_delete202_non_retry400_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 with a location header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1327,6 +1893,15 @@ def prepare_lrosads_delete_async_relative_retry400_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1351,6 +1926,16 @@ def prepare_lrosads_post_non_retry400_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 400 with no error body.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1376,6 +1961,16 @@ def prepare_lrosads_post202_non_retry400_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 with a location header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1401,6 +1996,17 @@ def prepare_lrosads_post_async_relative_retry400_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1426,6 +2032,16 @@ def prepare_lrosads_put_error201_no_provisioning_state_payload_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 201 to the initial request with no payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1451,6 +2067,18 @@ def prepare_lrosads_put_async_relative_retry_no_status_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1476,6 +2104,18 @@ def prepare_lrosads_put_async_relative_retry_no_status_payload_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1500,6 +2140,14 @@ def prepare_lrosads_delete204_succeeded_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 204 to the initial request, indicating success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1523,6 +2171,15 @@ def prepare_lrosads_delete_async_relative_retry_no_status_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1547,6 +2204,17 @@ def prepare_lrosads_post202_no_location_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, without a location
+    header.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1572,6 +2240,18 @@ def prepare_lrosads_post_async_relative_retry_no_payload_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1597,6 +2277,17 @@ def prepare_lrosads_put200_invalid_json_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that is
+    not a valid json.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1622,6 +2313,18 @@ def prepare_lrosads_put_async_relative_retry_invalid_header_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+    header is invalid.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1647,6 +2350,18 @@ def prepare_lrosads_put_async_relative_retry_invalid_json_polling_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running put request, service returns a 200 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1671,6 +2386,15 @@ def prepare_lrosads_delete202_retry_invalid_header_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request receing a reponse
+    with an invalid 'Location' and 'Retry-After' headers.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1694,6 +2418,15 @@ def prepare_lrosads_delete_async_relative_retry_invalid_header_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. The endpoint
+    indicated in the Azure-AsyncOperation header is invalid.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1717,6 +2450,15 @@ def prepare_lrosads_delete_async_relative_retry_invalid_json_polling_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+    indicated in the Azure-AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1741,6 +2483,17 @@ def prepare_lrosads_post202_retry_invalid_header_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with invalid
+    'Location' and 'Retry-After' headers.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1766,6 +2519,18 @@ def prepare_lrosads_post_async_relative_retry_invalid_header_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+    header is invalid.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1791,6 +2556,18 @@ def prepare_lrosads_post_async_relative_retry_invalid_json_polling_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Long running post request, service returns a 202 to the initial request, with an entity that
+    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+    header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1816,6 +2593,19 @@ def prepare_lroscustomheader_put_async_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running put request, service returns a 200 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
+    AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1841,6 +2631,19 @@ def prepare_lroscustomheader_put201_creating_succeeded200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running put request, service returns a 201 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+    returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1866,6 +2669,18 @@ def prepare_lroscustomheader_post202_retry200_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running post request, service returns a 202 to the initial request, with
+    'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1891,6 +2706,19 @@ def prepare_lroscustomheader_post_async_retry_succeeded_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+    all requests. Long running post request, service returns a 202 to the initial request, with an
+    entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
+    AsyncOperation header for operation status.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param product: Product to put.
+    :type product: ~lro.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

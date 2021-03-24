@@ -48,6 +48,8 @@ class Preparer(BaseModel):
         schema_requests: List[SchemaRequest],
         parameters: PreparerParameterList,
         multiple_media_type_parameters: PreparerParameterList,
+        description: str,
+        summary: str,
     ):
         super(Preparer, self).__init__(yaml_data)
         self.name = name
@@ -57,6 +59,8 @@ class Preparer(BaseModel):
         self.schema_requests = schema_requests
         self.parameters = parameters
         self.multiple_media_type_parameters = multiple_media_type_parameters
+        self.description = description
+        self.summary = summary
 
     @property
     def content_type(self) -> str:
@@ -146,6 +150,8 @@ class Preparer(BaseModel):
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             parameters=PreparerParameterList(parameters),
             multiple_media_type_parameters=PreparerParameterList(multiple_media_type_parameters),
+            description=yaml_data["language"]["python"]["description"],
+            summary=yaml_data["language"]["python"].get("summary"),
         )
         code_model.preparer_ids[id(yaml_data)] = preparer_class
         return preparer_class

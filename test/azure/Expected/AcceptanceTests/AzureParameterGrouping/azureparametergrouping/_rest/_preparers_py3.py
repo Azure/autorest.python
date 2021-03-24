@@ -17,6 +17,22 @@ _SERIALIZER = Serializer()
 def prepare_parametergrouping_post_required(
     path: str, body: int, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
 ) -> HttpRequest:
+    """Post a bunch of required parameters grouped.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param path: Path parameter.
+    :type path: str
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default.
+    :type query: int
+    :param body:
+    :type body: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -50,6 +66,18 @@ def prepare_parametergrouping_post_required(
 def prepare_parametergrouping_post_optional(
     *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
 ) -> HttpRequest:
+    """Post a bunch of optional parameters grouped.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default.
+    :type query: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -82,6 +110,22 @@ def prepare_parametergrouping_post_multi_param_groups(
     query_two: Optional[int] = 30,
     **kwargs: Any
 ) -> HttpRequest:
+    """Post parameters from multiple different parameter groups.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_one:
+    :type header_one: str
+    :param query_one: Query parameter with default.
+    :type query_one: int
+    :param header_two:
+    :type header_two: str
+    :param query_two: Query parameter with default.
+    :type query_two: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -113,6 +157,18 @@ def prepare_parametergrouping_post_multi_param_groups(
 def prepare_parametergrouping_post_shared_parameter_group_object(
     *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
 ) -> HttpRequest:
+    """Post parameters with a shared parameter group object.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_one:
+    :type header_one: str
+    :param query_one: Query parameter with default.
+    :type query_one: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

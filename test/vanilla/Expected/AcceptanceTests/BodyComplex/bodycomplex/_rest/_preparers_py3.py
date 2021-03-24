@@ -15,6 +15,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_basic_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -35,6 +43,16 @@ def prepare_basic_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_basic_put_valid(complex_body: "_models.Basic", **kwargs: Any) -> HttpRequest:
+    """Please put {id: 2, name: 'abc', color: 'Magenta'}.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
+    :type complex_body: ~bodycomplex.models.Basic
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2016-02-29"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -58,6 +76,14 @@ def prepare_basic_put_valid(complex_body: "_models.Basic", **kwargs: Any) -> Htt
 
 
 def prepare_basic_get_invalid(**kwargs: Any) -> HttpRequest:
+    """Get a basic complex type that is invalid for the local strong type.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -78,6 +104,14 @@ def prepare_basic_get_invalid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_basic_get_empty(**kwargs: Any) -> HttpRequest:
+    """Get a basic complex type that is empty.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -98,6 +132,14 @@ def prepare_basic_get_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_basic_get_null(**kwargs: Any) -> HttpRequest:
+    """Get a basic complex type whose properties are null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -118,6 +160,14 @@ def prepare_basic_get_null(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_basic_get_not_provided(**kwargs: Any) -> HttpRequest:
+    """Get a basic complex type while the server doesn't provide a response payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -138,6 +188,14 @@ def prepare_basic_get_not_provided(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_get_int(**kwargs: Any) -> HttpRequest:
+    """Get complex types with integer properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -158,6 +216,16 @@ def prepare_primitive_get_int(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_int(complex_body: "_models.IntWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with integer properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put -1 and 2.
+    :type complex_body: ~bodycomplex.models.IntWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -179,6 +247,14 @@ def prepare_primitive_put_int(complex_body: "_models.IntWrapper", **kwargs: Any)
 
 
 def prepare_primitive_get_long(**kwargs: Any) -> HttpRequest:
+    """Get complex types with long properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -199,6 +275,16 @@ def prepare_primitive_get_long(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_long(complex_body: "_models.LongWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with long properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put 1099511627775 and -999511627788.
+    :type complex_body: ~bodycomplex.models.LongWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -220,6 +306,14 @@ def prepare_primitive_put_long(complex_body: "_models.LongWrapper", **kwargs: An
 
 
 def prepare_primitive_get_float(**kwargs: Any) -> HttpRequest:
+    """Get complex types with float properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -240,6 +334,16 @@ def prepare_primitive_get_float(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_float(complex_body: "_models.FloatWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with float properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put 1.05 and -0.003.
+    :type complex_body: ~bodycomplex.models.FloatWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -261,6 +365,14 @@ def prepare_primitive_put_float(complex_body: "_models.FloatWrapper", **kwargs: 
 
 
 def prepare_primitive_get_double(**kwargs: Any) -> HttpRequest:
+    """Get complex types with double properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -281,6 +393,17 @@ def prepare_primitive_get_double(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_double(complex_body: "_models.DoubleWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with double properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put 3e-100 and
+     -0.000000000000000000000000000000000000000000000000000000005.
+    :type complex_body: ~bodycomplex.models.DoubleWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -302,6 +425,14 @@ def prepare_primitive_put_double(complex_body: "_models.DoubleWrapper", **kwargs
 
 
 def prepare_primitive_get_bool(**kwargs: Any) -> HttpRequest:
+    """Get complex types with bool properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -322,6 +453,16 @@ def prepare_primitive_get_bool(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_bool(complex_body: "_models.BooleanWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with bool properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put true and false.
+    :type complex_body: ~bodycomplex.models.BooleanWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -343,6 +484,14 @@ def prepare_primitive_put_bool(complex_body: "_models.BooleanWrapper", **kwargs:
 
 
 def prepare_primitive_get_string(**kwargs: Any) -> HttpRequest:
+    """Get complex types with string properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -363,6 +512,16 @@ def prepare_primitive_get_string(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_string(complex_body: "_models.StringWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with string properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put 'goodrequest', '', and null.
+    :type complex_body: ~bodycomplex.models.StringWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -384,6 +543,14 @@ def prepare_primitive_put_string(complex_body: "_models.StringWrapper", **kwargs
 
 
 def prepare_primitive_get_date(**kwargs: Any) -> HttpRequest:
+    """Get complex types with date properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -404,6 +571,16 @@ def prepare_primitive_get_date(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_date(complex_body: "_models.DateWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with date properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put '0001-01-01' and '2016-02-29'.
+    :type complex_body: ~bodycomplex.models.DateWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -425,6 +602,14 @@ def prepare_primitive_put_date(complex_body: "_models.DateWrapper", **kwargs: An
 
 
 def prepare_primitive_get_date_time(**kwargs: Any) -> HttpRequest:
+    """Get complex types with datetime properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -445,6 +630,16 @@ def prepare_primitive_get_date_time(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_date_time(complex_body: "_models.DatetimeWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with datetime properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
+    :type complex_body: ~bodycomplex.models.DatetimeWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -466,6 +661,14 @@ def prepare_primitive_put_date_time(complex_body: "_models.DatetimeWrapper", **k
 
 
 def prepare_primitive_get_date_time_rfc1123(**kwargs: Any) -> HttpRequest:
+    """Get complex types with datetimeRfc1123 properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -488,6 +691,17 @@ def prepare_primitive_get_date_time_rfc1123(**kwargs: Any) -> HttpRequest:
 def prepare_primitive_put_date_time_rfc1123(
     complex_body: "_models.Datetimerfc1123Wrapper", **kwargs: Any
 ) -> HttpRequest:
+    """Put complex types with datetimeRfc1123 properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+     GMT'.
+    :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -509,6 +723,14 @@ def prepare_primitive_put_date_time_rfc1123(
 
 
 def prepare_primitive_get_duration(**kwargs: Any) -> HttpRequest:
+    """Get complex types with duration properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -529,6 +751,16 @@ def prepare_primitive_get_duration(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_duration(complex_body: "_models.DurationWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with duration properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put 'P123DT22H14M12.011S'.
+    :type complex_body: ~bodycomplex.models.DurationWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -550,6 +782,14 @@ def prepare_primitive_put_duration(complex_body: "_models.DurationWrapper", **kw
 
 
 def prepare_primitive_get_byte(**kwargs: Any) -> HttpRequest:
+    """Get complex types with byte properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -570,6 +810,16 @@ def prepare_primitive_get_byte(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_primitive_put_byte(complex_body: "_models.ByteWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with byte properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
+    :type complex_body: ~bodycomplex.models.ByteWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -591,6 +841,14 @@ def prepare_primitive_put_byte(complex_body: "_models.ByteWrapper", **kwargs: An
 
 
 def prepare_array_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex types with array property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -611,6 +869,17 @@ def prepare_array_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_array_put_valid(complex_body: "_models.ArrayWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with array property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
+     quick brown fox jumps over the lazy dog".
+    :type complex_body: ~bodycomplex.models.ArrayWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -632,6 +901,14 @@ def prepare_array_put_valid(complex_body: "_models.ArrayWrapper", **kwargs: Any)
 
 
 def prepare_array_get_empty(**kwargs: Any) -> HttpRequest:
+    """Get complex types with array property which is empty.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -652,6 +929,16 @@ def prepare_array_get_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_array_put_empty(complex_body: "_models.ArrayWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with array property which is empty.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put an empty array.
+    :type complex_body: ~bodycomplex.models.ArrayWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -673,6 +960,14 @@ def prepare_array_put_empty(complex_body: "_models.ArrayWrapper", **kwargs: Any)
 
 
 def prepare_array_get_not_provided(**kwargs: Any) -> HttpRequest:
+    """Get complex types with array property while server doesn't provide a response payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -693,6 +988,14 @@ def prepare_array_get_not_provided(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_dictionary_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex types with dictionary property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -713,6 +1016,17 @@ def prepare_dictionary_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_dictionary_put_valid(complex_body: "_models.DictionaryWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with dictionary property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
+     "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
+    :type complex_body: ~bodycomplex.models.DictionaryWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -734,6 +1048,14 @@ def prepare_dictionary_put_valid(complex_body: "_models.DictionaryWrapper", **kw
 
 
 def prepare_dictionary_get_empty(**kwargs: Any) -> HttpRequest:
+    """Get complex types with dictionary property which is empty.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -754,6 +1076,16 @@ def prepare_dictionary_get_empty(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_dictionary_put_empty(complex_body: "_models.DictionaryWrapper", **kwargs: Any) -> HttpRequest:
+    """Put complex types with dictionary property which is empty.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put an empty dictionary.
+    :type complex_body: ~bodycomplex.models.DictionaryWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -775,6 +1107,14 @@ def prepare_dictionary_put_empty(complex_body: "_models.DictionaryWrapper", **kw
 
 
 def prepare_dictionary_get_null(**kwargs: Any) -> HttpRequest:
+    """Get complex types with dictionary property which is null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -795,6 +1135,14 @@ def prepare_dictionary_get_null(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_dictionary_get_not_provided(**kwargs: Any) -> HttpRequest:
+    """Get complex types with dictionary property while server doesn't provide a response payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -815,6 +1163,14 @@ def prepare_dictionary_get_not_provided(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_inheritance_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex types that extend others.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -835,6 +1191,18 @@ def prepare_inheritance_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_inheritance_put_valid(complex_body: "_models.Siamese", **kwargs: Any) -> HttpRequest:
+    """Put complex types that extend others.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
+     breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
+     the 2nd one named "Tomato" with id=-1 and food="french fries".
+    :type complex_body: ~bodycomplex.models.Siamese
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -856,6 +1224,14 @@ def prepare_inheritance_put_valid(complex_body: "_models.Siamese", **kwargs: Any
 
 
 def prepare_polymorphism_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex types that are polymorphic.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -876,6 +1252,48 @@ def prepare_polymorphism_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_polymorphism_put_valid(complex_body: "_models.Fish", **kwargs: Any) -> HttpRequest:
+    """Put complex types that are polymorphic.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put a salmon that looks like this:
+     {
+             'fishtype':'Salmon',
+             'location':'alaska',
+             'iswild':true,
+             'species':'king',
+             'length':1.0,
+             'siblings':[
+               {
+                 'fishtype':'Shark',
+                 'age':6,
+                 'birthday': '2012-01-05T01:00:00Z',
+                 'length':20.0,
+                 'species':'predator',
+               },
+               {
+                 'fishtype':'Sawshark',
+                 'age':105,
+                 'birthday': '1900-01-05T01:00:00Z',
+                 'length':10.0,
+                 'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                 'species':'dangerous',
+               },
+               {
+                 'fishtype': 'goblin',
+                 'age': 1,
+                 'birthday': '2015-08-08T00:00:00Z',
+                 'length': 30.0,
+                 'species': 'scary',
+                 'jawsize': 5
+               }
+             ]
+           };.
+    :type complex_body: ~bodycomplex.models.Fish
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -897,6 +1315,14 @@ def prepare_polymorphism_put_valid(complex_body: "_models.Fish", **kwargs: Any) 
 
 
 def prepare_polymorphism_get_dot_syntax(**kwargs: Any) -> HttpRequest:
+    """Get complex types that are polymorphic, JSON key contains a dot.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -917,6 +1343,16 @@ def prepare_polymorphism_get_dot_syntax(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_polymorphism_get_composed_with_discriminator(**kwargs: Any) -> HttpRequest:
+    """Get complex object composing a polymorphic scalar property and array property with polymorphic
+    element type, with discriminator specified. Deserialization must NOT fail and use the
+    discriminator type specified on the wire.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -937,6 +1373,16 @@ def prepare_polymorphism_get_composed_with_discriminator(**kwargs: Any) -> HttpR
 
 
 def prepare_polymorphism_get_composed_without_discriminator(**kwargs: Any) -> HttpRequest:
+    """Get complex object composing a polymorphic scalar property and array property with polymorphic
+    element type, without discriminator specified on wire. Deserialization must NOT fail and use
+    the explicit type of the property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -957,6 +1403,15 @@ def prepare_polymorphism_get_composed_without_discriminator(**kwargs: Any) -> Ht
 
 
 def prepare_polymorphism_get_complicated(**kwargs: Any) -> HttpRequest:
+    """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
+    additional properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -977,6 +1432,17 @@ def prepare_polymorphism_get_complicated(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_polymorphism_put_complicated(complex_body: "_models.Salmon", **kwargs: Any) -> HttpRequest:
+    """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+    additional properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body:
+    :type complex_body: ~bodycomplex.models.Salmon
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -998,6 +1464,16 @@ def prepare_polymorphism_put_complicated(complex_body: "_models.Salmon", **kwarg
 
 
 def prepare_polymorphism_put_missing_discriminator(complex_body: "_models.Salmon", **kwargs: Any) -> HttpRequest:
+    """Put complex types that are polymorphic, omitting the discriminator.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body:
+    :type complex_body: ~bodycomplex.models.Salmon
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1019,6 +1495,43 @@ def prepare_polymorphism_put_missing_discriminator(complex_body: "_models.Salmon
 
 
 def prepare_polymorphism_put_valid_missing_required(complex_body: "_models.Fish", **kwargs: Any) -> HttpRequest:
+    """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+    request should not be allowed from the client.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please attempt put a sawshark that looks like this, the client should not
+     allow this data to be sent:
+     {
+         "fishtype": "sawshark",
+         "species": "snaggle toothed",
+         "length": 18.5,
+         "age": 2,
+         "birthday": "2013-06-01T01:00:00Z",
+         "location": "alaska",
+         "picture": base64(FF FF FF FF FE),
+         "siblings": [
+             {
+                 "fishtype": "shark",
+                 "species": "predator",
+                 "birthday": "2012-01-05T01:00:00Z",
+                 "length": 20,
+                 "age": 6
+             },
+             {
+                 "fishtype": "sawshark",
+                 "species": "dangerous",
+                 "picture": base64(FF FF FF FF FE),
+                 "length": 10,
+                 "age": 105
+             }
+         ]
+     }.
+    :type complex_body: ~bodycomplex.models.Fish
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1040,6 +1553,14 @@ def prepare_polymorphism_put_valid_missing_required(complex_body: "_models.Fish"
 
 
 def prepare_polymorphicrecursive_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex types that are polymorphic and have recursive references.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1060,6 +1581,68 @@ def prepare_polymorphicrecursive_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_polymorphicrecursive_put_valid(complex_body: "_models.Fish", **kwargs: Any) -> HttpRequest:
+    """Put complex types that are polymorphic and have recursive references.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body: Please put a salmon that looks like this:
+     {
+         "fishtype": "salmon",
+         "species": "king",
+         "length": 1,
+         "age": 1,
+         "location": "alaska",
+         "iswild": true,
+         "siblings": [
+             {
+                 "fishtype": "shark",
+                 "species": "predator",
+                 "length": 20,
+                 "age": 6,
+                 "siblings": [
+                     {
+                         "fishtype": "salmon",
+                         "species": "coho",
+                         "length": 2,
+                         "age": 2,
+                         "location": "atlantic",
+                         "iswild": true,
+                         "siblings": [
+                             {
+                                 "fishtype": "shark",
+                                 "species": "predator",
+                                 "length": 20,
+                                 "age": 6
+                             },
+                             {
+                                 "fishtype": "sawshark",
+                                 "species": "dangerous",
+                                 "length": 10,
+                                 "age": 105
+                             }
+                         ]
+                     },
+                     {
+                         "fishtype": "sawshark",
+                         "species": "dangerous",
+                         "length": 10,
+                         "age": 105
+                     }
+                 ]
+             },
+             {
+                 "fishtype": "sawshark",
+                 "species": "dangerous",
+                 "length": 10,
+                 "age": 105
+             }
+         ]
+     }.
+    :type complex_body: ~bodycomplex.models.Fish
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1081,6 +1664,14 @@ def prepare_polymorphicrecursive_put_valid(complex_body: "_models.Fish", **kwarg
 
 
 def prepare_readonlyproperty_get_valid(**kwargs: Any) -> HttpRequest:
+    """Get complex types that have readonly properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -1101,6 +1692,16 @@ def prepare_readonlyproperty_get_valid(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_readonlyproperty_put_valid(complex_body: "_models.ReadonlyObj", **kwargs: Any) -> HttpRequest:
+    """Put complex types that have readonly properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param complex_body:
+    :type complex_body: ~bodycomplex.models.ReadonlyObj
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1122,6 +1723,14 @@ def prepare_readonlyproperty_put_valid(complex_body: "_models.ReadonlyObj", **kw
 
 
 def prepare_flattencomplex_get_valid(**kwargs: Any) -> HttpRequest:
+    """get_valid.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

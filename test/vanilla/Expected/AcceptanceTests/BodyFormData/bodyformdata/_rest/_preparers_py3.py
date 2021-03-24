@@ -14,6 +14,16 @@ _SERIALIZER = Serializer()
 
 
 def prepare_formdata_upload_file(file_content: IO, **kwargs: Any) -> HttpRequest:
+    """Upload file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param file_content: File to upload.
+    :type file_content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 
@@ -35,6 +45,16 @@ def prepare_formdata_upload_file(file_content: IO, **kwargs: Any) -> HttpRequest
 
 
 def prepare_formdata_upload_file_via_body(file_content: IO, **kwargs: Any) -> HttpRequest:
+    """Upload file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param file_content: File to upload.
+    :type file_content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/octet-stream, application/json"
 
@@ -56,6 +76,16 @@ def prepare_formdata_upload_file_via_body(file_content: IO, **kwargs: Any) -> Ht
 
 
 def prepare_formdata_upload_files(file_content: List[IO], **kwargs: Any) -> HttpRequest:
+    """Upload multiple files.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param file_content: Files to upload.
+    :type file_content: list[IO]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 

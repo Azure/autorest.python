@@ -14,6 +14,18 @@ _SERIALIZER = Serializer()
 
 
 def prepare_analyze_body(input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> HttpRequest:
+    """Analyze body, that could be different media types.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input: Input parameter.
+    :type input: IO or ~mediatypes.models.SourcePath
+    :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+     Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -47,6 +59,16 @@ def prepare_analyze_body(input: Optional[Union[IO, "_models.SourcePath"]] = None
 
 
 def prepare_content_type_with_encoding(input: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input: Input parameter.
+    :type input: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "text/plain")
     accept = "application/json"
 

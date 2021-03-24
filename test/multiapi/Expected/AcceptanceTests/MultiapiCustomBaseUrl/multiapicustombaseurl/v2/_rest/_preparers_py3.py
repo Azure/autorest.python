@@ -18,6 +18,17 @@ def prepare_test(
     id: int,
     **kwargs: Any
 ) -> HttpRequest:
+    """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
+    version of 2.0.0 to pass.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param id: An int parameter. Put in 2 to pass.
+    :type id: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "2.0.0"
     accept = "application/json"
 

@@ -21,6 +21,14 @@ def prepare_xml_get_complex_type_ref_no_meta(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a complex type that has a ref to a complex type with no XML node.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -45,6 +53,16 @@ def prepare_xml_put_complex_type_ref_no_meta(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts a complex type that has a ref to a complex type with no XML node.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param model:
+    :type model: ~xmlservice.models.RootWithRefAndNoMeta
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -67,6 +85,14 @@ def prepare_xml_get_complex_type_ref_with_meta(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a complex type that has a ref to a complex type with XML node.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -91,6 +117,16 @@ def prepare_xml_put_complex_type_ref_with_meta(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts a complex type that has a ref to a complex type with XML node.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param model:
+    :type model: ~xmlservice.models.RootWithRefAndMeta
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -113,6 +149,14 @@ def prepare_xml_get_simple(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a simple XML document.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -137,6 +181,16 @@ def prepare_xml_put_simple(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put a simple XML document.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param slideshow:
+    :type slideshow: ~xmlservice.models.Slideshow
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 
@@ -161,6 +215,14 @@ def prepare_xml_get_wrapped_lists(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get an XML document with multiple wrapped lists.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -185,6 +247,16 @@ def prepare_xml_put_wrapped_lists(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put an XML document with multiple wrapped lists.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param wrapped_lists:
+    :type wrapped_lists: ~xmlservice.models.AppleBarrel
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 
@@ -209,6 +281,14 @@ def prepare_xml_get_headers(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get strongly-typed response headers.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/headers")
@@ -229,6 +309,14 @@ def prepare_xml_get_empty_list(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get an empty list.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -253,6 +341,16 @@ def prepare_xml_put_empty_list(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts an empty list.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param slideshow:
+    :type slideshow: ~xmlservice.models.Slideshow
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -275,6 +373,14 @@ def prepare_xml_get_empty_wrapped_lists(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets some empty wrapped lists.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -299,6 +405,16 @@ def prepare_xml_put_empty_wrapped_lists(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts some empty wrapped lists.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param apple_barrel:
+    :type apple_barrel: ~xmlservice.models.AppleBarrel
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -321,6 +437,14 @@ def prepare_xml_get_root_list(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets a list as the root element.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -345,6 +469,16 @@ def prepare_xml_put_root_list(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts a list as the root element.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param bananas:
+    :type bananas: list[~xmlservice.models.Banana]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -367,6 +501,14 @@ def prepare_xml_get_root_list_single_item(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets a list with a single item.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -391,6 +533,16 @@ def prepare_xml_put_root_list_single_item(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts a list with a single item.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param bananas:
+    :type bananas: list[~xmlservice.models.Banana]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -413,6 +565,14 @@ def prepare_xml_get_empty_root_list(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets an empty list as the root element.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -437,6 +597,16 @@ def prepare_xml_put_empty_root_list(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts an empty list as the root element.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param bananas:
+    :type bananas: list[~xmlservice.models.Banana]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -459,6 +629,14 @@ def prepare_xml_get_empty_child_element(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets an XML document with an empty child element.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -483,6 +661,16 @@ def prepare_xml_put_empty_child_element(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts a value with an empty child element.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param banana:
+    :type banana: ~xmlservice.models.Banana
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -505,6 +693,14 @@ def prepare_xml_list_containers(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Lists containers in a storage account.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     comp = "list"
     accept = "application/xml"
 
@@ -531,6 +727,14 @@ def prepare_xml_get_service_properties(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets storage service properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     comp = "properties"
     restype = "service"
     accept = "application/xml"
@@ -560,6 +764,16 @@ def prepare_xml_put_service_properties(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts storage service properties.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param properties:
+    :type properties: ~xmlservice.models.StorageServiceProperties
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     comp = "properties"
     restype = "service"
     content_type = kwargs.pop("content_type", "application/xml")
@@ -586,6 +800,14 @@ def prepare_xml_get_acls(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Gets storage ACLs for a container.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     comp = "acl"
     restype = "container"
     accept = "application/xml"
@@ -615,6 +837,16 @@ def prepare_xml_put_acls(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts storage ACLs for a container.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param properties:
+    :type properties: list[~xmlservice.models.SignedIdentifier]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     comp = "acl"
     restype = "container"
     content_type = kwargs.pop("content_type", "application/xml")
@@ -641,6 +873,14 @@ def prepare_xml_list_blobs(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Lists blobs in a storage container.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     comp = "list"
     restype = "container"
     accept = "application/xml"
@@ -670,6 +910,17 @@ def prepare_xml_json_input(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+    number 42.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param properties:
+    :type properties: ~xmlservice.models.JSONInput
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
 
     # Construct URL
@@ -692,6 +943,14 @@ def prepare_xml_json_output(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A Swagger with XML that has one operation that returns JSON. ID number 42.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -715,6 +974,15 @@ def prepare_xml_get_xms_text(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get back an XML object with an x-ms-text property, which should translate to the returned
+    object's 'language' property being 'english' and its 'content' property being 'I am text'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -738,6 +1006,14 @@ def prepare_xml_get_bytes(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get an XML document with binary property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -762,6 +1038,16 @@ def prepare_xml_put_binary(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put an XML document with binary property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param slideshow:
+    :type slideshow: ~xmlservice.models.ModelWithByteProperty
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 
@@ -786,6 +1072,14 @@ def prepare_xml_get_uri(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get an XML document with uri property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/xml"
 
     # Construct URL
@@ -810,6 +1104,16 @@ def prepare_xml_put_uri(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put an XML document with uri property.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param model:
+    :type model: ~xmlservice.models.ModelWithUrlProperty
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 

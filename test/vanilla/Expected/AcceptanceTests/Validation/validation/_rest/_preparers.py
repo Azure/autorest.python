@@ -25,6 +25,20 @@ def prepare_validation_of_method_parameters(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Validates input parameters on the method. See swagger for details.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param subscription_id: Subscription ID.
+    :type subscription_id: str
+    :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+    :type resource_group_name: str
+    :param id: Required int multiple of 10 from 100 to 1000.
+    :type id: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -63,6 +77,22 @@ def prepare_validation_of_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Validates body parameters on the method. See swagger for details.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param subscription_id: Subscription ID.
+    :type subscription_id: str
+    :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+    :type resource_group_name: str
+    :param id: Required int multiple of 10 from 100 to 1000.
+    :type id: int
+    :param body:
+    :type body: ~validation.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = "1.0.0"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -97,6 +127,14 @@ def prepare_get_with_constant_in_path(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """get_with_constant_in_path.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     constant_param = "constant"
 
     # Construct URL
@@ -123,6 +161,16 @@ def prepare_post_with_constant_in_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """post_with_constant_in_body.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body:
+    :type body: ~validation.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     constant_param = "constant"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"

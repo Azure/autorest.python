@@ -21,6 +21,18 @@ def prepare_contants_put_no_model_as_string_no_required_two_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop(
         "input", None
     )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
@@ -47,6 +59,18 @@ def prepare_contants_put_no_model_as_string_no_required_two_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop(
         "input", "value1"
     )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
@@ -73,6 +97,18 @@ def prepare_contants_put_no_model_as_string_no_required_one_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input", "value1")  # type: Optional[str]
 
     # Construct URL
@@ -97,6 +133,18 @@ def prepare_contants_put_no_model_as_string_no_required_one_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input", "value1")  # type: Optional[str]
 
     # Construct URL
@@ -121,6 +169,18 @@ def prepare_contants_put_no_model_as_string_required_two_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
@@ -144,6 +204,18 @@ def prepare_contants_put_no_model_as_string_required_two_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input", "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
@@ -167,6 +239,16 @@ def prepare_contants_put_no_model_as_string_required_one_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = "value1"
 
     # Construct URL
@@ -190,6 +272,16 @@ def prepare_contants_put_no_model_as_string_required_one_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = "value1"
 
     # Construct URL
@@ -213,6 +305,18 @@ def prepare_contants_put_model_as_string_no_required_two_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop(
         "input", None
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
@@ -239,6 +343,18 @@ def prepare_contants_put_model_as_string_no_required_two_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop(
         "input", "value1"
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
@@ -265,6 +381,18 @@ def prepare_contants_put_model_as_string_no_required_one_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop(
         "input", None
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
@@ -291,6 +419,18 @@ def prepare_contants_put_model_as_string_no_required_one_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop(
         "input", "value1"
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
@@ -317,6 +457,18 @@ def prepare_contants_put_model_as_string_required_two_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
@@ -340,6 +492,18 @@ def prepare_contants_put_model_as_string_required_two_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
@@ -363,6 +527,18 @@ def prepare_contants_put_model_as_string_required_one_value_no_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
 
     # Construct URL
@@ -386,6 +562,18 @@ def prepare_contants_put_model_as_string_required_one_value_default(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Puts constants to the testserver.
+
+    Puts constants to the testserver.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param input:
+    :type input: str or ~constants.models.ModelAsStringRequiredOneValueDefaultOpEnum
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
 
     # Construct URL

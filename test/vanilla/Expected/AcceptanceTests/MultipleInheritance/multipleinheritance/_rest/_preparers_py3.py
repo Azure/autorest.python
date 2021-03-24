@@ -14,6 +14,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_get_horse(**kwargs: Any) -> HttpRequest:
+    """Get a horse with name 'Fred' and isAShowHorse true.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -34,6 +42,16 @@ def prepare_get_horse(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_put_horse(horse: "_models.Horse", **kwargs: Any) -> HttpRequest:
+    """Put a horse with name 'General' and isAShowHorse false.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param horse: Put a horse with name 'General' and isAShowHorse false.
+    :type horse: ~multipleinheritance.models.Horse
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -55,6 +73,14 @@ def prepare_put_horse(horse: "_models.Horse", **kwargs: Any) -> HttpRequest:
 
 
 def prepare_get_pet(**kwargs: Any) -> HttpRequest:
+    """Get a pet with name 'Peanut'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -75,6 +101,16 @@ def prepare_get_pet(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_put_pet(pet: "_models.Pet", **kwargs: Any) -> HttpRequest:
+    """Put a pet with name 'Butter'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param pet: Put a pet with name 'Butter'.
+    :type pet: ~multipleinheritance.models.Pet
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -96,6 +132,14 @@ def prepare_put_pet(pet: "_models.Pet", **kwargs: Any) -> HttpRequest:
 
 
 def prepare_get_feline(**kwargs: Any) -> HttpRequest:
+    """Get a feline where meows and hisses are true.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -116,6 +160,16 @@ def prepare_get_feline(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_put_feline(feline: "_models.Feline", **kwargs: Any) -> HttpRequest:
+    """Put a feline who hisses and doesn't meow.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param feline: Put a feline who hisses and doesn't meow.
+    :type feline: ~multipleinheritance.models.Feline
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -137,6 +191,14 @@ def prepare_put_feline(feline: "_models.Feline", **kwargs: Any) -> HttpRequest:
 
 
 def prepare_get_cat(**kwargs: Any) -> HttpRequest:
+    """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -157,6 +219,16 @@ def prepare_get_cat(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_put_cat(cat: "_models.Cat", **kwargs: Any) -> HttpRequest:
+    """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+    :type cat: ~multipleinheritance.models.Cat
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -178,6 +250,15 @@ def prepare_put_cat(cat: "_models.Cat", **kwargs: Any) -> HttpRequest:
 
 
 def prepare_get_kitten(**kwargs: Any) -> HttpRequest:
+    """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
+    is false.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -198,6 +279,18 @@ def prepare_get_kitten(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_put_kitten(kitten: "_models.Kitten", **kwargs: Any) -> HttpRequest:
+    """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
+    true.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
+     eatsMiceYet is true.
+    :type kitten: ~multipleinheritance.models.Kitten
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

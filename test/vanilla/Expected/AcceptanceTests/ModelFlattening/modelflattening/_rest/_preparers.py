@@ -23,6 +23,16 @@ def prepare_put_array(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put External Resource as an Array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_array: External Resource as an Array to put.
+    :type resource_array: list[~modelflattening.models.Resource]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -47,6 +57,14 @@ def prepare_get_array(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get External Resource as an Array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -71,6 +89,17 @@ def prepare_put_wrapped_array(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """No need to have a route in Express server for this operation. Used to verify the type flattened
+    is not removed if it's referenced in an array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_array: External Resource as an Array to put.
+    :type resource_array: list[~modelflattening.models.WrappedProduct]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -95,6 +124,15 @@ def prepare_get_wrapped_array(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """No need to have a route in Express server for this operation. Used to verify the type flattened
+    is not removed if it's referenced in an array.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -119,6 +157,16 @@ def prepare_put_dictionary(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put External Resource as a Dictionary.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_dictionary: External Resource as a Dictionary to put.
+    :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -143,6 +191,14 @@ def prepare_get_dictionary(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get External Resource as a Dictionary.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -167,6 +223,16 @@ def prepare_put_resource_collection(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put External Resource as a ResourceCollection.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_complex_object: External Resource as a ResourceCollection to put.
+    :type resource_complex_object: ~modelflattening.models.ResourceCollection
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -191,6 +257,14 @@ def prepare_get_resource_collection(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get External Resource as a ResourceCollection.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -215,6 +289,16 @@ def prepare_put_simple_product(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put Simple Product with client flattening true on the model.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param simple_body_product: Simple body product to put.
+    :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -240,6 +324,16 @@ def prepare_post_flattened_simple_product(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put Flattened Simple Product with client flattening true on the parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param simple_body_product: Simple body product to post.
+    :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -266,6 +360,18 @@ def prepare_put_simple_product_with_grouping(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put Simple Product with client flattening true on the model.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param name: Product name with value 'groupproduct'.
+    :type name: str
+    :param simple_body_product: Simple body product to put.
+    :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

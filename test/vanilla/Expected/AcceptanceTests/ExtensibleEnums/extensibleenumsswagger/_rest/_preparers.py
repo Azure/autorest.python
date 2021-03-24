@@ -23,6 +23,16 @@ def prepare_pet_get_by_pet_id(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """get pet by id.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param pet_id: Pet id.
+    :type pet_id: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -51,6 +61,16 @@ def prepare_pet_add_pet(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """add pet.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param pet_param: pet param.
+    :type pet_param: ~extensibleenumsswagger.models.Pet
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

@@ -24,6 +24,20 @@ def prepare_paths_get_empty(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get a 200 to test a valid base uri.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param key_name: The key name with value 'key1'.
+    :type key_name: str
+    :param subscription_id: The subscription id with value 'test12'.
+    :type subscription_id: str
+    :param key_version: The key version. Default value 'v1'.
+    :type key_version: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
     accept = "application/json"
 

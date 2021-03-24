@@ -23,6 +23,16 @@ def prepare_implicit_get_required_path(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly required path parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param path_parameter:
+    :type path_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -50,6 +60,16 @@ def prepare_implicit_put_optional_query(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly optional query parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param query_parameter:
+    :type query_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
@@ -77,6 +97,16 @@ def prepare_implicit_put_optional_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly optional header parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param query_parameter:
+    :type query_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
@@ -104,6 +134,16 @@ def prepare_implicit_put_optional_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly optional body parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -129,6 +169,16 @@ def prepare_implicit_put_optional_binary_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly optional body parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/json"
 
@@ -154,6 +204,16 @@ def prepare_implicit_get_required_global_path(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly required path parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param required_global_path: number of items to skip.
+    :type required_global_path: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -181,6 +241,16 @@ def prepare_implicit_get_required_global_query(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly required query parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param required_global_query: number of items to skip.
+    :type required_global_query: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     required_global_query = kwargs.pop("required_global_query")  # type: str
     accept = "application/json"
 
@@ -207,6 +277,16 @@ def prepare_implicit_get_optional_global_query(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test implicitly optional query parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param optional_global_query: number of items to skip.
+    :type optional_global_query: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     optional_global_query = kwargs.pop("optional_global_query", None)  # type: Optional[int]
     accept = "application/json"
 
@@ -237,6 +317,16 @@ def prepare_explicit_put_optional_binary_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional body parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/json"
 
@@ -262,6 +352,16 @@ def prepare_explicit_put_required_binary_body(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required body parameter.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/json"
 
@@ -287,6 +387,17 @@ def prepare_explicit_post_required_integer_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required integer. Please put null and the client library should throw before
+    the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -312,6 +423,16 @@ def prepare_explicit_post_optional_integer_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional integer. Please put null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -337,6 +458,17 @@ def prepare_explicit_post_required_integer_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
+    client library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.IntWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -362,6 +494,16 @@ def prepare_explicit_post_optional_integer_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.IntOptionalWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -386,6 +528,17 @@ def prepare_explicit_post_required_integer_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
+    library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_parameter:
+    :type header_parameter: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     header_parameter = kwargs.pop("header_parameter")  # type: int
     accept = "application/json"
 
@@ -411,6 +564,16 @@ def prepare_explicit_post_optional_integer_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional integer. Please put a header 'headerParameter' => null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_parameter:
+    :type header_parameter: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[int]
     accept = "application/json"
 
@@ -438,6 +601,17 @@ def prepare_explicit_post_required_string_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required string. Please put null and the client library should throw before the
+    request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -463,6 +637,16 @@ def prepare_explicit_post_optional_string_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional string. Please put null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -488,6 +672,17 @@ def prepare_explicit_post_required_string_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
+    client library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.StringWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -513,6 +708,16 @@ def prepare_explicit_post_optional_string_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.StringOptionalWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -537,6 +742,17 @@ def prepare_explicit_post_required_string_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required string. Please put a header 'headerParameter' => null and the client
+    library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_parameter:
+    :type header_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     header_parameter = kwargs.pop("header_parameter")  # type: str
     accept = "application/json"
 
@@ -562,6 +778,16 @@ def prepare_explicit_post_optional_string_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional string. Please put a header 'headerParameter' => null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     body_parameter = kwargs.pop("body_parameter", None)  # type: Optional[str]
     accept = "application/json"
 
@@ -589,6 +815,17 @@ def prepare_explicit_post_required_class_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required complex object. Please put null and the client library should throw
+    before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -614,6 +851,16 @@ def prepare_explicit_post_optional_class_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional complex object. Please put null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.Product
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -639,6 +886,17 @@ def prepare_explicit_post_required_class_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
+    and the client library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.ClassWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -664,6 +922,16 @@ def prepare_explicit_post_optional_class_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.ClassOptionalWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -689,6 +957,17 @@ def prepare_explicit_post_required_array_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required array. Please put null and the client library should throw before the
+    request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -714,6 +993,16 @@ def prepare_explicit_post_optional_array_parameter(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional array. Please put null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -739,6 +1028,17 @@ def prepare_explicit_post_required_array_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
+    client library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.ArrayWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -764,6 +1064,16 @@ def prepare_explicit_post_optional_array_property(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param body_parameter:
+    :type body_parameter: ~requiredoptional.models.ArrayOptionalWrapper
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -788,6 +1098,17 @@ def prepare_explicit_post_required_array_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly required array. Please put a header 'headerParameter' => null and the client
+    library should throw before the request is sent.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_parameter:
+    :type header_parameter: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     header_parameter = kwargs.pop("header_parameter")  # type: List[str]
     accept = "application/json"
 
@@ -813,6 +1134,16 @@ def prepare_explicit_post_optional_array_header(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Test explicitly optional integer. Please put a header 'headerParameter' => null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param header_parameter:
+    :type header_parameter: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[List[str]]
     accept = "application/json"
 

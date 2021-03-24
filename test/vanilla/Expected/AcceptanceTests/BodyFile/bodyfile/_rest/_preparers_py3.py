@@ -14,6 +14,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_files_get_file(**kwargs: Any) -> HttpRequest:
+    """Get file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "image/png, application/json"
 
     # Construct URL
@@ -34,6 +42,14 @@ def prepare_files_get_file(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_files_get_file_large(**kwargs: Any) -> HttpRequest:
+    """Get a large file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "image/png, application/json"
 
     # Construct URL
@@ -54,6 +70,14 @@ def prepare_files_get_file_large(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_files_get_empty_file(**kwargs: Any) -> HttpRequest:
+    """Get empty file.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "image/png, application/json"
 
     # Construct URL

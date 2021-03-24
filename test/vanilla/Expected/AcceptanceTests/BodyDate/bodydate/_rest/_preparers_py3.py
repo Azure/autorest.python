@@ -15,6 +15,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_date_get_null(**kwargs: Any) -> HttpRequest:
+    """Get null date value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -35,6 +43,14 @@ def prepare_date_get_null(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_date_get_invalid_date(**kwargs: Any) -> HttpRequest:
+    """Get invalid date value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -55,6 +71,14 @@ def prepare_date_get_invalid_date(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_date_get_overflow_date(**kwargs: Any) -> HttpRequest:
+    """Get overflow date value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -75,6 +99,14 @@ def prepare_date_get_overflow_date(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_date_get_underflow_date(**kwargs: Any) -> HttpRequest:
+    """Get underflow date value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -95,6 +127,16 @@ def prepare_date_get_underflow_date(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_date_put_max_date(date_body: datetime.date, **kwargs: Any) -> HttpRequest:
+    """Put max date value 9999-12-31.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param date_body: date body.
+    :type date_body: ~datetime.date
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -116,6 +158,14 @@ def prepare_date_put_max_date(date_body: datetime.date, **kwargs: Any) -> HttpRe
 
 
 def prepare_date_get_max_date(**kwargs: Any) -> HttpRequest:
+    """Get max date value 9999-12-31.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -136,6 +186,16 @@ def prepare_date_get_max_date(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_date_put_min_date(date_body: datetime.date, **kwargs: Any) -> HttpRequest:
+    """Put min date value 0000-01-01.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param date_body: date body.
+    :type date_body: ~datetime.date
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -157,6 +217,14 @@ def prepare_date_put_min_date(date_body: datetime.date, **kwargs: Any) -> HttpRe
 
 
 def prepare_date_get_min_date(**kwargs: Any) -> HttpRequest:
+    """Get min date value 0000-01-01.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

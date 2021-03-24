@@ -17,6 +17,20 @@ _SERIALIZER = Serializer()
 def prepare_availabilitysets_update(
     resource_group_name: str, avset: str, tags: "_models.AvailabilitySetUpdateParameters", **kwargs: Any
 ) -> HttpRequest:
+    """Updates the tags for an availability set.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param resource_group_name: The name of the resource group.
+    :type resource_group_name: str
+    :param avset: The name of the storage availability set.
+    :type avset: str
+    :param tags: The tags.
+    :type tags: ~parameterflattening.models.AvailabilitySetUpdateParameters
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
 
     # Construct URL

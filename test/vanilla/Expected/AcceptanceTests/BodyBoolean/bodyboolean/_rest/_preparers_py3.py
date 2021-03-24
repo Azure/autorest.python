@@ -14,6 +14,14 @@ _SERIALIZER = Serializer()
 
 
 def prepare_bool_get_true(**kwargs: Any) -> HttpRequest:
+    """Get true Boolean value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -34,6 +42,16 @@ def prepare_bool_get_true(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_bool_put_true(bool_body: bool, **kwargs: Any) -> HttpRequest:
+    """Set Boolean value true.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param bool_body:
+    :type bool_body: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -55,6 +73,14 @@ def prepare_bool_put_true(bool_body: bool, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_bool_get_false(**kwargs: Any) -> HttpRequest:
+    """Get false Boolean value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -75,6 +101,16 @@ def prepare_bool_get_false(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_bool_put_false(bool_body: bool, **kwargs: Any) -> HttpRequest:
+    """Set Boolean value false.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param bool_body:
+    :type bool_body: bool
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -96,6 +132,14 @@ def prepare_bool_put_false(bool_body: bool, **kwargs: Any) -> HttpRequest:
 
 
 def prepare_bool_get_null(**kwargs: Any) -> HttpRequest:
+    """Get null Boolean value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -116,6 +160,14 @@ def prepare_bool_get_null(**kwargs: Any) -> HttpRequest:
 
 
 def prepare_bool_get_invalid(**kwargs: Any) -> HttpRequest:
+    """Get invalid Boolean value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL

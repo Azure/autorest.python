@@ -21,6 +21,14 @@ def prepare_string_get_null(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get null string value value.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -45,6 +53,16 @@ def prepare_string_put_null(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Set string value null.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_body: string body.
+    :type string_body: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -69,6 +87,14 @@ def prepare_string_get_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get empty string value value ''.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -93,6 +119,16 @@ def prepare_string_put_empty(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Set string value empty ''.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_body: string body.
+    :type string_body: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -117,6 +153,14 @@ def prepare_string_get_mbcs(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -141,6 +185,16 @@ def prepare_string_put_mbcs(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_body: string body.
+    :type string_body: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -165,6 +219,16 @@ def prepare_string_get_whitespace(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get string value with leading and trailing whitespace
+    ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
+    of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -189,6 +253,18 @@ def prepare_string_put_whitespace(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Set String value with leading and trailing whitespace
+    ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
+    of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_body: string body.
+    :type string_body: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -213,6 +289,14 @@ def prepare_string_get_not_provided(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get String value when no string value is sent in response payload.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -236,6 +320,14 @@ def prepare_string_get_base64_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get value that is base64 encoded.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -259,6 +351,14 @@ def prepare_string_get_base64_url_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get value that is base64url encoded.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -283,6 +383,16 @@ def prepare_string_put_base64_url_encoded(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Put value that is base64url encoded.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_body: string body.
+    :type string_body: bytes
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -307,6 +417,14 @@ def prepare_string_get_null_base64_url_encoded(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get null value that is expected to be base64url encoded.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -330,6 +448,14 @@ def prepare_enum_get_not_expandable(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -354,6 +480,16 @@ def prepare_enum_put_not_expandable(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param string_body: string body.
+    :type string_body: str or ~bodystring.models.Colors
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -378,6 +514,14 @@ def prepare_enum_get_referenced(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -402,6 +546,16 @@ def prepare_enum_put_referenced(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param enum_string_body: enum string body.
+    :type enum_string_body: str or ~bodystring.models.Colors
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -426,6 +580,14 @@ def prepare_enum_get_referenced_constant(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Get value 'green-color' from the constant.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -450,6 +612,16 @@ def prepare_enum_put_referenced_constant(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Sends value 'green-color' from a constant.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param enum_string_body: enum string body.
+    :type enum_string_body: ~bodystring.models.RefColorConstant
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

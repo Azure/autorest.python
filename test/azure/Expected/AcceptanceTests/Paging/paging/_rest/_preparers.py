@@ -22,6 +22,14 @@ def prepare_paging_get_no_item_name_pages(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that must return result of the default 'value' node.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -45,6 +53,14 @@ def prepare_paging_get_null_next_link_name_pages(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that must ignore any kind of nextLink, and stop after page 1.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -68,6 +84,14 @@ def prepare_paging_get_single_pages(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that finishes on the first call without a nextlink.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -91,6 +115,15 @@ def prepare_paging_first_response_empty(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation whose first response's items list is empty, but still returns a next link.
+    Second (and final) call, will give you an items list of 1.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -114,6 +147,21 @@ def prepare_paging_get_multiple_pages(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that includes a nextLink that has 10 pages.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param client_request_id:
+    :type client_request_id: str
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
     timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
@@ -146,6 +194,18 @@ def prepare_paging_get_with_query_params(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that includes a next operation. It has a different query parameter from it's
+    next operation nextOperationWithQueryParams. Returns a ProductResult.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
+     test.
+    :type required_query_parameter: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     required_query_parameter = kwargs.pop("required_query_parameter")  # type: int
     query_constant = True
     accept = "application/json"
@@ -176,6 +236,14 @@ def prepare_paging_next_operation_with_query_params(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     query_constant = True
     accept = "application/json"
 
@@ -202,6 +270,21 @@ def prepare_paging_get_odata_multiple_pages(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that includes a nextLink in odata format that has 10 pages.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param client_request_id:
+    :type client_request_id: str
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
     timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
@@ -235,6 +318,23 @@ def prepare_paging_get_multiple_pages_with_offset(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that includes a nextLink that has 10 pages.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param offset: Offset of return value.
+    :type offset: int
+    :param client_request_id:
+    :type client_request_id: str
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
     timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
@@ -271,6 +371,15 @@ def prepare_paging_get_multiple_pages_retry_first(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that fails on the first call with 500 and then retries and then get a
+    response including a nextLink that has 10 pages.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -294,6 +403,15 @@ def prepare_paging_get_multiple_pages_retry_second(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
+    first with 500. The client should retry and finish all 10 pages eventually.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -317,6 +435,14 @@ def prepare_paging_get_single_pages_failure(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that receives a 400 on the first call.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -340,6 +466,14 @@ def prepare_paging_get_multiple_pages_failure(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that receives a 400 on the second call.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -363,6 +497,14 @@ def prepare_paging_get_multiple_pages_failure_uri(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that receives an invalid nextLink.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
@@ -387,6 +529,18 @@ def prepare_paging_get_multiple_pages_fragment_next_link(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that doesn't return a full URL, just a fragment.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param api_version: Sets the api version to use.
+    :type api_version: str
+    :param tenant: Sets the tenant to use.
+    :type tenant: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
 
@@ -418,6 +572,18 @@ def prepare_paging_get_multiple_pages_fragment_with_grouping_next_link(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param api_version: Sets the api version to use.
+    :type api_version: str
+    :param tenant: Sets the tenant to use.
+    :type tenant: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
 
@@ -448,6 +614,21 @@ def prepare_paging_get_multiple_pages_lro_initial(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A long-running paging operation that includes a nextLink that has 10 pages.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param client_request_id:
+    :type client_request_id: str
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
     timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
@@ -482,6 +663,20 @@ def prepare_paging_next_fragment(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that doesn't return a full URL, just a fragment.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param api_version: Sets the api version to use.
+    :type api_version: str
+    :param tenant: Sets the tenant to use.
+    :type tenant: str
+    :param next_link: Next link for list operation.
+    :type next_link: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
 
@@ -515,6 +710,20 @@ def prepare_paging_next_fragment_with_grouping(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that doesn't return a full URL, just a fragment.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :param api_version: Sets the api version to use.
+    :type api_version: str
+    :param tenant: Sets the tenant to use.
+    :type tenant: str
+    :param next_link: Next link for list operation.
+    :type next_link: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
 
@@ -546,6 +755,15 @@ def prepare_paging_get_paging_model_with_item_name_with_xms_client_name(
     **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
+    """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
+    name 'indexes'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
     accept = "application/json"
 
     # Construct URL
