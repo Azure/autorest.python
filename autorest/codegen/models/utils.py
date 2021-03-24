@@ -36,7 +36,7 @@ def get_converted_parameters(yaml_data, parameter_converter):
     for request in yaml_data["requests"]:
         for yaml in request.get("parameters", []):
             parameter = parameter_converter(yaml)
-            if yaml["language"]["python"]["name"] in _M4_HEADER_PARAMETERS:
+            if yaml["language"]["python"]["name"] == "accept":
                 parameter.is_hidden_kwarg = True
                 parameters.append(parameter)
             elif multiple_requests:
@@ -53,7 +53,7 @@ def get_converted_parameters(yaml_data, parameter_converter):
 
     if multiple_media_type_parameters:
         body_parameters_name_set = set(
-            p.serialized_name for p in multiple_media_type_parameters
+            p.serialized_name for p in multiple_media_type_parameters if p.serialized_name != "content_type"
         )
         if len(body_parameters_name_set) > 1:
             raise ValueError(

@@ -36,7 +36,7 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {# content type docstring #}
 {% macro content_type_docstring(preparer) %}
 {% set content_type_constant = preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
-:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.constant_declaration }}.
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ preparer.default_content_type }}.
  Allowed values are: "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
 {# Param docstring #}
@@ -296,7 +296,7 @@ _body = {
 {{ constant_body.serialized_name }} = {{ constant_body.constant_declaration }}
 {% endfor %}
 {% if preparer.parameters.has_body and not (preparer.is_stream or preparer.multipart) %}
-{% set send_xml = "xml" if preparer.parameters.has_body and "xml" in preparer.content_type %}
+{% set send_xml = "xml" if preparer.parameters.has_body and "xml" in preparer.default_content_type %}
     {% if (preparer.schema_requests | length) == 1 %}
 {{ non_stream_body_params(preparer.schema_requests[0], send_xml) }}
     {% else %}

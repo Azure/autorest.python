@@ -13,20 +13,27 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def prepare_analyze_body(input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> HttpRequest:
+def prepare_analyze_body(
+    *,
+    json: Optional[IO] = None,
+    content: Optional["_models.SourcePath"] = None,
+    content_type: Optional[Union[str, "_models.ContentType"]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Analyze body, that could be different media types.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
 
-    :param input: Input parameter.
-    :type input: IO or ~mediatypes.models.SourcePath
-    :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
-     Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
+    :param json: Input parameter.
+    :type json: IO
+    :param content: Input parameter.
+    :type content: ~mediatypes.models.SourcePath
+    :param content_type: Upload file type.
+    :type content_type: str or ~mediatypes.models.ContentType
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
     # Construct URL
@@ -37,39 +44,28 @@ def prepare_analyze_body(input: Optional[Union[IO, "_models.SourcePath"]] = None
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    if header_parameters["Content-Type"].split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = input
-
-    elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["json"] = input
-    else:
-        raise ValueError(
-            "The content_type '{}' is not one of the allowed values: "
-            "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(
-                header_parameters["Content-Type"]
-            )
-        )
-
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, content=content, json=json, **kwargs)
 
 
-def prepare_content_type_with_encoding(input: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def prepare_content_type_with_encoding(
+    *, content: Optional[str] = None, content_type: Optional[str] = "text/plain", **kwargs: Any
+) -> HttpRequest:
     """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this preparer into your code flow.
 
-    :param input: Input parameter.
-    :type input: str
+    :param content: Input parameter.
+    :type content: str
+    :param content_type: Upload file type.
+    :type content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", "text/plain")
     accept = "application/json"
 
     # Construct URL
@@ -80,10 +76,8 @@ def prepare_content_type_with_encoding(input: Optional[str] = None, **kwargs: An
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    body_content_kwargs = {}  # type: Dict[str, Any]
-    body_content_kwargs["content"] = input
-
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **body_content_kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, content=content, **kwargs)

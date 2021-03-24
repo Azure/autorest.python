@@ -87,6 +87,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_docstring_type: Optional[str] = None
         self.is_partial_body = yaml_data.get("isPartialBody", False)
 
+    def __eq__(self, o: "Parameter") -> bool:
+        return self.serialized_name == o.serialized_name
+
+    def __hash__(self) -> int:
+        return hash(self.serialized_name)
+
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):
         return f'self._serialize.{function_name}({parameters_line})'

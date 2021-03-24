@@ -10,11 +10,6 @@ from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
 from .object_schema import ObjectSchema
 
-def _get_body_param(body_param_name: str, body_param: PreparerParameter):
-    copied_param = deepcopy(body_param)
-    copied_param.serialized_name = body_param_name
-    return copied_param
-
 class PreparerParameterList(ParameterList):
     def __init__(
         self, parameters: Optional[List[PreparerParameter]] = None
@@ -36,15 +31,10 @@ class PreparerParameterList(ParameterList):
             return [c for c in all_constants if not c.location == ParameterLocation.Body]
         return all_constants
 
-    def _get_body_params(self, body_param: PreparerParameter) -> List[PreparerParameter]:
-        body_params = [_get_body_param("content", body_param)]  # we always include content for streams
-        if "json" in self.content_type:
-            body_params.append(_get_body_param("json", body_param))
-        if self.has_multipart:
-            body_params.append(_get_body_param("files", body_param))
-        if self.has_partial_body:
-            body_params.append(_get_body_param("data", body_param))
-        return body_params
+    @property
+    def kwargs_to_pop(self) -> List[Parameter]:
+        # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
+        return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names]
 
     @property
     def method(self) -> List[Parameter]:
@@ -61,23 +51,28 @@ class PreparerParameterList(ParameterList):
         )
         body_params = []
         seen_bodies: Set[str] = set()
+        seen_content_type = False
 
         for parameter in parameters:
             if any([g for g in self.groupers if id(g.yaml_data) == id(parameter.yaml_data)]):
                 continue
+            if seen_content_type and parameter.serialized_name == "content_type":
+                continue
+            if parameter.serialized_name == "content_type":
+                seen_content_type = True
             if parameter.in_method_signature:
                 if parameter.location == ParameterLocation.Body:
-                    if isinstance(parameter.schema, ObjectSchema) and "json" not in seen_bodies:
-                        seen_bodies.add("json")
-                        parameter.serialized_name = "json"
-                        body_params.append(parameter)
-                    elif parameter.is_multipart and parameter.is_partial_body and "files" not in seen_bodies:
+                    if parameter.is_multipart and parameter.is_partial_body and "files" not in seen_bodies:
                         seen_bodies.add("files")
                         parameter.serialized_name = "files"
                         body_params.append(parameter)
                     elif parameter.is_partial_body and "data" not in seen_bodies:
                         seen_bodies.add("data")
                         parameter.serialized_name = "data"
+                        body_params.append(parameter)
+                    elif "application/json" in self.content_types and "json" not in seen_bodies:
+                        seen_bodies.add("json")
+                        parameter.serialized_name = "json"
                         body_params.append(parameter)
                     elif "content" not in seen_bodies:
                         seen_bodies.add("content")
@@ -97,8 +92,6 @@ class PreparerParameterList(ParameterList):
 
         # put body first. We want them to be the first kwargs.
         signature_parameters = body_params + signature_parameters_no_default_value + signature_parameters_default_value
-        # if body_param:
-        #     signature_parameters = self._get_body_params(body_param) + signature_parameters
         return signature_parameters
 
     @staticmethod

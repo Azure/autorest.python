@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, cast, Dict, List, TypeVar
+from typing import Any, cast, Dict, List, TypeVar, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -61,19 +61,13 @@ class Preparer(BaseModel):
         self.summary = summary
 
     @property
-    def content_type(self) -> str:
-        return self.parameters.content_type
+    def default_content_type(self) -> str:
+        return self.parameters.default_content_type
 
     @property
     def is_stream(self) -> bool:
         """Is the request we're preparing a stream, like an upload."""
         return any(request.is_stream_request for request in self.schema_requests)
-
-    @property
-    def default_content_type(self) -> str:
-        return next(
-            p for p in self.parameters.constant if p.serialized_name == "content_type"
-        ).constant_declaration
 
     @property
     def has_body_param_with_object_schema(self) -> bool:

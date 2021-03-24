@@ -24,21 +24,50 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import io
+from mediatypes._rest import *
 
 def test_json_body_no_content_type_kwarg():
-    request = preparer(json={})
+    request = prepare_analyze_body(json={"source":"foo"})
     assert request.headers["Content-Type"] == "application/json"
+    assert request.content == '{"source": "foo"}'
+    assert request._internal_request.body == '{"source": "foo"}'  # internal request is what actually gets passed to the pipelines
+
 
 def test_json_body_content_type_kwarg():
-    request = preparer(json={}, content_type="application/json+cloudevents-batch")
+    request = prepare_analyze_body(json={"source":"foo"}, content_type="application/json+cloudevents-batch")
     assert request.headers["Content-Type"] == "application/json+cloudevents-batch"
+    assert request.content == '{"source": "foo"}'
+    assert request._internal_request.body == '{"source": "foo"}'  # internal request is what actually gets passed to the pipelines
+
+def test_string_body_no_content_type_kwarg():
+    request = prepare_analyze_body(content="hello")
+    assert not request.headers.get("Content-Type")
+
+def test_string_body_content_type_kwarg():
+    request = prepare_analyze_body(content="hello", content_type="text/plain")
+    assert request.headers["Content-Type"] == "text/plain"
+
+def test_io_body_no_content_type_kwarg():
+    request = prepare_analyze_body(content=b"PDF")
+    assert not request.headers.get("Content-Type")
+
+def test_io_body_content_type_kwarg():
+    request = prepare_analyze_body(content=b"PDF", content_type="bonjour")
+    assert request.headers["Content-Type"] == "bonjour"
 
 def test_stream_no_content_type_kwarg():
-    request = preparer(content=my_stream)
-    assert request.headers["Transfer-Encoding"] = "chunked"
-    assert not request.headers["Content-Type"]
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
+    with io.BytesIO(test_bytes) as stream_data:
+        request = prepare_analyze_body(content=stream_data)
+    assert request.headers["Transfer-Encoding"] == "chunked"
+    assert not request.headers.get("Content-Type")
 
 def test_stream_content_type_kwarg():
-    request = preparer(content=my_stream, content_type="application/json")
-    assert request.headers["Content-Type"] = "application/json"
-    assert not request.headers["Transfer-Encoding"]
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
+    with io.BytesIO(test_bytes) as stream_data:
+        request = prepare_analyze_body(content=stream_data, content_type="application/json")
+    assert request.headers["Content-Type"] == "application/json"
+    assert request.headers["Transfer-Encoding"] == "chunked"

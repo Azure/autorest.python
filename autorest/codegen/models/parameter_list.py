@@ -93,7 +93,7 @@ class ParameterList(MutableSequence):
 
     @property
     def headers(self) -> List[Parameter]:
-        return self.get_from_location(ParameterLocation.Header)
+        return list(set(self.get_from_location(ParameterLocation.Header)))
 
     @property
     def grouped(self) -> List[Parameter]:
@@ -136,21 +136,33 @@ class ParameterList(MutableSequence):
         return any(self.get_from_predicate(lambda parameter: parameter.is_partial_body))
 
     @property
-    def content_type_parameter(self) -> Parameter:
-        try:
-            return next(iter(
-                [
-                    p
-                    for p in self.constant if p.serialized_name == "content_type"
-                ]
-            ))
-        except StopIteration:
-            raise ValueError(f"No content type parameter")
+    def content_type_parameter(self) -> Optional[Parameter]:
+        content_type_params = self.get_from_predicate(
+            lambda parameter: parameter.serialized_name == "content_type"
+        )
+        if content_type_params:
+            return content_type_params[0]
+        return None
 
     @property
-    def content_type(self) -> str:
-        content_type_parameter = self.content_type_parameter
-        return content_type_parameter.schema.get_declaration(cast(ConstantSchema, content_type_parameter.schema).value)
+    def content_types(self) -> List[str]:
+        content_type_params = self.get_from_predicate(
+            lambda parameter: parameter.serialized_name == "content_type"
+        )
+        content_types = set()
+        for param in content_type_params:
+            if isinstance(param.schema, ConstantSchema):
+                content_types.add(param.schema.value)
+            else:
+                # enums
+                content_types.update([v.value for v in param.schema.values])
+
+        return list(content_types)
+
+
+    @property
+    def default_content_type(self) -> str:
+        return self.content_types[0]
 
     @property
     def method(self) -> List[Parameter]:
@@ -184,6 +196,10 @@ class ParameterList(MutableSequence):
     @property
     def kwargs(self) -> List[Parameter]:
         return [p for p in self.method if p.is_kwarg]
+
+    @property
+    def kwargs_to_pop(self) -> List[Parameter]:
+        return self.kwargs
 
     def method_signature_kwargs(self, async_mode: bool) -> List[str]:
         leftover_kwargs_typing = ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]

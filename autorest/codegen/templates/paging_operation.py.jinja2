@@ -1,7 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'paging_operation_helper.jinja2' as helper %}
-{% set send_xml = "xml" if preparer.parameters.has_body and "xml" in preparer.content_type  %}
-{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% set preparer = operation.preparer %}
 {% macro return_docstring(async_mode) %}
 {% if operation.responses | selectattr('has_body') | first %}

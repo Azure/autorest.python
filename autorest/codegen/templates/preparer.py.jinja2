@@ -25,19 +25,15 @@
     :rtype: ~azure.core.rest.HttpRequest
     """
 {% if not is_python_3_file %}
-    {% if preparer.parameters.kwargs %}
-        {% for kwarg in preparer.parameters.kwargs %}
+    {% if preparer.parameters.kwargs_to_pop %}
+        {% for kwarg in preparer.parameters.kwargs_to_pop %}
     {{ kwarg.pop_from_kwarg }}
         {% endfor %}
     {% endif %}
 {% endif %}
 {% if preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
-    {% if constant_parameter.serialized_name == "content_type" %}
-    content_type = kwargs.pop("content_type", None)
-    {% else %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
-    {% endif %}
     {% endfor %}
 {% endif %}
 

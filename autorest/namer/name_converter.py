@@ -57,6 +57,8 @@ class NameConverter:
                     for parameter in request.get("parameters", []):
                         NameConverter._add_multipart_information(parameter, operation)
                         NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
+                        if parameter.get("origin", "") == "modelerfour:synthesized/content-type":
+                            parameter["required"] = False
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
                 if operation.get("extensions"):
