@@ -40,13 +40,13 @@ def prepare_analyze_body(
     url = kwargs.pop("template_url", "/mediatypes/analyze")
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, content=content, json=json, **kwargs)
 
@@ -72,12 +72,12 @@ def prepare_content_type_with_encoding(
     url = kwargs.pop("template_url", "/mediatypes/contentTypeWithEncoding")
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, content=content, **kwargs)

@@ -30,31 +30,37 @@ from mediatypes._rest import *
 def test_json_body_no_content_type_kwarg():
     request = prepare_analyze_body(json={"source":"foo"})
     assert request.headers["Content-Type"] == "application/json"
+    assert request._internal_request.headers["Content-Type"] == "application/json"
     assert request.content == '{"source": "foo"}'
     assert request._internal_request.body == '{"source": "foo"}'  # internal request is what actually gets passed to the pipelines
 
 
 def test_json_body_content_type_kwarg():
-    request = prepare_analyze_body(json={"source":"foo"}, content_type="application/json+cloudevents-batch")
+    request = prepare_analyze_body(json=[{"source":"foo"}], content_type="application/json+cloudevents-batch")
     assert request.headers["Content-Type"] == "application/json+cloudevents-batch"
-    assert request.content == '{"source": "foo"}'
-    assert request._internal_request.body == '{"source": "foo"}'  # internal request is what actually gets passed to the pipelines
+    assert request._internal_request.headers["Content-Type"] == "application/json+cloudevents-batch"
+    assert request.content == '[{"source": "foo"}]'
+    assert request._internal_request.body == '[{"source": "foo"}]'
 
 def test_string_body_no_content_type_kwarg():
     request = prepare_analyze_body(content="hello")
-    assert not request.headers.get("Content-Type")
+    assert request.headers["Content-Type"] == "text/plain"
+    assert request._internal_request.headers["Content-Type"] == "text/plain"
 
 def test_string_body_content_type_kwarg():
     request = prepare_analyze_body(content="hello", content_type="text/plain")
     assert request.headers["Content-Type"] == "text/plain"
+    assert request._internal_request.headers["Content-Type"] == "text/plain"
 
 def test_io_body_no_content_type_kwarg():
     request = prepare_analyze_body(content=b"PDF")
-    assert not request.headers.get("Content-Type")
+    assert request.headers["Content-Type"] == "application/octet-stream"
+    assert request._internal_request.headers["Content-Type"] == "application/octet-stream"
 
 def test_io_body_content_type_kwarg():
-    request = prepare_analyze_body(content=b"PDF", content_type="bonjour")
-    assert request.headers["Content-Type"] == "bonjour"
+    request = prepare_analyze_body(content=b"PDF", content_type="application/pdf")
+    assert request.headers["Content-Type"] == "application/pdf"
+    assert request._internal_request.headers["Content-Type"] == "application/pdf"
 
 def test_stream_no_content_type_kwarg():
     test_string = "Upload file test case"
@@ -62,7 +68,8 @@ def test_stream_no_content_type_kwarg():
     with io.BytesIO(test_bytes) as stream_data:
         request = prepare_analyze_body(content=stream_data)
     assert request.headers["Transfer-Encoding"] == "chunked"
-    assert not request.headers.get("Content-Type")
+    assert request.headers["Content-Type"] == "application/octet-stream"
+    assert request._internal_request.headers["Content-Type"] == "application/octet-stream"
 
 def test_stream_content_type_kwarg():
     test_string = "Upload file test case"
@@ -70,4 +77,29 @@ def test_stream_content_type_kwarg():
     with io.BytesIO(test_bytes) as stream_data:
         request = prepare_analyze_body(content=stream_data, content_type="application/json")
     assert request.headers["Content-Type"] == "application/json"
+    assert request._internal_request.headers["Content-Type"] == "application/json"
     assert request.headers["Transfer-Encoding"] == "chunked"
+
+def test_file_description_no_content_type_kwarg():
+    with open(__file__) as fd:
+        request = prepare_analyze_body(content=fd)
+    assert request.headers["Transfer-Encoding"] == "chunked"
+    assert request.headers["Content-Type"] == "application/octet-stream"
+    assert request._internal_request.headers["Content-Type"] == "application/octet-stream"
+
+def test_file_description_content_type_kwarg():
+    with open(__file__) as fd:
+        request = prepare_analyze_body(content=fd, content_type="application/pdf")
+    assert request.headers["Transfer-Encoding"] == "chunked"
+    assert request.headers["Content-Type"] == "application/pdf"
+    assert request._internal_request.headers["Content-Type"] == "application/pdf"
+
+def test_content_type_in_headers_no_content_type_kwarg():
+    request = prepare_analyze_body(content="", headers={"Content-Type": "application/exotic"})
+    assert request.headers["Content-Type"] == "application/exotic"
+    assert request._internal_request.headers["Content-Type"] == "application/exotic"
+
+def test_content_type_in_headers_content_type_kwarg():
+    request = prepare_analyze_body(content="", headers={"Content-Type": "application/exotic"}, content_type="application/pdf")
+    assert request.headers["Content-Type"] == "application/pdf"
+    assert request._internal_request.headers["Content-Type"] == "application/pdf"
