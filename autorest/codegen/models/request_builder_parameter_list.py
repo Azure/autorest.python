@@ -105,6 +105,7 @@ class RequestBuilderParameterList(ParameterList):
         self.body_kwarg_names = [b.serialized_name for b in body_kwargs]
         # put body first. We want them to be the first kwargs.
         signature_parameters = body_kwargs + signature_parameters_no_default_value + signature_parameters_default_value
+        signature_parameters.sort(key=lambda item: item.is_kwarg)
         return signature_parameters
 
     @staticmethod
