@@ -73,8 +73,20 @@ class IOSchema(PrimitiveSchema):
         file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
-
 class AnySchema(PrimitiveSchema):
+    @property
+    def serialization_type(self) -> str:
+        return "Any"
+
+    @property
+    def docstring_type(self) -> str:
+        return "any"
+
+    @property
+    def type_annotation(self) -> str:
+        return "Any"
+
+class AnyObjectSchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
         return "object"
@@ -373,7 +385,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         "date": DateSchema,
         "duration": DurationSchema,
         "byte-array": ByteArraySchema,
-        "any": AnySchema,
+        "any": AnyObjectSchema,
         "binary": IOSchema
     }
     schema_type = yaml_data["type"]

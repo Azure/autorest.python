@@ -3,12 +3,19 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional, Set
+from typing import List, Optional, Set, Dict
 from copy import deepcopy
 from .preparer_parameter import PreparerParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
-from .object_schema import ObjectSchema
+from .primitive_schemas import AnySchema, PrimitiveSchema
+
+def _copy_body_param(new_param_name: str, original_param: PreparerParameter) -> PreparerParameter:
+    new_param = deepcopy(original_param)
+    new_param.serialized_name = new_param_name
+    new_param.schema = AnySchema(namespace="", yaml_data={})
+    return new_param
+
 
 class PreparerParameterList(ParameterList):
     def __init__(
@@ -20,7 +27,7 @@ class PreparerParameterList(ParameterList):
         super(PreparerParameterList, self).__init__(
             parameters  # type: ignore
         )
-        self.body_kwarg_names: Set[str] = set()
+        self.body_kwarg_names: List[str] = []
 
     @property
     def constant(self) -> List[Parameter]:
@@ -36,6 +43,32 @@ class PreparerParameterList(ParameterList):
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names]
 
+    def _get_body_kwargs(self, body_kwargs: List[Parameter]) -> List[Parameter]:
+        seen_bodies: Set[str] = set()
+        returned_bodies = []
+        if body_kwargs:
+            if "application/json" in self.content_types:
+                returned_bodies.append(_copy_body_param("json", body_kwargs[0]))
+        for body_kwarg in body_kwargs:
+            if body_kwarg.is_multipart and body_kwarg.is_partial_body and "files" not in seen_bodies:
+                seen_bodies.add("files")
+                body_kwarg.serialized_name = "files"
+                returned_bodies.append(body_kwarg)
+            elif body_kwarg.is_partial_body and "data" not in seen_bodies:
+                seen_bodies.add("data")
+                body_kwarg.serialized_name = "data"
+                returned_bodies.append(body_kwarg)
+            elif isinstance(body_kwarg.schema, PrimitiveSchema) and "content" not in seen_bodies:
+                seen_bodies.add("content")
+                body_kwarg.serialized_name = "content"
+                returned_bodies.append(body_kwarg)
+
+        if body_kwargs and "content" not in seen_bodies:
+            returned_bodies.append(_copy_body_param("content", body_kwargs[0]))
+        return returned_bodies
+
+
+
     @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature. Includes both positional and kwargs
@@ -49,8 +82,8 @@ class PreparerParameterList(ParameterList):
         parameters = self.get_from_predicate(
             lambda parameter: parameter.implementation == self.implementation or parameter.in_method_code
         )
-        body_params = []
-        seen_bodies: Set[str] = set()
+        body_kwargs = []
+        seen_bodies: OrderedSet[str] = {}
         seen_content_type = False
 
         for parameter in parameters:
@@ -62,36 +95,16 @@ class PreparerParameterList(ParameterList):
                 seen_content_type = True
             if parameter.in_method_signature:
                 if parameter.location == ParameterLocation.Body:
-                    if parameter.is_multipart and parameter.is_partial_body and "files" not in seen_bodies:
-                        seen_bodies.add("files")
-                        parameter.serialized_name = "files"
-                        body_params.append(parameter)
-                    elif parameter.is_partial_body and "data" not in seen_bodies:
-                        seen_bodies.add("data")
-                        parameter.serialized_name = "data"
-                        body_params.append(parameter)
-                    elif "application/json" in self.content_types and "json" not in seen_bodies:
-                        seen_bodies.add("json")
-                        parameter.serialized_name = "json"
-                        body_params.append(parameter)
-                    elif "content" not in seen_bodies:
-                        seen_bodies.add("content")
-                        parameter.serialized_name = "content"
-                        body_params.append(parameter)
+                    body_kwargs.append(parameter)
                 elif not parameter.default_value and parameter.required:
                     signature_parameters_no_default_value.append(parameter)
                 else:
                     signature_parameters_default_value.append(parameter)
-        self.body_kwarg_names = seen_bodies
 
-        if body_params:
-            if "content" not in seen_bodies:
-                content_param = deepcopy(body_params[0])
-                content_param.serialized_name = "content"
-                body_params.append(content_param)
-
+        body_kwargs = self._get_body_kwargs(body_kwargs)
+        self.body_kwarg_names = [b.serialized_name for b in body_kwargs]
         # put body first. We want them to be the first kwargs.
-        signature_parameters = body_params + signature_parameters_no_default_value + signature_parameters_default_value
+        signature_parameters = body_kwargs + signature_parameters_no_default_value + signature_parameters_default_value
         return signature_parameters
 
     @staticmethod

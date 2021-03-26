@@ -30,8 +30,12 @@ class PreparerParameter(Parameter):
 
     @property
     def name_in_high_level_operation(self) -> str:
-        if self.is_multipart:
-            return "_body"
+        if self.is_body:
+            if self.is_multipart:
+                return "files"
+            elif self.is_partial_body:
+                return "data"
+            return "content"
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
             # for these, we're passing the client params to the preparer.

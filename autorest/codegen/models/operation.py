@@ -52,6 +52,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self._preparer: Optional[Preparer] = None
 
     @property
+    def default_content_type_declaration(self) -> str:
+        return f'"{self.parameters.default_content_type}"'
+
+    @property
     def python_name(self) -> str:
         return self.name
 
@@ -72,6 +76,14 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return any(response.is_stream_response for response in self.responses)
+
+    @property
+    def body_kwarg_to_pass_to_preparer(self) -> str:
+        if self.preparer.multipart:
+            return "files"
+        elif self.parameters.has_partial_body:
+            return "data"
+        return "content"
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -131,7 +143,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         excep_schema = default_excp[0].schema
         if isinstance(excep_schema, ObjectSchema):
             return f"_models.{excep_schema.name}"
-        # in this case, it's just an AnySchema
+        # in this case, it's just an AnyObjectSchema
         return "\'object\'"
 
 
@@ -158,11 +170,18 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for param in self.parameters.method:
             file_import.merge(param.imports())
 
+        for param in self.multiple_media_type_parameters:
+            file_import.merge(param.imports())
+
         for response in [r for r in self.responses if r.has_body]:
             file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
+        for schema_request in self.preparer.schema_requests:
+            if any([c for c in schema_request.pre_semicolon_media_types if "application/json" in c]):
+                file_import.add_import("json", ImportType.STDLIB)
 
         file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)

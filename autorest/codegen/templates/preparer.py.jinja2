@@ -31,6 +31,7 @@
         {% endfor %}
     {% endif %}
 {% endif %}
+    content_type = kwargs.pop("content_type", None)
 {% if preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}

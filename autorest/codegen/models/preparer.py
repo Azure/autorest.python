@@ -61,8 +61,8 @@ class Preparer(BaseModel):
         self.summary = summary
 
     @property
-    def default_content_type(self) -> str:
-        return self.parameters.default_content_type
+    def default_content_type_declaration(self) -> str:
+        return f'"{self.parameters.default_content_type}"'
 
     @property
     def is_stream(self) -> bool:

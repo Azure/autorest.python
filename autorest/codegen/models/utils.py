@@ -36,7 +36,7 @@ def get_converted_parameters(yaml_data, parameter_converter):
     for request in yaml_data["requests"]:
         for yaml in request.get("parameters", []):
             parameter = parameter_converter(yaml)
-            if yaml["language"]["python"]["name"] == "accept":
+            if yaml["language"]["python"]["name"] in _M4_HEADER_PARAMETERS:
                 parameter.is_hidden_kwarg = True
                 parameters.append(parameter)
             elif multiple_requests:
@@ -45,15 +45,21 @@ def get_converted_parameters(yaml_data, parameter_converter):
                 parameters.append(parameter)
 
     if multiple_requests:
-        parameters = _remove_multiple_m4_header_parameters(parameters)
-        optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
-        chosen_parameter = optional_parameters[0] if optional_parameters else multiple_media_type_parameters[0]
+        try:
+            # get an optional param with object first. These params are the top choice bc they have more info about how to serialize the body
+            chosen_parameter = next(
+                p for p in multiple_media_type_parameters if not p.required and p.schema["type"] == "object"
+            )
+        except StopIteration:
+            # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
+            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
+            chosen_parameter = optional_parameters[0] if optional_parameters else multiple_media_type_parameters[0]
         chosen_parameter.has_multiple_media_types = True
         parameters.append(chosen_parameter)
 
     if multiple_media_type_parameters:
         body_parameters_name_set = set(
-            p.serialized_name for p in multiple_media_type_parameters if p.serialized_name != "content_type"
+            p.serialized_name for p in multiple_media_type_parameters
         )
         if len(body_parameters_name_set) > 1:
             raise ValueError(

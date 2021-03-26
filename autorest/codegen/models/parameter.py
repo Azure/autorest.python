@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from autorest.codegen.models.primitive_schemas import AnySchema
 from enum import Enum
 import logging
 from typing import Dict, Optional, List, Any, Union, Tuple
@@ -173,6 +174,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.schema.xml_serialization_ctxt() or ""
 
     @property
+    def is_body(self) -> bool:
+        return self.location == ParameterLocation.Body
+
+    @property
     def in_method_signature(self) -> bool:
         return not(
             # If I only have one value, I can't be set, so no point being in signature
@@ -182,7 +187,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             # If I'm grouped, my grouper will be on signature, not me
             or self.grouped_by
             # If I'm body and it's flattened, I'm not either
-            or (self.location == ParameterLocation.Body and self.flattened)
+            or (self.is_body and self.flattened)
             # If I'm a kwarg, don't include in the signature
             or self.is_hidden_kwarg
         )
@@ -208,7 +213,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
-        if not self.required:
+        if not self.required and not isinstance(self.schema, AnySchema):
             type_annot = f"Optional[{type_annot}]"
 
         if self._client_default_value is not None:

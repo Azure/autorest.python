@@ -36,7 +36,7 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {# content type docstring #}
 {% macro content_type_docstring(preparer) %}
 {% set content_type_constant = preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
-:keyword str content_type: Media type of the body sent to the API. Default value is {{ preparer.default_content_type }}.
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ preparer.default_content_type_declaration }}.
  Allowed values are: "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
 {# Param docstring #}
@@ -164,45 +164,44 @@ path_format_arguments = {
 {{ url_name }} = self._client.format_url({{ url_name }}, **path_format_arguments){% endmacro %}
 
 {# helper for non-stream body params with schema #}
-{% macro non_stream_body_params(preparer, send_xml) %}
-{% set ser_ctxt = preparer.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
-{% set preparer_as_xml = ", is_xml=True" if send_xml else "" %}
+{% macro serialize_body(operation) %}
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.parameters.content_types %}
+{% set ser_ctxt = operation.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
+{% set body_is_xml = ", is_xml=True" if send_xml else "" %}
 {% if ser_ctxt %}
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
-{% if preparer.parameters.body[0].required %}
-{{ preparer.parameters.body[0].serialized_name }} = self._serialize.body({{ preparer.parameters.body[0].serialized_name }}, '{{ preparer.parameters.body[0].serialization_type }}'{{ preparer_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+{% if operation.parameters.body[0].required %}
+content = self._serialize.body({{ operation.parameters.body[0].serialized_name }}, '{{ operation.parameters.body[0].serialization_type }}'{{ body_is_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+content = json.dumps(content)
 {% else %}
-if {{ preparer.parameters.body[0].serialized_name }} is not None:
-    {{ preparer.parameters.body[0].serialized_name }} = self._serialize.body({{ preparer.parameters.body[0].serialized_name }}, '{{ preparer.parameters.body[0].serialization_type }}'{{ preparer_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+if {{ operation.parameters.body[0].serialized_name }} is not None:
+    content = self._serialize.body({{ operation.parameters.body[0].serialized_name }}, '{{ operation.parameters.body[0].serialization_type }}'{{ body_is_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+    content = json.dumps(content)
+else:
+    content = None
 {% endif %}{% endmacro %}
 
-{% macro set_body_content_kwarg(preparer, schema_request) %}
-body_content_kwargs = {}  # type: Dict[str, Any]
-{% if preparer.multipart %}
-body_content_kwargs['files'] = {{ preparer.parameters.body[0].serialized_name }}
+{% macro set_body_content_kwarg(operation, schema_request) %}
+{% if operation.multipart %}
+files = {{ operation.parameters.body[0].serialized_name }}
 {% elif schema_request.is_stream_request %}
-body_content_kwargs['content'] = {{ preparer.parameters.body[0].serialized_name }}
+content = {{ operation.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-{% set body_kwarg = "json" if "application/json" in schema_request.pre_semicolon_media_types else "content" %}
-body_content_kwargs['{{ body_kwarg }}'] = {{ preparer.parameters.body[0].serialized_name }}{% endif %}{% endmacro %}
+{{ serialize_body(operation) }}{% endif %}{% endmacro %}
 
 {# write body parameters #}
-{% macro body_parameters(preparer) %}
-{% if preparer.parameters.has_body %}
-    {% if (preparer.schema_requests | length) == 1 %}
-{{ set_body_content_kwarg(preparer, preparer.schema_requests[0]) }}
+{% macro body_parameters(operation) %}
+{% if operation.parameters.has_body %}
+    {% if (operation.preparer.schema_requests | length) == 1 %}
+{{ set_body_content_kwarg(operation, operation.preparer.schema_requests[0]) }}
     {% else %}
-        {% for schema_request in preparer.schema_requests %}
-{{ "el" if not loop.first }}if header_parameters['Content-Type'].split(";")[0] in {{ schema_request.pre_semicolon_media_types }}:
-    {{ set_body_content_kwarg(preparer, schema_request)|indent }}
+content = input
+        {% for schema_request in operation.preparer.schema_requests | rejectattr("is_stream_request")%}
+{{ "el" if not loop.first }}if content_type.split(";")[0] in {{ schema_request.pre_semicolon_media_types }}:
+    {{ set_body_content_kwarg(operation, schema_request)|indent }}
         {% endfor %}
-else:
-    raise ValueError(
-        "The content_type '{}' is not one of the allowed values: "
-        "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
-    )
-    {% endif %}{% endif %}{% endmacro %}
+{% endif %}{% endif %}{% endmacro %}
 
 {# create HTTPRequest #}
 {% macro create_http_request(preparer, is_python_3_file) %}
@@ -275,8 +274,8 @@ return 200 <= response.status_code <= 299
 
 {% macro get_preparer(operation, preparer, url=None) %}
 {% set template_url = url or "self." + operation.name + ".metadata['url']" %}
-{% if preparer.has_body_param_with_object_schema and preparer.schema_requests | length > 1 %}
-content_type = kwargs.get("content_type", {{ preparer.default_content_type }})
+{% if preparer.parameters.has_body %}
+content_type = kwargs.pop("content_type", {{ operation.default_content_type_declaration }})
 {% endif %}
 {% if operation.parameters.grouped %}
 {{ grouped_parameters(operation) }}
@@ -295,22 +294,18 @@ _body = {
 {% for constant_body in operation.parameters.constant_bodies %}
 {{ constant_body.serialized_name }} = {{ constant_body.constant_declaration }}
 {% endfor %}
-{% if preparer.parameters.has_body and not (preparer.is_stream or preparer.multipart) %}
-{% set send_xml = "xml" if preparer.parameters.has_body and "xml" in preparer.default_content_type %}
-    {% if (preparer.schema_requests | length) == 1 %}
-{{ non_stream_body_params(preparer.schema_requests[0], send_xml) }}
-    {% else %}
-        {% for schema_request in preparer.schema_requests | rejectattr('is_stream_request') %}
-{{ "el" if not loop.first }}if content_type.split(";")[0] in {{ schema_request.pre_semicolon_media_types }}:
-    {{ non_stream_body_params(schema_request, send_xml)|indent }}
-        {% endfor %}
-    {% endif %}
+{% if operation.parameters.has_body %}
+{{ body_parameters(operation) }}
 {% endif %}
 request = {{ preparer.name }}(
-{% if preparer.parameters.method %}
-    {% for parameter in preparer.parameters.method %}
+{% if preparer.parameters.method | rejectattr("is_body") | first %}
+    {% for parameter in preparer.parameters.method | rejectattr("is_body") %}
     {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
     {% endfor %}
+{% endif %}
+{% if preparer.parameters.has_body %}
+    {{ operation.body_kwarg_to_pass_to_preparer }}={{ operation.body_kwarg_to_pass_to_preparer }},
+    content_type=content_type,
 {% endif %}
     template_url={{ template_url }},
     **kwargs

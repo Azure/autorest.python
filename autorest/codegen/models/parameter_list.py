@@ -118,9 +118,9 @@ class ParameterList(MutableSequence):
         constant from this set of parameters, they are constants on the models and hence they do
         not have impact on any generation at this level
         """
-        return self.get_from_predicate(
+        return list(set(self.get_from_predicate(
             lambda parameter: parameter.constant
-        )
+        )))
 
     @property
     def constant_bodies(self) -> List[Parameter]:
@@ -134,15 +134,6 @@ class ParameterList(MutableSequence):
     @property
     def has_partial_body(self) -> bool:
         return any(self.get_from_predicate(lambda parameter: parameter.is_partial_body))
-
-    @property
-    def content_type_parameter(self) -> Optional[Parameter]:
-        content_type_params = self.get_from_predicate(
-            lambda parameter: parameter.serialized_name == "content_type"
-        )
-        if content_type_params:
-            return content_type_params[0]
-        return None
 
     @property
     def content_types(self) -> List[str]:
@@ -159,9 +150,19 @@ class ParameterList(MutableSequence):
 
         return list(content_types)
 
-
     @property
     def default_content_type(self) -> str:
+        json_content_types = [c for c in self.content_types if "json" in c]
+        if json_content_types:
+            if "application/json" in json_content_types:
+                return "application/json"
+            return json_content_types[0]
+
+        xml_content_types = [c for c in self.content_types if "xml" in c]
+        if xml_content_types:
+            if "application/xml" in xml_content_types:
+                return "application/xml"
+            return xml_content_types[0]
         return self.content_types[0]
 
     @property
