@@ -88,8 +88,8 @@ class AutoRestHttpInfrastructureTestService(object):
         We have helper methods to create requests specific to this service in `httpinfrastructure.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from httpinfrastructure.rest import prepare_httpfailure_get_empty_error
-        >>> request = prepare_httpfailure_get_empty_error()
+        >>> from httpinfrastructure.rest import build_httpfailure_get_empty_error_request
+        >>> request = build_httpfailure_get_empty_error_request()
         <HttpRequest [GET], url: '/http/failure/emptybody/error'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -107,7 +107,7 @@ class AutoRestHttpInfrastructureTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
+        stream_response = kwargs.pop("stream_response", False)
         pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,

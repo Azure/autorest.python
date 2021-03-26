@@ -44,8 +44,8 @@ class AutoRestParameterizedHostTestClient(object):
         We have helper methods to create requests specific to this service in `custombaseurl.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurl.rest import prepare_paths_get_empty
-        >>> request = prepare_paths_get_empty()
+        >>> from custombaseurl.rest import build_paths_get_empty_request
+        >>> request = build_paths_get_empty_request()
         <HttpRequest [GET], url: '/customuri'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

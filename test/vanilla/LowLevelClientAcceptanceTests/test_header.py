@@ -24,19 +24,11 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
-import json
 from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
 
 from header import AutoRestSwaggerBATHeaderService
+from header._rest import *
 from header.models import GreyscaleColors
 
 import pytest
@@ -47,161 +39,193 @@ def client():
         yield client
 
 @pytest.fixture
-def value_header():
-    def _value_header(response, _, headers):
-        return headers.get("value")
-    return _value_header
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-class TestHeader(object):
+@pytest.fixture
+def make_request_value_response_header(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request).headers['value']
+    return _make_request
 
-    def test_integer(self, client, value_header):
-        client.header.param_integer("positive", 1)
-        client.header.param_integer("negative", -2)
+# NOTE: in llc, we don't know to deserialize response headers as int / datetime etc. So you'll see they'll just be strings, not ints etc
+def test_integer(make_request, make_request_value_response_header):
 
-        response = client.header.response_integer("positive", cls=value_header)
-        assert response == 1
+    request = build_header_param_integer_request(scenario="positive", value=1)
+    make_request(request)
+    request = build_header_param_integer_request(scenario="negative", value=-2)
+    make_request(request)
 
-        response = client.header.response_integer("negative", cls=value_header)
-        assert response == -2
+    request = build_header_response_integer_request(scenario="positive")
+    assert make_request_value_response_header(request) == "1"
 
-    def test_long(self, client, value_header):
-        client.header.param_long("positive", 105)
-        client.header.param_long("negative", -2)
+    request = build_header_response_integer_request(scenario="negative")
+    assert make_request_value_response_header(request) == "-2"
 
-        response = client.header.response_long("positive", cls=value_header)
-        assert response == 105
-        response = client.header.response_long("negative", cls=value_header)
-        assert response == -2
+def test_long(make_request, make_request_value_response_header):
+    request = build_header_param_long_request(scenario="positive", value=105)
+    make_request(request)
+    request = build_header_param_long_request(scenario="negative", value=-2)
+    make_request(request)
 
-    def test_float(self, client, value_header):
-        client.header.param_float("positive", 0.07)
-        client.header.param_float("negative", -3.0)
+    request = build_header_response_long_request(scenario="positive")
+    assert make_request_value_response_header(request) == "105"
 
-        response = client.header.response_float("positive", cls=value_header)
-        assert abs(0.07 - response) < 0.00001
-        response = client.header.response_float("negative", cls=value_header)
-        assert abs(-3.0 - response) < 0.00001
+    request = build_header_response_long_request(scenario="negative")
+    assert make_request_value_response_header(request) == "-2"
 
-    def test_double(self, client, value_header):
-        client.header.param_double("positive", 7e120)
-        client.header.param_double("negative", -3.0)
+def test_float(make_request, make_request_value_response_header):
+    request = build_header_param_float_request(scenario="positive", value=0.07)
+    make_request(request)
 
-        response = client.header.response_double("positive", cls=value_header)
-        assert response == 7e120
-        response = client.header.response_double("negative", cls=value_header)
-        assert response == -3.0
+    request = build_header_param_float_request(scenario="negative", value=-3.0)
+    make_request(request)
 
-    def test_bool(self, client, value_header):
-        client.header.param_bool("true", True)
-        client.header.param_bool("false", False)
+    request = build_header_response_float_request(scenario="positive")
+    assert abs(0.07 - float(make_request_value_response_header(request))) < 0.00001
 
-        response = client.header.response_bool("true", cls=value_header)
-        assert response == True
-        response = client.header.response_bool("false", cls=value_header)
-        assert response == False
+    request = build_header_response_float_request(scenario="negative")
+    assert abs(-3.0 - float(make_request_value_response_header(request))) < 0.00001
 
-    def test_string(self, client, value_header):
-        client.header.param_string("valid", "The quick brown fox jumps over the lazy dog")
-        client.header.param_string("null", None)
-        client.header.param_string("empty", "")
+def test_double(make_request, make_request_value_response_header):
+    request = build_header_param_double_request(scenario="positive", value=7e120)
+    make_request(request)
 
-        response = client.header.response_string("valid", cls=value_header)
-        assert response == "The quick brown fox jumps over the lazy dog"
-        response = client.header.response_string("null", cls=value_header)
-        assert response == "null"  # TODO This should be None
-        response = client.header.response_string("empty", cls=value_header)
-        assert response == ""
+    request = build_header_param_double_request(scenario="negative", value=-3.0)
+    make_request(request)
 
-    def test_enum(self, client, value_header):
-        client.header.param_enum("valid", GreyscaleColors.grey)
-        client.header.param_enum("valid", 'GREY')
-        client.header.param_enum("null", None)
+    request = build_header_response_double_request(scenario="positive")
+    assert make_request_value_response_header(request) == "7e+120"
 
-        response = client.header.response_enum("valid", cls=value_header)
-        assert response == GreyscaleColors.grey
+    request = build_header_response_double_request(scenario="negative")
+    assert make_request_value_response_header(request) == "-3"
 
-        # We receive an empty string.
-        # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
-        # a Deserialization issue and we return the string.
-        # Here we now return empty string without failin **on purpose**
-        # with pytest.raises(DeserializationError):
-        response = client.header.response_enum("null", cls=value_header)
-        assert response == ""
+def test_bool(make_request, make_request_value_response_header):
+    request = build_header_param_bool_request(scenario="true", value=True)
+    make_request(request)
+    request = build_header_param_bool_request(scenario="false", value=False)
+    make_request(request)
 
-    def test_date(self, client, value_header):
-        client.header.param_date("valid", isodate.parse_date("2010-01-01"))
-        client.header.param_date("min", datetime.min)
+    request = build_header_response_bool_request(scenario="true")
+    assert make_request_value_response_header(request) == 'true'
 
-        response = client.header.response_date("valid", cls=value_header)
-        assert response == isodate.parse_date("2010-01-01")
-        response = client.header.response_date("min", cls=value_header)
-        assert response == isodate.parse_date("0001-01-01")
+    request = build_header_response_bool_request(scenario="false")
+    assert make_request_value_response_header(request) == 'false'
 
-    def test_datetime(self, client, value_header):
-        client.header.param_datetime("valid", isodate.parse_datetime("2010-01-01T12:34:56Z"))
-        client.header.param_datetime("min", datetime.min)
+def test_string(make_request, make_request_value_response_header):
+    request = build_header_param_string_request(scenario="valid", value="The quick brown fox jumps over the lazy dog")
+    make_request(request)
 
-        response = client.header.response_datetime("valid", cls=value_header)
-        assert response == isodate.parse_datetime("2010-01-01T12:34:56Z")
-        response = client.header.response_datetime("min", cls=value_header)
-        assert response == isodate.parse_datetime("0001-01-01T00:00:00Z")
+    request = build_header_param_string_request(scenario="null", value=None)
+    make_request(request)
 
-    def test_datetime_rfc(self, client, value_header):
-        client.header.param_datetime_rfc1123("valid", isodate.parse_datetime("2010-01-01T12:34:56Z"))
-        client.header.param_datetime_rfc1123("min", datetime.min)
+    request = build_header_param_string_request(scenario="empty", value="")
+    make_request(request)
 
-        response = client.header.response_datetime_rfc1123("valid", cls=value_header)
-        assert response == isodate.parse_datetime("2010-01-01T12:34:56Z")
+    request = build_header_response_string_request(scenario="valid")
+    assert make_request_value_response_header(request) == "The quick brown fox jumps over the lazy dog"
 
-        # we are not using the min date of year 1 because of the latest msrest update
-        # with msrest update, minimal year we can parse is 100, instead of 1
-        response = client.header.response_datetime_rfc1123("min", cls=value_header)
-        assert response == isodate.parse_datetime("2001-01-01T00:00:00Z")
+    request = build_header_response_string_request(scenario="null")
+    assert make_request_value_response_header(request) == "null"  # TODO This should be None
 
-    def test_duration(self, client, value_header):
-        client.header.param_duration("valid", timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    request = build_header_response_string_request(scenario="empty")
+    assert make_request_value_response_header(request) == ""
 
-        response = client.header.response_duration("valid", cls=value_header)
-        assert response == timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+def test_enum(make_request, make_request_value_response_header):
+    request = build_header_param_enum_request(scenario="valid", value=GreyscaleColors.GREY)
+    make_request(request)
 
-    def test_byte(self, client, value_header):
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        client.header.param_byte("valid", u_bytes)
+    request = build_header_param_enum_request(scenario="valid", value="GREY")
+    make_request(request)
 
-        response = client.header.response_byte("valid", cls=value_header)
-        assert response == u_bytes
+    request = build_header_param_enum_request(scenario="null", value=None)
+    make_request(request)
 
-        client.header.param_existing_key("overwrite")
 
-    def test_response_existing_key(self, client):
-        def useragent_header(response, _, headers):
-            return headers.get('User-Agent')
-        response = client.header.response_existing_key(cls=useragent_header)
-        assert response == "overwrite"
+    request = build_header_response_enum_request(scenario="valid")
+    assert make_request_value_response_header(request) == GreyscaleColors.grey
 
-    def test_response_protected_key(self, client):
-        # This test is only valid for C#, which content-type can't be override this way
-        #client.header.param_protected_key("text/html")
+    # We receive an empty string.
+    # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
+    # a Deserialization issue and we return the string.
+    # Here we now return empty string without failin **on purpose**
+    # with pytest.raises(DeserializationError):
+    request = build_header_response_enum_request(scenario="null")
+    assert make_request_value_response_header(request) == ""
 
-        # This test has different result compare to C#, which content-type is saved in another place.
-        def content_header(response, _, headers):
-            return headers.get('Content-Type')
-        response = client.header.response_protected_key(cls=content_header)
-        assert response == "text/html; charset=utf-8"
+def test_date(make_request, make_request_value_response_header):
+    request = build_header_param_date_request(scenario="valid", value=isodate.parse_date("2010-01-01"))
+    make_request(request)
+    request = build_header_param_date_request(scenario="min", value=datetime.min)
+    make_request(request)
 
-    def test_custom_request_id(self, client):
-        def status_code(pipeline_response, _, headers):
-            return pipeline_response.http_response.status_code
-        custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
-        response = client.header.custom_request_id(headers=custom_headers, cls=status_code)
-        assert response == 200
+    request = build_header_response_date_request(scenario="valid")
+    assert make_request_value_response_header(request) == str(isodate.parse_date("2010-01-01"))
 
-    def test_models(self):
-        from header.models import Error
+    request = build_header_response_date_request(scenario="min")
+    assert make_request_value_response_header(request) == str(isodate.parse_date("0001-01-01"))
 
-        if sys.version_info >= (3,5):
-            from header.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from header.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_datetime(make_request, make_request_value_response_header):
+    request = build_header_param_datetime_request(scenario="valid", value=isodate.parse_datetime("2010-01-01T12:34:56Z"))
+    make_request(request)
+    request = build_header_param_datetime_request(scenario="min", value=datetime.min)
+    make_request(request)
+
+    request = build_header_response_datetime_request(scenario="valid")
+    assert make_request_value_response_header(request) == '2010-01-01T12:34:56Z'
+
+    request = build_header_response_datetime_request(scenario="min")
+    assert make_request_value_response_header(request) == '0001-01-01T00:00:00Z'
+
+def test_datetime_rfc(make_request, make_request_value_response_header):
+    request = build_header_param_datetime_rfc1123_request(scenario="valid", value=isodate.parse_datetime("2010-01-01T12:34:56Z"))
+    make_request(request)
+
+    request = build_header_param_datetime_rfc1123_request(scenario="min", value=datetime.min)
+    make_request(request)
+
+    request = build_header_response_datetime_rfc1123_request(scenario="valid")
+    assert make_request_value_response_header(request) == "Fri, 01 Jan 2010 12:34:56 GMT"
+
+    # we are not using the min date of year 1 because of the latest msrest update
+    # with msrest update, minimal year we can parse is 100, instead of 1
+    request = build_header_response_datetime_rfc1123_request(scenario="min")
+    assert make_request_value_response_header(request) == "Mon, 01 Jan 0001 00:00:00 GMT"
+
+def test_duration(make_request, make_request_value_response_header):
+    request = build_header_param_duration_request(scenario="valid", value=timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    make_request(request)
+
+    request = build_header_response_duration_request(scenario="valid")
+    assert make_request_value_response_header(request) == 'P123DT22H14M12.011S'  # raw str of the above timedelta
+
+def test_byte(make_request, make_request_value_response_header):
+    u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+    request = build_header_param_byte_request(scenario="valid", value=u_bytes)
+    make_request(request)
+
+    request = build_header_response_byte_request(scenario="valid")
+    raise ValueError(make_request_value_response_header(request))
+    assert make_request_value_response_header(request) == u_bytes.decode()
+
+def test_response_existing_key(make_request):
+
+    request = build_header_param_existing_key_request(user_agent_parameter="overwrite")
+    make_request(request)
+    request = build_header_response_existing_key_request()
+    assert make_request(request).headers['User-Agent'] == "overwrite"
+
+def test_response_protected_key(make_request):
+    # This test is only valid for C#, which content-type can't be override this way
+    #client.header.param_protected_key("text/html")
+
+    # This test has different result compare to C#, which content-type is saved in another place.
+    request = build_header_response_protected_key_request()
+    assert make_request(request).headers['Content-Type'] == "text/html; charset=utf-8"
+
+def test_custom_request_id(make_request):
+    custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
+    request = build_header_custom_request_id_request(headers=custom_headers)
+    assert make_request(request).status_code == 200

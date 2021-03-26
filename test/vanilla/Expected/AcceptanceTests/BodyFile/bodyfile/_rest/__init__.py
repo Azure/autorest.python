@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_files_get_file
-    from ._preparers_py3 import prepare_files_get_file_large
-    from ._preparers_py3 import prepare_files_get_empty_file
+    from ._request_builders_py3 import build_files_get_file_request
+    from ._request_builders_py3 import build_files_get_file_large_request
+    from ._request_builders_py3 import build_files_get_empty_file_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_files_get_file  # type: ignore
-    from ._preparers import prepare_files_get_file_large  # type: ignore
-    from ._preparers import prepare_files_get_empty_file  # type: ignore
+    from ._request_builders import build_files_get_file_request  # type: ignore
+    from ._request_builders import build_files_get_file_large_request  # type: ignore
+    from ._request_builders import build_files_get_empty_file_request  # type: ignore
 
 __all__ = [
-    "prepare_files_get_file",
-    "prepare_files_get_file_large",
-    "prepare_files_get_empty_file",
+    "build_files_get_file_request",
+    "build_files_get_file_large_request",
+    "build_files_get_empty_file_request",
 ]

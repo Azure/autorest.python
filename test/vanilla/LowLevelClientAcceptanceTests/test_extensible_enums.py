@@ -23,13 +23,10 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from datetime import date, datetime, timedelta
-import os
 from os.path import dirname, pardir, join, realpath
-import unittest
-import sys
 
 from extensibleenumsswagger import PetStoreInc
+from extensibleenumsswagger._rest import *
 from extensibleenumsswagger.models import (
     Pet,
     DaysOfWeekExtensibleEnum,
@@ -43,42 +40,40 @@ def client():
     with PetStoreInc(base_url="http://localhost:3000") as client:
         yield client
 
-class TestExtensibleEnums(object):
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_get_by_pet_id(self, client):
-        # Now enum return are always string (Autorest.Python 3.0)
+def test_get_by_pet_id(make_request_json_response):
+    # Now enum return are always string (Autorest.Python 3.0)
 
-        tommy = client.pet.get_by_pet_id('tommy')
-        assert tommy.days_of_week ==  "Monday"
-        assert tommy.int_enum ==  "1"
+    request = build_pet_get_by_pet_id_request(pet_id="tommy")
+    tommy = Pet.deserialize(make_request_json_response(request))
+    assert tommy.days_of_week ==  "Monday"
+    assert tommy.int_enum ==  "1"
 
-        casper = client.pet.get_by_pet_id('casper')
-        assert casper.days_of_week ==  "Weekend"
-        assert casper.int_enum ==  "2"
+    request = build_pet_get_by_pet_id_request(pet_id="casper")
+    casper = Pet.deserialize(make_request_json_response(request))
+    assert casper.days_of_week ==  "Weekend"
+    assert casper.int_enum ==  "2"
 
-        scooby = client.pet.get_by_pet_id('scooby')
-        assert scooby.days_of_week ==  "Thursday"
-        # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
-        # "allowedValues" of "x-ms-enum" is not supported in Python
-        assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
+    request = build_pet_get_by_pet_id_request(pet_id="scooby")
+    scooby = Pet.deserialize(make_request_json_response(request))
+    assert scooby.days_of_week ==  "Thursday"
+    # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
+    # "allowedValues" of "x-ms-enum" is not supported in Python
+    assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
 
-    def test_add_pet(self, client):
-        retriever = Pet(
-            name="Retriever",
-            int_enum=IntEnum.three,
-            days_of_week=DaysOfWeekExtensibleEnum.friday
-        )
-        returned_pet = client.pet.add_pet(retriever)
-        assert returned_pet.days_of_week ==  "Friday"
-        assert returned_pet.int_enum ==  "3"
-        assert returned_pet.name ==  "Retriever"
-
-    def test_models(self):
-        from extensibleenumsswagger.models import Pet
-
-        if sys.version_info >= (3,5):
-            from extensibleenumsswagger.models._models_py3 import Pet as PetPy3
-            assert Pet == PetPy3
-        else:
-            from extensibleenumsswagger.models._models import Pet as PetPy2
-            assert Pet == PetPy2
+def test_add_pet(make_request_json_response):
+    retriever = Pet(
+        name="Retriever",
+        int_enum=IntEnum.three,
+        days_of_week=DaysOfWeekExtensibleEnum.friday
+    )
+    request = build_pet_add_pet_request(json=retriever.serialize())
+    returned_pet = Pet.deserialize(make_request_json_response(request))
+    assert returned_pet.days_of_week ==  "Friday"
+    assert returned_pet.int_enum ==  "3"
+    assert returned_pet.name ==  "Retriever"

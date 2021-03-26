@@ -5,14 +5,14 @@
 # --------------------------------------------------------------------------
 
 import pytest
-from autorest.codegen.models import Parameter, AnySchema
+from autorest.codegen.models import Parameter, AnyObjectSchema
 from autorest.codegen.models.primitive_schemas import StringSchema
 from autorest.codegen.models.parameter_list import ParameterList
 from autorest.codegen.models.parameter import ParameterLocation
 
 def get_parameter(name, required, default_value=None, schema=None):
     if not schema:
-        schema = AnySchema(
+        schema = AnyObjectSchema(
             namespace="parameterordering",
             yaml_data={}
         )

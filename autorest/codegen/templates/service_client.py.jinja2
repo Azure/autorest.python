@@ -113,7 +113,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% else %}
         request_copy.url = self._client.format_url(request_copy.url)
         {% endif %}
-        stream_response = kwargs.pop("stream_response", True)
+        stream_response = kwargs.pop("stream_response", False)
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
         return {{ keywords.async_class }}HttpResponse(
             status_code=pipeline_response.http_response.status_code,

@@ -24,21 +24,13 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
 import json
 from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
-from azure.core.exceptions import DecodeError
 
 from bodyarray import AutoRestSwaggerBATArrayService
 from bodyarray.models import Product
+from bodyarray._rest import *
 
 import pytest
 
@@ -59,7 +51,7 @@ def products():
     prod1 = Product(integer=1, string="2")
     prod2 = Product(integer=3, string="4")
     prod3 = Product(integer=5, string="6")
-    return [prod1, prod2, prod3]
+    return [prod1.serialize(), prod2.serialize(), prod3.serialize()]
 
 @pytest.fixture
 def listdict():
@@ -67,226 +59,304 @@ def listdict():
             {"4": "four", "5": "five", "6": "six"},
             {"7": "seven", "8": "eight", "9": "nine"}]
 
-class TestArray(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_empty(self, client):
-        assert [] ==  client.array.get_empty()
-        assert client.array.get_null() is None
-        client.array.put_empty([])
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_boolean_tfft(self, client):
-        assert [True, False, False, True] ==  client.array.get_boolean_tfft()
-        client.array.put_boolean_tfft([True, False, False, True])
+def test_empty(make_request, make_request_json_response):
+    request = build_array_get_empty_request()
 
-    def test_integer_valid(self, client):
-        assert [1, -1, 3, 300] ==  client.array.get_integer_valid()
-        client.array.put_integer_valid([1, -1, 3, 300])
+    assert [] ==  make_request_json_response(request)
 
-    def test_long_valid(self, client):
-        assert [1, -1, 3, 300] ==  client.array.get_long_valid()
-        client.array.put_long_valid([1, -1, 3, 300])
+    request = build_array_get_null_request()
+    response = make_request(request)
+    assert response.text == ''
 
-    def test_float_valid(self, client):
-        assert [0, -0.01, -1.2e20] ==  client.array.get_float_valid()
-        client.array.put_float_valid([0, -0.01, -1.2e20])
+    request = build_array_put_empty_request(json=[])
+    make_request(request)
 
-    def test_double_valid(self, client):
-        assert [0, -0.01, -1.2e20] ==  client.array.get_double_valid()
-        client.array.put_double_valid([0, -0.01, -1.2e20])
+def test_boolean_tfft(make_request, make_request_json_response):
+    request = build_array_get_boolean_tfft_request()
+    assert [True, False, False, True]  == make_request_json_response(request)
+    request = build_array_put_boolean_tfft_request(json=[True, False, False, True])
+    make_request(request)
 
-    def test_string_valid(self, client):
-        assert ["foo1", "foo2", "foo3"] ==  client.array.get_string_valid()
-        client.array.put_string_valid(["foo1", "foo2", "foo3"])
+def test_integer_valid(make_request, make_request_json_response):
+    request = build_array_get_integer_valid_request()
+    assert [1, -1, 3, 300] ==  make_request_json_response(request)
+    request = build_array_put_integer_valid_request(json=[1, -1, 3, 300])
+    make_request(request)
 
-    def test_get_string_with_null(self, client):
-        assert ["foo", None, "foo2"] ==  client.array.get_string_with_null()
+def test_long_valid(make_request, make_request_json_response):
+    request = build_array_get_long_valid_request()
+    assert [1, -1, 3, 300] == make_request_json_response(request)
+    request = build_array_put_long_valid_request(json=[1, -1, 3, 300])
+    make_request(request)
 
-    def test_get_string_with_invalid(self, client):
-        assert ["foo", "123", "foo2"] ==  client.array.get_string_with_invalid()
+def test_float_valid(make_request, make_request_json_response):
+    request = build_array_get_float_valid_request()
+    assert [0, -0.01, -1.2e20] ==  make_request_json_response(request)
+    request = build_array_put_float_valid_request(json=[0, -0.01, -1.2e20])
+    make_request(request)
 
-    def test_uuid_valid(self, client):
-        assert ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "d1399005-30f7-40d6-8da6-dd7c89ad34db",
-                          "f42f6aa1-a5bc-4ddf-907e-5f915de43205"] == client.array.get_uuid_valid()
-        client.array.put_uuid_valid(["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "d1399005-30f7-40d6-8da6-dd7c89ad34db",
-                          "f42f6aa1-a5bc-4ddf-907e-5f915de43205"])
+def test_double_valid(make_request, make_request_json_response):
+    request = build_array_get_double_valid_request()
+    assert [0, -0.01, -1.2e20] == make_request_json_response(request)
+    request = build_array_put_double_valid_request(json=[0, -0.01, -1.2e20])
+    make_request(request)
 
-    def test_get_uuid_invalid_chars(self, client):
-        #Handles invalid characters without error because of no guid class
-        assert ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "foo"] ==  client.array.get_uuid_invalid_chars()
+def test_string_valid(make_request, make_request_json_response):
+    request = build_array_get_string_valid_request()
+    assert ["foo1", "foo2", "foo3"] ==  make_request_json_response(request)
+    request = build_array_put_string_valid_request(json=["foo1", "foo2", "foo3"])
+    make_request(request)
 
-    def test_date_valid(self, client):
-        date1 = isodate.parse_date("2000-12-01")
-        date2 = isodate.parse_date("1980-01-02")
-        date3 = isodate.parse_date("1492-10-12")
+def test_get_string_with_null(make_request_json_response):
+    request = build_array_get_string_with_null_request()
+    assert ["foo", None, "foo2"] ==  make_request_json_response(request)
 
-        date_array = client.array.get_date_valid()
-        assert date_array, [date1, date2 ==  date3]
-        client.array.put_date_valid([date1, date2, date3])
+def test_get_string_with_invalid(make_request_json_response):
+    request = build_array_get_string_with_invalid_request()
 
-    def test_date_time_valid(self, client, datetimes):
-        dt_array = client.array.get_date_time_valid()
-        assert dt_array, [datetimes[0], datetimes[1] ==  datetimes[2]]
-        client.array.put_date_time_valid(datetimes)
+    # response differs from convenience layer
+    # this is bc in convenence layer we tell the deserializer to deserialize it fully as a list of string
+    assert ["foo", 123, "foo2"] ==  make_request_json_response(request)
 
-    def test_date_time_rfc1123_valid(self, client, datetimes):
-        dt_array = client.array.get_date_time_rfc1123_valid()
-        assert dt_array, [datetimes[0], datetimes[1] ==  datetimes[2]]
-        client.array.put_date_time_rfc1123_valid(datetimes)
+def test_uuid_valid(make_request, make_request_json_response):
+    request = build_array_get_uuid_valid_request()
+    assert ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "d1399005-30f7-40d6-8da6-dd7c89ad34db",
+                        "f42f6aa1-a5bc-4ddf-907e-5f915de43205"] == make_request_json_response(request)
+    request = build_array_put_uuid_valid_request(json=["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "d1399005-30f7-40d6-8da6-dd7c89ad34db",
+                        "f42f6aa1-a5bc-4ddf-907e-5f915de43205"])
+    make_request(request)
 
-    def test_duration_valid(self, client):
-        duration1 = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-        duration2 = timedelta(days=5, hours=1)
+def test_get_uuid_invalid_chars(make_request, make_request_json_response):
+    #Handles invalid characters without error because of no guid class
+    request = build_array_get_uuid_invalid_chars_request()
+    assert ["6dcc7237-45fe-45c4-8a6b-3a8a3f625652", "foo"] == make_request_json_response(request)
 
-        dur_array = client.array.get_duration_valid()
-        assert dur_array, [duration1 ==  duration2]
-        client.array.put_duration_valid([duration1, duration2])
+def test_date_valid(make_request, make_request_json_response):
+    def datetime_handler(x):
+        if isinstance(x, datetime.date):
+            return x.isoformat()
+        raise TypeError("Unknown type")
+    date1 = isodate.parse_date("2000-12-01")
+    date2 = isodate.parse_date("1980-01-02")
+    date3 = isodate.parse_date("1492-10-12")
 
-    def test_byte_valid(self, client):
-        bytes1 = bytearray([0x0FF, 0x0FF, 0x0FF, 0x0FA])
-        bytes2 = bytearray([0x01, 0x02, 0x03])
-        bytes3 = bytearray([0x025, 0x029, 0x043])
-        bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
+    request = build_array_get_date_valid_request()
+    assert make_request_json_response(request), [date1, date2 ==  date3]
+    request = build_array_put_date_valid_request(json=[str(date1), str(date2), str(date3)])  # dates are not json serializable
+    make_request(request)
 
-        client.array.put_byte_valid([bytes1, bytes2, bytes3])
-        bytes_array = client.array.get_byte_valid()
-        assert bytes_array, [bytes1, bytes2 ==  bytes3]
+def test_date_time_valid(make_request, make_request_json_response, datetimes):
+    request = build_array_get_date_time_valid_request()
 
-    def test_get_byte_invalid_null(self, client):
-        bytes_array = client.array.get_byte_invalid_null()
-        assert bytes_array, [bytearray([0x0AB, 0x0AC, 0x0AD]) ==  None]
+    assert make_request_json_response(request), [datetimes[0], datetimes[1] ==  datetimes[2]]
+    request = build_array_put_date_time_valid_request(json=[str(datetime) for datetime in datetimes])
+    make_request(request)
 
-    def test_get_complex_null(self, client):
-        assert client.array.get_complex_null() is None
+def test_date_time_rfc1123_valid(make_request, make_request_json_response, datetimes):
+    request = build_array_get_date_time_rfc1123_valid_request()
+    assert make_request_json_response(request), [datetimes[0], datetimes[1] ==  datetimes[2]]
+    request = build_array_put_date_time_rfc1123_valid_request(json=[str(datetime) for datetime in datetimes])
+    make_request(request)
 
-    def test_get_complex_empty(self, client):
-        assert [] ==  client.array.get_complex_empty()
+def test_duration_valid(make_request, make_request_json_response):
+    duration1 = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+    duration2 = timedelta(days=5, hours=1)
 
-    def test_complex_valid(self, client, products):
-        client.array.put_complex_valid(products)
-        assert products ==  client.array.get_complex_valid()
+    request = build_array_get_duration_valid_request()
+    assert make_request_json_response(request), [duration1 ==  duration2]
+    request = build_array_put_duration_valid_request(json=[str(duration1), str(duration2)])
+    make_request(request)
 
-    def test_get_array_valid(self, client):
-        listlist = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
-        client.array.put_array_valid(listlist)
-        assert listlist ==  client.array.get_array_valid()
+def test_byte_valid(make_request, make_request_json_response):
+    bytes1 = bytearray([0x0FF, 0x0FF, 0x0FF, 0x0FA])
+    bytes2 = bytearray([0x01, 0x02, 0x03])
+    bytes3 = bytearray([0x025, 0x029, 0x043])
 
-    def test_dictionary_valid(self, client, listdict):
+    request = build_array_get_byte_valid_request()
+    assert make_request_json_response(request), [bytes1, bytes2 ==  bytes3]
+    request = build_array_put_byte_valid_request(json=[bytes1, bytes2, bytes3])
+    make_request(request)
 
-        client.array.put_dictionary_valid(listdict)
-        assert listdict ==  client.array.get_dictionary_valid()
+def test_get_byte_invalid_null(make_request_json_response):
+    request = build_array_get_byte_invalid_null_request()
+    assert make_request_json_response(request), [bytearray([0x0AB, 0x0AC, 0x0AD]) ==  None]
 
-    def test_get_complex_item_null(self, client, products):
-        products_null = [products[0], None, products[2]]
-        assert products_null ==  client.array.get_complex_item_null()
+def test_get_complex_null(make_request):
+    request = build_array_get_complex_null_request()
+    assert make_request(request).text == ''
 
-    def test_get_complex_item_empty(self, client, products):
-        products_empty = [products[0], Product(), products[2]]
-        assert products_empty ==  client.array.get_complex_item_empty()
+def test_get_complex_empty(make_request_json_response):
+    request = build_array_get_complex_empty_request()
+    assert [] == make_request_json_response(request)
 
-    def test_get_array_null(self, client):
-        assert client.array.get_array_null() is None
+def test_complex_valid(make_request, make_request_json_response, products):
+    request = build_array_get_complex_valid_request()
+    assert products ==  make_request_json_response(request)
+    request = build_array_put_complex_valid_request(json=products)
+    make_request(request)
 
-    def test_get_array_empty(self, client):
-        assert [] ==  client.array.get_array_empty()
+def test_get_array_valid(make_request, make_request_json_response):
+    listlist = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+    request = build_array_get_array_valid_request()
+    assert listlist ==  make_request_json_response(request)
+    request = build_array_put_array_valid_request(json=listlist)
+    make_request(request)
 
-    def test_get_array_item_null(self, client):
-        listlist2 = [["1", "2", "3"], None, ["7", "8", "9"]]
-        assert listlist2 ==  client.array.get_array_item_null()
 
-    def test_get_array_item_empty(self, client):
-        listlist3 = [["1", "2", "3"], [], ["7", "8", "9"]]
-        assert listlist3 ==  client.array.get_array_item_empty()
+def test_dictionary_valid(make_request, make_request_json_response, listdict):
+    request = build_array_get_dictionary_valid_request()
+    assert listdict ==  make_request_json_response(request)
+    request = build_array_put_dictionary_valid_request(json=listdict)
+    make_request(request)
 
-    def test_get_dictionary_and_dictionary_item_null(self, client, listdict):
-        assert client.array.get_dictionary_null() is None
+def test_get_complex_item_null(make_request_json_response, products):
+    products_null = [products[0], None, products[2]]
+    request = build_array_get_complex_item_null_request()
+    assert products_null == make_request_json_response(request)
 
-        listdict[1] = None
-        assert listdict ==  client.array.get_dictionary_item_null()
+def test_get_complex_item_empty(make_request_json_response, products):
+    products_empty = [products[0], Product().serialize(), products[2]]
 
-    def test_get_dictionary_and_dictionary_item_empty(self, client, listdict):
-        assert [] ==  client.array.get_dictionary_empty()
+    request = build_array_get_complex_item_empty_request()
+    assert products_empty ==  make_request_json_response(request)
 
-        listdict[1] = {}
-        assert listdict ==  client.array.get_dictionary_item_empty()
+def test_get_array_null(make_request):
+    request = build_array_get_array_null_request()
+    assert make_request(request).text == ''
 
-    def test_array_get_invalid(self, client):
-        with pytest.raises(DecodeError):
-            client.array.get_invalid()
+def test_get_array_empty(make_request_json_response):
+    request = build_array_get_array_empty_request()
+    assert [] ==  make_request_json_response(request)
 
-    def test_array_get_boolean_invalid_null(self, client):
-        assert client.array.get_boolean_invalid_null(), [True, None ==  False]
+def test_get_array_item_null(make_request_json_response):
+    listlist2 = [["1", "2", "3"], None, ["7", "8", "9"]]
+    request = build_array_get_array_item_null_request()
+    assert listlist2 ==  make_request_json_response(request)
 
-    def test_array_get_boolean_invalid_string(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_boolean_invalid_string()
+def test_get_array_item_empty(make_request_json_response):
+    listlist3 = [["1", "2", "3"], [], ["7", "8", "9"]]
+    request = build_array_get_array_item_empty_request()
+    assert listlist3 ==  make_request_json_response(request)
 
-    def test_array_get_int_invalid_null(self, client):
-        assert client.array.get_int_invalid_null(), [1, None ==  0]
+def test_get_dictionary_and_dictionary_item_null(make_request, make_request_json_response, listdict):
 
-    def test_array_get_int_invalid_string(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_int_invalid_string()
+    request = build_array_get_dictionary_null_request()
+    assert make_request(request).text == ''
 
-    def test_array_get_long_invalid_null(self, client):
-        assert client.array.get_long_invalid_null(), [1, None ==  0]
+    listdict[1] = None
+    request = build_array_get_dictionary_item_null_request()
+    assert listdict == make_request_json_response(request)
 
-    def test_array_get_long_invalid_string(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_long_invalid_string()
+def test_get_dictionary_and_dictionary_item_empty(make_request_json_response, listdict):
+    request = build_array_get_dictionary_empty_request()
+    assert [] ==  make_request_json_response(request)
 
-    def test_array_get_float_invalid_null(self, client):
-        assert client.array.get_float_invalid_null(), [0.0, None ==  -1.2e20]
+    listdict[1] = {}
+    request = build_array_get_dictionary_item_empty_request()
+    assert listdict ==  make_request_json_response(request)
 
-    def test_array_get_float_invalid_string(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_float_invalid_string()
+def test_array_get_invalid(make_request_json_response):
+    request = build_array_get_invalid_request()
+    with pytest.raises(json.decoder.JSONDecodeError):
+        make_request_json_response(request)
 
-    def test_array_get_double_invalid_null(self, client):
-        assert client.array.get_double_invalid_null(), [0.0, None ==  -1.2e20]
+def test_array_get_boolean_invalid_null(make_request_json_response):
+    request = build_array_get_boolean_invalid_null_request()
+    assert make_request_json_response(request), [True, None ==  False]
 
-    def test_array_get_double_invalid_string(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_double_invalid_string()
+def test_array_get_boolean_invalid_string(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_boolean_invalid_string_request()
+    assert make_request_json_response(request) == [True, "boolean", False]
 
-    def test_array_get_string_with_invalid(self, client):
-        assert client.array.get_string_with_invalid(), ["foo", "123" ==  "foo2"]
+def test_array_get_int_invalid_null(make_request_json_response):
+    request = build_array_get_int_invalid_null_request()
+    assert make_request_json_response(request), [1, None ==  0]
 
-    def test_array_get_date_invalid_null(self, client):
-        d_array = client.array.get_date_invalid_null()
-        assert d_array, [isodate.parse_date("2012-01-01"), None ==  isodate.parse_date("1776-07-04")]
+def test_array_get_int_invalid_string(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_int_invalid_string_request()
+    assert make_request_json_response(request) == [1, "integer", 0]
 
-    def test_array_get_date_invalid_chars(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_date_invalid_chars()
+def test_array_get_long_invalid_null(make_request_json_response):
+    request = build_array_get_long_invalid_null_request()
+    assert make_request_json_response(request), [1, None ==  0]
 
-    def test_array_get_date_time_invalid_null(self, client):
-        dt_array = client.array.get_date_time_invalid_null()
-        assert dt_array, [isodate.parse_datetime("2000-12-01T00:00:01Z") ==  None]
+def test_array_get_long_invalid_string(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_long_invalid_string_request()
+    assert make_request_json_response(request) == [1, "integer", 0]
 
-    def test_array_get_date_time_invalid_chars(self, client):
-        with pytest.raises(DeserializationError):
-            client.array.get_date_time_invalid_chars()
+def test_array_get_float_invalid_null(make_request_json_response):
+    request = build_array_get_float_invalid_null_request()
+    assert make_request_json_response(request), [0.0, None ==  -1.2e20]
 
-    def test_array_get_base64_url(self, client):
-        test_array = ['a string that gets encoded with base64url'.encode(),
-                      'test string'.encode(),
-                      'Lorem ipsum'.encode()]
-        assert client.array.get_base64_url() ==  test_array
+def test_array_get_float_invalid_string(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_float_invalid_string_request()
+    assert make_request_json_response(request) == [1, "number", 0]
 
-    def test_array_enum_valid(self, client):
-        array = client.array.get_enum_valid()
-        client.array.put_enum_valid(array)
+def test_array_get_double_invalid_null(make_request_json_response):
+    request = build_array_get_double_invalid_null_request()
+    assert make_request_json_response(request), [0.0, None ==  -1.2e20]
 
-    def test_array_string_enum_valid(self, client):
-        array = client.array.get_string_enum_valid()
-        client.array.put_string_enum_valid(array)
+def test_array_get_double_invalid_string(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_double_invalid_string_request()
+    assert make_request_json_response(request) == [1, "number", 0]
 
-    def test_models(self):
-        from bodyarray.models import Error
+def test_array_get_string_with_invalid(make_request_json_response):
+    request = build_array_get_string_with_invalid_request()
+    assert make_request_json_response(request), ["foo", "123" ==  "foo2"]
 
-        if sys.version_info >= (3,5):
-            from bodyarray.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodyarray.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_array_get_date_invalid_null(make_request_json_response):
+    request = build_array_get_date_invalid_null_request()
+    assert make_request_json_response(request), [isodate.parse_date("2012-01-01"), None ==  isodate.parse_date("1776-07-04")]
+
+def test_array_get_date_invalid_chars(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_date_invalid_chars_request()
+    assert make_request_json_response(request) == ["2011-03-22", "date"]
+
+def test_array_get_date_time_invalid_null(make_request_json_response):
+    request = build_array_get_date_time_invalid_null_request()
+    assert make_request_json_response(request), [isodate.parse_datetime("2000-12-01T00:00:01Z") ==  None]
+
+def test_array_get_date_time_invalid_chars(make_request_json_response):
+    # don't raise deserialization error bc we're not msrest deserializing
+    request = build_array_get_date_time_invalid_chars_request()
+    assert make_request_json_response(request) == ['2000-12-01t00:00:01z', 'date-time']
+
+def test_array_get_base64_url(make_request_json_response):
+    test_array = ['a string that gets encoded with base64url'.encode(),
+                    'test string'.encode(),
+                    'Lorem ipsum'.encode()]
+    request = build_array_get_base64_url_request()
+    response = make_request_json_response(request)
+    assert [s.decode() for s in response] == test_array
+
+def test_array_enum_valid(make_request, make_request_json_response):
+    request = build_array_get_enum_valid_request()
+    response = make_request_json_response(request)
+    assert response == ['foo1', 'foo2', 'foo3']
+    request = build_array_put_enum_valid_request(json=response)
+    make_request(request)
+
+def test_array_string_enum_valid(make_request, make_request_json_response):
+    request = build_array_get_string_enum_valid_request()
+    response = make_request_json_response(request)
+    assert response == ['foo1', 'foo2', 'foo3']
+    request = build_array_put_string_enum_valid_request(json=response)
+    make_request(request)

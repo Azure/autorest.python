@@ -23,21 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from azure.core.exceptions import DecodeError
-
 from bodyboolean import AutoRestBoolTestService
-
+from bodyboolean._rest import *
 import pytest
 
 @pytest.fixture
@@ -45,33 +32,38 @@ def client():
     with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestBool(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_model_get_true(self, client):
-        assert client.bool.get_true()
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_model_get_false(self, client):
-        assert not client.bool.get_false()
+def test_model_get_true(make_request_json_response):
+    request = build_bool_get_true_request()
+    assert make_request_json_response(request) == True
 
-    def test_model_get_null(self, client):
-        client.bool.get_null()
+def test_model_get_false(make_request_json_response):
+    request = build_bool_get_false_request()
+    assert not make_request_json_response(request)
 
-    def test_model_put_false(self, client):
-        client.bool.put_false()
+def test_model_get_null(make_request):
+    request = build_bool_get_null_request()
+    assert make_request(request).text == ''
 
-    def test_model_put_true(self, client):
-        client.bool.put_true()
+def test_model_put_false(make_request):
+    request = build_bool_put_false_request(json=False)  # have to pass in bc we don't do constant bodies in request builders
+    make_request(request)
 
-    def test_model_get_invalid(self, client):
-        with pytest.raises(DecodeError):
-            client.bool.get_invalid()
+def test_model_put_true(make_request):
+    request = build_bool_put_true_request(json=True)  # have to pass in bc we don't do constant bodies in request builders
+    make_request(request)
 
-    def test_models(self):
-        from bodyboolean.models import Error
-
-        if sys.version_info >= (3,5):
-            from bodyboolean.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodyboolean.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_model_get_invalid(make_request):
+    request = build_bool_get_invalid_request()
+    assert make_request(request).text == "true1"

@@ -81,8 +81,8 @@ class AutoRestComplexTestService(object):
         We have helper methods to create requests specific to this service in `bodycomplex.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodycomplex.rest import prepare_basic_get_valid
-        >>> request = prepare_basic_get_valid()
+        >>> from bodycomplex.rest import build_basic_get_valid_request
+        >>> request = build_basic_get_valid_request()
         <HttpRequest [GET], url: '/complex/basic/valid'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

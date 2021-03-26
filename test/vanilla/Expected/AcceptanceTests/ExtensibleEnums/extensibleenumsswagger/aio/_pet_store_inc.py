@@ -46,8 +46,8 @@ class PetStoreInc(object):
         We have helper methods to create requests specific to this service in `extensibleenumsswagger.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from extensibleenumsswagger.rest import prepare_pet_get_by_pet_id
-        >>> request = prepare_pet_get_by_pet_id(pet_id)
+        >>> from extensibleenumsswagger.rest import build_pet_get_by_pet_id_request
+        >>> request = build_pet_get_by_pet_id_request(pet_id)
         <HttpRequest [GET], url: '/extensibleenums/pet/{petId}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

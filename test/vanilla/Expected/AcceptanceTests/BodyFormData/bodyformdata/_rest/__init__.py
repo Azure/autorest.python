@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_formdata_upload_file
-    from ._preparers_py3 import prepare_formdata_upload_file_via_body
-    from ._preparers_py3 import prepare_formdata_upload_files
+    from ._request_builders_py3 import build_formdata_upload_file_request
+    from ._request_builders_py3 import build_formdata_upload_file_via_body_request
+    from ._request_builders_py3 import build_formdata_upload_files_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_formdata_upload_file  # type: ignore
-    from ._preparers import prepare_formdata_upload_file_via_body  # type: ignore
-    from ._preparers import prepare_formdata_upload_files  # type: ignore
+    from ._request_builders import build_formdata_upload_file_request  # type: ignore
+    from ._request_builders import build_formdata_upload_file_via_body_request  # type: ignore
+    from ._request_builders import build_formdata_upload_files_request  # type: ignore
 
 __all__ = [
-    "prepare_formdata_upload_file",
-    "prepare_formdata_upload_file_via_body",
-    "prepare_formdata_upload_files",
+    "build_formdata_upload_file_request",
+    "build_formdata_upload_file_via_body_request",
+    "build_formdata_upload_files_request",
 ]

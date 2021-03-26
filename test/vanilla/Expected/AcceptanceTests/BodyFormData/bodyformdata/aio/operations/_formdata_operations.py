@@ -66,13 +66,15 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.pop("content_type", "multipart/form-data")
         # Construct form data
-        _body = {
+        files = {
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = prepare_formdata_upload_file(
-            file_content=_body, template_url=self.upload_file.metadata["url"], **kwargs
+
+        request = build_formdata_upload_file_request(
+            files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -109,8 +111,11 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_formdata_upload_file_via_body(
-            file_content=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
+        content_type = kwargs.pop("content_type", "application/octet-stream")
+        content = file_content
+
+        request = build_formdata_upload_file_via_body_request(
+            content=content, content_type=content_type, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -147,12 +152,14 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.pop("content_type", "multipart/form-data")
         # Construct form data
-        _body = {
+        files = {
             "fileContent": file_content,
         }
-        request = prepare_formdata_upload_files(
-            file_content=_body, template_url=self.upload_files.metadata["url"], **kwargs
+
+        request = build_formdata_upload_files_request(
+            files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)

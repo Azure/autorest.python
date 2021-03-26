@@ -68,6 +68,29 @@ collect_ignore = []
 if sys.version_info < (3,5):
     collect_ignore.append("asynctests")
 
+@pytest.fixture()
+def base_make_request():
+    def make_request(client, request):
+        response = client._send_request(request)
+        response.raise_for_status()
+        return response
+    return make_request
+
+@pytest.fixture()
+def base_make_request_json_response():
+    def make_request_json_response(client, request):
+        response = client._send_request(request)
+        response.raise_for_status()
+        return response.json()
+    return make_request_json_response
+
+@pytest.fixture()
+def base_make_stream_request():
+    def make_stream_request(client, request):
+        response = client._send_request(request, stream_response=True)
+        response.raise_for_status()
+        return response.stream_download()
+    return make_stream_request
 
 class CookiePolicy(SansIOHTTPPolicy):
     def __init__(self, *args, **kwargs):

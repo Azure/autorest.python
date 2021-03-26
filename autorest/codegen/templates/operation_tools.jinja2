@@ -126,31 +126,27 @@ if {{ grouper_name }} is not None:
 {% macro query_parameters(request_builder, async_mode) %}
 # Construct parameters
 query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-{% if request_builder.parameters.query %}
-    {% for query_parameter in request_builder.parameters.query %}
-        {%if query_parameter.required %}
+{% for query_parameter in request_builder.parameters.query %}
+    {%if query_parameter.required %}
 query_parameters['{{ query_parameter.rest_api_name }}'] = {{ query_parameter.build_serialize_data_call("query") }}
-        {% else %}
+    {% else %}
 if {{ query_parameter.full_serialized_name }} is not None:
     query_parameters['{{ query_parameter.rest_api_name }}'] = {{ query_parameter.build_serialize_data_call("query") }}
-        {% endif %}
-    {% endfor %}
-{% endif %}{% endmacro %}
+    {% endif %}
+{% endfor %}{% endmacro %}
 
 {# write request_builder headers #}
 {% macro header_parameters(code_model, request_builder, async_mode) %}
 # Construct headers
 header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-{% if request_builder.parameters.headers %}
-    {% for header_parameter in request_builder.parameters.headers %}
-        {%if header_parameter.required %}
+{% for header_parameter in request_builder.parameters.headers %}
+    {%if header_parameter.required %}
 header_parameters['{{ header_parameter.rest_api_name }}'] = {{ header_parameter.build_serialize_data_call("header") }}
-        {% else %}
+    {% else %}
 if {{ header_parameter.full_serialized_name }} is not None:
     header_parameters['{{ header_parameter.rest_api_name }}'] = {{ header_parameter.build_serialize_data_call("header") }}
-        {% endif %}
-    {% endfor %}
-{% endif %}{% endmacro %}
+    {% endif %}
+{% endfor %}{% endmacro %}
 
 {# path format arguments #}
 {% macro path_format_arguments(path_parameters) %}
@@ -183,11 +179,9 @@ else:
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(operation, schema_request) %}
-{% if operation.multipart %}
-files = {{ operation.parameters.body[0].serialized_name }}
-{% elif schema_request.is_stream_request %}
+{% if schema_request.is_stream_request %}
 content = {{ operation.parameters.body[0].serialized_name }}
-{% elif schema_request.body_parameter_has_schema %}
+{% elif schema_request.body_parameter_has_schema and not operation.request_builder.multipart %}
 {{ serialize_body(operation) }}{% endif %}{% endmacro %}
 
 {# write body parameters #}
@@ -282,7 +276,7 @@ content_type = kwargs.pop("content_type", {{ operation.default_content_type_decl
 {%- endif -%}
 {% if operation.request_builder.multipart %}
 # Construct form data
-_body = {
+files = {
     {% for param in operation.parameters.body %}
     '{{ param.rest_api_name }}': {{ param.serialized_name }},
     {% endfor %}

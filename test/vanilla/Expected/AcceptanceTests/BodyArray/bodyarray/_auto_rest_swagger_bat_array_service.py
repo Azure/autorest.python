@@ -58,8 +58,8 @@ class AutoRestSwaggerBATArrayService(object):
         We have helper methods to create requests specific to this service in `bodyarray.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyarray.rest import prepare_array_get_null
-        >>> request = prepare_array_get_null()
+        >>> from bodyarray.rest import build_array_get_null_request
+        >>> request = build_array_get_null_request()
         <HttpRequest [GET], url: '/array/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

@@ -46,8 +46,8 @@ class AutoRestBoolTestService(object):
         We have helper methods to create requests specific to this service in `bodyboolean.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyboolean.rest import prepare_bool_get_true
-        >>> request = prepare_bool_get_true()
+        >>> from bodyboolean.rest import build_bool_get_true_request
+        >>> request = build_bool_get_true_request()
         <HttpRequest [GET], url: '/bool/true'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

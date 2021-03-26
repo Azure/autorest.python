@@ -23,20 +23,10 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
 import io
-from datetime import date, datetime, timedelta
-import os
 from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
-
 from bodyfile import AutoRestSwaggerBATFileService
+from bodyfile._rest import *
 
 import pytest
 
@@ -50,100 +40,58 @@ def client(connection_data_block_size):
         yield client
 
 @pytest.fixture
-def callback():
-    def _callback(response, data_stream, headers):
-        assert not data_stream.response.internal_response._content_consumed
-        return data_stream
-    return _callback
+def make_stream_request(client, base_make_stream_request):
+    def _make_request(request):
+        return base_make_stream_request(client, request)
+    return _make_request
 
-class TestFile(object):
+@pytest.mark.parametrize('connection_data_block_size', [1000])
+def test_get_file(make_stream_request):
+    file_length = 0
+    with io.BytesIO() as file_handle:
+        request = build_files_get_file_request()
+        stream = make_stream_request(request)
+        total = len(stream)
+        assert not stream.response.internal_response._content_consumed
 
-    @pytest.mark.parametrize('connection_data_block_size', [1000])
-    def test_get_file(self, client):
-        file_length = 0
-        with io.BytesIO() as file_handle:
-            stream = client.files.get_file()
-            total = len(stream)
-            assert not stream.response.internal_response._content_consumed
-
-            for data in stream:
-                assert 0 < len(data) <= stream.block_size
-                file_length += len(data)
-                print("Downloading... {}%".format(int(file_length*100/total)))
-                file_handle.write(data)
-
-            assert file_length !=  0
-
-            sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
-                    "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
-
-            with open(sample_file, 'rb') as data:
-                sample_data = hash(data.read())
-            assert sample_data ==  hash(file_handle.getvalue())
-
-    @pytest.mark.parametrize('connection_data_block_size', [4096])
-    def test_get_empty_file(self, client):
-        file_length = 0
-        with io.BytesIO() as file_handle:
-            stream = client.files.get_empty_file()
-            assert len(stream) == 0
-            assert not stream.response.internal_response._content_consumed
-
-            for data in stream:
-                file_length += len(data)
-                file_handle.write(data)
-
-            assert file_length ==  0
-
-    @pytest.mark.parametrize('connection_data_block_size', [4096])
-    def test_files_long_running(self, client):
-        file_length = 0
-        stream = client.files.get_file_large()
         for data in stream:
             assert 0 < len(data) <= stream.block_size
             file_length += len(data)
+            print("Downloading... {}%".format(int(file_length*100/total)))
+            file_handle.write(data)
 
-        assert file_length ==  3000 * 1024 * 1024
+        assert file_length !=  0
 
-    @pytest.mark.parametrize('connection_data_block_size', [None])
-    def test_get_file_with_callback(self, client, callback):
-        file_length = 0
-        with io.BytesIO() as file_handle:
-            stream = client.files.get_file(cls=callback)
-            assert len(stream) > 0
-            for data in stream:
-                assert 0 < len(data) <= stream.block_size
-                file_length += len(data)
-                file_handle.write(data)
+        sample_file = realpath(
+            join(cwd, pardir, pardir, pardir,
+                "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
-            assert file_length !=  0
+        with open(sample_file, 'rb') as data:
+            sample_data = hash(data.read())
+        assert sample_data ==  hash(file_handle.getvalue())
 
-            sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
-                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+@pytest.mark.parametrize('connection_data_block_size', [4096])
+def test_get_empty_file(make_stream_request):
+    file_length = 0
+    with io.BytesIO() as file_handle:
+        request = build_files_get_empty_file_request()
+        stream = make_stream_request(request)
+        assert len(stream) == 0
+        assert not stream.response.internal_response._content_consumed
 
-            with open(sample_file, 'rb') as data:
-                sample_data = hash(data.read())
-            assert sample_data ==  hash(file_handle.getvalue())
+        for data in stream:
+            file_length += len(data)
+            file_handle.write(data)
 
-    @pytest.mark.parametrize('connection_data_block_size', [None])
-    def test_get_empty_file_with_callback(self, client, callback):
-        file_length = 0
-        with io.BytesIO() as file_handle:
-            stream = client.files.get_empty_file(cls=callback)
-            for data in stream:
-                file_length += len(data)
-                file_handle.write(data)
+        assert file_length ==  0
 
-            assert file_length ==  0
+@pytest.mark.parametrize('connection_data_block_size', [4096])
+def test_files_long_running(make_stream_request):
+    file_length = 0
+    request = build_files_get_file_large_request()
+    stream = make_stream_request(request)
+    for data in stream:
+        assert 0 < len(data) <= stream.block_size
+        file_length += len(data)
 
-    def test_models(self):
-        from bodyfile.models import Error
-
-        if sys.version_info >= (3,5):
-            from bodyfile.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodyfile.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+    assert file_length ==  3000 * 1024 * 1024

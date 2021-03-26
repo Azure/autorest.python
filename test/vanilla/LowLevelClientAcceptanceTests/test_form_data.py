@@ -27,7 +27,6 @@
 import subprocess
 import sys
 import io
-import isodate
 import os
 import tempfile
 from os.path import dirname, pardir, join, realpath
@@ -40,7 +39,7 @@ sys.path.append(join(tests, "BodyFormData"))
 
 
 from bodyformdata import AutoRestSwaggerBATFormDataService
-
+from bodyformdata._rest import *
 import pytest
 
 @pytest.fixture
@@ -61,102 +60,92 @@ def client():
     ) as client:
         yield client
 
-class TestFormData(object):
+@pytest.fixture
+def make_stream_request(client, base_make_stream_request):
+    def _make_request(request):
+        return base_make_stream_request(client, request)
+    return _make_request
+def test_file_upload_stream(make_stream_request):
 
-    def test_file_upload_stream(self, client):
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
+    result = io.BytesIO()
+    with io.BytesIO(test_bytes) as stream_data:
+        files = {
+            "fileContent": stream_data,
+            "fileName": "UploadFile.txt",
+        }
+        request = build_formdata_upload_file_request(files=files)
+        resp = make_stream_request(request)
+        for r in resp:
+            result.write(r)
+        assert result.getvalue().decode() ==  test_string
 
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            resp = client.formdata.upload_file(stream_data, "UploadFile.txt")
-            for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
+def test_file_upload_file_stream(make_stream_request, dummy_file):
 
-    def test_file_upload_stream_raw(self, client):
+    name = os.path.basename(dummy_file)
+    result = io.BytesIO()
+    with open(dummy_file, 'rb') as upload_data:
+        files = {
+            "fileContent": upload_data,
+            "fileName": name,
+        }
+        request = build_formdata_upload_file_request()
+        resp = make_stream_request(request)
+        for r in resp:
+            result.write(r)
+        assert result.getvalue().decode() ==  "Test file"
 
-        def test_callback(response, data, headers):
-            return data
+def test_file_body_upload(make_stream_request, dummy_file):
 
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            stream = client.formdata.upload_file(stream_data, "UploadFile.txt", cls=test_callback)
-            for data in stream:
-                result.write(data)
-            assert result.getvalue().decode() ==  test_string
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
 
-    def test_file_upload_file_stream(self, client, dummy_file):
+    result = io.BytesIO()
+    with io.BytesIO(test_bytes) as stream_data:
+        request = build_formdata_upload_file_via_body_request(content=stream_data)
+        resp = make_stream_request(request)
+        for r in resp:
+            result.write(r)
+        assert result.getvalue().decode() ==  test_string
 
-        name = os.path.basename(dummy_file)
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = client.formdata.upload_file(upload_data, name)
-            for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  "Test file"
+    result = io.BytesIO()
+    with open(dummy_file, 'rb') as upload_data:
+        request = build_formdata_upload_file_via_body_request(content=upload_data)
+        resp = make_stream_request(request)
+        for r in resp:
+            result.write(r)
+        assert result.getvalue().decode() ==  "Test file"
 
-    def test_file_upload_file_stream_raw(self, client, dummy_file):
+def test_file_body_upload_generator(make_stream_request, dummy_file):
 
-        def test_callback(response, data, headers):
-            return data
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
 
-        name = os.path.basename(dummy_file)
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            stream = client.formdata.upload_file(upload_data, name, cls=test_callback)
-            for data in stream:
-                result.write(data)
-            assert result.getvalue().decode() ==  "Test file"
+    def stream_upload(data, length, block_size):
+        progress = 0
+        while True:
+            block = data.read(block_size)
+            progress += len(block)
+            print("Progress... {}%".format(int(progress*100/length)))
+            if not block:
+                break
+            yield block
 
-    def test_file_body_upload(self, client, dummy_file):
+    result = io.BytesIO()
+    with io.BytesIO(test_bytes) as stream_data:
+        streamed_upload = stream_upload(stream_data, len(test_string), 2)
+        request = build_formdata_upload_file_via_body_request(content=stream_upload)
+        resp = make_stream_request(request)
+        for r in resp:
+            result.write(r)
+        assert result.getvalue().decode() ==  test_string
 
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            resp = client.formdata.upload_file_via_body(stream_data)
-            for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
-
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = client.formdata.upload_file_via_body(upload_data)
-            for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  "Test file"
-
-    def test_file_body_upload_generator(self, client, dummy_file):
-
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-
-        def stream_upload(data, length, block_size):
-            progress = 0
-            while True:
-                block = data.read(block_size)
-                progress += len(block)
-                print("Progress... {}%".format(int(progress*100/length)))
-                if not block:
-                    break
-                yield block
-
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            streamed_upload = stream_upload(stream_data, len(test_string), 2)
-            resp = client.formdata.upload_file_via_body(streamed_upload)
-            for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
-
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            streamed_upload = stream_upload(upload_data, len("Test file"), 2)
-            response = client.formdata.upload_file_via_body(streamed_upload)
-            for data in response:
-                result.write(data)
-            assert result.getvalue().decode() == "Test file"
+    result = io.BytesIO()
+    with open(dummy_file, 'rb') as upload_data:
+        streamed_upload = stream_upload(upload_data, len("Test file"), 2)
+        request = build_formdata_upload_file_via_body_request(content=streamed_upload)
+        response = make_stream_request(request)
+        for data in response:
+            result.write(data)
+        assert result.getvalue().decode() == "Test file"

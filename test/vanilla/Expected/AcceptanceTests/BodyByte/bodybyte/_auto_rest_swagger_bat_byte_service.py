@@ -58,8 +58,8 @@ class AutoRestSwaggerBATByteService(object):
         We have helper methods to create requests specific to this service in `bodybyte.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodybyte.rest import prepare_byte_get_null
-        >>> request = prepare_byte_get_null()
+        >>> from bodybyte.rest import build_byte_get_null_request
+        >>> request = build_byte_get_null_request()
         <HttpRequest [GET], url: '/byte/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

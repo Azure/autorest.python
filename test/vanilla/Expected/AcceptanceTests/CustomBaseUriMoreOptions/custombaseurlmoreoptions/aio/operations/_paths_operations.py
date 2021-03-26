@@ -72,7 +72,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_paths_get_empty(
+        request = build_paths_get_empty_request(
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,

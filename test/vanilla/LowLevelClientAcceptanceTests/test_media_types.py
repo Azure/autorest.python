@@ -24,44 +24,35 @@
 #
 # --------------------------------------------------------------------------
 from mediatypes import MediaTypesClient
-from mediatypes.rest import *
-from azure.core.exceptions import HttpResponseError
+from mediatypes._rest import *
 
 import pytest
-import json
-import sys
 
 @pytest.fixture
 def client():
     with MediaTypesClient() as client:
         yield client
 
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-class TestMediaTypes(object):
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_pdf(self, client):
-        result = client.analyze_body(input=b"PDF", content_type="application/pdf")
-        assert result == "Nice job with PDF"
+def test_pdf(make_request_json_response):
+    request = build_analyze_body_request(content=b"PDF", content_type="application/pdf")
+    assert make_request_json_response(request) == "Nice job with PDF"
 
-    def test_json(self, client):
-        json_input = json.loads('{"source":"foo"}')
-        result = client.analyze_body(input=json_input)
-        assert result == "Nice job with JSON"
+def test_json(make_request_json_response):
+    request = build_analyze_body_request(json={"source":"foo"})
+    assert make_request_json_response(request) == "Nice job with JSON"
 
-    def test_incorrect_content_type(self, client):
-        with pytest.raises(ValueError):
-            client.analyze_body(input=b"PDF", content_type="text/plain")
-
-    def test_content_type_with_encoding(self, client):
-        result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
-        assert result == "Nice job sending content type with encoding"
-
-    def test_models(self):
-        from mediatypes.models import SourcePath
-
-        if sys.version_info >= (3,5):
-            from mediatypes.models._models_py3 import SourcePath as SourcePathPy3
-            assert SourcePath == SourcePathPy3
-        else:
-            from mediatypes.models._models import SourcePath as SourcePathPy2
-            assert SourcePath == SourcePathPy2
+def test_content_type_with_encoding(make_request_json_response):
+    request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; encoding=UTF-8')
+    assert make_request_json_response(request) == "Nice job sending content type with encoding"

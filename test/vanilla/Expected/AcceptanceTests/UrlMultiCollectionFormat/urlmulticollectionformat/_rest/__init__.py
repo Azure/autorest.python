@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_queries_array_string_multi_null
-    from ._preparers_py3 import prepare_queries_array_string_multi_empty
-    from ._preparers_py3 import prepare_queries_array_string_multi_valid
+    from ._request_builders_py3 import build_queries_array_string_multi_null_request
+    from ._request_builders_py3 import build_queries_array_string_multi_empty_request
+    from ._request_builders_py3 import build_queries_array_string_multi_valid_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_queries_array_string_multi_null  # type: ignore
-    from ._preparers import prepare_queries_array_string_multi_empty  # type: ignore
-    from ._preparers import prepare_queries_array_string_multi_valid  # type: ignore
+    from ._request_builders import build_queries_array_string_multi_null_request  # type: ignore
+    from ._request_builders import build_queries_array_string_multi_empty_request  # type: ignore
+    from ._request_builders import build_queries_array_string_multi_valid_request  # type: ignore
 
 __all__ = [
-    "prepare_queries_array_string_multi_null",
-    "prepare_queries_array_string_multi_empty",
-    "prepare_queries_array_string_multi_valid",
+    "build_queries_array_string_multi_null_request",
+    "build_queries_array_string_multi_empty_request",
+    "build_queries_array_string_multi_valid_request",
 ]

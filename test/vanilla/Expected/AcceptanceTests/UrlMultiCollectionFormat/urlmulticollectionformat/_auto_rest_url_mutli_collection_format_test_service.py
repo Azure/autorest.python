@@ -58,8 +58,8 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         We have helper methods to create requests specific to this service in `urlmulticollectionformat.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from urlmulticollectionformat.rest import prepare_queries_array_string_multi_null
-        >>> request = prepare_queries_array_string_multi_null(array_query)
+        >>> from urlmulticollectionformat.rest import build_queries_array_string_multi_null_request
+        >>> request = build_queries_array_string_multi_null_request(array_query)
         <HttpRequest [GET], url: '/queries/array/multi/string/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,7 +77,7 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
+        stream_response = kwargs.pop("stream_response", False)
         pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,

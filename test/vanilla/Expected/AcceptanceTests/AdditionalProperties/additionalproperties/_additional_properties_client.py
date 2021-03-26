@@ -58,8 +58,8 @@ class AdditionalPropertiesClient(object):
         We have helper methods to create requests specific to this service in `additionalproperties.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from additionalproperties.rest import prepare_pets_create_ap_true
-        >>> request = prepare_pets_create_ap_true(create_parameters)
+        >>> from additionalproperties.rest import build_pets_create_ap_true_request
+        >>> request = build_pets_create_ap_true_request(json, content)
         <HttpRequest [PUT], url: '/additionalProperties/true'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

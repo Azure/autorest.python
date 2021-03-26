@@ -46,8 +46,8 @@ class AutoRestSwaggerBATHeaderService(object):
         We have helper methods to create requests specific to this service in `header.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from header.rest import prepare_header_param_existing_key
-        >>> request = prepare_header_param_existing_key(user_agent_parameter)
+        >>> from header.rest import build_header_param_existing_key_request
+        >>> request = build_header_param_existing_key_request(user_agent_parameter)
         <HttpRequest [POST], url: '/header/param/existingkey'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -65,7 +65,7 @@ class AutoRestSwaggerBATHeaderService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
+        stream_response = kwargs.pop("stream_response", False)
         pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,

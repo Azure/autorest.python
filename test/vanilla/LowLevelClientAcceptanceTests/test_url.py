@@ -24,20 +24,13 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError, ValidationError
-
+from datetime import datetime
 from url import AutoRestUrlTestService
+from url._rest import *
 from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
+from urlmulticollectionformat._rest import *
 from url.models import UriColor
+from msrest.exceptions import ValidationError
 
 import pytest
 
@@ -52,199 +45,305 @@ def multi_client():
         yield client
 
 @pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
+
+@pytest.fixture
+def make_multi_request(multi_client, base_make_request):
+    def _make_request(request):
+        return base_make_request(multi_client, request)
+    return _make_request
+
+@pytest.fixture
 def test_array_query():
     return ["ArrayQuery1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
 
-class TestUrl(object):
-    def test_byte_empty_and_null(self, client):
-        client.paths.byte_empty()
+def test_byte_empty_and_null(make_request):
+    request = build_paths_byte_empty_request()
+    make_request(request)
 
-        with pytest.raises(ValidationError):
-            client.paths.byte_null(None)
+    with pytest.raises(ValidationError):
+        build_paths_byte_null_request(None)
 
-    def test_byte_multi_byte(self, client):
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        client.paths.byte_multi_byte(u_bytes)
+def test_byte_multi_byte(make_request):
+    u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+    request = build_paths_byte_multi_byte_request(u_bytes)
+    make_request(request)
 
-    def test_date_null(self, client):
-        with pytest.raises(ValidationError):
-            client.paths.date_null(None)
+def test_date_null(make_request):
+    with pytest.raises(ValidationError):
+        build_paths_date_null_request(None)
 
-    def test_date_time_null(self, client):
-        with pytest.raises(ValidationError):
-            client.paths.date_time_null(None)
+def test_date_time_null(make_request):
+    with pytest.raises(ValidationError):
+        build_paths_date_time_null_request(None)
 
-    def test_date_time_valid(self, client):
-        client.paths.date_time_valid()
+def test_date_time_valid(make_request):
+    request = build_paths_date_time_valid_request()
+    make_request(request)
 
-    def test_date_valid(self, client):
-        client.paths.date_valid()
+def test_date_valid(make_request):
+    request = build_paths_date_valid_request()
+    make_request(request)
 
-    def test_unix_time_url(self, client):
-        client.paths.unix_time_url(datetime(year=2016, month=4, day=13))
+def test_unix_time_url(make_request):
+    request = build_paths_unix_time_url_request(datetime(year=2016, month=4, day=13))
+    make_request(request)
 
-    def test_double_decimal(self, client):
-        client.paths.double_decimal_negative()
-        client.paths.double_decimal_positive()
+def test_double_decimal(make_request):
+    request = build_paths_double_decimal_negative_request()
+    make_request(request)
+    request = build_paths_double_decimal_positive_request()
+    make_request(request)
 
-    def test_float_scientific(self, client):
-        client.paths.float_scientific_negative()
-        client.paths.float_scientific_positive()
+def test_float_scientific(make_request):
+    request = build_paths_float_scientific_negative_request()
+    make_request(request)
 
-    def test_get_boolean(self, client):
-        client.paths.get_boolean_false()
-        client.paths.get_boolean_true()
+    request = build_paths_float_scientific_positive_request()
+    make_request(request)
 
-    def test_int(self, client):
-        client.paths.get_int_negative_one_million()
-        client.paths.get_int_one_million()
+def test_get_boolean(make_request):
+    request = build_paths_get_boolean_false_request()
+    make_request(request)
 
-    def test_get_long(self, client):
-        client.paths.get_negative_ten_billion()
-        client.paths.get_ten_billion()
+    request = build_paths_get_boolean_true_request()
+    make_request(request)
 
-    def test_string_empty_and_null(self, client):
-        client.paths.string_empty()
+def test_int(make_request):
+    request = build_paths_get_int_negative_one_million_request()
+    make_request(request)
 
-        with pytest.raises(ValidationError):
-            client.paths.string_null(None)
+    request = build_paths_get_int_one_million_request()
+    make_request(request)
 
-    def test_array_csv_in_path(self, client):
-        test_array = ["ArrayPath1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
-        client.paths.array_csv_in_path(test_array)
+def test_get_long(make_request):
+    request = build_paths_get_negative_ten_billion_request()
+    make_request(request)
 
-    def test_string_url_encoded(self, client):
-        client.paths.string_url_encoded()
+    request = build_paths_get_ten_billion_request()
+    make_request(request)
 
-    def test_paths_unicode(self, client):
-        client.paths.string_unicode()
+def test_string_empty_and_null(make_request):
+    request = build_paths_string_empty_request()
+    make_request(request)
 
-    def test_string_url_non_encoded(self, client):
-        client.paths.string_url_non_encoded()
+    with pytest.raises(ValidationError):
+        build_paths_string_null_request(None)
 
-    def test_enum_valid(self, client):
-        client.paths.enum_valid(UriColor.green_color)
+def test_array_csv_in_path(make_request):
+    test_array = ["ArrayPath1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
+    request = build_paths_array_csv_in_path_request(test_array)
+    make_request(request)
 
-    def test_enum_null(self, client):
-        with pytest.raises(ValidationError):
-            client.paths.enum_null(None)
+def test_string_url_encoded(make_request):
+    request = build_paths_string_url_encoded_request()
+    make_request(request)
 
-    def test_base64_url(self, client):
-        client.paths.base64_url("lorem".encode())
+def test_paths_unicode(make_request):
+    request = build_paths_string_unicode_request()
+    make_request(request)
 
-    def test_queries_byte(self, client):
-        client.queries.byte_empty()
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        client.queries.byte_multi_byte(u_bytes)
-        client.queries.byte_null()
+def test_string_url_non_encoded(make_request):
+    request = build_paths_string_url_non_encoded_request()
+    make_request(request)
 
-    def test_queries_date(self, client):
-        client.queries.date_null()
-        client.queries.date_valid()
+def test_enum_valid(make_request):
+    request = build_paths_enum_valid_request(UriColor.GREEN_COLOR)
+    make_request(request)
 
-    def test_queries_date_time(self, client):
-        client.queries.date_time_null()
-        client.queries.date_time_valid()
+def test_enum_null(make_request):
+    with pytest.raises(ValidationError):
+        build_paths_enum_null_request(None)
 
-    def test_queries_double(self, client):
-        client.queries.double_null()
-        client.queries.double_decimal_negative()
-        client.queries.double_decimal_positive()
+def test_base64_url(make_request):
+    request = build_paths_base64_url_request("lorem".encode())
+    make_request(request)
 
-    def test_queries_float_scientific(self, client):
-        client.queries.float_scientific_negative()
-        client.queries.float_scientific_positive()
-        client.queries.float_null()
+def test_queries_byte(make_request):
+    request = build_queries_byte_empty_request()
+    make_request(request)
 
-    def test_queries_boolean(self, client):
-        client.queries.get_boolean_false()
-        client.queries.get_boolean_true()
-        client.queries.get_boolean_null()
+    u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+    request = build_queries_byte_multi_byte_request(byte_query=u_bytes)
+    make_request(request)
 
-    def test_queries_int(self, client):
-        client.queries.get_int_negative_one_million()
-        client.queries.get_int_one_million()
-        client.queries.get_int_null()
+    request = build_queries_byte_null_request()
+    make_request(request)
 
-    def test_queries_long(self, client):
-        client.queries.get_negative_ten_billion()
-        client.queries.get_ten_billion()
-        client.queries.get_long_null()
+def test_queries_date(make_request):
+    request = build_queries_date_null_request()
+    make_request(request)
 
-    def test_queries_string(self, client):
-        client.queries.string_empty()
-        client.queries.string_null()
-        client.queries.string_url_encoded()
+    request = build_queries_date_valid_request()
+    make_request(request)
 
-    def test_queries_enum(self, client):
-        client.queries.enum_valid(UriColor.green_color)
-        client.queries.enum_null(None)
+def test_queries_date_time(make_request):
+    request = build_queries_date_time_null_request()
+    make_request(request)
 
-    def test_queries_unicode(self, client):
-        client.queries.string_unicode()
+    request = build_queries_date_time_valid_request()
+    make_request(request)
 
-    def test_array_string_csv(self, client, test_array_query):
-        client.queries.array_string_csv_empty([])
-        client.queries.array_string_csv_null(None)
-        client.queries.array_string_csv_valid(test_array_query)
+def test_queries_double(make_request):
+    request = build_queries_double_null_request()
+    make_request(request)
 
-    def test_array_string_miscellaneous(self, client, test_array_query):
-        client.queries.array_string_pipes_valid(test_array_query)
-        client.queries.array_string_ssv_valid(test_array_query)
-        client.queries.array_string_tsv_valid(test_array_query)
+    request = build_queries_double_decimal_negative_request()
+    make_request(request)
 
-    def test_array_string_multi(self, multi_client, test_array_query):
-        multi_client.queries.array_string_multi_empty([])
-        multi_client.queries.array_string_multi_null()
-        multi_client.queries.array_string_multi_valid(test_array_query)
+    request = build_queries_double_decimal_positive_request()
+    make_request(request)
 
-    def test_array_string_no_collection_format(self, client):
-        client.queries.array_string_no_collection_format_empty(['hello', 'nihao', 'bonjour'])
+def test_queries_float_scientific(make_request):
+    request = build_queries_float_scientific_negative_request()
+    make_request(request)
 
-    def test_get_all_with_values(self, client):
-        client._config.global_string_path = "globalStringPath"
-        client._config.global_string_query = "globalStringQuery"
-        client.path_items.get_all_with_values(
-            "pathItemStringPath",
-            "localStringPath",
-            "pathItemStringQuery",
-            "localStringQuery",
-        )
+    request = build_queries_float_scientific_positive_request()
+    make_request(request)
+    request = build_queries_float_null_request()
+    make_request(request)
 
-    def test_get_global_and_local_query_null(self, client):
-        client._config.global_string_path = "globalStringPath"
-        client.path_items.get_global_and_local_query_null(
-            "pathItemStringPath",
-            "localStringPath",
-            "pathItemStringQuery",
-            None,
-        )
+def test_queries_boolean(make_request):
+    request = build_queries_get_boolean_false_request()
+    make_request(request)
 
-    def test_get_global_query_null(self, client):
-        client._config.global_string_path = "globalStringPath"
-        client.path_items.get_global_query_null(
-            "pathItemStringPath",
-            "localStringPath",
-            "pathItemStringQuery",
-            "localStringQuery",
-        )
+    request = build_queries_get_boolean_true_request()
+    make_request(request)
 
-    def test_get_local_path_item_query_null(self, client):
-        client._config.global_string_path = "globalStringPath"
-        client._config.global_string_query = "globalStringQuery"
-        client.path_items.get_local_path_item_query_null(
-            "pathItemStringPath",
-            "localStringPath",
-            None,
-            None,
-        )
+    request = build_queries_get_boolean_null_request()
+    make_request(request)
 
-    def test_models(self):
-        from url.models import Error
+def test_queries_int(make_request):
+    request = build_queries_get_int_negative_one_million_request()
+    make_request(request)
 
-        if sys.version_info >= (3,5):
-            from url.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from url.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+    request = build_queries_get_int_one_million_request()
+    make_request(request)
+
+    request = build_queries_get_int_null_request()
+    make_request(request)
+
+def test_queries_long(make_request):
+    request = build_queries_get_negative_ten_billion_request()
+    make_request(request)
+
+    request = build_queries_get_ten_billion_request()
+    make_request(request)
+
+    request = build_queries_get_long_null_request()
+    make_request(request)
+
+def test_queries_string(make_request):
+    request = build_queries_string_empty_request()
+    make_request(request)
+
+    request = build_queries_string_null_request()
+    make_request(request)
+
+    request = build_queries_string_url_encoded_request()
+    make_request(request)
+
+def test_queries_enum(make_request):
+    request = build_queries_enum_valid_request(enum_query=UriColor.GREEN_COLOR)
+    make_request(request)
+
+    request = build_queries_enum_null_request(enum_query=None)
+    make_request(request)
+
+def test_queries_unicode(make_request):
+    request = build_queries_string_unicode_request()
+    make_request(request)
+
+def test_array_string_csv(make_request, test_array_query):
+    request = build_queries_array_string_csv_empty_request(array_query=[])
+    make_request(request)
+
+    request = build_queries_array_string_csv_null_request(array_query=None)
+    make_request(request)
+
+    request = build_queries_array_string_csv_valid_request(array_query=test_array_query)
+    make_request(request)
+
+def test_array_string_miscellaneous(make_request, test_array_query):
+    request = build_queries_array_string_pipes_valid_request(array_query=test_array_query)
+    make_request(request)
+
+    request = build_queries_array_string_ssv_valid_request(array_query=test_array_query)
+    make_request(request)
+
+    request = build_queries_array_string_tsv_valid_request(array_query=test_array_query)
+    make_request(request)
+
+def test_array_string_multi(make_multi_request, test_array_query):
+    request = build_queries_array_string_multi_empty_request(array_query=[])
+    make_multi_request(request)
+
+    request = build_queries_array_string_multi_null_request()
+    make_multi_request(request)
+
+    requst = build_queries_array_string_multi_valid_request(array_query=test_array_query)
+    make_multi_request(request)
+
+def test_array_string_no_collection_format(make_request):
+    request = build_queries_array_string_no_collection_format_empty_request(array_query=['hello', 'nihao', 'bonjour'])
+    make_request(request)
+
+def test_get_all_with_values(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+    global_string_query = "globalStringQuery"
+
+    request = build_pathitems_get_all_with_values_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query="pathItemStringQuery",
+        global_string_query=global_string_query,
+        local_string_query="localStringQuery",
+    )
+
+    make_request(request)
+
+def test_get_global_and_local_query_null(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+
+    request = build_pathitems_get_global_and_local_query_null_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query="pathItemStringQuery",
+        global_string_query=None
+    )
+    make_request(request)
+
+def test_get_global_query_null(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+
+    request = build_pathitems_get_global_query_null_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query="pathItemStringQuery",
+        local_string_query="localStringQuery",
+    )
+    make_request(request)
+
+def test_get_local_path_item_query_null(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+    global_string_query = "globalStringQuery"
+
+    request = build_pathitems_get_local_path_item_query_null_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query=None,
+        global_string_query=global_string_query,
+        local_string_query=None,
+    )
+    make_request(request)

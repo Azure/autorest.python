@@ -83,7 +83,7 @@ def prepare_paging_get_pages_partial_url_operation(
 
 def prepare_paging_get_pages_partial_url_operation_next(
     next_link,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """A paging operation that combines custom url, paging and partial URL.

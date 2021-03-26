@@ -26,18 +26,17 @@
 from azure.core.pipeline.policies import HttpLoggingPolicy
 from bodystring import AutoRestSwaggerBATService
 
-class TestConfig(object):
-    def test_http_logging_policy_default(self):
-        with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
-            assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
-            assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+def test_http_logging_policy_default():
+    with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
+        assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
+        assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
 
-    def test_http_logging_policy_custom(self):
-        http_logging_policy = HttpLoggingPolicy(base_url="test")
-        http_logging_policy = HttpLoggingPolicy()
-        http_logging_policy.allowed_header_names.update(
-            {"x-ms-added-header"}
-        )
-        with AutoRestSwaggerBATService(base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
-            assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
-            assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+def test_http_logging_policy_custom():
+    http_logging_policy = HttpLoggingPolicy(base_url="test")
+    http_logging_policy = HttpLoggingPolicy()
+    http_logging_policy.allowed_header_names.update(
+        {"x-ms-added-header"}
+    )
+    with AutoRestSwaggerBATService(base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
+        assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
+        assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})

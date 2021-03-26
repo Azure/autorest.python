@@ -74,7 +74,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_existing_key(
+        request = build_header_param_existing_key_request(
             user_agent_parameter=user_agent_parameter, template_url=self.param_existing_key.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -109,7 +109,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_existing_key(
+        request = build_header_response_existing_key_request(
             template_url=self.response_existing_key.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -151,7 +151,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_protected_key(
+        request = build_header_param_protected_key_request(
             content_type=content_type, template_url=self.param_protected_key.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -186,7 +186,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_protected_key(
+        request = build_header_response_protected_key_request(
             template_url=self.response_protected_key.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -232,7 +232,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_integer(
+        request = build_header_param_integer_request(
             scenario=scenario, value=value, template_url=self.param_integer.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -271,7 +271,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_integer(
+        request = build_header_response_integer_request(
             scenario=scenario, template_url=self.response_integer.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -317,7 +317,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_long(
+        request = build_header_param_long_request(
             scenario=scenario, value=value, template_url=self.param_long.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -356,7 +356,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_long(
+        request = build_header_response_long_request(
             scenario=scenario, template_url=self.response_long.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -402,7 +402,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_float(
+        request = build_header_param_float_request(
             scenario=scenario, value=value, template_url=self.param_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -441,7 +441,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_float(
+        request = build_header_response_float_request(
             scenario=scenario, template_url=self.response_float.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -487,7 +487,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_double(
+        request = build_header_param_double_request(
             scenario=scenario, value=value, template_url=self.param_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -526,7 +526,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_double(
+        request = build_header_response_double_request(
             scenario=scenario, template_url=self.response_double.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -572,7 +572,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_bool(
+        request = build_header_param_bool_request(
             scenario=scenario, value=value, template_url=self.param_bool.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -611,7 +611,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_bool(
+        request = build_header_response_bool_request(
             scenario=scenario, template_url=self.response_bool.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -659,7 +659,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_string(
+        request = build_header_param_string_request(
             scenario=scenario, value=value, template_url=self.param_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -699,7 +699,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_string(
+        request = build_header_response_string_request(
             scenario=scenario, template_url=self.response_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -745,7 +745,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_date(
+        request = build_header_param_date_request(
             scenario=scenario, value=value, template_url=self.param_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -784,7 +784,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_date(
+        request = build_header_response_date_request(
             scenario=scenario, template_url=self.response_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -831,7 +831,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_datetime(
+        request = build_header_param_datetime_request(
             scenario=scenario, value=value, template_url=self.param_datetime.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -870,7 +870,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_datetime(
+        request = build_header_response_datetime_request(
             scenario=scenario, template_url=self.response_datetime.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -917,7 +917,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_datetime_rfc1123(
+        request = build_header_param_datetime_rfc1123_request(
             scenario=scenario, value=value, template_url=self.param_datetime_rfc1123.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -957,7 +957,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_datetime_rfc1123(
+        request = build_header_response_datetime_rfc1123_request(
             scenario=scenario, template_url=self.response_datetime_rfc1123.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1002,7 +1002,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_duration(
+        request = build_header_param_duration_request(
             scenario=scenario, value=value, template_url=self.param_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1041,7 +1041,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_duration(
+        request = build_header_response_duration_request(
             scenario=scenario, template_url=self.response_duration.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1086,7 +1086,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_byte(
+        request = build_header_param_byte_request(
             scenario=scenario, value=value, template_url=self.param_byte.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1125,7 +1125,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_byte(
+        request = build_header_response_byte_request(
             scenario=scenario, template_url=self.response_byte.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1172,7 +1172,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_param_enum(
+        request = build_header_param_enum_request(
             scenario=scenario, value=value, template_url=self.param_enum.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1212,7 +1212,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_response_enum(
+        request = build_header_response_enum_request(
             scenario=scenario, template_url=self.response_enum.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -1251,7 +1251,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_header_custom_request_id(template_url=self.custom_request_id.metadata["url"], **kwargs)
+        request = build_header_custom_request_id_request(template_url=self.custom_request_id.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
