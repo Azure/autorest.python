@@ -40,14 +40,14 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
  Allowed values are: "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
 {# Param docstring #}
-{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 
 {% macro method_docstring(parameters, preparer) %}
 {% for parameter in parameters %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+:{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}{%- endmacro -%}
 
 {# error map handling #}

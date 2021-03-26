@@ -1,5 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools %}
-{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro operation_docstring_helper(code_model, operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
 {% set preparer = operation.preparer %}
@@ -18,7 +18,7 @@
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+:{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
 {% if (preparer.schema_preparers | length) > 1 %}
 {{ op_tools.content_type_docstring(preparer) }}

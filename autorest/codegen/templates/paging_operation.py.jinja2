@@ -24,7 +24,7 @@
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+:{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
 {% if (preparer.schema_requests | length) > 1 %}
 {{ op_tools.content_type_docstring(operation) }}
@@ -33,7 +33,7 @@
 {{ return_docstring(async_mode) }}
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
-{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace

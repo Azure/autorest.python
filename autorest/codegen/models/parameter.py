@@ -239,6 +239,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return default_value, default_value_declaration, type_annot
 
     @property
+    def description_keyword(self) -> str:
+        return "keyword" if self.is_kwarg else "param"
+
+    @property
+    def docstring_type_keyword(self) -> str:
+        return "paramtype" if self.is_kwarg else "type"
+
+    @property
     def default_value(self) -> Optional[Any]:
         # exposing default_value because client_default_value doesn't get updated with
         # default values we bubble up from the schema

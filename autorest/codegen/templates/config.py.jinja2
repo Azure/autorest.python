@@ -26,8 +26,8 @@ class {{ code_model.class_name }}Configuration(Configuration):
 
 {% endif %}
 {% for parameter in code_model.global_parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
-    :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+    :{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}
+    :{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
     """
 
