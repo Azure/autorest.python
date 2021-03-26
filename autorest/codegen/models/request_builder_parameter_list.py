@@ -14,6 +14,7 @@ def _copy_body_param(new_param_name: str, original_param: RequestBuilderParamete
     new_param = deepcopy(original_param)
     new_param.serialized_name = new_param_name
     new_param.schema = AnySchema(namespace="", yaml_data={})
+    new_param.required = False
     return new_param
 
 
@@ -53,14 +54,17 @@ class RequestBuilderParameterList(ParameterList):
             if body_kwarg.is_multipart and body_kwarg.is_partial_body and "files" not in seen_bodies:
                 seen_bodies.add("files")
                 body_kwarg.serialized_name = "files"
+                body_kwarg.required = False
                 returned_bodies.append(body_kwarg)
             elif body_kwarg.is_partial_body and "data" not in seen_bodies:
                 seen_bodies.add("data")
                 body_kwarg.serialized_name = "data"
+                body_kwarg.required = False
                 returned_bodies.append(body_kwarg)
             elif isinstance(body_kwarg.schema, PrimitiveSchema) and "content" not in seen_bodies:
                 seen_bodies.add("content")
                 body_kwarg.serialized_name = "content"
+                body_kwarg.required = False
                 returned_bodies.append(body_kwarg)
 
         if body_kwargs and "content" not in seen_bodies:
