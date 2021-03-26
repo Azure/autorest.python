@@ -7,8 +7,8 @@ from typing import Any, cast, Dict, List, TypeVar, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
-from .preparer_parameter import PreparerParameter
-from .preparer_parameter_list import PreparerParameterList
+from .request_builder_parameter import RequestBuilderParameter
+from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport, ImportType, TypingSection
 from .utils import get_converted_parameters
@@ -37,7 +37,7 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
             response_media_types[xml_media_types[0]] = None
     return response_media_types
 
-class Preparer(BaseModel):
+class RequestBuilder(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -46,11 +46,11 @@ class Preparer(BaseModel):
         method: str,
         multipart: bool,
         schema_requests: List[SchemaRequest],
-        parameters: PreparerParameterList,
+        parameters: RequestBuilderParameterList,
         description: str,
         summary: str,
     ):
-        super(Preparer, self).__init__(yaml_data)
+        super(RequestBuilder, self).__init__(yaml_data)
         self.name = name
         self.url = url
         self.method = method
@@ -97,29 +97,30 @@ class Preparer(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Preparer":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
 
         names = [
-            "prepare",
+            "build",
             yaml_data["language"]["python"]["operationGroupName"],
             yaml_data["language"]["python"]["name"],
+            "request"
         ]
         name = "_".join([n for n in names if n])
 
         first_request = yaml_data["requests"][0]
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, PreparerParameter.from_yaml)
+        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestBuilderParameter.from_yaml)
 
-        preparer_class = cls(
+        request_builder_class = cls(
             yaml_data=yaml_data,
             name=name,
             url=first_request["protocol"]["http"]["path"],
             method=first_request["protocol"]["http"]["method"].upper(),
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
-            parameters=PreparerParameterList(parameters + multiple_media_type_parameters),
+            parameters=RequestBuilderParameterList(parameters + multiple_media_type_parameters),
             description=yaml_data["language"]["python"]["description"],
             summary=yaml_data["language"]["python"].get("summary"),
         )
-        code_model.preparer_ids[id(yaml_data)] = preparer_class
-        return preparer_class
+        code_model.request_builder_ids[id(yaml_data)] = request_builder_class
+        return request_builder_class

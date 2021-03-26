@@ -71,7 +71,7 @@ class CodeGenerator(Plugin):
 
             code_model.add_inheritance_to_models()
             code_model.sort_schemas()
-            code_model.link_operation_to_preparer()
+            code_model.link_operation_to_request_builder()
             code_model.add_schema_link_to_operation()
             code_model.generate_single_parameter_from_multiple_media_types_operation()
 
@@ -124,7 +124,7 @@ class CodeGenerator(Plugin):
             for type_list in yaml_data["schemas"].values():
                 for schema in type_list:
                     build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
-            code_model.add_schema_link_to_preparer()
+            code_model.add_schema_link_to_request_builder()
             code_model.add_schema_link_to_global_parameters()
 
         if not code_model.low_level_client:

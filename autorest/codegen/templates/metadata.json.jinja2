@@ -109,7 +109,7 @@
         "operations": {
             {% for operation in mixin_operations %}
             {{ operation.python_name | tojson }} : {
-                {% set preparer = operation.preparer %}
+                {% set request_builder = operation.request_builder %}
                 "sync": {
                     {% if is_lro(operation) and is_paging(operation) %}
                         {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}

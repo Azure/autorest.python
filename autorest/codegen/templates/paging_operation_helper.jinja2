@@ -3,17 +3,17 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set preparer = operation.preparer %}
+{% set request_builder = operation.request_builder %}
 cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     {{ op_tools.error_map(operation, code_model)|indent }}
 
     def prepare_request(next_link=None):
         if not next_link:
-            {{ op_tools.get_preparer(operation, preparer)|indent(12) }}
+            {{ op_tools.get_request_builder(operation, request_builder)|indent(12) }}
         else:
-            {% set url = keywords.escape_str(operation.next_preparer.url) if operation.next_preparer else None %}
-            {{ op_tools.get_preparer(operation, operation.next_preparer if operation.next_preparer else preparer, url=url)|indent(12) }}
-            {% if not operation.next_preparer %}
+            {% set url = keywords.escape_str(operation.next_request_builder.url) if operation.next_request_builder else None %}
+            {{ op_tools.get_request_builder(operation, operation.next_request_builder if operation.next_request_builder else request_builder, url=url)|indent(12) }}
+            {% if not operation.next_request_builder %}
             # little hacky, but this code will soon be replaced with code that won't need the hack
                 {% if operation.parameters.path %}
             {{ op_tools.path_format_arguments(operation.parameters.path)|indent(12) }}

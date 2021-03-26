@@ -89,7 +89,7 @@ class LROOperation(Operation):
             want_description_docstring=False,
             want_tracing=False,
         )
-        operation.preparer = self.preparer
+        operation.request_builder = self.request_builder
         return operation
 
     @property

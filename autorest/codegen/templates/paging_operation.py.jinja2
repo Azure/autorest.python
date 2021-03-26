@@ -1,6 +1,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'paging_operation_helper.jinja2' as helper %}
-{% set preparer = operation.preparer %}
+{% set request_builder = operation.request_builder %}
 {% macro return_docstring(async_mode) %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
@@ -26,7 +26,7 @@
 {% endfor %}
 :{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
-{% if (preparer.schema_requests | length) > 1 %}
+{% if (request_builder.schema_requests | length) > 1 %}
 {{ op_tools.content_type_docstring(operation) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
@@ -54,4 +54,4 @@
     return {{ operation.get_pager(async_mode) }}(
         get_next, extract_data
     )
-{{ operation.python_name }}.metadata = {'url': '{{ preparer.url|replace("'", "\\'") }}'}  # type: ignore
+{{ operation.python_name }}.metadata = {'url': '{{ request_builder.url|replace("'", "\\'") }}'}  # type: ignore

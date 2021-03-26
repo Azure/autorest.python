@@ -30,19 +30,19 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro operation_method_signature(operation, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {{ _method_signature(operation, operation.parameters, operation.python_name, async_mode, coroutine, return_type_wrapper, return_type) }}{% endmacro %}
 
-{% macro preparer_method_signature(preparer, is_python_3_file) %}
-{{ _method_signature(None, preparer.parameters, preparer.name, is_python_3_file, coroutine=False, return_type_wrapper="", return_type="HttpRequest", want_self=False) }}{% endmacro %}
+{% macro request_builder_method_signature(request_builder, is_python_3_file) %}
+{{ _method_signature(None, request_builder.parameters, request_builder.name, is_python_3_file, coroutine=False, return_type_wrapper="", return_type="HttpRequest", want_self=False) }}{% endmacro %}
 
 {# content type docstring #}
-{% macro content_type_docstring(preparer) %}
-{% set content_type_constant = preparer.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
-:keyword str content_type: Media type of the body sent to the API. Default value is {{ preparer.default_content_type_declaration }}.
- Allowed values are: "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
+{% macro content_type_docstring(request_builder) %}
+{% set content_type_constant = request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ request_builder.default_content_type_declaration }}.
+ Allowed values are: "{{ request_builder.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
 {# Param docstring #}
 {% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 
-{% macro method_docstring(parameters, preparer) %}
+{% macro method_docstring(parameters, request_builder) %}
 {% for parameter in parameters %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
@@ -123,11 +123,11 @@ if {{ grouper_name }} is not None:
 {% endmacro %}
 
 {# write queryparameters #}
-{% macro query_parameters(preparer, async_mode) %}
+{% macro query_parameters(request_builder, async_mode) %}
 # Construct parameters
 query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-{% if preparer.parameters.query %}
-    {% for query_parameter in preparer.parameters.query %}
+{% if request_builder.parameters.query %}
+    {% for query_parameter in request_builder.parameters.query %}
         {%if query_parameter.required %}
 query_parameters['{{ query_parameter.rest_api_name }}'] = {{ query_parameter.build_serialize_data_call("query") }}
         {% else %}
@@ -137,12 +137,12 @@ if {{ query_parameter.full_serialized_name }} is not None:
     {% endfor %}
 {% endif %}{% endmacro %}
 
-{# write preparer headers #}
-{% macro header_parameters(code_model, preparer, async_mode) %}
+{# write request_builder headers #}
+{% macro header_parameters(code_model, request_builder, async_mode) %}
 # Construct headers
 header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-{% if preparer.parameters.headers %}
-    {% for header_parameter in preparer.parameters.headers %}
+{% if request_builder.parameters.headers %}
+    {% for header_parameter in request_builder.parameters.headers %}
         {%if header_parameter.required %}
 header_parameters['{{ header_parameter.rest_api_name }}'] = {{ header_parameter.build_serialize_data_call("header") }}
         {% else %}
@@ -193,30 +193,30 @@ content = {{ operation.parameters.body[0].serialized_name }}
 {# write body parameters #}
 {% macro body_parameters(operation) %}
 {% if operation.parameters.has_body %}
-    {% if (operation.preparer.schema_requests | length) == 1 %}
-{{ set_body_content_kwarg(operation, operation.preparer.schema_requests[0]) }}
+    {% if (operation.request_builder.schema_requests | length) == 1 %}
+{{ set_body_content_kwarg(operation, operation.request_builder.schema_requests[0]) }}
     {% else %}
 content = input
-        {% for schema_request in operation.preparer.schema_requests | rejectattr("is_stream_request")%}
+        {% for schema_request in operation.request_builder.schema_requests | rejectattr("is_stream_request")%}
 {{ "el" if not loop.first }}if content_type.split(";")[0] in {{ schema_request.pre_semicolon_media_types }}:
     {{ set_body_content_kwarg(operation, schema_request)|indent }}
         {% endfor %}
 {% endif %}{% endif %}{% endmacro %}
 
 {# create HTTPRequest #}
-{% macro create_http_request(preparer, is_python_3_file) %}
+{% macro create_http_request(request_builder, is_python_3_file) %}
 return HttpRequest(
-    method="{{ preparer.method }}",
+    method="{{ request_builder.method }}",
     url=url,
-    {% if preparer.parameters.query %}
+    {% if request_builder.parameters.query %}
     params=query_parameters,
     {% endif %}
-    {% if preparer.parameters.headers %}
+    {% if request_builder.parameters.headers %}
     headers=header_parameters,
     {% endif %}
-    {% if preparer.parameters.has_body %}
+    {% if request_builder.parameters.has_body %}
         {% if is_python_3_file %}
-            {% for body_kwarg in preparer.parameters.body_kwarg_names | list %}
+            {% for body_kwarg in request_builder.parameters.body_kwarg_names | list %}
     {{ body_kwarg }}={{ body_kwarg }},
             {% endfor %}
         {% endif %}
@@ -268,19 +268,19 @@ if cls:
 
 return deserialized
 {% endif %}
-{% if operation.preparer.method == 'HEAD' and code_model.options['head_as_boolean'] %}
+{% if operation.request_builder.method == 'HEAD' and code_model.options['head_as_boolean'] %}
 return 200 <= response.status_code <= 299
 {% endif %}{% endmacro %}
 
-{% macro get_preparer(operation, preparer, url=None) %}
+{% macro get_request_builder(operation, request_builder, url=None) %}
 {% set template_url = url or "self." + operation.name + ".metadata['url']" %}
-{% if preparer.parameters.has_body %}
+{% if request_builder.parameters.has_body %}
 content_type = kwargs.pop("content_type", {{ operation.default_content_type_declaration }})
 {% endif %}
 {% if operation.parameters.grouped %}
 {{ grouped_parameters(operation) }}
 {%- endif -%}
-{% if operation.preparer.multipart %}
+{% if operation.request_builder.multipart %}
 # Construct form data
 _body = {
     {% for param in operation.parameters.body %}
@@ -297,14 +297,14 @@ _body = {
 {% if operation.parameters.has_body %}
 {{ body_parameters(operation) }}
 {% endif %}
-request = {{ preparer.name }}(
-{% if preparer.parameters.method | rejectattr("is_body") | first %}
-    {% for parameter in preparer.parameters.method | rejectattr("is_body") %}
+request = {{ request_builder.name }}(
+{% if request_builder.parameters.method | rejectattr("is_body") | first %}
+    {% for parameter in request_builder.parameters.method | rejectattr("is_body") %}
     {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
     {% endfor %}
 {% endif %}
-{% if preparer.parameters.has_body %}
-    {{ operation.body_kwarg_to_pass_to_preparer }}={{ operation.body_kwarg_to_pass_to_preparer }},
+{% if request_builder.parameters.has_body %}
+    {{ operation.body_kwarg_to_pass_to_request_builder }}={{ operation.body_kwarg_to_pass_to_request_builder }},
     content_type=content_type,
 {% endif %}
     template_url={{ template_url }},

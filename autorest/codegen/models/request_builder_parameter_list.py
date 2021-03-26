@@ -5,35 +5,35 @@
 # --------------------------------------------------------------------------
 from typing import List, Optional, Set, Dict
 from copy import deepcopy
-from .preparer_parameter import PreparerParameter
+from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
 from .primitive_schemas import AnySchema, PrimitiveSchema
 
-def _copy_body_param(new_param_name: str, original_param: PreparerParameter) -> PreparerParameter:
+def _copy_body_param(new_param_name: str, original_param: RequestBuilderParameter) -> RequestBuilderParameter:
     new_param = deepcopy(original_param)
     new_param.serialized_name = new_param_name
     new_param.schema = AnySchema(namespace="", yaml_data={})
     return new_param
 
 
-class PreparerParameterList(ParameterList):
+class RequestBuilderParameterList(ParameterList):
     def __init__(
-        self, parameters: Optional[List[PreparerParameter]] = None
+        self, parameters: Optional[List[RequestBuilderParameter]] = None
     ) -> None:
         # need to include init to override type failure.
-        # PreparerParameterList takes in a list of PreparerParameter,
+        # RequestBuilderParameterList takes in a list of RequestBuilderParameter,
         # while ParameterList takes in a list of Parameter
-        super(PreparerParameterList, self).__init__(
+        super(RequestBuilderParameterList, self).__init__(
             parameters  # type: ignore
         )
         self.body_kwarg_names: List[str] = []
 
     @property
     def constant(self) -> List[Parameter]:
-        """We don't do constant bodies in the preparer
+        """We don't do constant bodies in the request builder
         """
-        all_constants = super(PreparerParameterList, self).constant
+        all_constants = super(RequestBuilderParameterList, self).constant
         if self.has_body:
             return [c for c in all_constants if not c.location == ParameterLocation.Body]
         return all_constants

@@ -4,7 +4,7 @@
 
 _SERIALIZER = Serializer()
 
-{% for preparer in code_model.rest.preparers %}
+{% for request_builder in code_model.rest.request_builders %}
 
-{% include "preparer.py.jinja2" %}
+{% include "request_builder.py.jinja2" %}
 {% endfor %}

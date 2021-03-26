@@ -12,12 +12,12 @@ def _make_public(name):
         return name[1:]
     return name
 
-class PreparerParameter(Parameter):
+class RequestBuilderParameter(Parameter):
 
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # constant bodies still go in method signature bc we don't support that in our preparer
+            # constant bodies still go in method signature bc we don't support that in our request builder
             (self.constant and not self.location == ParameterLocation.Body)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
@@ -38,7 +38,7 @@ class PreparerParameter(Parameter):
             return "content"
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
-            # for these, we're passing the client params to the preparer.
+            # for these, we're passing the client params to the request builder.
             # Need the self._config prefix
             name = f"self._config.{name}"
         return name
@@ -52,13 +52,13 @@ class PreparerParameter(Parameter):
         if self.location == ParameterLocation.Uri:
             # don't want any base url path formatting arguments
             return False
-        return super(PreparerParameter, self).in_method_code
+        return super(RequestBuilderParameter, self).in_method_code
 
     @property
     def default_value(self) -> Optional[Any]:
         if self.location == ParameterLocation.Body:
             return None
-        return super(PreparerParameter, self).default_value
+        return super(RequestBuilderParameter, self).default_value
 
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):
@@ -73,7 +73,7 @@ class PreparerParameter(Parameter):
         return self.serialized_name
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "PreparerParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestBuilderParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])

@@ -23,7 +23,7 @@ from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
 from .parameter_list import ParameterList
-from .preparer import Preparer
+from .request_builder import RequestBuilder
 
 
 __all__ = [
@@ -47,7 +47,7 @@ __all__ = [
     "ParameterList",
     "OperationGroup",
     "Property",
-    "Preparer",
+    "RequestBuilder",
     "SchemaResponse",
     "TokenCredentialSchema",
 ]

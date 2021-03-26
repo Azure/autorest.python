@@ -87,11 +87,11 @@ class {{ code_model.class_name }}({{ base_class }}):
         We have helper methods to create requests specific to this service in `{{ code_model.namespace }}.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        {% set preparer = code_model.rest.preparers[0] %}
-        {% set preparer_signature = preparer.parameters.method|join(', ', attribute='serialized_name') %}
-        >>> from {{ code_model.namespace }}.rest import {{ preparer.name }}
-        >>> request = {{ preparer.name }}({{ preparer_signature }})
-        <HttpRequest [{{ preparer.method }}], url: '{{ preparer.url }}'>
+        {% set request_builder = code_model.rest.request_builders[0] %}
+        {% set request_builder_signature = request_builder.parameters.method|join(', ', attribute='serialized_name') %}
+        >>> from {{ code_model.namespace }}.rest import {{ request_builder.name }}
+        >>> request = {{ request_builder.name }}({{ request_builder_signature }})
+        <HttpRequest [{{ request_builder.method }}], url: '{{ request_builder.url }}'>
         >>> response = {{ "await " if async_mode }}client.send_request(request)
         <{{ http_response }}: 200 OK>
 

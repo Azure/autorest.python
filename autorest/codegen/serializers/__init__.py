@@ -51,7 +51,7 @@ class JinjaSerializer:
             )
 
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-        if code_model.rest.preparers:
+        if code_model.rest.request_builders:
             self._serialize_and_write_rest_layer(code_model=code_model, env=env, namespace_path=namespace_path)
             if not code_model.options["no_async"]:
                 self._serialize_and_write_aio_top_level_folder(
@@ -97,16 +97,16 @@ class JinjaSerializer:
         folder_name = "rest" if code_model.options["johan"] else "_rest"
         rest_path = namespace_path / Path(folder_name)
 
-        # write generic preparers file
+        # write generic request builders file
         self._autorestapi.write_file(
-            rest_path / Path("_preparers.py"),
-            RestGenericSerializer(code_model=code_model, env=env).serialize_preparers()
+            rest_path / Path("_request_builders.py"),
+            RestGenericSerializer(code_model=code_model, env=env).serialize_request_builders()
         )
 
-        # write python3 preparers file
+        # write python3 request builders file
         self._autorestapi.write_file(
-            rest_path / Path("_preparers_py3.py"),
-            RestPython3Serializer(code_model=code_model, env=env).serialize_preparers()
+            rest_path / Path("_request_builders_py3.py"),
+            RestPython3Serializer(code_model=code_model, env=env).serialize_request_builders()
         )
 
         # write rest init file
@@ -184,7 +184,7 @@ class JinjaSerializer:
     ) -> None:
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
 
-        if code_model.rest.preparers:
+        if code_model.rest.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path("__init__.py"), general_serializer.serialize_init_file()
             )
@@ -201,7 +201,7 @@ class JinjaSerializer:
             p = p.parent
 
         # Write the service client
-        if code_model.rest.preparers:
+        if code_model.rest.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path(f"_{code_model.module_name}.py"),
                 general_serializer.serialize_service_client_file()
@@ -213,7 +213,7 @@ class JinjaSerializer:
         self._autorestapi.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
 
         # Write the config file
-        if code_model.rest.preparers:
+        if code_model.rest.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file()
             )

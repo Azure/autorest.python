@@ -1,0 +1,50 @@
+{% import 'keywords.jinja2' as keywords with context %}
+{% import 'operation_tools.jinja2' as op_tools %}
+{{ op_tools.request_builder_method_signature(request_builder, is_python_3_file=is_python_3_file) }}
+    {%- if not is_python_3_file %}
+    {{ op_tools.sync_return_type_annotation("", return_type="HttpRequest") }}
+    {% endif %}
+    """{{ request_builder.summary if request_builder.summary else request_builder.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {% if request_builder.summary and request_builder.description %}
+
+    {{ request_builder.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {% endif %}
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+
+    {% if request_builder.deprecated -%}
+    .. warning::
+        This method is deprecated
+
+    {% endif %}
+    {% if request_builder.parameters.method %}
+    {{ op_tools.method_docstring(request_builder.parameters.method, request_builder) | indent }}
+    {%- endif %}
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
+     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+{% if not is_python_3_file %}
+    {% if request_builder.parameters.kwargs_to_pop %}
+        {% for kwarg in request_builder.parameters.kwargs_to_pop %}
+    {{ kwarg.pop_from_kwarg }}
+        {% endfor %}
+    {% endif %}
+{% endif %}
+    content_type = kwargs.pop("content_type", None)
+{% if request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% for constant_parameter in request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
+    {% endfor %}
+{% endif %}
+
+    # Construct URL
+    url = kwargs.pop("template_url", {{ keywords.escape_str(request_builder.url) }})
+{% if request_builder.parameters.path %}
+    {{ op_tools.path_format_arguments(request_builder.parameters.path)|indent }}
+    url = _format_url_section(url, **path_format_arguments)
+{% endif %}
+
+    {{ op_tools.query_parameters(request_builder, is_python_3_file)|indent }}
+    {{ op_tools.header_parameters(code_model, request_builder, is_python_3_file)|indent }}
+    {{ op_tools.create_http_request(request_builder, is_python_3_file)|indent }}

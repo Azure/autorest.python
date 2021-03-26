@@ -14,7 +14,7 @@ from .parameter import Parameter
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
-from .preparer import Preparer
+from .request_builder import RequestBuilder
 from .utils import get_converted_parameters
 
 
@@ -49,7 +49,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
-        self._preparer: Optional[Preparer] = None
+        self._request_builder: Optional[RequestBuilder] = None
 
     @property
     def default_content_type_declaration(self) -> str:
@@ -60,17 +60,17 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return self.name
 
     @property
-    def preparer(self) -> Preparer:
-        if not self._preparer:
+    def request_builder(self) -> RequestBuilder:
+        if not self._request_builder:
             raise ValueError(
-                "You're calling preparer when you haven't linked up operation to its "
-                "request preparer through the code model"
+                "You're calling request_builder when you haven't linked up operation to its "
+                "request builder through the code model"
             )
-        return self._preparer
+        return self._request_builder
 
-    @preparer.setter
-    def preparer(self, r: Preparer) -> None:
-        self._preparer = r
+    @request_builder.setter
+    def request_builder(self, r: RequestBuilder) -> None:
+        self._request_builder = r
 
     @property
     def is_stream_response(self) -> bool:
@@ -78,8 +78,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return any(response.is_stream_response for response in self.responses)
 
     @property
-    def body_kwarg_to_pass_to_preparer(self) -> str:
-        if self.preparer.multipart:
+    def body_kwarg_to_pass_to_request_builder(self) -> str:
+        if self.request_builder.multipart:
             return "files"
         elif self.parameters.has_partial_body:
             return "data"
@@ -179,7 +179,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
-        for schema_request in self.preparer.schema_requests:
+        for schema_request in self.request_builder.schema_requests:
             if any([c for c in schema_request.pre_semicolon_media_types if "application/json" in c]):
                 file_import.add_import("json", ImportType.STDLIB)
 

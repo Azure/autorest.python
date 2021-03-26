@@ -8,7 +8,7 @@ from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
 from .schema_response import SchemaResponse
-from .preparer import Preparer
+from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
 from .parameter_list import ParameterList
@@ -107,11 +107,11 @@ class PagingOperation(Operation):
         return self.get_pager_path(async_mode).split(".")[-1]
 
     @property
-    def next_preparer(self) -> Optional[Preparer]:
+    def next_request_builder(self) -> Optional[RequestBuilder]:
         if not self.next_operation:
             return None
-        next_preparer = self.next_operation.preparer
-        return next_preparer
+        next_request_builder = self.next_operation.request_builder
+        return next_request_builder
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

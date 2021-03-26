@@ -3,7 +3,7 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {# return_type is a variable that holds the return type if we already know what it is #}
-{% set return_type = "bool" if preparer.method == 'head' and code_model.options['head_as_boolean'] else None %}
+{% set return_type = "bool" if request_builder.method == 'head' and code_model.options['head_as_boolean'] else None %}
 {% macro return_docstring(async_mode, return_type=None) %}
 {%- if return_type -%}
 :return: {{ return_type }}, or the result of cls(response)
@@ -30,9 +30,9 @@
     This method is deprecated
 
 {% endif -%}
-{{ op_tools.method_docstring(operation.parameters.method, operation.preparer) }}
-{%- if (preparer.schema_requests | length) > 1 %}
-{{ op_tools.content_type_docstring(preparer) }}
+{{ op_tools.method_docstring(operation.parameters.method, operation.request_builder) }}
+{%- if (request_builder.schema_requests | length) > 1 %}
+{{ op_tools.content_type_docstring(request_builder) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(async_mode, return_type=return_type) }}
@@ -55,8 +55,8 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    {{ op_tools.get_preparer(operation, preparer)|indent }}
+    {{ op_tools.get_request_builder(operation, request_builder)|indent }}
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}
-{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(preparer.url) }}}  # type: ignore
+{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request_builder.url) }}}  # type: ignore

@@ -17,7 +17,7 @@ class RestSerializer:
         self.env = env
 
     @abstractmethod
-    def serialize_preparers(self) -> str:
+    def serialize_request_builders(self) -> str:
         ...
 
     def serialize_init(self) -> str:
@@ -26,8 +26,8 @@ class RestSerializer:
 
 class RestPython3Serializer(RestSerializer):
 
-    def serialize_preparers(self) -> str:
-        template = self.env.get_template("preparers.py.jinja2")
+    def serialize_request_builders(self) -> str:
+        template = self.env.get_template("request_builders.py.jinja2")
 
         return template.render(
             code_model=self.code_model,
@@ -40,8 +40,8 @@ class RestPython3Serializer(RestSerializer):
 
 class RestGenericSerializer(RestSerializer):
 
-    def serialize_preparers(self) -> str:
-        template = self.env.get_template("preparers.py.jinja2")
+    def serialize_request_builders(self) -> str:
+        template = self.env.get_template("request_builders.py.jinja2")
 
         return template.render(
             code_model=self.code_model,

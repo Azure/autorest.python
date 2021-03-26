@@ -21,7 +21,7 @@ from .parameter_list import GlobalParameterList, ParameterList
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
-from .preparer import Preparer
+from .request_builder import RequestBuilder
 from .rest import Rest
 
 
@@ -87,7 +87,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.base_url: Optional[str] = None
         self.service_client: Client = Client(GlobalParameterList())
         self._rest: Optional[Rest] = None
-        self.preparer_ids: Dict[int, Preparer] = {}
+        self.request_builder_ids: Dict[int, RequestBuilder] = {}
 
     @property
     def global_parameters(self) -> GlobalParameterList:
@@ -327,11 +327,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 ):
                     self._populate_schema(obj)
 
-    def add_schema_link_to_preparer(self) -> None:
-        for preparer in self.rest.preparers:
+    def add_schema_link_to_request_builder(self) -> None:
+        for request_builder in self.rest.request_builders:
             for obj in chain(
-                    preparer.parameters,
-                    chain.from_iterable(request.parameters for request in preparer.schema_requests)
+                    request_builder.parameters,
+                    chain.from_iterable(request.parameters for request in request_builder.schema_requests)
                 ):
                     self._populate_schema(obj)
 
@@ -360,23 +360,23 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             return "base_url: Optional[str] = None,"
         return "base_url=None,  # type: Optional[str]"
 
-    def _lookup_preparer(self, schema_id: int) -> Preparer:
+    def _lookup_request_builder(self, schema_id: int) -> RequestBuilder:
         """Looks to see if the schema has already been created.
 
         :param int schema_id: The yaml id of the schema
         :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.Preparer
+        :rtype: ~autorest.models.RequestBuilder
         :raises: KeyError if schema is not found
         """
-        for elt_key, elt_value in self.preparer_ids.items():  # type: ignore
+        for elt_key, elt_value in self.request_builder_ids.items():  # type: ignore
             if schema_id == elt_key:
                 return elt_value
         raise KeyError("Didn't find it!!!!!")
 
-    def link_operation_to_preparer(self) -> None:
+    def link_operation_to_request_builder(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                preparer = self._lookup_preparer(id(operation.yaml_data))
+                request_builder = self._lookup_request_builder(id(operation.yaml_data))
                 if isinstance(operation, LROOperation):
-                    preparer.name = preparer.name + "_initial"
-                operation.preparer = preparer
+                    request_builder.name = request_builder.name + "_initial"
+                operation.request_builder = request_builder
