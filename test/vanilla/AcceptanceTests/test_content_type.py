@@ -24,7 +24,10 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import mock
 import io
+import os
+from mediatypes import MediaTypesClient
 from mediatypes._rest import *
 
 def test_json_body_no_content_type_kwarg():
@@ -103,3 +106,21 @@ def test_content_type_in_headers_content_type_kwarg():
     request = prepare_analyze_body(content="", headers={"Content-Type": "application/exotic"}, content_type="application/pdf")
     assert request.headers["Content-Type"] == "application/pdf"
     assert request._internal_request.headers["Content-Type"] == "application/pdf"
+
+def test_stream_unread_until_send_request():
+    class FakeStream:
+        def __init__(self):
+            self.call_count = 0
+
+        def streaming_body(self, data):
+            self.call_count += 1
+            yield data
+
+    fake_stream = FakeStream()
+    request = prepare_analyze_body(content=fake_stream.streaming_body(b"PDF"))
+    assert request.headers["Transfer-Encoding"] == "chunked"
+    assert request.headers["Content-Type"] == "application/octet-stream"
+    assert request._internal_request.headers["Content-Type"] == "application/octet-stream"
+    assert fake_stream.call_count == 0
+    MediaTypesClient()._send_request(request)
+    assert fake_stream.call_count == 1
