@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-03-29 - 5.6.5
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix naming of operation groups so they won't have double "Operations" in their name. #911
+
 ### 2021-03-01 - 5.6.4
 
 min Autorest core version: 3.1.0
