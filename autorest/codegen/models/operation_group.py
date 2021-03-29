@@ -66,8 +66,8 @@ class OperationGroup(BaseModel):
         if self.is_empty_operation_group:
             basename = self.code_model.module_name
 
-        if basename == "operations":
-            return f"_operations"
+        if basename.endswith("operations"):
+            return f"_{basename}"
         return f"_{basename}_operations"
 
     @property
