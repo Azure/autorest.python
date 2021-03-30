@@ -29,7 +29,6 @@ def build_files_get_file_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "image/png, application/json"
 
     # Construct URL
@@ -54,7 +53,6 @@ def build_files_get_file_large_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "image/png, application/json"
 
     # Construct URL
@@ -79,7 +77,6 @@ def build_files_get_empty_file_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "image/png, application/json"
 
     # Construct URL

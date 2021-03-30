@@ -24,24 +24,13 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import requests
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
 import requests
 
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
-from msrest.exceptions import DeserializationError
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
-from httpinfrastructure.models import MyException, B, C, D
+from httpinfrastructure._rest import *
 
 import pytest
 
@@ -59,371 +48,438 @@ def client(cookie_policy):
     with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
         yield client
 
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
+
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
+
+@pytest.fixture
+def make_request_assert_status(client, base_make_request):
+    def _make_request(request, status_code):
+        response = base_make_request(client, request)
+        assert response.status_code == status_code
+    return _make_request
+
+@pytest.fixture
+def make_request_assert_raises_with_message(client, base_make_request):
+    def _make_request(request, message):
+        with pytest.raises(HttpResponseError) as ex:
+            base_make_request(client, request)
+        assert ex.value.message == message
+    return _make_request
+
+@pytest.fixture
+def make_request_assert_raises_with_status(client, base_make_request):
+    def _make_request(request, status_code):
+        with pytest.raises(HttpResponseError) as ex:
+            base_make_request(client, request)
+        assert ex.value.status_code == status_code
+    return _make_request
+
+@pytest.fixture
+def make_request_assert_raises_with_status_and_message(client, base_make_request):
+    def _make_request(request, status_code, message):
+        with pytest.raises(HttpResponseError) as ex:
+            base_make_request(client, request)
+        assert ex.value.status_code == status_code
+        assert ex.value.message == message
+        assert message in str(ex.value)
+    return _make_request
+
+@pytest.fixture
+def make_request_assert_raises_with_status_and_response_contains_message(client, base_make_request):
+    def _make_request(request, status_code, message):
+        with pytest.raises(HttpResponseError) as ex:
+            base_make_request(client, request)
+        assert ex.value.status_code == status_code
+        assert message in str(ex.value)
+    return _make_request
+
+def test_get200_model204(make_request, make_request_assert_status, make_request_assert_raises_with_status_and_response_contains_message):
+    # a lot of these tests raised in high level bc we made some 200 status codes errors in high level
+    # can't do this in low level, so these don't actually raise
+    request = build_multipleresponses_get200_model204_no_model_default_error200_valid_request()
+    make_request_assert_status(request, 200)
+
+    request = build_multipleresponses_get200_model204_no_model_default_error201_invalid_request()
+    make_request_assert_status(request, 201)
+
+    request = build_multipleresponses_get200_model204_no_model_default_error202_none_request()
+    make_request_assert_status(request, 202)
+
+    request = build_multipleresponses_get200_model204_no_model_default_error204_valid_request()
+
+    assert make_request(request).text == ''
+
+    request = build_multipleresponses_get200_model204_no_model_default_error400_valid_request()
+    make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
+
+def test_get200_model201(make_request_json_response, make_request_assert_status, make_request_assert_raises_with_status_and_response_contains_message):
+    request = build_multipleresponses_get200_model201_model_default_error200_valid_request()
+    make_request_assert_status(request, 200)
+
+    request = build_multipleresponses_get200_model201_model_default_error201_valid_request()
+    b_model = make_request_json_response(request)
+    assert b_model is not None
+    assert b_model['statusCode'] ==  "201"
+    assert b_model['textStatusCode'] ==  "Created"
+
+    request = build_multipleresponses_get200_model201_model_default_error400_valid_request()
+    make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
+
+def test_get200_model_a201_model_c404(make_request_json_response, make_request_assert_raises_with_status_and_response_contains_message, make_request_assert_raises_with_status):
+    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request()
+    a_model = make_request_json_response(request)
+    assert a_model['statusCode']==  "200"
+
+    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request()
+
+    c_model = make_request_json_response(request)
+    assert c_model['httpCode'] ==  "201"
+
+    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request()
+    make_request_assert_raises_with_status(request, 404)  # in high level, this doesn't raise and returns a model since we've made 404 a valid status code. can't do that in llc
+
+    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request()
+    make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
 
-class TestHttp(object):
+def test_get202_none204(make_request, make_request_assert_raises_with_status, make_request_assert_raises_with_status_and_response_contains_message):
+    request = build_multipleresponses_get202_none204_none_default_error202_none_request()
+    make_request(request)
 
-    def assert_status(self, code, func, *args, **kwargs):
-        def return_status(pipeline_response, data, headers):
-            return pipeline_response.http_response.status_code
-        kwargs['cls'] = return_status
-        status_code = func(*args, **kwargs)
-        assert status_code == code
+    request = build_multipleresponses_get202_none204_none_default_error204_none_request()
+    make_request(request)
 
-    def assert_raises_with_message(self, msg, func, *args, **kwargs):
-        try:
-            func(*args, **kwargs)
-            pytest.fail()
+    request = build_multipleresponses_get202_none204_none_default_error400_valid_request()
+    make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
 
-        except HttpResponseError as err:
-            assert err.message == msg
+    request = build_multipleresponses_get202_none204_none_default_none202_invalid_request()
+    make_request(request)
 
-    def assert_raises_with_model(self, code, model, func, *args, **kwargs):
-        try:
-            func(*args, **kwargs)
-            pytest.fail()
+    request = build_multipleresponses_get202_none204_none_default_none204_none_request()
+    make_request(request)
 
-        except HttpResponseError as err:
-            if err.model:
-                assert isinstance(err.model, model)
-            assert err.response.status_code == code
+    request = build_multipleresponses_get202_none204_none_default_none400_none_request()
+    make_request_assert_raises_with_status(request, 400)
 
-    def assert_raises_with_status(self, code, func, *args, **kwargs):
-        try:
-            func(*args, **kwargs)
-            pytest.fail()
+    request = build_multipleresponses_get202_none204_none_default_none400_invalid_request()
+    make_request_assert_raises_with_status(request, 400)
 
-        except HttpResponseError as err:
+def test_get_default_model_a200(make_request, make_request_assert_status):
+    request = build_multipleresponses_get_default_model_a200_valid_request()
+    make_request_assert_status(request, 200)
 
-            assert err.response.status_code == code
+    request = build_multipleresponses_get_default_model_a200_none_request()
+    assert make_request(request).text == ''
 
-    def assert_raises_with_status_and_message(self, code, msg, func, *args, **kwargs):
-        try:
-            func(*args, **kwargs)
-            pytest.fail()
+    request = build_multipleresponses_get_default_model_a200_valid_request()
+    make_request(request)
+    request = build_multipleresponses_get_default_model_a200_none_request()
+    make_request(request)
 
-        except HttpResponseError as err:
-            assert err.model.message == msg
-            assert msg in err.message
-            assert msg in str(err)
-            assert err.response.status_code == code
+def test_get_default_none200(make_request):
+    request = build_multipleresponses_get_default_none200_invalid_request()
+    make_request(request)
 
-    def assert_raises_with_status_and_response_contains(self, code, msg, func, *args, **kwargs):
-        try:
-            func(*args, **kwargs)
-            pytest.fail()
+    requst = build_multipleresponses_get_default_none200_none_request()
+    make_request(request)
 
-        except HttpResponseError as err:
-            assert err.response.status_code == code
-            assert msg in err.response.text()
+def test_get_default_none400(make_request_assert_raises_with_status):
+    request = build_multipleresponses_get_default_none400_invalid_request()
+    make_request_assert_raises_with_status(request, 400)
 
-    def test_get200_model204(self, client):
-        r = client.multiple_responses.get200_model204_no_model_default_error200_valid()
-        assert '200' ==  r.status_code
+    request = build_multipleresponses_get_default_none400_none_request()
+    make_request_assert_raises_with_status(request, 400)
 
-        self.assert_raises_with_status(201,
-            client.multiple_responses.get200_model204_no_model_default_error201_invalid)
+def test_get200_model_a200(make_request, make_request_assert_status):
+    request = build_multipleresponses_get200_model_a200_none_request()
+    assert make_request(request).text == ''
 
-        self.assert_raises_with_status(202,
-            client.multiple_responses.get200_model204_no_model_default_error202_none)
+    request = build_multipleresponses_get200_model_a200_valid_request()
+    make_request_assert_status(request, 200)
 
-        assert client.multiple_responses.get200_model204_no_model_default_error204_valid() is None
+    request = build_multipleresponses_get200_model_a200_invalid_request()
+    make_request_assert_status(request, 200) # in high level it's supposed to deserialize as exception model "MyException", can't do that in LLC
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model204_no_model_default_error400_valid)
+def test_get200_model_a400(make_request_assert_raises_with_status):
+    request = build_multipleresponses_get200_model_a400_none_request()
+    make_request_assert_raises_with_status(request, 400)
 
-    def test_get200_model201(self, client):
-        self.assert_status(200, client.multiple_responses.get200_model201_model_default_error200_valid)
+    request = build_multipleresponses_get200_model_a400_valid_request()
+    make_request_assert_raises_with_status(request, 400)
 
-        b_model = client.multiple_responses.get200_model201_model_default_error201_valid()
-        assert b_model is not None
-        assert b_model.status_code ==  "201"
-        assert b_model.text_status_code ==  "Created"
+    request = build_multipleresponses_get200_model_a400_invalid_request()
+    make_request_assert_raises_with_status(request, 400)
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model201_model_default_error400_valid)
+def test_get200_model_a202(make_request_assert_status):
+    request = build_multipleresponses_get200_model_a202_valid_request()
+    make_request_assert_status(request, 202)  # raises in HLC bc we've marked all status codes that are not "200" as errors
 
-    def test_get200_model_a201_model_c404(self, client):
-        a_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error200_valid()
-        assert a_model is not None
-        assert a_model.status_code ==  "200"
+def test_server_error_status_codes_501(make_request_assert_raises_with_status):
+    request = build_httpserverfailure_head501_request()
+    make_request_assert_raises_with_status(request, requests.codes.not_implemented)
 
-        c_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error201_valid()
-        assert c_model is not None
-        assert c_model.http_code ==  "201"
+    request = build_httpserverfailure_get501_request()
+    make_request_assert_raises_with_status(request, requests.codes.not_implemented)
 
-        d_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error404_valid()
-        assert d_model is not None
-        assert d_model.http_status_code ==  "404"
+def test_server_error_status_codes_505(make_request_assert_raises_with_status):
+    request = build_httpserverfailure_post505_request()
+    make_request_assert_raises_with_status(request, requests.codes.http_version_not_supported)
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model_a201_model_c404_model_d_default_error400_valid)
+    request = build_httpserverfailure_delete505_request()
+    make_request_assert_raises_with_status(request, requests.codes.http_version_not_supported)
 
-    def test_get202_none204(self, client):
-        client.multiple_responses.get202_none204_none_default_error202_none()
-        client.multiple_responses.get202_none204_none_default_error204_none()
+def test_retry_status_codes_408(make_request):
+    request = build_httpretry_head408_request()
+    make_request(request)
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get202_none204_none_default_error400_valid)
+def test_retry_status_codes_502(make_request):
+    request = build_httpretry_get502_request()
+    make_request(request)
 
-        client.multiple_responses.get202_none204_none_default_none202_invalid()
-        client.multiple_responses.get202_none204_none_default_none204_none()
+    # TODO, 4042586: Support options operations in swagger modeler
+    #client.http_retry.options429()
 
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get202_none204_none_default_none400_none)
+def test_retry_status_codes_500(make_request):
+    request = build_httpretry_put500_request()
+    make_request(request)
+    request = build_httpretry_patch500_request()
+    make_request(request)
 
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get202_none204_none_default_none400_invalid)
+def test_retry_status_codes_503(make_request):
+    request = build_httpretry_post503_request()
+    make_request(request)
 
-    def test_get_default_model_a200(self, client):
-        self.assert_status(200, client.multiple_responses.get_default_model_a200_valid)
+    request = build_httpretry_delete503_request()
+    make_request(request)
 
-        assert client.multiple_responses.get_default_model_a200_none() is None
-        client.multiple_responses.get_default_model_a200_valid()
-        client.multiple_responses.get_default_model_a200_none()
+def test_retry_status_codes_504(make_request):
+    request = build_httpretry_put504_request()
+    make_request(request)
 
-    def test_get_default_model_a400(self, client):
-        self.assert_raises_with_model(400, MyException,
-            client.multiple_responses.get_default_model_a400_valid)
+    request = build_httpretry_patch504_request()
+    make_request(request)
 
-        self.assert_raises_with_model(400, MyException,
-            client.multiple_responses.get_default_model_a400_none)
+def test_error_status_codes_400(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_head400_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    def test_get_default_none200(self, client):
-        client.multiple_responses.get_default_none200_invalid()
-        client.multiple_responses.get_default_none200_none()
+    request = build_httpclientfailure_get400_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    def test_get_default_none400(self, client):
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get_default_none400_invalid)
+    # TODO, 4042586: Support options operations in swagger modeler
+    #self.assert_raises_with_status(requests.codes.bad_request,
+    #    client.http_client_failure.options400)
 
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get_default_none400_none)
+    request = build_httpclientfailure_put400_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    def test_get200_model_a200(self, client):
-        assert client.multiple_responses.get200_model_a200_none() is None
+    request = build_httpclientfailure_patch400_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-        self.assert_status(200, client.multiple_responses.get200_model_a200_valid)
+    request = build_httpclientfailure_post400_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-        assert client.multiple_responses.get200_model_a200_invalid().status_code is None
+    request = build_httpclientfailure_delete400_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    def test_get200_model_a400(self, client):
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get200_model_a400_none)
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get200_model_a400_valid)
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get200_model_a400_invalid)
+def test_error_status_codes_401(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_head401_request()
+    make_request_assert_raises_with_status(request, requests.codes.unauthorized)
 
-    def test_get200_model_a202(self, client):
-        self.assert_raises_with_status(202,
-            client.multiple_responses.get200_model_a202_valid)
+def test_error_status_codes_402(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_get402_request()
+    make_request_assert_raises_with_status(request, requests.codes.payment_required)
 
-    def test_server_error_status_codes_501(self, client):
+def test_error_status_codes_403(make_request_assert_raises_with_status):
+    # TODO, 4042586: Support options operations in swagger modeler
+    #self.assert_raises_with_status(requests.codes.forbidden,
+    #    client.http_client_failure.options403)
 
-        self.assert_raises_with_status(requests.codes.not_implemented,
-            client.http_server_failure.head501)
+    request = build_httpclientfailure_get403_request()
+    make_request_assert_raises_with_status(request, requests.codes.forbidden)
 
-        self.assert_raises_with_status(requests.codes.not_implemented,
-            client.http_server_failure.get501)
+def test_error_status_codes_404(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_put404_request()
+    make_request_assert_raises_with_status(request, requests.codes.not_found)
 
-    def test_server_error_status_codes_505(self, client):
-        self.assert_raises_with_status(requests.codes.http_version_not_supported,
-            client.http_server_failure.post505)
+def test_error_status_codes_405(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_patch405_request()
+    make_request_assert_raises_with_status(request, requests.codes.method_not_allowed)
 
-        self.assert_raises_with_status(requests.codes.http_version_not_supported,
-            client.http_server_failure.delete505)
+def test_error_status_codes_406(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_post406_request()
+    make_request_assert_raises_with_status(request, requests.codes.not_acceptable)
 
-    def test_retry_status_codes_408(self, client):
-        client.http_retry.head408()
+def test_error_status_codes_407(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_delete407_request()
+    make_request_assert_raises_with_status(request, requests.codes.proxy_authentication_required)
 
-    def test_retry_status_codes_502(self, client):
-        client.http_retry.get502()
+def test_error_status_codes_409(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_put409_request()
+    make_request_assert_raises_with_status(request, requests.codes.conflict)
 
-        # TODO, 4042586: Support options operations in swagger modeler
-        #client.http_retry.options429()
+def test_error_status_codes_410(make_request_assert_raises_with_status):
+    request = build_httpclientfailure_head410_request()
+    make_request_assert_raises_with_status(request, requests.codes.gone)
 
-    def test_retry_status_codes_500(self, client):
-        client.http_retry.put500()
-        client.http_retry.patch500()
+def test_error_status_codes_411(make_request_assert_raises_with_status):
 
-    def test_retry_status_codes_503(self, client):
-        client.http_retry.post503()
-        client.http_retry.delete503()
+    request = build_httpclientfailure_get411_request()
+    make_request_assert_raises_with_status(request, requests.codes.length_required)
 
-    def test_retry_status_codes_504(self, client):
-        client.http_retry.put504()
-        client.http_retry.patch504()
+    # TODO, 4042586: Support options operations in swagger modeler
+    #self.assert_raises_with_status(requests.codes.precondition_failed,
+    #    client.http_client_failure.options412)
 
-    def test_error_status_codes_400(self, client):
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.head400)
+    request = build_httpclientfailure_get412_request()
+    make_request_assert_raises_with_status(request, requests.codes.precondition_failed)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.get400)
+    request = build_httpclientfailure_put413_request()
+    make_request_assert_raises_with_status(request, requests.codes.request_entity_too_large)
 
-        # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_raises_with_status(requests.codes.bad_request,
-        #    client.http_client_failure.options400)
+    request = build_httpclientfailure_patch414_request()
+    make_request_assert_raises_with_status(request, requests.codes.request_uri_too_large)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.put400)
+    request = build_httpclientfailure_post415_request()
+    make_request_assert_raises_with_status(request, requests.codes.unsupported_media)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.patch400)
+    request = build_httpclientfailure_get416_request()
+    make_request_assert_raises_with_status(request, requests.codes.requested_range_not_satisfiable)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.post400)
+    request = build_httpclientfailure_delete417_request()
+    make_request_assert_raises_with_status(request, requests.codes.expectation_failed)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.delete400)
+    request = build_httpclientfailure_head429_request()
+    make_request_assert_raises_with_status(request, 429)
 
-    def test_error_status_codes_401(self, client):
-        self.assert_raises_with_status(requests.codes.unauthorized,
-            client.http_client_failure.head401)
+def test_redirect_to_300(make_request_assert_status):
+    request = build_httpredirects_get300_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_402(self, client):
-        self.assert_raises_with_status(requests.codes.payment_required,
-            client.http_client_failure.get402)
+def test_redirect_to_301(make_request_assert_status):
+    request = build_httpredirects_head301_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_403(self, client):
-        # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_raises_with_status(requests.codes.forbidden,
-        #    client.http_client_failure.options403)
 
-        self.assert_raises_with_status(requests.codes.forbidden,
-            client.http_client_failure.get403)
+    request = build_httpredirects_get301_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_404(self, client):
-        self.assert_raises_with_status(requests.codes.not_found,
-            client.http_client_failure.put404)
+    request = build_httpredirects_put301_request()
+    make_request_assert_status(request, requests.codes.moved_permanently)
 
-    def test_error_status_codes_405(self, client):
-        self.assert_raises_with_status(requests.codes.method_not_allowed,
-            client.http_client_failure.patch405)
+def test_redirect_to_302(make_request_assert_status):
+    request = build_httpredirects_head302_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_406(self, client):
-        self.assert_raises_with_status(requests.codes.not_acceptable,
-            client.http_client_failure.post406)
+    request = build_httpredirects_get302_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_407(self, client):
-        self.assert_raises_with_status(requests.codes.proxy_authentication_required,
-            client.http_client_failure.delete407)
+    request = build_httpredirects_patch302_request()
+    make_request_assert_status(request, requests.codes.found)
 
-    def test_error_status_codes_409(self, client):
-        self.assert_raises_with_status(requests.codes.conflict,
-            client.http_client_failure.put409)
+def test_redicret_to_303(make_request_assert_status):
+    request = build_httpredirects_post303_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_410(self, client):
-        self.assert_raises_with_status(requests.codes.gone,
-            client.http_client_failure.head410)
+def test_redirect_to_307(make_request_assert_status):
+    request = build_httpredirects_head307_request()
+    make_request_assert_status(request, 200)
 
-    def test_error_status_codes_411(self, client):
-        self.assert_raises_with_status(requests.codes.length_required,
-            client.http_client_failure.get411)
+    request = build_httpredirects_get307_request()
+    make_request_assert_status(request, 200)
 
-        # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_raises_with_status(requests.codes.precondition_failed,
-        #    client.http_client_failure.options412)
+    # TODO, 4042586: Support options operations in swagger modeler
+    #self.assert_status(200, client.http_redirects.options307)
+    request = build_httpredirects_put307_request()
+    make_request_assert_status(request, 200)
 
-        self.assert_raises_with_status(requests.codes.precondition_failed,
-            client.http_client_failure.get412)
+    request = build_httpredirects_post307_request()
+    make_request_assert_status(request, 200)
 
-        self.assert_raises_with_status(requests.codes.request_entity_too_large,
-            client.http_client_failure.put413)
+    request = build_httpredirects_patch307_request()
+    make_request_assert_status(request, 200)
 
-        self.assert_raises_with_status(requests.codes.request_uri_too_large,
-            client.http_client_failure.patch414)
+    request = build_httpredirects_delete307_request()
+    make_request_assert_status(request, 200)
 
-        self.assert_raises_with_status(requests.codes.unsupported_media,
-            client.http_client_failure.post415)
+def test_bad_request_status_assert(make_request_assert_raises_with_message):
+    request = build_httpfailure_get_empty_error_request()
+    make_request_assert_raises_with_message(request, "Operation returned an invalid status 'Bad Request'")
 
-        self.assert_raises_with_status(requests.codes.requested_range_not_satisfiable,
-            client.http_client_failure.get416)
+def test_no_error_model_status_assert(make_request_assert_raises_with_status_and_response_contains_message):
+    request = build_httpfailure_get_no_model_error_request()
+    make_request_assert_raises_with_status_and_response_contains_message(request, requests.codes.bad_request, "NoErrorModel")
 
-        self.assert_raises_with_status(requests.codes.expectation_failed,
-            client.http_client_failure.delete417)
+def test_success_status_codes_200(make_request):
+    request = build_httpsuccess_head200_request()
+    make_request(request)
+    request = build_httpsuccess_get200_request()
+    assert make_request(request).text
 
-        self.assert_raises_with_status(429,
-            client.http_client_failure.head429)
+    request = build_httpsuccess_put200_request()
+    make_request(request)
 
-    def test_redirect_to_300(self, client):
-        self.assert_status(200, client.http_redirects.get300)
+    request = build_httpsuccess_post200_request()
+    make_request(request)
 
-    def test_redirect_to_301(self, client):
-        self.assert_status(200, client.http_redirects.head301)
-        self.assert_status(200, client.http_redirects.get301)
-        self.assert_status(requests.codes.moved_permanently, client.http_redirects.put301)
+    request = build_httpsuccess_patch200_request()
+    make_request(request)
 
-    def test_redirect_to_302(self, client):
-        self.assert_status(200, client.http_redirects.head302)
-        self.assert_status(200, client.http_redirects.get302)
-        self.assert_status(requests.codes.found, client.http_redirects.patch302)
+    request = build_httpsuccess_delete200_request()
+    make_request(request)
 
-    def test_redicret_to_303(self, client):
-        self.assert_status(200, client.http_redirects.post303)
+    # TODO, 4042586: Support options operations in swagger modeler
+    #assert client.http_success.options200()
 
-    def test_redirect_to_307(self, client):
-        self.assert_status(200, client.http_redirects.head307)
-        self.assert_status(200, client.http_redirects.get307)
+def test_success_status_codes_201(make_request):
+    request = build_httpsuccess_put201_request()
+    make_request(request)
 
-        # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_status(200, client.http_redirects.options307)
-        self.assert_status(200, client.http_redirects.put307)
-        self.assert_status(200, client.http_redirects.post307)
-        self.assert_status(200, client.http_redirects.patch307)
-        self.assert_status(200, client.http_redirects.delete307)
+    request = build_httpsuccess_post201_request()
+    make_request(request)
 
+def test_success_status_codes_202(make_request):
+    request = build_httpsuccess_put202_request()
+    make_request(request)
 
+    request = build_httpsuccess_post202_request()
+    make_request(request)
 
-    def test_bad_request_status_assert(self, client):
-        self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
-            client.http_failure.get_empty_error)
+    request = build_httpsuccess_patch202_request()
+    make_request(request)
 
-    def test_no_error_model_status_assert(self, client):
-        self.assert_raises_with_status_and_response_contains(requests.codes.bad_request, "NoErrorModel",
-            client.http_failure.get_no_model_error)
+    request = build_httpsuccess_delete202_request()
+    make_request(request)
 
-    def test_success_status_codes_200(self, client):
-        client.http_success.head200()
-        assert client.http_success.get200()
-        client.http_success.put200()
-        client.http_success.post200()
-        client.http_success.patch200()
-        client.http_success.delete200()
+def test_success_status_codes_204(make_request):
+    request = build_httpsuccess_head204_request()
+    make_request(request)
 
-        # TODO, 4042586: Support options operations in swagger modeler
-        #assert client.http_success.options200()
+    request = build_httpsuccess_put204_request()
+    make_request(request)
 
-    def test_success_status_codes_201(self, client):
-        client.http_success.put201()
-        client.http_success.post201()
+    request = build_httpsuccess_post204_request()
+    make_request(request)
 
-    def test_success_status_codes_202(self, client):
-        client.http_success.put202()
-        client.http_success.post202()
-        client.http_success.patch202()
-        client.http_success.delete202()
+    request = build_httpsuccess_delete204_request()
+    make_request(request)
 
-    def test_success_status_codes_204(self, client):
-        client.http_success.head204()
-        client.http_success.put204()
-        client.http_success.post204()
-        client.http_success.delete204()
-        client.http_success.patch204()
+    request = build_httpsuccess_patch204_request()
+    make_request(request)
 
-    def test_success_status_codes_404(self, client):
-        client.http_success.head404()
+def test_success_status_codes_404(make_request_assert_raises_with_status):
+    # raises bc in high level we're able to mark 404 as a valid status code, but can't do that in llc
+    request = build_httpsuccess_head404_request()
+    make_request_assert_raises_with_status(request, 404)
 
-    def test_empty_no_content(self, client):
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_failure.get_no_model_empty)
-
-    def test_models(self):
-        from httpinfrastructure.models import Error
-
-        if sys.version_info >= (3,5):
-            from httpinfrastructure.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from httpinfrastructure.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_empty_no_content(make_request_assert_raises_with_status):
+    request = build_httpfailure_get_no_model_empty_request()
+    make_request_assert_raises_with_status(request, requests.codes.bad_request)

@@ -24,9 +24,8 @@ def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     bool_path = True
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/bool/true/{boolPath}")
@@ -51,9 +50,8 @@ def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     bool_path = False
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/bool/false/{boolPath}")
@@ -78,9 +76,8 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     int_path = 1000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/1000000/{intPath}")
@@ -105,9 +102,8 @@ def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpReque
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     int_path = -1000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/-1000000/{intPath}")
@@ -132,9 +128,8 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     long_path = 10000000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/long/10000000000/{longPath}")
@@ -159,9 +154,8 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     long_path = -10000000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/long/-10000000000/{longPath}")
@@ -186,9 +180,8 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     float_path = 103400000000000000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/float/1.034E+20/{floatPath}")
@@ -213,9 +206,8 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     float_path = -1.034e-20
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/float/-1.034E-20/{floatPath}")
@@ -240,7 +232,6 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     double_path = 9999999.999
     accept = "application/json"
 
@@ -267,7 +258,6 @@ def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     double_path = -9999999.999
     accept = "application/json"
 
@@ -294,9 +284,8 @@ def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_path = "啊齄丂狛狜隣郎隣兀﨩"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/unicode/{stringPath}")
@@ -321,9 +310,8 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_path = "begin!*'();:@ &=+$,/?#[]end"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop(
@@ -352,9 +340,8 @@ def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_path = "begin!*'();:@&=+$,end"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/begin!*'();:@&=+$,end/{stringPath}")
@@ -379,9 +366,8 @@ def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_path = ""
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/empty/{stringPath}")
@@ -408,7 +394,6 @@ def build_paths_string_null_request(string_path: str, **kwargs: Any) -> HttpRequ
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -436,7 +421,6 @@ def build_paths_enum_valid_request(enum_path: Union[str, "_models.UriColor"], **
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -464,7 +448,6 @@ def build_paths_enum_null_request(enum_path: Union[str, "_models.UriColor"], **k
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -492,7 +475,6 @@ def build_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> 
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -518,9 +500,8 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     byte_path = bytearray("", encoding="utf-8")
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/byte/empty/{bytePath}")
@@ -547,7 +528,6 @@ def build_paths_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRe
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -573,9 +553,8 @@ def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     date_path = "2012-01-01"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/date/2012-01-01/{datePath}")
@@ -603,7 +582,6 @@ def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> Ht
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -629,7 +607,6 @@ def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     date_time_path = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -658,7 +635,6 @@ def build_paths_date_time_null_request(date_time_path: datetime.datetime, **kwar
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -686,7 +662,6 @@ def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> Htt
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -716,7 +691,6 @@ def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) 
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -747,7 +721,6 @@ def build_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, **k
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -773,7 +746,6 @@ def build_queries_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     bool_query = True
     accept = "application/json"
 
@@ -800,7 +772,6 @@ def build_queries_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     bool_query = False
     accept = "application/json"
 
@@ -829,7 +800,6 @@ def build_queries_get_boolean_null_request(*, bool_query: Optional[bool] = None,
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -856,9 +826,8 @@ def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     int_query = 1000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/int/1000000")
@@ -883,9 +852,8 @@ def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpReq
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     int_query = -1000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/int/-1000000")
@@ -912,7 +880,6 @@ def build_queries_get_int_null_request(*, int_query: Optional[int] = None, **kwa
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -939,9 +906,8 @@ def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     long_query = 10000000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/long/10000000000")
@@ -966,9 +932,8 @@ def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     long_query = -10000000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/long/-10000000000")
@@ -995,7 +960,6 @@ def build_queries_get_long_null_request(*, long_query: Optional[int] = None, **k
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1022,9 +986,8 @@ def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpReques
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     float_query = 103400000000000000000
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/float/1.034E+20")
@@ -1049,9 +1012,8 @@ def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpReques
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     float_query = -1.034e-20
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/float/-1.034E-20")
@@ -1078,7 +1040,6 @@ def build_queries_float_null_request(*, float_query: Optional[float] = None, **k
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1105,9 +1066,8 @@ def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     double_query = 9999999.999
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/double/9999999.999")
@@ -1132,9 +1092,8 @@ def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     double_query = -9999999.999
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/double/-9999999.999")
@@ -1161,7 +1120,6 @@ def build_queries_double_null_request(*, double_query: Optional[float] = None, *
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1188,9 +1146,8 @@ def build_queries_string_unicode_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/string/unicode/")
@@ -1215,9 +1172,8 @@ def build_queries_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_query = "begin!*'();:@ &=+$,/?#[]end"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop(
@@ -1244,9 +1200,8 @@ def build_queries_string_empty_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     string_query = ""
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/string/empty")
@@ -1273,7 +1228,6 @@ def build_queries_string_null_request(*, string_query: Optional[str] = None, **k
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1304,7 +1258,6 @@ def build_queries_enum_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1335,7 +1288,6 @@ def build_queries_enum_null_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1364,7 +1316,6 @@ def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytearray] = N
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1391,7 +1342,6 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     byte_query = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -1420,7 +1370,6 @@ def build_queries_byte_null_request(*, byte_query: Optional[bytearray] = None, *
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1447,9 +1396,8 @@ def build_queries_date_valid_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
-    accept = "application/json"
     date_query = "2012-01-01"
+    accept = "application/json"
 
     # Construct URL
     url = kwargs.pop("template_url", "/queries/date/2012-01-01")
@@ -1476,7 +1424,6 @@ def build_queries_date_null_request(*, date_query: Optional[datetime.date] = Non
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1503,7 +1450,6 @@ def build_queries_date_time_valid_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     date_time_query = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -1534,7 +1480,6 @@ def build_queries_date_time_null_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1567,7 +1512,6 @@ def build_queries_array_string_csv_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1598,7 +1542,6 @@ def build_queries_array_string_csv_null_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1629,7 +1572,6 @@ def build_queries_array_string_csv_empty_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1661,7 +1603,6 @@ def build_queries_array_string_no_collection_format_empty_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1694,7 +1635,6 @@ def build_queries_array_string_ssv_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1727,7 +1667,6 @@ def build_queries_array_string_tsv_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1760,7 +1699,6 @@ def build_queries_array_string_pipes_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1811,7 +1749,6 @@ def build_pathitems_get_all_with_values_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1877,7 +1814,6 @@ def build_pathitems_get_global_query_null_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1943,7 +1879,6 @@ def build_pathitems_get_global_and_local_query_null_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2008,7 +1943,6 @@ def build_pathitems_get_local_path_item_query_null_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

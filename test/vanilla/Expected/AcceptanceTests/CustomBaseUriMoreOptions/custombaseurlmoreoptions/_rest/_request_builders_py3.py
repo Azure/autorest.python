@@ -31,7 +31,6 @@ def build_paths_get_empty_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

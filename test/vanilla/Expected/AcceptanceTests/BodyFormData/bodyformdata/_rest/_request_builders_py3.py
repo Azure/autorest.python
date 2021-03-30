@@ -25,7 +25,7 @@ def build_formdata_upload_file_request(
     :keyword data: File name to upload. Name has to be spelled exactly as written here.
     :paramtype data: str
     :keyword content: File to upload.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -83,7 +83,7 @@ def build_formdata_upload_files_request(
     :keyword files: Files to upload.
     :paramtype files: list[IO]
     :keyword content: Files to upload.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

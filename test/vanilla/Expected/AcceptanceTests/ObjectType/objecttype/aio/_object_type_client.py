@@ -45,8 +45,8 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         We have helper methods to create requests specific to this service in `objecttype.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from objecttype.rest import prepare_get
-        >>> request = prepare_get()
+        >>> from objecttype.rest import build_get_request
+        >>> request = build_get_request()
         <HttpRequest [GET], url: '/objectType/get'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -64,8 +64,10 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = await self._client._pipeline.run(
+            request_copy._internal_request, stream=stream_response, **kwargs
+        )
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

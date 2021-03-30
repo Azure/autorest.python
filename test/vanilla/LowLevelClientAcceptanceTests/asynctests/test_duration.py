@@ -22,22 +22,14 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-# ------------------------------------------
+# --------------------------------------------------------------------------
 
+from datetime import timedelta
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
 
 from bodyduration.aio import AutoRestDurationTestService
+from bodyduration._rest import *
 
 import pytest
 
@@ -47,16 +39,31 @@ async def client():
     async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestDuration(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_get_null_and_invalid(self, client):
-        assert await client.duration.get_null() is None
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    async def _make_request(request):
+        return await base_make_request_json_response(client, request)
+    return _make_request
 
-        with pytest.raises(DeserializationError):
-            await client.duration.get_invalid()
+@pytest.mark.asyncio
+async def test_get_null_and_invalid(make_request, make_request_json_response):
+    request = build_duration_get_null_request()
+    assert (await make_request(request)).text == ''
 
-    @pytest.mark.asyncio
-    async def test_positive_duration(self, client):
-        await client.duration.get_positive_duration()
-        await client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    request = build_duration_get_invalid_request()
+    with pytest.raises(isodate.ISO8601Error):
+        isodate.parse_duration(await make_request_json_response(request))
+
+@pytest.mark.asyncio
+async def test_positive_duration(make_request, make_request_json_response):
+    request = build_duration_get_positive_duration_request()
+    assert isodate.duration.Duration(4, 45005, 0, years=3, months=6) == isodate.parse_duration(await make_request_json_response(request))
+
+    request = build_duration_put_positive_duration_request(json=isodate.duration_isoformat(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
+    await make_request(request)

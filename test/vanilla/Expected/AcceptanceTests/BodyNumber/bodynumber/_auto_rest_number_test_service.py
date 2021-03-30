@@ -58,8 +58,8 @@ class AutoRestNumberTestService(object):
         We have helper methods to create requests specific to this service in `bodynumber.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodynumber.rest import prepare_number_get_null
-        >>> request = prepare_number_get_null()
+        >>> from bodynumber.rest import build_number_get_null_request
+        >>> request = build_number_get_null_request()
         <HttpRequest [GET], url: '/number/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,8 +77,8 @@ class AutoRestNumberTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

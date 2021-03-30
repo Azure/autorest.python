@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from bodybyte import AutoRestSwaggerBATByteService
 from bodybyte._rest import *
-
+from base64 import b64encode
 import pytest
 
 @pytest.fixture
@@ -41,11 +41,11 @@ def make_request(client, base_make_request):
 
 def test_non_ascii(make_request):
     tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-    request = build_byte_put_non_ascii_request(content=tests)
+    request = build_byte_put_non_ascii_request(json=b64encode(tests).decode())
     make_request(request)
 
     request = build_byte_get_non_ascii_request()
-    response = make_request(request)
+    make_request(request)
 
 def test_get_null(make_request):
     request = build_byte_get_null_request()

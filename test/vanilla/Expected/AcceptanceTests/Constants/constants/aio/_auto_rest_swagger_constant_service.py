@@ -46,8 +46,8 @@ class AutoRestSwaggerConstantService(object):
         We have helper methods to create requests specific to this service in `constants.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from constants.rest import prepare_contants_put_no_model_as_string_no_required_two_value_no_default
-        >>> request = prepare_contants_put_no_model_as_string_no_required_two_value_no_default(input)
+        >>> from constants.rest import build_contants_put_no_model_as_string_no_required_two_value_no_default_request
+        >>> request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(input)
         <HttpRequest [PUT], url: '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -65,8 +65,10 @@ class AutoRestSwaggerConstantService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = await self._client._pipeline.run(
+            request_copy._internal_request, stream=stream_response, **kwargs
+        )
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

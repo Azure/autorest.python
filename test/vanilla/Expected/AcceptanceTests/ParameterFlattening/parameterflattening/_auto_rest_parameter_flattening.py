@@ -60,8 +60,8 @@ class AutoRestParameterFlattening(object):
         We have helper methods to create requests specific to this service in `parameterflattening.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from parameterflattening.rest import prepare_availabilitysets_update
-        >>> request = prepare_availabilitysets_update(resource_group_name, avset, tags)
+        >>> from parameterflattening.rest import build_availabilitysets_update_request
+        >>> request = build_availabilitysets_update_request(resource_group_name, avset, json, content)
         <HttpRequest [PATCH], url: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -79,8 +79,8 @@ class AutoRestParameterFlattening(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

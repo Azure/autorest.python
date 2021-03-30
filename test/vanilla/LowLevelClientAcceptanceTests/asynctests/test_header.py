@@ -24,20 +24,13 @@
 #
 # --------------------------------------------------------------------------
 
-from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
+from datetime import datetime, timedelta
+from async_generator import yield_, async_generator
+from base64 import b64decode
 
 from header.aio import AutoRestSwaggerBATHeaderService
+from header._rest import *
 from header.models import GreyscaleColors
 
 import pytest
@@ -49,166 +42,207 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def value_header():
-    def _value_header(response, _, headers):
-        return headers.get("value")
-    return _value_header
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-class TestHeader(object):
+@pytest.fixture
+def make_request_value_response_header(client, base_make_request):
+    async def _make_request(request):
+        return (await base_make_request(client, request)).headers['value']
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_integer(self, client, value_header):
-        await client.header.param_integer("positive", 1)
-        await client.header.param_integer("negative", -2)
+# NOTE: in llc, we don't know to deserialize response headers as int / datetime etc. So you'll see they'll just be strings, not ints etc
+@pytest.mark.asyncio
+async def test_integer(make_request, make_request_value_response_header):
 
-        response = await client.header.response_integer("positive", cls=value_header)
-        assert response == 1
+    request = build_header_param_integer_request(scenario="positive", value=1)
+    await make_request(request)
+    request = build_header_param_integer_request(scenario="negative", value=-2)
+    await make_request(request)
 
-        response = await client.header.response_integer("negative", cls=value_header)
-        assert response == -2
+    request = build_header_response_integer_request(scenario="positive")
+    assert await make_request_value_response_header(request) == "1"
 
-    @pytest.mark.asyncio
-    async def test_long(self, client, value_header):
-        await client.header.param_long("positive", 105)
-        await client.header.param_long("negative", -2)
+    request = build_header_response_integer_request(scenario="negative")
+    assert await make_request_value_response_header(request) == "-2"
 
-        response = await client.header.response_long("positive", cls=value_header)
-        assert response == 105
-        response = await client.header.response_long("negative", cls=value_header)
-        assert response == -2
+@pytest.mark.asyncio
+async def test_long(make_request, make_request_value_response_header):
+    request = build_header_param_long_request(scenario="positive", value=105)
+    await make_request(request)
+    request = build_header_param_long_request(scenario="negative", value=-2)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_float(self, client, value_header):
-        await client.header.param_float("positive", 0.07)
-        await client.header.param_float("negative", -3.0)
+    request = build_header_response_long_request(scenario="positive")
+    assert await make_request_value_response_header(request) == "105"
 
-        response = await client.header.response_float("positive", cls=value_header)
-        assert abs(0.07 - response) < 0.00001
-        response = await client.header.response_float("negative", cls=value_header)
-        assert abs(-3.0 - response) < 0.00001
+    request = build_header_response_long_request(scenario="negative")
+    assert await make_request_value_response_header(request) == "-2"
 
-    @pytest.mark.asyncio
-    async def test_double(self, client, value_header):
-        await client.header.param_double("positive", 7e120)
-        await client.header.param_double("negative", -3.0)
+@pytest.mark.asyncio
+async def test_float(make_request, make_request_value_response_header):
+    request = build_header_param_float_request(scenario="positive", value=0.07)
+    await make_request(request)
 
-        response = await client.header.response_double("positive", cls=value_header)
-        assert response == 7e120
-        response = await client.header.response_double("negative", cls=value_header)
-        assert response == -3.0
+    request = build_header_param_float_request(scenario="negative", value=-3.0)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_bool(self, client, value_header):
-        await client.header.param_bool("true", True)
-        await client.header.param_bool("false", False)
+    request = build_header_response_float_request(scenario="positive")
+    assert abs(0.07 - float(await make_request_value_response_header(request))) < 0.00001
 
-        response = await client.header.response_bool("true", cls=value_header)
-        assert response == True
-        response = await client.header.response_bool("false", cls=value_header)
-        assert response == False
+    request = build_header_response_float_request(scenario="negative")
+    assert abs(-3.0 - float(await make_request_value_response_header(request))) < 0.00001
 
-    @pytest.mark.asyncio
-    async def test_string(self, client, value_header):
-        await client.header.param_string("valid", "The quick brown fox jumps over the lazy dog")
-        await client.header.param_string("null", None)
-        await client.header.param_string("empty", "")
+@pytest.mark.asyncio
+async def test_double(make_request, make_request_value_response_header):
+    request = build_header_param_double_request(scenario="positive", value=7e120)
+    await make_request(request)
 
-        response = await client.header.response_string("valid", cls=value_header)
-        assert response == "The quick brown fox jumps over the lazy dog"
-        response = await client.header.response_string("null", cls=value_header)
-        assert response == "null"  # TODO This should be None
-        response = await client.header.response_string("empty", cls=value_header)
-        assert response == ""
+    request = build_header_param_double_request(scenario="negative", value=-3.0)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_enum(self, client, value_header):
-        await client.header.param_enum("valid", GreyscaleColors.grey)
-        await client.header.param_enum("valid", 'GREY')
-        await client.header.param_enum("null", None)
+    request = build_header_response_double_request(scenario="positive")
+    assert await make_request_value_response_header(request) == "7e+120"
 
-        response = await client.header.response_enum("valid", cls=value_header)
-        assert response == GreyscaleColors.grey
+    request = build_header_response_double_request(scenario="negative")
+    assert await make_request_value_response_header(request) == "-3"
 
-        # We receive an empty string.
-        # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
-        # a Deserialization issue and we return the string.
-        # Here we now return empty string without failin **on purpose**
-        # with pytest.raises(DeserializationError):
-        response = await client.header.response_enum("null", cls=value_header)
-        assert response == ""
+@pytest.mark.asyncio
+async def test_bool(make_request, make_request_value_response_header):
+    request = build_header_param_bool_request(scenario="true", value=True)
+    await make_request(request)
+    request = build_header_param_bool_request(scenario="false", value=False)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_date(self, client, value_header):
-        await client.header.param_date("valid", isodate.parse_date("2010-01-01"))
-        await client.header.param_date("min", datetime.min)
+    request = build_header_response_bool_request(scenario="true")
+    assert await make_request_value_response_header(request) == 'true'
 
-        response = await client.header.response_date("valid", cls=value_header)
-        assert response == isodate.parse_date("2010-01-01")
-        response = await client.header.response_date("min", cls=value_header)
-        assert response == isodate.parse_date("0001-01-01")
+    request = build_header_response_bool_request(scenario="false")
+    assert await make_request_value_response_header(request) == 'false'
 
-    @pytest.mark.asyncio
-    async def test_datetime(self, client, value_header):
-        await client.header.param_datetime("valid", isodate.parse_datetime("2010-01-01T12:34:56Z"))
-        await client.header.param_datetime("min", datetime.min)
+@pytest.mark.asyncio
+async def test_string(make_request, make_request_value_response_header):
+    request = build_header_param_string_request(scenario="valid", value="The quick brown fox jumps over the lazy dog")
+    await make_request(request)
 
-        response = await client.header.response_datetime("valid", cls=value_header)
-        assert response == isodate.parse_datetime("2010-01-01T12:34:56Z")
-        response = await client.header.response_datetime("min", cls=value_header)
-        assert response == isodate.parse_datetime("0001-01-01T00:00:00Z")
+    request = build_header_param_string_request(scenario="null", value=None)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_datetime_rfc(self, client, value_header):
-        await client.header.param_datetime_rfc1123("valid", isodate.parse_datetime("2010-01-01T12:34:56Z"))
-        await client.header.param_datetime_rfc1123("min", datetime.min)
+    request = build_header_param_string_request(scenario="empty", value="")
+    await make_request(request)
 
-        response = await client.header.response_datetime_rfc1123("valid", cls=value_header)
-        assert response == isodate.parse_datetime("2010-01-01T12:34:56Z")
+    request = build_header_response_string_request(scenario="valid")
+    assert await make_request_value_response_header(request) == "The quick brown fox jumps over the lazy dog"
 
-        # we are not using the min date of year 1 because of the latest msrest update
-        # with msrest update, minimal year we can parse is 100, instead of 1
-        response = await client.header.response_datetime_rfc1123("min", cls=value_header)
-        assert response == isodate.parse_datetime("2001-01-01T00:00:00Z")
+    request = build_header_response_string_request(scenario="null")
+    assert await make_request_value_response_header(request) == "null"  # TODO This should be None
 
-    @pytest.mark.asyncio
-    async def test_duration(self, client, value_header):
-        await client.header.param_duration("valid", timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    request = build_header_response_string_request(scenario="empty")
+    assert await make_request_value_response_header(request) == ""
 
-        response = await client.header.response_duration("valid", cls=value_header)
-        assert response == timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+@pytest.mark.asyncio
+async def test_enum(make_request, make_request_value_response_header):
+    request = build_header_param_enum_request(scenario="valid", value=GreyscaleColors.GREY)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_byte(self, client, value_header):
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        await client.header.param_byte("valid", u_bytes)
+    request = build_header_param_enum_request(scenario="valid", value="GREY")
+    await make_request(request)
 
-        response = await client.header.response_byte("valid", cls=value_header)
-        assert response == u_bytes
+    request = build_header_param_enum_request(scenario="null", value=None)
+    await make_request(request)
 
-        await client.header.param_existing_key("overwrite")
 
-    @pytest.mark.asyncio
-    async def test_response_existing_key(self, client):
-        def useragent_header(response, _, headers):
-            return headers.get('User-Agent')
-        response = await client.header.response_existing_key(cls=useragent_header)
-        assert response == "overwrite"
+    request = build_header_response_enum_request(scenario="valid")
+    assert await make_request_value_response_header(request) == GreyscaleColors.grey
 
-    @pytest.mark.asyncio
-    async def test_response_protected_key(self, client):
-        # This test is only valid for C#, which content-type can't be override this way
-        #await client.header.param_protected_key("text/html")
+    # We receive an empty string.
+    # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
+    # a Deserialization issue and we return the string.
+    # Here we now return empty string without failin **on purpose**
+    # with pytest.raises(DeserializationError):
+    request = build_header_response_enum_request(scenario="null")
+    assert await make_request_value_response_header(request) == ""
 
-        # This test has different result compare to C#, which content-type is saved in another place.
-        def content_header(response, _, headers):
-            return headers.get('Content-Type')
-        response = await client.header.response_protected_key(cls=content_header)
-        assert response == "text/html; charset=utf-8"
+@pytest.mark.asyncio
+async def test_date(make_request, make_request_value_response_header):
+    request = build_header_param_date_request(scenario="valid", value=isodate.parse_date("2010-01-01"))
+    await make_request(request)
+    request = build_header_param_date_request(scenario="min", value=datetime.min)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_custom_request_id(self, client):
-        def status_code(pipeline_response, _, headers):
-            return pipeline_response.http_response.status_code
-        custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
-        response = await client.header.custom_request_id(headers=custom_headers, cls=status_code)
-        assert response == 200
+    request = build_header_response_date_request(scenario="valid")
+    assert await make_request_value_response_header(request) == str(isodate.parse_date("2010-01-01"))
+
+    request = build_header_response_date_request(scenario="min")
+    assert await make_request_value_response_header(request) == str(isodate.parse_date("0001-01-01"))
+
+@pytest.mark.asyncio
+async def test_datetime(make_request, make_request_value_response_header):
+    request = build_header_param_datetime_request(scenario="valid", value=isodate.parse_datetime("2010-01-01T12:34:56Z"))
+    await make_request(request)
+    request = build_header_param_datetime_request(scenario="min", value=datetime.min)
+    await make_request(request)
+
+    request = build_header_response_datetime_request(scenario="valid")
+    assert await make_request_value_response_header(request) == '2010-01-01T12:34:56Z'
+
+    request = build_header_response_datetime_request(scenario="min")
+    assert await make_request_value_response_header(request) == '0001-01-01T00:00:00Z'
+
+@pytest.mark.asyncio
+async def test_datetime_rfc(make_request, make_request_value_response_header):
+    request = build_header_param_datetime_rfc1123_request(scenario="valid", value=isodate.parse_datetime("2010-01-01T12:34:56Z"))
+    await make_request(request)
+
+    request = build_header_param_datetime_rfc1123_request(scenario="min", value=datetime.min)
+    await make_request(request)
+
+    request = build_header_response_datetime_rfc1123_request(scenario="valid")
+    assert await make_request_value_response_header(request) == "Fri, 01 Jan 2010 12:34:56 GMT"
+
+    # we are not using the min date of year 1 because of the latest msrest update
+    # with msrest update, minimal year we can parse is 100, instead of 1
+    request = build_header_response_datetime_rfc1123_request(scenario="min")
+    assert await make_request_value_response_header(request) == "Mon, 01 Jan 0001 00:00:00 GMT"
+
+@pytest.mark.asyncio
+async def test_duration(make_request, make_request_value_response_header):
+    request = build_header_param_duration_request(scenario="valid", value=timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    await make_request(request)
+
+    request = build_header_response_duration_request(scenario="valid")
+    assert await make_request_value_response_header(request) == 'P123DT22H14M12.011S'  # raw str of the above timedelta
+
+@pytest.mark.asyncio
+async def test_byte(make_request, make_request_value_response_header):
+    u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+    request = build_header_param_byte_request(scenario="valid", value=u_bytes)
+    await make_request(request)
+
+    request = build_header_response_byte_request(scenario="valid")
+    assert bytearray(b64decode(await make_request_value_response_header(request))) == u_bytes
+
+@pytest.mark.asyncio
+async def test_response_existing_key(make_request):
+
+    request = build_header_param_existing_key_request(user_agent_parameter="overwrite")
+    await make_request(request)
+    request = build_header_response_existing_key_request()
+    assert (await make_request(request)).headers['User-Agent'] == "overwrite"
+
+@pytest.mark.asyncio
+async def test_response_protected_key(make_request):
+    # This test is only valid for C#, which content-type can't be override this way
+    #client.header.param_protected_key("text/html")
+
+    # This test has different result compare to C#, which content-type is saved in another place.
+    request = build_header_response_protected_key_request()
+    assert (await make_request(request)).headers['Content-Type'] == "text/html; charset=utf-8"
+
+@pytest.mark.asyncio
+async def test_custom_request_id(make_request):
+    custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
+    request = build_header_custom_request_id_request(headers=custom_headers)
+    await make_request(request)

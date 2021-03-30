@@ -7,37 +7,37 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_get_horse
-    from ._preparers_py3 import prepare_put_horse
-    from ._preparers_py3 import prepare_get_pet
-    from ._preparers_py3 import prepare_put_pet
-    from ._preparers_py3 import prepare_get_feline
-    from ._preparers_py3 import prepare_put_feline
-    from ._preparers_py3 import prepare_get_cat
-    from ._preparers_py3 import prepare_put_cat
-    from ._preparers_py3 import prepare_get_kitten
-    from ._preparers_py3 import prepare_put_kitten
+    from ._request_builders_py3 import build_get_horse_request
+    from ._request_builders_py3 import build_put_horse_request
+    from ._request_builders_py3 import build_get_pet_request
+    from ._request_builders_py3 import build_put_pet_request
+    from ._request_builders_py3 import build_get_feline_request
+    from ._request_builders_py3 import build_put_feline_request
+    from ._request_builders_py3 import build_get_cat_request
+    from ._request_builders_py3 import build_put_cat_request
+    from ._request_builders_py3 import build_get_kitten_request
+    from ._request_builders_py3 import build_put_kitten_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_get_horse  # type: ignore
-    from ._preparers import prepare_put_horse  # type: ignore
-    from ._preparers import prepare_get_pet  # type: ignore
-    from ._preparers import prepare_put_pet  # type: ignore
-    from ._preparers import prepare_get_feline  # type: ignore
-    from ._preparers import prepare_put_feline  # type: ignore
-    from ._preparers import prepare_get_cat  # type: ignore
-    from ._preparers import prepare_put_cat  # type: ignore
-    from ._preparers import prepare_get_kitten  # type: ignore
-    from ._preparers import prepare_put_kitten  # type: ignore
+    from ._request_builders import build_get_horse_request  # type: ignore
+    from ._request_builders import build_put_horse_request  # type: ignore
+    from ._request_builders import build_get_pet_request  # type: ignore
+    from ._request_builders import build_put_pet_request  # type: ignore
+    from ._request_builders import build_get_feline_request  # type: ignore
+    from ._request_builders import build_put_feline_request  # type: ignore
+    from ._request_builders import build_get_cat_request  # type: ignore
+    from ._request_builders import build_put_cat_request  # type: ignore
+    from ._request_builders import build_get_kitten_request  # type: ignore
+    from ._request_builders import build_put_kitten_request  # type: ignore
 
 __all__ = [
-    "prepare_get_horse",
-    "prepare_put_horse",
-    "prepare_get_pet",
-    "prepare_put_pet",
-    "prepare_get_feline",
-    "prepare_put_feline",
-    "prepare_get_cat",
-    "prepare_put_cat",
-    "prepare_get_kitten",
-    "prepare_put_kitten",
+    "build_get_horse_request",
+    "build_put_horse_request",
+    "build_get_pet_request",
+    "build_put_pet_request",
+    "build_get_feline_request",
+    "build_put_feline_request",
+    "build_get_cat_request",
+    "build_put_cat_request",
+    "build_get_kitten_request",
+    "build_put_kitten_request",
 ]

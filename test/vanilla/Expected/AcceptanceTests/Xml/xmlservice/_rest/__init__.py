@@ -7,109 +7,109 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_xml_get_complex_type_ref_no_meta
-    from ._preparers_py3 import prepare_xml_put_complex_type_ref_no_meta
-    from ._preparers_py3 import prepare_xml_get_complex_type_ref_with_meta
-    from ._preparers_py3 import prepare_xml_put_complex_type_ref_with_meta
-    from ._preparers_py3 import prepare_xml_get_simple
-    from ._preparers_py3 import prepare_xml_put_simple
-    from ._preparers_py3 import prepare_xml_get_wrapped_lists
-    from ._preparers_py3 import prepare_xml_put_wrapped_lists
-    from ._preparers_py3 import prepare_xml_get_headers
-    from ._preparers_py3 import prepare_xml_get_empty_list
-    from ._preparers_py3 import prepare_xml_put_empty_list
-    from ._preparers_py3 import prepare_xml_get_empty_wrapped_lists
-    from ._preparers_py3 import prepare_xml_put_empty_wrapped_lists
-    from ._preparers_py3 import prepare_xml_get_root_list
-    from ._preparers_py3 import prepare_xml_put_root_list
-    from ._preparers_py3 import prepare_xml_get_root_list_single_item
-    from ._preparers_py3 import prepare_xml_put_root_list_single_item
-    from ._preparers_py3 import prepare_xml_get_empty_root_list
-    from ._preparers_py3 import prepare_xml_put_empty_root_list
-    from ._preparers_py3 import prepare_xml_get_empty_child_element
-    from ._preparers_py3 import prepare_xml_put_empty_child_element
-    from ._preparers_py3 import prepare_xml_list_containers
-    from ._preparers_py3 import prepare_xml_get_service_properties
-    from ._preparers_py3 import prepare_xml_put_service_properties
-    from ._preparers_py3 import prepare_xml_get_acls
-    from ._preparers_py3 import prepare_xml_put_acls
-    from ._preparers_py3 import prepare_xml_list_blobs
-    from ._preparers_py3 import prepare_xml_json_input
-    from ._preparers_py3 import prepare_xml_json_output
-    from ._preparers_py3 import prepare_xml_get_xms_text
-    from ._preparers_py3 import prepare_xml_get_bytes
-    from ._preparers_py3 import prepare_xml_put_binary
-    from ._preparers_py3 import prepare_xml_get_uri
-    from ._preparers_py3 import prepare_xml_put_uri
+    from ._request_builders_py3 import build_xml_get_complex_type_ref_no_meta_request
+    from ._request_builders_py3 import build_xml_put_complex_type_ref_no_meta_request
+    from ._request_builders_py3 import build_xml_get_complex_type_ref_with_meta_request
+    from ._request_builders_py3 import build_xml_put_complex_type_ref_with_meta_request
+    from ._request_builders_py3 import build_xml_get_simple_request
+    from ._request_builders_py3 import build_xml_put_simple_request
+    from ._request_builders_py3 import build_xml_get_wrapped_lists_request
+    from ._request_builders_py3 import build_xml_put_wrapped_lists_request
+    from ._request_builders_py3 import build_xml_get_headers_request
+    from ._request_builders_py3 import build_xml_get_empty_list_request
+    from ._request_builders_py3 import build_xml_put_empty_list_request
+    from ._request_builders_py3 import build_xml_get_empty_wrapped_lists_request
+    from ._request_builders_py3 import build_xml_put_empty_wrapped_lists_request
+    from ._request_builders_py3 import build_xml_get_root_list_request
+    from ._request_builders_py3 import build_xml_put_root_list_request
+    from ._request_builders_py3 import build_xml_get_root_list_single_item_request
+    from ._request_builders_py3 import build_xml_put_root_list_single_item_request
+    from ._request_builders_py3 import build_xml_get_empty_root_list_request
+    from ._request_builders_py3 import build_xml_put_empty_root_list_request
+    from ._request_builders_py3 import build_xml_get_empty_child_element_request
+    from ._request_builders_py3 import build_xml_put_empty_child_element_request
+    from ._request_builders_py3 import build_xml_list_containers_request
+    from ._request_builders_py3 import build_xml_get_service_properties_request
+    from ._request_builders_py3 import build_xml_put_service_properties_request
+    from ._request_builders_py3 import build_xml_get_acls_request
+    from ._request_builders_py3 import build_xml_put_acls_request
+    from ._request_builders_py3 import build_xml_list_blobs_request
+    from ._request_builders_py3 import build_xml_json_input_request
+    from ._request_builders_py3 import build_xml_json_output_request
+    from ._request_builders_py3 import build_xml_get_xms_text_request
+    from ._request_builders_py3 import build_xml_get_bytes_request
+    from ._request_builders_py3 import build_xml_put_binary_request
+    from ._request_builders_py3 import build_xml_get_uri_request
+    from ._request_builders_py3 import build_xml_put_uri_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_xml_get_complex_type_ref_no_meta  # type: ignore
-    from ._preparers import prepare_xml_put_complex_type_ref_no_meta  # type: ignore
-    from ._preparers import prepare_xml_get_complex_type_ref_with_meta  # type: ignore
-    from ._preparers import prepare_xml_put_complex_type_ref_with_meta  # type: ignore
-    from ._preparers import prepare_xml_get_simple  # type: ignore
-    from ._preparers import prepare_xml_put_simple  # type: ignore
-    from ._preparers import prepare_xml_get_wrapped_lists  # type: ignore
-    from ._preparers import prepare_xml_put_wrapped_lists  # type: ignore
-    from ._preparers import prepare_xml_get_headers  # type: ignore
-    from ._preparers import prepare_xml_get_empty_list  # type: ignore
-    from ._preparers import prepare_xml_put_empty_list  # type: ignore
-    from ._preparers import prepare_xml_get_empty_wrapped_lists  # type: ignore
-    from ._preparers import prepare_xml_put_empty_wrapped_lists  # type: ignore
-    from ._preparers import prepare_xml_get_root_list  # type: ignore
-    from ._preparers import prepare_xml_put_root_list  # type: ignore
-    from ._preparers import prepare_xml_get_root_list_single_item  # type: ignore
-    from ._preparers import prepare_xml_put_root_list_single_item  # type: ignore
-    from ._preparers import prepare_xml_get_empty_root_list  # type: ignore
-    from ._preparers import prepare_xml_put_empty_root_list  # type: ignore
-    from ._preparers import prepare_xml_get_empty_child_element  # type: ignore
-    from ._preparers import prepare_xml_put_empty_child_element  # type: ignore
-    from ._preparers import prepare_xml_list_containers  # type: ignore
-    from ._preparers import prepare_xml_get_service_properties  # type: ignore
-    from ._preparers import prepare_xml_put_service_properties  # type: ignore
-    from ._preparers import prepare_xml_get_acls  # type: ignore
-    from ._preparers import prepare_xml_put_acls  # type: ignore
-    from ._preparers import prepare_xml_list_blobs  # type: ignore
-    from ._preparers import prepare_xml_json_input  # type: ignore
-    from ._preparers import prepare_xml_json_output  # type: ignore
-    from ._preparers import prepare_xml_get_xms_text  # type: ignore
-    from ._preparers import prepare_xml_get_bytes  # type: ignore
-    from ._preparers import prepare_xml_put_binary  # type: ignore
-    from ._preparers import prepare_xml_get_uri  # type: ignore
-    from ._preparers import prepare_xml_put_uri  # type: ignore
+    from ._request_builders import build_xml_get_complex_type_ref_no_meta_request  # type: ignore
+    from ._request_builders import build_xml_put_complex_type_ref_no_meta_request  # type: ignore
+    from ._request_builders import build_xml_get_complex_type_ref_with_meta_request  # type: ignore
+    from ._request_builders import build_xml_put_complex_type_ref_with_meta_request  # type: ignore
+    from ._request_builders import build_xml_get_simple_request  # type: ignore
+    from ._request_builders import build_xml_put_simple_request  # type: ignore
+    from ._request_builders import build_xml_get_wrapped_lists_request  # type: ignore
+    from ._request_builders import build_xml_put_wrapped_lists_request  # type: ignore
+    from ._request_builders import build_xml_get_headers_request  # type: ignore
+    from ._request_builders import build_xml_get_empty_list_request  # type: ignore
+    from ._request_builders import build_xml_put_empty_list_request  # type: ignore
+    from ._request_builders import build_xml_get_empty_wrapped_lists_request  # type: ignore
+    from ._request_builders import build_xml_put_empty_wrapped_lists_request  # type: ignore
+    from ._request_builders import build_xml_get_root_list_request  # type: ignore
+    from ._request_builders import build_xml_put_root_list_request  # type: ignore
+    from ._request_builders import build_xml_get_root_list_single_item_request  # type: ignore
+    from ._request_builders import build_xml_put_root_list_single_item_request  # type: ignore
+    from ._request_builders import build_xml_get_empty_root_list_request  # type: ignore
+    from ._request_builders import build_xml_put_empty_root_list_request  # type: ignore
+    from ._request_builders import build_xml_get_empty_child_element_request  # type: ignore
+    from ._request_builders import build_xml_put_empty_child_element_request  # type: ignore
+    from ._request_builders import build_xml_list_containers_request  # type: ignore
+    from ._request_builders import build_xml_get_service_properties_request  # type: ignore
+    from ._request_builders import build_xml_put_service_properties_request  # type: ignore
+    from ._request_builders import build_xml_get_acls_request  # type: ignore
+    from ._request_builders import build_xml_put_acls_request  # type: ignore
+    from ._request_builders import build_xml_list_blobs_request  # type: ignore
+    from ._request_builders import build_xml_json_input_request  # type: ignore
+    from ._request_builders import build_xml_json_output_request  # type: ignore
+    from ._request_builders import build_xml_get_xms_text_request  # type: ignore
+    from ._request_builders import build_xml_get_bytes_request  # type: ignore
+    from ._request_builders import build_xml_put_binary_request  # type: ignore
+    from ._request_builders import build_xml_get_uri_request  # type: ignore
+    from ._request_builders import build_xml_put_uri_request  # type: ignore
 
 __all__ = [
-    "prepare_xml_get_complex_type_ref_no_meta",
-    "prepare_xml_put_complex_type_ref_no_meta",
-    "prepare_xml_get_complex_type_ref_with_meta",
-    "prepare_xml_put_complex_type_ref_with_meta",
-    "prepare_xml_get_simple",
-    "prepare_xml_put_simple",
-    "prepare_xml_get_wrapped_lists",
-    "prepare_xml_put_wrapped_lists",
-    "prepare_xml_get_headers",
-    "prepare_xml_get_empty_list",
-    "prepare_xml_put_empty_list",
-    "prepare_xml_get_empty_wrapped_lists",
-    "prepare_xml_put_empty_wrapped_lists",
-    "prepare_xml_get_root_list",
-    "prepare_xml_put_root_list",
-    "prepare_xml_get_root_list_single_item",
-    "prepare_xml_put_root_list_single_item",
-    "prepare_xml_get_empty_root_list",
-    "prepare_xml_put_empty_root_list",
-    "prepare_xml_get_empty_child_element",
-    "prepare_xml_put_empty_child_element",
-    "prepare_xml_list_containers",
-    "prepare_xml_get_service_properties",
-    "prepare_xml_put_service_properties",
-    "prepare_xml_get_acls",
-    "prepare_xml_put_acls",
-    "prepare_xml_list_blobs",
-    "prepare_xml_json_input",
-    "prepare_xml_json_output",
-    "prepare_xml_get_xms_text",
-    "prepare_xml_get_bytes",
-    "prepare_xml_put_binary",
-    "prepare_xml_get_uri",
-    "prepare_xml_put_uri",
+    "build_xml_get_complex_type_ref_no_meta_request",
+    "build_xml_put_complex_type_ref_no_meta_request",
+    "build_xml_get_complex_type_ref_with_meta_request",
+    "build_xml_put_complex_type_ref_with_meta_request",
+    "build_xml_get_simple_request",
+    "build_xml_put_simple_request",
+    "build_xml_get_wrapped_lists_request",
+    "build_xml_put_wrapped_lists_request",
+    "build_xml_get_headers_request",
+    "build_xml_get_empty_list_request",
+    "build_xml_put_empty_list_request",
+    "build_xml_get_empty_wrapped_lists_request",
+    "build_xml_put_empty_wrapped_lists_request",
+    "build_xml_get_root_list_request",
+    "build_xml_put_root_list_request",
+    "build_xml_get_root_list_single_item_request",
+    "build_xml_put_root_list_single_item_request",
+    "build_xml_get_empty_root_list_request",
+    "build_xml_put_empty_root_list_request",
+    "build_xml_get_empty_child_element_request",
+    "build_xml_put_empty_child_element_request",
+    "build_xml_list_containers_request",
+    "build_xml_get_service_properties_request",
+    "build_xml_put_service_properties_request",
+    "build_xml_get_acls_request",
+    "build_xml_put_acls_request",
+    "build_xml_list_blobs_request",
+    "build_xml_json_input_request",
+    "build_xml_json_output_request",
+    "build_xml_get_xms_text_request",
+    "build_xml_get_bytes_request",
+    "build_xml_put_binary_request",
+    "build_xml_get_uri_request",
+    "build_xml_put_uri_request",
 ]

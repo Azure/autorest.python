@@ -46,8 +46,8 @@ class AutoRestRFC1123DateTimeTestService(object):
         We have helper methods to create requests specific to this service in `bodydatetimerfc1123.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydatetimerfc1123.rest import prepare_datetimerfc1123_get_null
-        >>> request = prepare_datetimerfc1123_get_null()
+        >>> from bodydatetimerfc1123.rest import build_datetimerfc1123_get_null_request
+        >>> request = build_datetimerfc1123_get_null_request()
         <HttpRequest [GET], url: '/datetimerfc1123/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -65,8 +65,10 @@ class AutoRestRFC1123DateTimeTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = await self._client._pipeline.run(
+            request_copy._internal_request, stream=stream_response, **kwargs
+        )
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

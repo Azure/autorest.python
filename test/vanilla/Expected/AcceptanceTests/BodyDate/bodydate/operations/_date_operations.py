@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import json
 from typing import TYPE_CHECKING
 import warnings
 
@@ -70,7 +71,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_date_get_null(template_url=self.get_null.metadata["url"], **kwargs)
+        request = build_date_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -107,7 +108,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_date_get_invalid_date(template_url=self.get_invalid_date.metadata["url"], **kwargs)
+        request = build_date_get_invalid_date_request(template_url=self.get_invalid_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -144,7 +145,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_date_get_overflow_date(template_url=self.get_overflow_date.metadata["url"], **kwargs)
+        request = build_date_get_overflow_date_request(template_url=self.get_overflow_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -181,7 +182,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_date_get_underflow_date(template_url=self.get_underflow_date.metadata["url"], **kwargs)
+        request = build_date_get_underflow_date_request(template_url=self.get_underflow_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -222,10 +223,12 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        date_body = self._serialize.body(date_body, "date")
+        content_type = kwargs.pop("content_type", "application/json")
+        content = self._serialize.body(date_body, "date")
+        content = json.dumps(content)
 
-        request = prepare_date_put_max_date(
-            date_body=date_body, template_url=self.put_max_date.metadata["url"], **kwargs
+        request = build_date_put_max_date_request(
+            content=content, content_type=content_type, template_url=self.put_max_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -259,7 +262,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_date_get_max_date(template_url=self.get_max_date.metadata["url"], **kwargs)
+        request = build_date_get_max_date_request(template_url=self.get_max_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -300,10 +303,12 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        date_body = self._serialize.body(date_body, "date")
+        content_type = kwargs.pop("content_type", "application/json")
+        content = self._serialize.body(date_body, "date")
+        content = json.dumps(content)
 
-        request = prepare_date_put_min_date(
-            date_body=date_body, template_url=self.put_min_date.metadata["url"], **kwargs
+        request = build_date_put_min_date_request(
+            content=content, content_type=content_type, template_url=self.put_min_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -337,7 +342,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_date_get_min_date(template_url=self.get_min_date.metadata["url"], **kwargs)
+        request = build_date_get_min_date_request(template_url=self.get_min_date.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -54,8 +54,8 @@ class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
         We have helper methods to create requests specific to this service in `incorrecterrorresponse.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from incorrecterrorresponse.rest import prepare_get_incorrect_error_from_server
-        >>> request = prepare_get_incorrect_error_from_server()
+        >>> from incorrecterrorresponse.rest import build_get_incorrect_error_from_server_request
+        >>> request = build_get_incorrect_error_from_server_request()
         <HttpRequest [GET], url: '/incorrectError'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -73,8 +73,8 @@ class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

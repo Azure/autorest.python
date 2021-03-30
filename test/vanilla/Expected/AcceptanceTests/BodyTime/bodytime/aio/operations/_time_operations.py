@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import json
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
@@ -63,7 +64,7 @@ class TimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_time_get(template_url=self.get.metadata["url"], **kwargs)
+        request = build_time_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -99,9 +100,13 @@ class TimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        time_body = self._serialize.body(time_body, "time")
+        content_type = kwargs.pop("content_type", "application/json")
+        content = self._serialize.body(time_body, "time")
+        content = json.dumps(content)
 
-        request = prepare_time_put(time_body=time_body, template_url=self.put.metadata["url"], **kwargs)
+        request = build_time_put_request(
+            content=content, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

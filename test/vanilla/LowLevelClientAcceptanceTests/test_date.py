@@ -24,19 +24,12 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
+import datetime
 from msrest.exceptions import DeserializationError
 
 from bodydate import AutoRestDateTestService
+from bodydate._rest import *
 
 import pytest
 
@@ -45,39 +38,50 @@ def client():
     with AutoRestDateTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestDate(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_model_get_and_put_max_date(self, client):
-        max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
-        client.date.put_max_date(max_date)
-        assert max_date ==  client.date.get_max_date()
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_model_get_and_put_min_date(self, client):
-        min_date = isodate.parse_date("0001-01-01T00:00:00Z")
-        client.date.put_min_date(min_date)
-        assert min_date ==  client.date.get_min_date()
+def test_model_get_and_put_max_date(make_request, make_request_json_response):
+    max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
+    request = build_date_put_max_date_request(json=str(max_date))
+    make_request(request)
 
-    def test_model_get_null(self, client):
-        assert client.date.get_null() is None
+    request = build_date_get_max_date_request()
+    assert max_date == isodate.parse_date(make_request_json_response(request))
 
-    def test_model_get_invalid_date(self, client):
-        with pytest.raises(DeserializationError):
-            client.date.get_invalid_date()
+def test_model_get_and_put_min_date(make_request, make_request_json_response):
+    min_date = isodate.parse_date("0001-01-01T00:00:00Z")
+    request = build_date_put_min_date_request(json=str(min_date))
+    make_request(request)
 
-    def test_model_get_overflow_date(self, client):
-        with pytest.raises(DeserializationError):
-            client.date.get_overflow_date()
+    request = build_date_get_min_date_request()
+    assert min_date == isodate.parse_date(make_request_json_response(request))
 
-    def test_model_get_underflow_date(self, client):
-        with pytest.raises(DeserializationError):
-            client.date.get_underflow_date()
+def test_model_get_null(make_request):
+    request = build_date_get_null_request()
+    assert make_request(request).text == ''
 
-    def test_models(self):
-        from bodydate.models import Error
+def test_model_get_invalid_date(make_request_json_response):
+    request = build_date_get_invalid_date_request()
+    assert datetime.date(2001, 1, 1) == isodate.parse_date(make_request_json_response(request))
 
-        if sys.version_info >= (3,5):
-            from bodydate.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodydate.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_model_get_overflow_date(make_request_json_response):
+    request = build_date_get_overflow_date_request()
+    with pytest.raises(ValueError) as ex:
+        isodate.parse_date(make_request_json_response(request))
+    assert "day is out of range for month" in str(ex.value)
+
+def test_model_get_underflow_date(make_request_json_response):
+    request = build_date_get_underflow_date_request()
+    with pytest.raises(ValueError) as ex:
+        isodate.parse_date(make_request_json_response(request))
+    assert "year 0 is out of range" in str(ex.value)

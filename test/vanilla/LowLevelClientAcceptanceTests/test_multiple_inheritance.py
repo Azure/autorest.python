@@ -28,57 +28,59 @@
 
 from multipleinheritance import MultipleInheritanceServiceClient
 from multipleinheritance.models import *
+from multipleinheritance._rest import *
 import pytest
-import sys
 
 @pytest.fixture
 def client():
     with MultipleInheritanceServiceClient(base_url="http://localhost:3000") as client:
         yield client
 
-class TestMultipleInheritance(object):
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_get_pet(self, client):
-        assert Pet(name="Peanut") == client.get_pet()
+def test_get_pet(make_request_json_response):
+    request = build_get_pet_request()
+    assert Pet(name="Peanut") == Pet.deserialize(make_request_json_response(request))
 
-    def test_put_pet(self, client):
-        result = client.put_pet(name="Butter")
-        assert result == "Pet was correct!"
+def test_put_pet(make_request_json_response):
+    request = build_put_pet_request(json=Pet(name="Butter").serialize())
+    result = make_request_json_response(request)
+    assert result == "Pet was correct!"
 
-    def test_get_horse(self, client):
-        assert Horse(name="Fred", is_a_show_horse=True) == client.get_horse()
+def test_get_horse(make_request_json_response):
+    request = build_get_horse_request()
+    assert Horse(name="Fred", is_a_show_horse=True) == Horse.deserialize(make_request_json_response(request))
 
-    def test_put_horse(self, client):
-        result = client.put_horse(Horse(name="General", is_a_show_horse=False))
-        assert result == "Horse was correct!"
+def test_put_horse(make_request_json_response):
+    request = build_put_horse_request(json=Horse(name="General", is_a_show_horse=False).serialize())
+    result = make_request_json_response(request)
+    assert result == "Horse was correct!"
 
-    def test_get_feline(self, client):
-        assert Feline(meows=True, hisses=True) == client.get_feline()
+def test_get_feline(make_request_json_response):
+    request = build_get_feline_request()
+    assert Feline(meows=True, hisses=True) == Feline.deserialize(make_request_json_response(request))
 
-    def test_put_feline(self, client):
-        result = client.put_feline(Feline(meows=False, hisses=True))
-        assert result == "Feline was correct!"
+def test_put_feline(make_request_json_response):
+    request = build_put_feline_request(json=Feline(meows=False, hisses=True).serialize())
+    result = make_request_json_response(request)
+    assert result == "Feline was correct!"
 
-    def test_get_cat(self, client):
-        assert Cat(name="Whiskers", likes_milk=True, meows=True, hisses=True) == client.get_cat()
+def test_get_cat(make_request_json_response):
+    request = build_get_cat_request()
+    assert Cat(name="Whiskers", likes_milk=True, meows=True, hisses=True) == Cat.deserialize(make_request_json_response(request))
 
-    def test_put_cat(self, client):
-        result = client.put_cat(Cat(name="Boots", likes_milk=False, meows=True, hisses=False))
-        assert result == "Cat was correct!"
+def test_put_cat(make_request_json_response):
+    request = build_put_cat_request(json=Cat(name="Boots", likes_milk=False, meows=True, hisses=False).serialize())
+    assert make_request_json_response(request) == "Cat was correct!"
 
-    def test_get_kitten(self, client):
-        assert Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False) == client.get_kitten()
+def test_get_kitten(make_request_json_response):
+    request = build_get_kitten_request()
+    assert Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False) == Kitten.deserialize(make_request_json_response(request))
 
-    def test_put_kitten(self, client):
-        result = client.put_kitten(Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True))
-        assert result == "Kitten was correct!"
-
-    def test_models(self):
-        from multipleinheritance.models import Error
-
-        if sys.version_info >= (3,5):
-            from multipleinheritance.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from multipleinheritance.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_put_kitten(make_request_json_response):
+    request = build_put_kitten_request(json=Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True).serialize())
+    assert "Kitten was correct!" == make_request_json_response(request)

@@ -23,12 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from async_generator import yield_, async_generator
 from nonstringenums.aio import NonStringEnumsClient
 from nonstringenums.models import IntEnum, FloatEnum
+from nonstringenums._rest import *
+from async_generator import yield_, async_generator
 
 import pytest
-import json
 
 @pytest.fixture
 @async_generator
@@ -36,25 +36,28 @@ async def client():
     async with NonStringEnumsClient(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-class TestNonStringEnums(object):
+@pytest.mark.asyncio
+async def test_put_int_enum(make_request_json_response):
+    request = build_int_put_request(json=IntEnum.TWO_HUNDRED)
+    assert await make_request_json_response(request) == "Nice job posting an int enum"
 
-    @pytest.mark.asyncio
-    async def test_put_int_enum(self, client):
-        result = await client.int.put(IntEnum.TWO_HUNDRED)
-        assert result == "Nice job posting an int enum"
+@pytest.mark.asyncio
+async def test_get_int_enum(make_request_json_response):
+    request = build_int_get_request()
+    assert await make_request_json_response(request) == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
 
-    @pytest.mark.asyncio
-    async def test_get_int_enum(self, client):
-        result = await client.int.get()
-        assert result == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
+@pytest.mark.asyncio
+async def test_put_float_enum(make_request_json_response):
+    request = build_float_put_request(json=FloatEnum.TWO_HUNDRED4)
+    assert await make_request_json_response(request) == "Nice job posting a float enum"
 
-    @pytest.mark.asyncio
-    async def test_put_float_enum(self, client):
-        result = await client.float.put(FloatEnum.TWO_HUNDRED4)
-        assert result == "Nice job posting a float enum"
-
-    @pytest.mark.asyncio
-    async def test_get_float_enum(self, client):
-        result = await client.float.get()
-        assert result == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1.value
+@pytest.mark.asyncio
+async def test_get_float_enum(make_request_json_response):
+    request = build_float_get_request()
+    assert await make_request_json_response(request) == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1.value

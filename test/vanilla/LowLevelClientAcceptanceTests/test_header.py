@@ -25,7 +25,8 @@
 # --------------------------------------------------------------------------
 
 import isodate
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
+from base64 import b64decode
 
 from header import AutoRestSwaggerBATHeaderService
 from header._rest import *
@@ -207,8 +208,7 @@ def test_byte(make_request, make_request_value_response_header):
     make_request(request)
 
     request = build_header_response_byte_request(scenario="valid")
-    raise ValueError(make_request_value_response_header(request))
-    assert make_request_value_response_header(request) == u_bytes.decode()
+    assert bytearray(b64decode(make_request_value_response_header(request))) == u_bytes
 
 def test_response_existing_key(make_request):
 
@@ -228,4 +228,4 @@ def test_response_protected_key(make_request):
 def test_custom_request_id(make_request):
     custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
     request = build_header_custom_request_id_request(headers=custom_headers)
-    assert make_request(request).status_code == 200
+    make_request(request)

@@ -118,13 +118,15 @@ class ParameterList(MutableSequence):
         constant from this set of parameters, they are constants on the models and hence they do
         not have impact on any generation at this level
         """
-        return list(set(self.get_from_predicate(
+        return self.get_from_predicate(
             lambda parameter: parameter.constant
-        )))
+        )
 
     @property
     def constant_bodies(self) -> List[Parameter]:
         constants = self.constant
+        if not constants:
+            return []
         return [c for c in constants if c.location == ParameterLocation.Body]
 
     @property

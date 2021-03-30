@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_availabilitysets_update
+    from ._request_builders_py3 import build_availabilitysets_update_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_availabilitysets_update  # type: ignore
+    from ._request_builders import build_availabilitysets_update_request  # type: ignore
 
 __all__ = [
-    "prepare_availabilitysets_update",
+    "build_availabilitysets_update_request",
 ]

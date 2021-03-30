@@ -24,21 +24,13 @@
 #
 # --------------------------------------------------------------------------
 
-from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
 from decimal import Decimal
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
+import pytest
+from async_generator import yield_, async_generator
 from azure.core.exceptions import DecodeError
 
 from bodynumber.aio import AutoRestNumberTestService
+from bodynumber._rest import *
 
 import pytest
 
@@ -48,73 +40,116 @@ async def client():
     async with AutoRestNumberTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestNumber(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_big_float(self, client):
-        await client.number.put_big_float(3.402823e+20)
-        assert (await client.number.get_big_float()) ==  3.402823e+20
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    async def _make_request(request):
+        return await base_make_request_json_response(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_small_float(self, client):
-        await client.number.put_small_float(3.402823e-20)
-        assert (await client.number.get_small_float()) ==  3.402823e-20
+@pytest.mark.asyncio
+async def test_big_float(make_request, make_request_json_response):
+    request = build_number_put_big_float_request(json=3.402823e+20)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_big_double(self, client):
-        await client.number.put_big_double(2.5976931e+101)
-        assert (await client.number.get_big_double()) ==  2.5976931e+101
+    request = build_number_get_big_float_request()
+    assert await make_request_json_response(request) ==  3.402823e+20
 
-    @pytest.mark.asyncio
-    async def test_small_double(self, client):
-        await client.number.put_small_double(2.5976931e-101)
-        assert (await client.number.get_small_double()) ==  2.5976931e-101
+@pytest.mark.asyncio
+async def test_small_float(make_request, make_request_json_response):
+    request = build_number_put_small_float_request(json=3.402823e-20)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_big_double_negative_decimal(self, client):
-        await client.number.put_big_double_negative_decimal()
-        assert (await client.number.get_big_double_negative_decimal()) ==  -99999999.99
+    request = build_number_get_small_float_request()
+    assert await make_request_json_response(request) ==  3.402823e-20
 
-    @pytest.mark.asyncio
-    async def test_big_double_positive_decimal(self, client):
-        await client.number.put_big_double_positive_decimal()
-        assert (await client.number.get_big_double_positive_decimal()) ==  99999999.99
+@pytest.mark.asyncio
+async def test_big_double(make_request, make_request_json_response):
+    request = build_number_put_big_double_request(json=2.5976931e+101)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_big_decimal(self, client):
-        await client.number.put_big_decimal(Decimal(2.5976931e+101))
-        assert (await client.number.get_big_decimal()) ==  2.5976931e+101
+    request = build_number_get_big_double_request()
+    assert await make_request_json_response(request) ==  2.5976931e+101
 
-    @pytest.mark.asyncio
-    async def test_small_decimal(self, client):
-        await client.number.put_small_decimal(Decimal(2.5976931e-101))
-        assert (await client.number.get_small_decimal()) ==  2.5976931e-101
+@pytest.mark.asyncio
+async def test_small_double(make_request, make_request_json_response):
+    request = build_number_put_small_double_request(json=2.5976931e-101)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_big_decimal_negative_decimal(self, client):
-        await client.number.put_big_decimal_positive_decimal()
-        assert (await client.number.get_big_decimal_negative_decimal()) ==  -99999999.99
+    request = build_number_get_small_double_request()
+    assert await make_request_json_response(request) ==  2.5976931e-101
 
-    @pytest.mark.asyncio
-    async def test_get_big_decimal_positive_decimal(self, client):
-        await client.number.put_big_decimal_negative_decimal()
-        assert (await client.number.get_big_decimal_positive_decimal()) ==  99999999.99
+@pytest.mark.asyncio
+async def test_big_double_negative_decimal(make_request, make_request_json_response):
+    request = build_number_get_big_double_negative_decimal_request(json=-99999999.99)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_null(self, client):
-        await client.number.get_null()
+    request = build_number_get_big_double_negative_decimal_request()
+    assert await make_request_json_response(request) ==  -99999999.99
 
-    @pytest.mark.asyncio
-    async def test_get_invalid_decimal(self, client):
-        with pytest.raises(DecodeError):
-            await client.number.get_invalid_decimal()
+@pytest.mark.asyncio
+async def test_big_double_positive_decimal(make_request, make_request_json_response):
+    request = build_number_put_big_double_positive_decimal_request(json=99999999.99)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_invalid_double(self, client):
-        with pytest.raises(DecodeError):
-            await client.number.get_invalid_double()
+    request = build_number_get_big_double_positive_decimal_request()
+    assert await make_request_json_response(request) ==  99999999.99
 
-    @pytest.mark.asyncio
-    async def test_get_invalid_float(self, client):
-        with pytest.raises(DecodeError):
-            await client.number.get_invalid_float()
+@pytest.mark.asyncio
+async def test_big_decimal(make_request, make_request_json_response):
+    request = build_number_put_big_decimal_request(json=2.5976931e+101)
+    await make_request(request)
+
+    request = build_number_get_big_decimal_request()
+    assert await make_request_json_response(request) ==  2.5976931e+101
+
+@pytest.mark.asyncio
+async def test_small_decimal(make_request, make_request_json_response):
+    request = build_number_put_small_decimal_request(json=2.5976931e-101)
+    await make_request(request)
+
+    request = build_number_get_small_decimal_request()
+    assert await make_request_json_response(request) ==  2.5976931e-101
+
+@pytest.mark.asyncio
+async def test_get_big_decimal_negative_decimal(make_request, make_request_json_response):
+    request = build_number_put_big_decimal_negative_decimal_request(json=-99999999.99)
+
+    request = build_number_get_big_decimal_negative_decimal_request()
+    assert await make_request_json_response(request) ==  -99999999.99
+
+@pytest.mark.asyncio
+async def test_get_big_decimal_positive_decimal(make_request, make_request_json_response):
+    request = build_number_put_big_decimal_positive_decimal_request(json=99999999.99)
+    await make_request(request)
+
+    request = build_number_get_big_decimal_positive_decimal_request()
+    assert await make_request_json_response(request) ==  99999999.99
+
+@pytest.mark.asyncio
+async def test_get_null(make_request):
+    request = build_number_get_null_request()
+    assert (await make_request(request)).text == ''
+
+@pytest.mark.asyncio
+async def test_get_invalid_decimal(make_request):
+    request = build_number_get_invalid_decimal_request()
+    with pytest.raises(DecodeError):
+        await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_invalid_double(make_request):
+    request = build_number_get_invalid_double_request()
+    with pytest.raises(DecodeError):
+        await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_invalid_float(make_request):
+    request = build_number_get_invalid_float_request()
+    with pytest.raises(DecodeError):
+        await make_request(request)

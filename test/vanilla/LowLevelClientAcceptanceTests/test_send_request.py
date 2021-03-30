@@ -26,7 +26,7 @@
 import io
 import json
 
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.rest import HttpRequest
 
 from os.path import dirname, pardir, join, realpath
 import pytest
@@ -43,12 +43,10 @@ class TestSendRequest(object):
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
         request = HttpRequest("GET", "/complex/inheritance/valid",
-            headers={
-                'Accept': 'application/json'
-            },
         )
 
         response = client._send_request(request)
+        response.raise_for_status()
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
@@ -69,8 +67,9 @@ class TestSendRequest(object):
         )
 
         response = client._send_request(request)
+        response.raise_for_status()
 
-        data = b''.join([chunk for chunk in response.stream_download(None)]).decode('utf-8')
+        data = b''.join([chunk for chunk in response.stream_download()]).decode('utf-8')
         json_response = json.loads(data)
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
@@ -103,13 +102,11 @@ class TestSendRequest(object):
         }
 
         request = HttpRequest("PUT", "/complex/inheritance/valid",
-            headers={
-                'Content-Type': 'application/json'
-            }
+            json=siamese_body
         )
-        request.set_json_body(siamese_body)
-
+        assert request.headers['Content-Type'] == "application/json"
         response = client._send_request(request)
+        response.raise_for_status()
         assert response.status_code == 200
 
     def test_send_request_with_body_serialize(self):
@@ -138,12 +135,11 @@ class TestSendRequest(object):
         )
 
         request = HttpRequest("PUT", "/complex/inheritance/valid",
-            headers={
-                'Content-Type': 'application/json'
-            }
+            json=siamese.serialize()
         )
-        request.set_json_body(siamese.serialize())
+        assert request.headers['Content-Type'] == "application/json"
         response = client._send_request(request)
+        response.raise_for_status()
         assert response.status_code == 200
 
     def test_send_request_get_stream(self):
@@ -159,10 +155,11 @@ class TestSendRequest(object):
                 },
             )
 
-            response = client._send_request(request, stream=True)
+            response = client._send_request(request, stream_response=True)
+            response.raise_for_status()
             assert response.status_code == 200
 
-            stream = response.stream_download(None)  # want to make pipeline client an optional param in azure-core
+            stream = response.stream_download()  # want to make pipeline client an optional param in azure-core
 
             total = len(stream)
             assert not stream.response.internal_response._content_consumed
@@ -194,12 +191,10 @@ class TestSendRequest(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         with io.BytesIO(test_bytes) as stream_data:
             request = HttpRequest("PUT", '/formdata/stream/uploadfile',
-                headers={
-                    'Content-Type': 'application/octet-stream'
-                },
-                data=stream_data,
+                files=stream_data,
             )
-            response = client._send_request(request)
+            response = client._send_request(request, stream_response=True)
+            response.raise_for_status()
             assert response.status_code == 200
 
     def test_send_request_full_url(self):
@@ -215,6 +210,7 @@ class TestSendRequest(object):
         )
 
         response = client._send_request(request)
+        response.raise_for_status()
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id

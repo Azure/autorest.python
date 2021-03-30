@@ -24,69 +24,81 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta, tzinfo
-import os
-from os.path import dirname, pardir, join, realpath
-
+from datetime import datetime
 from azure.core.exceptions import DecodeError
 
 from bodyinteger import AutoRestIntegerTestService
+from bodyinteger._rest import *
 
 import pytest
+import calendar
+try:
+    from datetime import timezone
+    TZ_UTC = timezone.utc  # type: ignore
+except ImportError:
+    TZ_UTC = UTC()  # type: ignore
 
 @pytest.fixture
 def client():
     with AutoRestIntegerTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestInteger(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_max_min_32_bit(self, client):
-        client.int.put_max32(2147483647) # sys.maxint
-        client.int.put_min32(-2147483648)
+def test_max_min_32_bit(make_request):
+    request = build_int_put_max32_request(json=2147483647) # sys.maxint
+    make_request(request)
 
-    def test_max_min_64_bit(self, client):
-        client.int.put_max64(9223372036854776000)  # sys.maxsize
-        client.int.put_min64(-9223372036854776000)
+    request = build_int_put_min32_request(json=-2147483648)
+    make_request(request)
 
-    def test_get_null_and_invalid(self, client):
-        client.int.get_null()
+def test_max_min_64_bit(make_request):
+    request = build_int_put_max64_request(json=9223372036854776000)  # sys.maxsize
+    make_request(request)
 
-        with pytest.raises(DecodeError):
-            client.int.get_invalid()
+    request = build_int_put_min64_request(json=-9223372036854776000)
+    make_request(request)
 
-    def test_get_overflow(self, client):
-        # Testserver excepts these to fail, but they won't in Python and it's ok.
-        client.int.get_overflow_int32()
-        client.int.get_overflow_int64()
+def test_get_null_and_invalid(make_request):
+    request = build_int_get_null_request()
+    make_request(request)
 
-    def test_get_underflow(self, client):
-        client.int.get_underflow_int32()
-        client.int.get_underflow_int64()
+    request = build_int_get_invalid_request()
+    with pytest.raises(DecodeError):
+        make_request(request)
 
-    def test_unix_time_date(self, client):
-        unix_date = datetime(year=2016, month=4, day=13)
-        client.int.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() ==  client.int.get_unix_time().utctimetuple()
+def test_get_overflow(make_request):
+    # Testserver excepts these to fail, but they won't in Python and it's ok.
 
-    def test_get_null_and_invalid_unix_time(self, client):
-        assert client.int.get_null_unix_time() is None
+    request = build_int_get_overflow_int32_request()
+    make_request(request)
 
-        with pytest.raises(DecodeError):
-            client.int.get_invalid_unix_time()
+    request = build_int_get_overflow_int64_request()
+    make_request(request)
 
-    def test_models(self):
-        from bodyinteger.models import Error
+def test_get_underflow(make_request):
+    request = build_int_get_underflow_int32_request()
+    make_request(request)
 
-        if sys.version_info >= (3,5):
-            from bodyinteger.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodyinteger.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+    request = build_int_get_underflow_int64_request()
+    make_request(request)
+
+def test_unix_time_date(make_request):
+    unix_date = datetime(year=2016, month=4, day=13)
+    request = build_int_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
+    make_request(request)
+
+    request = build_int_get_unix_time_request()
+    assert unix_date.utctimetuple() == datetime.fromtimestamp(make_request(request).json(), TZ_UTC).utctimetuple()
+
+def test_get_null_and_invalid_unix_time(make_request):
+    request = build_int_get_null_unix_time_request()
+    assert make_request(request).text == ''
+
+    request = build_int_get_invalid_unix_time_request()
+    with pytest.raises(DecodeError):
+        make_request(request)

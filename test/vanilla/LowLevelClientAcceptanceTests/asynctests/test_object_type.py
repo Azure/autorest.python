@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from objecttype.aio import ObjectTypeClient
+from objecttype._rest import *
 from azure.core.exceptions import HttpResponseError
 
 import pytest
@@ -35,20 +36,25 @@ async def client():
     async with ObjectTypeClient(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestObjectType(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_get_object(self, client):
-        response = await client.get()
-        assert response == {"message": "An object was successfully returned"}
+@pytest.mark.asyncio
+async def test_get_object(make_request):
+    request = build_get_request()
+    assert (await make_request(request)).json() == {"message": "An object was successfully returned"}
 
-    @pytest.mark.asyncio
-    async def test_put_object_success(self, client):
-        response = await client.put({"foo": "bar"})
-        assert response is None
+@pytest.mark.asyncio
+async def test_put_object_success(make_request):
+    request = build_put_request(json={"foo": "bar"})
+    assert (await make_request(request)).text == ''
 
-    @pytest.mark.asyncio
-    async def test_put_object_fail(self, client):
-        with pytest.raises(HttpResponseError) as ex:
-            response = await client.put({"should": "fail"})
-        assert ex.value.model == {"message": "The object you passed was incorrect"}
+@pytest.mark.asyncio
+async def test_put_object_fail(make_request):
+    request = build_put_request(json={"should": "fail"})
+    with pytest.raises(HttpResponseError) as ex:
+       await make_request(request)
+    assert str(ex.value) == "(None) The object you passed was incorrect"

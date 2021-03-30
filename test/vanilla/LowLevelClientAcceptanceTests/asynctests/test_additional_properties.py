@@ -23,20 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+import pytest
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
-
 from additionalproperties.aio import AdditionalPropertiesClient
 from additionalproperties.models import (
     PetAPTrue,
@@ -46,8 +34,7 @@ from additionalproperties.models import (
     PetAPInProperties,
     PetAPInPropertiesWithAPString
 )
-
-import pytest
+from additionalproperties._rest import *
 
 @pytest.fixture
 @async_generator
@@ -55,104 +42,114 @@ async def client():
     async with AdditionalPropertiesClient(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestAdditionalProperties(object):
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    async def _make_request(request):
+        return await base_make_request_json_response(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_create_ap_true(self, client):
-        input_ap_true = PetAPTrue(
-            id = 1,
-            name = 'Puppy',
-            additional_properties = {
+@pytest.mark.asyncio
+async def test_create_ap_true(make_request_json_response):
+    input_ap_true = PetAPTrue(
+        id = 1,
+        name = 'Puppy',
+        additional_properties = {
+            'birthdate': '2017-12-13T02:29:51Z',
+            'complexProperty': {
+                'color': 'Red'
+            }
+        }
+    )
+    request = build_pets_create_ap_true_request(json=input_ap_true.serialize())
+    response = await make_request_json_response(request)
+    assert response["birthdate"] == '2017-12-13T02:29:51Z'
+
+@pytest.mark.asyncio
+async def test_create_cat_ap_true(make_request_json_response):
+    input_ap_true = CatAPTrue(
+        id = 1,
+        name = 'Lisa',
+        friendly = True,
+        additional_properties = {
+            'birthdate': '2017-12-13T02:29:51Z',
+            'complexProperty': {
+                'color': 'Red'
+            }
+        }
+    )
+    request = build_pets_create_cat_ap_true_request(json=input_ap_true.serialize())
+    response = await make_request_json_response(request)
+    assert response['birthdate'] ==  '2017-12-13T02:29:51Z'
+
+@pytest.mark.asyncio
+async def test_create_ap_object(make_request_json_response):
+    input_ap_obj = PetAPObject(
+        id = 2,
+        name = 'Hira',
+        additional_properties = {
+            'siblings': [{
+                'id': 1,
+                'name': 'Puppy',
                 'birthdate': '2017-12-13T02:29:51Z',
                 'complexProperty': {
                     'color': 'Red'
                 }
-            }
-        )
-        output_ap_true = await client.pets.create_ap_true(input_ap_true)
-        assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
+            }],
+            'picture': '//////4='
+        }
+    )
+    request = build_pets_create_ap_object_request(json=input_ap_obj.serialize())
+    response = await make_request_json_response(request)
+    assert response['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
 
-    @pytest.mark.asyncio
-    async def test_create_cat_ap_true(self, client):
-        input_ap_true = CatAPTrue(
-            id = 1,
-            name = 'Lisa',
-            friendly = True,
-            additional_properties = {
-                'birthdate': '2017-12-13T02:29:51Z',
-                'complexProperty': {
-                    'color': 'Red'
-                }
-            }
-        )
-        output_ap_true = await client.pets.create_cat_ap_true(input_ap_true)
-        assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
+@pytest.mark.asyncio
+async def test_create_ap_string(make_request_json_response):
+    input_ap_str = PetAPString(
+        id = 3,
+        name = 'Tommy',
+        additional_properties = {
+            'color': 'red',
+            'weight': '10 kg',
+            'city': 'Bombay'
+        }
+    )
+    request = build_pets_create_ap_string_request(json=input_ap_str.serialize())
+    response = await make_request_json_response(request)
+    assert response['color'] ==  'red'
 
-    @pytest.mark.asyncio
-    async def test_create_ap_object(self, client):
-        input_ap_obj = PetAPObject(
-            id = 2,
-            name = 'Hira',
-            additional_properties = {
-                'siblings': [{
-                    'id': 1,
-                    'name': 'Puppy',
-                    'birthdate': '2017-12-13T02:29:51Z',
-                    'complexProperty': {
-                        'color': 'Red'
-                    }
-                }],
-                'picture': '//////4='
-            }
-        )
-        output_ap_obj = await client.pets.create_ap_object(input_ap_obj)
-        assert output_ap_obj.additional_properties['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
+@pytest.mark.asyncio
+async def test_create_ap_in_properties(make_request_json_response):
+    input_ap_int = PetAPInProperties(
+        id = 4,
+        name = 'Bunny',
+        additional_properties = {
+            'height': 5.61,
+            'weight': 599,
+            'footsize': 11.5
+        }
+    )
+    request = build_pets_create_ap_in_properties_request(json=input_ap_int.serialize())
+    response = await make_request_json_response(request)
+    assert response["additionalProperties"]['weight'] ==  599
 
-    @pytest.mark.asyncio
-    async def test_create_ap_string(self, client):
-        input_ap_str = PetAPString(
-            id = 3,
-            name = 'Tommy',
-            additional_properties = {
-                'color': 'red',
-                'weight': '10 kg',
-                'city': 'Bombay'
-            }
-        )
-        output_ap_str = await client.pets.create_ap_string(input_ap_str)
-        assert output_ap_str.additional_properties['color'] ==  'red'
-
-    @pytest.mark.asyncio
-    async def test_create_ap_in_properties(self, client):
-        input_ap_int = PetAPInProperties(
-            id = 4,
-            name = 'Bunny',
-            additional_properties = {
-                'height': 5.61,
-                'weight': 599,
-                'footsize': 11.5
-            }
-        )
-        output_ap_int = await client.pets.create_ap_in_properties(input_ap_int)
-        assert output_ap_int.additional_properties['weight'] ==  599
-
-    @pytest.mark.asyncio
-    async def test_create_ap_in_properties_with_ap_string(self, client):
-        input_ap_str_add = PetAPInPropertiesWithAPString(
-            id = 5,
-            name = 'Funny',
-            odata_location = 'westus',
-            additional_properties = {
-                'color': 'red',
-                'city': 'Seattle',
-                'food': 'tikka masala'
-            },
-            additional_properties1 = {
-                'height': 5.61,
-                'weight': 599,
-                'footsize': 11.5
-            }
-        )
-        output_ap_str_add = await client.pets.create_ap_in_properties_with_ap_string(input_ap_str_add)
-        assert output_ap_str_add.additional_properties['color'] ==  'red'
-        assert output_ap_str_add.additional_properties1['weight'] ==  599
+@pytest.mark.asyncio
+async def test_create_ap_in_properties_with_ap_string(make_request_json_response):
+    input_ap_str_add = PetAPInPropertiesWithAPString(
+        id = 5,
+        name = 'Funny',
+        odata_location = 'westus',
+        additional_properties = {
+            'color': 'red',
+            'city': 'Seattle',
+            'food': 'tikka masala'
+        },
+        additional_properties1 = {
+            'height': 5.61,
+            'weight': 599,
+            'footsize': 11.5
+        }
+    )
+    request = build_pets_create_ap_in_properties_with_ap_string_request(json=input_ap_str_add.serialize())
+    response = await make_request_json_response(request)
+    assert response['color'] == 'red'
+    assert response['additionalProperties']['weight'] == 599

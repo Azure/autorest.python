@@ -23,20 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
 
 from msrest.exceptions import DeserializationError
 
 from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
+from bodydatetimerfc1123._rest import *
 
 import pytest
 
@@ -45,41 +37,50 @@ def client():
     with AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestDateTimeRfc(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_get_null(self, client):
-        assert client.datetimerfc1123.get_null() is None
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-    def test_get_invalid(self, client):
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_invalid()
+def test_get_null(make_request):
+    request = build_datetimerfc1123_get_null_request()
+    assert make_request(request).text == ''
 
-    def test_get_underflow(self, client):
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_underflow()
+def test_get_invalid(make_request_json_response):
+    request = build_datetimerfc1123_get_invalid_request()
+    assert "Tue, 01 Dec 2000 00:00:0A ABC" == make_request_json_response(request)
 
-    def test_get_overflow(self, client):
-        with pytest.raises(DeserializationError):
-            client.datetimerfc1123.get_overflow()
+def test_get_underflow(make_request_json_response):
+    request = build_datetimerfc1123_get_underflow_request()
+    assert "Tue, 00 Jan 0000 00:00:00 GMT" == make_request_json_response(request)
 
-    def test_utc_max_date_time(self, client):
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+def test_get_overflow(make_request_json_response):
+    request = build_datetimerfc1123_get_overflow_request()
+    assert "Sat, 1 Jan 10000 00:00:00 GMT" == make_request_json_response(request)
 
-        client.datetimerfc1123.get_utc_lowercase_max_date_time()
-        client.datetimerfc1123.get_utc_uppercase_max_date_time()
-        client.datetimerfc1123.put_utc_max_date_time(max_date)
+def test_utc_max_date_time(make_request, msrest_serializer):
+    max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
 
-    def test_utc_min_date_time(self, client):
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        client.datetimerfc1123.get_utc_min_date_time()
-        client.datetimerfc1123.put_utc_min_date_time(min_date)
+    request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request()
+    make_request(request)
 
-    def test_models(self):
-        from bodydatetimerfc1123.models import Error
+    request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request()
+    make_request(request)
 
-        if sys.version_info >= (3,5):
-            from bodydatetimerfc1123.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodydatetimerfc1123.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+    request = build_datetimerfc1123_put_utc_max_date_time_request(json=msrest_serializer.serialize_rfc(max_date))
+    make_request(request)
+
+def test_utc_min_date_time(make_request, msrest_serializer):
+    min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
+    request = build_datetimerfc1123_get_utc_min_date_time_request()
+    make_request(request)
+
+    request = build_datetimerfc1123_put_utc_min_date_time_request(json=msrest_serializer.serialize_rfc(min_date))
+    make_request(request)

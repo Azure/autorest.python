@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 
 from objecttype import ObjectTypeClient
+from objecttype._rest import *
 from azure.core.exceptions import HttpResponseError
 
 import pytest
@@ -34,17 +35,22 @@ def client():
     with ObjectTypeClient(base_url="http://localhost:3000") as client:
         yield client
 
-class TestObjectType(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_get_object(self, client):
-        response = client.get()
-        assert response == {"message": "An object was successfully returned"}
+def test_get_object(make_request):
+    request = build_get_request()
+    assert make_request(request).json() == {"message": "An object was successfully returned"}
 
-    def test_put_object_success(self, client):
-        response = client.put({"foo": "bar"})
-        assert response is None
+def test_put_object_success(make_request):
+    request = build_put_request(json={"foo": "bar"})
+    assert make_request(request).text == ''
 
-    def test_put_object_fail(self, client):
-        with pytest.raises(HttpResponseError) as ex:
-            response = client.put({"should": "fail"})
-        assert ex.value.model == {"message": "The object you passed was incorrect"}
+def test_put_object_fail(make_request):
+    request = build_put_request(json={"should": "fail"})
+    with pytest.raises(HttpResponseError) as ex:
+        make_request(request)
+    assert str(ex.value) == "(None) The object you passed was incorrect"

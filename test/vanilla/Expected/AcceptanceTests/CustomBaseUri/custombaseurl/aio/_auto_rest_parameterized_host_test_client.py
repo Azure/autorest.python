@@ -66,8 +66,10 @@ class AutoRestParameterizedHostTestClient(object):
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = await self._client._pipeline.run(
+            request_copy._internal_request, stream=stream_response, **kwargs
+        )
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

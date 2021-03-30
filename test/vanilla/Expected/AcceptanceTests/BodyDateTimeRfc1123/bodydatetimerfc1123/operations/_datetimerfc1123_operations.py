@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import json
 from typing import TYPE_CHECKING
 import warnings
 
@@ -70,7 +71,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_null(template_url=self.get_null.metadata["url"], **kwargs)
+        request = build_datetimerfc1123_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -107,7 +108,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_invalid(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = build_datetimerfc1123_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -144,7 +145,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_overflow(template_url=self.get_overflow.metadata["url"], **kwargs)
+        request = build_datetimerfc1123_get_overflow_request(template_url=self.get_overflow.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -181,7 +182,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_underflow(template_url=self.get_underflow.metadata["url"], **kwargs)
+        request = build_datetimerfc1123_get_underflow_request(template_url=self.get_underflow.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -222,10 +223,15 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        datetime_body = self._serialize.body(datetime_body, "rfc-1123")
+        content_type = kwargs.pop("content_type", "application/json")
+        content = self._serialize.body(datetime_body, "rfc-1123")
+        content = json.dumps(content)
 
-        request = prepare_datetimerfc1123_put_utc_max_date_time(
-            datetime_body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
+        request = build_datetimerfc1123_put_utc_max_date_time_request(
+            content=content,
+            content_type=content_type,
+            template_url=self.put_utc_max_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -259,7 +265,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_utc_lowercase_max_date_time(
+        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
             template_url=self.get_utc_lowercase_max_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -298,7 +304,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_utc_uppercase_max_date_time(
+        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
             template_url=self.get_utc_uppercase_max_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -341,10 +347,15 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        datetime_body = self._serialize.body(datetime_body, "rfc-1123")
+        content_type = kwargs.pop("content_type", "application/json")
+        content = self._serialize.body(datetime_body, "rfc-1123")
+        content = json.dumps(content)
 
-        request = prepare_datetimerfc1123_put_utc_min_date_time(
-            datetime_body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
+        request = build_datetimerfc1123_put_utc_min_date_time_request(
+            content=content,
+            content_type=content_type,
+            template_url=self.put_utc_min_date_time.metadata["url"],
+            **kwargs
         )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
@@ -378,7 +389,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_datetimerfc1123_get_utc_min_date_time(
+        request = build_datetimerfc1123_get_utc_min_date_time_request(
             template_url=self.get_utc_min_date_time.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

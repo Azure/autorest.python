@@ -7,19 +7,19 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_duration_get_null
-    from ._preparers_py3 import prepare_duration_put_positive_duration
-    from ._preparers_py3 import prepare_duration_get_positive_duration
-    from ._preparers_py3 import prepare_duration_get_invalid
+    from ._request_builders_py3 import build_duration_get_null_request
+    from ._request_builders_py3 import build_duration_put_positive_duration_request
+    from ._request_builders_py3 import build_duration_get_positive_duration_request
+    from ._request_builders_py3 import build_duration_get_invalid_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_duration_get_null  # type: ignore
-    from ._preparers import prepare_duration_put_positive_duration  # type: ignore
-    from ._preparers import prepare_duration_get_positive_duration  # type: ignore
-    from ._preparers import prepare_duration_get_invalid  # type: ignore
+    from ._request_builders import build_duration_get_null_request  # type: ignore
+    from ._request_builders import build_duration_put_positive_duration_request  # type: ignore
+    from ._request_builders import build_duration_get_positive_duration_request  # type: ignore
+    from ._request_builders import build_duration_get_invalid_request  # type: ignore
 
 __all__ = [
-    "prepare_duration_get_null",
-    "prepare_duration_put_positive_duration",
-    "prepare_duration_get_positive_duration",
-    "prepare_duration_get_invalid",
+    "build_duration_get_null_request",
+    "build_duration_put_positive_duration_request",
+    "build_duration_get_positive_duration_request",
+    "build_duration_get_invalid_request",
 ]

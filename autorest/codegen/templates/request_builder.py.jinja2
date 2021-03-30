@@ -31,7 +31,9 @@
         {% endfor %}
     {% endif %}
 {% endif %}
+{% if request_builder.parameters.has_body %}
     content_type = kwargs.pop("content_type", None)
+{% endif %}
 {% if request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}

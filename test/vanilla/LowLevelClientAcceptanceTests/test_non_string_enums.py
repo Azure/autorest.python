@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 from nonstringenums import NonStringEnumsClient
 from nonstringenums.models import IntEnum, FloatEnum
+from nonstringenums._rest import *
 
 import pytest
 import json
@@ -34,25 +35,24 @@ def client():
     with NonStringEnumsClient() as client:
         yield client
 
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-class TestNonStringEnums(object):
+def test_put_int_enum(make_request_json_response):
+    request = build_int_put_request(json=IntEnum.TWO_HUNDRED)
+    assert make_request_json_response(request) == "Nice job posting an int enum"
 
-    def test_put_int_enum(self, client):
-        result = client.int.put(IntEnum.TWO_HUNDRED)
-        assert result == "Nice job posting an int enum"
+def test_get_int_enum(make_request_json_response):
+    request = build_int_get_request()
+    assert make_request_json_response(request) == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
 
-    def test_get_int_enum(self, client):
-        result = client.int.get()
-        assert result == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
+def test_put_float_enum(make_request_json_response):
+    request = build_float_put_request(json=FloatEnum.TWO_HUNDRED4)
+    assert make_request_json_response(request) == "Nice job posting a float enum"
 
-    def test_put_float_enum(self, client):
-        result = client.float.put(FloatEnum.TWO_HUNDRED4)
-        assert result == "Nice job posting a float enum"
-
-    def test_get_float_enum(self, client):
-        result = client.float.get()
-        assert result == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1.value
-
-    def test_lowercase_enum_retrieval(self):
-        assert FloatEnum.four_hundred_twenty_nine1 == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1
-        assert 429.1 == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1
+def test_get_float_enum(make_request_json_response):
+    request = build_float_get_request()
+    assert make_request_json_response(request) == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1.value

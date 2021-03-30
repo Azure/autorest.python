@@ -25,7 +25,6 @@ def build_header_param_existing_key_request(*, user_agent_parameter: str, **kwar
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -48,7 +47,6 @@ def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -72,7 +70,6 @@ def build_header_param_protected_key_request(*, content_type: str, **kwargs: Any
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -95,7 +92,6 @@ def build_header_response_protected_key_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -122,7 +118,6 @@ def build_header_param_integer_request(*, scenario: str, value: int, **kwargs: A
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -130,8 +125,8 @@ def build_header_param_integer_request(*, scenario: str, value: int, **kwargs: A
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "int")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "int")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -148,7 +143,6 @@ def build_header_response_integer_request(*, scenario: str, **kwargs: Any) -> Ht
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -176,7 +170,6 @@ def build_header_param_long_request(*, scenario: str, value: int, **kwargs: Any)
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -184,8 +177,8 @@ def build_header_param_long_request(*, scenario: str, value: int, **kwargs: Any)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "long")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "long")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -202,7 +195,6 @@ def build_header_response_long_request(*, scenario: str, **kwargs: Any) -> HttpR
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -230,7 +222,6 @@ def build_header_param_float_request(*, scenario: str, value: float, **kwargs: A
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -238,8 +229,8 @@ def build_header_param_float_request(*, scenario: str, value: float, **kwargs: A
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -256,7 +247,6 @@ def build_header_response_float_request(*, scenario: str, **kwargs: Any) -> Http
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -284,7 +274,6 @@ def build_header_param_double_request(*, scenario: str, value: float, **kwargs: 
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -292,8 +281,8 @@ def build_header_param_double_request(*, scenario: str, value: float, **kwargs: 
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -310,7 +299,6 @@ def build_header_response_double_request(*, scenario: str, **kwargs: Any) -> Htt
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -338,7 +326,6 @@ def build_header_param_bool_request(*, scenario: str, value: bool, **kwargs: Any
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -346,8 +333,8 @@ def build_header_param_bool_request(*, scenario: str, value: bool, **kwargs: Any
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -364,7 +351,6 @@ def build_header_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpR
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -394,7 +380,6 @@ def build_header_param_string_request(*, scenario: str, value: Optional[str] = N
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -402,9 +387,9 @@ def build_header_param_string_request(*, scenario: str, value: Optional[str] = N
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if value is not None:
         header_parameters["value"] = _SERIALIZER.header("value", value, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -422,7 +407,6 @@ def build_header_response_string_request(*, scenario: str, **kwargs: Any) -> Htt
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -450,7 +434,6 @@ def build_header_param_date_request(*, scenario: str, value: datetime.date, **kw
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -458,8 +441,8 @@ def build_header_param_date_request(*, scenario: str, value: datetime.date, **kw
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "date")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "date")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -476,7 +459,6 @@ def build_header_response_date_request(*, scenario: str, **kwargs: Any) -> HttpR
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -505,7 +487,6 @@ def build_header_param_datetime_request(*, scenario: str, value: datetime.dateti
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -513,8 +494,8 @@ def build_header_param_datetime_request(*, scenario: str, value: datetime.dateti
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -531,7 +512,6 @@ def build_header_response_datetime_request(*, scenario: str, **kwargs: Any) -> H
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -562,7 +542,6 @@ def build_header_param_datetime_rfc1123_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -570,9 +549,9 @@ def build_header_param_datetime_rfc1123_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if value is not None:
         header_parameters["value"] = _SERIALIZER.header("value", value, "rfc-1123")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -590,7 +569,6 @@ def build_header_response_datetime_rfc1123_request(*, scenario: str, **kwargs: A
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -617,7 +595,6 @@ def build_header_param_duration_request(*, scenario: str, value: datetime.timede
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -625,8 +602,8 @@ def build_header_param_duration_request(*, scenario: str, value: datetime.timede
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -643,7 +620,6 @@ def build_header_response_duration_request(*, scenario: str, **kwargs: Any) -> H
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -670,7 +646,6 @@ def build_header_param_byte_request(*, scenario: str, value: bytearray, **kwargs
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -678,8 +653,8 @@ def build_header_param_byte_request(*, scenario: str, value: bytearray, **kwargs
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -696,7 +671,6 @@ def build_header_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpR
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -727,7 +701,6 @@ def build_header_param_enum_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -735,9 +708,9 @@ def build_header_param_enum_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if value is not None:
         header_parameters["value"] = _SERIALIZER.header("value", value, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
@@ -755,7 +728,6 @@ def build_header_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpR
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -779,7 +751,6 @@ def build_header_custom_request_id_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

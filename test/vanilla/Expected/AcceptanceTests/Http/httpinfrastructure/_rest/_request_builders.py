@@ -29,7 +29,6 @@ def build_httpfailure_get_empty_error_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -54,7 +53,6 @@ def build_httpfailure_get_no_model_error_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -79,7 +77,6 @@ def build_httpfailure_get_no_model_empty_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -104,7 +101,6 @@ def build_httpsuccess_head200_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -129,7 +125,6 @@ def build_httpsuccess_get200_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -154,7 +149,6 @@ def build_httpsuccess_options200_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -176,9 +170,9 @@ def build_httpsuccess_put200_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -191,9 +185,9 @@ def build_httpsuccess_put200_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -207,9 +201,9 @@ def build_httpsuccess_patch200_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -222,9 +216,9 @@ def build_httpsuccess_patch200_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -238,9 +232,9 @@ def build_httpsuccess_post200_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -253,9 +247,9 @@ def build_httpsuccess_post200_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -269,9 +263,9 @@ def build_httpsuccess_delete200_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -284,9 +278,9 @@ def build_httpsuccess_delete200_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -300,9 +294,9 @@ def build_httpsuccess_put201_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -315,9 +309,9 @@ def build_httpsuccess_put201_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -331,9 +325,9 @@ def build_httpsuccess_post201_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -346,9 +340,9 @@ def build_httpsuccess_post201_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -362,9 +356,9 @@ def build_httpsuccess_put202_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -377,9 +371,9 @@ def build_httpsuccess_put202_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -393,9 +387,9 @@ def build_httpsuccess_patch202_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -408,9 +402,9 @@ def build_httpsuccess_patch202_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -424,9 +418,9 @@ def build_httpsuccess_post202_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -439,9 +433,9 @@ def build_httpsuccess_post202_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -455,9 +449,9 @@ def build_httpsuccess_delete202_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -470,9 +464,9 @@ def build_httpsuccess_delete202_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -489,7 +483,6 @@ def build_httpsuccess_head204_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -511,9 +504,9 @@ def build_httpsuccess_put204_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -526,9 +519,9 @@ def build_httpsuccess_put204_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -542,9 +535,9 @@ def build_httpsuccess_patch204_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -557,9 +550,9 @@ def build_httpsuccess_patch204_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -573,9 +566,9 @@ def build_httpsuccess_post204_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -588,9 +581,9 @@ def build_httpsuccess_post204_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -604,9 +597,9 @@ def build_httpsuccess_delete204_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -619,9 +612,9 @@ def build_httpsuccess_delete204_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -638,7 +631,6 @@ def build_httpsuccess_head404_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -663,7 +655,6 @@ def build_httpredirects_head300_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -688,7 +679,6 @@ def build_httpredirects_get300_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -713,7 +703,6 @@ def build_httpredirects_head301_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -738,7 +727,6 @@ def build_httpredirects_get301_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -761,9 +749,9 @@ def build_httpredirects_put301_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -776,9 +764,9 @@ def build_httpredirects_put301_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -795,7 +783,6 @@ def build_httpredirects_head302_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -820,7 +807,6 @@ def build_httpredirects_get302_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -843,9 +829,9 @@ def build_httpredirects_patch302_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -858,9 +844,9 @@ def build_httpredirects_patch302_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -875,9 +861,9 @@ def build_httpredirects_post303_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -890,9 +876,9 @@ def build_httpredirects_post303_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -909,7 +895,6 @@ def build_httpredirects_head307_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -934,7 +919,6 @@ def build_httpredirects_get307_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -959,7 +943,6 @@ def build_httpredirects_options307_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -981,9 +964,9 @@ def build_httpredirects_put307_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -996,9 +979,9 @@ def build_httpredirects_put307_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -1012,9 +995,9 @@ def build_httpredirects_patch307_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1027,9 +1010,9 @@ def build_httpredirects_patch307_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -1043,9 +1026,9 @@ def build_httpredirects_post307_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1058,9 +1041,9 @@ def build_httpredirects_post307_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -1074,9 +1057,9 @@ def build_httpredirects_delete307_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1089,9 +1072,9 @@ def build_httpredirects_delete307_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1108,7 +1091,6 @@ def build_httpclientfailure_head400_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1133,7 +1115,6 @@ def build_httpclientfailure_get400_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1158,7 +1139,6 @@ def build_httpclientfailure_options400_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1180,9 +1160,9 @@ def build_httpclientfailure_put400_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1195,9 +1175,9 @@ def build_httpclientfailure_put400_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -1211,9 +1191,9 @@ def build_httpclientfailure_patch400_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1226,9 +1206,9 @@ def build_httpclientfailure_patch400_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -1242,9 +1222,9 @@ def build_httpclientfailure_post400_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1257,9 +1237,9 @@ def build_httpclientfailure_post400_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -1273,9 +1253,9 @@ def build_httpclientfailure_delete400_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1288,9 +1268,9 @@ def build_httpclientfailure_delete400_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1307,7 +1287,6 @@ def build_httpclientfailure_head401_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1332,7 +1311,6 @@ def build_httpclientfailure_get402_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1357,7 +1335,6 @@ def build_httpclientfailure_options403_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1382,7 +1359,6 @@ def build_httpclientfailure_get403_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1404,9 +1380,9 @@ def build_httpclientfailure_put404_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1419,9 +1395,9 @@ def build_httpclientfailure_put404_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -1435,9 +1411,9 @@ def build_httpclientfailure_patch405_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1450,9 +1426,9 @@ def build_httpclientfailure_patch405_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -1466,9 +1442,9 @@ def build_httpclientfailure_post406_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1481,9 +1457,9 @@ def build_httpclientfailure_post406_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -1497,9 +1473,9 @@ def build_httpclientfailure_delete407_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1512,9 +1488,9 @@ def build_httpclientfailure_delete407_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1528,9 +1504,9 @@ def build_httpclientfailure_put409_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1543,9 +1519,9 @@ def build_httpclientfailure_put409_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -1562,7 +1538,6 @@ def build_httpclientfailure_head410_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1587,7 +1562,6 @@ def build_httpclientfailure_get411_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1612,7 +1586,6 @@ def build_httpclientfailure_options412_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1637,7 +1610,6 @@ def build_httpclientfailure_get412_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1659,9 +1631,9 @@ def build_httpclientfailure_put413_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1674,9 +1646,9 @@ def build_httpclientfailure_put413_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -1690,9 +1662,9 @@ def build_httpclientfailure_patch414_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1705,9 +1677,9 @@ def build_httpclientfailure_patch414_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -1721,9 +1693,9 @@ def build_httpclientfailure_post415_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1736,9 +1708,9 @@ def build_httpclientfailure_post415_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -1755,7 +1727,6 @@ def build_httpclientfailure_get416_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1777,9 +1748,9 @@ def build_httpclientfailure_delete417_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1792,9 +1763,9 @@ def build_httpclientfailure_delete417_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1811,7 +1782,6 @@ def build_httpclientfailure_head429_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1836,7 +1806,6 @@ def build_httpserverfailure_head501_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1861,7 +1830,6 @@ def build_httpserverfailure_get501_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1883,9 +1851,9 @@ def build_httpserverfailure_post505_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1898,9 +1866,9 @@ def build_httpserverfailure_post505_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -1914,9 +1882,9 @@ def build_httpserverfailure_delete505_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1929,9 +1897,9 @@ def build_httpserverfailure_delete505_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1948,7 +1916,6 @@ def build_httpretry_head408_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -1970,9 +1937,9 @@ def build_httpretry_put500_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -1985,9 +1952,9 @@ def build_httpretry_put500_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -2001,9 +1968,9 @@ def build_httpretry_patch500_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -2016,9 +1983,9 @@ def build_httpretry_patch500_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -2035,7 +2002,6 @@ def build_httpretry_get502_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2060,7 +2026,6 @@ def build_httpretry_options502_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2082,9 +2047,9 @@ def build_httpretry_post503_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -2097,9 +2062,9 @@ def build_httpretry_post503_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -2113,9 +2078,9 @@ def build_httpretry_delete503_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -2128,9 +2093,9 @@ def build_httpretry_delete503_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -2144,9 +2109,9 @@ def build_httpretry_put504_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -2159,9 +2124,9 @@ def build_httpretry_put504_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -2175,9 +2140,9 @@ def build_httpretry_patch504_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Simple boolean value true.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Simple boolean value true.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -2190,9 +2155,9 @@ def build_httpretry_patch504_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
 
@@ -2209,7 +2174,6 @@ def build_multipleresponses_get200_model204_no_model_default_error200_valid_requ
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2234,7 +2198,6 @@ def build_multipleresponses_get200_model204_no_model_default_error204_valid_requ
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2259,7 +2222,6 @@ def build_multipleresponses_get200_model204_no_model_default_error201_invalid_re
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2284,7 +2246,6 @@ def build_multipleresponses_get200_model204_no_model_default_error202_none_reque
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2309,7 +2270,6 @@ def build_multipleresponses_get200_model204_no_model_default_error400_valid_requ
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2334,7 +2294,6 @@ def build_multipleresponses_get200_model201_model_default_error200_valid_request
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2359,7 +2318,6 @@ def build_multipleresponses_get200_model201_model_default_error201_valid_request
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2384,7 +2342,6 @@ def build_multipleresponses_get200_model201_model_default_error400_valid_request
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2409,7 +2366,6 @@ def build_multipleresponses_get200_model_a201_model_c404_model_d_default_error20
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2434,7 +2390,6 @@ def build_multipleresponses_get200_model_a201_model_c404_model_d_default_error20
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2459,7 +2414,6 @@ def build_multipleresponses_get200_model_a201_model_c404_model_d_default_error40
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2484,7 +2438,6 @@ def build_multipleresponses_get200_model_a201_model_c404_model_d_default_error40
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2509,7 +2462,6 @@ def build_multipleresponses_get202_none204_none_default_error202_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2534,7 +2486,6 @@ def build_multipleresponses_get202_none204_none_default_error204_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2559,7 +2510,6 @@ def build_multipleresponses_get202_none204_none_default_error400_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2584,7 +2534,6 @@ def build_multipleresponses_get202_none204_none_default_none202_invalid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
@@ -2604,7 +2553,6 @@ def build_multipleresponses_get202_none204_none_default_none204_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
@@ -2624,7 +2572,6 @@ def build_multipleresponses_get202_none204_none_default_none400_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
@@ -2644,7 +2591,6 @@ def build_multipleresponses_get202_none204_none_default_none400_invalid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
@@ -2664,7 +2610,6 @@ def build_multipleresponses_get_default_model_a200_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2689,7 +2634,6 @@ def build_multipleresponses_get_default_model_a200_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2714,7 +2658,6 @@ def build_multipleresponses_get_default_model_a400_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2739,7 +2682,6 @@ def build_multipleresponses_get_default_model_a400_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2764,7 +2706,6 @@ def build_multipleresponses_get_default_none200_invalid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
@@ -2784,7 +2725,6 @@ def build_multipleresponses_get_default_none200_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/none")
@@ -2804,7 +2744,6 @@ def build_multipleresponses_get_default_none400_invalid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
@@ -2824,7 +2763,6 @@ def build_multipleresponses_get_default_none400_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/none")
@@ -2845,7 +2783,6 @@ def build_multipleresponses_get200_model_a200_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2870,7 +2807,6 @@ def build_multipleresponses_get200_model_a200_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2895,7 +2831,6 @@ def build_multipleresponses_get200_model_a200_invalid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2920,7 +2855,6 @@ def build_multipleresponses_get200_model_a400_none_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2945,7 +2879,6 @@ def build_multipleresponses_get200_model_a400_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2970,7 +2903,6 @@ def build_multipleresponses_get200_model_a400_invalid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -2995,7 +2927,6 @@ def build_multipleresponses_get200_model_a202_valid_request(
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

@@ -39,7 +39,6 @@ def build_paths_get_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
     key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

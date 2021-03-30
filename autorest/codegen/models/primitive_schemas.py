@@ -80,7 +80,7 @@ class AnySchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "any"
+        return "Any"
 
     @property
     def type_annotation(self) -> str:

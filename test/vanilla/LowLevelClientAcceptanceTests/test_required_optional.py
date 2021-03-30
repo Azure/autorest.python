@@ -24,19 +24,14 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
 import sys
-import isodate
-import os
 import io
-from datetime import date, datetime, timedelta
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError, SerializationError, ValidationError
+from azure.core.exceptions import HttpResponseError
+from msrest.exceptions import ValidationError
 
 from requiredoptional import AutoRestRequiredOptionalTestService
-from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
+from requiredoptional._rest import *
+from requiredoptional.models import *
 
 import pytest
 
@@ -51,6 +46,12 @@ def client_required():
         yield client
 
 @pytest.fixture
+def make_request_required_client(client_required, base_make_request):
+    def _make_request(request):
+        return base_make_request(client_required, request)
+    return _make_request
+
+@pytest.fixture
 def client():
     with AutoRestRequiredOptionalTestService(
             "required_path",
@@ -60,91 +61,135 @@ def client():
         client._config.required_global_query = None
         yield client
 
-class TestRequiredOptional(object):
+@pytest.fixture
+def make_request_client(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
+# NOTE: in the LLC version, we can't raise as many ValidationErrors as the high level convenience layer does.
+# This is because we're not serializing bodies at all, so msrest doesn't have a chance to throw the validation error
 
-    # These clients have a required global path and query
-    def test_put_optional(self, client_required):
-        client_required.implicit.put_optional_query(None)
-        client_required.implicit.put_optional_body(None)
-        client_required.implicit.put_optional_header(None)
 
-    def test_get_optional_global_query(self, client_required):
-        client_required.implicit.get_optional_global_query(cls=None)
+# These clients have a required global path and query
+def test_put_optional(make_request_required_client):
+    request = build_implicit_put_optional_query_request(query_parameter=None)
+    make_request_required_client(request)
 
-    def test_post_optional_integer(self, client_required):
-        client_required.explicit.post_optional_integer_parameter(None)
-        client_required.explicit.post_optional_integer_property(None)
-        client_required.explicit.post_optional_integer_header(None)
+    request = build_implicit_put_optional_body_request(json=None)
+    make_request_required_client(request)
 
-    def test_post_optional_string(self, client_required):
-        client_required.explicit.post_optional_string_parameter(None)
-        client_required.explicit.post_optional_string_property(None)
-        client_required.explicit.post_optional_string_header(None)
+    request = build_implicit_put_optional_header_request(query_parameter=None)
+    make_request_required_client(request)
 
-    def test_post_optional_class(self, client_required):
-        client_required.explicit.post_optional_class_parameter(None)
-        client_required.explicit.post_optional_class_property(None)
+def test_get_optional_global_query(make_request_required_client):
+    request = build_implicit_get_optional_global_query_request(optional_global_query=None)
+    make_request_required_client(request)
 
-    def test_post_optional_array(self, client_required):
-        client_required.explicit.post_optional_array_parameter(None)
-        client_required.explicit.post_optional_array_property(None)
-        client_required.explicit.post_optional_array_header(None)
+def test_post_optional_integer(make_request_required_client):
+    request = build_explicit_post_optional_integer_parameter_request(json=None)
+    make_request_required_client(request)
 
-    def test_implicit_get_required(self, client):
-        with pytest.raises(ValidationError):
-            client.implicit.get_required_path(None)
 
-        with pytest.raises(ValidationError):
-            client.implicit.get_required_global_path()
+    request = build_explicit_post_optional_integer_property_request(json=IntOptionalWrapper(value=None).serialize())
+    make_request_required_client(request)
 
-        with pytest.raises(ValidationError):
-            client.implicit.get_required_global_query()
+    request = build_explicit_post_optional_integer_header_request(header_parameter=None)
+    make_request_required_client(request)
 
-    def test_post_required_string(self, client):
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_string_header(None)
+def test_post_optional_string(make_request_required_client):
+    request = build_explicit_post_optional_string_parameter_request(json=None)
+    make_request_required_client(request)
 
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_string_parameter(None)
 
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_string_property(None)
+    request = build_explicit_post_optional_string_property_request(json=StringOptionalWrapper(value=None).serialize())
+    make_request_required_client(request)
 
-    def test_post_required_array(self, client):
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_array_header(None)
+    request = build_explicit_post_optional_string_header_request(body_parameter=None)
+    make_request_required_client(request)
 
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_array_parameter(None)
+def test_post_optional_class(make_request_required_client):
+    request = build_explicit_post_optional_class_parameter_request()
+    make_request_required_client(request)
 
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_array_property(None)
+    request = build_explicit_post_optional_class_property_request(json=ClassOptionalWrapper(value=None).serialize())
+    make_request_required_client(request)
 
-    def test_post_required_class(self, client):
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_class_parameter(None)
+def test_post_optional_array(make_request_required_client):
+    request = build_explicit_post_optional_array_parameter_request(json=None)
+    make_request_required_client(request)
 
-        with pytest.raises(ValidationError):
-            client.explicit.post_required_class_property(None)
+    request = build_explicit_post_optional_array_property_request(json=ArrayOptionalWrapper(value=None).serialize())
+    make_request_required_client(request)
 
-    def test_models(self):
-        from requiredoptional.models import Error
+    request = build_explicit_post_optional_array_header_request(header_parameter=None)
+    make_request_required_client(request)
 
-        if sys.version_info >= (3,5):
-            from requiredoptional.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from requiredoptional.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_implicit_get_required(make_request_client):
+    with pytest.raises(ValidationError):
+        request = build_implicit_get_required_path_request(path_parameter=None)
+        make_request_client(request)
 
-    def test_explict_put_optional_binary_body(self, client):
-        client.explicit.put_optional_binary_body()
+    with pytest.raises(ValidationError):
+        request = build_implicit_get_required_global_path_request(required_global_path=None)
+        make_request_client(request)
 
-    def test_explict_put_required_binary_body(self, client):
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        with io.BytesIO(test_bytes) as stream_data:
-            client.explicit.put_required_binary_body(stream_data)
+    with pytest.raises(ValidationError):
+        request = build_implicit_get_required_global_query_request(required_global_query=None)
+        make_request_client(request)
 
-    def test_implicit_put_optional_binary_body(self, client):
-        client.implicit.put_optional_binary_body()
+def test_post_required_string(make_request_client):
+    with pytest.raises(ValidationError):
+        request = build_explicit_post_required_string_header_request(header_parameter=None)
+        make_request_client(request)
+
+    with pytest.raises(HttpResponseError) as ex:
+        request = build_explicit_post_required_string_parameter_request()
+        make_request_client(request)
+
+    assert "Not Found" in str(ex.value)
+
+    with pytest.raises(HttpResponseError)as ex:
+        request = build_explicit_post_required_string_property_request(json=StringWrapper(value=None).serialize())
+        make_request_client(request)
+    assert "Not Found" in str(ex.value)
+
+def test_post_required_array(make_request_client):
+    with pytest.raises(ValidationError):
+        request = build_explicit_post_required_array_header_request(header_parameter=None)
+        make_request_client(request)
+
+    with pytest.raises(HttpResponseError) as ex:
+        request = build_explicit_post_required_array_parameter_request()
+        make_request_client(request)
+    assert "Not Found" in str(ex.value)
+
+    with pytest.raises(HttpResponseError) as ex:
+        request = build_explicit_post_required_array_property_request(json=ArrayWrapper(value=None).serialize())
+        make_request_client(request)
+    assert "Not Found" in str(ex.value)
+
+def test_post_required_class(make_request_client):
+    with pytest.raises(HttpResponseError) as ex:
+        request = build_explicit_post_required_class_parameter_request()
+        make_request_client(request)
+    assert "Not Found" in str(ex.value)
+
+    with pytest.raises(HttpResponseError) as ex:
+        request = build_explicit_post_required_class_property_request(json=ClassWrapper(value=None).serialize())
+        make_request_client(request)
+    assert "Not Found" in str(ex.value)
+
+def test_explict_put_optional_binary_body(make_request_client):
+    request = build_explicit_put_optional_binary_body_request()
+    make_request_client(request)
+
+def test_explict_put_required_binary_body(client):
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
+    with io.BytesIO(test_bytes) as stream_data:
+        request = build_explicit_put_required_binary_body_request(content=stream_data)
+        client._send_request(request, stream_response=True)
+
+def test_implicit_put_optional_binary_body(make_request_client):
+    request = build_explicit_put_optional_binary_body_request()
+    make_request_client(request)

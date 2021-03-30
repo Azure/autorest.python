@@ -23,21 +23,10 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError
-
 from bodybyte.aio import AutoRestSwaggerBATByteService
+from bodybyte._rest import *
+from async_generator import yield_, async_generator
+from base64 import b64encode
 
 import pytest
 
@@ -47,23 +36,32 @@ async def client():
     async with AutoRestSwaggerBATByteService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestByte(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_non_ascii(self, client):
-        tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-        await client.byte.put_non_ascii(tests)
-        assert tests ==  (await client.byte.get_non_ascii())
+@pytest.mark.asyncio
+async def test_non_ascii(make_request):
+    tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
+    request = build_byte_put_non_ascii_request(json=b64encode(tests).decode())
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_null(self, client):
-        assert await client.byte.get_null() is None
+    request = build_byte_get_non_ascii_request()
+    response = await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_empty(self, client):
-        assert bytearray() ==  (await client.byte.get_empty())
+@pytest.mark.asyncio
+async def test_get_null(make_request):
+    request = build_byte_get_null_request()
+    assert (await make_request(request)).text == ''
 
-    @pytest.mark.asyncio
-    async def test_get_invalid(self, client):
-        with pytest.raises(DeserializationError):
-            await client.byte.get_invalid()
+@pytest.mark.asyncio
+async def test_get_empty(make_request):
+    request = build_byte_get_empty_request()
+    assert b'""' == (await make_request(request)).content  # in convenience layer, we deserialize as bytearray specif
+
+@pytest.mark.asyncio
+async def test_get_invalid(make_request):
+    request = build_byte_get_invalid_request()
+    assert (await make_request(request)).content == b'"::::SWAGGER::::"'

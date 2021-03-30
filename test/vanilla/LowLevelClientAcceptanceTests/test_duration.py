@@ -24,19 +24,12 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
+from datetime import timedelta
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
 from msrest.exceptions import DeserializationError
 
 from bodyduration import AutoRestDurationTestService
+from bodyduration._rest import *
 
 import pytest
 
@@ -45,24 +38,29 @@ def client():
     with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestDuration(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request):
+        return base_make_request(client, request)
+    return _make_request
 
-    def test_get_null_and_invalid(self, client):
-        assert client.duration.get_null() is None
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    def _make_request(request):
+        return base_make_request_json_response(client, request)
+    return _make_request
 
-        with pytest.raises(DeserializationError):
-            client.duration.get_invalid()
+def test_get_null_and_invalid(make_request, make_request_json_response):
+    request = build_duration_get_null_request()
+    assert make_request(request).text == ''
 
-    def test_positive_duration(self, client):
-        client.duration.get_positive_duration()
-        client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    request = build_duration_get_invalid_request()
+    with pytest.raises(isodate.ISO8601Error):
+        isodate.parse_duration(make_request_json_response(request))
 
-    def test_models(self):
-        from bodyduration.models import Error
+def test_positive_duration(make_request, make_request_json_response):
+    request = build_duration_get_positive_duration_request()
+    assert isodate.duration.Duration(4, 45005, 0, years=3, months=6) == isodate.parse_duration(make_request_json_response(request))
 
-        if sys.version_info >= (3,5):
-            from bodyduration.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodyduration.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+    request = build_duration_put_positive_duration_request(json=isodate.duration_isoformat(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
+    make_request(request)

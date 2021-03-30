@@ -25,7 +25,6 @@ def build_pet_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -48,9 +47,9 @@ def build_pet_add_pet_request(*, json: Any = None, content: Any = None, **kwargs
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: pet param.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: pet param.
-    :paramtype content: any
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

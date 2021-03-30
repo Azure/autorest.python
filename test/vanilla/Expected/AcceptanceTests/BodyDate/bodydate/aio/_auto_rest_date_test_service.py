@@ -46,8 +46,8 @@ class AutoRestDateTestService(object):
         We have helper methods to create requests specific to this service in `bodydate.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydate.rest import prepare_date_get_null
-        >>> request = prepare_date_get_null()
+        >>> from bodydate.rest import build_date_get_null_request
+        >>> request = build_date_get_null_request()
         <HttpRequest [GET], url: '/date/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -65,8 +65,10 @@ class AutoRestDateTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = await self._client._pipeline.run(
+            request_copy._internal_request, stream=stream_response, **kwargs
+        )
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

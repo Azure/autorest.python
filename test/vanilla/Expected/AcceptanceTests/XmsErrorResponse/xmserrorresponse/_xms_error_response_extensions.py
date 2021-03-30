@@ -58,8 +58,8 @@ class XMSErrorResponseExtensions(object):
         We have helper methods to create requests specific to this service in `xmserrorresponse.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from xmserrorresponse.rest import prepare_pet_get_pet_by_id
-        >>> request = prepare_pet_get_pet_by_id(pet_id)
+        >>> from xmserrorresponse.rest import build_pet_get_pet_by_id_request
+        >>> request = build_pet_get_pet_by_id_request(pet_id)
         <HttpRequest [GET], url: '/errorStatusCodes/Pets/{petId}/GetPet'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,8 +77,8 @@ class XMSErrorResponseExtensions(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

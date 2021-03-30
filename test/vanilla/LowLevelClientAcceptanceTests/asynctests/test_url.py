@@ -24,24 +24,16 @@
 #
 # --------------------------------------------------------------------------
 
+from datetime import datetime
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError, ValidationError
-
 from url.aio import AutoRestUrlTestService
-from urlmulticollectionformat.aio import AutoRestUrlMutliCollectionFormatTestService
+from url._rest import *
+from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
+from urlmulticollectionformat._rest import *
 from url.models import UriColor
+from msrest.exceptions import ValidationError
 
 import pytest
-
 
 @pytest.fixture
 @async_generator
@@ -50,235 +42,350 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-@async_generator
-async def multi_client():
-    async with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
-        await yield_(client)
+def multi_client():
+    with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
+        yield client
 
 @pytest.fixture
-def test_array_query():
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
+
+@pytest.fixture
+def make_multi_request(multi_client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(multi_client, request)
+    return _make_request
+
+@pytest.fixture
+@pytest.mark.asyncio
+async def test_array_query():
     return ["ArrayQuery1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
 
-class TestUrl(object):
+@pytest.mark.asyncio
+async def test_byte_empty_and_null(make_request):
+    request = build_paths_byte_empty_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_byte_empty_and_null(self, client):
-        await client.paths.byte_empty()
+    with pytest.raises(ValidationError):
+        build_paths_byte_null_request(None)
 
-        with pytest.raises(ValidationError):
-            await client.paths.byte_null(None)
+@pytest.mark.asyncio
+async def test_byte_multi_byte(make_request):
+    u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+    request = build_paths_byte_multi_byte_request(u_bytes)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_byte_multi_byte(self, client):
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        await client.paths.byte_multi_byte(u_bytes)
+@pytest.mark.asyncio
+async def test_date_null(make_request):
+    with pytest.raises(ValidationError):
+        build_paths_date_null_request(None)
 
-    @pytest.mark.asyncio
-    async def test_date_null(self, client):
-        with pytest.raises(ValidationError):
-            await client.paths.date_null(None)
+@pytest.mark.asyncio
+async def test_date_time_null(make_request):
+    with pytest.raises(ValidationError):
+        build_paths_date_time_null_request(None)
 
-    @pytest.mark.asyncio
-    async def test_date_time_null(self, client):
-        with pytest.raises(ValidationError):
-            await client.paths.date_time_null(None)
+@pytest.mark.asyncio
+async def test_date_time_valid(make_request):
+    request = build_paths_date_time_valid_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_date_time_valid(self, client):
-        await client.paths.date_time_valid()
+@pytest.mark.asyncio
+async def test_date_valid(make_request):
+    request = build_paths_date_valid_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_date_valid(self, client):
-        await client.paths.date_valid()
+@pytest.mark.asyncio
+async def test_unix_time_url(make_request):
+    request = build_paths_unix_time_url_request(datetime(year=2016, month=4, day=13))
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_unix_time_url(self, client):
-        await client.paths.unix_time_url(datetime(year=2016, month=4, day=13))
+@pytest.mark.asyncio
+async def test_double_decimal(make_request):
+    request = build_paths_double_decimal_negative_request()
+    await make_request(request)
+    request = build_paths_double_decimal_positive_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_double_decimal(self, client):
-        await client.paths.double_decimal_negative()
-        await client.paths.double_decimal_positive()
+@pytest.mark.asyncio
+async def test_float_scientific(make_request):
+    request = build_paths_float_scientific_negative_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_float_scientific(self, client):
-        await client.paths.float_scientific_negative()
-        await client.paths.float_scientific_positive()
+    request = build_paths_float_scientific_positive_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_boolean(self, client):
-        await client.paths.get_boolean_false()
-        await client.paths.get_boolean_true()
+@pytest.mark.asyncio
+async def test_get_boolean(make_request):
+    request = build_paths_get_boolean_false_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_int(self, client):
-        await client.paths.get_int_negative_one_million()
-        await client.paths.get_int_one_million()
+    request = build_paths_get_boolean_true_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_long(self, client):
-        await client.paths.get_negative_ten_billion()
-        await client.paths.get_ten_billion()
+@pytest.mark.asyncio
+async def test_int(make_request):
+    request = build_paths_get_int_negative_one_million_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_string_empty_and_null(self, client):
-        await client.paths.string_empty()
+    request = build_paths_get_int_one_million_request()
+    await make_request(request)
 
-        with pytest.raises(ValidationError):
-            await client.paths.string_null(None)
+@pytest.mark.asyncio
+async def test_get_long(make_request):
+    request = build_paths_get_negative_ten_billion_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_array_csv_in_path(self, client):
-        test_array = ["ArrayPath1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
-        await client.paths.array_csv_in_path(test_array)
+    request = build_paths_get_ten_billion_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_string_url_encoded(self, client):
-        await client.paths.string_url_encoded()
+@pytest.mark.asyncio
+async def test_string_empty_and_null(make_request):
+    request = build_paths_string_empty_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_paths_unicode(self, client):
-        await client.paths.string_unicode()
+    with pytest.raises(ValidationError):
+        build_paths_string_null_request(None)
 
-    @pytest.mark.asyncio
-    async def test_string_url_non_encoded(self, client):
-        await client.paths.string_url_non_encoded()
+@pytest.mark.asyncio
+async def test_array_csv_in_path(make_request):
+    test_array = ["ArrayPath1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
+    request = build_paths_array_csv_in_path_request(test_array)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_enum_valid(self, client):
-        await client.paths.enum_valid(UriColor.green_color)
+@pytest.mark.asyncio
+async def test_string_url_encoded(make_request):
+    request = build_paths_string_url_encoded_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_enum_null(self, client):
-        with pytest.raises(ValidationError):
-            await client.paths.enum_null(None)
+@pytest.mark.asyncio
+async def test_paths_unicode(make_request):
+    request = build_paths_string_unicode_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_base64_url(self, client):
-        await client.paths.base64_url("lorem".encode())
+@pytest.mark.asyncio
+async def test_string_url_non_encoded(make_request):
+    request = build_paths_string_url_non_encoded_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_byte(self, client):
-        await client.queries.byte_empty()
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
-        await client.queries.byte_multi_byte(u_bytes)
-        await client.queries.byte_null()
+@pytest.mark.asyncio
+async def test_enum_valid(make_request):
+    request = build_paths_enum_valid_request(UriColor.GREEN_COLOR)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_date(self, client):
-        await client.queries.date_null()
-        await client.queries.date_valid()
+@pytest.mark.asyncio
+async def test_enum_null(make_request):
+    with pytest.raises(ValidationError):
+        build_paths_enum_null_request(None)
 
-    @pytest.mark.asyncio
-    async def test_queries_date_time(self, client):
-        await client.queries.date_time_null()
-        await client.queries.date_time_valid()
+@pytest.mark.asyncio
+async def test_base64_url(make_request):
+    request = build_paths_base64_url_request("lorem".encode())
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_double(self, client):
-        await client.queries.double_null()
-        await client.queries.double_decimal_negative()
-        await client.queries.double_decimal_positive()
+@pytest.mark.asyncio
+async def test_queries_byte(make_request):
+    request = build_queries_byte_empty_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_float_scientific(self, client):
-        await client.queries.float_scientific_negative()
-        await client.queries.float_scientific_positive()
-        await client.queries.float_null()
+    u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+    request = build_queries_byte_multi_byte_request(byte_query=u_bytes)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_boolean(self, client):
-        await client.queries.get_boolean_false()
-        await client.queries.get_boolean_true()
-        await client.queries.get_boolean_null()
+    request = build_queries_byte_null_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_int(self, client):
-        await client.queries.get_int_negative_one_million()
-        await client.queries.get_int_one_million()
-        await client.queries.get_int_null()
+@pytest.mark.asyncio
+async def test_queries_date(make_request):
+    request = build_queries_date_null_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_long(self, client):
-        await client.queries.get_negative_ten_billion()
-        await client.queries.get_ten_billion()
-        await client.queries.get_long_null()
+    request = build_queries_date_valid_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_string(self, client):
-        await client.queries.string_empty()
-        await client.queries.string_null()
-        await client.queries.string_url_encoded()
+@pytest.mark.asyncio
+async def test_queries_date_time(make_request):
+    request = build_queries_date_time_null_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_enum(self, client):
-        await client.queries.enum_valid(UriColor.green_color)
-        await client.queries.enum_null(None)
+    request = build_queries_date_time_valid_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_queries_unicode(self, client):
-        await client.queries.string_unicode()
+@pytest.mark.asyncio
+async def test_queries_double(make_request):
+    request = build_queries_double_null_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_array_string_csv(self, client, test_array_query):
-        await client.queries.array_string_csv_empty([])
-        await client.queries.array_string_csv_null(None)
-        await client.queries.array_string_csv_valid(test_array_query)
+    request = build_queries_double_decimal_negative_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_array_string_miscellaneous(self, client, test_array_query):
-        await client.queries.array_string_pipes_valid(test_array_query)
-        await client.queries.array_string_ssv_valid(test_array_query)
-        await client.queries.array_string_tsv_valid(test_array_query)
+    request = build_queries_double_decimal_positive_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_array_string_multi(self, multi_client, test_array_query):
-        await multi_client.queries.array_string_multi_empty([])
-        await multi_client.queries.array_string_multi_null()
-        await multi_client.queries.array_string_multi_valid(test_array_query)
+@pytest.mark.asyncio
+async def test_queries_float_scientific(make_request):
+    request = build_queries_float_scientific_negative_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_array_string_no_collection_format(self, client):
-        await client.queries.array_string_no_collection_format_empty(['hello', 'nihao', 'bonjour'])
+    request = build_queries_float_scientific_positive_request()
+    await make_request(request)
+    request = build_queries_float_null_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_all_with_values(self, client):
-        client._config.global_string_path = "globalStringPath"
-        client._config.global_string_query = "globalStringQuery"
-        await client.path_items.get_all_with_values(
-            "pathItemStringPath",
-            "localStringPath",
-            "pathItemStringQuery",
-            "localStringQuery",
-        )
+@pytest.mark.asyncio
+async def test_queries_boolean(make_request):
+    request = build_queries_get_boolean_false_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_global_and_local_query_null(self, client):
-        client._config.global_string_path = "globalStringPath"
-        await client.path_items.get_global_and_local_query_null(
-            "pathItemStringPath",
-            "localStringPath",
-            "pathItemStringQuery",
-            None,
-        )
+    request = build_queries_get_boolean_true_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_global_query_null(self, client):
-        client._config.global_string_path = "globalStringPath"
-        await client.path_items.get_global_query_null(
-            "pathItemStringPath",
-            "localStringPath",
-            "pathItemStringQuery",
-            "localStringQuery",
-        )
+    request = build_queries_get_boolean_null_request()
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_local_path_item_query_null(self, client):
-        client._config.global_string_path = "globalStringPath"
-        client._config.global_string_query = "globalStringQuery"
-        await client.path_items.get_local_path_item_query_null(
-            "pathItemStringPath",
-            "localStringPath",
-            None,
-            None,
-        )
+@pytest.mark.asyncio
+async def test_queries_int(make_request):
+    request = build_queries_get_int_negative_one_million_request()
+    await make_request(request)
+
+    request = build_queries_get_int_one_million_request()
+    await make_request(request)
+
+    request = build_queries_get_int_null_request()
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_queries_long(make_request):
+    request = build_queries_get_negative_ten_billion_request()
+    await make_request(request)
+
+    request = build_queries_get_ten_billion_request()
+    await make_request(request)
+
+    request = build_queries_get_long_null_request()
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_queries_string(make_request):
+    request = build_queries_string_empty_request()
+    await make_request(request)
+
+    request = build_queries_string_null_request()
+    await make_request(request)
+
+    request = build_queries_string_url_encoded_request()
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_queries_enum(make_request):
+    request = build_queries_enum_valid_request(enum_query=UriColor.GREEN_COLOR)
+    await make_request(request)
+
+    request = build_queries_enum_null_request(enum_query=None)
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_queries_unicode(make_request):
+    request = build_queries_string_unicode_request()
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_array_string_csv(make_request, test_array_query):
+    request = build_queries_array_string_csv_empty_request(array_query=[])
+    await make_request(request)
+
+    request = build_queries_array_string_csv_null_request(array_query=None)
+    await make_request(request)
+
+    request = build_queries_array_string_csv_valid_request(array_query=test_array_query)
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_array_string_miscellaneous(make_request, test_array_query):
+    request = build_queries_array_string_pipes_valid_request(array_query=test_array_query)
+    await make_request(request)
+
+    request = build_queries_array_string_ssv_valid_request(array_query=test_array_query)
+    await make_request(request)
+
+    request = build_queries_array_string_tsv_valid_request(array_query=test_array_query)
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_array_string_multi(make_multi_request, test_array_query):
+    request = build_queries_array_string_multi_empty_request(array_query=[])
+    await make_multi_request(request)
+
+    request = build_queries_array_string_multi_null_request()
+    await make_multi_request(request)
+
+    requst = build_queries_array_string_multi_valid_request(array_query=test_array_query)
+    await make_multi_request(request)
+
+@pytest.mark.asyncio
+async def test_array_string_no_collection_format(make_request):
+    request = build_queries_array_string_no_collection_format_empty_request(array_query=['hello', 'nihao', 'bonjour'])
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_all_with_values(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+    global_string_query = "globalStringQuery"
+
+    request = build_pathitems_get_all_with_values_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query="pathItemStringQuery",
+        global_string_query=global_string_query,
+        local_string_query="localStringQuery",
+    )
+
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_global_and_local_query_null(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+
+    request = build_pathitems_get_global_and_local_query_null_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query="pathItemStringQuery",
+        global_string_query=None
+    )
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_global_query_null(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+
+    request = build_pathitems_get_global_query_null_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query="pathItemStringQuery",
+        local_string_query="localStringQuery",
+    )
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_local_path_item_query_null(make_request):
+    # In LLC, we have to pass in global variables to individual operations; we don't have access to the client in the request builders
+    global_string_path = "globalStringPath"
+    global_string_query = "globalStringQuery"
+
+    request = build_pathitems_get_local_path_item_query_null_request(
+        path_item_string_path="pathItemStringPath",
+        global_string_path=global_string_path,
+        local_string_path="localStringPath",
+        path_item_string_query=None,
+        global_string_query=global_string_query,
+        local_string_query=None,
+    )
+    await make_request(request)

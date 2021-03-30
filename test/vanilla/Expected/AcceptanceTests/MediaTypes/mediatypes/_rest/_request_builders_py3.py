@@ -19,7 +19,7 @@ def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Input parameter.
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Input parameter.
     :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
@@ -27,6 +27,7 @@ def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None
     :rtype: ~azure.core.rest.HttpRequest
     """
     content_type = kwargs.pop("content_type", None)
+    accept = "application/json"
     accept = "application/json"
 
     # Construct URL

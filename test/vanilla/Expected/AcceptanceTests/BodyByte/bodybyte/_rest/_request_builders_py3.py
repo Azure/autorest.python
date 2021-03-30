@@ -22,7 +22,6 @@ def build_byte_get_null_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -44,7 +43,6 @@ def build_byte_get_empty_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -66,7 +64,6 @@ def build_byte_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -87,7 +84,7 @@ def build_byte_put_non_ascii_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
 
     :keyword json: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-    :paramtype json: any
+    :paramtype json: Any
     :keyword content: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
     :paramtype content: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
@@ -102,9 +99,9 @@ def build_byte_put_non_ascii_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -118,7 +115,6 @@ def build_byte_get_invalid_request(**kwargs: Any) -> HttpRequest:
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

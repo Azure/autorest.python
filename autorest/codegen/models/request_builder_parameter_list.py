@@ -35,7 +35,7 @@ class RequestBuilderParameterList(ParameterList):
         """We don't do constant bodies in the request builder
         """
         all_constants = super(RequestBuilderParameterList, self).constant
-        if self.has_body:
+        if self.has_body and all_constants:
             return [c for c in all_constants if not c.location == ParameterLocation.Body]
         return all_constants
 

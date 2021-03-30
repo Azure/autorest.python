@@ -32,7 +32,6 @@ def build_queries_array_string_multi_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
     array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -67,7 +66,6 @@ def build_queries_array_string_multi_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
     array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL
@@ -104,7 +102,6 @@ def build_queries_array_string_multi_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
     array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
-    content_type = kwargs.pop("content_type", None)
     accept = "application/json"
 
     # Construct URL

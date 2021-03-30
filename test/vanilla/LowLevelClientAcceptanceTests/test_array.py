@@ -25,12 +25,13 @@
 # --------------------------------------------------------------------------
 
 import isodate
-import json
+from azure.core.exceptions import DecodeError
 from datetime import date, datetime, timedelta
-
+from base64 import b64encode
 from bodyarray import AutoRestSwaggerBATArrayService
 from bodyarray.models import Product
 from bodyarray._rest import *
+import msrest
 
 import pytest
 
@@ -70,6 +71,7 @@ def make_request_json_response(client, base_make_request_json_response):
     def _make_request(request):
         return base_make_request_json_response(client, request)
     return _make_request
+
 
 def test_empty(make_request, make_request_json_response):
     request = build_array_get_empty_request()
@@ -157,17 +159,17 @@ def test_date_valid(make_request, make_request_json_response):
     request = build_array_put_date_valid_request(json=[str(date1), str(date2), str(date3)])  # dates are not json serializable
     make_request(request)
 
-def test_date_time_valid(make_request, make_request_json_response, datetimes):
+def test_date_time_valid(make_request, make_request_json_response, datetimes, msrest_serializer):
     request = build_array_get_date_time_valid_request()
 
     assert make_request_json_response(request), [datetimes[0], datetimes[1] ==  datetimes[2]]
-    request = build_array_put_date_time_valid_request(json=[str(datetime) for datetime in datetimes])
+    request = build_array_put_date_time_valid_request(json=[msrest_serializer.serialize_iso(datetime) for datetime in datetimes])
     make_request(request)
 
-def test_date_time_rfc1123_valid(make_request, make_request_json_response, datetimes):
+def test_date_time_rfc1123_valid(make_request, make_request_json_response, datetimes, msrest_serializer):
     request = build_array_get_date_time_rfc1123_valid_request()
     assert make_request_json_response(request), [datetimes[0], datetimes[1] ==  datetimes[2]]
-    request = build_array_put_date_time_rfc1123_valid_request(json=[str(datetime) for datetime in datetimes])
+    request = build_array_put_date_time_rfc1123_valid_request(json=[msrest_serializer.serialize_rfc(datetime) for datetime in datetimes])
     make_request(request)
 
 def test_duration_valid(make_request, make_request_json_response):
@@ -176,7 +178,7 @@ def test_duration_valid(make_request, make_request_json_response):
 
     request = build_array_get_duration_valid_request()
     assert make_request_json_response(request), [duration1 ==  duration2]
-    request = build_array_put_duration_valid_request(json=[str(duration1), str(duration2)])
+    request = build_array_put_duration_valid_request(json=[isodate.duration_isoformat(duration1), isodate.duration_isoformat(duration2)])
     make_request(request)
 
 def test_byte_valid(make_request, make_request_json_response):
@@ -186,7 +188,7 @@ def test_byte_valid(make_request, make_request_json_response):
 
     request = build_array_get_byte_valid_request()
     assert make_request_json_response(request), [bytes1, bytes2 ==  bytes3]
-    request = build_array_put_byte_valid_request(json=[bytes1, bytes2, bytes3])
+    request = build_array_put_byte_valid_request(json=[b64encode(b).decode() for b in [bytes1, bytes2, bytes3]])
     make_request(request)
 
 def test_get_byte_invalid_null(make_request_json_response):
@@ -269,7 +271,7 @@ def test_get_dictionary_and_dictionary_item_empty(make_request_json_response, li
 
 def test_array_get_invalid(make_request_json_response):
     request = build_array_get_invalid_request()
-    with pytest.raises(json.decoder.JSONDecodeError):
+    with pytest.raises(DecodeError):
         make_request_json_response(request)
 
 def test_array_get_boolean_invalid_null(make_request_json_response):
@@ -339,13 +341,13 @@ def test_array_get_date_time_invalid_chars(make_request_json_response):
     request = build_array_get_date_time_invalid_chars_request()
     assert make_request_json_response(request) == ['2000-12-01t00:00:01z', 'date-time']
 
-def test_array_get_base64_url(make_request_json_response):
+def test_array_get_base64_url(make_request_json_response, msrest_deserializer):
     test_array = ['a string that gets encoded with base64url'.encode(),
                     'test string'.encode(),
                     'Lorem ipsum'.encode()]
     request = build_array_get_base64_url_request()
     response = make_request_json_response(request)
-    assert [s.decode() for s in response] == test_array
+    assert [msrest_deserializer.deserialize_base64(s) for s in make_request_json_response(request)] == test_array
 
 def test_array_enum_valid(make_request, make_request_json_response):
     request = build_array_get_enum_valid_request()

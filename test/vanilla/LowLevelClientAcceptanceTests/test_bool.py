@@ -26,6 +26,7 @@
 from bodyboolean import AutoRestBoolTestService
 from bodyboolean._rest import *
 import pytest
+from azure.core.exceptions import DecodeError
 
 @pytest.fixture
 def client():
@@ -66,4 +67,5 @@ def test_model_put_true(make_request):
 
 def test_model_get_invalid(make_request):
     request = build_bool_get_invalid_request()
-    assert make_request(request).text == "true1"
+    with pytest.raises(DecodeError):
+        make_request(request)

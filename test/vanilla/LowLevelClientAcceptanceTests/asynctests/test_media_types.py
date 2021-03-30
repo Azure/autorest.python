@@ -23,14 +23,11 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+from mediatypes.aio import MediaTypesClient
+from mediatypes._rest import *
 from async_generator import yield_, async_generator
 
-from mediatypes.aio import MediaTypesClient
-from azure.core.exceptions import HttpResponseError
-
 import pytest
-import json
 
 @pytest.fixture
 @async_generator
@@ -38,25 +35,23 @@ async def client():
     async with MediaTypesClient() as client:
         await yield_(client)
 
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    async def _make_request(request):
+        return await base_make_request_json_response(client, request)
+    return _make_request
 
-class TestMediaTypes(object):
-    @pytest.mark.asyncio
-    async def test_pdf(self, client):
-        result = await client.analyze_body(input=b"PDF", content_type="application/pdf")
-        assert result == "Nice job with PDF"
+@pytest.mark.asyncio
+async def test_pdf(make_request_json_response):
+    request = build_analyze_body_request(content=b"PDF", content_type="application/pdf")
+    assert await make_request_json_response(request) == "Nice job with PDF"
 
-    @pytest.mark.asyncio
-    async def test_json(self, client):
-        json_input = json.loads('{"source":"foo"}')
-        result = await client.analyze_body(input=json_input)
-        assert result == "Nice job with JSON"
+@pytest.mark.asyncio
+async def test_json(make_request_json_response):
+    request = build_analyze_body_request(json={"source":"foo"})
+    assert await make_request_json_response(request) == "Nice job with JSON"
 
-    @pytest.mark.asyncio
-    async def test_incorrect_content_type(self, client):
-        with pytest.raises(ValueError):
-            await client.analyze_body(input=b"PDF", content_type="text/plain")
-
-    @pytest.mark.asyncio
-    async def test_content_type_with_encoding(self, client):
-        result = await client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
-        assert result == "Nice job sending content type with encoding"
+@pytest.mark.asyncio
+async def test_content_type_with_encoding(make_request_json_response):
+    request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; encoding=UTF-8')
+    assert await make_request_json_response(request) == "Nice job sending content type with encoding"

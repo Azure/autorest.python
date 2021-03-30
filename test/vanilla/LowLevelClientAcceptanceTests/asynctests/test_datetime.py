@@ -24,20 +24,13 @@
 #
 # --------------------------------------------------------------------------
 
-from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
 import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
+from async_generator import yield_, async_generator
 
 from msrest.exceptions import DeserializationError, SerializationError
 
 from bodydatetime.aio import AutoRestDateTimeTestService
+from bodydatetime._rest import *
 
 import pytest
 
@@ -46,92 +39,127 @@ import pytest
 async def client():
     async with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-class TestDatetime:
-    @pytest.mark.asyncio
-    async def test_utc_max_date_time(self, client):
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999Z")
-        dt = await client.datetime.get_utc_lowercase_max_date_time()
-        assert dt ==  max_date
-        dt = await client.datetime.get_utc_uppercase_max_date_time()
-        assert dt ==  max_date
-        await client.datetime.put_utc_max_date_time(max_date)
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    async def _make_request(request):
+        return await base_make_request_json_response(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_utc_max_date_time_7digits(self, client):
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
-        dt = await client.datetime.get_utc_uppercase_max_date_time7_digits()
-        assert dt == max_date
-        with pytest.raises(Exception):
-            # Python doesn't support 7 digits
-            await client.datetime.put_utc_max_date_time7_digits(max_date)
+@pytest.fixture
+def get_deserialized_iso(make_request_json_response, msrest_deserializer):
+    async def _get_deserialized_iso(request):
+        return msrest_deserializer.deserialize_iso(await make_request_json_response(request))
+    return _get_deserialized_iso
 
-    @pytest.mark.asyncio
-    async def test_get_utc_min_date_time(self, client):
-        min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
-        dt = await client.datetime.get_utc_min_date_time()
-        assert dt ==  min_date
-        await client.datetime.put_utc_min_date_time(min_date)
+@pytest.fixture
+def get_serialized_iso(msrest_serializer):
+    def _get_serialized_iso(date):
+        return msrest_serializer.serialize_iso(date)
+    return _get_serialized_iso
 
-    @pytest.mark.asyncio
-    async def test_get_local_negative_offset_min_date_time(self, client):
-        await client.datetime.get_local_negative_offset_min_date_time()
-        await client.datetime.put_local_negative_offset_min_date_time(
-            isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
+@pytest.mark.asyncio
+async def test_utc_max_date_time(make_request, get_serialized_iso, get_deserialized_iso):
+    max_date = isodate.parse_datetime("9999-12-31T23:59:59.999Z")
+    request = build_datetime_get_utc_lowercase_max_date_time_request()
+    assert max_date ==  await get_deserialized_iso(request)
 
-    @pytest.mark.asyncio
-    async def test_get_local_no_offset_min_date_time(self, client):
-        local_no_offset_min_date_time = isodate.parse_datetime("0001-01-01T00:00:00")
-        dt = await client.datetime.get_local_no_offset_min_date_time()
-        assert dt == local_no_offset_min_date_time
+    request = build_datetime_get_utc_uppercase_max_date_time_request()
+    assert await get_deserialized_iso(request) ==  max_date
 
-    @pytest.mark.asyncio
-    async def test_get_local_negative_offset_lowercase_max_date_time(self, client):
-        with pytest.raises(DeserializationError):
-            await client.datetime.get_local_negative_offset_lowercase_max_date_time()
+    request = build_datetime_put_utc_max_date_time_request(json=get_serialized_iso(max_date))
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_local_negative_offset_uppercase_max_date_time(self, client):
-        with pytest.raises(DeserializationError):
-            await client.datetime.get_local_negative_offset_uppercase_max_date_time()
+@pytest.mark.asyncio
+async def test_utc_max_date_time_7digits(make_request, get_serialized_iso, get_deserialized_iso):
+    max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+    request = build_datetime_get_utc_uppercase_max_date_time7_digits_request()
+    assert await get_deserialized_iso(request) == max_date
 
-    @pytest.mark.asyncio
-    async def test_local_positive_offset_min_date_time(self, client):
-        with pytest.raises(DeserializationError):
-            await client.datetime.get_local_positive_offset_min_date_time()
+    request = build_datetime_put_utc_max_date_time7_digits_request(json=get_serialized_iso(max_date))
+    with pytest.raises(Exception):
+        # Python doesn't support 7 digits
+        await make_request(request)
 
-        with pytest.raises(SerializationError):
-            await client.datetime.put_local_positive_offset_min_date_time(
-                isodate.parse_datetime("0001-01-01T00:00:00+14:00"))
+@pytest.mark.asyncio
+async def test_get_utc_min_date_time(make_request, get_serialized_iso, get_deserialized_iso):
+    min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
+    request = build_datetime_get_utc_min_date_time_request()
+    assert await get_deserialized_iso(request) ==  min_date
 
-    @pytest.mark.asyncio
-    async def test_local_positive_offset_max_date_time(self, client):
-        await client.datetime.get_local_positive_offset_lowercase_max_date_time()
-        await client.datetime.get_local_positive_offset_uppercase_max_date_time()
-        await client.datetime.put_local_positive_offset_max_date_time(
-            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00"))
+    request = build_datetime_put_utc_min_date_time_request(json=get_serialized_iso(min_date))
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_null(self, client):
-        await client.datetime.get_null()
+@pytest.mark.asyncio
+async def test_get_local_negative_offset_min_date_time(make_request, make_request_json_response, get_serialized_iso):
+    request = build_datetime_get_local_negative_offset_min_date_time_request()
+    assert '0001-01-01T00:00:00-14:00' == await make_request_json_response(request)
 
-    @pytest.mark.asyncio
-    async def test_get_overflow(self, client):
-        with pytest.raises(DeserializationError):
-            await client.datetime.get_overflow()
+    request = build_datetime_put_local_negative_offset_min_date_time_request(json=get_serialized_iso(isodate.parse_datetime("0001-01-01T00:00:00-14:00")))
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_invalid(self, client):
-        with pytest.raises(DeserializationError):
-            await client.datetime.get_invalid()
+@pytest.mark.asyncio
+async def test_get_local_no_offset_min_date_time(get_deserialized_iso):
+    local_no_offset_min_date_time = isodate.parse_datetime("0001-01-01T00:00:00")
+    request = build_datetime_get_local_no_offset_min_date_time_request()
+    assert await get_deserialized_iso(request) == local_no_offset_min_date_time
 
-    @pytest.mark.asyncio
-    async def test_get_underflow(self, client):
-        with pytest.raises(DeserializationError):
-            await client.datetime.get_underflow()
+@pytest.mark.asyncio
+async def test_get_local_negative_offset_lowercase_max_date_time(make_request_json_response):
+    request = build_datetime_get_local_negative_offset_lowercase_max_date_time_request()
+    assert await make_request_json_response(request) == "9999-12-31t23:59:59.999-14:00"
 
-    @pytest.mark.asyncio
-    async def test_put_local_negative_offset_max_date_time(self, client):
-        with pytest.raises(SerializationError):
-            await client.datetime.put_local_negative_offset_max_date_time(
-                isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00"))
+@pytest.mark.asyncio
+async def test_get_local_negative_offset_uppercase_max_date_time(make_request_json_response):
+    request = build_datetime_get_local_negative_offset_uppercase_max_date_time_request()
+    assert await make_request_json_response(request) == "9999-12-31T23:59:59.999-14:00"
+
+@pytest.mark.asyncio
+async def test_local_positive_offset_min_date_time(make_request_json_response, get_serialized_iso):
+    request = build_datetime_get_local_positive_offset_min_date_time_request()
+    assert await make_request_json_response(request) == "0001-01-01T00:00:00+14:00"
+
+    with pytest.raises(SerializationError):
+        build_datetime_put_local_positive_offset_min_date_time_request(json=get_serialized_iso(isodate.parse_datetime("0001-01-01T00:00:00+14:00")))
+
+
+@pytest.mark.asyncio
+async def test_local_positive_offset_max_date_time(make_request_json_response, make_request, get_serialized_iso):
+    request = build_datetime_get_local_positive_offset_lowercase_max_date_time_request()
+    assert await make_request_json_response(request) == "9999-12-31t23:59:59.999+14:00"
+
+    request = build_datetime_get_local_positive_offset_uppercase_max_date_time_request()
+    assert await make_request_json_response(request) == "9999-12-31T23:59:59.999+14:00"
+
+    request = build_datetime_put_local_positive_offset_max_date_time_request(json=get_serialized_iso(isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00")))
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_null(make_request, get_serialized_iso, get_deserialized_iso):
+    request = build_datetime_get_null_request()
+    assert (await make_request(request)).text == ''
+
+@pytest.mark.asyncio
+async def test_get_overflow(make_request_json_response):
+    request = build_datetime_get_overflow_request()
+    assert await make_request_json_response(request) == "9999-12-31T23:59:59.999-14:00"
+
+@pytest.mark.asyncio
+async def test_get_invalid(make_request_json_response):
+    request = build_datetime_get_invalid_request()
+    assert await make_request_json_response(request) == "201O-18-90D00:89:56.9AX"
+
+@pytest.mark.asyncio
+async def test_get_underflow(make_request_json_response):
+    request = build_datetime_get_underflow_request()
+    assert await make_request_json_response(request) == "0000-00-00T00:00:00.000+00:00"
+
+@pytest.mark.asyncio
+async def test_put_local_negative_offset_max_date_time(get_serialized_iso):
+    with pytest.raises(SerializationError):
+        build_datetime_put_local_negative_offset_max_date_time_request(json=get_serialized_iso(isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00")))

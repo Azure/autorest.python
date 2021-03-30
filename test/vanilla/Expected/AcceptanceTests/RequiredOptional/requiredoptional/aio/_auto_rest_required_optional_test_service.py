@@ -64,8 +64,8 @@ class AutoRestRequiredOptionalTestService(object):
         We have helper methods to create requests specific to this service in `requiredoptional.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from requiredoptional.rest import prepare_implicit_get_required_path
-        >>> request = prepare_implicit_get_required_path(path_parameter)
+        >>> from requiredoptional.rest import build_implicit_get_required_path_request
+        >>> request = build_implicit_get_required_path_request(path_parameter)
         <HttpRequest [GET], url: '/reqopt/implicit/required/path/{pathParameter}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -83,8 +83,10 @@ class AutoRestRequiredOptionalTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
+        stream_response = kwargs.pop("stream_response", False)
+        pipeline_response = await self._client._pipeline.run(
+            request_copy._internal_request, stream=stream_response, **kwargs
+        )
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

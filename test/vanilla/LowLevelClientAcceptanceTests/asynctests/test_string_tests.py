@@ -26,22 +26,11 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError, SerializationError
 from azure.core.exceptions import HttpResponseError
 
 from bodystring.aio import AutoRestSwaggerBATService
-from bodystring.models import Colors
-
+from bodystring.models import Colors, RefColorConstant
+from bodystring._rest import *
 import pytest
 
 @pytest.fixture
@@ -50,100 +39,141 @@ async def client():
     async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestString(object):
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request):
+        return await base_make_request(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_null(self, client):
-        assert await client.string.get_null() is None
-        await client.string.put_null(cls=None)
+@pytest.fixture
+def make_request_json_response(client, base_make_request_json_response):
+    async def _make_request(request):
+        return await base_make_request_json_response(client, request)
+    return _make_request
 
-    @pytest.mark.asyncio
-    async def test_empty(self, client):
-        assert "" ==  (await client.string.get_empty())
-        # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
-        await client.string.put_empty()
+@pytest.mark.asyncio
+async def test_null(make_request):
+    request = build_string_get_null_request()
+    assert (await make_request(request)).text == ''
 
-    @pytest.mark.asyncio
-    async def test_mbcs(self, client):
-        try:
-            test_str = (
-                "\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
-                "\x9c\xef\xa7\xb1\xef\xa4\xac\xef\xa7\xb1\xef\xa8\x8c\xef"
-                "\xa8\xa9\xcb\x8a\xe3\x80\x9e\xe3\x80\xa1\xef\xbf\xa4\xe2"
-                "\x84\xa1\xe3\x88\xb1\xe2\x80\x90\xe3\x83\xbc\xef\xb9\xa1"
-                "\xef\xb9\xa2\xef\xb9\xab\xe3\x80\x81\xe3\x80\x93\xe2\x85"
-                "\xb0\xe2\x85\xb9\xe2\x92\x88\xe2\x82\xac\xe3\x88\xa0\xe3"
-                "\x88\xa9\xe2\x85\xa0\xe2\x85\xab\xef\xbc\x81\xef\xbf\xa3"
-                "\xe3\x81\x81\xe3\x82\x93\xe3\x82\xa1\xe3\x83\xb6\xce\x91"
-                "\xef\xb8\xb4\xd0\x90\xd0\xaf\xd0\xb0\xd1\x8f\xc4\x81\xc9"
-                "\xa1\xe3\x84\x85\xe3\x84\xa9\xe2\x94\x80\xe2\x95\x8b\xef"
-                "\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
-                "\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
-                "\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-                "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+    request = build_string_put_null_request(content=None)
+    await make_request(request)
 
-        except AttributeError:
-            test_str = (
-                b"\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
-                b"\x9c\xef\xa7\xb1\xef\xa4\xac\xef\xa7\xb1\xef\xa8\x8c\xef"
-                b"\xa8\xa9\xcb\x8a\xe3\x80\x9e\xe3\x80\xa1\xef\xbf\xa4\xe2"
-                b"\x84\xa1\xe3\x88\xb1\xe2\x80\x90\xe3\x83\xbc\xef\xb9\xa1"
-                b"\xef\xb9\xa2\xef\xb9\xab\xe3\x80\x81\xe3\x80\x93\xe2\x85"
-                b"\xb0\xe2\x85\xb9\xe2\x92\x88\xe2\x82\xac\xe3\x88\xa0\xe3"
-                b"\x88\xa9\xe2\x85\xa0\xe2\x85\xab\xef\xbc\x81\xef\xbf\xa3"
-                b"\xe3\x81\x81\xe3\x82\x93\xe3\x82\xa1\xe3\x83\xb6\xce\x91"
-                b"\xef\xb8\xb4\xd0\x90\xd0\xaf\xd0\xb0\xd1\x8f\xc4\x81\xc9"
-                b"\xa1\xe3\x84\x85\xe3\x84\xa9\xe2\x94\x80\xe2\x95\x8b\xef"
-                b"\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
-                b"\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
-                b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-                b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+@pytest.mark.asyncio
+async def test_empty(make_request, make_request_json_response):
+    request = build_string_get_empty_request()
+    assert "" == await make_request_json_response(request)
+    # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
+    request = build_string_put_empty_request(json="")
+    await make_request(request)
 
-        assert test_str == (await client.string.get_mbcs())
-        await client.string.put_mbcs()
+@pytest.mark.asyncio
+async def test_mbcs(make_request, make_request_json_response):
+    try:
+        test_str = (
+            "\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
+            "\x9c\xef\xa7\xb1\xef\xa4\xac\xef\xa7\xb1\xef\xa8\x8c\xef"
+            "\xa8\xa9\xcb\x8a\xe3\x80\x9e\xe3\x80\xa1\xef\xbf\xa4\xe2"
+            "\x84\xa1\xe3\x88\xb1\xe2\x80\x90\xe3\x83\xbc\xef\xb9\xa1"
+            "\xef\xb9\xa2\xef\xb9\xab\xe3\x80\x81\xe3\x80\x93\xe2\x85"
+            "\xb0\xe2\x85\xb9\xe2\x92\x88\xe2\x82\xac\xe3\x88\xa0\xe3"
+            "\x88\xa9\xe2\x85\xa0\xe2\x85\xab\xef\xbc\x81\xef\xbf\xa3"
+            "\xe3\x81\x81\xe3\x82\x93\xe3\x82\xa1\xe3\x83\xb6\xce\x91"
+            "\xef\xb8\xb4\xd0\x90\xd0\xaf\xd0\xb0\xd1\x8f\xc4\x81\xc9"
+            "\xa1\xe3\x84\x85\xe3\x84\xa9\xe2\x94\x80\xe2\x95\x8b\xef"
+            "\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
+            "\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
+            "\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
+            "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-    @pytest.mark.asyncio
-    async def test_whitespace(self, client):
-        test_str = "    Now is the time for all good men to come to the aid of their country    "
-        assert test_str ==  (await client.string.get_whitespace())
-        await client.string.put_whitespace()
+    except AttributeError:
+        test_str = (
+            b"\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
+            b"\x9c\xef\xa7\xb1\xef\xa4\xac\xef\xa7\xb1\xef\xa8\x8c\xef"
+            b"\xa8\xa9\xcb\x8a\xe3\x80\x9e\xe3\x80\xa1\xef\xbf\xa4\xe2"
+            b"\x84\xa1\xe3\x88\xb1\xe2\x80\x90\xe3\x83\xbc\xef\xb9\xa1"
+            b"\xef\xb9\xa2\xef\xb9\xab\xe3\x80\x81\xe3\x80\x93\xe2\x85"
+            b"\xb0\xe2\x85\xb9\xe2\x92\x88\xe2\x82\xac\xe3\x88\xa0\xe3"
+            b"\x88\xa9\xe2\x85\xa0\xe2\x85\xab\xef\xbc\x81\xef\xbf\xa3"
+            b"\xe3\x81\x81\xe3\x82\x93\xe3\x82\xa1\xe3\x83\xb6\xce\x91"
+            b"\xef\xb8\xb4\xd0\x90\xd0\xaf\xd0\xb0\xd1\x8f\xc4\x81\xc9"
+            b"\xa1\xe3\x84\x85\xe3\x84\xa9\xe2\x94\x80\xe2\x95\x8b\xef"
+            b"\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
+            b"\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
+            b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
+            b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-    @pytest.mark.asyncio
-    async def test_get_not_provided(self, client):
-        assert await client.string.get_not_provided() is None
+    request = build_string_get_mbcs_request()
+    assert test_str == await make_request_json_response(request)
 
-    @pytest.mark.asyncio
-    async def test_enum_not_expandable(self, client):
-        assert Colors.RED_COLOR ==  (await client.enum.get_not_expandable())
-        await client.enum.put_not_expandable('red color')
-        await client.enum.put_not_expandable(Colors.RED_COLOR)
-        with pytest.raises(HttpResponseError):
-            await client.enum.put_not_expandable('not a colour')
+    request = build_string_put_mbcs_request(content=test_str)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_base64_encdoded(self, client):
-        assert (await client.string.get_base64_encoded()) ==  'a string that gets encoded with base64'.encode()
+@pytest.mark.asyncio
+async def test_whitespace(make_request, make_request_json_response):
+    test_str = "    Now is the time for all good men to come to the aid of their country    "
+    request = build_string_get_whitespace_request()
+    assert test_str == await make_request_json_response(request)
 
-    @pytest.mark.asyncio
-    async def test_base64_url_encoded(self, client):
-        assert (await client.string.get_base64_url_encoded()) ==  'a string that gets encoded with base64url'.encode()
-        await client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
+    request = build_string_put_whitespace_request(json=test_str)
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_get_null_base64_url_encoded(self, client):
-        assert (await client.string.get_null_base64_url_encoded()) is None
+@pytest.mark.asyncio
+async def test_get_not_provided(make_request):
+    request = build_string_get_not_provided_request()
+    assert (await make_request(request)).text == ''
 
-    @pytest.mark.asyncio
-    async def test_enum_referenced(self, client):
-        await client.enum.put_referenced(Colors.RED_COLOR)
-        await client.enum.put_referenced("red color")
+@pytest.mark.asyncio
+async def test_enum_not_expandable(make_request, make_request_json_response):
+    request = build_enum_get_not_expandable_request()
+    assert Colors.RED_COLOR == await make_request_json_response(request)
 
-        assert (await client.enum.get_referenced()) ==  Colors.RED_COLOR
+    request = build_enum_put_not_expandable_request(json='red color')
+    await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_enum_referenced_constant(self, client):
-        await client.enum.put_referenced_constant()
-        assert (await client.enum.get_referenced_constant()).color_constant ==  Colors.GREEN_COLOR.value
+    request = build_enum_put_not_expandable_request(json=Colors.RED_COLOR)
+    await make_request(request)
+    # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
+    # but now we allow the user to pass strings as enums, so the raised exception is different.
 
-    def test_patch_file(self):
-        from bodystring.models import PatchAddedModel
+    request = build_enum_put_not_expandable_request(json='not a color')
+    with pytest.raises(HttpResponseError):
+        await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_base64_encdoded(make_request):
+    request = build_string_get_base64_encoded_request()
+    assert (await make_request(request)).text.encode() ==  'a string that gets encoded with base64'.encode()
+
+@pytest.mark.asyncio
+async def test_base64_url_encoded(make_request, make_request_json_response):
+    request = build_string_get_base64_url_encoded_request()
+    assert await make_request_json_response(request) ==  'a string that gets encoded with base64url'.encode()
+
+    request = build_string_put_base64_url_encoded_request(content='a string that gets encoded with base64url'.encode())
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_get_null_base64_url_encoded(make_request):
+    request = build_string_get_null_base64_url_encoded_request()
+    assert (await make_request(request)).text == ''
+
+@pytest.mark.asyncio
+async def test_enum_referenced(make_request, make_request_json_response):
+    request = build_enum_put_referenced_request(json=Colors.RED_COLOR)
+    await make_request(request)
+
+    request = build_enum_put_referenced_request(json="red color")
+    await make_request(request)
+
+    request = build_enum_get_referenced_request()
+    assert await make_request_json_response(request) == Colors.RED_COLOR
+
+@pytest.mark.asyncio
+async def test_enum_referenced_constant(make_request, make_request_json_response):
+    request = build_enum_put_referenced_request(json=RefColorConstant().serialize())
+    await make_request(request)
+
+    request = build_enum_get_referenced_constant_request()
+    response = RefColorConstant.deserialize(await make_request_json_response(request))
+    assert response.color_constant ==  Colors.GREEN_COLOR.value
