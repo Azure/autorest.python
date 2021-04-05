@@ -36,16 +36,17 @@ class Client:
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
         file_import.add_from_import("msrest", "Deserializer", ImportType.AZURECORE)
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
         if async_mode:
             file_import.add_from_import(
-                "azure.core.rest", "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
+                core_import, "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         else:
             file_import.add_from_import(
-                "azure.core.rest", "HttpResponse", ImportType.AZURECORE
+                core_import, "HttpResponse", ImportType.AZURECORE
             )
         file_import.add_from_import(
-            "azure.core.rest", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
+            core_import, "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
         any_optional_gp = any(not gp.required for gp in self.parameters)
 

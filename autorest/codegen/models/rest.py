@@ -19,10 +19,10 @@ class Rest(BaseModel):
         super(Rest, self). __init__(yaml_data=yaml_data)
         self.request_builders = request_builders
 
-    def imports(self) -> FileImport:
+    def imports(self, code_model) -> FileImport:
         file_import = FileImport()
         for request_builder in self.request_builders:
-            file_import.merge(request_builder.imports())
+            file_import.merge(request_builder.imports(code_model))
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
         return file_import
 

@@ -78,7 +78,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% endif %}
 
     {% set http_response = keywords.async_class + "HttpResponse" %}
-    {{ keywords.def }} {{ "_" if not code_model.options["johan"] }}send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
+    {{ keywords.def }} {{ "_" if not code_model.low_level_client }}send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
         {% if not async_mode %}
         # type: (HttpRequest, Any) -> {{ http_response }}
         {% endif %}
@@ -89,6 +89,7 @@ class {{ code_model.class_name }}({{ base_class }}):
 
         {% set request_builder = code_model.rest.request_builders[0] %}
         {% set request_builder_signature = request_builder.parameters.method|join(', ', attribute='serialized_name') %}
+        {% set core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest" %}
         >>> from {{ code_model.namespace }}.rest import {{ request_builder.name }}
         >>> request = {{ request_builder.name }}({{ request_builder_signature }})
         <HttpRequest [{{ request_builder.method }}], url: '{{ request_builder.url }}'>
@@ -97,14 +98,14 @@ class {{ code_model.class_name }}({{ base_class }}):
 
         For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
 
-        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
+        For advanced cases, you can also create your own :class:`~{{ core_import }}.HttpRequest`
         and pass it in.
 
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.rest.HttpRequest
+        :type http_request: ~{{ core_import }}.HttpRequest
         :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.rest.{{ http_response }}
+        :rtype: ~{{ core_import }}.{{ http_response }}
         """
         request_copy = deepcopy(http_request)
         {% if code_model.global_parameters.path %}

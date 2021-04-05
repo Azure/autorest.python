@@ -190,7 +190,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         file_import.add_from_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Generic", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
-        file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
+        core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
+        file_import.add_from_import(core_import, "HttpRequest", ImportType.AZURECORE)
         if async_mode:
             file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:

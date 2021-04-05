@@ -77,13 +77,14 @@ class RequestBuilder(BaseModel):
         except ValueError:
             return False
 
-    def imports(self) -> FileImport:
+    def imports(self, code_model) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
+        core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
         file_import.add_from_import(
-            "azure.core.rest",
+            core_import,
             "HttpRequest",
             ImportType.AZURECORE,
         )
