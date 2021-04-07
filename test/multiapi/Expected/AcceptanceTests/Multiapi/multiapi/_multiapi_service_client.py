@@ -92,11 +92,15 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def models(cls, api_version=DEFAULT_API_VERSION):
         """Module depends on the API version:
 
+           * 0.0.0: :mod:`v0.models<multiapi.v0.models>`
            * 1.0.0: :mod:`v1.models<multiapi.v1.models>`
            * 2.0.0: :mod:`v2.models<multiapi.v2.models>`
            * 3.0.0: :mod:`v3.models<multiapi.v3.models>`
         """
-        if api_version == '1.0.0':
+        if api_version == '0.0.0':
+            from .v0 import models
+            return models
+        elif api_version == '1.0.0':
             from .v1 import models
             return models
         elif api_version == '2.0.0':
@@ -111,12 +115,15 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def operation_group_one(self):
         """Instance depends on the API version:
 
+           * 0.0.0: :class:`OperationGroupOneOperations<multiapi.v0.operations.OperationGroupOneOperations>`
            * 1.0.0: :class:`OperationGroupOneOperations<multiapi.v1.operations.OperationGroupOneOperations>`
            * 2.0.0: :class:`OperationGroupOneOperations<multiapi.v2.operations.OperationGroupOneOperations>`
            * 3.0.0: :class:`OperationGroupOneOperations<multiapi.v3.operations.OperationGroupOneOperations>`
         """
         api_version = self._get_api_version('operation_group_one')
-        if api_version == '1.0.0':
+        if api_version == '0.0.0':
+            from .v0.operations import OperationGroupOneOperations as OperationClass
+        elif api_version == '1.0.0':
             from .v1.operations import OperationGroupOneOperations as OperationClass
         elif api_version == '2.0.0':
             from .v2.operations import OperationGroupOneOperations as OperationClass
