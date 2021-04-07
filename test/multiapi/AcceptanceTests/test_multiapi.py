@@ -104,6 +104,15 @@ def test_credential_scopes_override(credential):
     with MultiapiServiceClient(credential=credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
         assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]
 
+@pytest.mark.parametrize('api_version', ["0.0.0"])
+def test_only_operation_groups(client):
+    assert client.operation_group_one.test_two  # this is the only function it has access to.
+    with pytest.raises(ValueError):
+        # make sure it doesn't have access to the other operation group
+        client.operation_group_two
+    # check that it doesn't have access to a mixin operation
+    with pytest.raises(ValueError):
+        client.test_one("1", "hello")
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
 
