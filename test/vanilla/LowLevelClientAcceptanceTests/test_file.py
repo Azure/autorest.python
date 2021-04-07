@@ -46,25 +46,26 @@ def make_stream_request(client, base_make_stream_request):
     return _make_request
 
 @pytest.mark.parametrize('connection_data_block_size', [1000])
-def test_get_file(make_stream_request):
+def test_get_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
         request = build_files_get_file_request()
-        stream = make_stream_request(request)
-        total = len(stream)
-        assert not stream.response.internal_response._content_consumed
-
-        for data in stream:
-            assert 0 < len(data) <= stream.block_size
-            file_length += len(data)
-            print("Downloading... {}%".format(int(file_length*100/total)))
-            file_handle.write(data)
+        with client._send_request(request, stream_response=True) as response:
+            assert not response._internal_response.internal_response._content_consumed
+            assert not response.is_closed
+            assert not response.is_stream_consumed
+            for data in response.iter_raw():
+                # assert 0 < len(data) <= stream.block_size
+                file_length += len(data)
+                file_handle.write(data)
 
         assert file_length !=  0
-
+        assert response.is_closed
+        assert response.is_stream_consumed
+        assert response._internal_response.internal_response._content_consumed
         sample_file = realpath(
-            join(cwd, pardir, pardir, pardir,
-                "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+        join(cwd, pardir, pardir, pardir,
+            "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
         with open(sample_file, 'rb') as data:
             sample_data = hash(data.read())

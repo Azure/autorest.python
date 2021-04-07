@@ -65,8 +65,8 @@ class {{ code_model.class_name }}({{ base_class }}):
             {% else %}
         client_models = {}  # type: Dict[str, Any]
             {% endif %}
+        self._serialize = Serializer({{ "client_models" if code_model.sorted_schemas }})
         self._deserialize = Deserializer(client_models)
-
             {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
         self.{{ operation_group.name }} = {{ operation_group.class_name }}(
             self._client, self._config, self._serialize, self._deserialize)
@@ -114,8 +114,12 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% else %}
         request_copy.url = self._client.format_url(request_copy.url)
         {% endif %}
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _{{ keywords.async_class }}StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return {{ keywords.async_class }}HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
