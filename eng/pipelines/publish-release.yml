@@ -2,63 +2,115 @@
 trigger: none
 pr: none
 
-pool:
-  vmImage: 'ubuntu-latest'
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      name: Azure/azure-sdk-tools
+      endpoint: azure
+    - repository: azure-sdk-for-python
+      type: github
+      name: Azure/azure-sdk-for-python
+      endpoint: azure
+    - repository: azure-sdk-build-tools
+      type: git
+      name: internal/azure-sdk-build-tools
 
-variables:
-  NodeVersion: '12.x'
-  TestFolder: '$(Build.SourcesDirectory)/test/'
+stages:
+  - stage: 'Release'
+    jobs:
+      - job: Release
+        pool:
+          vmImage: 'ubuntu-latest'
 
-steps:
-  - task: NodeTool@0
-    displayName: 'Install Node.js $(NodeVersion)'
-    inputs:
-      versionSpec: '$(NodeVersion)'
+        variables:
+          NodeVersion: '12.x'
+          TestFolder: '$(Build.SourcesDirectory)/test/'
 
-  - task: UsePythonVersion@0
-    displayName: 'Use Python 3.6'
-    inputs:
-      versionSpec: 3.6
+        steps:
+          - task: NodeTool@0
+            displayName: 'Install Node.js $(NodeVersion)'
+            inputs:
+              versionSpec: '$(NodeVersion)'
 
-  - script: |
-      cd $(Build.SourcesDirectory)
-      pip install -r dev_requirements.txt
-      npm install -g autorest
-      npm install
-    displayName: 'Prepare Environment for Generation'
+          - task: UsePythonVersion@0
+            displayName: 'Use Python 3.6'
+            inputs:
+              versionSpec: 3.6
 
-  - script: |
-      pylint autorest
-    displayName: 'Pylint'
+          - script: |
+              cd $(Build.SourcesDirectory)
+              pip install -r dev_requirements.txt
+              npm install -g autorest
+              npm install
+            displayName: 'Prepare Environment for Generation'
 
-  - script: |
-      mypy autorest
-    displayName: 'Mypy'
+          - script: |
+              pylint autorest
+            displayName: 'Pylint'
 
-  - script: |
-      pytest test/unittests
-    displayName: 'Unit tests'
+          - script: |
+              mypy autorest
+            displayName: 'Mypy'
 
-  - script: |
-      inv regenerate
-    displayName: 'Regenerate Code'
+          - script: |
+              pytest test/unittests
+            displayName: 'Unit tests'
 
-  - script: |
-      pip install tox coverage==4.5.4
-    displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
+          - script: |
+              inv regenerate
+            displayName: 'Regenerate Code'
 
-  - script: |
-      cd $(TestFolder)/azure
-      tox -e ci
-    displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+          - script: |
+              pip install tox coverage==4.5.4
+            displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
 
-  - script: |
-      export RELEASE_VERSION=$(node -p -e "require('./package.json').version")
-      npm pack
-      npx publish-release --token $(azuresdk-github-pat) --repo autorest.python --owner azure --name "Autorest for Python v$RELEASE_VERSION" --tag v$RELEASE_VERSION --notes='Release version of Autorest for Python v5' --prerelease --editRelease false --assets autorest-python-$RELEASE_VERSION.tgz --target_commitish $(Build.SourceBranchName)
-    displayName: 'Publish GitHub release'
+          - script: |
+              cd $(TestFolder)/azure
+              tox -e ci
+            displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
 
-  - script: |
-      echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
-      npm publish --access public
-    displayName: 'Publish to npm'
+          - script: |
+              export RELEASE_VERSION=$(node -p -e "require('./package.json').version")
+              npm pack
+              npx publish-release --token $(azuresdk-github-pat) --repo autorest.python --owner azure --name "Autorest for Python v$RELEASE_VERSION" --tag v$RELEASE_VERSION --notes='Release version of Autorest for Python v5' --prerelease --editRelease false --assets autorest-python-$RELEASE_VERSION.tgz --target_commitish $(Build.SourceBranchName)
+            displayName: 'Publish GitHub release'
+
+          - script: |
+              echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc
+              npm publish --access public
+            displayName: 'Publish to npm'
+
+  - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
+    - stage: 'Update_azure_sdk_for_python'
+      dependsOn:
+        - 'Release'
+      jobs:
+        - job: Update
+          pool:
+            vmImage: ubuntu-20.04
+          variables:
+            AutorestPythonVersion: $RELEASE_VERSION
+          steps:
+            - checkout: self
+            - checkout: azure-sdk-for-python
+            - checkout: azure-sdk-tools
+            - script: |
+                cd ..
+                python ./eng/update_azure_sdk_for_python.py --sdk-repo-root $(Build.SourcesDirectory)/azure-sdk-for-python
+              displayName: 'Update Generated Code'
+            # - pwsh: ./eng/UpdateAzureSdkForNet.ps1 -Version $(RELEASE_VERSION) -SdkRepoRoot $(Build.SourcesDirectory)/azure-sdk-for-python
+            #   failOnStderr: false
+            #   workingDirectory: $(Build.SourcesDirectory)/autorest.csharp
+            #   displayName: 'Update generator version in Azure SDK repo'
+            - template: /eng/common/pipelines/templates/steps/create-pull-request.yml@azure-sdk-tools
+              parameters:
+                BaseBranchName: master
+                RepoName: azure-sdk-for-python
+                PRBranchName: auto-update-autorest
+                CommitMsg: Update AutoRest Python version to $(AutorestPythonVersion)
+                PRBody: Update AutoRest Python version to $(AutorestPythonVersion)
+                PRTitle:  Update AutoRest Python version
+                PushArgs: -f
+                WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+                ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-tools/eng/common/scripts
