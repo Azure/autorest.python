@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import json
 from typing import Any, Dict, Optional
 from .parameter import Parameter, ParameterLocation, ParameterStyle
 from .constant_schema import ConstantSchema
@@ -71,6 +72,12 @@ class RequestBuilderParameter(Parameter):
     @property
     def full_serialized_name(self) -> str:
         return self.serialized_name
+
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        """Creates a JSON template for the body that users of the LLC SDK can use to create their JSON body"""
+        if not self.is_body:
+            raise ValueError("This parameter is not a body parameter. Should not call this property on it.")
+        return json.dumps(self.schema.get_json_template_representation(**kwargs), sort_keys=True, indent=4)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestBuilderParameter":

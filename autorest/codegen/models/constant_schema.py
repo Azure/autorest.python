@@ -83,6 +83,9 @@ class ConstantSchema(BaseSchema):
             value=yaml_data.get("value", {}).get("value", None),
         )
 
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return self.schema.get_json_template_representation(**kwargs)
+
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.schema.imports())

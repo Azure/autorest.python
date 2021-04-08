@@ -10,7 +10,7 @@
     {{ request_builder.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
     {% endif %}
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     {% if request_builder.deprecated -%}
     .. warning::
@@ -24,6 +24,14 @@
     :return: Returns an :class:`~{{ core_import }}.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~{{ core_import }}.HttpRequest
+    {% if request_builder.parameters.has_body and "json" in request_builder.parameters.body_kwarg_names %}
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {{ request_builder.parameters.body[0].get_json_template_representation() | indent(12)}}
+    {% endif %}
     """
 {% if not is_python_3_file %}
     {% if request_builder.parameters.kwargs_to_pop %}

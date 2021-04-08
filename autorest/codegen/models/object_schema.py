@@ -75,6 +75,15 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         # but we don't want to write a serialization context for an object.
         return super().xml_serialization_ctxt()
 
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return {
+            "{}".format(
+                prop.original_swagger_name if prop.
+            ): prop.get_json_template_representation(**kwargs)
+            for prop in self.properties
+        }
+
+
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
         """Returns a ClassType from the dict object constructed from a yaml file.

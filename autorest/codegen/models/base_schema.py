@@ -127,3 +127,9 @@ class BaseSchema(BaseModel, ABC):
     @property
     def serialization_constraints(self) -> Optional[List[str]]:  # pylint: disable=no-self-use
         return None
+
+    @abstractmethod
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        """Template of what this schema would look like as JSON input
+        """
+        ...

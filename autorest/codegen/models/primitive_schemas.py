@@ -21,6 +21,14 @@ class RawString(object):
     def __repr__(self) -> str:
         return "r'{}'".format(self.string.replace('\'', '\\\''))
 
+def _add_optional_and_default_value_to_json_template_representation(
+    representation: str, *, optional: bool = True, default_value_declaration: Optional[str] = None
+):
+    if optional:
+        representation += " (optional)"
+    if default_value_declaration and default_value_declaration != "None":  # not doing None bc that's assumed
+        representation += f". Default value is {default_value_declaration}"
+    return representation
 
 class PrimitiveSchema(BaseSchema):
     _TYPE_MAPPINGS = {
@@ -45,6 +53,12 @@ class PrimitiveSchema(BaseSchema):
     @property
     def docstring_text(self) -> str:
         return self.docstring_type
+
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return _add_optional_and_default_value_to_json_template_representation(
+            representation=self.docstring_text,
+            **kwargs
+        )
 
 class IOSchema(PrimitiveSchema):
 
@@ -73,6 +87,9 @@ class IOSchema(PrimitiveSchema):
         file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        raise TypeError("No JSON representation of IOSchema")
+
 class AnySchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
@@ -94,7 +111,6 @@ class AnyObjectSchema(PrimitiveSchema):
     @property
     def docstring_type(self) -> str:
         return "object"
-
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
@@ -156,7 +172,6 @@ class NumberSchema(PrimitiveSchema):
         if python_type == "long":
             return "int"
         return python_type
-
 
 class StringSchema(PrimitiveSchema):
 

@@ -61,6 +61,9 @@ class ListSchema(BaseSchema):
     def has_xml_serialization_ctxt(self) -> bool:
         return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
 
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return [self.element_type.get_json_template_representation(**kwargs)]
+
     def xml_serialization_ctxt(self) -> Optional[str]:
         attrs_list = []
         base_xml_map = super().xml_serialization_ctxt()
