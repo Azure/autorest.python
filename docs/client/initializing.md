@@ -6,7 +6,7 @@ that the client is the main point of access to the generated code.
 ## Importing Your Client
 
 You import your client from the namespace specified when generating (under flag `--namespace`). For the sake of this example,
-let's say the namespace is `azure.pets`. Your client's name is detailed in the swagger, (TODO link to swagger docs), and let's say
+let's say the namespace is `azure.pets`. Your client's name is detailed in the swagger, and let's say
 ours is called `PetsClient`.
 
 Putting this together, we import our client like so:
