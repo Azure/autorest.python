@@ -69,14 +69,20 @@
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
-    {% if constant_parameter.serialized_name == "content_type" %}
-    content_type = kwargs.pop("content_type", {{ constant_parameter.constant_declaration }})
+    {% if constant_parameter.is_kwarg and constant_parameter.rest_api_name == "Constant-Type" %}
+    {{ constant_parameter.serialized_name }} = kwargs.pop("content_type", {{ constant_parameter.constant_declaration }})
     {% else %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endif %}
     {% endfor %}
 {% endif %}
 
+{% if operation.parameters.has_body %}
+    {% set content_type_parameter = operation.parameters.content_type_parameter %}
+    {% if not content_type_parameter.constant %}
+    {{ content_type_parameter.serialized_name }} = kwargs.pop("content_type", {{ content_type_parameter.schema.default_value_declaration }})
+    {% endif %}
+{% endif %}
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
 {% if operation.parameters.path %}
