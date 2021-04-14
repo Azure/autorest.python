@@ -1536,9 +1536,9 @@ class LROsOperations:
     async def begin_put_async_no_header_in_retry(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> AsyncLROPoller["_models.Product"]:
-        """Long running put request, service returns a 202 to the initial request with Azure-
-        AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation
-        header.
+        """Long running put request, service returns a 202 to the initial request with
+        Azure-AsyncOperation header. Subsequent calls to operation status do not contain
+        Azure-AsyncOperation header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product

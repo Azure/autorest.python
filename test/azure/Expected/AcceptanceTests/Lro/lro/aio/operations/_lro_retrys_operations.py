@@ -208,8 +208,8 @@ class LRORetrysOperations:
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
-        AsyncOperation header for operation status.
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -666,8 +666,8 @@ class LRORetrysOperations:
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
-        AsyncOperation header for operation status.
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product

@@ -96,8 +96,8 @@ class SubscriptionInMethodOperations:
 
     @distributed_trace_async
     async def post_method_local_null(self, subscription_id: str, **kwargs) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-
-        side validation should prevent you from making this call.
+        """POST method with subscriptionId modeled in the method.  pass in subscription id = null,
+        client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
          validation should prvenet the call.

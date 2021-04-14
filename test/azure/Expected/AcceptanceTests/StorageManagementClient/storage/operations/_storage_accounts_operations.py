@@ -65,8 +65,8 @@ class StorageAccountsOperations(object):
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult, or the result of cls(response)
@@ -188,8 +188,8 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
@@ -263,8 +263,8 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -320,8 +320,8 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
@@ -388,8 +388,8 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
@@ -656,8 +656,8 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :param key_name:
         :type key_name: str or ~storage.models.KeyName
