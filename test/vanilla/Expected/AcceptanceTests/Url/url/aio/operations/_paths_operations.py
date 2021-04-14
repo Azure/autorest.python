@@ -1136,8 +1136,8 @@ class PathsOperations:
 
     @distributed_trace_async
     async def array_csv_in_path(self, array_path: List[str], **kwargs) -> None:
-        """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
-        array format.
+        """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format.

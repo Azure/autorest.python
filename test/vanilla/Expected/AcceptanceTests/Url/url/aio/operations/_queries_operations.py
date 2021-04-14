@@ -1194,8 +1194,8 @@ class QueriesOperations:
 
     @distributed_trace_async
     async def array_string_csv_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
-        array format.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the csv-array format.
@@ -1365,8 +1365,8 @@ class QueriesOperations:
 
     @distributed_trace_async
     async def array_string_ssv_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-
-        array format.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the ssv-array format.
@@ -1409,8 +1409,8 @@ class QueriesOperations:
 
     @distributed_trace_async
     async def array_string_tsv_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-
-        array format.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the tsv-array format.

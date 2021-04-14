@@ -25,9 +25,9 @@ class {{ model.name }}(msrest.serialization.Model):
     {% if model.properties != None %}
         {% for p in model.properties %}
             {% for doc_string in prop_documentation_string(p).replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ') }}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
             {% endfor %}
-    {{ prop_type_documentation_string(p) | wordwrap(width=95, break_long_words=False, wrapstring='\n     ') }}
+    {{ prop_type_documentation_string(p) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
         {% endfor %}
     {% endif %}
     """

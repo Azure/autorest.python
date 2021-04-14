@@ -1620,9 +1620,9 @@ class LROsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller["_models.Product"]
-        """Long running put request, service returns a 202 to the initial request with Azure-
-        AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation
-        header.
+        """Long running put request, service returns a 202 to the initial request with
+        Azure-AsyncOperation header. Subsequent calls to operation status do not contain
+        Azure-AsyncOperation header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product

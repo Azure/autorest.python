@@ -1255,8 +1255,8 @@ class PagingOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Iterable["_models.ProductResultValueWithXMSClientName"]
-        """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
-        name 'indexes'.
+        """A paging operation that returns a paging model whose item name is is overriden by
+        x-ms-client-name 'indexes'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result of cls(response)
