@@ -78,7 +78,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return {
             "{}".format(
-                prop.original_swagger_name if prop.
+                prop.original_swagger_name
             ): prop.get_json_template_representation(**kwargs)
             for prop in self.properties
         }

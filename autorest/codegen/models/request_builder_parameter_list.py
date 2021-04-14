@@ -49,7 +49,8 @@ class RequestBuilderParameterList(ParameterList):
         returned_bodies = []
         if body_kwargs:
             if "application/json" in self.content_types:
-                returned_bodies.append(_copy_body_param("json", body_kwargs[0]))
+                self.json_body = _copy_body_param("json", body_kwargs[0])
+                returned_bodies.append(self.json_body)
         for body_kwarg in body_kwargs:
             if body_kwarg.is_multipart and body_kwarg.is_partial_body and "files" not in seen_bodies:
                 seen_bodies.add("files")
@@ -71,8 +72,6 @@ class RequestBuilderParameterList(ParameterList):
             returned_bodies.append(_copy_body_param("content", body_kwargs[0]))
         return returned_bodies
 
-
-
     @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature. Includes both positional and kwargs
@@ -87,7 +86,6 @@ class RequestBuilderParameterList(ParameterList):
             lambda parameter: parameter.implementation == self.implementation or parameter.in_method_code
         )
         body_kwargs = []
-        seen_bodies: OrderedSet[str] = {}
         seen_content_type = False
 
         for parameter in parameters:
