@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-04-07 - 5.6.5
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix regression in multiapi generation for multiapi versions without mixin operations  #928
+
 ### 2021-03-01 - 5.6.4
 
 min Autorest core version: 3.1.0
