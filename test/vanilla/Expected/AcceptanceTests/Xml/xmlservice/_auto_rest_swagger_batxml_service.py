@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
-from .operations import XmlOperations
+from .operations import xmlOperations
 from . import models
 
 
 class AutoRestSwaggerBATXMLService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar xml: XmlOperations operations
-    :vartype xml: xmlservice.operations.XmlOperations
+    :ivar xml: xmlOperations operations
+    :vartype xml: xmlservice.operations.xmlOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -46,10 +46,10 @@ class AutoRestSwaggerBATXMLService(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.xml = XmlOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.xml = xmlOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -58,8 +58,8 @@ class AutoRestSwaggerBATXMLService(object):
         We have helper methods to create requests specific to this service in `xmlservice.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from xmlservice.rest import build_xml_get_complex_type_ref_no_meta_request
-        >>> request = build_xml_get_complex_type_ref_no_meta_request()
+        >>> from xmlservice.rest import build_get_complex_type_ref_no_meta_request
+        >>> request = build_get_complex_type_ref_no_meta_request()
         <HttpRequest [GET], url: '/xml/complex-type-ref-no-meta'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,8 +77,12 @@ class AutoRestSwaggerBATXMLService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

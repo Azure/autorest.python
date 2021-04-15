@@ -6,12 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._paths_operations import PathsOperations
-from ._queries_operations import QueriesOperations
-from ._path_items_operations import PathItemsOperations
+from ._paths_operations import pathsOperations
+from ._queries_operations import queriesOperations
+from ._path_items_operations import path_itemsOperations
 
 __all__ = [
-    "PathsOperations",
-    "QueriesOperations",
-    "PathItemsOperations",
+    "pathsOperations",
+    "queriesOperations",
+    "path_itemsOperations",
 ]

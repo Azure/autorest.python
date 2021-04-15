@@ -118,6 +118,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         kwargs["optional"] = not self.required
         kwargs["default_value_declaration"] = self.default_value_declaration
+        try:
+            if self.schema.name == kwargs.pop("object_schema_name", ""):
+                return f"..."
+        except AttributeError:
+            pass
         return self.schema.get_json_template_representation(**kwargs)
 
     def model_file_imports(self) -> FileImport:

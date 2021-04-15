@@ -10,19 +10,19 @@ from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterFlatteningConfiguration
-from .operations import AvailabilitySetsOperations
+from .operations import availability_setsOperations
 from .. import models
 
 
 class AutoRestParameterFlattening(object):
     """Resource Flattening for AutoRest.
 
-    :ivar availability_sets: AvailabilitySetsOperations operations
-    :vartype availability_sets: parameterflattening.aio.operations.AvailabilitySetsOperations
+    :ivar availability_sets: availability_setsOperations operations
+    :vartype availability_sets: parameterflattening.aio.operations.availability_setsOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -35,12 +35,12 @@ class AutoRestParameterFlattening(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.availability_sets = AvailabilitySetsOperations(
+        self.availability_sets = availability_setsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -48,8 +48,8 @@ class AutoRestParameterFlattening(object):
         We have helper methods to create requests specific to this service in `parameterflattening.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from parameterflattening.rest import build_availabilitysets_update_request
-        >>> request = build_availabilitysets_update_request(resource_group_name, avset, json, content)
+        >>> from parameterflattening.rest import build_update_request
+        >>> request = build_update_request(resource_group_name, avset, json, content)
         <HttpRequest [PATCH], url: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -67,10 +67,12 @@ class AutoRestParameterFlattening(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = await self._client._pipeline.run(
-            request_copy._internal_request, stream=stream_response, **kwargs
-        )
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

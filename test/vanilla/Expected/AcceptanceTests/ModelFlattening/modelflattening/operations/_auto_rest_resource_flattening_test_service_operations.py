@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
+class modelOperations(object):
     @distributed_trace
     def put_array(
         self,

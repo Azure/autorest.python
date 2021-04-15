@@ -10,25 +10,25 @@ from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
-from .operations import PathsOperations
-from .operations import QueriesOperations
-from .operations import PathItemsOperations
+from .operations import pathsOperations
+from .operations import queriesOperations
+from .operations import path_itemsOperations
 from .. import models
 
 
 class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar paths: PathsOperations operations
-    :vartype paths: url.aio.operations.PathsOperations
-    :ivar queries: QueriesOperations operations
-    :vartype queries: url.aio.operations.QueriesOperations
-    :ivar path_items: PathItemsOperations operations
-    :vartype path_items: url.aio.operations.PathItemsOperations
+    :ivar paths: pathsOperations operations
+    :vartype paths: url.aio.operations.pathsOperations
+    :ivar queries: queriesOperations operations
+    :vartype queries: url.aio.operations.queriesOperations
+    :ivar path_items: path_itemsOperations operations
+    :vartype path_items: url.aio.operations.path_itemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
     :param global_string_query: should contain value null.
@@ -52,10 +52,10 @@ class AutoRestUrlTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-
-        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = pathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.queries = queriesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.path_items = path_itemsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -63,8 +63,8 @@ class AutoRestUrlTestService(object):
         We have helper methods to create requests specific to this service in `url.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from url.rest import build_paths_get_boolean_true_request
-        >>> request = build_paths_get_boolean_true_request()
+        >>> from url.rest import build_get_boolean_true_request
+        >>> request = build_get_boolean_true_request()
         <HttpRequest [GET], url: '/paths/bool/true/{boolPath}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -82,10 +82,12 @@ class AutoRestUrlTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = await self._client._pipeline.run(
-            request_copy._internal_request, stream=stream_response, **kwargs
-        )
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

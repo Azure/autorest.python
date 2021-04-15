@@ -28,8 +28,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HttpSuccessOperations:
-    """HttpSuccessOperations async operations.
+class http_successOperations:
+    """http_successOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +63,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpsuccess_head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request = build_head200_request(template_url=self.head200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -93,7 +93,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpsuccess_get200_request(template_url=self.get200.metadata["url"], **kwargs)
+        request = build_get200_request(template_url=self.get200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -127,7 +127,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpsuccess_options200_request(template_url=self.options200.metadata["url"], **kwargs)
+        request = build_options200_request(template_url=self.options200.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -170,7 +170,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_put200_request(
+        request = build_put200_request(
             content=content, content_type=content_type, template_url=self.put200.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -211,7 +211,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_patch200_request(
+        request = build_patch200_request(
             content=content, content_type=content_type, template_url=self.patch200.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -252,7 +252,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_post200_request(
+        request = build_post200_request(
             content=content, content_type=content_type, template_url=self.post200.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -293,7 +293,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_delete200_request(
+        request = build_delete200_request(
             content=content, content_type=content_type, template_url=self.delete200.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -334,7 +334,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_put201_request(
+        request = build_put201_request(
             content=content, content_type=content_type, template_url=self.put201.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -375,7 +375,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_post201_request(
+        request = build_post201_request(
             content=content, content_type=content_type, template_url=self.post201.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -416,7 +416,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_put202_request(
+        request = build_put202_request(
             content=content, content_type=content_type, template_url=self.put202.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -457,7 +457,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_patch202_request(
+        request = build_patch202_request(
             content=content, content_type=content_type, template_url=self.patch202.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -498,7 +498,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_post202_request(
+        request = build_post202_request(
             content=content, content_type=content_type, template_url=self.post202.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -539,7 +539,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_delete202_request(
+        request = build_delete202_request(
             content=content, content_type=content_type, template_url=self.delete202.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -571,7 +571,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpsuccess_head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request = build_head204_request(template_url=self.head204.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -610,7 +610,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_put204_request(
+        request = build_put204_request(
             content=content, content_type=content_type, template_url=self.put204.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -651,7 +651,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_patch204_request(
+        request = build_patch204_request(
             content=content, content_type=content_type, template_url=self.patch204.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -692,7 +692,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_post204_request(
+        request = build_post204_request(
             content=content, content_type=content_type, template_url=self.post204.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -733,7 +733,7 @@ class HttpSuccessOperations:
         else:
             content = None
 
-        request = build_httpsuccess_delete204_request(
+        request = build_delete204_request(
             content=content, content_type=content_type, template_url=self.delete204.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -765,7 +765,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpsuccess_head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request = build_head404_request(template_url=self.head404.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

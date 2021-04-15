@@ -28,8 +28,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PetsOperations:
-    """PetsOperations async operations.
+class petsOperations:
+    """petsOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -69,7 +69,7 @@ class PetsOperations:
         content = self._serialize.body(create_parameters, "PetAPTrue")
         content = json.dumps(content)
 
-        request = build_pets_create_ap_true_request(
+        request = build_create_ap_true_request(
             content=content, content_type=content_type, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -111,7 +111,7 @@ class PetsOperations:
         content = self._serialize.body(create_parameters, "CatAPTrue")
         content = json.dumps(content)
 
-        request = build_pets_create_cat_ap_true_request(
+        request = build_create_cat_ap_true_request(
             content=content, content_type=content_type, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -153,7 +153,7 @@ class PetsOperations:
         content = self._serialize.body(create_parameters, "PetAPObject")
         content = json.dumps(content)
 
-        request = build_pets_create_ap_object_request(
+        request = build_create_ap_object_request(
             content=content, content_type=content_type, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -195,7 +195,7 @@ class PetsOperations:
         content = self._serialize.body(create_parameters, "PetAPString")
         content = json.dumps(content)
 
-        request = build_pets_create_ap_string_request(
+        request = build_create_ap_string_request(
             content=content, content_type=content_type, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -239,7 +239,7 @@ class PetsOperations:
         content = self._serialize.body(create_parameters, "PetAPInProperties")
         content = json.dumps(content)
 
-        request = build_pets_create_ap_in_properties_request(
+        request = build_create_ap_in_properties_request(
             content=content,
             content_type=content_type,
             template_url=self.create_ap_in_properties.metadata["url"],
@@ -286,7 +286,7 @@ class PetsOperations:
         content = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
         content = json.dumps(content)
 
-        request = build_pets_create_ap_in_properties_with_ap_string_request(
+        request = build_create_ap_in_properties_with_ap_string_request(
             content=content,
             content_type=content_type,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],

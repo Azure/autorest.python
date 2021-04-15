@@ -62,6 +62,11 @@ class ListSchema(BaseSchema):
         return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
+        try:
+            if self.element_type.name == kwargs.pop("object_schema_name", ""):
+                return ["..."]
+        except AttributeError:
+            pass
         return [self.element_type.get_json_template_representation(**kwargs)]
 
     def xml_serialization_ctxt(self) -> Optional[str]:

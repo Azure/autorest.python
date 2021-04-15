@@ -31,7 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceOperationsMixin(object):
+class modelOperations(object):
     @distributed_trace
     def get_report(
         self,

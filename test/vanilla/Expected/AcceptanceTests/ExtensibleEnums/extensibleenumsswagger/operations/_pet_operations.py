@@ -32,8 +32,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PetOperations(object):
-    """PetOperations operations.
+class petOperations(object):
+    """petOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -74,9 +74,7 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_pet_get_by_pet_id_request(
-            pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs
-        )
+        request = build_get_by_pet_id_request(pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -123,7 +121,7 @@ class PetOperations(object):
         else:
             content = None
 
-        request = build_pet_add_pet_request(
+        request = build_add_pet_request(
             content=content, content_type=content_type, template_url=self.add_pet.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

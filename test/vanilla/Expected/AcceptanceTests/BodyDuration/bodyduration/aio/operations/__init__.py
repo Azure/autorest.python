@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._duration_operations import DurationOperations
+from ._duration_operations import durationOperations
 
 __all__ = [
-    "DurationOperations",
+    "durationOperations",
 ]

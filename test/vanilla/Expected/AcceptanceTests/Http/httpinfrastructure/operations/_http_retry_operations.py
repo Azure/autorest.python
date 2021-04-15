@@ -32,8 +32,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HttpRetryOperations(object):
-    """HttpRetryOperations operations.
+class http_retryOperations(object):
+    """http_retryOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -70,7 +70,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpretry_head408_request(template_url=self.head408.metadata["url"], **kwargs)
+        request = build_head408_request(template_url=self.head408.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -114,7 +114,7 @@ class HttpRetryOperations(object):
         else:
             content = None
 
-        request = build_httpretry_put500_request(
+        request = build_put500_request(
             content=content, content_type=content_type, template_url=self.put500.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -160,7 +160,7 @@ class HttpRetryOperations(object):
         else:
             content = None
 
-        request = build_httpretry_patch500_request(
+        request = build_patch500_request(
             content=content, content_type=content_type, template_url=self.patch500.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -195,7 +195,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpretry_get502_request(template_url=self.get502.metadata["url"], **kwargs)
+        request = build_get502_request(template_url=self.get502.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -228,7 +228,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpretry_options502_request(template_url=self.options502.metadata["url"], **kwargs)
+        request = build_options502_request(template_url=self.options502.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -276,7 +276,7 @@ class HttpRetryOperations(object):
         else:
             content = None
 
-        request = build_httpretry_post503_request(
+        request = build_post503_request(
             content=content, content_type=content_type, template_url=self.post503.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -322,7 +322,7 @@ class HttpRetryOperations(object):
         else:
             content = None
 
-        request = build_httpretry_delete503_request(
+        request = build_delete503_request(
             content=content, content_type=content_type, template_url=self.delete503.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -368,7 +368,7 @@ class HttpRetryOperations(object):
         else:
             content = None
 
-        request = build_httpretry_put504_request(
+        request = build_put504_request(
             content=content, content_type=content_type, template_url=self.put504.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -414,7 +414,7 @@ class HttpRetryOperations(object):
         else:
             content = None
 
-        request = build_httpretry_patch504_request(
+        request = build_patch504_request(
             content=content, content_type=content_type, template_url=self.patch504.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

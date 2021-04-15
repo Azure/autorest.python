@@ -77,6 +77,10 @@ class RequestBuilder(BaseModel):
         except ValueError:
             return False
 
+    @property
+    def operation_group_name(self) -> str:
+        return self.yaml_data["language"]["python"]["operationGroupName"]
+
     def imports(self, code_model) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
@@ -102,7 +106,6 @@ class RequestBuilder(BaseModel):
 
         names = [
             "build",
-            yaml_data["language"]["python"]["operationGroupName"],
             yaml_data["language"]["python"]["name"],
             "request"
         ]

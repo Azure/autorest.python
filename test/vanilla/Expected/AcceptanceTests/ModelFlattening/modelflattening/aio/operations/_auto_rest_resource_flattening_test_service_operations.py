@@ -28,7 +28,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin:
+class modelOperations:
     @distributed_trace_async
     async def put_array(self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any) -> None:
         """Put External Resource as an Array.

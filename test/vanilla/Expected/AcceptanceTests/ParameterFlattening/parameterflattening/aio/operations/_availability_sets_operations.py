@@ -28,8 +28,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AvailabilitySetsOperations:
-    """AvailabilitySetsOperations async operations.
+class availability_setsOperations:
+    """availability_setsOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -74,7 +74,7 @@ class AvailabilitySetsOperations:
         content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
         content = json.dumps(content)
 
-        request = build_availabilitysets_update_request(
+        request = build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content=content,

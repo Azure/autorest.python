@@ -28,7 +28,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestValidationTestOperationsMixin:
+class modelOperations:
     @distributed_trace_async
     async def validation_of_method_parameters(
         self, resource_group_name: str, id: int, **kwargs: Any

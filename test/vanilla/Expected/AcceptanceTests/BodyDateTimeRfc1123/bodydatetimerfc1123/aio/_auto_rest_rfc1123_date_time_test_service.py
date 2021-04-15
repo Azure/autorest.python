@@ -10,19 +10,19 @@ from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
-from .operations import Datetimerfc1123Operations
+from .operations import datetimerfc1123Operations
 from .. import models
 
 
 class AutoRestRFC1123DateTimeTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar datetimerfc1123: Datetimerfc1123Operations operations
-    :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations
+    :ivar datetimerfc1123: datetimerfc1123Operations operations
+    :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations.datetimerfc1123Operations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -35,10 +35,10 @@ class AutoRestRFC1123DateTimeTestService(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.datetimerfc1123 = Datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.datetimerfc1123 = datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -46,8 +46,8 @@ class AutoRestRFC1123DateTimeTestService(object):
         We have helper methods to create requests specific to this service in `bodydatetimerfc1123.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydatetimerfc1123.rest import build_datetimerfc1123_get_null_request
-        >>> request = build_datetimerfc1123_get_null_request()
+        >>> from bodydatetimerfc1123.rest import build_get_null_request
+        >>> request = build_get_null_request()
         <HttpRequest [GET], url: '/datetimerfc1123/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -65,10 +65,12 @@ class AutoRestRFC1123DateTimeTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = await self._client._pipeline.run(
-            request_copy._internal_request, stream=stream_response, **kwargs
-        )
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

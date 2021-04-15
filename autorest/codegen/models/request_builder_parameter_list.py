@@ -8,7 +8,7 @@ from copy import deepcopy
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
-from .primitive_schemas import AnySchema, PrimitiveSchema
+from .primitive_schemas import AnySchema, IOSchema, PrimitiveSchema
 
 def _copy_body_param(new_param_name: str, original_param: RequestBuilderParameter) -> RequestBuilderParameter:
     new_param = deepcopy(original_param)
@@ -49,8 +49,7 @@ class RequestBuilderParameterList(ParameterList):
         returned_bodies = []
         if body_kwargs:
             if "application/json" in self.content_types:
-                self.json_body = _copy_body_param("json", body_kwargs[0])
-                returned_bodies.append(self.json_body)
+                returned_bodies.append(_copy_body_param("json", body_kwargs[0]))
         for body_kwarg in body_kwargs:
             if body_kwarg.is_multipart and body_kwarg.is_partial_body and "files" not in seen_bodies:
                 seen_bodies.add("files")
@@ -71,6 +70,21 @@ class RequestBuilderParameterList(ParameterList):
         if body_kwargs and "content" not in seen_bodies:
             returned_bodies.append(_copy_body_param("content", body_kwargs[0]))
         return returned_bodies
+
+    @property
+    def json_body(self) -> RequestBuilderParameter:
+        if "application/json" not in self.content_types:
+            raise ValueError(
+                "Should not be trying to get JSON body of this request if "
+                "there is no application/json content type"
+            )
+        try:
+            return next(
+                body for body in self.body
+                if not isinstance(body.schema, IOSchema)
+            )
+        except StopIteration:
+            raise ValueError("There's no body that can be passed through the json kwarg.")
 
     @property
     def method(self) -> List[Parameter]:

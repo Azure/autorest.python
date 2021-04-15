@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestSwaggerBATFileServiceConfiguration
-from .operations import FilesOperations
+from .operations import filesOperations
 from . import models
 
 
 class AutoRestSwaggerBATFileService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar files: FilesOperations operations
-    :vartype files: bodyfile.operations.FilesOperations
+    :ivar files: filesOperations operations
+    :vartype files: bodyfile.operations.filesOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AutoRestSwaggerBATFileService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.files = FilesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.files = filesOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -58,8 +58,8 @@ class AutoRestSwaggerBATFileService(object):
         We have helper methods to create requests specific to this service in `bodyfile.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyfile.rest import build_files_get_file_request
-        >>> request = build_files_get_file_request()
+        >>> from bodyfile.rest import build_get_file_request
+        >>> request = build_get_file_request()
         <HttpRequest [GET], url: '/files/stream/nonempty'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

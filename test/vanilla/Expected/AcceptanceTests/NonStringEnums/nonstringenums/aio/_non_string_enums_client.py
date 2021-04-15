@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -18,17 +18,17 @@ if TYPE_CHECKING:
     from typing import Dict
 
 from ._configuration import NonStringEnumsClientConfiguration
-from .operations import IntOperations
-from .operations import FloatOperations
+from .operations import intOperations
+from .operations import floatOperations
 
 
 class NonStringEnumsClient(object):
     """Testing non-string enums.
 
-    :ivar int: IntOperations operations
-    :vartype int: nonstringenums.aio.operations.IntOperations
-    :ivar float: FloatOperations operations
-    :vartype float: nonstringenums.aio.operations.FloatOperations
+    :ivar int: intOperations operations
+    :vartype int: nonstringenums.aio.operations.intOperations
+    :ivar float: floatOperations operations
+    :vartype float: nonstringenums.aio.operations.floatOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -40,12 +40,12 @@ class NonStringEnumsClient(object):
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
+        self._serialize = Serializer()
+        self._deserialize = Deserializer(client_models)
+        self.int = intOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.float = floatOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
-        self._deserialize = Deserializer(client_models)
-
-        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -53,8 +53,8 @@ class NonStringEnumsClient(object):
         We have helper methods to create requests specific to this service in `nonstringenums.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from nonstringenums.rest import build_int_put_request
-        >>> request = build_int_put_request(json, content)
+        >>> from nonstringenums.rest import build_put_request
+        >>> request = build_put_request(json, content)
         <HttpRequest [PUT], url: '/nonStringEnums/int/put'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -72,10 +72,12 @@ class NonStringEnumsClient(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = await self._client._pipeline.run(
-            request_copy._internal_request, stream=stream_response, **kwargs
-        )
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._array_operations import ArrayOperations
+from ._array_operations import arrayOperations
 
 __all__ = [
-    "ArrayOperations",
+    "arrayOperations",
 ]

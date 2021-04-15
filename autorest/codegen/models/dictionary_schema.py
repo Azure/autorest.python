@@ -64,6 +64,11 @@ class DictionarySchema(BaseSchema):
         raise NotImplementedError("Dictionary schema does not support XML serialization.")
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
+        try:
+            if self.element_type.name == kwargs.pop("object_schema_name", ""):
+                return {"str": "..."}
+        except AttributeError:
+            pass
         return {
             "str": self.element_type.get_json_template_representation(**kwargs)
         }

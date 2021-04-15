@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import PetStoreIncConfiguration
-from .operations import PetOperations
+from .operations import petOperations
 from . import models
 
 
 class PetStoreInc(object):
     """PetStore.
 
-    :ivar pet: PetOperations operations
-    :vartype pet: extensibleenumsswagger.operations.PetOperations
+    :ivar pet: petOperations operations
+    :vartype pet: extensibleenumsswagger.operations.petOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -46,10 +46,10 @@ class PetStoreInc(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.pet = petOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -58,8 +58,8 @@ class PetStoreInc(object):
         We have helper methods to create requests specific to this service in `extensibleenumsswagger.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from extensibleenumsswagger.rest import build_pet_get_by_pet_id_request
-        >>> request = build_pet_get_by_pet_id_request(pet_id)
+        >>> from extensibleenumsswagger.rest import build_get_by_pet_id_request
+        >>> request = build_get_by_pet_id_request(pet_id)
         <HttpRequest [GET], url: '/extensibleenums/pet/{petId}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,8 +77,12 @@ class PetStoreInc(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

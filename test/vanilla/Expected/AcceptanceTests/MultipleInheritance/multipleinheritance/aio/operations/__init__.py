@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiple_inheritance_service_client_operations import MultipleInheritanceServiceClientOperationsMixin
+from ._multiple_inheritance_service_client_operations import modelOperations
 
 __all__ = [
-    "MultipleInheritanceServiceClientOperationsMixin",
+    "modelOperations",
 ]

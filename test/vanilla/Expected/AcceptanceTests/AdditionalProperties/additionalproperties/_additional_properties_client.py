@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AdditionalPropertiesClientConfiguration
-from .operations import PetsOperations
+from .operations import petsOperations
 from . import models
 
 
 class AdditionalPropertiesClient(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar pets: PetsOperations operations
-    :vartype pets: additionalproperties.operations.PetsOperations
+    :ivar pets: petsOperations operations
+    :vartype pets: additionalproperties.operations.petsOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -46,10 +46,10 @@ class AdditionalPropertiesClient(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.pets = PetsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.pets = petsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -58,8 +58,8 @@ class AdditionalPropertiesClient(object):
         We have helper methods to create requests specific to this service in `additionalproperties.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from additionalproperties.rest import build_pets_create_ap_true_request
-        >>> request = build_pets_create_ap_true_request(json, content)
+        >>> from additionalproperties.rest import build_create_ap_true_request
+        >>> request = build_create_ap_true_request(json, content)
         <HttpRequest [PUT], url: '/additionalProperties/true'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,8 +77,12 @@ class AdditionalPropertiesClient(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

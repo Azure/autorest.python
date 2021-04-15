@@ -89,7 +89,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.is_partial_body = yaml_data.get("isPartialBody", False)
 
     def __eq__(self, o: "Parameter") -> bool:
-        return self.serialized_name == o.serialized_name
+        try:
+            return self.serialized_name == o.serialized_name
+        except AttributeError:
+            return False
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)

@@ -32,8 +32,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HttpServerFailureOperations(object):
-    """HttpServerFailureOperations operations.
+class http_server_failureOperations(object):
+    """http_server_failureOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -70,7 +70,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpserverfailure_head501_request(template_url=self.head501.metadata["url"], **kwargs)
+        request = build_head501_request(template_url=self.head501.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -103,7 +103,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_httpserverfailure_get501_request(template_url=self.get501.metadata["url"], **kwargs)
+        request = build_get501_request(template_url=self.get501.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -147,7 +147,7 @@ class HttpServerFailureOperations(object):
         else:
             content = None
 
-        request = build_httpserverfailure_post505_request(
+        request = build_post505_request(
             content=content, content_type=content_type, template_url=self.post505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -193,7 +193,7 @@ class HttpServerFailureOperations(object):
         else:
             content = None
 
-        request = build_httpserverfailure_delete505_request(
+        request = build_delete505_request(
             content=content, content_type=content_type, template_url=self.delete505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

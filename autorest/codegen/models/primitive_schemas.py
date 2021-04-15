@@ -22,7 +22,7 @@ class RawString(object):
         return "r'{}'".format(self.string.replace('\'', '\\\''))
 
 def _add_optional_and_default_value_to_json_template_representation(
-    representation: str, *, optional: bool = True, default_value_declaration: Optional[str] = None
+    representation: str, *, optional: bool = True, default_value_declaration: Optional[str] = None, **kwargs: Any
 ):
     if optional:
         representation += " (optional)"

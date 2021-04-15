@@ -16,7 +16,7 @@ _SERIALIZER = Serializer()
 def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     """Get a horse with name 'Fred' and isAShowHorse true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
@@ -37,7 +37,7 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
 def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put a horse with name 'General' and isAShowHorse false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword json: Put a horse with name 'General' and isAShowHorse false.
     :paramtype json: Any
@@ -46,6 +46,15 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {
+                "isAShowHorse": "bool (optional)",
+                "name": "str"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -55,9 +64,9 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -65,7 +74,7 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     """Get a pet with name 'Peanut'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
@@ -86,7 +95,7 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
 def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put a pet with name 'Butter'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword json: Put a pet with name 'Butter'.
     :paramtype json: Any
@@ -95,6 +104,14 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {
+                "name": "str"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -104,9 +121,9 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -114,7 +131,7 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
 def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     """Get a feline where meows and hisses are true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
@@ -135,7 +152,7 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
 def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put a feline who hisses and doesn't meow.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword json: Put a feline who hisses and doesn't meow.
     :paramtype json: Any
@@ -144,6 +161,15 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {
+                "hisses": "bool (optional)",
+                "meows": "bool (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -153,9 +179,9 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -163,7 +189,7 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
 def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
@@ -184,7 +210,7 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
 def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword json: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
     :paramtype json: Any
@@ -194,6 +220,17 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {
+                "hisses": "bool (optional)",
+                "likesMilk": "bool (optional)",
+                "meows": "bool (optional)",
+                "name": "str"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -203,9 +240,9 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -214,7 +251,7 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
     is false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
@@ -236,7 +273,7 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword json: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
      eatsMiceYet is true.
@@ -247,6 +284,18 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {
+                "eatsMiceYet": "bool (optional)",
+                "hisses": "bool (optional)",
+                "likesMilk": "bool (optional)",
+                "meows": "bool (optional)",
+                "name": "str"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -256,8 +305,8 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)

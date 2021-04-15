@@ -28,8 +28,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DictionaryOperations:
-    """DictionaryOperations async operations.
+class dictionaryOperations:
+    """dictionaryOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +63,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -104,7 +104,7 @@ class DictionaryOperations:
         content = self._serialize.body(_complex_body, "DictionaryWrapper")
         content = json.dumps(content)
 
-        request = build_dictionary_put_valid_request(
+        request = build_put_valid_request(
             content=content, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -136,7 +136,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = build_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -177,7 +177,7 @@ class DictionaryOperations:
         content = self._serialize.body(_complex_body, "DictionaryWrapper")
         content = json.dumps(content)
 
-        request = build_dictionary_put_empty_request(
+        request = build_put_empty_request(
             content=content, content_type=content_type, template_url=self.put_empty.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -209,7 +209,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -243,9 +243,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"], **kwargs
-        )
+        request = build_get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

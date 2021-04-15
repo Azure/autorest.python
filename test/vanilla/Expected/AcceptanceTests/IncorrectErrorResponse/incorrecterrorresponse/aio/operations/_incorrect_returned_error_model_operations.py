@@ -27,7 +27,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class IncorrectReturnedErrorModelOperationsMixin:
+class modelOperations:
     @distributed_trace_async
     async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
         """Get an error response from the server that is not as described in our Error object. Want to

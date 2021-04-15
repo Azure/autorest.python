@@ -93,7 +93,10 @@ class ParameterList(MutableSequence):
 
     @property
     def headers(self) -> List[Parameter]:
-        return list(set(self.get_from_location(ParameterLocation.Header)))
+        headers = self.get_from_location(ParameterLocation.Header)
+        if not headers:
+            return headers
+        return list(set(headers))
 
     @property
     def grouped(self) -> List[Parameter]:

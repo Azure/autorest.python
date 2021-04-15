@@ -10,22 +10,22 @@ from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
-from .operations import ImplicitOperations
-from .operations import ExplicitOperations
+from .operations import implicitOperations
+from .operations import explicitOperations
 from .. import models
 
 
 class AutoRestRequiredOptionalTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar implicit: ImplicitOperations operations
-    :vartype implicit: requiredoptional.aio.operations.ImplicitOperations
-    :ivar explicit: ExplicitOperations operations
-    :vartype explicit: requiredoptional.aio.operations.ExplicitOperations
+    :ivar implicit: implicitOperations operations
+    :vartype implicit: requiredoptional.aio.operations.implicitOperations
+    :ivar explicit: explicitOperations operations
+    :vartype explicit: requiredoptional.aio.operations.explicitOperations
     :param required_global_path: number of items to skip.
     :type required_global_path: str
     :param required_global_query: number of items to skip.
@@ -54,9 +54,9 @@ class AutoRestRequiredOptionalTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-
-        self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.implicit = implicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.explicit = explicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -64,8 +64,8 @@ class AutoRestRequiredOptionalTestService(object):
         We have helper methods to create requests specific to this service in `requiredoptional.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from requiredoptional.rest import build_implicit_get_required_path_request
-        >>> request = build_implicit_get_required_path_request(path_parameter)
+        >>> from requiredoptional.rest import build_get_required_path_request
+        >>> request = build_get_required_path_request(path_parameter)
         <HttpRequest [GET], url: '/reqopt/implicit/required/path/{pathParameter}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -83,10 +83,12 @@ class AutoRestRequiredOptionalTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = await self._client._pipeline.run(
-            request_copy._internal_request, stream=stream_response, **kwargs
-        )
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

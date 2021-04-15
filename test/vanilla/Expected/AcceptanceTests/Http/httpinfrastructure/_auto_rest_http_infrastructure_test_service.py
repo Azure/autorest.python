@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -20,33 +20,33 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
-from .operations import HttpFailureOperations
-from .operations import HttpSuccessOperations
-from .operations import HttpRedirectsOperations
-from .operations import HttpClientFailureOperations
-from .operations import HttpServerFailureOperations
-from .operations import HttpRetryOperations
-from .operations import MultipleResponsesOperations
+from .operations import http_failureOperations
+from .operations import http_successOperations
+from .operations import http_redirectsOperations
+from .operations import http_client_failureOperations
+from .operations import http_server_failureOperations
+from .operations import http_retryOperations
+from .operations import multiple_responsesOperations
 from . import models
 
 
 class AutoRestHttpInfrastructureTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar http_failure: HttpFailureOperations operations
-    :vartype http_failure: httpinfrastructure.operations.HttpFailureOperations
-    :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: httpinfrastructure.operations.HttpSuccessOperations
-    :ivar http_redirects: HttpRedirectsOperations operations
-    :vartype http_redirects: httpinfrastructure.operations.HttpRedirectsOperations
-    :ivar http_client_failure: HttpClientFailureOperations operations
-    :vartype http_client_failure: httpinfrastructure.operations.HttpClientFailureOperations
-    :ivar http_server_failure: HttpServerFailureOperations operations
-    :vartype http_server_failure: httpinfrastructure.operations.HttpServerFailureOperations
-    :ivar http_retry: HttpRetryOperations operations
-    :vartype http_retry: httpinfrastructure.operations.HttpRetryOperations
-    :ivar multiple_responses: MultipleResponsesOperations operations
-    :vartype multiple_responses: httpinfrastructure.operations.MultipleResponsesOperations
+    :ivar http_failure: http_failureOperations operations
+    :vartype http_failure: httpinfrastructure.operations.http_failureOperations
+    :ivar http_success: http_successOperations operations
+    :vartype http_success: httpinfrastructure.operations.http_successOperations
+    :ivar http_redirects: http_redirectsOperations operations
+    :vartype http_redirects: httpinfrastructure.operations.http_redirectsOperations
+    :ivar http_client_failure: http_client_failureOperations operations
+    :vartype http_client_failure: httpinfrastructure.operations.http_client_failureOperations
+    :ivar http_server_failure: http_server_failureOperations operations
+    :vartype http_server_failure: httpinfrastructure.operations.http_server_failureOperations
+    :ivar http_retry: http_retryOperations operations
+    :vartype http_retry: httpinfrastructure.operations.http_retryOperations
+    :ivar multiple_responses: multiple_responsesOperations operations
+    :vartype multiple_responses: httpinfrastructure.operations.multiple_responsesOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -64,22 +64,22 @@ class AutoRestHttpInfrastructureTestService(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.http_failure = HttpFailureOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.http_redirects = HttpRedirectsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.http_client_failure = HttpClientFailureOperations(
+        self.http_failure = http_failureOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = http_successOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_redirects = http_redirectsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_client_failure = http_client_failureOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.http_server_failure = HttpServerFailureOperations(
+        self.http_server_failure = http_server_failureOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.http_retry = HttpRetryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.multiple_responses = MultipleResponsesOperations(
+        self.http_retry = http_retryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.multiple_responses = multiple_responsesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -88,8 +88,8 @@ class AutoRestHttpInfrastructureTestService(object):
         We have helper methods to create requests specific to this service in `httpinfrastructure.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from httpinfrastructure.rest import build_httpfailure_get_empty_error_request
-        >>> request = build_httpfailure_get_empty_error_request()
+        >>> from httpinfrastructure.rest import build_get_empty_error_request
+        >>> request = build_get_empty_error_request()
         <HttpRequest [GET], url: '/http/failure/emptybody/error'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -107,8 +107,12 @@ class AutoRestHttpInfrastructureTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

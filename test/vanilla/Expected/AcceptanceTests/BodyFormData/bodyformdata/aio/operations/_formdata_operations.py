@@ -27,8 +27,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FormdataOperations:
-    """FormdataOperations async operations.
+class formdataOperations:
+    """formdataOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -73,7 +73,7 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        request = build_formdata_upload_file_request(
+        request = build_upload_file_request(
             files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -114,7 +114,7 @@ class FormdataOperations:
         content_type = kwargs.pop("content_type", "application/octet-stream")
         content = file_content
 
-        request = build_formdata_upload_file_via_body_request(
+        request = build_upload_file_via_body_request(
             content=content, content_type=content_type, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -158,7 +158,7 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        request = build_formdata_upload_files_request(
+        request = build_upload_files_request(
             files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

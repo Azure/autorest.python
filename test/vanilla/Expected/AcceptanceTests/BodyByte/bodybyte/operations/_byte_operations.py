@@ -32,8 +32,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ByteOperations(object):
-    """ByteOperations operations.
+class byteOperations(object):
+    """byteOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -70,7 +70,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -107,7 +107,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = build_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -144,7 +144,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
+        request = build_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -189,7 +189,7 @@ class ByteOperations(object):
         content = self._serialize.body(byte_body, "bytearray")
         content = json.dumps(content)
 
-        request = build_byte_put_non_ascii_request(
+        request = build_put_non_ascii_request(
             content=content, content_type=content_type, template_url=self.put_non_ascii.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -224,7 +224,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 from ._configuration import ObjectTypeClientConfiguration
-from .operations import ObjectTypeClientOperationsMixin
+from .operations import modelOperations
 
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
@@ -35,9 +35,10 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
+        self._serialize = Serializer()
+        self._deserialize = Deserializer(client_models)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
-        self._deserialize = Deserializer(client_models)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -64,10 +65,12 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = await self._client._pipeline.run(
-            request_copy._internal_request, stream=stream_response, **kwargs
-        )
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._bool_operations import BoolOperations
+from ._bool_operations import boolOperations
 
 __all__ = [
-    "BoolOperations",
+    "boolOperations",
 ]

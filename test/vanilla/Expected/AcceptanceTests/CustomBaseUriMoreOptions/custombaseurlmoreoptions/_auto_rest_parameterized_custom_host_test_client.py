@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
-from .operations import PathsOperations
+from .operations import pathsOperations
 from . import models
 
 
 class AutoRestParameterizedCustomHostTestClient(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar paths: PathsOperations operations
-    :vartype paths: custombaseurlmoreoptions.operations.PathsOperations
+    :ivar paths: pathsOperations operations
+    :vartype paths: custombaseurlmoreoptions.operations.pathsOperations
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
     :param dns_suffix: A string value that is used as a global part of the parameterized host. Default value 'host'.
@@ -48,10 +48,10 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = pathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -60,8 +60,8 @@ class AutoRestParameterizedCustomHostTestClient(object):
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlmoreoptions.rest import build_paths_get_empty_request
-        >>> request = build_paths_get_empty_request(key_name, subscription_id, key_version)
+        >>> from custombaseurlmoreoptions.rest import build_get_empty_request
+        >>> request = build_get_empty_request(key_name, subscription_id, key_version)
         <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -84,8 +84,12 @@ class AutoRestParameterizedCustomHostTestClient(object):
             ),
         }
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

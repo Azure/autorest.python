@@ -16,7 +16,7 @@ _SERIALIZER = Serializer()
 def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
     """Analyze body, that could be different media types.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword json: Input parameter.
     :paramtype json: Any
@@ -25,6 +25,14 @@ def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = {
+                "source": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -35,9 +43,9 @@ def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -45,7 +53,7 @@ def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None
 def build_content_type_with_encoding_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request_builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
     :keyword content: Input parameter.
     :paramtype content: str
@@ -61,8 +69,8 @@ def build_content_type_with_encoding_request(*, content: Optional[str] = None, *
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, content=content, **kwargs)

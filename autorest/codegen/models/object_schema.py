@@ -76,6 +76,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return super().xml_serialization_ctxt()
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
+        kwargs["object_schema_name"] = self.name # do this to avoid circular
         return {
             "{}".format(
                 prop.original_swagger_name

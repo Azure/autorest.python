@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -20,18 +20,18 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
-from .operations import StringOperations
-from .operations import EnumOperations
+from .operations import stringOperations
+from .operations import enumOperations
 from . import models
 
 
 class AutoRestSwaggerBATService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar string: StringOperations operations
-    :vartype string: bodystring.operations.StringOperations
-    :ivar enum: EnumOperations operations
-    :vartype enum: bodystring.operations.EnumOperations
+    :ivar string: stringOperations operations
+    :vartype string: bodystring.operations.stringOperations
+    :ivar enum: enumOperations operations
+    :vartype enum: bodystring.operations.enumOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -49,11 +49,11 @@ class AutoRestSwaggerBATService(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string = stringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.enum = enumOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -62,8 +62,8 @@ class AutoRestSwaggerBATService(object):
         We have helper methods to create requests specific to this service in `bodystring.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodystring.rest import build_string_get_null_request
-        >>> request = build_string_get_null_request()
+        >>> from bodystring.rest import build_get_null_request
+        >>> request = build_get_null_request()
         <HttpRequest [GET], url: '/string/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -81,8 +81,12 @@ class AutoRestSwaggerBATService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, stream=stream_response, **kwargs)
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
         return HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,

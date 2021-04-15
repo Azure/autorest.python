@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(object):
+class modelOperations(object):
     @distributed_trace
     def analyze_body(
         self,

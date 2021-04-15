@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._availability_sets_operations import AvailabilitySetsOperations
+from ._availability_sets_operations import availability_setsOperations
 
 __all__ = [
-    "AvailabilitySetsOperations",
+    "availability_setsOperations",
 ]

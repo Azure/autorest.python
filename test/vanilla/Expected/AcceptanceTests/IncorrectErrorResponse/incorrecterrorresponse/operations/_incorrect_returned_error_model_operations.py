@@ -31,7 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class IncorrectReturnedErrorModelOperationsMixin(object):
+class modelOperations(object):
     @distributed_trace
     def get_incorrect_error_from_server(
         self, **kwargs  # type: Any

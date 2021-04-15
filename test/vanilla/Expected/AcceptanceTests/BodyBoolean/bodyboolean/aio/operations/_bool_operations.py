@@ -28,8 +28,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class BoolOperations:
-    """BoolOperations async operations.
+class boolOperations:
+    """boolOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +63,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_true_request(template_url=self.get_true.metadata["url"], **kwargs)
+        request = build_get_true_request(template_url=self.get_true.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -102,7 +102,7 @@ class BoolOperations:
         content = self._serialize.body(bool_body, "bool")
         content = json.dumps(content)
 
-        request = build_bool_put_true_request(
+        request = build_put_true_request(
             content=content, content_type=content_type, template_url=self.put_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -134,7 +134,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_false_request(template_url=self.get_false.metadata["url"], **kwargs)
+        request = build_get_false_request(template_url=self.get_false.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -173,7 +173,7 @@ class BoolOperations:
         content = self._serialize.body(bool_body, "bool")
         content = json.dumps(content)
 
-        request = build_bool_put_false_request(
+        request = build_put_false_request(
             content=content, content_type=content_type, template_url=self.put_false.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -205,7 +205,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -239,7 +239,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

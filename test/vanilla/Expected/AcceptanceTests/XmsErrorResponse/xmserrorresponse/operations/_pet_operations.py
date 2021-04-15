@@ -31,8 +31,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PetOperations(object):
-    """PetOperations operations.
+class petOperations(object):
+    """petOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -81,9 +81,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_pet_get_pet_by_id_request(
-            pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
-        )
+        request = build_get_pet_by_id_request(pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -132,7 +130,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_pet_do_something_request(
+        request = build_do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -184,7 +182,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_pet_has_models_param_request(
+        request = build_has_models_param_request(
             models=models, template_url=self.has_models_param.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

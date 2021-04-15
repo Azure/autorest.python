@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestValidationTestOperationsMixin(object):
+class modelOperations(object):
     @distributed_trace
     def validation_of_method_parameters(
         self,

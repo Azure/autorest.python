@@ -32,8 +32,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class InheritanceOperations(object):
-    """InheritanceOperations operations.
+class inheritanceOperations(object):
+    """inheritanceOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -70,7 +70,7 @@ class InheritanceOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_inheritance_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -117,7 +117,7 @@ class InheritanceOperations(object):
         content = self._serialize.body(complex_body, "Siamese")
         content = json.dumps(content)
 
-        request = build_inheritance_put_valid_request(
+        request = build_put_valid_request(
             content=content, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

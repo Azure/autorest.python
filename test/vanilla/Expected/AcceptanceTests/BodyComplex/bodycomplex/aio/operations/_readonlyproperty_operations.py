@@ -28,8 +28,8 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReadonlypropertyOperations:
-    """ReadonlypropertyOperations async operations.
+class readonlypropertyOperations:
+    """readonlypropertyOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +63,7 @@ class ReadonlypropertyOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_readonlyproperty_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -104,7 +104,7 @@ class ReadonlypropertyOperations:
         content = self._serialize.body(_complex_body, "ReadonlyObj")
         content = json.dumps(content)
 
-        request = build_readonlyproperty_put_valid_request(
+        request = build_put_valid_request(
             content=content, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

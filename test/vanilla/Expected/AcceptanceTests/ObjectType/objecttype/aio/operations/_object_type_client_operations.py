@@ -27,7 +27,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ObjectTypeClientOperationsMixin:
+class modelOperations:
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> object:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
