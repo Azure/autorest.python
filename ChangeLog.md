@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-04-07 - 5.7.0
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**New Features**
+
+- Remove dependency on `azure-common` for `profiles` support  #935
+
 ### 2021-04-07 - 5.6.6
 
 min Autorest core version: 3.1.0
