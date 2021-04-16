@@ -28,7 +28,7 @@ import inspect
 import json
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
-from azure.profiles import KnownProfiles
+from multiapi._profiles import KnownProfiles
 from .multiapi_base import NotTested
 
 
@@ -59,6 +59,10 @@ def namespace_models():
     from multiapi import models
     return models
 
+@pytest.fixture
+def known_profiles():
+    from multiapi._profiles import KnownProfiles
+    return KnownProfiles
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):

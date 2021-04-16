@@ -21,7 +21,8 @@ _FILE_TO_TEMPLATE = {
     "service_client": "multiapi_service_client.py.jinja2",
     "config": "multiapi_config.py.jinja2",
     "models": "multiapi_models.py.jinja2",
-    "operations_mixin": "multiapi_operations_mixin.py.jinja2"
+    "operations_mixin": "multiapi_operations_mixin.py.jinja2",
+    "profiles": "multiapi_profiles_vendor.py.jinja2",
 }
 
 def _get_file_path(filename: str, async_mode: bool) -> Path:
@@ -70,6 +71,11 @@ class MultiAPISerializer(object):
         self._autorestapi.write_file(
             _get_file_path("_configuration", async_mode),
             _render_template("config", imports=imports)
+        )
+
+        self._autorestapi.write_file(
+            _get_file_path("_profiles", async_mode=False),
+            _render_template("profiles")
         )
 
         # serialize mixins

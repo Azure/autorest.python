@@ -27,7 +27,7 @@ from async_generator import yield_, async_generator
 import pytest
 import inspect
 import json
-from azure.profiles import KnownProfiles
+from multiapi._profiles import KnownProfiles
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 from .multiapi_base import NotTested
@@ -61,6 +61,11 @@ async def client(credential, authentication_policy, api_version):
 def namespace_models():
     from multiapi import models
     return models
+
+@pytest.fixture
+def known_profiles():
+    from multiapi._profiles import KnownProfiles
+    return KnownProfiles
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):

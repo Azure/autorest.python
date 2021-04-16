@@ -11,10 +11,9 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
+from .._profiles import KnownProfiles, MultiApiClientMixin, ProfileDefinition
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.profiles import KnownProfiles, ProfileDefinition
-from azure.profiles.multiapiclient import MultiApiClientMixin
 from msrest import Deserializer, Serializer
 
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration

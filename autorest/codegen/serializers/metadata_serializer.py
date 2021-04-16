@@ -103,10 +103,11 @@ class MetadataSerializer:
         file_import = FileImport()
         for gp in global_parameters:
             file_import.merge(gp.imports())
-        file_import.add_from_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
-        file_import.add_from_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
+        profile_import = "{}_profiles".format(".." if async_mode else ".")
+        file_import.add_from_import(profile_import, "KnownProfiles", import_type=ImportType.AZURECORE)
+        file_import.add_from_import(profile_import, "ProfileDefinition", import_type=ImportType.AZURECORE)
         file_import.add_from_import(
-            "azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE
+            profile_import, "MultiApiClientMixin", import_type=ImportType.AZURECORE
         )
         file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
         # api_version and potentially base_url require Optional typing

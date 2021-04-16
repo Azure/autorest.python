@@ -26,7 +26,6 @@
 import pytest
 import inspect
 import json
-from azure.profiles import KnownProfiles
 
 
 @pytest.fixture
@@ -41,13 +40,17 @@ def client():
 def namespace_models():
     pass
 
+@pytest.fixture
+def known_profiles():
+    pass
+
 class NotTested(object):
 
     class TestMultiapiBase(object):
         @pytest.mark.asyncio
-        async def test_default_api_version_multiapi_client(self, default_client):
+        async def test_default_api_version_multiapi_client(self, default_client, known_profiles):
             assert default_client.DEFAULT_API_VERSION == "3.0.0"
-            assert default_client.profile == KnownProfiles.default
+            assert default_client.profile == known_profiles.default
 
         @pytest.mark.asyncio
         async def test_default_models(self, default_client):

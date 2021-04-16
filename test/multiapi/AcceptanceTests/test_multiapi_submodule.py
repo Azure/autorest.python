@@ -26,7 +26,6 @@
 import pytest
 import inspect
 import json
-from azure.profiles import KnownProfiles
 
 from .multiapi_base import NotTested
 
@@ -56,6 +55,11 @@ def client(credential, authentication_policy, api_version):
 def namespace_models():
     from multiapiwithsubmodule.submodule import models
     return models
+
+@pytest.fixture
+def known_profiles():
+    from multiapiwithsubmodule.submodule._profiles import KnownProfiles
+    return KnownProfiles
 
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])

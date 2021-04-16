@@ -26,7 +26,6 @@
 import pytest
 import inspect
 import json
-from azure.profiles import KnownProfiles
 from azure.core import PipelineClient
 from azure.core.pipeline.policies import HttpLoggingPolicy
 from .multiapi_base import NotTested
@@ -58,6 +57,11 @@ def client(credential, authentication_policy, api_version):
 def namespace_models():
     from multiapidataplane import models
     return models
+
+@pytest.fixture
+def known_profiles():
+    from multiapidataplane._profiles import KnownProfiles
+    return KnownProfiles
 
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])

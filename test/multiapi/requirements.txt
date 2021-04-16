@@ -4,7 +4,6 @@ azure-mgmt-core>=1.2.0
 pytest
 pytest-asyncio;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
-azure-common
 aiohttp>=3.0; python_full_version >= '3.5.2'
 -e ./Expected/AcceptanceTests/Multiapi
 -e ./Expected/AcceptanceTests/MultiapiWithSubmodule

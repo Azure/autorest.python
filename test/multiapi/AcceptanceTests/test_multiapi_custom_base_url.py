@@ -37,6 +37,11 @@ def client(credential, authentication_policy, api_version):
     ) as client:
         yield client
 
+@pytest.fixture
+def known_profiles():
+    from multiapicustombaseurl._profiles import KnownProfiles
+    return KnownProfiles
+
 class TestMultiapiCustomBaseUrl(object):
 
     @pytest.mark.parametrize('api_version', ["1.0.0"])
