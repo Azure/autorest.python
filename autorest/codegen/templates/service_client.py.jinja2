@@ -120,11 +120,13 @@ class {{ code_model.class_name }}({{ base_class }}):
                 request=request_copy,
             )
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return {{ keywords.async_class }}HttpResponse(
+        response = {{ keywords.async_class }}HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response
         )
+        {{ keywords.await }}response.read()
+        return response
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

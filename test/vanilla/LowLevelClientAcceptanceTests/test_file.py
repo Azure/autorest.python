@@ -26,7 +26,7 @@
 import io
 from os.path import dirname, pardir, join, realpath
 from bodyfile import AutoRestSwaggerBATFileService
-from bodyfile._rest import *
+from bodyfile._rest.files import *
 
 import pytest
 
@@ -39,17 +39,11 @@ def client(connection_data_block_size):
         base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size) as client:
         yield client
 
-@pytest.fixture
-def make_stream_request(client, base_make_stream_request):
-    def _make_request(request):
-        return base_make_stream_request(client, request)
-    return _make_request
-
 @pytest.mark.parametrize('connection_data_block_size', [1000])
 def test_get_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
-        request = build_files_get_file_request()
+        request = build_get_file_request()
         with client._send_request(request, stream_response=True) as response:
             assert not response._internal_response.internal_response._content_consumed
             assert not response.is_closed
@@ -72,27 +66,27 @@ def test_get_file(client):
         assert sample_data ==  hash(file_handle.getvalue())
 
 @pytest.mark.parametrize('connection_data_block_size', [4096])
-def test_get_empty_file(make_stream_request):
+def test_get_empty_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
-        request = build_files_get_empty_file_request()
-        stream = make_stream_request(request)
-        assert len(stream) == 0
-        assert not stream.response.internal_response._content_consumed
+        request = build_get_empty_file_request()
+        with client._send_request(request, stream_response=True) as response:
+            assert not response._internal_response.internal_response._content_consumed
 
-        for data in stream:
-            file_length += len(data)
-            file_handle.write(data)
+            for data in response.iter_raw():
+                file_length += len(data)
+                file_handle.write(data)
 
         assert file_length ==  0
 
 @pytest.mark.parametrize('connection_data_block_size', [4096])
-def test_files_long_running(make_stream_request):
+def test_files_long_running(client):
     file_length = 0
-    request = build_files_get_file_large_request()
-    stream = make_stream_request(request)
-    for data in stream:
-        assert 0 < len(data) <= stream.block_size
-        file_length += len(data)
+    request = build_get_file_large_request()
+    with client._send_request(request, stream_response=True) as response:
+        chunk_size = 4095  # make less than connection data block size to make sure chunk size is working
+        for data in response.iter_bytes(chunk_size=chunk_size):
+            assert 0 < len(data) <= chunk_size
+            file_length += len(data)
 
     assert file_length ==  3000 * 1024 * 1024

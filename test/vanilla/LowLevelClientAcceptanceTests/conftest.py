@@ -86,14 +86,6 @@ def base_make_request_json_response():
     return make_request_json_response
 
 @pytest.fixture()
-def base_make_stream_request():
-    def make_stream_request(client, request):
-        response = client._send_request(request, stream_response=True)
-        response.raise_for_status()
-        return response.stream_download()
-    return make_stream_request
-
-@pytest.fixture()
 def msrest_serializer():
     return Serializer()
 

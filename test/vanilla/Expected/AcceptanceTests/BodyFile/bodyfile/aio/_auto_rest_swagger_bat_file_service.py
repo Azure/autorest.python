@@ -71,11 +71,13 @@ class AutoRestSwaggerBATFileService(object):
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return AsyncHttpResponse(
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

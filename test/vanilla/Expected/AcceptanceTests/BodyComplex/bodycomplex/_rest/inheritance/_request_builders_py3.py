@@ -69,6 +69,13 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
                 "id": "int (optional)",
                 "name": "str (optional)"
             }
+
+            # JSON output
+            {
+                
+            }
+
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
