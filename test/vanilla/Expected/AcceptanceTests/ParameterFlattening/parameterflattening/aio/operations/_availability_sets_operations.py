@@ -21,15 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class availability_setsOperations:
-    """availability_setsOperations async operations.
+class AvailabilitySetsOperations:
+    """AvailabilitySetsOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -74,7 +73,7 @@ class availability_setsOperations:
         content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
         content = json.dumps(content)
 
-        request = build_update_request(
+        request = _rest.availability_sets.build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content=content,

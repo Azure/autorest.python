@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,8 +31,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class readonlypropertyOperations(object):
-    """readonlypropertyOperations operations.
+class ReadonlypropertyOperations(object):
+    """ReadonlypropertyOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -70,7 +69,7 @@ class readonlypropertyOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
+        request = _rest.readonlyproperty.build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -116,7 +115,7 @@ class readonlypropertyOperations(object):
         content = self._serialize.body(_complex_body, "ReadonlyObj")
         content = json.dumps(content)
 
-        request = build_put_valid_request(
+        request = _rest.readonlyproperty.build_put_valid_request(
             content=content, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestDateTimeTestServiceConfiguration
-from .operations import datetimeOperations
+from .operations import DatetimeOperations
 from . import models
 
 
 class AutoRestDateTimeTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar datetime: datetimeOperations operations
-    :vartype datetime: bodydatetime.operations.datetimeOperations
+    :ivar datetime: DatetimeOperations operations
+    :vartype datetime: bodydatetime.operations.DatetimeOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AutoRestDateTimeTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.datetime = datetimeOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -83,11 +83,13 @@ class AutoRestDateTimeTestService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

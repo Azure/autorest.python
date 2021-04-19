@@ -21,15 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class http_server_failureOperations:
-    """http_server_failureOperations async operations.
+class HttpServerFailureOperations:
+    """HttpServerFailureOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +62,7 @@ class http_server_failureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head501_request(template_url=self.head501.metadata["url"], **kwargs)
+        request = _rest.http_server_failure.build_head501_request(template_url=self.head501.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -93,7 +92,7 @@ class http_server_failureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get501_request(template_url=self.get501.metadata["url"], **kwargs)
+        request = _rest.http_server_failure.build_get501_request(template_url=self.get501.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -132,7 +131,7 @@ class http_server_failureOperations:
         else:
             content = None
 
-        request = build_post505_request(
+        request = _rest.http_server_failure.build_post505_request(
             content=content, content_type=content_type, template_url=self.post505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -173,7 +172,7 @@ class http_server_failureOperations:
         else:
             content = None
 
-        request = build_delete505_request(
+        request = _rest.http_server_failure.build_delete505_request(
             content=content, content_type=content_type, template_url=self.delete505.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

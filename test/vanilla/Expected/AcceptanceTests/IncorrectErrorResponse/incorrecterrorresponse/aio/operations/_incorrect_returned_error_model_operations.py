@@ -20,14 +20,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations:
+class IncorrectReturnedErrorModelOperationsMixin:
     @distributed_trace_async
     async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
         """Get an error response from the server that is not as described in our Error object. Want to
@@ -42,7 +41,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_incorrect_error_from_server_request(
+        request = _rest.build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

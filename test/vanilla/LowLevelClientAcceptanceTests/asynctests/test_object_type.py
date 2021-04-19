@@ -57,4 +57,4 @@ async def test_put_object_fail(make_request):
     request = build_put_request(json={"should": "fail"})
     with pytest.raises(HttpResponseError) as ex:
        await make_request(request)
-    assert str(ex.value) == "(None) The object you passed was incorrect"
+    assert "The object you passed was incorrect" in str(ex.value)

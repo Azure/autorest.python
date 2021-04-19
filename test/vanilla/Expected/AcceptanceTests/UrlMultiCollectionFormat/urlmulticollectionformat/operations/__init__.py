@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._queries_operations import queriesOperations
+from ._queries_operations import QueriesOperations
 
 __all__ = [
-    "queriesOperations",
+    "QueriesOperations",
 ]

@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._dictionary_operations import dictionaryOperations
+from ._dictionary_operations import DictionaryOperations
 
 __all__ = [
-    "dictionaryOperations",
+    "DictionaryOperations",
 ]

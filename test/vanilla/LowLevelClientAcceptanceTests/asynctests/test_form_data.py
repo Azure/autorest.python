@@ -24,19 +24,22 @@
 #
 # --------------------------------------------------------------------------
 
-from async_generator import yield_, async_generator
 import subprocess
 import sys
 import io
-import isodate
 import os
 import tempfile
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
+cwd = dirname(realpath(__file__))
+log_level = int(os.environ.get('PythonLogLevel', 30))
 
-from bodyformdata.aio import AutoRestSwaggerBATFormDataService
+tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
+sys.path.append(join(tests, "BodyFormData"))
 
+
+from bodyformdata import AutoRestSwaggerBATFormDataService
+from bodyformdata._rest import formdata
 import pytest
 
 @pytest.fixture
@@ -48,115 +51,106 @@ def dummy_file():
     os.remove(dummy.name)
 
 @pytest.fixture
-@async_generator
-async def client():
-    async with AutoRestSwaggerBATFormDataService(
+def client():
+    with AutoRestSwaggerBATFormDataService(
         base_url="http://localhost:3000",
         connection_data_block_size = 2,
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6
     ) as client:
-        await yield_(client)
+        yield client
 
+@pytest.mark.asyncio
+async def test_file_upload_stream(client):
 
-class TestFormData(object):
-
-    @pytest.mark.asyncio
-    async def test_file_upload_stream(self, client):
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt")
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
-
-    @pytest.mark.asyncio
-    async def test_file_upload_stream_raw(self, client):
-        def test_callback(response, data, headers):
-            return data
-
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", cls=test_callback)
-            async for data in resp:
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
+    result = io.BytesIO()
+    with io.BytesIO(test_bytes) as stream_data:
+        files = {
+            "fileContent": stream_data,
+            "fileName": "UploadFile.txt",
+        }
+        request = formdata.build_upload_file_request(files=files)
+        async with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            async for data in response.iter_bytes():
                 result.write(data)
-            assert result.getvalue().decode() ==  test_string
+    assert result.getvalue().decode() ==  test_string
 
-    @pytest.mark.asyncio
-    async def test_file_upload_file_stream(self, client, dummy_file):
-        name = os.path.basename(dummy_file)
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file(upload_data, name)
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  "Test file"
+@pytest.mark.asyncio
+async def test_file_upload_file_stream(client, dummy_file):
 
-    @pytest.mark.asyncio
-    async def test_file_upload_file_stream_raw(self, client, dummy_file):
-
-        def test_callback(response, data, headers):
-            return data
-
-        name = os.path.basename(dummy_file)
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file(upload_data, name, cls=test_callback)
-            async for data in resp:
+    name = os.path.basename(dummy_file)
+    result = io.BytesIO()
+    with open(dummy_file, 'rb') as upload_data:
+        files = {
+            "fileContent": upload_data,
+            "fileName": name,
+        }
+        request = formdata.build_upload_file_request(files=files)
+        async with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            async for data in response.iter_bytes():
                 result.write(data)
-            assert result.getvalue().decode() ==  "Test file"
+        assert result.getvalue().decode() ==  "Test file"
 
-    @pytest.mark.asyncio
-    async def test_file_body_upload(self, client, dummy_file):
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
+@pytest.mark.asyncio
+async def test_file_body_upload(client, dummy_file):
 
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            resp = await client.formdata.upload_file_via_body(stream_data)
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
 
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            resp = await client.formdata.upload_file_via_body(upload_data)
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  "Test file"
-
-    @pytest.mark.asyncio
-    async def test_file_body_upload_generator(self, client, dummy_file):
-        test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
-
-        @async_generator
-        async def stream_upload(data, length, block_size):
-            progress = 0
-            while True:
-                block = data.read(block_size)
-                progress += len(block)
-                print("Progress... {}%".format(int(progress*100/length)))
-                if not block:
-                    break
-                await yield_(block)
-
-        result = io.BytesIO()
-        with io.BytesIO(test_bytes) as stream_data:
-            streamed_upload = stream_upload(stream_data, len(test_string), 2)
-            resp = await client.formdata.upload_file_via_body(streamed_upload)
-            async for r in resp:
-                result.write(r)
-            assert result.getvalue().decode() ==  test_string
-
-        result = io.BytesIO()
-        with open(dummy_file, 'rb') as upload_data:
-            streamed_upload = stream_upload(upload_data, len("Test file"), 2)
-            response = await client.formdata.upload_file_via_body(streamed_upload)
-            async for data in response:
+    result = io.BytesIO()
+    with io.BytesIO(test_bytes) as stream_data:
+        request = formdata.build_upload_file_via_body_request(content=stream_data)
+        async with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            async for data in response.iter_bytes():
                 result.write(data)
-            assert result.getvalue().decode() == "Test file"
+        assert result.getvalue().decode() ==  test_string
+
+    result = io.BytesIO()
+    with open(dummy_file, 'rb') as upload_data:
+        request = formdata.build_upload_file_via_body_request(content=upload_data)
+        async with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            async for data in response.iter_bytes():
+                result.write(data)
+        assert result.getvalue().decode() ==  "Test file"
+
+@pytest.mark.asyncio
+async def test_file_body_upload_generator(client, dummy_file):
+
+    test_string = "Upload file test case"
+    test_bytes = bytearray(test_string, encoding='utf-8')
+
+    def stream_upload(data, length, block_size):
+        progress = 0
+        while True:
+            block = data.read(block_size)
+            progress += len(block)
+            print("Progress... {}%".format(int(progress*100/length)))
+            if not block:
+                break
+            yield block
+
+    result = io.BytesIO()
+    with io.BytesIO(test_bytes) as stream_data:
+        streamed_upload = stream_upload(stream_data, len(test_string), 2)
+        request = formdata.build_upload_file_via_body_request(content=stream_upload)
+        async with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            async for data in response.iter_bytes():
+                result.write(data)
+        assert result.getvalue().decode() ==  test_string
+
+    result = io.BytesIO()
+    with open(dummy_file, 'rb') as upload_data:
+        streamed_upload = stream_upload(upload_data, len("Test file"), 2)
+        request = formdata.build_upload_file_via_body_request(content=streamed_upload)
+        async with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            async for data in response.iter_bytes():
+                result.write(data)
+        assert result.getvalue().decode() == "Test file"

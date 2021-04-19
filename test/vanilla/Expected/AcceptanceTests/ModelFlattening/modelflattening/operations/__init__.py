@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_resource_flattening_test_service_operations import modelOperations
+from ._auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 __all__ = [
-    "modelOperations",
+    "AutoRestResourceFlatteningTestServiceOperationsMixin",
 ]

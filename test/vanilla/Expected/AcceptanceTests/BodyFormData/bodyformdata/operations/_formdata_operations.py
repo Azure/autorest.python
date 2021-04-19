@@ -20,8 +20,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,8 +30,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class formdataOperations(object):
-    """formdataOperations operations.
+class FormdataOperations(object):
+    """FormdataOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -83,7 +82,7 @@ class formdataOperations(object):
             "fileName": file_name,
         }
 
-        request = build_upload_file_request(
+        request = _rest.formdata.build_upload_file_request(
             files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -129,7 +128,7 @@ class formdataOperations(object):
         content_type = kwargs.pop("content_type", "application/octet-stream")
         content = file_content
 
-        request = build_upload_file_via_body_request(
+        request = _rest.formdata.build_upload_file_via_body_request(
             content=content, content_type=content_type, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -178,7 +177,7 @@ class formdataOperations(object):
             "fileContent": file_content,
         }
 
-        request = build_upload_files_request(
+        request = _rest.formdata.build_upload_files_request(
             files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

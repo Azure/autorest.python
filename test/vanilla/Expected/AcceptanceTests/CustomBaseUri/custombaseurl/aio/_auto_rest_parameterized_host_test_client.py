@@ -14,15 +14,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextM
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
-from .operations import pathsOperations
+from .operations import PathsOperations
 from .. import models
 
 
 class AutoRestParameterizedHostTestClient(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar paths: pathsOperations operations
-    :vartype paths: custombaseurl.aio.operations.pathsOperations
+    :ivar paths: PathsOperations operations
+    :vartype paths: custombaseurl.aio.operations.PathsOperations
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
@@ -35,7 +35,7 @@ class AutoRestParameterizedHostTestClient(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.paths = pathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
@@ -72,11 +72,13 @@ class AutoRestParameterizedHostTestClient(object):
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return AsyncHttpResponse(
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

@@ -31,7 +31,15 @@ from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, AsyncRedirectPolicy
 
 from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
-from httpinfrastructure._rest import *
+from httpinfrastructure._rest import (
+    multiple_responses,
+    http_server_failure,
+    http_failure,
+    http_redirects,
+    http_retry,
+    http_success,
+    http_client_failure,
+)
 
 import pytest
 
@@ -108,156 +116,156 @@ def make_request_assert_raises_with_status_and_response_contains_message(client,
 async def test_get200_model204(make_request, make_request_assert_status, make_request_assert_raises_with_status_and_response_contains_message):
     # a lot of these tests raised in high level bc we made some 200 status codes errors in high level
     # can't do this in low level, so these don't actually raise
-    request = build_multipleresponses_get200_model204_no_model_default_error200_valid_request()
+    request = multiple_responses.build_get200_model204_no_model_default_error200_valid_request()
     await make_request_assert_status(request, 200)
 
-    request = build_multipleresponses_get200_model204_no_model_default_error201_invalid_request()
+    request = multiple_responses.build_get200_model204_no_model_default_error201_invalid_request()
     await make_request_assert_status(request, 201)
 
-    request = build_multipleresponses_get200_model204_no_model_default_error202_none_request()
+    request = multiple_responses.build_get200_model204_no_model_default_error202_none_request()
     await make_request_assert_status(request, 202)
 
-    request = build_multipleresponses_get200_model204_no_model_default_error204_valid_request()
+    request = multiple_responses.build_get200_model204_no_model_default_error204_valid_request()
 
     assert (await make_request(request)).text == ''
 
-    request = build_multipleresponses_get200_model204_no_model_default_error400_valid_request()
+    request = multiple_responses.build_get200_model204_no_model_default_error400_valid_request()
     await make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
 
 @pytest.mark.asyncio
 async def test_get200_model201(make_request_json_response, make_request_assert_status, make_request_assert_raises_with_status_and_response_contains_message):
-    request = build_multipleresponses_get200_model201_model_default_error200_valid_request()
+    request = multiple_responses.build_get200_model201_model_default_error200_valid_request()
     await make_request_assert_status(request, 200)
 
-    request = build_multipleresponses_get200_model201_model_default_error201_valid_request()
+    request = multiple_responses.build_get200_model201_model_default_error201_valid_request()
     b_model = await make_request_json_response(request)
     assert b_model is not None
     assert b_model['statusCode'] ==  "201"
     assert b_model['textStatusCode'] ==  "Created"
 
-    request = build_multipleresponses_get200_model201_model_default_error400_valid_request()
+    request = multiple_responses.build_get200_model201_model_default_error400_valid_request()
     await make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
 
 @pytest.mark.asyncio
 async def test_get200_model_a201_model_c404(make_request_json_response, make_request_assert_raises_with_status_and_response_contains_message, make_request_assert_raises_with_status):
-    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error200_valid_request()
+    request = multiple_responses.build_get200_model_a201_model_c404_model_d_default_error200_valid_request()
     a_model = await make_request_json_response(request)
     assert a_model['statusCode']==  "200"
 
-    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error201_valid_request()
+    request = multiple_responses.build_get200_model_a201_model_c404_model_d_default_error201_valid_request()
 
     c_model = await make_request_json_response(request)
     assert c_model['httpCode'] ==  "201"
 
-    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error404_valid_request()
+    request = multiple_responses.build_get200_model_a201_model_c404_model_d_default_error404_valid_request()
     await make_request_assert_raises_with_status(request, 404)  # in high level, this doesn't raise and returns a model since we've made 404 a valid status code. can't do that in llc
 
-    request = build_multipleresponses_get200_model_a201_model_c404_model_d_default_error400_valid_request()
+    request = multiple_responses.build_get200_model_a201_model_c404_model_d_default_error400_valid_request()
     await make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
 
 @pytest.mark.asyncio
 async def test_get202_none204(make_request, make_request_assert_raises_with_status, make_request_assert_raises_with_status_and_response_contains_message):
-    request = build_multipleresponses_get202_none204_none_default_error202_none_request()
+    request = multiple_responses.build_get202_none204_none_default_error202_none_request()
     await make_request(request)
 
-    request = build_multipleresponses_get202_none204_none_default_error204_none_request()
+    request = multiple_responses.build_get202_none204_none_default_error204_none_request()
     await make_request(request)
 
-    request = build_multipleresponses_get202_none204_none_default_error400_valid_request()
+    request = multiple_responses.build_get202_none204_none_default_error400_valid_request()
     await make_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
 
-    request = build_multipleresponses_get202_none204_none_default_none202_invalid_request()
+    request = multiple_responses.build_get202_none204_none_default_none202_invalid_request()
     await make_request(request)
 
-    request = build_multipleresponses_get202_none204_none_default_none204_none_request()
+    request = multiple_responses.build_get202_none204_none_default_none204_none_request()
     await make_request(request)
 
-    request = build_multipleresponses_get202_none204_none_default_none400_none_request()
+    request = multiple_responses.build_get202_none204_none_default_none400_none_request()
     await make_request_assert_raises_with_status(request, 400)
 
-    request = build_multipleresponses_get202_none204_none_default_none400_invalid_request()
+    request = multiple_responses.build_get202_none204_none_default_none400_invalid_request()
     await make_request_assert_raises_with_status(request, 400)
 
 @pytest.mark.asyncio
 async def test_get_default_model_a200(make_request, make_request_assert_status):
-    request = build_multipleresponses_get_default_model_a200_valid_request()
+    request = multiple_responses.build_get_default_model_a200_valid_request()
     await make_request_assert_status(request, 200)
 
-    request = build_multipleresponses_get_default_model_a200_none_request()
+    request = multiple_responses.build_get_default_model_a200_none_request()
     assert (await make_request(request)).text == ''
 
-    request = build_multipleresponses_get_default_model_a200_valid_request()
+    request = multiple_responses.build_get_default_model_a200_valid_request()
     await make_request(request)
-    request = build_multipleresponses_get_default_model_a200_none_request()
+    request = multiple_responses.build_get_default_model_a200_none_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_default_none200(make_request):
-    request = build_multipleresponses_get_default_none200_invalid_request()
+    request = multiple_responses.build_get_default_none200_invalid_request()
     await make_request(request)
 
-    requst = build_multipleresponses_get_default_none200_none_request()
+    requst = multiple_responses.build_get_default_none200_none_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_default_none400(make_request_assert_raises_with_status):
-    request = build_multipleresponses_get_default_none400_invalid_request()
+    request = multiple_responses.build_get_default_none400_invalid_request()
     await make_request_assert_raises_with_status(request, 400)
 
-    request = build_multipleresponses_get_default_none400_none_request()
+    request = multiple_responses.build_get_default_none400_none_request()
     await make_request_assert_raises_with_status(request, 400)
 
 @pytest.mark.asyncio
 async def test_get200_model_a200(make_request, make_request_assert_status):
-    request = build_multipleresponses_get200_model_a200_none_request()
+    request = multiple_responses.build_get200_model_a200_none_request()
     assert (await make_request(request)).text == ''
 
-    request = build_multipleresponses_get200_model_a200_valid_request()
+    request = multiple_responses.build_get200_model_a200_valid_request()
     await make_request_assert_status(request, 200)
 
-    request = build_multipleresponses_get200_model_a200_invalid_request()
+    request = multiple_responses.build_get200_model_a200_invalid_request()
     await make_request_assert_status(request, 200) # in high level it's supposed to deserialize as exception model "MyException", can't do that in LLC
 
 @pytest.mark.asyncio
 async def test_get200_model_a400(make_request_assert_raises_with_status):
-    request = build_multipleresponses_get200_model_a400_none_request()
+    request = multiple_responses.build_get200_model_a400_none_request()
     await make_request_assert_raises_with_status(request, 400)
 
-    request = build_multipleresponses_get200_model_a400_valid_request()
+    request = multiple_responses.build_get200_model_a400_valid_request()
     await make_request_assert_raises_with_status(request, 400)
 
-    request = build_multipleresponses_get200_model_a400_invalid_request()
+    request = multiple_responses.build_get200_model_a400_invalid_request()
     await make_request_assert_raises_with_status(request, 400)
 
 @pytest.mark.asyncio
 async def test_get200_model_a202(make_request_assert_status):
-    request = build_multipleresponses_get200_model_a202_valid_request()
+    request = multiple_responses.build_get200_model_a202_valid_request()
     await make_request_assert_status(request, 202)  # raises in HLC bc we've marked all status codes that are not "200" as errors
 
 @pytest.mark.asyncio
 async def test_server_error_status_codes_501(make_request_assert_raises_with_status):
-    request = build_httpserverfailure_head501_request()
+    request = http_server_failure.build_head501_request()
     await make_request_assert_raises_with_status(request, requests.codes.not_implemented)
 
-    request = build_httpserverfailure_get501_request()
+    request = http_server_failure.build_get501_request()
     await make_request_assert_raises_with_status(request, requests.codes.not_implemented)
 
 @pytest.mark.asyncio
 async def test_server_error_status_codes_505(make_request_assert_raises_with_status):
-    request = build_httpserverfailure_post505_request()
+    request = http_server_failure.build_post505_request()
     await make_request_assert_raises_with_status(request, requests.codes.http_version_not_supported)
 
-    request = build_httpserverfailure_delete505_request()
+    request = http_server_failure.build_delete505_request()
     await make_request_assert_raises_with_status(request, requests.codes.http_version_not_supported)
 
 @pytest.mark.asyncio
 async def test_retry_status_codes_408(make_request):
-    request = build_httpretry_head408_request()
+    request = http_retry.build_head408_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_retry_status_codes_502(make_request):
-    request = build_httpretry_get502_request()
+    request = http_retry.build_get502_request()
     await make_request(request)
 
     # TODO, 4042586: Support options operations in swagger modeler
@@ -265,59 +273,59 @@ async def test_retry_status_codes_502(make_request):
 
 @pytest.mark.asyncio
 async def test_retry_status_codes_500(make_request):
-    request = build_httpretry_put500_request()
+    request = http_retry.build_put500_request()
     await make_request(request)
-    request = build_httpretry_patch500_request()
+    request = http_retry.build_patch500_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_retry_status_codes_503(make_request):
-    request = build_httpretry_post503_request()
+    request = http_retry.build_post503_request()
     await make_request(request)
 
-    request = build_httpretry_delete503_request()
+    request = http_retry.build_delete503_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_retry_status_codes_504(make_request):
-    request = build_httpretry_put504_request()
+    request = http_retry.build_put504_request()
     await make_request(request)
 
-    request = build_httpretry_patch504_request()
+    request = http_retry.build_patch504_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_400(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_head400_request()
+    request = http_client_failure.build_head400_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    request = build_httpclientfailure_get400_request()
+    request = http_client_failure.build_get400_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
     # TODO, 4042586: Support options operations in swagger modeler
     #self.assert_raises_with_status(requests.codes.bad_request,
     #    client.http_client_failure.options400)
 
-    request = build_httpclientfailure_put400_request()
+    request = http_client_failure.build_put400_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    request = build_httpclientfailure_patch400_request()
+    request = http_client_failure.build_patch400_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    request = build_httpclientfailure_post400_request()
+    request = http_client_failure.build_post400_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
-    request = build_httpclientfailure_delete400_request()
+    request = http_client_failure.build_delete400_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_401(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_head401_request()
+    request = http_client_failure.build_head401_request()
     await make_request_assert_raises_with_status(request, requests.codes.unauthorized)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_402(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_get402_request()
+    request = http_client_failure.build_get402_request()
     await make_request_assert_raises_with_status(request, requests.codes.payment_required)
 
 @pytest.mark.asyncio
@@ -326,152 +334,152 @@ async def test_error_status_codes_403(make_request_assert_raises_with_status):
     #self.assert_raises_with_status(requests.codes.forbidden,
     #    client.http_client_failure.options403)
 
-    request = build_httpclientfailure_get403_request()
+    request = http_client_failure.build_get403_request()
     await make_request_assert_raises_with_status(request, requests.codes.forbidden)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_404(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_put404_request()
+    request = http_client_failure.build_put404_request()
     await make_request_assert_raises_with_status(request, requests.codes.not_found)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_405(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_patch405_request()
+    request = http_client_failure.build_patch405_request()
     await make_request_assert_raises_with_status(request, requests.codes.method_not_allowed)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_406(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_post406_request()
+    request = http_client_failure.build_post406_request()
     await make_request_assert_raises_with_status(request, requests.codes.not_acceptable)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_407(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_delete407_request()
+    request = http_client_failure.build_delete407_request()
     await make_request_assert_raises_with_status(request, requests.codes.proxy_authentication_required)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_409(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_put409_request()
+    request = http_client_failure.build_put409_request()
     await make_request_assert_raises_with_status(request, requests.codes.conflict)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_410(make_request_assert_raises_with_status):
-    request = build_httpclientfailure_head410_request()
+    request = http_client_failure.build_head410_request()
     await make_request_assert_raises_with_status(request, requests.codes.gone)
 
 @pytest.mark.asyncio
 async def test_error_status_codes_411(make_request_assert_raises_with_status):
 
-    request = build_httpclientfailure_get411_request()
+    request = http_client_failure.build_get411_request()
     await make_request_assert_raises_with_status(request, requests.codes.length_required)
 
     # TODO, 4042586: Support options operations in swagger modeler
     #self.assert_raises_with_status(requests.codes.precondition_failed,
     #    client.http_client_failure.options412)
 
-    request = build_httpclientfailure_get412_request()
+    request = http_client_failure.build_get412_request()
     await make_request_assert_raises_with_status(request, requests.codes.precondition_failed)
 
-    request = build_httpclientfailure_put413_request()
+    request = http_client_failure.build_put413_request()
     await make_request_assert_raises_with_status(request, requests.codes.request_entity_too_large)
 
-    request = build_httpclientfailure_patch414_request()
+    request = http_client_failure.build_patch414_request()
     await make_request_assert_raises_with_status(request, requests.codes.request_uri_too_large)
 
-    request = build_httpclientfailure_post415_request()
+    request = http_client_failure.build_post415_request()
     await make_request_assert_raises_with_status(request, requests.codes.unsupported_media)
 
-    request = build_httpclientfailure_get416_request()
+    request = http_client_failure.build_get416_request()
     await make_request_assert_raises_with_status(request, requests.codes.requested_range_not_satisfiable)
 
-    request = build_httpclientfailure_delete417_request()
+    request = http_client_failure.build_delete417_request()
     await make_request_assert_raises_with_status(request, requests.codes.expectation_failed)
 
-    request = build_httpclientfailure_head429_request()
+    request = http_client_failure.build_head429_request()
     await make_request_assert_raises_with_status(request, 429)
 
 @pytest.mark.asyncio
 async def test_redirect_to_300(make_request_assert_status):
-    request = build_httpredirects_get300_request()
+    request = http_redirects.build_get300_request()
     await make_request_assert_status(request, 200)
 
 @pytest.mark.asyncio
 async def test_redirect_to_301(make_request_assert_status):
-    request = build_httpredirects_head301_request()
+    request = http_redirects.build_head301_request()
     await make_request_assert_status(request, 200)
 
 
-    request = build_httpredirects_get301_request()
+    request = http_redirects.build_get301_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_put301_request()
+    request = http_redirects.build_put301_request()
     await make_request_assert_status(request, requests.codes.moved_permanently)
 
 @pytest.mark.asyncio
 async def test_redirect_to_302(make_request_assert_status):
-    request = build_httpredirects_head302_request()
+    request = http_redirects.build_head302_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_get302_request()
+    request = http_redirects.build_get302_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_patch302_request()
+    request = http_redirects.build_patch302_request()
     await make_request_assert_status(request, requests.codes.found)
 
 @pytest.mark.asyncio
 async def test_redicret_to_303(make_request_assert_status):
-    request = build_httpredirects_post303_request()
+    request = http_redirects.build_post303_request()
     await make_request_assert_status(request, 200)
 
 @pytest.mark.asyncio
 async def test_redirect_to_307(make_request_assert_status):
-    request = build_httpredirects_head307_request()
+    request = http_redirects.build_head307_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_get307_request()
+    request = http_redirects.build_get307_request()
     await make_request_assert_status(request, 200)
 
     # TODO, 4042586: Support options operations in swagger modeler
     #self.assert_status(200, client.http_redirects.options307)
-    request = build_httpredirects_put307_request()
+    request = http_redirects.build_put307_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_post307_request()
+    request = http_redirects.build_post307_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_patch307_request()
+    request = http_redirects.build_patch307_request()
     await make_request_assert_status(request, 200)
 
-    request = build_httpredirects_delete307_request()
+    request = http_redirects.build_delete307_request()
     await make_request_assert_status(request, 200)
 
 @pytest.mark.asyncio
 async def test_bad_request_status_assert(make_request_assert_raises_with_message):
-    request = build_httpfailure_get_empty_error_request()
+    request = http_failure.build_get_empty_error_request()
     await make_request_assert_raises_with_message(request, "Operation returned an invalid status 'Bad Request'")
 
 @pytest.mark.asyncio
 async def test_no_error_model_status_assert(make_request_assert_raises_with_status_and_response_contains_message):
-    request = build_httpfailure_get_no_model_error_request()
+    request = http_failure.build_get_no_model_error_request()
     await make_request_assert_raises_with_status_and_response_contains_message(request, requests.codes.bad_request, "NoErrorModel")
 
 @pytest.mark.asyncio
 async def test_success_status_codes_200(make_request):
-    request = build_httpsuccess_head200_request()
+    request = http_success.build_head200_request()
     await make_request(request)
-    request = build_httpsuccess_get200_request()
+    request = http_success.build_get200_request()
     assert (await make_request(request)).text
 
-    request = build_httpsuccess_put200_request()
+    request = http_success.build_put200_request()
     await make_request(request)
 
-    request = build_httpsuccess_post200_request()
+    request = http_success.build_post200_request()
     await make_request(request)
 
-    request = build_httpsuccess_patch200_request()
+    request = http_success.build_patch200_request()
     await make_request(request)
 
-    request = build_httpsuccess_delete200_request()
+    request = http_success.build_delete200_request()
     await make_request(request)
 
     # TODO, 4042586: Support options operations in swagger modeler
@@ -479,50 +487,50 @@ async def test_success_status_codes_200(make_request):
 
 @pytest.mark.asyncio
 async def test_success_status_codes_201(make_request):
-    request = build_httpsuccess_put201_request()
+    request = http_success.build_put201_request()
     await make_request(request)
 
-    request = build_httpsuccess_post201_request()
+    request = http_success.build_post201_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_success_status_codes_202(make_request):
-    request = build_httpsuccess_put202_request()
+    request = http_success.build_put202_request()
     await make_request(request)
 
-    request = build_httpsuccess_post202_request()
+    request = http_success.build_post202_request()
     await make_request(request)
 
-    request = build_httpsuccess_patch202_request()
+    request = http_success.build_patch202_request()
     await make_request(request)
 
-    request = build_httpsuccess_delete202_request()
+    request = http_success.build_delete202_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_success_status_codes_204(make_request):
-    request = build_httpsuccess_head204_request()
+    request = http_success.build_head204_request()
     await make_request(request)
 
-    request = build_httpsuccess_put204_request()
+    request = http_success.build_put204_request()
     await make_request(request)
 
-    request = build_httpsuccess_post204_request()
+    request = http_success.build_post204_request()
     await make_request(request)
 
-    request = build_httpsuccess_delete204_request()
+    request = http_success.build_delete204_request()
     await make_request(request)
 
-    request = build_httpsuccess_patch204_request()
+    request = http_success.build_patch204_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_success_status_codes_404(make_request_assert_raises_with_status):
     # raises bc in high level we're able to mark 404 as a valid status code, but can't do that in llc
-    request = build_httpsuccess_head404_request()
+    request = http_success.build_head404_request()
     await make_request_assert_raises_with_status(request, 404)
 
 @pytest.mark.asyncio
 async def test_empty_no_content(make_request_assert_raises_with_status):
-    request = build_httpfailure_get_no_model_empty_request()
+    request = http_failure.build_get_no_model_empty_request()
     await make_request_assert_raises_with_status(request, requests.codes.bad_request)

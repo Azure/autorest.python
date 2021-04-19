@@ -55,7 +55,7 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    {{ op_tools.get_request_builder(operation, request_builder)|indent }}
+    {{ op_tools.get_request_builder(code_model, operation, request_builder)|indent }}
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}

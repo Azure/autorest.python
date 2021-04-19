@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
-from .operations import dictionaryOperations
+from .operations import DictionaryOperations
 from . import models
 
 
 class AutoRestSwaggerBATDictionaryService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar dictionary: dictionaryOperations operations
-    :vartype dictionary: bodydictionary.operations.dictionaryOperations
+    :ivar dictionary: DictionaryOperations operations
+    :vartype dictionary: bodydictionary.operations.DictionaryOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AutoRestSwaggerBATDictionaryService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.dictionary = dictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -83,11 +83,13 @@ class AutoRestSwaggerBATDictionaryService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

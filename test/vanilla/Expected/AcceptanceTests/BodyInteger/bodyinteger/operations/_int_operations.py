@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -33,8 +32,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class intOperations(object):
-    """intOperations operations.
+class IntOperations(object):
+    """IntOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -71,7 +70,7 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = _rest.int.build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -108,7 +107,7 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = _rest.int.build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -145,7 +144,9 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_overflow_int32_request(template_url=self.get_overflow_int32.metadata["url"], **kwargs)
+        request = _rest.int.build_get_overflow_int32_request(
+            template_url=self.get_overflow_int32.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -182,7 +183,9 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_underflow_int32_request(template_url=self.get_underflow_int32.metadata["url"], **kwargs)
+        request = _rest.int.build_get_underflow_int32_request(
+            template_url=self.get_underflow_int32.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -219,7 +222,9 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_overflow_int64_request(template_url=self.get_overflow_int64.metadata["url"], **kwargs)
+        request = _rest.int.build_get_overflow_int64_request(
+            template_url=self.get_overflow_int64.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -256,7 +261,9 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_underflow_int64_request(template_url=self.get_underflow_int64.metadata["url"], **kwargs)
+        request = _rest.int.build_get_underflow_int64_request(
+            template_url=self.get_underflow_int64.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -301,7 +308,7 @@ class intOperations(object):
         content = self._serialize.body(int_body, "int")
         content = json.dumps(content)
 
-        request = build_put_max32_request(
+        request = _rest.int.build_put_max32_request(
             content=content, content_type=content_type, template_url=self.put_max32.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -344,7 +351,7 @@ class intOperations(object):
         content = self._serialize.body(int_body, "long")
         content = json.dumps(content)
 
-        request = build_put_max64_request(
+        request = _rest.int.build_put_max64_request(
             content=content, content_type=content_type, template_url=self.put_max64.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -387,7 +394,7 @@ class intOperations(object):
         content = self._serialize.body(int_body, "int")
         content = json.dumps(content)
 
-        request = build_put_min32_request(
+        request = _rest.int.build_put_min32_request(
             content=content, content_type=content_type, template_url=self.put_min32.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -430,7 +437,7 @@ class intOperations(object):
         content = self._serialize.body(int_body, "long")
         content = json.dumps(content)
 
-        request = build_put_min64_request(
+        request = _rest.int.build_put_min64_request(
             content=content, content_type=content_type, template_url=self.put_min64.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -465,7 +472,7 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_unix_time_request(template_url=self.get_unix_time.metadata["url"], **kwargs)
+        request = _rest.int.build_get_unix_time_request(template_url=self.get_unix_time.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -510,7 +517,7 @@ class intOperations(object):
         content = self._serialize.body(int_body, "unix-time")
         content = json.dumps(content)
 
-        request = build_put_unix_time_date_request(
+        request = _rest.int.build_put_unix_time_date_request(
             content=content, content_type=content_type, template_url=self.put_unix_time_date.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -545,7 +552,9 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_unix_time_request(template_url=self.get_invalid_unix_time.metadata["url"], **kwargs)
+        request = _rest.int.build_get_invalid_unix_time_request(
+            template_url=self.get_invalid_unix_time.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -582,7 +591,9 @@ class intOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_unix_time_request(template_url=self.get_null_unix_time.metadata["url"], **kwargs)
+        request = _rest.int.build_get_null_unix_time_request(
+            template_url=self.get_null_unix_time.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

@@ -20,17 +20,17 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import NonStringEnumsClientConfiguration
-from .operations import intOperations
-from .operations import floatOperations
+from .operations import IntOperations
+from .operations import FloatOperations
 
 
 class NonStringEnumsClient(object):
     """Testing non-string enums.
 
-    :ivar int: intOperations operations
-    :vartype int: nonstringenums.operations.intOperations
-    :ivar float: floatOperations operations
-    :vartype float: nonstringenums.operations.floatOperations
+    :ivar int: IntOperations operations
+    :vartype int: nonstringenums.operations.IntOperations
+    :ivar float: FloatOperations operations
+    :vartype float: nonstringenums.operations.FloatOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -49,8 +49,8 @@ class NonStringEnumsClient(object):
         client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer()
         self._deserialize = Deserializer(client_models)
-        self.int = intOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float = floatOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -86,11 +86,13 @@ class NonStringEnumsClient(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

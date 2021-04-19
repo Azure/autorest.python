@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,7 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations(object):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_array(
         self,
@@ -60,7 +59,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_put_array_request(
+        request = _rest.build_put_array_request(
             content=content, content_type=content_type, template_url=self.put_array.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -95,7 +94,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_array_request(template_url=self.get_array.metadata["url"], **kwargs)
+        request = _rest.build_get_array_request(template_url=self.get_array.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -144,7 +143,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_put_wrapped_array_request(
+        request = _rest.build_put_wrapped_array_request(
             content=content, content_type=content_type, template_url=self.put_wrapped_array.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -180,7 +179,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_wrapped_array_request(template_url=self.get_wrapped_array.metadata["url"], **kwargs)
+        request = _rest.build_get_wrapped_array_request(template_url=self.get_wrapped_array.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -228,7 +227,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_put_dictionary_request(
+        request = _rest.build_put_dictionary_request(
             content=content, content_type=content_type, template_url=self.put_dictionary.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -263,7 +262,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_dictionary_request(template_url=self.get_dictionary.metadata["url"], **kwargs)
+        request = _rest.build_get_dictionary_request(template_url=self.get_dictionary.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -311,7 +310,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_put_resource_collection_request(
+        request = _rest.build_put_resource_collection_request(
             content=content,
             content_type=content_type,
             template_url=self.put_resource_collection.metadata["url"],
@@ -349,7 +348,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_resource_collection_request(
+        request = _rest.build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -399,7 +398,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_put_simple_product_request(
+        request = _rest.build_put_simple_product_request(
             content=content, content_type=content_type, template_url=self.put_simple_product.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -470,7 +469,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_post_flattened_simple_product_request(
+        request = _rest.build_post_flattened_simple_product_request(
             content=content,
             content_type=content_type,
             template_url=self.post_flattened_simple_product.metadata["url"],
@@ -548,7 +547,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_put_simple_product_with_grouping_request(
+        request = _rest.build_put_simple_product_with_grouping_request(
             name=_name,
             content=content,
             content_type=content_type,

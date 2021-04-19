@@ -22,8 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -69,7 +68,7 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = build_paging_get_pages_partial_url_request(
+                request = _rest.paging.build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -79,7 +78,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = build_paging_get_pages_partial_url_request(
+                request = _rest.paging.build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -139,7 +138,7 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = build_paging_get_pages_partial_url_operation_request(
+                request = _rest.paging.build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
                 )
                 path_format_arguments = {
@@ -149,7 +148,7 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = build_paging_get_pages_partial_url_operation_next_request(
+                request = _rest.paging.build_get_pages_partial_url_operation_next_request(
                     next_link=next_link, template_url="/paging/customurl/{nextLink}", **kwargs
                 )
                 path_format_arguments = {

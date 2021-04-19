@@ -30,7 +30,7 @@ from azure.core.exceptions import HttpResponseError
 
 from bodystring import AutoRestSwaggerBATService
 from bodystring.models import Colors, RefColorConstant
-from bodystring._rest import *
+from bodystring._rest import string, enum
 import pytest
 
 @pytest.fixture
@@ -51,17 +51,17 @@ def make_request_json_response(client, base_make_request_json_response):
     return _make_request
 
 def test_null(make_request):
-    request = build_string_get_null_request()
+    request = string.build_get_null_request()
     assert make_request(request).text == ''
 
-    request = build_string_put_null_request(content=None)
+    request = string.build_put_null_request(content=None)
     make_request(request)
 
 def test_empty(make_request, make_request_json_response):
-    request = build_string_get_empty_request()
+    request = string.build_get_empty_request()
     assert "" == make_request_json_response(request)
     # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
-    request = build_string_put_empty_request(json="")
+    request = string.build_put_empty_request(json="")
     make_request(request)
 
 def test_mbcs(make_request, make_request_json_response):
@@ -99,69 +99,69 @@ def test_mbcs(make_request, make_request_json_response):
             b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
             b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
-    request = build_string_get_mbcs_request()
+    request = string.build_get_mbcs_request()
     assert test_str == make_request_json_response(request)
 
-    request = build_string_put_mbcs_request(content=test_str)
+    request = string.build_put_mbcs_request(content=test_str)
     make_request(request)
 
 def test_whitespace(make_request, make_request_json_response):
     test_str = "    Now is the time for all good men to come to the aid of their country    "
-    request = build_string_get_whitespace_request()
+    request = string.build_get_whitespace_request()
     assert test_str == make_request_json_response(request)
 
-    request = build_string_put_whitespace_request(json=test_str)
+    request = string.build_put_whitespace_request(json=test_str)
     make_request(request)
 
 def test_get_not_provided(make_request):
-    request = build_string_get_not_provided_request()
+    request = string.build_get_not_provided_request()
     assert make_request(request).text == ''
 
 def test_enum_not_expandable(make_request, make_request_json_response):
-    request = build_enum_get_not_expandable_request()
+    request = enum.build_get_not_expandable_request()
     assert Colors.RED_COLOR == make_request_json_response(request)
 
-    request = build_enum_put_not_expandable_request(json='red color')
+    request = enum.build_put_not_expandable_request(json='red color')
     make_request(request)
 
-    request = build_enum_put_not_expandable_request(json=Colors.RED_COLOR)
+    request = enum.build_put_not_expandable_request(json=Colors.RED_COLOR)
     make_request(request)
     # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
     # but now we allow the user to pass strings as enums, so the raised exception is different.
 
-    request = build_enum_put_not_expandable_request(json='not a color')
+    request = enum.build_put_not_expandable_request(json='not a color')
     with pytest.raises(HttpResponseError):
         make_request(request)
 
 def test_get_base64_encdoded(make_request):
-    request = build_string_get_base64_encoded_request()
+    request = string.build_get_base64_encoded_request()
     assert make_request(request).text.encode() ==  'a string that gets encoded with base64'.encode()
 
 def test_base64_url_encoded(make_request, make_request_json_response):
-    request = build_string_get_base64_url_encoded_request()
+    request = string.build_get_base64_url_encoded_request()
     assert make_request_json_response(request) ==  'a string that gets encoded with base64url'.encode()
 
-    request = build_string_put_base64_url_encoded_request(content='a string that gets encoded with base64url'.encode())
+    request = string.build_put_base64_url_encoded_request(content='a string that gets encoded with base64url'.encode())
     make_request(request)
 
 def test_get_null_base64_url_encoded(make_request):
-    request = build_string_get_null_base64_url_encoded_request()
+    request = string.build_get_null_base64_url_encoded_request()
     assert make_request(request).text == ''
 
 def test_enum_referenced(make_request, make_request_json_response):
-    request = build_enum_put_referenced_request(json=Colors.RED_COLOR)
+    request = enum.build_put_referenced_request(json=Colors.RED_COLOR)
     make_request(request)
 
-    request = build_enum_put_referenced_request(json="red color")
+    request = enum.build_put_referenced_request(json="red color")
     make_request(request)
 
-    request = build_enum_get_referenced_request()
+    request = enum.build_get_referenced_request()
     assert make_request_json_response(request) == Colors.RED_COLOR
 
 def test_enum_referenced_constant(make_request, make_request_json_response):
-    request = build_enum_put_referenced_request(json=RefColorConstant().serialize())
+    request = enum.build_put_referenced_request(json=RefColorConstant().serialize())
     make_request(request)
 
-    request = build_enum_get_referenced_constant_request()
+    request = enum.build_get_referenced_constant_request()
     response = RefColorConstant.deserialize(make_request_json_response(request))
     assert response.color_constant ==  Colors.GREEN_COLOR.value

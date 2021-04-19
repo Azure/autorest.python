@@ -21,15 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class http_retryOperations:
-    """http_retryOperations async operations.
+class HttpRetryOperations:
+    """HttpRetryOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +62,7 @@ class http_retryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head408_request(template_url=self.head408.metadata["url"], **kwargs)
+        request = _rest.http_retry.build_head408_request(template_url=self.head408.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -102,7 +101,7 @@ class http_retryOperations:
         else:
             content = None
 
-        request = build_put500_request(
+        request = _rest.http_retry.build_put500_request(
             content=content, content_type=content_type, template_url=self.put500.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -143,7 +142,7 @@ class http_retryOperations:
         else:
             content = None
 
-        request = build_patch500_request(
+        request = _rest.http_retry.build_patch500_request(
             content=content, content_type=content_type, template_url=self.patch500.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -175,7 +174,7 @@ class http_retryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get502_request(template_url=self.get502.metadata["url"], **kwargs)
+        request = _rest.http_retry.build_get502_request(template_url=self.get502.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -205,7 +204,7 @@ class http_retryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_options502_request(template_url=self.options502.metadata["url"], **kwargs)
+        request = _rest.http_retry.build_options502_request(template_url=self.options502.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -248,7 +247,7 @@ class http_retryOperations:
         else:
             content = None
 
-        request = build_post503_request(
+        request = _rest.http_retry.build_post503_request(
             content=content, content_type=content_type, template_url=self.post503.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -289,7 +288,7 @@ class http_retryOperations:
         else:
             content = None
 
-        request = build_delete503_request(
+        request = _rest.http_retry.build_delete503_request(
             content=content, content_type=content_type, template_url=self.delete503.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -330,7 +329,7 @@ class http_retryOperations:
         else:
             content = None
 
-        request = build_put504_request(
+        request = _rest.http_retry.build_put504_request(
             content=content, content_type=content_type, template_url=self.put504.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -371,7 +370,7 @@ class http_retryOperations:
         else:
             content = None
 
-        request = build_patch504_request(
+        request = _rest.http_retry.build_patch504_request(
             content=content, content_type=content_type, template_url=self.patch504.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

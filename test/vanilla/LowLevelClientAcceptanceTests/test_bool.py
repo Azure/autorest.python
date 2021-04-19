@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from bodyboolean import AutoRestBoolTestService
-from bodyboolean._rest import *
+from bodyboolean._rest import bool
 import pytest
 from azure.core.exceptions import DecodeError
 
@@ -46,26 +46,25 @@ def make_request_json_response(client, base_make_request_json_response):
     return _make_request
 
 def test_model_get_true(make_request_json_response):
-    request = build_bool_get_true_request()
+    request = bool.build_get_true_request()
     assert make_request_json_response(request) == True
 
 def test_model_get_false(make_request_json_response):
-    request = build_bool_get_false_request()
+    request = bool.build_get_false_request()
     assert not make_request_json_response(request)
 
 def test_model_get_null(make_request):
-    request = build_bool_get_null_request()
+    request = bool.build_get_null_request()
     assert make_request(request).text == ''
 
 def test_model_put_false(make_request):
-    request = build_bool_put_false_request(json=False)  # have to pass in bc we don't do constant bodies in request builders
+    request = bool.build_put_false_request(json=False)  # have to pass in bc we don't do constant bodies in request builders
     make_request(request)
 
 def test_model_put_true(make_request):
-    request = build_bool_put_true_request(json=True)  # have to pass in bc we don't do constant bodies in request builders
+    request = bool.build_put_true_request(json=True)  # have to pass in bc we don't do constant bodies in request builders
     make_request(request)
 
 def test_model_get_invalid(make_request):
-    request = build_bool_get_invalid_request()
-    with pytest.raises(DecodeError):
-        make_request(request)
+    request = bool.build_get_invalid_request()
+    assert make_request(request).text == "true1"

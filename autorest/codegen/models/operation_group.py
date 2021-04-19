@@ -58,7 +58,7 @@ class OperationGroup(BaseModel):
             file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
 
         # import request builders
-        file_import.add_from_import(local_path + "_rest", "*", ImportType.LOCAL)
+        file_import.add_from_import(local_path, "_rest", ImportType.LOCAL)
         return file_import
 
     @property

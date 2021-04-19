@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._datetime_operations import datetimeOperations
+from ._datetime_operations import DatetimeOperations
 
 __all__ = [
-    "datetimeOperations",
+    "DatetimeOperations",
 ]

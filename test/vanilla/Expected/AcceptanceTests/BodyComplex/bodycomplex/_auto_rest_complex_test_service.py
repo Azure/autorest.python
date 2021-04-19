@@ -20,39 +20,39 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
-from .operations import basicOperations
-from .operations import primitiveOperations
-from .operations import arrayOperations
-from .operations import dictionaryOperations
-from .operations import inheritanceOperations
-from .operations import polymorphismOperations
-from .operations import polymorphicrecursiveOperations
-from .operations import readonlypropertyOperations
-from .operations import flattencomplexOperations
+from .operations import BasicOperations
+from .operations import PrimitiveOperations
+from .operations import ArrayOperations
+from .operations import DictionaryOperations
+from .operations import InheritanceOperations
+from .operations import PolymorphismOperations
+from .operations import PolymorphicrecursiveOperations
+from .operations import ReadonlypropertyOperations
+from .operations import FlattencomplexOperations
 from . import models
 
 
 class AutoRestComplexTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar basic: basicOperations operations
-    :vartype basic: bodycomplex.operations.basicOperations
-    :ivar primitive: primitiveOperations operations
-    :vartype primitive: bodycomplex.operations.primitiveOperations
-    :ivar array: arrayOperations operations
-    :vartype array: bodycomplex.operations.arrayOperations
-    :ivar dictionary: dictionaryOperations operations
-    :vartype dictionary: bodycomplex.operations.dictionaryOperations
-    :ivar inheritance: inheritanceOperations operations
-    :vartype inheritance: bodycomplex.operations.inheritanceOperations
-    :ivar polymorphism: polymorphismOperations operations
-    :vartype polymorphism: bodycomplex.operations.polymorphismOperations
-    :ivar polymorphicrecursive: polymorphicrecursiveOperations operations
-    :vartype polymorphicrecursive: bodycomplex.operations.polymorphicrecursiveOperations
-    :ivar readonlyproperty: readonlypropertyOperations operations
-    :vartype readonlyproperty: bodycomplex.operations.readonlypropertyOperations
-    :ivar flattencomplex: flattencomplexOperations operations
-    :vartype flattencomplex: bodycomplex.operations.flattencomplexOperations
+    :ivar basic: BasicOperations operations
+    :vartype basic: bodycomplex.operations.BasicOperations
+    :ivar primitive: PrimitiveOperations operations
+    :vartype primitive: bodycomplex.operations.PrimitiveOperations
+    :ivar array: ArrayOperations operations
+    :vartype array: bodycomplex.operations.ArrayOperations
+    :ivar dictionary: DictionaryOperations operations
+    :vartype dictionary: bodycomplex.operations.DictionaryOperations
+    :ivar inheritance: InheritanceOperations operations
+    :vartype inheritance: bodycomplex.operations.InheritanceOperations
+    :ivar polymorphism: PolymorphismOperations operations
+    :vartype polymorphism: bodycomplex.operations.PolymorphismOperations
+    :ivar polymorphicrecursive: PolymorphicrecursiveOperations operations
+    :vartype polymorphicrecursive: bodycomplex.operations.PolymorphicrecursiveOperations
+    :ivar readonlyproperty: ReadonlypropertyOperations operations
+    :vartype readonlyproperty: bodycomplex.operations.ReadonlypropertyOperations
+    :ivar flattencomplex: FlattencomplexOperations operations
+    :vartype flattencomplex: bodycomplex.operations.FlattencomplexOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -71,19 +71,19 @@ class AutoRestComplexTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.basic = basicOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.primitive = primitiveOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.array = arrayOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.dictionary = dictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.inheritance = inheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphism = polymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphicrecursive = polymorphicrecursiveOperations(
+        self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.inheritance = InheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.polymorphism = PolymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.polymorphicrecursive = PolymorphicrecursiveOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.readonlyproperty = readonlypropertyOperations(
+        self.readonlyproperty = ReadonlypropertyOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.flattencomplex = flattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
@@ -118,11 +118,13 @@ class AutoRestComplexTestService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

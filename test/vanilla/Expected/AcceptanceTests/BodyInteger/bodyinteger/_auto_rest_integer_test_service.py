@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestIntegerTestServiceConfiguration
-from .operations import intOperations
+from .operations import IntOperations
 from . import models
 
 
 class AutoRestIntegerTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar int: intOperations operations
-    :vartype int: bodyinteger.operations.intOperations
+    :ivar int: IntOperations operations
+    :vartype int: bodyinteger.operations.IntOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AutoRestIntegerTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.int = intOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -83,11 +83,13 @@ class AutoRestIntegerTestService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

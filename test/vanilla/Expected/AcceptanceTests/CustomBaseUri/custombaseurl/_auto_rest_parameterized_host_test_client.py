@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
-from .operations import pathsOperations
+from .operations import PathsOperations
 from . import models
 
 
 class AutoRestParameterizedHostTestClient(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar paths: pathsOperations operations
-    :vartype paths: custombaseurl.operations.pathsOperations
+    :ivar paths: PathsOperations operations
+    :vartype paths: custombaseurl.operations.PathsOperations
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
@@ -46,7 +46,7 @@ class AutoRestParameterizedHostTestClient(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.paths = pathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
@@ -84,11 +84,13 @@ class AutoRestParameterizedHostTestClient(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

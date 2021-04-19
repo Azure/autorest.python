@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._implicit_operations import implicitOperations
-from ._explicit_operations import explicitOperations
+from ._implicit_operations import ImplicitOperations
+from ._explicit_operations import ExplicitOperations
 
 __all__ = [
-    "implicitOperations",
-    "explicitOperations",
+    "ImplicitOperations",
+    "ExplicitOperations",
 ]

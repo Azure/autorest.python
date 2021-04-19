@@ -20,8 +20,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,8 +30,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class http_failureOperations(object):
-    """http_failureOperations operations.
+class HttpFailureOperations(object):
+    """HttpFailureOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -69,7 +68,9 @@ class http_failureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_empty_error_request(template_url=self.get_empty_error.metadata["url"], **kwargs)
+        request = _rest.http_failure.build_get_empty_error_request(
+            template_url=self.get_empty_error.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -106,7 +107,9 @@ class http_failureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_no_model_error_request(template_url=self.get_no_model_error.metadata["url"], **kwargs)
+        request = _rest.http_failure.build_get_no_model_error_request(
+            template_url=self.get_no_model_error.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -142,7 +145,9 @@ class http_failureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_no_model_empty_request(template_url=self.get_no_model_empty.metadata["url"], **kwargs)
+        request = _rest.http_failure.build_get_no_model_empty_request(
+            template_url=self.get_no_model_empty.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

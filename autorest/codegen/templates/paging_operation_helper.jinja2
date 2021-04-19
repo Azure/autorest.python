@@ -9,10 +9,10 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
 
     def prepare_request(next_link=None):
         if not next_link:
-            {{ op_tools.get_request_builder(operation, request_builder)|indent(12) }}
+            {{ op_tools.get_request_builder(code_model, operation, request_builder)|indent(12) }}
         else:
             {% set url = keywords.escape_str(operation.next_request_builder.url) if operation.next_request_builder else None %}
-            {{ op_tools.get_request_builder(operation, operation.next_request_builder if operation.next_request_builder else request_builder, url=url)|indent(12) }}
+            {{ op_tools.get_request_builder(code_model, operation, operation.next_request_builder if operation.next_request_builder else request_builder, url=url)|indent(12) }}
             {% if not operation.next_request_builder %}
             # little hacky, but this code will soon be replaced with code that won't need the hack
                 {% if operation.parameters.path %}

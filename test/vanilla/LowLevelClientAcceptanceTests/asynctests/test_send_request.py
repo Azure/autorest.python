@@ -49,7 +49,6 @@ class TestSendRequest(object):
         )
 
         response = await client._send_request(request)
-        await response.load_body()
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
         assert "Siameeee" ==  deserialized.name
@@ -69,11 +68,10 @@ class TestSendRequest(object):
             },
         )
 
-        response = await client._send_request(request)
-
-        data = b''
-        async for chunk in response.stream_download(None):
-            data += chunk
+        async with client._send_request(request, stream_response=True) as response:
+            data = ''
+            async for chunk in response.iter_text():
+                data += chunk
         json_response = json.loads(data.decode('utf-8'))
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
@@ -107,11 +105,8 @@ class TestSendRequest(object):
         }
 
         request = HttpRequest("PUT", "/complex/inheritance/valid",
-            headers={
-                'Content-Type': 'application/json'
-            }
+            json=siamese_body,
         )
-        request.set_json_body(siamese_body)
 
         response = await client._send_request(request)
         assert response.status_code == 200
@@ -145,9 +140,9 @@ class TestSendRequest(object):
         request = HttpRequest("PUT", "/complex/inheritance/valid",
             headers={
                 'Content-Type': 'application/json'
-            }
+            },
+            json=siamese.serialize(),
         )
-        request.set_json_body(siamese.serialize())
 
         response = await client._send_request(request)
         assert response.status_code == 200
@@ -166,19 +161,12 @@ class TestSendRequest(object):
                 },
             )
 
-            response = await client._send_request(request, stream=True)
-            assert response.status_code == 200
+            async with client._send_request(request, stream_response=True) as response:
+                response.raise_for_status()
 
-            stream = response.stream_download(None)
-
-            total = len(stream)
-            assert not stream.response.internal_response._released
-
-            async for data in stream:
-                assert 0 < len(data) <= stream.block_size
-                file_length += len(data)
-                print("Downloading... {}%".format(int(file_length*100/total)))
-                file_handle.write(data)
+                async for data in response.iter_bytes():
+                    file_length += len(data)
+                    file_handle.write(data)
 
             assert file_length !=  0
 
@@ -202,9 +190,6 @@ class TestSendRequest(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         with io.BytesIO(test_bytes) as stream_data:
             request = HttpRequest("PUT", '/formdata/stream/uploadfile',
-                headers={
-                    'Content-Type': 'application/octet-stream'
-                },
                 data=stream_data,
             )
             response = await client._send_request(request)
@@ -217,11 +202,7 @@ class TestSendRequest(object):
 
         client = AutoRestComplexTestService(base_url="http://fakeUrl")
 
-        request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid",
-            headers={
-                'Accept': 'application/json'
-            },
-        )
+        request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid")
 
         response = client._send_request(request)
 

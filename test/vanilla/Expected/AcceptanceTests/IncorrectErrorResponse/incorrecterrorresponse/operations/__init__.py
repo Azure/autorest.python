@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._incorrect_returned_error_model_operations import modelOperations
+from ._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin
 
 __all__ = [
-    "modelOperations",
+    "IncorrectReturnedErrorModelOperationsMixin",
 ]

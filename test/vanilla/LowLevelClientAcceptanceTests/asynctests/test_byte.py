@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from bodybyte.aio import AutoRestSwaggerBATByteService
-from bodybyte._rest import *
+from bodybyte._rest import byte
 from async_generator import yield_, async_generator
 from base64 import b64encode
 
@@ -45,23 +45,23 @@ def make_request(client, base_make_request):
 @pytest.mark.asyncio
 async def test_non_ascii(make_request):
     tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-    request = build_byte_put_non_ascii_request(json=b64encode(tests).decode())
+    request = byte.build_put_non_ascii_request(json=b64encode(tests).decode())
     await make_request(request)
 
-    request = build_byte_get_non_ascii_request()
+    request = byte.build_get_non_ascii_request()
     response = await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_null(make_request):
-    request = build_byte_get_null_request()
+    request = byte.build_get_null_request()
     assert (await make_request(request)).text == ''
 
 @pytest.mark.asyncio
 async def test_get_empty(make_request):
-    request = build_byte_get_empty_request()
+    request = byte.build_get_empty_request()
     assert b'""' == (await make_request(request)).content  # in convenience layer, we deserialize as bytearray specif
 
 @pytest.mark.asyncio
 async def test_get_invalid(make_request):
-    request = build_byte_get_invalid_request()
+    request = byte.build_get_invalid_request()
     assert (await make_request(request)).content == b'"::::SWAGGER::::"'

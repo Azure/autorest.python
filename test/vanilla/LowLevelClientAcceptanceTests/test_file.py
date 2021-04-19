@@ -26,7 +26,7 @@
 import io
 from os.path import dirname, pardir, join, realpath
 from bodyfile import AutoRestSwaggerBATFileService
-from bodyfile._rest.files import *
+from bodyfile._rest import files
 
 import pytest
 
@@ -43,7 +43,7 @@ def client(connection_data_block_size):
 def test_get_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
-        request = build_get_file_request()
+        request = files.build_get_file_request()
         with client._send_request(request, stream_response=True) as response:
             assert not response._internal_response.internal_response._content_consumed
             assert not response.is_closed
@@ -69,7 +69,7 @@ def test_get_file(client):
 def test_get_empty_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
-        request = build_get_empty_file_request()
+        request = files.build_get_empty_file_request()
         with client._send_request(request, stream_response=True) as response:
             assert not response._internal_response.internal_response._content_consumed
 
@@ -82,7 +82,7 @@ def test_get_empty_file(client):
 @pytest.mark.parametrize('connection_data_block_size', [4096])
 def test_files_long_running(client):
     file_length = 0
-    request = build_get_file_large_request()
+    request = files.build_get_file_large_request()
     with client._send_request(request, stream_response=True) as response:
         chunk_size = 4095  # make less than connection data block size to make sure chunk size is working
         for data in response.iter_bytes(chunk_size=chunk_size):

@@ -20,8 +20,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,7 +30,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations(object):
+class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_report(
         self,
@@ -54,7 +53,9 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_report_request(qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs)
+        request = _rest.build_get_report_request(
+            qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -97,7 +98,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_optional_report_request(
+        request = _rest.build_get_optional_report_request(
             qualifier=qualifier, template_url=self.get_optional_report.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

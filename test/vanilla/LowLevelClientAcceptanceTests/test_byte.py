@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from bodybyte import AutoRestSwaggerBATByteService
-from bodybyte._rest import *
+from bodybyte._rest import byte
 from base64 import b64encode
 import pytest
 
@@ -41,20 +41,20 @@ def make_request(client, base_make_request):
 
 def test_non_ascii(make_request):
     tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-    request = build_byte_put_non_ascii_request(json=b64encode(tests).decode())
+    request = byte.build_put_non_ascii_request(json=b64encode(tests).decode())
     make_request(request)
 
-    request = build_byte_get_non_ascii_request()
+    request = byte.build_get_non_ascii_request()
     make_request(request)
 
 def test_get_null(make_request):
-    request = build_byte_get_null_request()
+    request = byte.build_get_null_request()
     assert make_request(request).text == ''
 
 def test_get_empty(make_request):
-    request = build_byte_get_empty_request()
+    request = byte.build_get_empty_request()
     assert b'""' == make_request(request).content  # in convenience layer, we deserialize as bytearray specif
 
 def test_get_invalid(make_request):
-    request = build_byte_get_invalid_request()
+    request = byte.build_get_invalid_request()
     assert make_request(request).content == b'"::::SWAGGER::::"'

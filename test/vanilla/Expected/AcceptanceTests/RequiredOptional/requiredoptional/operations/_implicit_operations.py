@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,8 +31,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class implicitOperations(object):
-    """implicitOperations operations.
+class ImplicitOperations(object):
+    """ImplicitOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -74,7 +73,7 @@ class implicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_required_path_request(
+        request = _rest.implicit.build_get_required_path_request(
             path_parameter=path_parameter, template_url=self.get_required_path.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -113,7 +112,7 @@ class implicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_put_optional_query_request(
+        request = _rest.implicit.build_put_optional_query_request(
             query_parameter=query_parameter, template_url=self.put_optional_query.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -152,7 +151,7 @@ class implicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_put_optional_header_request(
+        request = _rest.implicit.build_put_optional_header_request(
             query_parameter=query_parameter, template_url=self.put_optional_header.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -198,7 +197,7 @@ class implicitOperations(object):
         else:
             content = None
 
-        request = build_put_optional_body_request(
+        request = _rest.implicit.build_put_optional_body_request(
             content=content, content_type=content_type, template_url=self.put_optional_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -240,7 +239,7 @@ class implicitOperations(object):
         content_type = kwargs.pop("content_type", "application/octet-stream")
         content = body_parameter
 
-        request = build_put_optional_binary_body_request(
+        request = _rest.implicit.build_put_optional_binary_body_request(
             content=content,
             content_type=content_type,
             template_url=self.put_optional_binary_body.metadata["url"],
@@ -278,7 +277,7 @@ class implicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_required_global_path_request(
+        request = _rest.implicit.build_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
             template_url=self.get_required_global_path.metadata["url"],
             **kwargs
@@ -315,7 +314,7 @@ class implicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_required_global_query_request(
+        request = _rest.implicit.build_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
             template_url=self.get_required_global_query.metadata["url"],
             **kwargs
@@ -352,7 +351,7 @@ class implicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_optional_global_query_request(
+        request = _rest.implicit.build_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
             template_url=self.get_optional_global_query.metadata["url"],
             **kwargs

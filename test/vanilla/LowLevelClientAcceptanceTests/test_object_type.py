@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 
 from objecttype import ObjectTypeClient
-from objecttype._rest import *
+from objecttype._rest import build_get_request, build_put_request
 from azure.core.exceptions import HttpResponseError
 
 import pytest
@@ -53,4 +53,4 @@ def test_put_object_fail(make_request):
     request = build_put_request(json={"should": "fail"})
     with pytest.raises(HttpResponseError) as ex:
         make_request(request)
-    assert str(ex.value) == "(None) The object you passed was incorrect"
+    assert "The object you passed was incorrect" in str(ex.value)

@@ -14,18 +14,18 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextM
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
-from .operations import stringOperations
-from .operations import enumOperations
+from .operations import StringOperations
+from .operations import EnumOperations
 from .. import models
 
 
 class AutoRestSwaggerBATService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar string: stringOperations operations
-    :vartype string: bodystring.aio.operations.stringOperations
-    :ivar enum: enumOperations operations
-    :vartype enum: bodystring.aio.operations.enumOperations
+    :ivar string: StringOperations operations
+    :vartype string: bodystring.aio.operations.StringOperations
+    :ivar enum: EnumOperations operations
+    :vartype enum: bodystring.aio.operations.EnumOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -39,8 +39,8 @@ class AutoRestSwaggerBATService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.string = stringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.enum = enumOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -75,11 +75,13 @@ class AutoRestSwaggerBATService(object):
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return AsyncHttpResponse(
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

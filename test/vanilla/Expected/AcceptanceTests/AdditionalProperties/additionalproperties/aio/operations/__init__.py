@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._pets_operations import petsOperations
+from ._pets_operations import PetsOperations
 
 __all__ = [
-    "petsOperations",
+    "PetsOperations",
 ]

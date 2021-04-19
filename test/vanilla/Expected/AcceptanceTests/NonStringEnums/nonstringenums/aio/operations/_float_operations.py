@@ -21,15 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class floatOperations:
-    """floatOperations async operations.
+class FloatOperations:
+    """FloatOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -68,7 +67,7 @@ class floatOperations:
         else:
             content = None
 
-        request = build_put_request(
+        request = _rest.float.build_put_request(
             content=content, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -103,7 +102,7 @@ class floatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _rest.float.build_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

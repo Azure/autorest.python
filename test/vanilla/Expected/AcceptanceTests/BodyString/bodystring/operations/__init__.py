@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._string_operations import stringOperations
-from ._enum_operations import enumOperations
+from ._string_operations import StringOperations
+from ._enum_operations import EnumOperations
 
 __all__ = [
-    "stringOperations",
-    "enumOperations",
+    "StringOperations",
+    "EnumOperations",
 ]

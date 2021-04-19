@@ -14,21 +14,21 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextM
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
-from .operations import pathsOperations
-from .operations import queriesOperations
-from .operations import path_itemsOperations
+from .operations import PathsOperations
+from .operations import QueriesOperations
+from .operations import PathItemsOperations
 from .. import models
 
 
 class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar paths: pathsOperations operations
-    :vartype paths: url.aio.operations.pathsOperations
-    :ivar queries: queriesOperations operations
-    :vartype queries: url.aio.operations.queriesOperations
-    :ivar path_items: path_itemsOperations operations
-    :vartype path_items: url.aio.operations.path_itemsOperations
+    :ivar paths: PathsOperations operations
+    :vartype paths: url.aio.operations.PathsOperations
+    :ivar queries: QueriesOperations operations
+    :vartype queries: url.aio.operations.QueriesOperations
+    :ivar path_items: PathItemsOperations operations
+    :vartype path_items: url.aio.operations.PathItemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
     :param global_string_query: should contain value null.
@@ -52,9 +52,9 @@ class AutoRestUrlTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.paths = pathsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.queries = queriesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.path_items = path_itemsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
@@ -88,11 +88,13 @@ class AutoRestUrlTestService(object):
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return AsyncHttpResponse(
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

@@ -14,15 +14,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextM
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
-from .operations import xmlOperations
+from .operations import XmlOperations
 from .. import models
 
 
 class AutoRestSwaggerBATXMLService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar xml: xmlOperations operations
-    :vartype xml: xmlservice.aio.operations.xmlOperations
+    :ivar xml: XmlOperations operations
+    :vartype xml: xmlservice.aio.operations.XmlOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -36,7 +36,7 @@ class AutoRestSwaggerBATXMLService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.xml = xmlOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.xml = XmlOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -71,11 +71,13 @@ class AutoRestSwaggerBATXMLService(object):
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return AsyncHttpResponse(
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

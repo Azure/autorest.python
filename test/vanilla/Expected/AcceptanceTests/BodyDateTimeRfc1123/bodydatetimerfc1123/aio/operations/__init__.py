@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._datetimerfc1123_operations import datetimerfc1123Operations
+from ._datetimerfc1123_operations import Datetimerfc1123Operations
 
 __all__ = [
-    "datetimerfc1123Operations",
+    "Datetimerfc1123Operations",
 ]

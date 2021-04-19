@@ -66,10 +66,9 @@ class TestSendRequest(object):
             },
         )
 
-        response = client._send_request(request)
-        response.raise_for_status()
-
-        data = b''.join([chunk for chunk in response.stream_download()]).decode('utf-8')
+        with client._send_request(request, stream_response=True) as response:
+            response.raise_for_status()
+            data = ''.join([chunk for chunk in response.iter_text()])
         json_response = json.loads(data)
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
@@ -155,20 +154,11 @@ class TestSendRequest(object):
                 },
             )
 
-            response = client._send_request(request, stream_response=True)
-            response.raise_for_status()
-            assert response.status_code == 200
-
-            stream = response.stream_download()  # want to make pipeline client an optional param in azure-core
-
-            total = len(stream)
-            assert not stream.response.internal_response._content_consumed
-
-            for data in stream:
-                assert 0 < len(data) <= stream.block_size
-                file_length += len(data)
-                print("Downloading... {}%".format(int(file_length*100/total)))
-                file_handle.write(data)
+            with client._send_request(request, stream_response=True) as response:
+                response.raise_for_status()
+                for data in response.iter_bytes():
+                    file_length += len(data)
+                    file_handle.write(data)
 
             assert file_length !=  0
 
@@ -191,11 +181,10 @@ class TestSendRequest(object):
         test_bytes = bytearray(test_string, encoding='utf-8')
         with io.BytesIO(test_bytes) as stream_data:
             request = HttpRequest("PUT", '/formdata/stream/uploadfile',
-                files=stream_data,
+                content=stream_data,
             )
-            response = client._send_request(request, stream_response=True)
-            response.raise_for_status()
-            assert response.status_code == 200
+            with client._send_request(request, stream_response=True) as response:
+                response.raise_for_status()
 
     def test_send_request_full_url(self):
         from bodycomplex import AutoRestComplexTestService

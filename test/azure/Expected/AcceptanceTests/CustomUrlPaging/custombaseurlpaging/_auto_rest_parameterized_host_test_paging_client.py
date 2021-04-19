@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -45,10 +45,10 @@ class AutoRestParameterizedHostTestPagingClient(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -57,8 +57,8 @@ class AutoRestParameterizedHostTestPagingClient(object):
         We have helper methods to create requests specific to this service in `custombaseurlpaging.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlpaging.rest import build_paging_get_pages_partial_url_request
-        >>> request = build_paging_get_pages_partial_url_request()
+        >>> from custombaseurlpaging.rest import build_get_pages_partial_url_request
+        >>> request = build_get_pages_partial_url_request()
         <HttpRequest [GET], url: '/paging/customurl/partialnextlink'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -79,13 +79,19 @@ class AutoRestParameterizedHostTestPagingClient(object):
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        stream_response = kwargs.pop("stream_response", False)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

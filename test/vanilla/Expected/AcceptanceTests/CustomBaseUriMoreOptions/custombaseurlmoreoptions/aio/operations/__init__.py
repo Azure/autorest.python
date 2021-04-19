@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._paths_operations import pathsOperations
+from ._paths_operations import PathsOperations
 
 __all__ = [
-    "pathsOperations",
+    "PathsOperations",
 ]

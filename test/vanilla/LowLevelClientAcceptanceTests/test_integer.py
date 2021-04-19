@@ -25,10 +25,8 @@
 # --------------------------------------------------------------------------
 
 from datetime import datetime
-from azure.core.exceptions import DecodeError
-
 from bodyinteger import AutoRestIntegerTestService
-from bodyinteger._rest import *
+from bodyinteger._rest import int
 
 import pytest
 import calendar
@@ -50,55 +48,53 @@ def make_request(client, base_make_request):
     return _make_request
 
 def test_max_min_32_bit(make_request):
-    request = build_int_put_max32_request(json=2147483647) # sys.maxint
+    request = int.build_put_max32_request(json=2147483647) # sys.maxint
     make_request(request)
 
-    request = build_int_put_min32_request(json=-2147483648)
+    request = int.build_put_min32_request(json=-2147483648)
     make_request(request)
 
 def test_max_min_64_bit(make_request):
-    request = build_int_put_max64_request(json=9223372036854776000)  # sys.maxsize
+    request = int.build_put_max64_request(json=9223372036854776000)  # sys.maxsize
     make_request(request)
 
-    request = build_int_put_min64_request(json=-9223372036854776000)
+    request = int.build_put_min64_request(json=-9223372036854776000)
     make_request(request)
 
 def test_get_null_and_invalid(make_request):
-    request = build_int_get_null_request()
+    request = int.build_get_null_request()
     make_request(request)
 
-    request = build_int_get_invalid_request()
-    with pytest.raises(DecodeError):
-        make_request(request)
+    request = int.build_get_invalid_request()
+    assert make_request(request).text == '123jkl'
 
 def test_get_overflow(make_request):
     # Testserver excepts these to fail, but they won't in Python and it's ok.
 
-    request = build_int_get_overflow_int32_request()
+    request = int.build_get_overflow_int32_request()
     make_request(request)
 
-    request = build_int_get_overflow_int64_request()
+    request = int.build_get_overflow_int64_request()
     make_request(request)
 
 def test_get_underflow(make_request):
-    request = build_int_get_underflow_int32_request()
+    request = int.build_get_underflow_int32_request()
     make_request(request)
 
-    request = build_int_get_underflow_int64_request()
+    request = int.build_get_underflow_int64_request()
     make_request(request)
 
 def test_unix_time_date(make_request):
     unix_date = datetime(year=2016, month=4, day=13)
-    request = build_int_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
+    request = int.build_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
     make_request(request)
 
-    request = build_int_get_unix_time_request()
+    request = int.build_get_unix_time_request()
     assert unix_date.utctimetuple() == datetime.fromtimestamp(make_request(request).json(), TZ_UTC).utctimetuple()
 
 def test_get_null_and_invalid_unix_time(make_request):
-    request = build_int_get_null_unix_time_request()
+    request = int.build_get_null_unix_time_request()
     assert make_request(request).text == ''
 
-    request = build_int_get_invalid_unix_time_request()
-    with pytest.raises(DecodeError):
-        make_request(request)
+    request = int.build_get_invalid_unix_time_request()
+    assert make_request(request).text == '123jkl'

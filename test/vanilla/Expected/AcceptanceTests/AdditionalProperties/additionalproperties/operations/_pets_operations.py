@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,8 +31,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class petsOperations(object):
-    """petsOperations operations.
+class PetsOperations(object):
+    """PetsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -78,7 +77,7 @@ class petsOperations(object):
         content = self._serialize.body(create_parameters, "PetAPTrue")
         content = json.dumps(content)
 
-        request = build_create_ap_true_request(
+        request = _rest.pets.build_create_ap_true_request(
             content=content, content_type=content_type, template_url=self.create_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -125,7 +124,7 @@ class petsOperations(object):
         content = self._serialize.body(create_parameters, "CatAPTrue")
         content = json.dumps(content)
 
-        request = build_create_cat_ap_true_request(
+        request = _rest.pets.build_create_cat_ap_true_request(
             content=content, content_type=content_type, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -172,7 +171,7 @@ class petsOperations(object):
         content = self._serialize.body(create_parameters, "PetAPObject")
         content = json.dumps(content)
 
-        request = build_create_ap_object_request(
+        request = _rest.pets.build_create_ap_object_request(
             content=content, content_type=content_type, template_url=self.create_ap_object.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -219,7 +218,7 @@ class petsOperations(object):
         content = self._serialize.body(create_parameters, "PetAPString")
         content = json.dumps(content)
 
-        request = build_create_ap_string_request(
+        request = _rest.pets.build_create_ap_string_request(
             content=content, content_type=content_type, template_url=self.create_ap_string.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -266,7 +265,7 @@ class petsOperations(object):
         content = self._serialize.body(create_parameters, "PetAPInProperties")
         content = json.dumps(content)
 
-        request = build_create_ap_in_properties_request(
+        request = _rest.pets.build_create_ap_in_properties_request(
             content=content,
             content_type=content_type,
             template_url=self.create_ap_in_properties.metadata["url"],
@@ -316,7 +315,7 @@ class petsOperations(object):
         content = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
         content = json.dumps(content)
 
-        request = build_create_ap_in_properties_with_ap_string_request(
+        request = _rest.pets.build_create_ap_in_properties_with_ap_string_request(
             content=content,
             content_type=content_type,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],

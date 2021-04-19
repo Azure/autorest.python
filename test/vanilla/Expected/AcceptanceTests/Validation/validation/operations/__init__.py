@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_validation_test_operations import modelOperations
+from ._auto_rest_validation_test_operations import AutoRestValidationTestOperationsMixin
 
 __all__ = [
-    "modelOperations",
+    "AutoRestValidationTestOperationsMixin",
 ]

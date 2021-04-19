@@ -21,14 +21,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations:
+class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
     async def get_horse(self, **kwargs: Any) -> "_models.Horse":
         """Get a horse with name 'Fred' and isAShowHorse true.
@@ -42,7 +41,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
+        request = _rest.build_get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -82,7 +81,7 @@ class modelOperations:
         content = self._serialize.body(horse, "Horse")
         content = json.dumps(content)
 
-        request = build_put_horse_request(
+        request = _rest.build_put_horse_request(
             content=content, content_type=content_type, template_url=self.put_horse.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -117,7 +116,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
+        request = _rest.build_get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -158,7 +157,7 @@ class modelOperations:
         content = self._serialize.body(_pet, "Pet")
         content = json.dumps(content)
 
-        request = build_put_pet_request(
+        request = _rest.build_put_pet_request(
             content=content, content_type=content_type, template_url=self.put_pet.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -193,7 +192,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
+        request = _rest.build_get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -233,7 +232,7 @@ class modelOperations:
         content = self._serialize.body(feline, "Feline")
         content = json.dumps(content)
 
-        request = build_put_feline_request(
+        request = _rest.build_put_feline_request(
             content=content, content_type=content_type, template_url=self.put_feline.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -268,7 +267,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
+        request = _rest.build_get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -308,7 +307,7 @@ class modelOperations:
         content = self._serialize.body(cat, "Cat")
         content = json.dumps(content)
 
-        request = build_put_cat_request(
+        request = _rest.build_put_cat_request(
             content=content, content_type=content_type, template_url=self.put_cat.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -344,7 +343,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
+        request = _rest.build_get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -386,7 +385,7 @@ class modelOperations:
         content = self._serialize.body(kitten, "Kitten")
         content = json.dumps(content)
 
-        request = build_put_kitten_request(
+        request = _rest.build_put_kitten_request(
             content=content, content_type=content_type, template_url=self.put_kitten.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

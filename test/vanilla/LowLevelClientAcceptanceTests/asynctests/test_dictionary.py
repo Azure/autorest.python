@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 import isodate
 from datetime import timedelta
-from bodydictionary._rest import *
+from bodydictionary._rest import dictionary
 from bodydictionary.aio import AutoRestSwaggerBATDictionaryService
 from bodydictionary.models import Widget
 from azure.core.exceptions import DecodeError
@@ -83,109 +83,109 @@ async def test_dict():
 @pytest.mark.asyncio
 async def test_boolean_tfft(make_request, make_request_json_response):
     tfft = {"0":True, "1":False, "2":False, "3":True}
-    request = build_dictionary_get_boolean_tfft_request()
+    request = dictionary.build_get_boolean_tfft_request()
     assert tfft == await make_request_json_response(request)
 
-    request = build_dictionary_put_boolean_tfft_request(json=tfft)
+    request = dictionary.build_put_boolean_tfft_request(json=tfft)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_boolean_invalid(make_request_json_response):
     invalid_null_dict = {"0":True, "1":None, "2":False}
-    request = build_dictionary_get_boolean_invalid_null_request()
+    request = dictionary.build_get_boolean_invalid_null_request()
     assert invalid_null_dict == await make_request_json_response(request)
 
-    request = build_dictionary_get_boolean_invalid_string_request()
+    request = dictionary.build_get_boolean_invalid_string_request()
     assert {"0": True, "1": "boolean", "2": False} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_integer_valid(make_request, make_request_json_response):
     int_valid = {"0":1, "1":-1, "2":3, "3":300}
-    request = build_dictionary_get_integer_valid_request()
+    request = dictionary.build_get_integer_valid_request()
     assert int_valid == await make_request_json_response(request)
 
-    request = build_dictionary_put_integer_valid_request(json=int_valid)
+    request = dictionary.build_put_integer_valid_request(json=int_valid)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_int_invalid(make_request_json_response):
     int_null_dict = {"0":1, "1":None, "2":0}
-    request = build_dictionary_get_int_invalid_null_request()
+    request = dictionary.build_get_int_invalid_null_request()
     assert int_null_dict == await make_request_json_response(request)
 
-    request = build_dictionary_get_int_invalid_string_request()
+    request = dictionary.build_get_int_invalid_string_request()
     assert {"0": 1, "1": "integer", "2": 0} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_long_valid(make_request, make_request_json_response):
     long_valid = {"0":1, "1":-1, "2":3, "3":300}
-    request = build_dictionary_get_long_valid_request()
+    request = dictionary.build_get_long_valid_request()
     assert long_valid == await make_request_json_response(request)
 
-    request = build_dictionary_put_long_valid_request(json=long_valid)
+    request = dictionary.build_put_long_valid_request(json=long_valid)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_long_invalid(make_request_json_response):
     long_null_dict = {"0":1, "1":None, "2":0}
-    request = build_dictionary_get_long_invalid_null_request()
+    request = dictionary.build_get_long_invalid_null_request()
     assert long_null_dict == await make_request_json_response(request)
 
-    request = build_dictionary_get_long_invalid_string_request()
+    request = dictionary.build_get_long_invalid_string_request()
     assert {"0": 1, "1": "integer", "2": 0} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_float_valid(make_request, make_request_json_response):
     float_valid = {"0":0, "1":-0.01, "2":-1.2e20}
-    request = build_dictionary_get_float_valid_request()
+    request = dictionary.build_get_float_valid_request()
     assert float_valid == await make_request_json_response(request)
 
-    request = build_dictionary_put_float_valid_request(json=float_valid)
+    request = dictionary.build_put_float_valid_request(json=float_valid)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_float_invalid(make_request_json_response):
     float_null_dict = {"0":0.0, "1":None, "2":-1.2e20}
-    request = build_dictionary_get_float_invalid_null_request()
+    request = dictionary.build_get_float_invalid_null_request()
     assert float_null_dict == await make_request_json_response(request)
 
-    request = build_dictionary_get_float_invalid_string_request()
+    request = dictionary.build_get_float_invalid_string_request()
     assert {"0": 1, "1": "number", "2": 0} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_double_valid(make_request, make_request_json_response):
     double_valid = {"0":0, "1":-0.01, "2":-1.2e20}
-    request = build_dictionary_get_double_valid_request()
+    request = dictionary.build_get_double_valid_request()
     assert double_valid == await make_request_json_response(request)
 
-    request = build_dictionary_put_double_valid_request(json=double_valid)
+    request = dictionary.build_put_double_valid_request(json=double_valid)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_double_invalid(make_request_json_response):
     double_null_dict = {"0":0.0, "1":None, "2":-1.2e20}
-    request = build_dictionary_get_double_invalid_null_request()
+    request = dictionary.build_get_double_invalid_null_request()
     assert double_null_dict == await make_request_json_response(request)
 
-    request = build_dictionary_get_double_invalid_string_request()
+    request = dictionary.build_get_double_invalid_string_request()
     assert {"0": 1, "1": "number", "2": 0} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_string_valid(make_request, make_request_json_response):
     string_valid = {"0":"foo1", "1":"foo2", "2":"foo3"}
-    request = build_dictionary_get_string_valid_request()
+    request = dictionary.build_get_string_valid_request()
     assert string_valid == await make_request_json_response(request)
 
-    request = build_dictionary_put_string_valid_request(json=string_valid)
+    request = dictionary.build_put_string_valid_request(json=string_valid)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_string_with_null_and_invalid(make_request_json_response):
     string_null_dict = {"0":"foo", "1":None, "2":"foo2"}
     string_invalid_dict = {"0":"foo", "1":123, "2":"foo2"}  # in llc, we don't know we should serialize this whole thing as string, so serializes 123 as number
-    request = build_dictionary_get_string_with_null_request()
+    request = dictionary.build_get_string_with_null_request()
     assert string_null_dict == await make_request_json_response(request)
-    request = build_dictionary_get_string_with_invalid_request()
+    request = dictionary.build_get_string_with_invalid_request()
     assert string_invalid_dict == await make_request_json_response(request)
 
 @pytest.mark.asyncio
@@ -195,10 +195,10 @@ async def test_date_valid(make_request, get_serialized_dict, get_deserialized_di
     date3 = isodate.parse_date("1492-10-12T00:00:00Z")
     valid_date_dict = {"0":date1, "1":date2, "2":date3}
 
-    request = build_dictionary_get_date_valid_request()
+    request = dictionary.build_get_date_valid_request()
     assert await get_deserialized_dict(request, msrest_deserializer.deserialize_date) ==  valid_date_dict
 
-    request = build_dictionary_put_date_valid_request(json=get_serialized_dict(valid_date_dict, msrest_serializer.serialize_date))
+    request = dictionary.build_put_date_valid_request(json=get_serialized_dict(valid_date_dict, msrest_serializer.serialize_date))
     await make_request(request)
 
 @pytest.mark.asyncio
@@ -206,10 +206,10 @@ async def test_get_date_invalid(make_request_json_response, msrest_deserializer,
     date_null_dict = {"0":isodate.parse_date("2012-01-01"),
                         "1":None,
                         "2":isodate.parse_date("1776-07-04")}
-    request = build_dictionary_get_date_invalid_null_request()
+    request = dictionary.build_get_date_invalid_null_request()
     assert date_null_dict == await get_deserialized_dict(request, msrest_deserializer.deserialize_date)
 
-    request = build_dictionary_get_date_invalid_chars_request()
+    request = dictionary.build_get_date_invalid_chars_request()
     assert {"0": "2011-03-22", "1": "date"} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
@@ -219,10 +219,10 @@ async def test_date_time_valid(make_request, get_deserialized_dict, get_serializ
     datetime3 = isodate.parse_datetime("1492-10-12T10:15:01-08:00")
     valid_datetime_dict = {"0":datetime1, "1":datetime2, "2":datetime3}
 
-    request = build_dictionary_get_date_time_valid_request()
+    request = dictionary.build_get_date_time_valid_request()
     assert valid_datetime_dict == await get_deserialized_dict(request, msrest_deserializer.deserialize_iso)
 
-    request = build_dictionary_put_date_time_valid_request(
+    request = dictionary.build_put_date_time_valid_request(
         json=get_serialized_dict(valid_datetime_dict, msrest_serializer.serialize_iso)
     )
     await make_request(request)
@@ -230,10 +230,10 @@ async def test_date_time_valid(make_request, get_deserialized_dict, get_serializ
 @pytest.mark.asyncio
 async def test_get_date_time_invalid(make_request_json_response, msrest_deserializer, get_deserialized_dict):
     datetime_null_dict = {"0":isodate.parse_datetime("2000-12-01T00:00:01Z"), "1":None}
-    request = build_dictionary_get_date_time_invalid_null_request()
+    request = dictionary.build_get_date_time_invalid_null_request()
     assert datetime_null_dict == await get_deserialized_dict(request, msrest_deserializer.deserialize_iso)
 
-    request = build_dictionary_get_date_time_invalid_chars_request()
+    request = dictionary.build_get_date_time_invalid_chars_request()
     assert {"0": "2000-12-01t00:00:01z", "1": "date-time"} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
@@ -243,10 +243,10 @@ async def test_date_time_rfc1123_valid(make_request, get_deserialized_dict, get_
     rfc_datetime3 = isodate.parse_datetime("1492-10-12T10:15:01Z")
     valid_rfc_dict = {"0":rfc_datetime1, "1":rfc_datetime2, "2":rfc_datetime3}
 
-    request = build_dictionary_get_date_time_rfc1123_valid_request()
+    request = dictionary.build_get_date_time_rfc1123_valid_request()
     assert valid_rfc_dict == await get_deserialized_dict(request, msrest_deserializer.deserialize_rfc)
 
-    request = build_dictionary_put_date_time_rfc1123_valid_request(json=get_serialized_dict(valid_rfc_dict, msrest_serializer.serialize_rfc))
+    request = dictionary.build_put_date_time_rfc1123_valid_request(json=get_serialized_dict(valid_rfc_dict, msrest_serializer.serialize_rfc))
     await make_request(request)
 
 @pytest.mark.asyncio
@@ -255,10 +255,10 @@ async def test_get_duration_valid(make_request, msrest_serializer, msrest_deseri
     duration2 = timedelta(days=5, hours=1)
     valid_duration_dict = {"0":duration1, "1":duration2}
 
-    request = build_dictionary_get_duration_valid_request()
+    request = dictionary.build_get_duration_valid_request()
     assert valid_duration_dict == await get_deserialized_dict(request, msrest_deserializer.deserialize_duration)
 
-    request = build_dictionary_put_duration_valid_request(json=get_serialized_dict(valid_duration_dict, msrest_serializer.serialize_duration))
+    request = dictionary.build_put_duration_valid_request(json=get_serialized_dict(valid_duration_dict, msrest_serializer.serialize_duration))
     await make_request(request)
 
 @pytest.mark.asyncio
@@ -269,43 +269,43 @@ async def test_bytes_valid(make_request, msrest_serializer, msrest_deserializer,
     bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
 
     bytes_valid = {"0":bytes1, "1":bytes2, "2":bytes3}
-    request = build_dictionary_put_byte_valid_request(json=get_serialized_dict(bytes_valid, msrest_serializer.serialize_bytearray))
+    request = dictionary.build_put_byte_valid_request(json=get_serialized_dict(bytes_valid, msrest_serializer.serialize_bytearray))
     await make_request(request)
 
-    request = build_dictionary_get_byte_valid_request()
+    request = dictionary.build_get_byte_valid_request()
     assert bytes_valid == await get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray)
 
 @pytest.mark.asyncio
 async def test_get_byte_invalid_null(msrest_deserializer, get_deserialized_dict):
     bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
     bytes_null = {"0":bytes4, "1":None}
-    request = build_dictionary_get_byte_invalid_null_request()
+    request = dictionary.build_get_byte_invalid_null_request()
     assert bytes_null == await get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray)
 @pytest.mark.asyncio
 async def test_get_base64_url(msrest_deserializer, get_deserialized_dict):
     test_dict = {'0': 'a string that gets encoded with base64url'.encode(),
                     '1': 'test string'.encode(),
                     '2': 'Lorem ipsum'.encode()}
-    request = build_dictionary_get_base64_url_request()
+    request = dictionary.build_get_base64_url_request()
     assert test_dict == await get_deserialized_dict(request, msrest_deserializer.deserialize_base64)
 
 # Basic dictionary parsing
 @pytest.mark.asyncio
 async def test_empty(make_request, make_request_json_response):
 
-    request = build_dictionary_get_empty_request()
+    request = dictionary.build_get_empty_request()
     assert {} == await make_request_json_response(request)
 
-    request = build_dictionary_put_empty_request(json={})
+    request = dictionary.build_put_empty_request(json={})
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid(make_request, make_request_json_response):
 
-    request = build_dictionary_get_null_request()
+    request = dictionary.build_get_null_request()
     assert (await make_request(request)).text == ''
 
-    request = build_dictionary_get_invalid_request()
+    request = dictionary.build_get_invalid_request()
     with pytest.raises(DecodeError):
        await make_request_json_response(request)
 
@@ -313,35 +313,35 @@ async def test_get_null_and_invalid(make_request, make_request_json_response):
 async def test_get_null_key_and_value(make_request, make_request_json_response):
     # {null:"val1"} is not standard JSON format. C# might work and expects this test to pass,
     # but we fail and we're happy with it.
-    request = build_dictionary_get_null_key_request()
+    request = dictionary.build_get_null_key_request()
     with pytest.raises(DecodeError):
        await make_request_json_response(request)
 
-    request = build_dictionary_get_null_value_request()
+    request = dictionary.build_get_null_value_request()
     assert {"key1":None} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_get_empty_string_key(make_request_json_response):
-    request = build_dictionary_get_empty_string_key_request()
+    request = dictionary.build_get_empty_string_key_request()
     assert {"":"val1"} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_complex_valid(make_request, make_request_json_response, test_dict):
 
-    request = build_dictionary_put_complex_valid_request(json=test_dict)
+    request = dictionary.build_put_complex_valid_request(json=test_dict)
     await make_request(request)
 
-    request = build_dictionary_get_complex_valid_request()
+    request = dictionary.build_get_complex_valid_request()
     assert test_dict == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_array_valid(make_request, make_request_json_response):
     list_dict = {"0":["1","2","3"], "1":["4","5","6"], "2":["7","8","9"]}
 
-    request = build_dictionary_put_array_valid_request(json=list_dict)
+    request = dictionary.build_put_array_valid_request(json=list_dict)
     await make_request(request)
 
-    request = build_dictionary_get_array_valid_request()
+    request = dictionary.build_get_array_valid_request()
     assert list_dict == await make_request_json_response(request)
 
 @pytest.mark.asyncio
@@ -350,45 +350,45 @@ async def test_dictionary_valid(make_request, make_request_json_response):
                     "1":{"4":"four","5":"five","6":"six"},
                     "2":{"7":"seven","8":"eight","9":"nine"}}
 
-    request = build_dictionary_put_dictionary_valid_request(json=dict_dict)
+    request = dictionary.build_put_dictionary_valid_request(json=dict_dict)
     await make_request(request)
 
-    request = build_dictionary_get_dictionary_valid_request()
+    request = dictionary.build_get_dictionary_valid_request()
     assert dict_dict == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_get_complex_null_and_empty(make_request, make_request_json_response):
 
-    request = build_dictionary_get_complex_null_request()
+    request = dictionary.build_get_complex_null_request()
     assert (await make_request(request)).text == ''
 
-    request = build_dictionary_get_complex_empty_request()
+    request = dictionary.build_get_complex_empty_request()
     assert {} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_get_complex_item_null_and_empty(make_request_json_response, test_dict):
     test_dict_null = {"0":test_dict["0"], "1":None, "2":test_dict["2"]}
 
-    request = build_dictionary_get_complex_item_null_request()
+    request = dictionary.build_get_complex_item_null_request()
     assert test_dict_null == await make_request_json_response(request)
 
     test_dict_empty = {"0":test_dict["0"], "1":Widget().serialize(), "2":test_dict["2"]}
 
-    request = build_dictionary_get_complex_item_empty_request()
+    request = dictionary.build_get_complex_item_empty_request()
     assert await make_request_json_response(request) ==  test_dict_empty
 
 @pytest.mark.asyncio
 async def test_get_array_empty(make_request, make_request_json_response):
-    request = build_dictionary_get_array_null_request()
+    request = dictionary.build_get_array_null_request()
     assert (await make_request(request)).text == ''
 
-    request = build_dictionary_get_array_empty_request()
+    request = dictionary.build_get_array_empty_request()
     assert {} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_get_array_item_null_and_empty(make_request_json_response):
     list_dict = {"0":["1","2","3"], "1":None, "2":["7","8","9"]}
-    request = build_dictionary_get_array_item_null_request()
+    request = dictionary.build_get_array_item_null_request()
     assert list_dict == await make_request_json_response(request)
 
     # in convenience layer, we deserialize as {[str]}. Since we don't have that in llc, the value for "1" will be None, not an empty list
@@ -397,10 +397,10 @@ async def test_get_array_item_null_and_empty(make_request_json_response):
 
 @pytest.mark.asyncio
 async def test_get_dictionary_null_and_empty(make_request, make_request_json_response):
-    request = build_dictionary_get_dictionary_null_request()
+    request = dictionary.build_get_dictionary_null_request()
     assert (await make_request(request)).text == ''
 
-    request = build_dictionary_get_dictionary_empty_request()
+    request = dictionary.build_get_dictionary_empty_request()
     assert {} == await make_request_json_response(request)
 
 @pytest.mark.asyncio
@@ -408,11 +408,11 @@ async def test_get_dictionary_item_null_and_empty(make_request, make_request_jso
     dict_dict = {"0":{"1":"one","2":"two","3":"three"},
                     "1":None,
                     "2":{"7":"seven","8":"eight","9":"nine"}}
-    request = build_dictionary_get_dictionary_item_null_request()
+    request = dictionary.build_get_dictionary_item_null_request()
     assert dict_dict == await make_request_json_response(request)
 
     dict_dict = {"0":{"1":"one","2":"two","3":"three"},
                     "1":{},
                     "2":{"7":"seven","8":"eight","9":"nine"}}
-    request = build_dictionary_get_dictionary_item_empty_request()
+    request = dictionary.build_get_dictionary_item_empty_request()
     assert dict_dict == await make_request_json_response(request)

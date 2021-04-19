@@ -26,7 +26,7 @@
 from async_generator import yield_, async_generator
 
 from extensibleenumsswagger.aio import PetStoreInc
-from extensibleenumsswagger._rest import *
+from extensibleenumsswagger._rest import pet
 from extensibleenumsswagger.models import (
     Pet,
     DaysOfWeekExtensibleEnum,
@@ -51,17 +51,17 @@ def make_request_json_response(client, base_make_request_json_response):
 async def test_get_by_pet_id(make_request_json_response):
     # Now enum return are always string (Autorest.Python 3.0)
 
-    request = build_pet_get_by_pet_id_request(pet_id="tommy")
+    request = pet.build_get_by_pet_id_request(pet_id="tommy")
     tommy = Pet.deserialize(await make_request_json_response(request))
     assert tommy.days_of_week ==  "Monday"
     assert tommy.int_enum ==  "1"
 
-    request = build_pet_get_by_pet_id_request(pet_id="casper")
+    request = pet.build_get_by_pet_id_request(pet_id="casper")
     casper = Pet.deserialize(await make_request_json_response(request))
     assert casper.days_of_week ==  "Weekend"
     assert casper.int_enum ==  "2"
 
-    request = build_pet_get_by_pet_id_request(pet_id="scooby")
+    request = pet.build_get_by_pet_id_request(pet_id="scooby")
     scooby = Pet.deserialize(await make_request_json_response(request))
     assert scooby.days_of_week ==  "Thursday"
     # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
@@ -75,7 +75,7 @@ async def test_add_pet(make_request_json_response):
         int_enum=IntEnum.three,
         days_of_week=DaysOfWeekExtensibleEnum.friday
     )
-    request = build_pet_add_pet_request(json=retriever.serialize())
+    request = pet.build_add_pet_request(json=retriever.serialize())
     returned_pet = Pet.deserialize(await make_request_json_response(request))
     assert returned_pet.days_of_week ==  "Friday"
     assert returned_pet.int_enum ==  "3"

@@ -14,15 +14,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextM
 from msrest import Deserializer, Serializer
 
 from ._configuration import PetStoreIncConfiguration
-from .operations import petOperations
+from .operations import PetOperations
 from .. import models
 
 
 class PetStoreInc(object):
     """PetStore.
 
-    :ivar pet: petOperations operations
-    :vartype pet: extensibleenumsswagger.aio.operations.petOperations
+    :ivar pet: PetOperations operations
+    :vartype pet: extensibleenumsswagger.aio.operations.PetOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -36,7 +36,7 @@ class PetStoreInc(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.pet = petOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -71,11 +71,13 @@ class PetStoreInc(object):
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return AsyncHttpResponse(
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

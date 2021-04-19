@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
-from .operations import headerOperations
+from .operations import HeaderOperations
 from . import models
 
 
 class AutoRestSwaggerBATHeaderService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar header: headerOperations operations
-    :vartype header: header.operations.headerOperations
+    :ivar header: HeaderOperations operations
+    :vartype header: header.operations.HeaderOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AutoRestSwaggerBATHeaderService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.header = headerOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -83,11 +83,13 @@ class AutoRestSwaggerBATHeaderService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

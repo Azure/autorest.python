@@ -20,15 +20,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class formdataOperations:
-    """formdataOperations async operations.
+class FormdataOperations:
+    """FormdataOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -73,7 +72,7 @@ class formdataOperations:
             "fileName": file_name,
         }
 
-        request = build_upload_file_request(
+        request = _rest.formdata.build_upload_file_request(
             files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -114,7 +113,7 @@ class formdataOperations:
         content_type = kwargs.pop("content_type", "application/octet-stream")
         content = file_content
 
-        request = build_upload_file_via_body_request(
+        request = _rest.formdata.build_upload_file_via_body_request(
             content=content, content_type=content_type, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -158,7 +157,7 @@ class formdataOperations:
             "fileContent": file_content,
         }
 
-        request = build_upload_files_request(
+        request = _rest.formdata.build_upload_files_request(
             files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

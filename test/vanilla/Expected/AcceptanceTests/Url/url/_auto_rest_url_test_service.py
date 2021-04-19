@@ -20,21 +20,21 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
-from .operations import pathsOperations
-from .operations import queriesOperations
-from .operations import path_itemsOperations
+from .operations import PathsOperations
+from .operations import QueriesOperations
+from .operations import PathItemsOperations
 from . import models
 
 
 class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar paths: pathsOperations operations
-    :vartype paths: url.operations.pathsOperations
-    :ivar queries: queriesOperations operations
-    :vartype queries: url.operations.queriesOperations
-    :ivar path_items: path_itemsOperations operations
-    :vartype path_items: url.operations.path_itemsOperations
+    :ivar paths: PathsOperations operations
+    :vartype paths: url.operations.PathsOperations
+    :ivar queries: QueriesOperations operations
+    :vartype queries: url.operations.QueriesOperations
+    :ivar path_items: PathItemsOperations operations
+    :vartype path_items: url.operations.PathItemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
     :param global_string_query: should contain value null.
@@ -59,9 +59,9 @@ class AutoRestUrlTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.paths = pathsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.queries = queriesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.path_items = path_itemsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
@@ -96,11 +96,13 @@ class AutoRestUrlTestService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

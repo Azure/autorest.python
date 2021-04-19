@@ -20,18 +20,18 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
-from .operations import implicitOperations
-from .operations import explicitOperations
+from .operations import ImplicitOperations
+from .operations import ExplicitOperations
 from . import models
 
 
 class AutoRestRequiredOptionalTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar implicit: implicitOperations operations
-    :vartype implicit: requiredoptional.operations.implicitOperations
-    :ivar explicit: explicitOperations operations
-    :vartype explicit: requiredoptional.operations.explicitOperations
+    :ivar implicit: ImplicitOperations operations
+    :vartype implicit: requiredoptional.operations.ImplicitOperations
+    :ivar explicit: ExplicitOperations operations
+    :vartype explicit: requiredoptional.operations.ExplicitOperations
     :param required_global_path: number of items to skip.
     :type required_global_path: str
     :param required_global_query: number of items to skip.
@@ -61,8 +61,8 @@ class AutoRestRequiredOptionalTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.implicit = implicitOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.explicit = explicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
@@ -97,11 +97,13 @@ class AutoRestRequiredOptionalTestService(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

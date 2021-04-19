@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,8 +31,8 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class enumOperations(object):
-    """enumOperations operations.
+class EnumOperations(object):
+    """EnumOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -70,7 +69,9 @@ class enumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_not_expandable_request(template_url=self.get_not_expandable.metadata["url"], **kwargs)
+        request = _rest.enum.build_get_not_expandable_request(
+            template_url=self.get_not_expandable.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -115,7 +116,7 @@ class enumOperations(object):
         content = self._serialize.body(string_body, "str")
         content = json.dumps(content)
 
-        request = build_put_not_expandable_request(
+        request = _rest.enum.build_put_not_expandable_request(
             content=content, content_type=content_type, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -150,7 +151,7 @@ class enumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
+        request = _rest.enum.build_get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -195,7 +196,7 @@ class enumOperations(object):
         content = self._serialize.body(enum_string_body, "str")
         content = json.dumps(content)
 
-        request = build_put_referenced_request(
+        request = _rest.enum.build_put_referenced_request(
             content=content, content_type=content_type, template_url=self.put_referenced.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -230,7 +231,7 @@ class enumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_referenced_constant_request(
+        request = _rest.enum.build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -278,7 +279,7 @@ class enumOperations(object):
         content = self._serialize.body(_enum_string_body, "RefColorConstant")
         content = json.dumps(content)
 
-        request = build_put_referenced_constant_request(
+        request = _rest.enum.build_put_referenced_constant_request(
             content=content,
             content_type=content_type,
             template_url=self.put_referenced_constant.metadata["url"],

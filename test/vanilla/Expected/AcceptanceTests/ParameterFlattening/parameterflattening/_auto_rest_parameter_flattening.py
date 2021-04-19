@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestParameterFlatteningConfiguration
-from .operations import availability_setsOperations
+from .operations import AvailabilitySetsOperations
 from . import models
 
 
 class AutoRestParameterFlattening(object):
     """Resource Flattening for AutoRest.
 
-    :ivar availability_sets: availability_setsOperations operations
-    :vartype availability_sets: parameterflattening.operations.availability_setsOperations
+    :ivar availability_sets: AvailabilitySetsOperations operations
+    :vartype availability_sets: parameterflattening.operations.AvailabilitySetsOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AutoRestParameterFlattening(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.availability_sets = availability_setsOperations(
+        self.availability_sets = AvailabilitySetsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self._serialize = Serializer(client_models)
@@ -85,11 +85,13 @@ class AutoRestParameterFlattening(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

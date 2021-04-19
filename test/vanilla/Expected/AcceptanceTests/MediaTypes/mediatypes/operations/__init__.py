@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._media_types_client_operations import modelOperations
+from ._media_types_client_operations import MediaTypesClientOperationsMixin
 
 __all__ = [
-    "modelOperations",
+    "MediaTypesClientOperationsMixin",
 ]

@@ -21,13 +21,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._rest import *
+from ... import _rest
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations:
+class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> object:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
@@ -42,7 +42,7 @@ class modelOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _rest.build_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -83,7 +83,7 @@ class modelOperations:
         content = self._serialize.body(put_object, "object")
         content = json.dumps(content)
 
-        request = build_put_request(
+        request = _rest.build_put_request(
             content=content, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

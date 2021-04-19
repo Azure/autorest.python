@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,7 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations(object):
+class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
@@ -64,7 +63,7 @@ class modelOperations(object):
             else:
                 content = None
 
-        request = build_analyze_body_request(
+        request = _rest.build_analyze_body_request(
             content=content, content_type=content_type, template_url=self.analyze_body.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -113,7 +112,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_content_type_with_encoding_request(
+        request = _rest.build_content_type_with_encoding_request(
             content=content,
             content_type=content_type,
             template_url=self.content_type_with_encoding.metadata["url"],

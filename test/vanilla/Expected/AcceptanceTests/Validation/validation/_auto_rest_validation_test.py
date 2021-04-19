@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AutoRestValidationTestConfiguration
-from .operations import modelOperations
+from .operations import AutoRestValidationTestOperationsMixin
 from . import models
 
 
@@ -82,11 +82,13 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

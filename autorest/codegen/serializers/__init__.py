@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from autorest.codegen.models import rest
+from autorest.codegen.models import request_builder
 from autorest.codegen.models.request_builder import RequestBuilder
 from pathlib import Path
 from typing import List
@@ -99,20 +100,17 @@ class JinjaSerializer:
     ) -> None:
         folder_name = "rest" if code_model.low_level_client else "_rest"
         rest_path = namespace_path / Path(folder_name)
+        operation_group_names = set(
+            [rb.operation_group_name for rb in code_model.rest.request_builders]
+        )
 
-        any_mixin_operations = False
-        for operation_group in code_model.operation_groups:
-            output_path = rest_path
-            if operation_group.is_empty_operation_group:
-                any_mixin_operations = True
-                request_builders = [r for r in code_model.rest.request_builders if not r.operation_group_name]
-            else:
-                output_path /= Path(operation_group.name)
-                request_builders = [r for r in code_model.rest.request_builders if r.operation_group_name == operation_group.name]
+        for operation_group_name in operation_group_names:
+            output_path = rest_path / Path(operation_group_name) if operation_group_name else rest_path
+            request_builders = [r for r in code_model.rest.request_builders if r.operation_group_name == operation_group_name]
             self._serialize_and_write_single_rest_layer(
                 code_model, env, output_path, request_builders
             )
-        if not any_mixin_operations:
+        if not "" in operation_group_names:
             general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
             self._autorestapi.write_file(
                 rest_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()

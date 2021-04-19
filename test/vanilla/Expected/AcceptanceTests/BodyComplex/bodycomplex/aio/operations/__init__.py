@@ -6,24 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._basic_operations import basicOperations
-from ._primitive_operations import primitiveOperations
-from ._array_operations import arrayOperations
-from ._dictionary_operations import dictionaryOperations
-from ._inheritance_operations import inheritanceOperations
-from ._polymorphism_operations import polymorphismOperations
-from ._polymorphicrecursive_operations import polymorphicrecursiveOperations
-from ._readonlyproperty_operations import readonlypropertyOperations
-from ._flattencomplex_operations import flattencomplexOperations
+from ._basic_operations import BasicOperations
+from ._primitive_operations import PrimitiveOperations
+from ._array_operations import ArrayOperations
+from ._dictionary_operations import DictionaryOperations
+from ._inheritance_operations import InheritanceOperations
+from ._polymorphism_operations import PolymorphismOperations
+from ._polymorphicrecursive_operations import PolymorphicrecursiveOperations
+from ._readonlyproperty_operations import ReadonlypropertyOperations
+from ._flattencomplex_operations import FlattencomplexOperations
 
 __all__ = [
-    "basicOperations",
-    "primitiveOperations",
-    "arrayOperations",
-    "dictionaryOperations",
-    "inheritanceOperations",
-    "polymorphismOperations",
-    "polymorphicrecursiveOperations",
-    "readonlypropertyOperations",
-    "flattencomplexOperations",
+    "BasicOperations",
+    "PrimitiveOperations",
+    "ArrayOperations",
+    "DictionaryOperations",
+    "InheritanceOperations",
+    "PolymorphismOperations",
+    "PolymorphicrecursiveOperations",
+    "ReadonlypropertyOperations",
+    "FlattencomplexOperations",
 ]

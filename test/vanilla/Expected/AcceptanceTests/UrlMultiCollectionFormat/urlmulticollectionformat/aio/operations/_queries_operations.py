@@ -20,15 +20,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class queriesOperations:
-    """queriesOperations async operations.
+class QueriesOperations:
+    """QueriesOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -64,7 +63,7 @@ class queriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_multi_null_request(
+        request = _rest.queries.build_array_string_multi_null_request(
             array_query=array_query, template_url=self.array_string_multi_null.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -98,7 +97,7 @@ class queriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_multi_empty_request(
+        request = _rest.queries.build_array_string_multi_empty_request(
             array_query=array_query, template_url=self.array_string_multi_empty.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -134,7 +133,7 @@ class queriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_multi_valid_request(
+        request = _rest.queries.build_array_string_multi_valid_request(
             array_query=array_query, template_url=self.array_string_multi_valid.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

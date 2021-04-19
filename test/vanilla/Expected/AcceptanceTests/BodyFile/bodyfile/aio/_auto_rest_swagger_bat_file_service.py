@@ -14,15 +14,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextM
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestSwaggerBATFileServiceConfiguration
-from .operations import filesOperations
+from .operations import FilesOperations
 from .. import models
 
 
 class AutoRestSwaggerBATFileService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar files: filesOperations operations
-    :vartype files: bodyfile.aio.operations.filesOperations
+    :ivar files: FilesOperations operations
+    :vartype files: bodyfile.aio.operations.FilesOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -36,7 +36,7 @@ class AutoRestSwaggerBATFileService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.files = filesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.files = FilesOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 

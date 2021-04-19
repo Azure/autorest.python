@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,7 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations(object):
+class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def validation_of_method_parameters(
         self,
@@ -56,7 +55,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_validation_of_method_parameters_request(
+        request = _rest.build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -116,7 +115,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_validation_of_body_request(
+        request = _rest.build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -161,7 +160,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_with_constant_in_path_request(
+        request = _rest.build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -206,7 +205,7 @@ class modelOperations(object):
         else:
             content = None
 
-        request = build_post_with_constant_in_body_request(
+        request = _rest.build_post_with_constant_in_body_request(
             content=content,
             content_type=content_type,
             template_url=self.post_with_constant_in_body.metadata["url"],

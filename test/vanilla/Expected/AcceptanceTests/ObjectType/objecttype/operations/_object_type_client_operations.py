@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .._rest import *
+from .. import _rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,7 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 
-class modelOperations(object):
+class ObjectTypeClientOperationsMixin(object):
     @distributed_trace
     def get(
         self, **kwargs  # type: Any
@@ -49,7 +49,7 @@ class modelOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _rest.build_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -95,7 +95,7 @@ class modelOperations(object):
         content = self._serialize.body(put_object, "object")
         content = json.dumps(content)
 
-        request = build_put_request(
+        request = _rest.build_put_request(
             content=content, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

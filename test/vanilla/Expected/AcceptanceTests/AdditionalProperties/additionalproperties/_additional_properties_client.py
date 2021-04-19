@@ -20,15 +20,15 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest
 
 from ._configuration import AdditionalPropertiesClientConfiguration
-from .operations import petsOperations
+from .operations import PetsOperations
 from . import models
 
 
 class AdditionalPropertiesClient(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar pets: petsOperations operations
-    :vartype pets: additionalproperties.operations.petsOperations
+    :ivar pets: PetsOperations operations
+    :vartype pets: additionalproperties.operations.PetsOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -47,7 +47,7 @@ class AdditionalPropertiesClient(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.pets = petsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.pets = PetsOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
 
@@ -83,11 +83,13 @@ class AdditionalPropertiesClient(object):
                 request=request_copy,
             )
         pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        return HttpResponse(
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

@@ -37,7 +37,7 @@ class NameConverter:
             NameConverter._convert_language_default_python_case(
                 operation_group, pad_string=PadType.Model, convert_name=True
             )
-            operation_group_name = operation_group['language']['python']['name']
+            operation_group_name = operation_group['language']['default']['name']
             if not operation_group_name:
                 operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
             elif operation_group_name == 'Operations':
@@ -46,8 +46,8 @@ class NameConverter:
                 operation_group['language']['python']['className'] = operation_group_name + "Operations"
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string=PadType.Method)
-                if operation_group["language"]["default"]["name"]:
-                    operation['language']['python']['operationGroupName'] = operation_group_name.lower()
+                if operation_group_name:
+                    operation['language']['python']['operationGroupName'] = operation_group['language']['python']['name'].lower()
                 else:
                     operation['language']['python']['operationGroupName'] = ""
                 for exception in operation.get('exceptions', []):

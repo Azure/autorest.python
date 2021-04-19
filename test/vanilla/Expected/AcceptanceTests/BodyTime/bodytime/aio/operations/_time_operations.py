@@ -22,15 +22,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class timeOperations:
-    """timeOperations async operations.
+class TimeOperations:
+    """TimeOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -64,7 +63,7 @@ class timeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = _rest.time.build_get_request(template_url=self.get.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -104,7 +103,7 @@ class timeOperations:
         content = self._serialize.body(time_body, "time")
         content = json.dumps(content)
 
-        request = build_put_request(
+        request = _rest.time.build_put_request(
             content=content, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

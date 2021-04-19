@@ -29,7 +29,7 @@ import isodate
 from msrest.exceptions import DeserializationError
 
 from bodyduration import AutoRestDurationTestService
-from bodyduration._rest import *
+from bodyduration._rest import duration
 
 import pytest
 
@@ -51,16 +51,16 @@ def make_request_json_response(client, base_make_request_json_response):
     return _make_request
 
 def test_get_null_and_invalid(make_request, make_request_json_response):
-    request = build_duration_get_null_request()
+    request = duration.build_get_null_request()
     assert make_request(request).text == ''
 
-    request = build_duration_get_invalid_request()
+    request = duration.build_get_invalid_request()
     with pytest.raises(isodate.ISO8601Error):
         isodate.parse_duration(make_request_json_response(request))
 
 def test_positive_duration(make_request, make_request_json_response):
-    request = build_duration_get_positive_duration_request()
-    assert isodate.duration.Duration(4, 45005, 0, years=3, months=6) == isodate.parse_duration(make_request_json_response(request))
+    request = duration.build_get_positive_duration_request()
+    assert isodate.Duration(4, 45005, 0, years=3, months=6) == isodate.parse_duration(make_request_json_response(request))
 
-    request = build_duration_put_positive_duration_request(json=isodate.duration_isoformat(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
+    request = duration.build_put_positive_duration_request(json=isodate.duration_isoformat(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
     make_request(request)

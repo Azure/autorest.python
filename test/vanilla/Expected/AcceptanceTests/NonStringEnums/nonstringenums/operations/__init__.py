@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._int_operations import intOperations
-from ._float_operations import floatOperations
+from ._int_operations import IntOperations
+from ._float_operations import FloatOperations
 
 __all__ = [
-    "intOperations",
-    "floatOperations",
+    "IntOperations",
+    "FloatOperations",
 ]

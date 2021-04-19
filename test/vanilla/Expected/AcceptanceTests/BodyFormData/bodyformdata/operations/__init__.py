@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._formdata_operations import formdataOperations
+from ._formdata_operations import FormdataOperations
 
 __all__ = [
-    "formdataOperations",
+    "FormdataOperations",
 ]

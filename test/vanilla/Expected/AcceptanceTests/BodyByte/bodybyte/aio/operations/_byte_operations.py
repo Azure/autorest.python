@@ -21,15 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class byteOperations:
-    """byteOperations async operations.
+class ByteOperations:
+    """ByteOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
@@ -63,7 +62,7 @@ class byteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = _rest.byte.build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -97,7 +96,7 @@ class byteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
+        request = _rest.byte.build_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -131,7 +130,7 @@ class byteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
+        request = _rest.byte.build_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -171,7 +170,7 @@ class byteOperations:
         content = self._serialize.body(byte_body, "bytearray")
         content = json.dumps(content)
 
-        request = build_put_non_ascii_request(
+        request = _rest.byte.build_put_non_ascii_request(
             content=content, content_type=content_type, template_url=self.put_non_ascii.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)
@@ -203,7 +202,7 @@ class byteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = _rest.byte.build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

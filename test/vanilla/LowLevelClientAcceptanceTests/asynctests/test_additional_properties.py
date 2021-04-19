@@ -34,7 +34,7 @@ from additionalproperties.models import (
     PetAPInProperties,
     PetAPInPropertiesWithAPString
 )
-from additionalproperties._rest import *
+from additionalproperties._rest import pets
 
 @pytest.fixture
 @async_generator
@@ -60,7 +60,7 @@ async def test_create_ap_true(make_request_json_response):
             }
         }
     )
-    request = build_pets_create_ap_true_request(json=input_ap_true.serialize())
+    request = pets.build_create_ap_true_request(json=input_ap_true.serialize())
     response = await make_request_json_response(request)
     assert response["birthdate"] == '2017-12-13T02:29:51Z'
 
@@ -77,7 +77,7 @@ async def test_create_cat_ap_true(make_request_json_response):
             }
         }
     )
-    request = build_pets_create_cat_ap_true_request(json=input_ap_true.serialize())
+    request = pets.build_create_cat_ap_true_request(json=input_ap_true.serialize())
     response = await make_request_json_response(request)
     assert response['birthdate'] ==  '2017-12-13T02:29:51Z'
 
@@ -98,7 +98,7 @@ async def test_create_ap_object(make_request_json_response):
             'picture': '//////4='
         }
     )
-    request = build_pets_create_ap_object_request(json=input_ap_obj.serialize())
+    request = pets.build_create_ap_object_request(json=input_ap_obj.serialize())
     response = await make_request_json_response(request)
     assert response['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
 
@@ -113,7 +113,7 @@ async def test_create_ap_string(make_request_json_response):
             'city': 'Bombay'
         }
     )
-    request = build_pets_create_ap_string_request(json=input_ap_str.serialize())
+    request = pets.build_create_ap_string_request(json=input_ap_str.serialize())
     response = await make_request_json_response(request)
     assert response['color'] ==  'red'
 
@@ -128,7 +128,7 @@ async def test_create_ap_in_properties(make_request_json_response):
             'footsize': 11.5
         }
     )
-    request = build_pets_create_ap_in_properties_request(json=input_ap_int.serialize())
+    request = pets.build_create_ap_in_properties_request(json=input_ap_int.serialize())
     response = await make_request_json_response(request)
     assert response["additionalProperties"]['weight'] ==  599
 
@@ -149,7 +149,7 @@ async def test_create_ap_in_properties_with_ap_string(make_request_json_response
             'footsize': 11.5
         }
     )
-    request = build_pets_create_ap_in_properties_with_ap_string_request(json=input_ap_str_add.serialize())
+    request = pets.build_create_ap_in_properties_with_ap_string_request(json=input_ap_str_add.serialize())
     response = await make_request_json_response(request)
     assert response['color'] == 'red'
     assert response['additionalProperties']['weight'] == 599
