@@ -57,19 +57,42 @@ class DefaultProfile(object):
 
     def use(self, profile):
         """Define a new default profile."""
-        if not isinstance(profile, ProfileDefinition) and not all([
-            callable(getattr(profile, attr, None)) for attr in ["use", "definition", "from_name"]
-        ]):
+        if not _is_profile_definition(profile) and not _is_known_profiles(profile):
             raise ValueError("Can only set as default a ProfileDefinition or a KnownProfiles")
         type(self).profile = profile
 
     def definition(self):
         return type(self).profile
 
+class KnownProfiles(Enum):
+    default = DefaultProfile()
+    latest = ProfileDefinition(None, "latest")
+
+    def use(self, profile):
+        if self is not type(self).default:
+            raise ValueError("use can only be used for `default` profile")
+        self.value.use(profile)
+
+    def definition(self):
+        if self is not type(self).default:
+            raise ValueError("use can only be used for `default` profile")
+        return self.value.definition()
+
+    @classmethod
+    def from_name(cls, profile_name):
+        if profile_name == "default":
+            return cls.default
+        for profile in cls:
+            if _is_profile_definition(profile.value) and profile.value.label == profile_name:
+                return profile
+        raise ValueError("No profile called {}".format(profile_name))
+
+
 class InvalidMultiApiClientError(Exception):
     """If the mixin is not used with a compatible class.
     """
     pass
+
 
 class MultiApiClientMixin(object):
     """Mixin that contains multi-api version profile management.
@@ -84,6 +107,7 @@ class MultiApiClientMixin(object):
     def __init__(self, *args, **kwargs):
         # Consume "api_version" and "profile", to avoid sending them to base class
         api_version = kwargs.pop("api_version", None)
+        self._input_profile = False
 
         # Can't do "super" call here all the time, or I would break old client with:
         # TypeError: object.__init__() takes no parameters
@@ -105,6 +129,7 @@ class MultiApiClientMixin(object):
 
         profile = kwargs.pop("profile", None)
         if profile:
+            self._input_profile = True
             try:
                 import azure.profiles
             except ImportError:
@@ -113,7 +138,9 @@ class MultiApiClientMixin(object):
         if api_version and profile:
             raise ValueError("Cannot use api-version and profile parameters at the same time")
 
-        profile = profile or DefaultProfile()
+        if not profile:
+            profile = KnownProfiles.default
+            profile.use(KnownProfiles.latest)
 
         if api_version:
             self.profile = ProfileDefinition({
@@ -135,16 +162,11 @@ class MultiApiClientMixin(object):
 
     def _get_api_version(self, operation_group_name):
         current_profile = self.profile
-        if isinstance(current_profile, DefaultProfile):
-            current_profile = self.LATEST_PROFILE
-
         try:
-            if current_profile.label == "latest":
+            if current_profile.name == "default" or current_profile.name == "latest":
                 current_profile = self.LATEST_PROFILE
         except AttributeError:
             pass
-
-
 
         try:
             current_profile = current_profile.value
