@@ -90,11 +90,12 @@ def test_empty_child_element(make_request, make_request_text_response):
     request = xml.build_put_empty_child_element_request(content=banana.serialize(is_xml=True))
     make_request(request)
 
-def test_empty_root_list(make_request_text_response):
+def test_empty_root_list(make_request, make_request_text_response):
     request = xml.build_get_empty_root_list_request()
-    bananas = Banana.deserialize(make_request_text_response(request), content_type="application/xml")
-    assert bananas == []
-    request = xml.build_put_empty_root_list_request(content=bananas.serialize(is_xml=True))
+    make_request_text_response(request)
+    assert make_request_text_response(request) == "<?xml version='1.0' encoding='UTF-8'?>\n<bananas/>"
+    request = xml.build_put_empty_root_list_request(content=str([]))
+    make_request(request)
 
 def test_root_list_single_item(make_request, make_request_text_response):
     request = xml.build_get_root_list_single_item_request()
