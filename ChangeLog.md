@@ -8,7 +8,7 @@ min Modelerfour version: 4.15.456
 
 **Bug Fixes**
 
-- Fix data plane LRO operations so they polly by default. Bumping minor version because this bug fix will change some default behavior. #936
+- Fix data plane LRO operations so they poll by default. Bumping minor version because this bug fix will change some default behavior. #936
 
 ### 2021-04-07 - 5.6.6
 
