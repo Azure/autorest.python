@@ -11,7 +11,7 @@
 
 from typing import TYPE_CHECKING
 
-from ._profiles import KnownProfiles, MultiApiClientMixin, ProfileDefinition
+from ._profiles import MultiApiClientMixin, ProfileDefinition
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -49,7 +49,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     :type api_version: str
     :param base_url: Service URL
     :type base_url: str
-    :param profile: A profile definition, from KnownProfiles to dict.
+    :param profile: A profile definition, from KnownProfiles to dict. Defaults to KnownProfiles.default. **If you provide your own profile definition, you will need to pip install azure-common.**
     :type profile: azure.profiles.KnownProfiles
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
@@ -71,7 +71,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         credential,  # type: AzureKeyCredential
         api_version=None, # type: Optional[str]
         base_url=None,  # type: Optional[str]
-        profile=KnownProfiles.default, # type: KnownProfiles
+        profile=None, # type: Any
         **kwargs  # type: Any
     ):
         if not base_url:

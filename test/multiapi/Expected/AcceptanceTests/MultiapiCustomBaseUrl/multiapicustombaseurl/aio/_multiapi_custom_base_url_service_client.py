@@ -11,7 +11,7 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
-from .._profiles import KnownProfiles, MultiApiClientMixin, ProfileDefinition
+from .._profiles import MultiApiClientMixin, ProfileDefinition
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
@@ -65,7 +65,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         credential: "AsyncTokenCredential",
         endpoint: str,
         api_version: Optional[str] = None,
-        profile: KnownProfiles = KnownProfiles.default,
+        profile: Any = None,
         **kwargs  # type: Any
     ) -> None:
         if api_version == '1.0.0':

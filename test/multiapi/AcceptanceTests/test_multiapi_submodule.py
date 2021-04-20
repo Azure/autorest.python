@@ -56,12 +56,6 @@ def namespace_models():
     from multiapiwithsubmodule.submodule import models
     return models
 
-@pytest.fixture
-def known_profiles():
-    from multiapiwithsubmodule.submodule._profiles import KnownProfiles
-    return KnownProfiles
-
-
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
     assert client.profile.label == "multiapiwithsubmodule.submodule.MultiapiServiceClient 2.0.0"

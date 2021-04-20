@@ -11,7 +11,7 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
-from .._profiles import KnownProfiles, MultiApiClientMixin, ProfileDefinition
+from .._profiles import MultiApiClientMixin, ProfileDefinition
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
@@ -69,7 +69,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         credential: "AsyncTokenCredential",
         api_version: Optional[str] = None,
         base_url: Optional[str] = None,
-        profile: KnownProfiles = KnownProfiles.default,
+        profile: Any = None,
         **kwargs  # type: Any
     ) -> None:
         if not base_url:

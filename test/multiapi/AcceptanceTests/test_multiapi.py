@@ -28,7 +28,6 @@ import inspect
 import json
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
-from multiapi._profiles import KnownProfiles
 from .multiapi_base import NotTested
 
 
@@ -58,11 +57,6 @@ def client(credential, authentication_policy, api_version):
 def namespace_models():
     from multiapi import models
     return models
-
-@pytest.fixture
-def known_profiles():
-    from multiapi._profiles import KnownProfiles
-    return KnownProfiles
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
@@ -117,6 +111,17 @@ def test_only_operation_groups(client):
     # check that it doesn't have access to a mixin operation
     with pytest.raises(ValueError):
         client.test_one("1", "hello")
+
+def test_profile_input_no_azure_common(credential):
+    from multiapi import MultiapiServiceClient
+    with pytest.raises(TypeError) as e:
+        MultiapiServiceClient(
+            credential=credential,
+            profile="blah",
+        )
+    assert "pip install azure-common" in str(e.value)
+
+
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
 

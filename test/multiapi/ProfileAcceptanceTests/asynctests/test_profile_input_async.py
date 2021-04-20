@@ -24,25 +24,30 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from multiapicustombaseurl import MultiapiCustomBaseUrlServiceClient
+from multiapi.aio import MultiapiServiceClient
+from azure.profiles import ProfileDefinition, KnownProfiles
 
 @pytest.fixture
-def client(credential, authentication_policy, api_version):
+def profile_definition():
+    return ProfileDefinition({
+        "MyTest": {
+            None: "5.2.1",
+            'begin_test_lro': '1.0.0',
+            'begin_test_lro_and_paging': '1.0.0',
+            'test_one': '2.0.0',
+        }},
+        "MyTest"
+    )
 
-    with MultiapiCustomBaseUrlServiceClient(
-		endpoint="http://localhost:3000",
-        api_version=api_version,
-        credential=credential,
-        authentication_policy=authentication_policy
-    ) as client:
-        yield client
+def test_profile_input(credential, profile_definition):
+    client = MultiapiServiceClient(credential, profile=profile_definition)
+    assert client.profile == profile_definition
 
-class TestMultiapiCustomBaseUrl(object):
+def test_known_profiles_default_input(credential):
+    client = MultiapiServiceClient(credential=credential, profile=KnownProfiles.default)
+    assert client.profile == KnownProfiles.default
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
-    def test_custom_base_url_version_one(self, client):
-        client.test(id=1)
-
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
-    def test_custom_base_url_version_two(self, client):
-        client.test(id=2)
+def test_profile_api_version(credential, profile_definition):
+    with pytest.raises(ValueError) as error:
+        MultiapiServiceClient(credential, api_version="3.0.0", profile=profile_definition)
+    assert "Cannot use api-version and profile parameters at the same time" in str(error.value)

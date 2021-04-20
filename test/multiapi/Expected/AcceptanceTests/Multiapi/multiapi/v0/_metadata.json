@@ -10,8 +10,8 @@
         "azure_arm": true,
         "has_lro_operations": false,
         "client_side_validation": false,
-        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"._profiles\": [\"KnownProfiles\", \"MultiApiClientMixin\", \"ProfileDefinition\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"ARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"]}}}",
-        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\".._profiles\": [\"KnownProfiles\", \"MultiApiClientMixin\", \"ProfileDefinition\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"AsyncARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"]}}}"
+        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"._profiles\": [\"MultiApiClientMixin\", \"ProfileDefinition\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"ARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"]}}}",
+        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\".._profiles\": [\"MultiApiClientMixin\", \"ProfileDefinition\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"AsyncARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}, \"azurecore\": {\"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"]}}}"
     },
     "global_parameters": {
         "sync": {
@@ -48,8 +48,8 @@
                     "required": false
                 },
                 "profile": {
-                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
-                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "signature": "profile=None, # type: Any",
+                    "description": "A profile definition, from KnownProfiles to dict. Defaults to KnownProfiles.default. **If you provide your own profile definition, you will need to pip install azure-common.**",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false
                 }
@@ -68,7 +68,7 @@
                     "required": false
                 },
                 "profile": {
-                    "signature": "profile: KnownProfiles = KnownProfiles.default,",
+                    "signature": "profile: Any = None,",
                     "description": "A profile definition, from KnownProfiles to dict.",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false

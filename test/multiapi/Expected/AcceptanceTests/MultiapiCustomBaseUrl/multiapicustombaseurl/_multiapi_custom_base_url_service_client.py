@@ -11,7 +11,7 @@
 
 from typing import TYPE_CHECKING
 
-from ._profiles import KnownProfiles, MultiApiClientMixin, ProfileDefinition
+from ._profiles import MultiApiClientMixin, ProfileDefinition
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
@@ -49,7 +49,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :type endpoint: str
     :param api_version: API version to use if no profile is provided, or if missing in profile.
     :type api_version: str
-    :param profile: A profile definition, from KnownProfiles to dict.
+    :param profile: A profile definition, from KnownProfiles to dict. Defaults to KnownProfiles.default. **If you provide your own profile definition, you will need to pip install azure-common.**
     :type profile: azure.profiles.KnownProfiles
     """
 
@@ -67,7 +67,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         credential,  # type: "TokenCredential"
         endpoint,  # type: str
         api_version=None, # type: Optional[str]
-        profile=KnownProfiles.default, # type: KnownProfiles
+        profile=None, # type: Any
         **kwargs  # type: Any
     ):
         if api_version == '1.0.0':

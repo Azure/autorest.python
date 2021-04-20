@@ -23,26 +23,45 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+
 import pytest
-from multiapicustombaseurl import MultiapiCustomBaseUrlServiceClient
+import os
+import subprocess
+import signal
+import sys
+from azure.core.pipeline.policies import SansIOHTTPPolicy
+
+cwd = os.path.dirname(os.path.realpath(__file__))
+
+#Ideally this would be in a common helper library shared between the tests
+def start_server_process():
+    cmd = "node {}/../../../node_modules/@microsoft.azure/autorest.testserver".format(cwd)
+    if os.name == 'nt': #On windows, subprocess creation works without being in the shell
+        return subprocess.Popen(cmd)
+
+    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) #On linux, have to set shell=True
+
+#Ideally this would be in a common helper library shared between the tests
+def terminate_server_process(process):
+    if os.name == 'nt':
+        process.kill()
+    else:
+        os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+
+@pytest.fixture(scope="session")
+def testserver():
+    """Start the Autorest testserver."""
+    server = start_server_process()
+    yield
+    terminate_server_process(server)
+
+# Ignore collection of async tests for Python 2
+collect_ignore = []
+if sys.version_info < (3,5):
+    collect_ignore.append("asynctests")
 
 @pytest.fixture
-def client(credential, authentication_policy, api_version):
-
-    with MultiapiCustomBaseUrlServiceClient(
-		endpoint="http://localhost:3000",
-        api_version=api_version,
-        credential=credential,
-        authentication_policy=authentication_policy
-    ) as client:
-        yield client
-
-class TestMultiapiCustomBaseUrl(object):
-
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
-    def test_custom_base_url_version_one(self, client):
-        client.test(id=1)
-
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
-    def test_custom_base_url_version_two(self, client):
-        client.test(id=2)
+def credential():
+    class FakeCredential:
+        pass
+    return FakeCredential()

@@ -37,11 +37,6 @@ async def default_client(credential, authentication_policy):
     ) as default_client:
         await yield_(default_client)
 
-@pytest.fixture
-def known_profiles():
-    from multiapicredentialdefaultpolicy._profiles import KnownProfiles
-    return KnownProfiles
-
 def test_multiapi_credential_default_policy_type(default_client):
     # making sure that the authentication policy is AzureKeyCredentialPolicy
     assert isinstance(default_client._config.authentication_policy, AzureKeyCredentialPolicy)

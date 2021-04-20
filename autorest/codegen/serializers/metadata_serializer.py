@@ -104,7 +104,6 @@ class MetadataSerializer:
         for gp in global_parameters:
             file_import.merge(gp.imports())
         profile_import = "{}_profiles".format(".." if async_mode else ".")
-        file_import.add_from_import(profile_import, "KnownProfiles", import_type=ImportType.AZURECORE)
         file_import.add_from_import(profile_import, "ProfileDefinition", import_type=ImportType.AZURECORE)
         file_import.add_from_import(
             profile_import, "MultiApiClientMixin", import_type=ImportType.AZURECORE
@@ -112,6 +111,7 @@ class MetadataSerializer:
         file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
         # api_version and potentially base_url require Optional typing
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if mixin_operation_group:
             file_import.add_from_import(
                 "._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL

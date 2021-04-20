@@ -36,6 +36,17 @@ class ProfileDefinition(object):
         """
         return self._profile_dict
 
+def _is_profile_definition(profile):
+    """Checks whether I have the properties / methods of ProfileDefinition"""
+    return hasattr(profile, "label") and callable(getattr(profile, "get_profile_dict", None))
+
+def _is_known_profiles(profile):
+    """Checks whether I have the properties of KnownProfiles"""
+    return all([
+        callable(getattr(profile, attr, None)) for attr in ["use", "definition", "from_name"]
+    ]) and all([
+        hasattr(profile, attr) for attr in ["latest", "default"]
+    ])
 
 class DefaultProfile(object):
     """Store a default profile.
@@ -46,240 +57,14 @@ class DefaultProfile(object):
 
     def use(self, profile):
         """Define a new default profile."""
-        if not isinstance(profile, (KnownProfiles, ProfileDefinition)):
+        if not isinstance(profile, ProfileDefinition) and not all([
+            callable(getattr(profile, attr, None)) for attr in ["use", "definition", "from_name"]
+        ]):
             raise ValueError("Can only set as default a ProfileDefinition or a KnownProfiles")
         type(self).profile = profile
 
     def definition(self):
         return type(self).profile
-
-class KnownProfiles(Enum):
-    """This defines known Azure Profiles.
-
-    There is two meta-profiles:
-
-    - latest : will always use latest available api-version on each package
-    - default : mutable, will define profile automatically for all packages
-
-    If you change default, this changes all created packages on the fly to
-    this profile. This can be used to switch a complete set of API Version
-    without re-creating all clients.
-    """
-
-    # default - This is a meta-profile and point to another profile
-    default = DefaultProfile()
-    # latest - This is a meta-profile and does not contain definitions
-    latest = ProfileDefinition(None, "latest")
-    v2017_03_09_profile = ProfileDefinition(
-        {
-            "azure.keyvault.KeyVaultClient":{
-                None: "2016-10-01"
-            },
-            "azure.mgmt.authorization.AuthorizationManagementClient": {
-                None: "2015-07-01"
-            },
-            "azure.mgmt.compute.ComputeManagementClient": {
-                None: "2016-03-30"
-            },
-            "azure.mgmt.keyvault.KeyVaultManagementClient":{
-                None: "2016-10-01"
-            },
-            "azure.mgmt.network.NetworkManagementClient": {
-                None: "2015-06-15"
-            },
-            "azure.mgmt.storage.StorageManagementClient": {
-                None: "2016-01-01"
-            },
-            "azure.mgmt.resource.policy.PolicyClient": {
-                None: "2015-10-01-preview"
-            },
-            "azure.mgmt.resource.locks.ManagementLockClient": {
-                None: "2015-01-01"
-            },
-            "azure.mgmt.resource.links.ManagementLinkClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.resources.ResourceManagementClient": {
-                None: "2016-02-01"
-            },
-            "azure.mgmt.resource.subscriptions.SubscriptionClient": {
-                None: "2016-06-01"
-            }
-        },
-        "2017-03-09-profile"
-    )
-    v2018_03_01_hybrid = ProfileDefinition(
-        {
-            "azure.keyvault.KeyVaultClient":{
-                None: "2016-10-01"
-            },
-            "azure.mgmt.authorization.AuthorizationManagementClient": {
-                None: "2015-07-01"
-            },
-            "azure.mgmt.compute.ComputeManagementClient": {
-                None: "2017-03-30"
-            },
-            "azure.mgmt.keyvault.KeyVaultManagementClient":{
-                None: "2016-10-01"
-            },
-            "azure.mgmt.network.NetworkManagementClient": {
-                None: "2017-10-01"
-            },
-            "azure.mgmt.storage.StorageManagementClient": {
-                None: "2016-01-01"
-            },
-            "azure.mgmt.resource.policy.PolicyClient": {
-                None: "2016-12-01"
-            },
-            "azure.mgmt.resource.locks.ManagementLockClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.links.ManagementLinkClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.resources.ResourceManagementClient": {
-                None: "2018-02-01"
-            },
-            "azure.mgmt.resource.subscriptions.SubscriptionClient": {
-                None: "2016-06-01"
-            },
-            "azure.mgmt.dns.DnsManagementClient": {
-                None: "2016-04-01"
-            }
-        },
-        "2018-03-01-hybrid"
-    )
-    v2019_03_01_hybrid = ProfileDefinition(
-        {
-            "azure.keyvault.KeyVaultClient": {
-                None: "2016-10-01"
-            },
-            "azure.mgmt.authorization.AuthorizationManagementClient": {
-                None: "2015-07-01"
-            },
-            "azure.mgmt.compute.ComputeManagementClient": {
-                None: "2017-12-01",
-                'resource_skus': '2017-09-01',
-                'disks': '2017-03-30',
-                'snapshots': '2017-03-30'
-            },
-            "azure.mgmt.keyvault.KeyVaultManagementClient":{
-                None: "2016-10-01"
-            },
-            "azure.mgmt.monitor.MonitorManagementClient": {
-                'metric_definitions': '2018-01-01',
-                'metrics': '2018-01-01',
-                'diagnostic_settings': '2017-05-01-preview',
-                'diagnostic_settings_category': '2017-05-01-preview',
-                'event_categories': '2015-04-01',
-                'operations': '2015-04-01',
-            },
-            "azure.mgmt.network.NetworkManagementClient": {
-                None: "2017-10-01"
-            },
-            "azure.mgmt.storage.StorageManagementClient": {
-                None: "2017-10-01"
-            },
-            "azure.mgmt.resource.policy.PolicyClient": {
-                None: "2016-12-01"
-            },
-            "azure.mgmt.resource.locks.ManagementLockClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.links.ManagementLinkClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.resources.ResourceManagementClient": {
-                None: "2018-05-01"
-            },
-            "azure.mgmt.resource.subscriptions.SubscriptionClient": {
-                None: "2016-06-01"
-            },
-            "azure.mgmt.dns.DnsManagementClient": {
-                None: "2016-04-01"
-            }
-        },
-        "2019-03-01-hybrid"
-    )
-    v2020_09_01_hybrid = ProfileDefinition(
-        {
-            "azure.keyvault.KeyVaultClient": {
-                None: "2016-10-01"
-            },
-            "azure.mgmt.authorization.AuthorizationManagementClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.compute.ComputeManagementClient": {
-                None: "2020-06-01",
-                'resource_skus': '2019-04-01',
-                'disks': '2019-07-01',
-                'snapshots': '2019-07-01'
-            },
-            "azure.mgmt.keyvault.KeyVaultManagementClient":{
-                None: "2019-09-01"
-            },
-            "azure.mgmt.monitor.MonitorManagementClient": {
-                'metric_definitions': '2018-01-01',
-                'metrics': '2018-01-01',
-                'diagnostic_settings': '2017-05-01-preview',
-                'diagnostic_settings_category': '2017-05-01-preview',
-                'event_categories': '2015-04-01',
-                'operations': '2015-04-01',
-            },
-            "azure.mgmt.network.NetworkManagementClient": {
-                None: "2018-11-01"
-            },
-            "azure.mgmt.storage.StorageManagementClient": {
-                None: "2019-06-01"
-            },
-            "azure.mgmt.resource.policy.PolicyClient": {
-                None: "2016-12-01"
-            },
-            "azure.mgmt.resource.locks.ManagementLockClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.links.ManagementLinkClient": {
-                None: "2016-09-01"
-            },
-            "azure.mgmt.resource.resources.ResourceManagementClient": {
-                None: "2019-10-01"
-            },
-            "azure.mgmt.resource.subscriptions.SubscriptionClient": {
-                None: "2016-06-01"
-            },
-            "azure.mgmt.dns.DnsManagementClient": {
-                None: "2016-04-01"
-            }
-        },
-        "2020-09-01-hybrid"
-    )
-
-
-    def __init__(self, profile_definition):
-        self._profile_definition = profile_definition
-
-    def use(self, profile):
-        if self is not type(self).default:
-            raise ValueError("use can only be used for `default` profile")
-        self.value.use(profile)
-
-    def definition(self):
-        if self is not type(self).default:
-            raise ValueError("use can only be used for `default` profile")
-        return self.value.definition()
-
-    @classmethod
-    def from_name(cls, profile_name):
-        if profile_name == "default":
-            return cls.default
-        for profile in cls:
-            if isinstance(profile.value, ProfileDefinition) and profile.value.label == profile_name:
-                return profile
-        raise ValueError("No profile called {}".format(profile_name))
-
-
-# Default profile is floating "latest"
-KnownProfiles.default.use(KnownProfiles.latest)
 
 class InvalidMultiApiClientError(Exception):
     """If the mixin is not used with a compatible class.
@@ -299,7 +84,6 @@ class MultiApiClientMixin(object):
     def __init__(self, *args, **kwargs):
         # Consume "api_version" and "profile", to avoid sending them to base class
         api_version = kwargs.pop("api_version", None)
-        profile = kwargs.pop("profile", KnownProfiles.default)
 
         # Can't do "super" call here all the time, or I would break old client with:
         # TypeError: object.__init__() takes no parameters
@@ -319,8 +103,17 @@ class MultiApiClientMixin(object):
         except AttributeError:
             raise InvalidMultiApiClientError("To use this mixin, main client MUST define _PROFILE_TAG class attribute")
 
-        if api_version and profile is not KnownProfiles.default:
+        profile = kwargs.pop("profile", None)
+        if profile:
+            try:
+                import azure.profiles
+            except ImportError:
+                raise TypeError("In order to pass in a profile, you have to pip install azure-common")
+
+        if api_version and profile:
             raise ValueError("Cannot use api-version and profile parameters at the same time")
+
+        profile = profile or DefaultProfile()
 
         if api_version:
             self.profile = ProfileDefinition({
@@ -342,15 +135,21 @@ class MultiApiClientMixin(object):
 
     def _get_api_version(self, operation_group_name):
         current_profile = self.profile
-        if self.profile is KnownProfiles.default:
-            current_profile = KnownProfiles.default.value.definition()
-
-        if current_profile is KnownProfiles.latest:
+        if isinstance(current_profile, DefaultProfile):
             current_profile = self.LATEST_PROFILE
-        elif isinstance(current_profile, KnownProfiles):
+
+        try:
+            if current_profile.label == "latest":
+                current_profile = self.LATEST_PROFILE
+        except AttributeError:
+            pass
+
+
+
+        try:
             current_profile = current_profile.value
-        elif isinstance(current_profile, ProfileDefinition):
-            pass  # I expect that
+        except AttributeError:
+            pass
         else:
             raise ValueError("Cannot determine a ProfileDefinition from {}".format(self.profile))
 

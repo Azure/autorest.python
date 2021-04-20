@@ -11,7 +11,7 @@
 
 from typing import Any, Optional
 
-from .._profiles import KnownProfiles, MultiApiClientMixin, ProfileDefinition
+from .._profiles import MultiApiClientMixin, ProfileDefinition
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
@@ -66,7 +66,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         credential: AzureKeyCredential,
         api_version: Optional[str] = None,
         base_url: Optional[str] = None,
-        profile: KnownProfiles = KnownProfiles.default,
+        profile: Any = None,
         **kwargs  # type: Any
     ) -> None:
         if not base_url:
