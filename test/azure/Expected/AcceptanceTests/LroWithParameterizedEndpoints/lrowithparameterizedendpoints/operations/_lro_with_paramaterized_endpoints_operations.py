@@ -22,8 +22,7 @@ from azure.core.polling.base_polling import LROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -44,7 +43,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_poll_with_parameterized_endpoints_initial(
+        request = _rest.build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
         )
         path_format_arguments = {

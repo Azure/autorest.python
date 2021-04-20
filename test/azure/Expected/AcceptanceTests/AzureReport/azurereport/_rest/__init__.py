@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_get_report
+    from ._request_builders_py3 import build_get_report_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_get_report  # type: ignore
+    from ._request_builders import build_get_report_request  # type: ignore
 
 __all__ = [
-    "prepare_get_report",
+    "build_get_report_request",
 ]

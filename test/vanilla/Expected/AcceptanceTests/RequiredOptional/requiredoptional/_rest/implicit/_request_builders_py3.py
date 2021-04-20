@@ -87,9 +87,9 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if query_parameter is not None:
         header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 

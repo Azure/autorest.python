@@ -493,9 +493,9 @@ def build_post_optional_string_header_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if body_parameter is not None:
         header_parameters["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 

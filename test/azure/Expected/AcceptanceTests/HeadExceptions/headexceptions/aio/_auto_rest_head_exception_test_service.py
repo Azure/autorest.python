@@ -9,7 +9,7 @@
 from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -41,11 +41,11 @@ class AutoRestHeadExceptionTestService(object):
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
+        self._serialize = Serializer()
+        self._deserialize = Deserializer(client_models)
+        self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
-        self._deserialize = Deserializer(client_models)
-
-        self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
@@ -53,8 +53,8 @@ class AutoRestHeadExceptionTestService(object):
         We have helper methods to create requests specific to this service in `headexceptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headexceptions.rest import prepare_headexception_head200
-        >>> request = prepare_headexception_head200()
+        >>> from headexceptions.rest import build_head200_request
+        >>> request = build_head200_request()
         <HttpRequest [HEAD], url: '/http/success/200'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -72,13 +72,19 @@ class AutoRestHeadExceptionTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = await self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return AsyncHttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _AsyncStreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = AsyncHttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        await response.read()
+        return response
 
     async def close(self) -> None:
         await self._client.close()

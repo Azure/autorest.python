@@ -13,8 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -44,7 +43,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_one(
+        request = _rest.build_test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -93,7 +92,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = prepare_test_different_calls(
+        request = _rest.build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             template_url=self.test_different_calls.metadata['url'],

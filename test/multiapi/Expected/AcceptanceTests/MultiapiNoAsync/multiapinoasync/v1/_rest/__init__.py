@@ -7,22 +7,19 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._preparers_py3 import prepare_test_one
-    from ._preparers_py3 import prepare_test_lro_initial
-    from ._preparers_py3 import prepare_test_lro_and_paging_initial
-    from ._preparers_py3 import prepare_test_different_calls
-    from ._preparers_py3 import prepare_operationgroupone_test_two
+    from ._request_builders_py3 import build_test_one_request
+    from ._request_builders_py3 import build_test_lro_request_initial
+    from ._request_builders_py3 import build_test_lro_and_paging_request_initial
+    from ._request_builders_py3 import build_test_different_calls_request
 except (SyntaxError, ImportError):
-    from ._preparers import prepare_test_one  # type: ignore
-    from ._preparers import prepare_test_lro_initial  # type: ignore
-    from ._preparers import prepare_test_lro_and_paging_initial  # type: ignore
-    from ._preparers import prepare_test_different_calls  # type: ignore
-    from ._preparers import prepare_operationgroupone_test_two  # type: ignore
+    from ._request_builders import build_test_one_request  # type: ignore
+    from ._request_builders import build_test_lro_request_initial  # type: ignore
+    from ._request_builders import build_test_lro_and_paging_request_initial  # type: ignore
+    from ._request_builders import build_test_different_calls_request  # type: ignore
 
 __all__ = [
-    'prepare_test_one',
-    'prepare_test_lro_initial',
-    'prepare_test_lro_and_paging_initial',
-    'prepare_test_different_calls',
-    'prepare_operationgroupone_test_two',
+    'build_test_one_request',
+    'build_test_lro_request_initial',
+    'build_test_lro_and_paging_request_initial',
+    'build_test_different_calls_request',
 ]

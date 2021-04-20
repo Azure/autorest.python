@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -44,8 +44,9 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -54,8 +55,8 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         We have helper methods to create requests specific to this service in `lrowithparameterizedendpoints.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from lrowithparameterizedendpoints.rest import prepare_poll_with_parameterized_endpoints_initial
-        >>> request = prepare_poll_with_parameterized_endpoints_initial()
+        >>> from lrowithparameterizedendpoints.rest import build_poll_with_parameterized_endpoints_request_initial
+        >>> request = build_poll_with_parameterized_endpoints_request_initial()
         <HttpRequest [POST], url: '/lroParameterizedEndpoints'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -76,13 +77,19 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

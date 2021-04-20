@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -46,10 +46,10 @@ class AutoRestDurationTestService(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -58,8 +58,8 @@ class AutoRestDurationTestService(object):
         We have helper methods to create requests specific to this service in `bodyduration.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyduration.rest import prepare_duration_get_null
-        >>> request = prepare_duration_get_null()
+        >>> from bodyduration.rest import build_get_null_request
+        >>> request = build_get_null_request()
         <HttpRequest [GET], url: '/duration/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,13 +77,19 @@ class AutoRestDurationTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

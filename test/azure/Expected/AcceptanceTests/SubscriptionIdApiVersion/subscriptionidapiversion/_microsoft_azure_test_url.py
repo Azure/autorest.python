@@ -9,7 +9,7 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -53,10 +53,10 @@ class MicrosoftAzureTestUrl(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
         self.group = GroupOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -65,8 +65,8 @@ class MicrosoftAzureTestUrl(object):
         We have helper methods to create requests specific to this service in `subscriptionidapiversion.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from subscriptionidapiversion.rest import prepare_group_get_sample_resource_group
-        >>> request = prepare_group_get_sample_resource_group(subscription_id, resource_group_name)
+        >>> from subscriptionidapiversion.rest import build_get_sample_resource_group_request
+        >>> request = build_get_sample_resource_group_request(subscription_id, resource_group_name)
         <HttpRequest [GET], url: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -84,13 +84,19 @@ class MicrosoftAzureTestUrl(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

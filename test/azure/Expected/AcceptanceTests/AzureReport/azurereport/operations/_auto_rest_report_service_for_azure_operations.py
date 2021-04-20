@@ -20,8 +20,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -54,7 +53,9 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_get_report(qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs)
+        request = _rest.build_get_report_request(
+            qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs
+        )
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

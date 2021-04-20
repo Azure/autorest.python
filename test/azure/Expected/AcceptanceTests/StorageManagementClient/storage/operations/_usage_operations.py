@@ -21,8 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import models as _models
-from .._rest import *
+from .. import _rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -70,7 +69,7 @@ class UsageOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_usage_list(
+        request = _rest.usage.build_list_request(
             subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

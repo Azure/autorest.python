@@ -9,7 +9,7 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -48,11 +48,11 @@ class AutoRestHeadExceptionTestService(object):
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
+        self._serialize = Serializer()
+        self._deserialize = Deserializer(client_models)
+        self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
-        self._deserialize = Deserializer(client_models)
-
-        self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -61,8 +61,8 @@ class AutoRestHeadExceptionTestService(object):
         We have helper methods to create requests specific to this service in `headexceptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headexceptions.rest import prepare_headexception_head200
-        >>> request = prepare_headexception_head200()
+        >>> from headexceptions.rest import build_head200_request
+        >>> request = build_head200_request()
         <HttpRequest [HEAD], url: '/http/success/200'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -80,13 +80,19 @@ class AutoRestHeadExceptionTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

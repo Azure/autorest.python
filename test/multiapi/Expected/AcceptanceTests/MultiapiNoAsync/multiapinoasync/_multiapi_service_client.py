@@ -12,7 +12,7 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from azure.mgmt.core import ARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin

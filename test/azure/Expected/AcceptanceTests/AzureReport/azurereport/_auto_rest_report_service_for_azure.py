@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -44,8 +44,9 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -54,8 +55,8 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         We have helper methods to create requests specific to this service in `azurereport.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azurereport.rest import prepare_get_report
-        >>> request = prepare_get_report(qualifier)
+        >>> from azurereport.rest import build_get_report_request
+        >>> request = build_get_report_request(qualifier)
         <HttpRequest [GET], url: '/report/azure'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -73,13 +74,19 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

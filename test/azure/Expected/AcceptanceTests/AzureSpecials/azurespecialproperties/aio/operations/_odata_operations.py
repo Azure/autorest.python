@@ -21,8 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models as _models
-from ..._rest import *
+from ... import _rest, models as _models
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -71,7 +70,7 @@ class OdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = prepare_odata_get_with_filter(
+        request = _rest.odata.build_get_with_filter_request(
             filter=filter, top=top, orderby=orderby, template_url=self.get_with_filter.metadata["url"], **kwargs
         )
         request.url = self._client.format_url(request.url)

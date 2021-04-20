@@ -9,7 +9,7 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpResponse
+from azure.core.rest import HttpResponse, _StreamContextManager
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -57,13 +57,13 @@ class StorageManagementClient(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
         self.storage_accounts = StorageAccountsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.usage = UsageOperations(self._client, self._config, self._serialize, self._deserialize)
+        self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -72,8 +72,8 @@ class StorageManagementClient(object):
         We have helper methods to create requests specific to this service in `storage.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from storage.rest import prepare_storageaccounts_check_name_availability
-        >>> request = prepare_storageaccounts_check_name_availability(subscription_id, account_name)
+        >>> from storage.rest import build_check_name_availability_request
+        >>> request = build_check_name_availability_request(subscription_id, json, content)
         <HttpRequest [POST], url: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -91,13 +91,19 @@ class StorageManagementClient(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
+        if kwargs.pop("stream_response", False):
+            return _StreamContextManager(
+                client=self._client,
+                request=request_copy,
+            )
+        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
+        response = HttpResponse(
             status_code=pipeline_response.http_response.status_code,
             request=request_copy,
             _internal_response=pipeline_response.http_response,
         )
+        response.read()
+        return response
 
     def close(self):
         # type: () -> None

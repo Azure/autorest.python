@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
+import json
 from typing import TYPE_CHECKING
 import warnings
 
@@ -21,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .._rest import *
+from .. import _rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
