@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import multiapi
 import pytest
 from multiapi import MultiapiServiceClient
 from azure.profiles import ProfileDefinition, KnownProfiles
@@ -42,10 +43,17 @@ def profile_definition():
 def test_profile_input(credential, profile_definition):
     client = MultiapiServiceClient(credential, profile=profile_definition)
     assert client.profile == profile_definition
+    client.operation_group_one
+    # assert "5.2.1" in str(ex.value)
 
 def test_known_profiles_default_input(credential):
     client = MultiapiServiceClient(credential=credential, profile=KnownProfiles.default)
     assert client.profile == KnownProfiles.default
+
+def test_known_profiles_latest_input(credential):
+    client = MultiapiServiceClient(credential=credential, profile=KnownProfiles.latest)
+    assert client.profile == KnownProfiles.latest
+    assert isinstance(client.operation_group_one, multiapi.v3.operations.OperationGroupOneOperations)
 
 def test_profile_api_version(credential, profile_definition):
     with pytest.raises(ValueError) as error:

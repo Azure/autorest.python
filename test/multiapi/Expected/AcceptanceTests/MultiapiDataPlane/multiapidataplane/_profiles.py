@@ -171,9 +171,10 @@ class MultiApiClientMixin(object):
         try:
             current_profile = current_profile.value
         except AttributeError:
-            pass
-        else:
-            raise ValueError("Cannot determine a ProfileDefinition from {}".format(self.profile))
+            if _is_profile_definition(current_profile):
+                pass
+            else:
+                raise ValueError("Cannot determine a ProfileDefinition from {}".format(self.profile))
 
         local_profile_dict = current_profile.get_profile_dict()
         if self._PROFILE_TAG not in local_profile_dict:
