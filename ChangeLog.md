@@ -1,6 +1,6 @@
 # Change Log
 
-### 2021-04-07 - 5.7.0
+### 2021-xx-xx - 5.8.0
 
 min Autorest core version: 3.1.0
 
@@ -8,7 +8,17 @@ min Modelerfour version: 4.15.456
 
 **New Features**
 
-- Remove dependency on `azure-common` for `profiles` support  #935
+- Remove dependency on `azure-common` for `profiles` support #935
+
+### 2021-04-20 - 5.7.0
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix data plane LRO operations so they poll by default. Bumping minor version because this bug fix will change some default behavior. #936
 
 ### 2021-04-07 - 5.6.6
 
@@ -18,7 +28,7 @@ min Modelerfour version: 4.15.456
 
 **Bug Fixes**
 
-- Fix docstrings so they don't get split on hyphens  #931
+- Fix docstrings so they don't get split on hyphens #931
 
 ### 2021-04-07 - 5.6.5
 
@@ -28,7 +38,7 @@ min Modelerfour version: 4.15.456
 
 **Bug Fixes**
 
-- Fix regression in multiapi generation for multiapi versions without mixin operations  #928
+- Fix regression in multiapi generation for multiapi versions without mixin operations #928
 
 ### 2021-03-01 - 5.6.4
 
@@ -37,6 +47,7 @@ min Autorest core version: 3.1.0
 min Modelerfour version: 4.15.456
 
 **Bug Fixes**
+
 - Bump `Autorest core` minimum version to be able to deal with indented `python` blocks in config files
 
 ### 2021-02-10 - 5.6.3
@@ -46,7 +57,8 @@ min Autorest core version: 3.0.6372
 min Modelerfour version: 4.15.456
 
 **Bug Fixes**
-- Bump `Autorest core` minimum version to [correctly deal with](https://github.com/Azure/autorest/pull/3860) overriding configs. Fixes submodule-specific code in our multiapi client  #880
+
+- Bump `Autorest core` minimum version to [correctly deal with](https://github.com/Azure/autorest/pull/3860) overriding configs. Fixes submodule-specific code in our multiapi client #880
 
 ### 2021-02-04 - 5.6.2
 
@@ -55,7 +67,8 @@ Autorest core version: 3.0.6318
 Modelerfour version: 4.15.456
 
 **Bug Fixes**
-- Bump `Modelerfour` minimum version to [correctly deal with](https://github.com/Azure/autorest.modelerfour/pull/385) parameters specified as `'required': false` in swagger  #877
+
+- Bump `Modelerfour` minimum version to [correctly deal with](https://github.com/Azure/autorest.modelerfour/pull/385) parameters specified as `'required': false` in swagger #877
 
 ### 2021-01-27 - 5.6.1
 
