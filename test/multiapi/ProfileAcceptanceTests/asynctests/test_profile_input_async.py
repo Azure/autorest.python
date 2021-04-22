@@ -24,30 +24,40 @@
 #
 # --------------------------------------------------------------------------
 import pytest
+import multiapi
 from multiapi.aio import MultiapiServiceClient
 from azure.profiles import ProfileDefinition, KnownProfiles
 
 @pytest.fixture
 def profile_definition():
     return ProfileDefinition({
-        "MyTest": {
+        "multiapi.MultiapiServiceClient": {
             None: "5.2.1",
             'begin_test_lro': '1.0.0',
             'begin_test_lro_and_paging': '1.0.0',
             'test_one': '2.0.0',
         }},
-        "MyTest"
+        "multiapi.MultiapiServiceClient"
     )
 
 def test_profile_input(credential, profile_definition):
     client = MultiapiServiceClient(credential, profile=profile_definition)
     assert client.profile == profile_definition
+    with pytest.raises(ValueError) as ex:
+        client.operation_group_one
+    assert "API version 5.2.1 does not have operation group 'operation_group_one'" in str(ex.value)
 
 def test_known_profiles_default_input(credential):
     client = MultiapiServiceClient(credential=credential, profile=KnownProfiles.default)
     assert client.profile == KnownProfiles.default
 
+def test_known_profiles_latest_input(credential):
+    client = MultiapiServiceClient(credential=credential, profile=KnownProfiles.latest)
+    assert client.profile == KnownProfiles.latest
+    assert isinstance(client.operation_group_one, multiapi.v3.aio.operations.OperationGroupOneOperations)
+
 def test_profile_api_version(credential, profile_definition):
     with pytest.raises(ValueError) as error:
         MultiapiServiceClient(credential, api_version="3.0.0", profile=profile_definition)
     assert "Cannot use api-version and profile parameters at the same time" in str(error.value)
+

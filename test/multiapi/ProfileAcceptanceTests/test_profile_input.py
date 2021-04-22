@@ -31,20 +31,21 @@ from azure.profiles import ProfileDefinition, KnownProfiles
 @pytest.fixture
 def profile_definition():
     return ProfileDefinition({
-        "MyTest": {
+        "multiapi.MultiapiServiceClient": {
             None: "5.2.1",
             'begin_test_lro': '1.0.0',
             'begin_test_lro_and_paging': '1.0.0',
             'test_one': '2.0.0',
         }},
-        "MyTest"
+        "multiapi.MultiapiServiceClient"
     )
 
 def test_profile_input(credential, profile_definition):
     client = MultiapiServiceClient(credential, profile=profile_definition)
     assert client.profile == profile_definition
-    client.operation_group_one
-    # assert "5.2.1" in str(ex.value)
+    with pytest.raises(ValueError) as ex:
+        client.operation_group_one
+    assert "API version 5.2.1 does not have operation group 'operation_group_one'" in str(ex.value)
 
 def test_known_profiles_default_input(credential):
     client = MultiapiServiceClient(credential=credential, profile=KnownProfiles.default)
