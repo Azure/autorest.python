@@ -93,8 +93,8 @@ def build_test_different_calls_request(
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if greeting_in_chinese is not None:
         header_parameters['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
     header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",

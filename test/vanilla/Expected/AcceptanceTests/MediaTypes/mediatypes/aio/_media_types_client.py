@@ -64,7 +64,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         request_copy.url = self._client.format_url(request_copy.url)
         if kwargs.pop("stream_response", False):
             return _AsyncStreamContextManager(
-                client=self._client,
+                client=self._client._pipeline,
                 request=request_copy,
             )
         pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)

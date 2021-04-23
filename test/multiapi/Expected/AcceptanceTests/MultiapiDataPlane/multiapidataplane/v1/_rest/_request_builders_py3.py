@@ -136,11 +136,11 @@ def build_test_lro_and_paging_request_initial(
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
         header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    if maxresults is not None:
-        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
         header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
@@ -177,8 +177,8 @@ def build_test_different_calls_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
     header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",

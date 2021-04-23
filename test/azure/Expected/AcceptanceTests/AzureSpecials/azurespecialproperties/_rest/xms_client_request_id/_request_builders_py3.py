@@ -51,9 +51,9 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
         "x_ms_client_request_id", x_ms_client_request_id, "str"
     )
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)

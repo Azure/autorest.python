@@ -40,10 +40,10 @@ def build_custom_named_request_id_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -71,10 +71,10 @@ def build_custom_named_request_id_param_grouping_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -101,9 +101,9 @@ def build_custom_named_request_id_head_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)

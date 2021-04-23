@@ -64,10 +64,10 @@ def build_post_required_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if custom_header is not None:
-        header_parameters["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    if custom_header is not None:
+        header_parameters["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(
@@ -149,9 +149,9 @@ def build_post_multi_param_groups_request(
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_one is not None:
         header_parameters["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if header_two is not None:
         header_parameters["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 

@@ -128,13 +128,13 @@ def build_get_multiple_pages_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if maxresults is not None:
         header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if timeout is not None:
         header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if client_request_id is not None:
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -227,13 +227,13 @@ def build_get_odata_multiple_pages_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if maxresults is not None:
         header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if timeout is not None:
         header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if client_request_id is not None:
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -274,13 +274,13 @@ def build_get_multiple_pages_with_offset_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if maxresults is not None:
         header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if timeout is not None:
         header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if client_request_id is not None:
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -489,13 +489,13 @@ def build_get_multiple_pages_lro_request_initial(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if maxresults is not None:
         header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if timeout is not None:
         header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    if client_request_id is not None:
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
