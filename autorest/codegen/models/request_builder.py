@@ -3,10 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, cast, Dict, List, TypeVar, Optional
+from typing import Any, Dict, List, TypeVar
 
 from .base_model import BaseModel
-from .constant_schema import ConstantSchema
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
@@ -113,7 +112,9 @@ class RequestBuilder(BaseModel):
 
         first_request = yaml_data["requests"][0]
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestBuilderParameter.from_yaml)
+        parameters, multiple_media_type_parameters = (
+            get_converted_parameters(yaml_data, RequestBuilderParameter.from_yaml)
+        )
 
         request_builder_class = cls(
             yaml_data=yaml_data,

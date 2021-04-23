@@ -47,7 +47,9 @@ class NameConverter:
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string=PadType.Method)
                 if operation_group_name:
-                    operation['language']['python']['operationGroupName'] = operation_group['language']['python']['name'].lower()
+                    operation['language']['python']['operationGroupName'] = (
+                        operation_group['language']['python']['name'].lower()
+                    )
                 else:
                     operation['language']['python']['operationGroupName'] = ""
                 for exception in operation.get('exceptions', []):

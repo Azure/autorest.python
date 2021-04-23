@@ -81,7 +81,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def body_kwarg_to_pass_to_request_builder(self) -> str:
         if self.request_builder.multipart:
             return "files"
-        elif self.parameters.has_partial_body:
+        if self.parameters.has_partial_body:
             return "data"
         return "content"
 

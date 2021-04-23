@@ -3,11 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models import request_builder
-from autorest.codegen.models.request_builder import RequestBuilder
 from typing import List
-from jinja2 import Environment
 from abc import abstractmethod
+from jinja2 import Environment
+
+from ..models import RequestBuilder
 from .import_serializer import FileImportSerializer
 from ..models import CodeModel
 
@@ -19,10 +19,6 @@ class RestSerializer:
         self.code_model = code_model
         self.env = env
         self.request_builders = request_builders
-
-    @abstractmethod
-    def serialize_request_builders(self) -> str:
-        ...
 
     def serialize_init(self) -> str:
         template = self.env.get_template("rest_init.py.jinja2")

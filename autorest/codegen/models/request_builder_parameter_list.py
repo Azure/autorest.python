@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional, Set, Dict
+from typing import List, Optional, Set
 from copy import deepcopy
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
@@ -44,7 +44,7 @@ class RequestBuilderParameterList(ParameterList):
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names]
 
-    def _get_body_kwargs(self, body_kwargs: List[Parameter]) -> List[Parameter]:
+    def _get_body_kwargs(self, body_kwargs: List[RequestBuilderParameter]) -> List[RequestBuilderParameter]:
         seen_bodies: Set[str] = set()
         returned_bodies = []
         if body_kwargs:
@@ -72,7 +72,7 @@ class RequestBuilderParameterList(ParameterList):
         return returned_bodies
 
     @property
-    def json_body(self) -> RequestBuilderParameter:
+    def json_body(self) -> Parameter:
         if "application/json" not in self.content_types:
             raise ValueError(
                 "Should not be trying to get JSON body of this request if "
@@ -104,8 +104,11 @@ class RequestBuilderParameterList(ParameterList):
 
         for parameter in parameters:
             if any([g for g in self.groupers if id(g.yaml_data) == id(parameter.yaml_data)]):
+                # we don't allow a grouped parameter for the body param
                 continue
             if seen_content_type and parameter.serialized_name == "content_type":
+                # we ony want one content type
+                # there can be multiple content types in the case of multiple media types
                 continue
             if parameter.serialized_name == "content_type":
                 seen_content_type = True
@@ -117,7 +120,9 @@ class RequestBuilderParameterList(ParameterList):
                 else:
                     signature_parameters_default_value.append(parameter)
 
-        body_kwargs = self._get_body_kwargs(body_kwargs)
+        body_kwargs = self._get_body_kwargs(
+            body_kwargs
+        )  # we want a kwarg for every possible way the body can be inputted
         self.body_kwarg_names = [b.serialized_name for b in body_kwargs]
         # put body first. We want them to be the first kwargs.
         signature_parameters = body_kwargs + signature_parameters_no_default_value + signature_parameters_default_value

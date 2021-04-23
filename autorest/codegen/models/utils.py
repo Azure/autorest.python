@@ -46,7 +46,8 @@ def get_converted_parameters(yaml_data, parameter_converter):
 
     if multiple_requests:
         try:
-            # get an optional param with object first. These params are the top choice bc they have more info about how to serialize the body
+            # get an optional param with object first. These params are the top choice
+            # bc they have more info about how to serialize the body
             chosen_parameter = next(
                 p for p in multiple_media_type_parameters if not p.required and p.schema["type"] == "object"
             )

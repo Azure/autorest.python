@@ -25,6 +25,25 @@ def _get_credential_default_policy_type_has_async_version(credential_default_pol
     }
     return mapping[credential_default_policy_type]
 
+def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
+    # Create operations
+    if yaml_data.get("operationGroups"):
+        code_model.operation_groups = [
+            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
+        ]
+    if yaml_data.get("schemas"):
+        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+
+        code_model.add_inheritance_to_models()
+        code_model.sort_schemas()
+        code_model.link_operation_to_request_builder()
+        code_model.add_schema_link_to_operation()
+        code_model.generate_single_parameter_from_multiple_media_types_operation()
+
+    # LRO operation
+    code_model.format_lro_operations()
+    code_model.remove_next_operation()
+
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
@@ -60,25 +79,6 @@ class CodeGenerator(Plugin):
                     exceptions_set.add(id(exception["schema"]))
         return exceptions_set
 
-    def _build_convenience_layer(self, yaml_data: Dict[str, Any], code_model: CodeModel) -> CodeModel:
-        # Create operations
-        if yaml_data.get("operationGroups"):
-            code_model.operation_groups = [
-                OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
-            ]
-        if yaml_data.get("schemas"):
-            # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-
-            code_model.add_inheritance_to_models()
-            code_model.sort_schemas()
-            code_model.link_operation_to_request_builder()
-            code_model.add_schema_link_to_operation()
-            code_model.generate_single_parameter_from_multiple_media_types_operation()
-
-        # LRO operation
-        code_model.format_lro_operations()
-        code_model.remove_next_operation()
-
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
         code_model = CodeModel(
@@ -104,7 +104,9 @@ class CodeGenerator(Plugin):
             # UGLY as hell.....
             if yaml_data.get("operationGroups"):
                 first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                code_model.service_client.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                code_model.service_client.custom_base_url = (
+                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                )
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
@@ -128,7 +130,7 @@ class CodeGenerator(Plugin):
             code_model.add_schema_link_to_global_parameters()
 
         if not code_model.low_level_client:
-            self._build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
+            _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
             code_model.add_credential_global_parameter()

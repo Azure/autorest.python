@@ -3,9 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.primitive_schemas import AnySchema
-from enum import Enum
 import logging
+import json
+from enum import Enum
+
 from typing import Dict, Optional, List, Any, Union, Tuple
 
 from .imports import FileImport, ImportType, TypingSection
@@ -14,6 +15,7 @@ from .base_schema import BaseSchema
 from .list_schema import ListSchema
 from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
+from .primitive_schemas import AnySchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -100,6 +102,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):
         return f'self._serialize.{function_name}({parameters_line})'
+
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        """Creates a JSON template for the body that users of the LLC SDK can use to create their JSON body"""
+        if not self.is_body:
+            raise ValueError("This parameter is not a body parameter. Should not call this property on it.")
+        return json.dumps(self.schema.get_json_template_representation(**kwargs), sort_keys=True, indent=4)
 
     def build_serialize_data_call(self, function_name: str) -> str:
 
@@ -287,7 +295,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def pop_from_kwarg(self) -> str:
         # Only entering if we're not python3 file
         if self._has_default_value():
-            return f"{self.serialized_name} = kwargs.pop('{self.serialized_name}', {self.default_value_declaration})  # type: {self.type_annotation}"
+            return (
+                f"{self.serialized_name} = kwargs.pop('{self.serialized_name}', " +
+                f"{self.default_value_declaration})  # type: {self.type_annotation}"
+            )
         return f"{self.serialized_name} = kwargs.pop('{self.serialized_name}')  # type: {self.type_annotation}"
 
     @property

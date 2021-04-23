@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, cast
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 

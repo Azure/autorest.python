@@ -40,12 +40,6 @@ class ParameterList(MutableSequence):
     def insert(self, index: int, value: Parameter) -> None:
         self.parameters.insert(index, value)
 
-    def append(self, val: Parameter) -> None:
-        self.parameters.append(val)
-
-    def extend(self, val: Parameter) -> None:
-        self.parameters.extend(val)
-
     # Parameter helpers
 
     def has_any_location(self, location: ParameterLocation) -> bool:

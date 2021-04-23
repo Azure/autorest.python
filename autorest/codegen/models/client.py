@@ -16,7 +16,7 @@ class Client:
 
     def __init__(self, parameters: GlobalParameterList):
         self.parameters = parameters
-        self.base_url = None
+        self.base_url: Optional[str] = None
         self.custom_base_url = None
         self._config_parameters = parameters
 
@@ -95,7 +95,10 @@ class Client:
         return self.parameters.method + base_url_param
 
     def method_parameters_signature(self, async_mode) -> List[str]:
-        return [parameter.method_signature(async_mode) for parameter in self.method_parameters] + self.parameters.method_signature_kwargs(async_mode)
+        return [
+            parameter.method_signature(async_mode)
+            for parameter in self.method_parameters
+        ] + self.parameters.method_signature_kwargs(async_mode)
 
     @property
     def config_initialization(self) -> str:

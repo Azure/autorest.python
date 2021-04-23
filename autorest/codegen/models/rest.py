@@ -27,7 +27,7 @@ class Rest(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Protocol":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Rest":
         request_builders = []
         if yaml_data.get("operationGroups"):
             request_builders = [

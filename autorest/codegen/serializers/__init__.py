@@ -3,17 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models import rest
-from autorest.codegen.models import request_builder
-from autorest.codegen.models.request_builder import RequestBuilder
-from pathlib import Path
 from typing import List
-
+from pathlib import Path
 from jinja2 import PackageLoader, Environment
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel
-
+from ..models.request_builder import RequestBuilder
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_generic_serializer import ModelGenericSerializer
@@ -65,7 +61,9 @@ class JinjaSerializer:
         if not code_model.low_level_client:
             self._serialize_and_write_convenience_layer(code_model=code_model, env=env, namespace_path=namespace_path)
 
-    def _serialize_and_write_convenience_layer(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
+    def _serialize_and_write_convenience_layer(
+        self, code_model: CodeModel, env: Environment, namespace_path: Path
+    ) -> None:
         if code_model.schemas or code_model.enums:
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
         if code_model.operation_groups:
@@ -100,13 +98,15 @@ class JinjaSerializer:
     ) -> None:
         folder_name = "rest" if code_model.low_level_client else "_rest"
         rest_path = namespace_path / Path(folder_name)
-        operation_group_names = set(
-            [rb.operation_group_name for rb in code_model.rest.request_builders]
-        )
+        operation_group_names = {
+            rb.operation_group_name for rb in code_model.rest.request_builders
+        }
 
         for operation_group_name in operation_group_names:
             output_path = rest_path / Path(operation_group_name) if operation_group_name else rest_path
-            request_builders = [r for r in code_model.rest.request_builders if r.operation_group_name == operation_group_name]
+            request_builders = [
+                r for r in code_model.rest.request_builders if r.operation_group_name == operation_group_name
+            ]
             self._serialize_and_write_single_rest_layer(
                 code_model, env, output_path, request_builders
             )
@@ -252,7 +252,9 @@ class JinjaSerializer:
         if code_model.options["basic_setup_py"]:
             self._autorestapi.write_file(Path("setup.py"), general_serializer.serialize_setup_file())
 
-    def _serialize_and_write_aio_top_level_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
+    def _serialize_and_write_aio_top_level_folder(
+        self, code_model: CodeModel, env: Environment, namespace_path: Path
+    ) -> None:
         aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
 
         aio_path = namespace_path / Path("aio")

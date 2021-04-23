@@ -17,7 +17,7 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
-from .parameter_list import GlobalParameterList, ParameterList
+from .parameter_list import GlobalParameterList
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
@@ -330,10 +330,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     def add_schema_link_to_request_builder(self) -> None:
         for request_builder in self.rest.request_builders:
             for obj in chain(
-                    request_builder.parameters,
-                    chain.from_iterable(request.parameters for request in request_builder.schema_requests)
-                ):
-                    self._populate_schema(obj)
+                request_builder.parameters,
+                chain.from_iterable(request.parameters for request in request_builder.schema_requests)
+            ):
+                self._populate_schema(obj)
 
 
     def add_schema_link_to_global_parameters(self) -> None:
