@@ -40,7 +40,7 @@ from azure.pets.aio import PetsClient
 async def get_my_dog():
     async with DefaultAzureCredential() as credential:
         async with PetsClient(credential=credential) as client:
-        dog = await client.get_dog()
+            dog = await client.get_dog()
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(get_my_dog())
