@@ -71,10 +71,7 @@ class TestSendRequest(object):
 
         response = await client._send_request(request)
 
-        data = b''
-        async for chunk in response.stream_download(None):
-            data += chunk
-        json_response = json.loads(data.decode('utf-8'))
+        json_response = json.loads(response.body())
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
         assert - 1 == json_response['hates'][1]['id']
@@ -207,7 +204,7 @@ class TestSendRequest(object):
                 },
                 data=stream_data,
             )
-            response = await client._send_request(request)
+            response = await client._send_request(request, stream=True)
             assert response.status_code == 200
 
     @pytest.mark.asyncio

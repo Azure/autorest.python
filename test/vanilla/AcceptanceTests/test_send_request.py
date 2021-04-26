@@ -199,7 +199,7 @@ class TestSendRequest(object):
                 },
                 data=stream_data,
             )
-            response = client._send_request(request)
+            response = client._send_request(request, stream=True)
             assert response.status_code == 200
 
     def test_send_request_with_client_path_format_arguments(self):
