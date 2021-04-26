@@ -103,12 +103,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def serialize_line(function_name: str, parameters_line: str):
         return f'self._serialize.{function_name}({parameters_line})'
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        """Creates a JSON template for the body that users of the LLC SDK can use to create their JSON body"""
-        if not self.is_body:
-            raise ValueError("This parameter is not a body parameter. Should not call this property on it.")
-        return json.dumps(self.schema.get_json_template_representation(**kwargs), sort_keys=True, indent=4)
-
     def build_serialize_data_call(self, function_name: str) -> str:
 
         optional_parameters = []

@@ -30,7 +30,15 @@
         .. code-block:: python
 
             # JSON input template you can fill out and use as your `json` input.
-            json = {{ request_builder.parameters.json_body.get_json_template_representation() | indent(12)}}
+            json = {{ request_builder.parameters.get_json_template_representation() | indent(12)}}
+    {% endif %}
+    {% if request_builder.parameters.has_body and "files" in request_builder.parameters.body_kwarg_names %}
+
+    Example:
+        .. code-block:: python
+
+            # multipart input template you can fill out and use as your `files` input.
+            files = {{ request_builder.parameters.get_files_template_representation() | indent(12)}}
     {% endif %}
     """
 {% if not is_python_3_file %}

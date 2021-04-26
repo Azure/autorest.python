@@ -84,6 +84,15 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             for prop in self.properties
         }
 
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        kwargs["object_schema_name"] = self.name # do this to avoid circular
+        return {
+            "{}".format(
+                prop.original_swagger_name
+            ): prop.get_files_template_representation(**kwargs)
+            for prop in self.properties
+        }
+
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":

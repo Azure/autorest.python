@@ -27,23 +27,6 @@ from .rest import Rest
 
 _LOGGER = logging.getLogger(__name__)
 
-def _convert_multiple_media_type_parameters(class_to_convert):
-    type_annot = ", ".join([
-        param.schema.operation_type_annotation
-        for param in class_to_convert.multiple_media_type_parameters
-    ])
-    docstring_type = " or ".join([
-        param.schema.docstring_type for param in class_to_convert.multiple_media_type_parameters
-    ])
-    chosen_parameter = next(
-        iter(filter(lambda x: x.has_multiple_media_types, class_to_convert.parameters)), None
-    )
-    if not chosen_parameter:
-        raise ValueError("You are missing a parameter that has multiple media types")
-    chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
-    chosen_parameter.multiple_media_types_docstring_type = docstring_type
-
-
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
@@ -344,7 +327,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
-                    _convert_multiple_media_type_parameters(operation)
+                    operation.convert_multiple_media_type_parameters()
 
     @property
     def has_lro_operations(self) -> bool:

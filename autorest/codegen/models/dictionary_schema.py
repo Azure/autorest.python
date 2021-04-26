@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, cast
+from typing import Any, Callable, Dict, Optional, cast
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -62,15 +62,31 @@ class DictionarySchema(BaseSchema):
     def xml_serialization_ctxt(self) -> Optional[str]:
         raise NotImplementedError("Dictionary schema does not support XML serialization.")
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
+    def _get_template_representation(
+        self,
+        callable: Callable,
+        **kwargs: Any
+    ) -> Any:
         try:
             if self.element_type.name == kwargs.pop("object_schema_name", ""):
                 return {"str": "..."}
         except AttributeError:
             pass
         return {
-            "str": self.element_type.get_json_template_representation(**kwargs)
+            "str": callable(**kwargs)
         }
+
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return self._get_template_representation(
+            callable=self.element_type.get_json_template_representation,
+            **kwargs
+        )
+
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        return self._get_template_representation(
+            callable=self.element_type.get_files_template_representation,
+            **kwargs
+        )
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":

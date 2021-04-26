@@ -21,13 +21,20 @@ class RawString(object):
     def __repr__(self) -> str:
         return "r'{}'".format(self.string.replace('\'', '\\\''))
 
-def _add_optional_and_default_value_to_json_template_representation(
-    representation: str, *, optional: bool = True, default_value_declaration: Optional[str] = None, **kwargs: Any
+def _add_optional_and_default_value_template_representation(
+    representation: str,
+    *,
+    optional: bool = True,
+    default_value_declaration: Optional[str] = None,
+    description: Optional[str] = None,
+    **kwargs: Any
 ):
     if optional:
         representation += " (optional)"
     if default_value_declaration and default_value_declaration != "None":  # not doing None bc that's assumed
         representation += f". Default value is {default_value_declaration}"
+    if description:
+        representation += f". {description}"
     return representation
 
 class PrimitiveSchema(BaseSchema):
@@ -55,7 +62,15 @@ class PrimitiveSchema(BaseSchema):
         return self.docstring_type
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        return _add_optional_and_default_value_to_json_template_representation(
+        return _add_optional_and_default_value_template_representation(
+            representation=self.docstring_text,
+            **kwargs
+        )
+
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        """Template of what the files input should look like
+        """
+        return _add_optional_and_default_value_template_representation(
             representation=self.docstring_text,
             **kwargs
         )

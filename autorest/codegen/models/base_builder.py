@@ -3,31 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Callable, Dict, List, Optional, Union
+from abc import abstractmethod
+from .base_model import BaseModel
+from .parameter_list import ParameterList
+from .schema_response import SchemaResponse
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
-def _get_m4_params_by_name(name: str, parameters):
-    return [p for p in parameters if p.serialized_name == name]
-
-def _remove_multiple_m4_header_parameters(parameters):
-    m4_header_params_in_schema = {
-        k: _get_m4_params_by_name(k, parameters)
-        for k in _M4_HEADER_PARAMETERS if _get_m4_params_by_name(k, parameters)
-    }
-    remaining_params = [p for p in parameters if p.serialized_name not in _M4_HEADER_PARAMETERS]
-    json_m4_header_params = {
-        k: [p for p in m4_header_params_in_schema[k] if p.yaml_data["schema"]["type"] == "constant"]
-        for k in m4_header_params_in_schema
-    }
-    for k, v in json_m4_header_params.items():
-        if v:
-            remaining_params.append(v[0])
-        else:
-            remaining_params.append(m4_header_params_in_schema[k][0])
-
-    return remaining_params
-
-def get_converted_parameters(yaml_data, parameter_converter):
+def get_converted_parameters(yaml_data: Dict[str, Any], parameter_converter: Callable):
     multiple_requests = len(yaml_data["requests"]) > 1
 
     multiple_media_type_parameters = []
@@ -40,23 +24,10 @@ def get_converted_parameters(yaml_data, parameter_converter):
                 parameter.is_hidden_kwarg = True
                 parameters.append(parameter)
             elif multiple_requests:
+                parameter.has_multiple_media_types = True
                 multiple_media_type_parameters.append(parameter)
             else:
                 parameters.append(parameter)
-
-    if multiple_requests:
-        try:
-            # get an optional param with object first. These params are the top choice
-            # bc they have more info about how to serialize the body
-            chosen_parameter = next(
-                p for p in multiple_media_type_parameters if not p.required and p.schema["type"] == "object"
-            )
-        except StopIteration:
-            # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
-            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
-            chosen_parameter = optional_parameters[0] if optional_parameters else multiple_media_type_parameters[0]
-        chosen_parameter.has_multiple_media_types = True
-        parameters.append(chosen_parameter)
 
     if multiple_media_type_parameters:
         body_parameters_name_set = set(
@@ -81,3 +52,44 @@ def get_converted_parameters(yaml_data, parameter_converter):
             parameter.original_parameter = parameters_index[parameter_original_id]
 
     return parameters, multiple_media_type_parameters
+
+class BaseBuilder(BaseModel):
+    """Base class for Operations and Request Builders"""
+
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        name: str,
+        description: str,
+        parameters: ParameterList,
+        responses: Optional[List[SchemaResponse]] = None,
+        summary: Optional[str] = None,
+    ) -> None:
+        super().__init__(yaml_data=yaml_data)
+        self.name = name
+        self.description = description
+        self.parameters = parameters
+        self.responses = responses or []
+        self.summary = summary
+
+
+    @property
+    def default_content_type_declaration(self) -> str:
+        return f'"{self.parameters.default_content_type}"'
+
+    def get_response_from_status(self, status_code: int) -> SchemaResponse:
+        for response in self.responses:
+            if status_code in response.status_codes:
+                return response
+        raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
+
+    @property
+    def success_status_code(self) -> List[Union[str, int]]:
+        """The list of all successfull status code.
+        """
+        return [code for response in self.responses for code in response.status_codes if code != "default"]
+
+    @property
+    @abstractmethod
+    def parameter_converter(self) -> Callable:
+        ...

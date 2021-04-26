@@ -86,6 +86,9 @@ class ConstantSchema(BaseSchema):
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return self.schema.get_json_template_representation(**kwargs)
 
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        return self.schema.get_files_template_representation(**kwargs)
+
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.schema.imports())

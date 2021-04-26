@@ -3,14 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar
+from autorest.codegen.models.schema_response import SchemaResponse
+from typing import Any, Dict, List, TypeVar, Optional
 
-from .base_model import BaseModel
+from .base_builder import BaseBuilder, get_converted_parameters
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport, ImportType, TypingSection
-from .utils import get_converted_parameters
 
 
 T = TypeVar('T')
@@ -36,7 +36,7 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
             response_media_types[xml_media_types[0]] = None
     return response_media_types
 
-class RequestBuilder(BaseModel):
+class RequestBuilder(BaseBuilder):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -48,20 +48,20 @@ class RequestBuilder(BaseModel):
         parameters: RequestBuilderParameterList,
         description: str,
         summary: str,
+        responses: Optional[List[SchemaResponse]] = None,
     ):
-        super(RequestBuilder, self).__init__(yaml_data)
-        self.name = name
+        super().__init__(
+            yaml_data=yaml_data,
+            name=name,
+            description=description,
+            parameters=parameters,
+            responses=responses,
+            summary=summary,
+        )
         self.url = url
         self.method = method
         self.multipart = multipart
         self.schema_requests = schema_requests
-        self.parameters = parameters
-        self.description = description
-        self.summary = summary
-
-    @property
-    def default_content_type_declaration(self) -> str:
-        return f'"{self.parameters.default_content_type}"'
 
     @property
     def is_stream(self) -> bool:

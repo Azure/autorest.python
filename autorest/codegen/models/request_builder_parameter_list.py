@@ -3,20 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional, Set
+import json
+from autorest.codegen.models.base_schema import BaseSchema
 from copy import deepcopy
+from typing import List, Optional, Set
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
-from .primitive_schemas import AnySchema, IOSchema, PrimitiveSchema
-
-def _copy_body_param(new_param_name: str, original_param: RequestBuilderParameter) -> RequestBuilderParameter:
-    new_param = deepcopy(original_param)
-    new_param.serialized_name = new_param_name
-    new_param.schema = AnySchema(namespace="", yaml_data={})
-    new_param.required = False
-    return new_param
-
+from .primitive_schemas import IOSchema, AnySchema
+from .dictionary_schema import DictionarySchema
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
@@ -28,7 +23,9 @@ class RequestBuilderParameterList(ParameterList):
         super(RequestBuilderParameterList, self).__init__(
             parameters  # type: ignore
         )
-        self.body_kwarg_names: List[str] = []
+        self.body_kwarg_names: Set[str] = set()
+        self._json_body: Optional[BaseSchema] = None
+        self._multipart_parameters: Optional[Set[RequestBuilderParameter]] = set()
 
     @property
     def constant(self) -> List[Parameter]:
@@ -44,47 +41,22 @@ class RequestBuilderParameterList(ParameterList):
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names]
 
-    def _get_body_kwargs(self, body_kwargs: List[RequestBuilderParameter]) -> List[RequestBuilderParameter]:
-        seen_bodies: Set[str] = set()
-        returned_bodies = []
-        if body_kwargs:
-            if "application/json" in self.content_types:
-                returned_bodies.append(_copy_body_param("json", body_kwargs[0]))
-        for body_kwarg in body_kwargs:
-            if body_kwarg.is_multipart and body_kwarg.is_partial_body and "files" not in seen_bodies:
-                seen_bodies.add("files")
-                body_kwarg.serialized_name = "files"
-                body_kwarg.required = False
-                returned_bodies.append(body_kwarg)
-            elif body_kwarg.is_partial_body and "data" not in seen_bodies:
-                seen_bodies.add("data")
-                body_kwarg.serialized_name = "data"
-                body_kwarg.required = False
-                returned_bodies.append(body_kwarg)
-            elif isinstance(body_kwarg.schema, PrimitiveSchema) and "content" not in seen_bodies:
-                seen_bodies.add("content")
-                body_kwarg.serialized_name = "content"
-                body_kwarg.required = False
-                returned_bodies.append(body_kwarg)
-
-        if body_kwargs and "content" not in seen_bodies:
-            returned_bodies.append(_copy_body_param("content", body_kwargs[0]))
-        return returned_bodies
-
-    @property
-    def json_body(self) -> Parameter:
-        if "application/json" not in self.content_types:
-            raise ValueError(
-                "Should not be trying to get JSON body of this request if "
-                "there is no application/json content type"
+    def get_files_template_representation(self) -> str:
+        template = {
+            param.serialized_name: param.schema.get_files_template_representation(
+                optional=not param.required,
+                description=param.description,
             )
-        try:
-            return next(
-                body for body in self.body
-                if not isinstance(body.schema, IOSchema)
-            )
-        except StopIteration:
-            raise ValueError("There's no body that can be passed through the json kwarg.")
+            for param in self._multipart_parameters
+        }
+        return json.dumps(template, sort_keys=True, indent=4)
+
+    def get_json_template_representation(self) -> str:
+        return json.dumps(self._json_body.get_json_template_representation(), sort_keys=True, indent=4)
+
+    def _change_body_param_name(self, parameter: RequestBuilderParameter, name: str) -> None:
+        self.body_kwarg_names.add(name)
+        parameter.serialized_name = name
 
     @property
     def method(self) -> List[Parameter]:
@@ -99,8 +71,9 @@ class RequestBuilderParameterList(ParameterList):
         parameters = self.get_from_predicate(
             lambda parameter: parameter.implementation == self.implementation or parameter.in_method_code
         )
-        body_kwargs = []
         seen_content_type = False
+        body_kwargs = []
+        multipart_parameters = set()
 
         for parameter in parameters:
             if any([g for g in self.groupers if id(g.yaml_data) == id(parameter.yaml_data)]):
@@ -114,17 +87,48 @@ class RequestBuilderParameterList(ParameterList):
                 seen_content_type = True
             if parameter.in_method_signature:
                 if parameter.location == ParameterLocation.Body:
+                    if parameter.is_multipart:
+                        multipart_parameters.add(deepcopy(parameter))
+                        if not any(p for p in body_kwargs if p.serialized_name == "files"):
+                            parameter.serialized_name = "files"
+                            parameter.schema = DictionarySchema(
+                                namespace="",
+                                yaml_data={},
+                                element_type=AnySchema(namespace="", yaml_data={}),
+                            )
+                            parameter.description = "Multipart input for files. See the template in our example to find the input shape."
+                            self.body_kwarg_names.add("files")
+                        else:
+                            continue
+                    elif parameter.is_partial_body:
+                        self._change_body_param_name(parameter, "data")
+                    elif isinstance(parameter.schema, IOSchema) or not any([ct for ct in self.content_types if "json" in ct]):
+                        self._change_body_param_name(parameter, "content")
+                    else:
+                        self._change_body_param_name(parameter, "json")
+                        if not self._json_body:
+                            self._json_body = deepcopy(parameter.schema)
+                        parameter.schema = AnySchema(namespace="", yaml_data={})
                     body_kwargs.append(parameter)
                 elif not parameter.default_value and parameter.required:
                     signature_parameters_no_default_value.append(parameter)
                 else:
                     signature_parameters_default_value.append(parameter)
+        if not self._multipart_parameters:
+            self._multipart_parameters = multipart_parameters
+        if body_kwargs and not any(p for p in body_kwargs if p.serialized_name == "content"):
+            # we always want to have content so users can pass their info through a stream
+            # in this case, we also know there will be at least 2 ways to input your body,
+            # so we don't make each body kwarg required
+            body_kwargs = [p for p in body_kwargs if p.location == ParameterLocation.Body]
+            self.body_kwarg_names.add("content")
+            content_param = deepcopy(body_kwargs[0])
+            content_param.serialized_name = "content"
+            content_param.schema = AnySchema(namespace="", yaml_data={})
+            for body_kwarg in body_kwargs:
+                body_kwarg.required = False
+            body_kwargs.append(content_param)
 
-        body_kwargs = self._get_body_kwargs(
-            body_kwargs
-        )  # we want a kwarg for every possible way the body can be inputted
-        self.body_kwarg_names = [b.serialized_name for b in body_kwargs]
-        # put body first. We want them to be the first kwargs.
         signature_parameters = body_kwargs + signature_parameters_no_default_value + signature_parameters_default_value
         signature_parameters.sort(key=lambda item: item.is_kwarg)
         return signature_parameters

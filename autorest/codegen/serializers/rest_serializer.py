@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import json
 from typing import List
 from abc import abstractmethod
 from jinja2 import Environment
@@ -10,7 +11,6 @@ from jinja2 import Environment
 from ..models import RequestBuilder
 from .import_serializer import FileImportSerializer
 from ..models import CodeModel
-
 
 class RestSerializer:
     def __init__(

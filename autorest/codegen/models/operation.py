@@ -5,9 +5,9 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, Dict, List, Any, Optional, Union, Set
+from typing import Callable, cast, Dict, List, Any, Optional, Union, Set
 
-from .base_model import BaseModel
+from .base_builder import BaseBuilder, get_converted_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 from .parameter import Parameter
@@ -15,13 +15,11 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
-from .utils import get_converted_parameters
-
 
 _LOGGER = logging.getLogger(__name__)
 
-class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
-    """Represent an operation.
+class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
+    """Represent an self.
     """
 
     def __init__(
@@ -38,22 +36,21 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         want_description_docstring: bool = True,
         want_tracing: bool = True
     ) -> None:
-        super().__init__(yaml_data)
-        self.name = name
-        self.description = description
-        self.api_versions = api_versions
-        self.parameters = parameters
+        super().__init__(
+            yaml_data=yaml_data,
+            name=name,
+            description=description,
+            parameters=parameters,
+            responses=responses,
+            summary=summary,
+        )
         self.multiple_media_type_parameters = multiple_media_type_parameters
-        self.summary = summary
-        self.responses = responses or []
+        self.api_versions = api_versions
+        self.multiple_media_type_parameters = multiple_media_type_parameters
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
         self._request_builder: Optional[RequestBuilder] = None
-
-    @property
-    def default_content_type_declaration(self) -> str:
-        return f'"{self.parameters.default_content_type}"'
 
     @property
     def python_name(self) -> str:
@@ -119,21 +116,9 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         """
         return any(response.has_body or response.is_stream_response for response in self.responses)
 
-    def get_response_from_status(self, status_code: int) -> SchemaResponse:
-        for response in self.responses:
-            if status_code in response.status_codes:
-                return response
-        raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
-
     @property
     def any_response_has_headers(self) -> bool:
         return any(response.has_headers for response in self.responses)
-
-    @property
-    def success_status_code(self) -> List[Union[str, int]]:
-        """The list of all successfull status code.
-        """
-        return [code for response in self.responses for code in response.status_codes if code != "default"]
 
     @property
     def default_exception(self) -> Optional[str]:
@@ -145,7 +130,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnyObjectSchema
         return "\'object\'"
-
 
     @property
     def status_code_exceptions(self) -> List[SchemaResponse]:
@@ -203,6 +187,34 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             file_import.add_import("warnings", ImportType.STDLIB)
 
         return file_import
+
+    def convert_multiple_media_type_parameters(self) -> None:
+        type_annot = ", ".join([
+            param.schema.operation_type_annotation
+            for param in self.multiple_media_type_parameters
+        ])
+        docstring_type = " or ".join([
+            param.schema.docstring_type for param in self.multiple_media_type_parameters
+        ])
+        try:
+            # get an optional param with object first. These params are the top choice
+            # bc they have more info about how to serialize the body
+            chosen_parameter = next(
+                p for p in self.multiple_media_type_parameters if not p.required and isinstance(p.schema, ObjectSchema)
+            )
+        except StopIteration:  # pylint: disable=broad-except
+            # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
+            optional_parameters = [p for p in self.multiple_media_type_parameters if not p.required]
+            chosen_parameter = optional_parameters[0] if optional_parameters else self.multiple_media_type_parameters[0]
+        if not chosen_parameter:
+            raise ValueError("You are missing a parameter that has multiple media types")
+        chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
+        chosen_parameter.multiple_media_types_docstring_type = docstring_type
+        self.parameters.append(chosen_parameter)
+
+    @property
+    def parameter_converter(self) -> Callable:
+        return Parameter.from_yaml
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
