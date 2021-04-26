@@ -79,6 +79,20 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
             profile=profile
         )
 
+    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+        """Runs the network request through the client's chained policies.
+
+        :param http_request: The network request you want to make. Required.
+        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
+        """
+        http_request.url = self._client.format_url(http_request.url)
+        stream = kwargs.pop("stream", False)
+        pipeline_response = await self._client._pipeline.run(http_request, stream=stream, **kwargs)
+        return pipeline_response.http_response
+
     @classmethod
     def _models_dict(cls, api_version):
         return {k: v for k, v in cls.models(api_version).__dict__.items() if isinstance(v, type)}

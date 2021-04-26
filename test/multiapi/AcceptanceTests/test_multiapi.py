@@ -29,6 +29,7 @@ import json
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 from azure.profiles import KnownProfiles
+from azure.core.pipeline.transport import HttpRequest
 from .multiapi_base import NotTested
 
 
@@ -113,6 +114,17 @@ def test_only_operation_groups(client):
     # check that it doesn't have access to a mixin operation
     with pytest.raises(ValueError):
         client.test_one("1", "hello")
+
+def test_send_request(default_client):
+    request = HttpRequest(
+        method="PUT",
+        url="/multiapi/two/testFiveEndpoint",
+        headers={"Accept": "application/json"}
+    )
+    request.format_parameters({"api-version": "3.0.0"})
+    response = default_client._send_request(request)
+    response.raise_for_status()
+
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
 

@@ -30,3 +30,18 @@ class GlobalParameter:
 
     def docstring_type(self, async_mode: bool) -> str:
         return self._global_parameter_metadata(async_mode)["docstring_type"]
+
+    @property
+    def rest_api_name(self) -> str:
+        return self._global_parameter_metadata(async_mode=False)["rest_api_name"]
+
+    @property
+    def location(self) -> str:
+        return self._global_parameter_metadata(async_mode=False)["location"]
+
+    @property
+    def serialized_path_call(self) -> str:
+        try:
+            return self._global_parameter_metadata(async_mode=False)["serialized_path_call"]
+        except KeyError:
+            raise TypeError("This parameter is not a path parameter so no serialized_path_call property")

@@ -55,3 +55,9 @@ class GlobalParameters:
             ConstantGlobalParameter(constant_name, constant_value)
             for constant_name, constant_value in self.global_parameters_metadata["constant"].items()
         ]
+
+    @property
+    def path(self) -> List[GlobalParameter]:
+        return [
+            p for p in self.parameters if p.location in ["path", "uri"]
+        ]

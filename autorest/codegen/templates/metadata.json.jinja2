@@ -22,7 +22,12 @@
                 "signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
-                "required": {{ gp.required | tojson }}
+                "required": {{ gp.required | tojson }},
+                "location": {{ gp.location | tojson }},
+                {% if gp.location in ["uri", "path"] %}
+                "serialized_path_call": {{ gp.build_serialize_data_call("url", serializer = "serializer") | tojson }},
+                {% endif %}
+                "rest_api_name": {{ gp.rest_api_name | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },
@@ -32,7 +37,12 @@
                 "signature": {{ (gp.async_method_signature + ",") | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
-                "required": {{ gp.required | tojson }}
+                "required": {{ gp.required | tojson }},
+                "location": {{ gp.location | tojson }},
+                {% if gp.location in ["uri", "path"] %}
+                "serialized_path_call": {{ gp.build_serialize_data_call("url", serializer = "serializer") | tojson }},
+                {% endif %}
+                "rest_api_name": {{ gp.rest_api_name | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },

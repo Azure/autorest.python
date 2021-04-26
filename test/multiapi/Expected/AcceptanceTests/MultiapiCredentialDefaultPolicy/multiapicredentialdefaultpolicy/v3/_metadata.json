@@ -19,7 +19,9 @@
                 "signature": "credential,  # type: AzureKeyCredential",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
-                "required": true
+                "required": true,
+                "location": "other",
+                "rest_api_name": "credential"
             }
         },
         "async": {
@@ -27,7 +29,9 @@
                 "signature": "credential: AzureKeyCredential,",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
-                "required": true
+                "required": true,
+                "location": "other",
+                "rest_api_name": "credential"
             }
         },
         "constant": {

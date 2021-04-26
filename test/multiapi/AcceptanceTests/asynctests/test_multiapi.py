@@ -31,6 +31,7 @@ from azure.profiles import KnownProfiles
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 from .multiapi_base import NotTested
+from azure.core.pipeline.transport import HttpRequest
 
 
 @pytest.fixture
@@ -117,6 +118,16 @@ async def test_only_operation_groups(client):
     with pytest.raises(ValueError):
         await client.test_one("1", "hello")
 
+@pytest.mark.asyncio
+async def test_send_request(default_client):
+    request = HttpRequest(
+        method="PUT",
+        url="/multiapi/two/testFiveEndpoint",
+        headers={"Accept": "application/json"}
+    )
+    request.format_parameters({"api-version": "3.0.0"})
+    response = await default_client._send_request(request)
+    response.raise_for_status()
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass

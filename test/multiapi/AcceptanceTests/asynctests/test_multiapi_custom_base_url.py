@@ -26,6 +26,7 @@
 import pytest
 from async_generator import yield_, async_generator
 from multiapicustombaseurl.aio import MultiapiCustomBaseUrlServiceClient
+from azure.core.pipeline.transport import HttpRequest
 
 @pytest.fixture
 @async_generator
@@ -50,3 +51,18 @@ class TestMultiapiCustomBaseUrl(object):
     @pytest.mark.asyncio
     async def test_custom_base_url_version_two(self, client):
         await client.test(id=2)
+
+    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    @pytest.mark.asyncio
+    async def test_send_request(self, client):
+        request = HttpRequest(
+            method="PUT",
+            url="/test",
+            headers={"Accept": "application/json"},
+        )
+        request.format_parameters(
+            {"id": 2, "api-version": "2.0.0"}
+        )
+        response = await client._send_request(request)
+        response.raise_for_status()
+        a = "b"

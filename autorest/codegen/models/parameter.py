@@ -17,7 +17,7 @@ from .constant_schema import ConstantSchema
 _LOGGER = logging.getLogger(__name__)
 
 
-class ParameterLocation(Enum):
+class ParameterLocation(str, Enum):
     Path = "path"
     Body = "body"
     Query = "query"
@@ -85,7 +85,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
 
-    def build_serialize_data_call(self, function_name: str) -> str:
+    def build_serialize_data_call(self, function_name: str, *, serializer: str = "self._serialize") -> str:
 
         optional_parameters = []
 
@@ -126,7 +126,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         ]
         parameters_line = ', '.join(parameters)
 
-        serialize_line = f'self._serialize.{function_name}({parameters_line})'
+        serialize_line = f'{serializer}.{function_name}({parameters_line})'
 
         if self.explode:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
