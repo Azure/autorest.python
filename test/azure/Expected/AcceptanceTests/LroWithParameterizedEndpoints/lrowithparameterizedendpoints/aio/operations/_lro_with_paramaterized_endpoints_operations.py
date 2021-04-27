@@ -28,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROWithParamaterizedEndpointsOperationsMixin:
-    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs) -> Optional[str]:
+    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -74,7 +74,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     _poll_with_parameterized_endpoints_initial.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs) -> AsyncLROPoller[str]:
+    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
         :param account_name: Account Name. Pass in 'local' to pass test.

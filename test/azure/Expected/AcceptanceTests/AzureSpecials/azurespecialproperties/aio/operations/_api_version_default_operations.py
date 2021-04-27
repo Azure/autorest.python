@@ -49,7 +49,7 @@ class ApiVersionDefaultOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_global_valid(self, **kwargs) -> None:
+    async def get_method_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -89,7 +89,7 @@ class ApiVersionDefaultOperations:
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(self, **kwargs) -> None:
+    async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -129,7 +129,7 @@ class ApiVersionDefaultOperations:
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_global_valid(self, **kwargs) -> None:
+    async def get_path_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -169,7 +169,7 @@ class ApiVersionDefaultOperations:
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, **kwargs) -> None:
+    async def get_swagger_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

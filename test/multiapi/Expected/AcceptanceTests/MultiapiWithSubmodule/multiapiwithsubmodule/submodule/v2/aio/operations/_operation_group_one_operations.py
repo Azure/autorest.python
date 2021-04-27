@@ -43,7 +43,7 @@ class OperationGroupOneOperations:
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelTwo"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ModelTwo":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
@@ -100,7 +100,7 @@ class OperationGroupOneOperations:
 
     async def test_three(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 

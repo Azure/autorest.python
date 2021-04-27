@@ -25,7 +25,7 @@ class PollingPagingExampleOperationsMixin:
     async def _basic_polling_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> Optional["_models.Product"]:
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {
@@ -74,7 +74,7 @@ class PollingPagingExampleOperationsMixin:
     async def begin_basic_polling(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncCustomPoller["_models.Product"]:
         """A simple polling operation.
 
@@ -130,7 +130,7 @@ class PollingPagingExampleOperationsMixin:
 
     def basic_paging(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A simple paging operation.
 

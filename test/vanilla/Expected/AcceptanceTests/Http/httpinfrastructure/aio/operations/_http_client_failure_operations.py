@@ -48,7 +48,7 @@ class HttpClientFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head400(self, **kwargs) -> None:
+    async def head400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -86,7 +86,7 @@ class HttpClientFailureOperations:
     head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def get400(self, **kwargs) -> None:
+    async def get400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -124,7 +124,7 @@ class HttpClientFailureOperations:
     get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def options400(self, **kwargs) -> None:
+    async def options400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -162,7 +162,7 @@ class HttpClientFailureOperations:
     options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def put400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -210,7 +210,7 @@ class HttpClientFailureOperations:
     put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def patch400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -258,7 +258,7 @@ class HttpClientFailureOperations:
     patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def post400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -306,7 +306,7 @@ class HttpClientFailureOperations:
     post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def delete400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -354,7 +354,7 @@ class HttpClientFailureOperations:
     delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
-    async def head401(self, **kwargs) -> None:
+    async def head401(self, **kwargs: Any) -> None:
         """Return 401 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -392,7 +392,7 @@ class HttpClientFailureOperations:
     head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace_async
-    async def get402(self, **kwargs) -> None:
+    async def get402(self, **kwargs: Any) -> None:
         """Return 402 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -430,7 +430,7 @@ class HttpClientFailureOperations:
     get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
     @distributed_trace_async
-    async def options403(self, **kwargs) -> None:
+    async def options403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -468,7 +468,7 @@ class HttpClientFailureOperations:
     options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
-    async def get403(self, **kwargs) -> None:
+    async def get403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -506,7 +506,7 @@ class HttpClientFailureOperations:
     get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
-    async def put404(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put404(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -554,7 +554,7 @@ class HttpClientFailureOperations:
     put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
     @distributed_trace_async
-    async def patch405(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch405(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -602,7 +602,7 @@ class HttpClientFailureOperations:
     patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace_async
-    async def post406(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post406(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -650,7 +650,7 @@ class HttpClientFailureOperations:
     post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
     @distributed_trace_async
-    async def delete407(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete407(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -698,7 +698,7 @@ class HttpClientFailureOperations:
     delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace_async
-    async def put409(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put409(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -746,7 +746,7 @@ class HttpClientFailureOperations:
     put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
     @distributed_trace_async
-    async def head410(self, **kwargs) -> None:
+    async def head410(self, **kwargs: Any) -> None:
         """Return 410 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -784,7 +784,7 @@ class HttpClientFailureOperations:
     head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace_async
-    async def get411(self, **kwargs) -> None:
+    async def get411(self, **kwargs: Any) -> None:
         """Return 411 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -822,7 +822,7 @@ class HttpClientFailureOperations:
     get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
     @distributed_trace_async
-    async def options412(self, **kwargs) -> None:
+    async def options412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -860,7 +860,7 @@ class HttpClientFailureOperations:
     options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
-    async def get412(self, **kwargs) -> None:
+    async def get412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -898,7 +898,7 @@ class HttpClientFailureOperations:
     get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
-    async def put413(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def put413(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -946,7 +946,7 @@ class HttpClientFailureOperations:
     put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
     @distributed_trace_async
-    async def patch414(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def patch414(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -994,7 +994,7 @@ class HttpClientFailureOperations:
     patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace_async
-    async def post415(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post415(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -1042,7 +1042,7 @@ class HttpClientFailureOperations:
     post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
     @distributed_trace_async
-    async def get416(self, **kwargs) -> None:
+    async def get416(self, **kwargs: Any) -> None:
         """Return 416 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1080,7 +1080,7 @@ class HttpClientFailureOperations:
     get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace_async
-    async def delete417(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete417(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -1128,7 +1128,7 @@ class HttpClientFailureOperations:
     delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
     @distributed_trace_async
-    async def head429(self, **kwargs) -> None:
+    async def head429(self, **kwargs: Any) -> None:
         """Return 429 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

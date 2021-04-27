@@ -51,7 +51,7 @@ class LROsOperations:
         self._config = config
 
     async def _put200_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -97,7 +97,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put200_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
@@ -150,7 +150,7 @@ class LROsOperations:
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
 
     async def _put201_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -194,7 +194,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put201_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
@@ -246,7 +246,7 @@ class LROsOperations:
 
     begin_put201_succeeded.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
 
-    async def _post202_list_initial(self, **kwargs) -> Optional[List["_models.Product"]]:
+    async def _post202_list_initial(self, **kwargs: Any) -> Optional[List["_models.Product"]]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List["_models.Product"]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -289,7 +289,7 @@ class LROsOperations:
     _post202_list_initial.metadata = {"url": "/lro/list"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post202_list(self, **kwargs) -> AsyncLROPoller[List["_models.Product"]]:
+    async def begin_post202_list(self, **kwargs: Any) -> AsyncLROPoller[List["_models.Product"]]:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
         with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -339,7 +339,7 @@ class LROsOperations:
     begin_post202_list.metadata = {"url": "/lro/list"}  # type: ignore
 
     async def _put200_succeeded_no_state_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -383,7 +383,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
@@ -436,7 +436,7 @@ class LROsOperations:
     begin_put200_succeeded_no_state.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
     async def _put202_retry200_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -480,7 +480,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put202_retry200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
@@ -534,7 +534,7 @@ class LROsOperations:
     begin_put202_retry200.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -582,7 +582,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
@@ -638,7 +638,7 @@ class LROsOperations:
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
 
     async def _put200_updating_succeeded204_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -682,7 +682,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
@@ -738,7 +738,7 @@ class LROsOperations:
     begin_put200_updating_succeeded204.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
     async def _put201_creating_failed200_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -786,7 +786,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_failed200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
@@ -840,7 +840,7 @@ class LROsOperations:
     begin_put201_creating_failed200.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
 
     async def _put200_acceptedcanceled200_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -884,7 +884,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
@@ -940,7 +940,7 @@ class LROsOperations:
     begin_put200_acceptedcanceled200.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
     async def _put_no_header_in_retry_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -986,7 +986,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
@@ -1042,7 +1042,7 @@ class LROsOperations:
     begin_put_no_header_in_retry.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1092,7 +1092,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1153,7 +1153,7 @@ class LROsOperations:
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
     async def _put_async_no_retry_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1202,7 +1202,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1264,7 +1264,7 @@ class LROsOperations:
     begin_put_async_no_retry_succeeded.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
     async def _put_async_retry_failed_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1314,7 +1314,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_retry_failed(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1375,7 +1375,7 @@ class LROsOperations:
     begin_put_async_retry_failed.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
 
     async def _put_async_no_retrycanceled_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1424,7 +1424,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1486,7 +1486,7 @@ class LROsOperations:
     begin_put_async_no_retrycanceled.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
     async def _put_async_no_header_in_retry_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1534,7 +1534,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
@@ -1594,7 +1594,7 @@ class LROsOperations:
 
     begin_put_async_no_header_in_retry.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
 
-    async def _put_non_resource_initial(self, sku: Optional["_models.Sku"] = None, **kwargs) -> "_models.Sku":
+    async def _put_non_resource_initial(self, sku: Optional["_models.Sku"] = None, **kwargs: Any) -> "_models.Sku":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -1637,7 +1637,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_non_resource(
-        self, sku: Optional["_models.Sku"] = None, **kwargs
+        self, sku: Optional["_models.Sku"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Sku"]:
         """Long running put request with non resource.
 
@@ -1688,7 +1688,9 @@ class LROsOperations:
 
     begin_put_non_resource.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
 
-    async def _put_async_non_resource_initial(self, sku: Optional["_models.Sku"] = None, **kwargs) -> "_models.Sku":
+    async def _put_async_non_resource_initial(
+        self, sku: Optional["_models.Sku"] = None, **kwargs: Any
+    ) -> "_models.Sku":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -1731,7 +1733,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_non_resource(
-        self, sku: Optional["_models.Sku"] = None, **kwargs
+        self, sku: Optional["_models.Sku"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Sku"]:
         """Long running put request with non resource.
 
@@ -1783,7 +1785,7 @@ class LROsOperations:
     begin_put_async_non_resource.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
     async def _put_sub_resource_initial(
-        self, provisioning_state: Optional[str] = None, **kwargs
+        self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> "_models.SubProduct":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SubProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1829,7 +1831,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_sub_resource(
-        self, provisioning_state: Optional[str] = None, **kwargs
+        self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.SubProduct"]:
         """Long running put request with sub resource.
 
@@ -1883,7 +1885,7 @@ class LROsOperations:
     begin_put_sub_resource.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
     async def _put_async_sub_resource_initial(
-        self, provisioning_state: Optional[str] = None, **kwargs
+        self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> "_models.SubProduct":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SubProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1929,7 +1931,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_put_async_sub_resource(
-        self, provisioning_state: Optional[str] = None, **kwargs
+        self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.SubProduct"]:
         """Long running put request with sub resource.
 
@@ -1982,7 +1984,7 @@ class LROsOperations:
 
     begin_put_async_sub_resource.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs) -> "_models.Product":
+    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2023,7 +2025,9 @@ class LROsOperations:
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_delete_provisioning202_accepted200_succeeded(
+        self, **kwargs: Any
+    ) -> AsyncLROPoller["_models.Product"]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -2075,7 +2079,7 @@ class LROsOperations:
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    async def _delete_provisioning202_deleting_failed200_initial(self, **kwargs) -> "_models.Product":
+    async def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2116,7 +2120,7 @@ class LROsOperations:
     _delete_provisioning202_deleting_failed200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_deleting_failed200(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> AsyncLROPoller["_models.Product"]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -2166,7 +2170,7 @@ class LROsOperations:
 
     begin_delete_provisioning202_deleting_failed200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
-    async def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs) -> "_models.Product":
+    async def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2207,7 +2211,9 @@ class LROsOperations:
     _delete_provisioning202_deletingcanceled200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_delete_provisioning202_deletingcanceled200(
+        self, **kwargs: Any
+    ) -> AsyncLROPoller["_models.Product"]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -2257,7 +2263,7 @@ class LROsOperations:
 
     begin_delete_provisioning202_deletingcanceled200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
-    async def _delete204_succeeded_initial(self, **kwargs) -> None:
+    async def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2287,7 +2293,7 @@ class LROsOperations:
     _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete204_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2332,7 +2338,7 @@ class LROsOperations:
 
     begin_delete204_succeeded.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
-    async def _delete202_retry200_initial(self, **kwargs) -> Optional["_models.Product"]:
+    async def _delete202_retry200_initial(self, **kwargs: Any) -> Optional["_models.Product"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2373,7 +2379,7 @@ class LROsOperations:
     _delete202_retry200_initial.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete202_retry200(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller["_models.Product"]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2422,7 +2428,7 @@ class LROsOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
-    async def _delete202_no_retry204_initial(self, **kwargs) -> Optional["_models.Product"]:
+    async def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional["_models.Product"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2463,7 +2469,7 @@ class LROsOperations:
     _delete202_no_retry204_initial.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete202_no_retry204(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_delete202_no_retry204(self, **kwargs: Any) -> AsyncLROPoller["_models.Product"]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2512,7 +2518,7 @@ class LROsOperations:
 
     begin_delete202_no_retry204.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
-    async def _delete_no_header_in_retry_initial(self, **kwargs) -> None:
+    async def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2546,7 +2552,7 @@ class LROsOperations:
     _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_no_header_in_retry(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
@@ -2592,7 +2598,7 @@ class LROsOperations:
 
     begin_delete_no_header_in_retry.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
-    async def _delete_async_no_header_in_retry_initial(self, **kwargs) -> None:
+    async def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2626,7 +2632,7 @@ class LROsOperations:
     _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_no_header_in_retry(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -2672,7 +2678,7 @@ class LROsOperations:
 
     begin_delete_async_no_header_in_retry.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
-    async def _delete_async_retry_succeeded_initial(self, **kwargs) -> None:
+    async def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2709,7 +2715,7 @@ class LROsOperations:
     _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_retry_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2755,7 +2761,7 @@ class LROsOperations:
 
     begin_delete_async_retry_succeeded.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
-    async def _delete_async_no_retry_succeeded_initial(self, **kwargs) -> None:
+    async def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2792,7 +2798,7 @@ class LROsOperations:
     _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_no_retry_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2838,7 +2844,7 @@ class LROsOperations:
 
     begin_delete_async_no_retry_succeeded.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
-    async def _delete_async_retry_failed_initial(self, **kwargs) -> None:
+    async def _delete_async_retry_failed_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2875,7 +2881,7 @@ class LROsOperations:
     _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_retry_failed(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2921,7 +2927,7 @@ class LROsOperations:
 
     begin_delete_async_retry_failed.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
-    async def _delete_async_retrycanceled_initial(self, **kwargs) -> None:
+    async def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2958,7 +2964,7 @@ class LROsOperations:
     _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_retrycanceled(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3004,7 +3010,7 @@ class LROsOperations:
 
     begin_delete_async_retrycanceled.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
-    async def _post200_with_payload_initial(self, **kwargs) -> "_models.Sku":
+    async def _post200_with_payload_initial(self, **kwargs: Any) -> "_models.Sku":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3042,7 +3048,7 @@ class LROsOperations:
     _post200_with_payload_initial.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post200_with_payload(self, **kwargs) -> AsyncLROPoller["_models.Sku"]:
+    async def begin_post200_with_payload(self, **kwargs: Any) -> AsyncLROPoller["_models.Sku"]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header. Poll returns a 200 with a response body after success.
 
@@ -3091,7 +3097,7 @@ class LROsOperations:
 
     begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
-    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
+    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3134,7 +3140,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -3184,7 +3190,7 @@ class LROsOperations:
     begin_post202_retry200.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     async def _post202_no_retry204_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3231,7 +3237,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post202_no_retry204(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
@@ -3287,7 +3293,7 @@ class LROsOperations:
 
     begin_post202_no_retry204.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
-    async def _post_double_headers_final_location_get_initial(self, **kwargs) -> "_models.Product":
+    async def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3321,7 +3327,7 @@ class LROsOperations:
     _post_double_headers_final_location_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_location_get(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> AsyncLROPoller["_models.Product"]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
@@ -3371,7 +3377,7 @@ class LROsOperations:
 
     begin_post_double_headers_final_location_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
-    async def _post_double_headers_final_azure_header_get_initial(self, **kwargs) -> "_models.Product":
+    async def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3405,7 +3411,9 @@ class LROsOperations:
     _post_double_headers_final_azure_header_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_azure_header_get(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_post_double_headers_final_azure_header_get(
+        self, **kwargs: Any
+    ) -> AsyncLROPoller["_models.Product"]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
@@ -3457,7 +3465,7 @@ class LROsOperations:
 
     begin_post_double_headers_final_azure_header_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
-    async def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs) -> "_models.Product":
+    async def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3492,7 +3500,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get_default(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
@@ -3546,7 +3554,7 @@ class LROsOperations:
     begin_post_double_headers_final_azure_header_get_default.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
     async def _post_async_retry_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3600,7 +3608,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -3656,7 +3664,7 @@ class LROsOperations:
     begin_post_async_retry_succeeded.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
     async def _post_async_no_retry_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3710,7 +3718,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -3765,7 +3773,9 @@ class LROsOperations:
 
     begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
-    async def _post_async_retry_failed_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
+    async def _post_async_retry_failed_initial(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3811,7 +3821,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post_async_retry_failed(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -3861,7 +3871,9 @@ class LROsOperations:
 
     begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
-    async def _post_async_retrycanceled_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
+    async def _post_async_retrycanceled_initial(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3907,7 +3919,7 @@ class LROsOperations:
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation

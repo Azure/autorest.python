@@ -27,7 +27,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MediaTypesClientOperationsMixin:
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> str:
+    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
@@ -95,7 +95,7 @@ class MediaTypesClientOperationsMixin:
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs) -> str:
+    async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
