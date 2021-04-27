@@ -65,4 +65,3 @@ class TestMultiapiCustomBaseUrl(object):
         )
         response = await client._send_request(request)
         response.raise_for_status()
-        a = "b"

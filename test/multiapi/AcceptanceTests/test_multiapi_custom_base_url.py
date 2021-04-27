@@ -47,7 +47,7 @@ class TestMultiapiCustomBaseUrl(object):
     @pytest.mark.parametrize('api_version', ["2.0.0"])
     def test_custom_base_url_version_two(self, client):
         client.test(id=2)
-        
+
     @pytest.mark.parametrize('api_version', ["2.0.0"])
     def test_send_request(self, client):
         request = HttpRequest(
@@ -60,4 +60,3 @@ class TestMultiapiCustomBaseUrl(object):
         )
         response = client._send_request(request)
         response.raise_for_status()
-        a = "b"
