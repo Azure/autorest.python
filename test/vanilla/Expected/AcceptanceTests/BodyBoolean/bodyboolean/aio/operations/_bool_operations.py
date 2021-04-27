@@ -48,7 +48,7 @@ class BoolOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_true(self, **kwargs) -> bool:
+    async def get_true(self, **kwargs: Any) -> bool:
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -90,7 +90,7 @@ class BoolOperations:
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def put_true(self, **kwargs) -> None:
+    async def put_true(self, **kwargs: Any) -> None:
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -134,7 +134,7 @@ class BoolOperations:
     put_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_false(self, **kwargs) -> bool:
+    async def get_false(self, **kwargs: Any) -> bool:
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -176,7 +176,7 @@ class BoolOperations:
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def put_false(self, **kwargs) -> None:
+    async def put_false(self, **kwargs: Any) -> None:
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -220,7 +220,7 @@ class BoolOperations:
     put_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[bool]:
+    async def get_null(self, **kwargs: Any) -> Optional[bool]:
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -262,7 +262,7 @@ class BoolOperations:
     get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> bool:
+    async def get_invalid(self, **kwargs: Any) -> bool:
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

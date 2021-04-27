@@ -48,7 +48,7 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id: str, **kwargs) -> Optional["_models.Pet"]:
+    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional["_models.Pet"]:
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -105,7 +105,7 @@ class PetOperations:
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace_async
-    async def do_something(self, what_action: str, **kwargs) -> "_models.PetAction":
+    async def do_something(self, what_action: str, **kwargs: Any) -> "_models.PetAction":
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -160,7 +160,7 @@ class PetOperations:
     do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace_async
-    async def has_models_param(self, models: Optional[str] = "value1", **kwargs) -> None:
+    async def has_models_param(self, models: Optional[str] = "value1", **kwargs: Any) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 

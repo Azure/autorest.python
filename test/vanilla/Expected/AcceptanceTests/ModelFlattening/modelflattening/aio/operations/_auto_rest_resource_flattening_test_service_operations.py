@@ -27,7 +27,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
-    async def put_array(self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs) -> None:
+    async def put_array(self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put.
@@ -75,7 +75,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace_async
-    async def get_array(self, **kwargs) -> List["_models.FlattenedProduct"]:
+    async def get_array(self, **kwargs: Any) -> List["_models.FlattenedProduct"]:
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -118,7 +118,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_wrapped_array(
-        self, resource_array: Optional[List["_models.WrappedProduct"]] = None, **kwargs
+        self, resource_array: Optional[List["_models.WrappedProduct"]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -168,7 +168,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace_async
-    async def get_wrapped_array(self, **kwargs) -> List["_models.ProductWrapper"]:
+    async def get_wrapped_array(self, **kwargs: Any) -> List["_models.ProductWrapper"]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -212,7 +212,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_dictionary(
-        self, resource_dictionary: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs
+        self, resource_dictionary: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -261,7 +261,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary(self, **kwargs) -> Dict[str, "_models.FlattenedProduct"]:
+    async def get_dictionary(self, **kwargs: Any) -> Dict[str, "_models.FlattenedProduct"]:
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -304,7 +304,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_resource_collection(
-        self, resource_complex_object: Optional["_models.ResourceCollection"] = None, **kwargs
+        self, resource_complex_object: Optional["_models.ResourceCollection"] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -353,7 +353,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
     @distributed_trace_async
-    async def get_resource_collection(self, **kwargs) -> "_models.ResourceCollection":
+    async def get_resource_collection(self, **kwargs: Any) -> "_models.ResourceCollection":
         """Get External Resource as a ResourceCollection.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -396,7 +396,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_simple_product(
-        self, simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs
+        self, simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs: Any
     ) -> "_models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
 
@@ -456,7 +456,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         max_product_display_name: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.SimpleProduct":
         """Put Flattened Simple Product with client flattening true on the parameter.
 
@@ -528,7 +528,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
-        self, flatten_parameter_group: "_models.FlattenParameterGroup", **kwargs
+        self, flatten_parameter_group: "_models.FlattenParameterGroup", **kwargs: Any
     ) -> "_models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
 

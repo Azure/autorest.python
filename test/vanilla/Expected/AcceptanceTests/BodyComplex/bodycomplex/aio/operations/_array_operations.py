@@ -48,7 +48,7 @@ class ArrayOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.ArrayWrapper":
+    async def get_valid(self, **kwargs: Any) -> "_models.ArrayWrapper":
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -90,7 +90,7 @@ class ArrayOperations:
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, array: Optional[List[str]] = None, **kwargs) -> None:
+    async def put_valid(self, array: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Put complex types with array property.
 
         :param array:
@@ -137,7 +137,7 @@ class ArrayOperations:
     put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs) -> "_models.ArrayWrapper":
+    async def get_empty(self, **kwargs: Any) -> "_models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -179,7 +179,7 @@ class ArrayOperations:
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, array: Optional[List[str]] = None, **kwargs) -> None:
+    async def put_empty(self, array: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Put complex types with array property which is empty.
 
         :param array:
@@ -226,7 +226,7 @@ class ArrayOperations:
     put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs) -> "_models.ArrayWrapper":
+    async def get_not_provided(self, **kwargs: Any) -> "_models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

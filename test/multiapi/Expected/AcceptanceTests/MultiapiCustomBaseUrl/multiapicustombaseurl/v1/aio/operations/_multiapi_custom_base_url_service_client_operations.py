@@ -22,7 +22,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
     async def test(
         self,
         id: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Should be a mixin operation. Put in 1 for the required parameter and have the correct api
         version of 1.0.0 to pass.

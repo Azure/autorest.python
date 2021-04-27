@@ -48,7 +48,7 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs) -> "_models.Pet":
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> "_models.Pet":
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -95,7 +95,7 @@ class PetOperations:
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs) -> "_models.Pet":
+    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> "_models.Pet":
         """add pet.
 
         :param pet_param: pet param.
