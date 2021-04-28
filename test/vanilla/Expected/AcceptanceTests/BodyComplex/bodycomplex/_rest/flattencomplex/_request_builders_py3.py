@@ -22,6 +22,16 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "kind": "str",
+                "propB1": "str (optional)",
+                "propBH1": "str (optional)"
+            }
     """
     accept = "application/json"
 

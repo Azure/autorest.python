@@ -125,7 +125,15 @@ class RequestBuilder(BaseBuilder):
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             parameters=RequestBuilderParameterList(parameters + multiple_media_type_parameters),
             description=yaml_data["language"]["python"]["description"],
+            responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             summary=yaml_data["language"]["python"].get("summary"),
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
         return request_builder_class
+
+    @property
+    def has_example_template(self) -> bool:
+        if self.parameters.has_body:
+            body_kwargs = set(self.parameters.body_kwarg_names.keys())
+            return bool(body_kwargs.intersection({"json", "files"}))
+        return bool(self.successful_responses_with_bodies)

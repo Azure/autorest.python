@@ -168,14 +168,12 @@ path_format_arguments = {
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
 {% if operation.parameters.body[0].required %}
-content = self._serialize.body({{ operation.parameters.body[0].serialized_name }}, '{{ operation.parameters.body[0].serialization_type }}'{{ body_is_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
-content = json.dumps(content)
+{{ operation.body_serialize_str }}
 {% else %}
 if {{ operation.parameters.body[0].serialized_name }} is not None:
-    content = self._serialize.body({{ operation.parameters.body[0].serialized_name }}, '{{ operation.parameters.body[0].serialization_type }}'{{ body_is_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
-    content = json.dumps(content)
+    {{ operation.body_serialize_str }}
 else:
-    content = None
+    json = None
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(operation, schema_request) %}
@@ -210,7 +208,7 @@ return HttpRequest(
     {% endif %}
     {% if request_builder.parameters.has_body %}
         {% if is_python_3_file %}
-            {% for body_kwarg in request_builder.parameters.body_kwarg_names | list %}
+            {% for body_kwarg in request_builder.parameters.body_kwarg_names.keys() | list %}
     {{ body_kwarg }}={{ body_kwarg }},
             {% endfor %}
         {% endif %}
@@ -292,7 +290,7 @@ files = {
 {{ body_parameters(operation) }}
 {% endif %}
 {% set operation_group_name = request_builder.operation_group_name %}
-request = {{ "_" if not code_model.low_level_client }}rest.{{ (operation_group_name + ".") if operation_group_name }}{{ request_builder.name }}(
+request = rest_{{ (operation_group_name + ".") if operation_group_name }}{{ request_builder.name }}(
 {% if request_builder.parameters.method | rejectattr("is_body") | first %}
     {% for parameter in request_builder.parameters.method | rejectattr("is_body") %}
     {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
@@ -304,7 +302,7 @@ request = {{ "_" if not code_model.low_level_client }}rest.{{ (operation_group_n
 {% endif %}
     template_url={{ template_url }},
     **kwargs
-)
+)._internal_request
 {% if operation.parameters.path %}
 {{ path_format_arguments(operation.parameters.path) }}
 {% endif %}

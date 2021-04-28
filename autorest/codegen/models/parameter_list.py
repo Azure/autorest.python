@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import json
 from collections.abc import MutableSequence
 import logging
 from typing import cast, List, Callable, Optional
@@ -90,7 +91,10 @@ class ParameterList(MutableSequence):
         headers = self.get_from_location(ParameterLocation.Header)
         if not headers:
             return headers
-        return list(set(headers))
+        return {
+            header.serialized_name: header
+            for header in headers
+        }.values()
 
     @property
     def grouped(self) -> List[Parameter]:
@@ -227,6 +231,19 @@ class ParameterList(MutableSequence):
         )
         object_schema = cast(ObjectSchema, self.body[0].schema)
         return f"{self.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
+
+    def get_files_template_representation(self) -> str:
+        template = {
+            param.serialized_name: param.schema.get_files_template_representation(
+                optional=not param.required,
+                description=param.description,
+            )
+            for param in self._multipart_parameters
+        }
+        return json.dumps(template, sort_keys=True, indent=4)
+
+    def get_json_template_representation(self) -> str:
+        return json.dumps(self._json_body.get_json_template_representation(), sort_keys=True, indent=4)
 
 class GlobalParameterList(ParameterList):
 

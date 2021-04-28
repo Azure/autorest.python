@@ -6,12 +6,15 @@
 import json
 from autorest.codegen.models.base_schema import BaseSchema
 from copy import deepcopy
-from typing import List, Optional, Set
+from typing import List, Optional, Set, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
 from .primitive_schemas import IOSchema, AnySchema
 from .dictionary_schema import DictionarySchema
+
+T = TypeVar('T')
+OrderedSet = Dict[T, None]
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
@@ -23,7 +26,7 @@ class RequestBuilderParameterList(ParameterList):
         super(RequestBuilderParameterList, self).__init__(
             parameters  # type: ignore
         )
-        self.body_kwarg_names: Set[str] = set()
+        self.body_kwarg_names: OrderedSet[str] = {}
         self._json_body: Optional[BaseSchema] = None
         self._multipart_parameters: Optional[Set[RequestBuilderParameter]] = set()
 
@@ -39,23 +42,10 @@ class RequestBuilderParameterList(ParameterList):
     @property
     def kwargs_to_pop(self) -> List[Parameter]:
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
-        return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names]
-
-    def get_files_template_representation(self) -> str:
-        template = {
-            param.serialized_name: param.schema.get_files_template_representation(
-                optional=not param.required,
-                description=param.description,
-            )
-            for param in self._multipart_parameters
-        }
-        return json.dumps(template, sort_keys=True, indent=4)
-
-    def get_json_template_representation(self) -> str:
-        return json.dumps(self._json_body.get_json_template_representation(), sort_keys=True, indent=4)
+        return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names.keys()]
 
     def _change_body_param_name(self, parameter: RequestBuilderParameter, name: str) -> None:
-        self.body_kwarg_names.add(name)
+        self.body_kwarg_names[name] = None
         parameter.serialized_name = name
 
     @property
@@ -97,7 +87,7 @@ class RequestBuilderParameterList(ParameterList):
                                 element_type=AnySchema(namespace="", yaml_data={}),
                             )
                             parameter.description = "Multipart input for files. See the template in our example to find the input shape."
-                            self.body_kwarg_names.add("files")
+                            self.body_kwarg_names["files"] = None
                         else:
                             continue
                     elif parameter.is_partial_body:
@@ -121,7 +111,7 @@ class RequestBuilderParameterList(ParameterList):
             # in this case, we also know there will be at least 2 ways to input your body,
             # so we don't make each body kwarg required
             body_kwargs = [p for p in body_kwargs if p.location == ParameterLocation.Body]
-            self.body_kwarg_names.add("content")
+            self.body_kwarg_names["content"] = None
             content_param = deepcopy(body_kwargs[0])
             content_param.serialized_name = "content"
             content_param.schema = AnySchema(namespace="", yaml_data={})

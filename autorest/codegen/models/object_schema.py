@@ -188,3 +188,25 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         if self.is_exception:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
+
+class NoModelObjectSchema(ObjectSchema):
+    """Exactly the same as ObjectSchema, just with different typings.
+
+    This is for when we want to generate Autorest with no models
+    """
+
+    @property
+    def type_annotation(self) -> str:
+        return "Any"
+
+    @property
+    def operation_type_annotation(self) -> str:
+        return "Any"
+
+    @property
+    def docstring_type(self) -> str:
+        return "Any"
+
+    @property
+    def docstring_text(self) -> str:
+        return "Any"

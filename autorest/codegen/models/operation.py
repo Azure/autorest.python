@@ -34,7 +34,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
-        want_tracing: bool = True
+        want_tracing: bool = True,
     ) -> None:
         super().__init__(
             yaml_data=yaml_data,
@@ -80,6 +80,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             return "files"
         if self.parameters.has_partial_body:
             return "data"
+        if any([ct for ct in self.parameters.content_types if "json" in ct]):
+            return "json"
         return "content"
 
     @property
@@ -163,10 +165,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
-        for schema_request in self.request_builder.schema_requests:
-            if any([c for c in schema_request.pre_semicolon_media_types if "application/json" in c]):
-                file_import.add_import("json", ImportType.STDLIB)
-
         file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -186,6 +184,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if True:  # pylint: disable=using-constant-test
             file_import.add_import("warnings", ImportType.STDLIB)
 
+        operation_group_name = self.request_builder.operation_group_name
+        rest_import_name = "..{}rest".format("" if code_model.low_level_client else "_")
+        if operation_group_name:
+            file_import.add_from_import(
+                rest_import_name, name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
+            )
+        else:
+            file_import.add_import(rest_import_name, import_type=ImportType.LOCAL)
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:
@@ -213,8 +219,16 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         self.parameters.append(chosen_parameter)
 
     @property
-    def parameter_converter(self) -> Callable:
-        return Parameter.from_yaml
+    def has_example_template(self) -> bool:
+        return False
+
+    @property
+    def body_serialize_str(self) -> str:
+        send_xml = bool(self.parameters.has_body and "xml" in self.parameters.content_types)
+        ser_ctxt = ", serialization_ctxt=serialization_ctxt" if send_xml else ""
+        body_is_xml = ", is_xml=True" if send_xml else ""
+        body_param = self.parameters.body[0]
+        return f"json = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ ser_ctxt })"
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
@@ -235,3 +249,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
         )
+
+class NoModelOperation(Operation):
+
+    @property
+    def body_serialization_str(self) -> str:
+        return f"json = {self.parameters.body[0].serialized_name}"

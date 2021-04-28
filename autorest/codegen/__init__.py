@@ -83,6 +83,7 @@ class CodeGenerator(Plugin):
         # Create a code model
         code_model = CodeModel(
             low_level_client=self._autorestapi.get_boolean_value("low-level-client", False),
+            no_models=self._autorestapi.get_boolean_value("no-models", False),
             options=options
         )
         code_model.module_name = yaml_data["info"]["python_title"]

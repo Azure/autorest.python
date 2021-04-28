@@ -123,6 +123,7 @@ def _build_flags(
     debug: bool,
     swagger_group: _SwaggerGroup,
     override_flags: Optional[Dict[str, Any]] = None,
+    no_models: bool = False,
 ) -> Dict[str, Any]:
     autorest_dir = os.path.dirname(__file__)
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
@@ -151,6 +152,7 @@ def _build_flags(
         "namespace": _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()),
         "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION,
         "black": True,
+        "no-models": no_models,
     }
     if override_flags:
         flags.update(override_flags)
@@ -162,8 +164,9 @@ def _build_command_line(
     debug: bool,
     swagger_group: _SwaggerGroup,
     override_flags: Optional[Dict[str, Any]] = None,
+    no_models: bool = False,
 ) -> str:
-    flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags)
+    flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags, no_models)
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
     ]
@@ -197,38 +200,39 @@ def _regenerate(
     debug: bool,
     swagger_group: _SwaggerGroup,
     override_flags: Optional[Dict[str, Any]] = None,
+    no_models: bool = False,
 ) -> None:
     cmds = []
     for package_name, swagger_name in mapping.items():
-        command_line = _build_command_line(package_name, swagger_name, debug, swagger_group, override_flags)
+        command_line = _build_command_line(package_name, swagger_name, debug, swagger_group, override_flags, no_models)
 
         print(Fore.YELLOW + f'Queuing up: {command_line}')
         cmds.append(command_line)
     _run_autorest(cmds, debug=debug)
 
 @task
-def regenerate_vanilla(c, swagger_name=None, debug=False):
+def regenerate_vanilla(c, swagger_name=None, debug=False, no_models=False):
     if swagger_name:
         mapping = {k: v for k, v in _VANILLA_SWAGGER_MAPPINGS.items() if swagger_name.lower() in k.lower()}
     else:
         mapping = _VANILLA_SWAGGER_MAPPINGS
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA)
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, no_models=no_models)
 
 @task
-def regenerate_azure(c, swagger_name=None, debug=False):
+def regenerate_azure(c, swagger_name=None, debug=False, no_models=False):
     if swagger_name:
         mapping = {k: v for k, v in _AZURE_SWAGGER_MAPPINGS.items() if swagger_name.lower() in k.lower()}
     else:
         mapping = _AZURE_SWAGGER_MAPPINGS
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.AZURE)
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.AZURE, no_models=no_models)
 
 @task
-def regenerate_azure_arm(c, swagger_name=None, debug=False):
+def regenerate_azure_arm(c, swagger_name=None, debug=False, no_models=False):
     if swagger_name:
         mapping = {k: v for k, v in _AZURE_ARM_SWAGGER_MAPPINGS.items() if swagger_name.lower() in k.lower()}
     else:
         mapping = _AZURE_ARM_SWAGGER_MAPPINGS
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.AZURE_ARM)
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.AZURE_ARM, no_models=no_models)
 
 @task
 def regenerate_namespace_folders_test(c, debug=False):
@@ -258,11 +262,11 @@ def regenerate_package_name_setup_py(c, debug=False):
 
 
 @task
-def regenerate(c, swagger_name=None, debug=False):
+def regenerate(c, swagger_name=None, debug=False, no_models=False):
     # regenerate expected code for tests
-    regenerate_vanilla(c, swagger_name, debug)
-    regenerate_azure(c, swagger_name, debug)
-    regenerate_azure_arm(c, swagger_name, debug)
+    regenerate_vanilla(c, swagger_name, debug, no_models)
+    regenerate_azure(c, swagger_name, debug, no_models)
+    regenerate_azure_arm(c, swagger_name, debug, no_models)
     if not swagger_name:
         regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)

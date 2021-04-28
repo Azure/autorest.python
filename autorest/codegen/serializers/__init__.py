@@ -64,7 +64,7 @@ class JinjaSerializer:
     def _serialize_and_write_convenience_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        if code_model.schemas or code_model.enums:
+        if code_model.schemas or code_model.enums and not code_model.no_models:
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
         if code_model.operation_groups:
             self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)

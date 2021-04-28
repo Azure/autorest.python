@@ -53,8 +53,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
 
-    def __init__(self, low_level_client: bool, options: Dict[str, Any]) -> None:
+    def __init__(self, low_level_client: bool, no_models: bool, options: Dict[str, Any]) -> None:
         self.low_level_client = low_level_client
+        self.no_models = no_models
         self.options = options
         self.module_name: str = ""
         self.class_name: str = ""
@@ -314,7 +315,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for request_builder in self.rest.request_builders:
             for obj in chain(
                 request_builder.parameters,
-                chain.from_iterable(request.parameters for request in request_builder.schema_requests)
+                chain.from_iterable(request.parameters for request in request_builder.schema_requests),
+                request_builder.responses,
             ):
                 self._populate_schema(obj)
 

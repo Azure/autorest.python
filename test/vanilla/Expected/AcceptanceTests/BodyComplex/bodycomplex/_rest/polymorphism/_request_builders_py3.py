@@ -22,6 +22,19 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "fishtype": "str",
+                "length": "float",
+                "siblings": [
+                    "..."
+                ],
+                "species": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -133,9 +146,9 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -148,6 +161,15 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "fish.type": "str",
+                "species": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -171,6 +193,37 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "fishes": [
+                    {
+                        "fish.type": "str",
+                        "species": "str (optional)"
+                    }
+                ],
+                "salmons": [
+                    {
+                        "fish.type": "str",
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)",
+                        "species": "str (optional)"
+                    }
+                ],
+                "sampleFish": {
+                    "fish.type": "str",
+                    "species": "str (optional)"
+                },
+                "sampleSalmon": {
+                    "fish.type": "str",
+                    "iswild": "bool (optional)",
+                    "location": "str (optional)",
+                    "species": "str (optional)"
+                }
+            }
     """
     accept = "application/json"
 
@@ -194,6 +247,37 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "fishes": [
+                    {
+                        "fish.type": "str",
+                        "species": "str (optional)"
+                    }
+                ],
+                "salmons": [
+                    {
+                        "fish.type": "str",
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)",
+                        "species": "str (optional)"
+                    }
+                ],
+                "sampleFish": {
+                    "fish.type": "str",
+                    "species": "str (optional)"
+                },
+                "sampleSalmon": {
+                    "fish.type": "str",
+                    "iswild": "bool (optional)",
+                    "location": "str (optional)",
+                    "species": "str (optional)"
+                }
+            }
     """
     accept = "application/json"
 
@@ -216,6 +300,28 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "fishtype": "str",
+                "iswild": "bool (optional)",
+                "length": "float",
+                "location": "str (optional)",
+                "siblings": [
+                    {
+                        "fishtype": "str",
+                        "length": "float",
+                        "siblings": [
+                            "..."
+                        ],
+                        "species": "str (optional)"
+                    }
+                ],
+                "species": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -273,9 +379,9 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -314,6 +420,25 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
                 ],
                 "species": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "fishtype": "str",
+                "iswild": "bool (optional)",
+                "length": "float",
+                "location": "str (optional)",
+                "siblings": [
+                    {
+                        "fishtype": "str",
+                        "length": "float",
+                        "siblings": [
+                            "..."
+                        ],
+                        "species": "str (optional)"
+                    }
+                ],
+                "species": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -323,9 +448,9 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -417,8 +542,8 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)

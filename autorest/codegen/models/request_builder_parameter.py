@@ -35,7 +35,7 @@ class RequestBuilderParameter(Parameter):
                 return "files"
             if self.is_partial_body:
                 return "data"
-            return "content"
+            return "json"
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
             # for these, we're passing the client params to the request builder.

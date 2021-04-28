@@ -3,11 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import json
 from typing import Any, Callable, Dict, List, Optional, Union
 from abc import abstractmethod
 from .base_model import BaseModel
 from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
+from .dictionary_schema import DictionarySchema
+from .object_schema import ObjectSchema
+from .list_schema import ListSchema
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
@@ -72,6 +76,16 @@ class BaseBuilder(BaseModel):
         self.responses = responses or []
         self.summary = summary
 
+    @property
+    def successful_responses_with_bodies(self) -> List[SchemaResponse]:
+        # successful status codes of responses that have bodies
+
+        return [
+            response for response in self.responses
+            if any(code in self.success_status_code for code in response.status_codes)
+            and isinstance(response.schema, (DictionarySchema, ListSchema, ObjectSchema))
+        ]
+
 
     @property
     def default_content_type_declaration(self) -> str:
@@ -92,4 +106,9 @@ class BaseBuilder(BaseModel):
     @property
     @abstractmethod
     def parameter_converter(self) -> Callable:
+        ...
+
+    @property
+    @abstractmethod
+    def has_example_template(self) -> bool:
         ...
