@@ -57,15 +57,15 @@ class InheritanceOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Siamese"
+        # type: (...) -> Any
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Siamese, or the result of cls(response)
-        :rtype: ~bodycomplex.models.Siamese
+        :return: Any, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Siamese"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -95,7 +95,7 @@ class InheritanceOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "_models.Siamese"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -104,7 +104,7 @@ class InheritanceOperations(object):
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
-        :type complex_body: ~bodycomplex.models.Siamese
+        :type complex_body: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -115,7 +115,7 @@ class InheritanceOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = self._serialize.body(complex_body, "Siamese")
+        json = complex_body
 
         request = rest_inheritance.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs

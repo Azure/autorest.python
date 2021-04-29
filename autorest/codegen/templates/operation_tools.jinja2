@@ -168,10 +168,10 @@ path_format_arguments = {
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
 {% if operation.parameters.body[0].required %}
-{{ operation.body_serialize_str }}
+{{ operation.body_serialization_str }}
 {% else %}
 if {{ operation.parameters.body[0].serialized_name }} is not None:
-    {{ operation.body_serialize_str }}
+    {{ operation.body_serialization_str }}
 else:
     json = None
 {% endif %}{% endmacro %}

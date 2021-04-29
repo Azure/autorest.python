@@ -129,7 +129,7 @@ class Cat(Pet):
     :param color:
     :type color: str
     :param hates:
-    :type hates: list[~bodycomplex.models.Dog]
+    :type hates: list[Any]
     """
 
     _attribute_map = {
@@ -145,7 +145,7 @@ class Cat(Pet):
         id: Optional[int] = None,
         name: Optional[str] = None,
         color: Optional[str] = None,
-        hates: Optional[List["Dog"]] = None,
+        hates: Optional[List[Any]] = None,
         **kwargs
     ):
         super(Cat, self).__init__(id=id, name=name, **kwargs)
@@ -168,7 +168,7 @@ class Fish(msrest.serialization.Model):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     """
 
     _validation = {
@@ -185,9 +185,7 @@ class Fish(msrest.serialization.Model):
 
     _subtype_map = {"fishtype": {"salmon": "Salmon", "shark": "Shark"}}
 
-    def __init__(
-        self, *, length: float, species: Optional[str] = None, siblings: Optional[List["Fish"]] = None, **kwargs
-    ):
+    def __init__(self, *, length: float, species: Optional[str] = None, siblings: Optional[List[Any]] = None, **kwargs):
         super(Fish, self).__init__(**kwargs)
         self.fishtype = None  # type: Optional[str]
         self.species = species
@@ -210,7 +208,7 @@ class Shark(Fish):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -242,7 +240,7 @@ class Shark(Fish):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List[Any]] = None,
         age: Optional[int] = None,
         **kwargs
     ):
@@ -264,7 +262,7 @@ class Cookiecuttershark(Shark):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -292,7 +290,7 @@ class Cookiecuttershark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List[Any]] = None,
         age: Optional[int] = None,
         **kwargs
     ):
@@ -435,13 +433,13 @@ class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
     :param sample_salmon:
-    :type sample_salmon: ~bodycomplex.models.DotSalmon
+    :type sample_salmon: Any
     :param salmons:
-    :type salmons: list[~bodycomplex.models.DotSalmon]
+    :type salmons: list[Any]
     :param sample_fish:
-    :type sample_fish: ~bodycomplex.models.DotFish
+    :type sample_fish: Any
     :param fishes:
-    :type fishes: list[~bodycomplex.models.DotFish]
+    :type fishes: list[Any]
     """
 
     _attribute_map = {
@@ -454,10 +452,10 @@ class DotFishMarket(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        sample_salmon: Optional["DotSalmon"] = None,
-        salmons: Optional[List["DotSalmon"]] = None,
-        sample_fish: Optional["DotFish"] = None,
-        fishes: Optional[List["DotFish"]] = None,
+        sample_salmon: Optional[Any] = None,
+        salmons: Optional[List[Any]] = None,
+        sample_fish: Optional[Any] = None,
+        fishes: Optional[List[Any]] = None,
         **kwargs
     ):
         super(DotFishMarket, self).__init__(**kwargs)
@@ -606,7 +604,7 @@ class Goblinshark(Shark):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -641,7 +639,7 @@ class Goblinshark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List[Any]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
         color: Optional[Union[str, "GoblinSharkColor"]] = "gray",
@@ -805,7 +803,7 @@ class Salmon(Fish):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     :param location:
     :type location: str
     :param iswild:
@@ -833,7 +831,7 @@ class Salmon(Fish):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List[Any]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         **kwargs
@@ -856,7 +854,7 @@ class Sawshark(Shark):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -887,7 +885,7 @@ class Sawshark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List[Any]] = None,
         age: Optional[int] = None,
         picture: Optional[bytearray] = None,
         **kwargs
@@ -909,7 +907,7 @@ class Siamese(Cat):
     :param color:
     :type color: str
     :param hates:
-    :type hates: list[~bodycomplex.models.Dog]
+    :type hates: list[Any]
     :param breed:
     :type breed: str
     """
@@ -928,7 +926,7 @@ class Siamese(Cat):
         id: Optional[int] = None,
         name: Optional[str] = None,
         color: Optional[str] = None,
-        hates: Optional[List["Dog"]] = None,
+        hates: Optional[List[Any]] = None,
         breed: Optional[str] = None,
         **kwargs
     ):
@@ -948,7 +946,7 @@ class SmartSalmon(Salmon):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[Any]
     :param location:
     :type location: str
     :param iswild:
@@ -981,7 +979,7 @@ class SmartSalmon(Salmon):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List[Any]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         additional_properties: Optional[Dict[str, object]] = None,

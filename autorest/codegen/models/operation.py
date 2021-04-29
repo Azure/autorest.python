@@ -223,7 +223,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         return False
 
     @property
-    def body_serialize_str(self) -> str:
+    def body_serialization_str(self) -> str:
         send_xml = bool(self.parameters.has_body and "xml" in self.parameters.content_types)
         ser_ctxt = ", serialization_ctxt=serialization_ctxt" if send_xml else ""
         body_is_xml = ", is_xml=True" if send_xml else ""

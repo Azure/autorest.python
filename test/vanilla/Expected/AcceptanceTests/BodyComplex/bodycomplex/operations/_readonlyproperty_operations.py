@@ -57,15 +57,15 @@ class ReadonlypropertyOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ReadonlyObj"
+        # type: (...) -> Any
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ReadonlyObj, or the result of cls(response)
-        :rtype: ~bodycomplex.models.ReadonlyObj
+        :return: Any, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ReadonlyObj"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -114,7 +114,7 @@ class ReadonlypropertyOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.ReadonlyObj(size=size)
-        json = self._serialize.body(_complex_body, "ReadonlyObj")
+        json = _complex_body
 
         request = rest_readonlyproperty.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs

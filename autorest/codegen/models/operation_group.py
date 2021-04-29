@@ -7,7 +7,7 @@ import logging
 from typing import Dict, List, Any, Set
 
 from .base_model import BaseModel
-from .operation import Operation
+from .operation import NoModelOperation, Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
@@ -93,7 +93,8 @@ class OperationGroup(BaseModel):
             elif paging_operation:
                 operation = PagingOperation.from_yaml(operation_yaml)
             else:
-                operation = Operation.from_yaml(operation_yaml)
+                operation_schema = NoModelOperation if code_model.no_models else Operation
+                operation = operation_schema.from_yaml(operation_yaml)
             operations.append(operation)
             api_versions.update(operation.api_versions)
 

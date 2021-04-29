@@ -50,15 +50,15 @@ class DictionaryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_valid(self, **kwargs: Any) -> Any:
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplex.models.DictionaryWrapper
+        :return: Any, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -102,7 +102,7 @@ class DictionaryOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
-        json = self._serialize.body(_complex_body, "DictionaryWrapper")
+        json = _complex_body
 
         request = rest_dictionary.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
@@ -124,15 +124,15 @@ class DictionaryOperations:
     put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_empty(self, **kwargs: Any) -> Any:
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplex.models.DictionaryWrapper
+        :return: Any, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -176,7 +176,7 @@ class DictionaryOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
-        json = self._serialize.body(_complex_body, "DictionaryWrapper")
+        json = _complex_body
 
         request = rest_dictionary.build_put_empty_request(
             json=json, content_type=content_type, template_url=self.put_empty.metadata["url"], **kwargs
@@ -198,15 +198,15 @@ class DictionaryOperations:
     put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_null(self, **kwargs: Any) -> Any:
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplex.models.DictionaryWrapper
+        :return: Any, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -234,15 +234,15 @@ class DictionaryOperations:
     get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_not_provided(self, **kwargs: Any) -> Any:
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
-        :rtype: ~bodycomplex.models.DictionaryWrapper
+        :return: Any, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
