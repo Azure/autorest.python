@@ -40,7 +40,7 @@ def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kw
     return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_put_required_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
+def build_put_required_binary_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Test explicitly required body parameter.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -67,7 +67,7 @@ def build_put_required_binary_body_request(*, content: Optional[IO] = None, **kw
 
 
 def build_post_required_integer_parameter_request(
-    *, json: Any = None, content: Optional[int] = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required integer. Please put null and the client library should throw before
     the request is sent.
@@ -77,7 +77,7 @@ def build_post_required_integer_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: int
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -104,7 +104,7 @@ def build_post_required_integer_parameter_request(
 
 
 def build_post_optional_integer_parameter_request(
-    *, json: Any = None, content: Optional[int] = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put null.
 
@@ -113,7 +113,7 @@ def build_post_optional_integer_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: int
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -267,7 +267,7 @@ def build_post_optional_integer_header_request(*, header_parameter: Optional[int
 
 
 def build_post_required_string_parameter_request(
-    *, json: Any = None, content: Optional[str] = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required string. Please put null and the client library should throw before the
     request is sent.
@@ -277,7 +277,7 @@ def build_post_required_string_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -304,7 +304,7 @@ def build_post_required_string_parameter_request(
 
 
 def build_post_optional_string_parameter_request(
-    *, json: Any = None, content: Optional[str] = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional string. Please put null.
 
@@ -313,7 +313,7 @@ def build_post_optional_string_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

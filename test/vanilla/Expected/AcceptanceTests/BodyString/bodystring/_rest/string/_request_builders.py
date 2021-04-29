@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, Union
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -52,7 +52,7 @@ def build_put_null_request(
     :keyword json: string body.
     :paramtype json: Any
     :keyword content: string body.
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -348,7 +348,7 @@ def build_put_base64_url_encoded_request(
     :keyword json: string body.
     :paramtype json: Any
     :keyword content: string body.
-    :paramtype content: bytes
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

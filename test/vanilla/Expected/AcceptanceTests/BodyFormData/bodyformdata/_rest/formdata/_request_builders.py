@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, IO, List, Optional
+    from typing import Any, Dict, IO, List, Optional
 
 _SERIALIZER = Serializer()
 
@@ -25,15 +25,24 @@ def build_upload_file_request(
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
-    :keyword files: File to upload.
-    :paramtype files: IO
-    :keyword data: File name to upload. Name has to be spelled exactly as written here.
-    :paramtype data: str
-    :keyword content: File to upload.
+    :keyword files: Multipart input for files. See the template in our example to find the input
+     shape.
+    :paramtype files: dict[str, Any]
+    :keyword content: Multipart input for files. See the template in our example to find the input
+     shape.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # multipart input template you can fill out and use as your `files` input.
+            files = {
+                "file_content": "IO. File to upload.",
+                "file_name": "str. File name to upload. Name has to be spelled exactly as written here."
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/octet-stream, application/json"
@@ -87,13 +96,25 @@ def build_upload_files_request(
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
-    :keyword files: Files to upload.
-    :paramtype files: list[IO]
-    :keyword content: Files to upload.
+    :keyword files: Multipart input for files. See the template in our example to find the input
+     shape.
+    :paramtype files: dict[str, Any]
+    :keyword content: Multipart input for files. See the template in our example to find the input
+     shape.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # multipart input template you can fill out and use as your `files` input.
+            files = {
+                "file_content": [
+                    "IO. Files to upload."
+                ]
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/octet-stream, application/json"

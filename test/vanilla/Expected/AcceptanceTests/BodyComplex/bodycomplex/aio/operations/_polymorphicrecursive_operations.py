@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from .._rest import polymorphicrecursive as rest_polymorphicrecursive
+from ..._rest import polymorphicrecursive as rest_polymorphicrecursive
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,15 +50,15 @@ class PolymorphicrecursiveOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> Any:
+    async def get_valid(self, **kwargs: Any) -> "_models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Fish, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Fish"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -86,7 +86,7 @@ class PolymorphicrecursiveOperations:
     get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
+    async def put_valid(self, complex_body: "_models.Fish", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -142,7 +142,7 @@ class PolymorphicrecursiveOperations:
                  }
              ]
          }.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -153,7 +153,7 @@ class PolymorphicrecursiveOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphicrecursive.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs

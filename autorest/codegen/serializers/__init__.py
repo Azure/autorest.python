@@ -58,13 +58,13 @@ class JinjaSerializer:
                     code_model=code_model, env=env, namespace_path=namespace_path,
                 )
 
-        if not code_model.low_level_client:
+        if not code_model.no_operations:
             self._serialize_and_write_convenience_layer(code_model=code_model, env=env, namespace_path=namespace_path)
 
     def _serialize_and_write_convenience_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        if code_model.schemas or code_model.enums and not code_model.no_models:
+        if not code_model.no_models and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
         if code_model.operation_groups:
             self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
@@ -96,7 +96,7 @@ class JinjaSerializer:
     def _serialize_and_write_rest_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        folder_name = "rest" if code_model.low_level_client else "_rest"
+        folder_name = "rest" if code_model.rest_layer else "_rest"
         rest_path = namespace_path / Path(folder_name)
         operation_group_names = {
             rb.operation_group_name for rb in code_model.rest.request_builders

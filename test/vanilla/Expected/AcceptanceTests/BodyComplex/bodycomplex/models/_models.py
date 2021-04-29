@@ -117,7 +117,7 @@ class Cat(Pet):
     :param color:
     :type color: str
     :param hates:
-    :type hates: list[Any]
+    :type hates: list[~bodycomplex.models.Dog]
     """
 
     _attribute_map = {
@@ -148,7 +148,7 @@ class Fish(msrest.serialization.Model):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     """
 
     _validation = {
@@ -188,7 +188,7 @@ class Shark(Fish):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -233,7 +233,7 @@ class Cookiecuttershark(Shark):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -393,13 +393,13 @@ class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
     :param sample_salmon:
-    :type sample_salmon: Any
+    :type sample_salmon: ~bodycomplex.models.DotSalmon
     :param salmons:
-    :type salmons: list[Any]
+    :type salmons: list[~bodycomplex.models.DotSalmon]
     :param sample_fish:
-    :type sample_fish: Any
+    :type sample_fish: ~bodycomplex.models.DotFish
     :param fishes:
-    :type fishes: list[Any]
+    :type fishes: list[~bodycomplex.models.DotFish]
     """
 
     _attribute_map = {
@@ -549,7 +549,7 @@ class Goblinshark(Shark):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -733,7 +733,7 @@ class Salmon(Fish):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param location:
     :type location: str
     :param iswild:
@@ -775,7 +775,7 @@ class Sawshark(Shark):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
     :type age: int
     :param birthday: Required.
@@ -816,7 +816,7 @@ class Siamese(Cat):
     :param color:
     :type color: str
     :param hates:
-    :type hates: list[Any]
+    :type hates: list[~bodycomplex.models.Dog]
     :param breed:
     :type breed: str
     """
@@ -846,7 +846,7 @@ class SmartSalmon(Salmon):
     :param length: Required.
     :type length: float
     :param siblings:
-    :type siblings: list[Any]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param location:
     :type location: str
     :param iswild:

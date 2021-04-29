@@ -21,7 +21,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import _rest, models as _models
+from ... import models as _models
+from ..._rest import header as rest_header
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -64,11 +65,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.header.build_custom_named_request_id_request(
+        request = rest_header.build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -111,11 +112,11 @@ class HeaderOperations:
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
-        request = _rest.header.build_custom_named_request_id_param_grouping_request(
+        request = rest_header.build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -150,11 +151,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.header.build_custom_named_request_id_head_request(
+        request = rest_header.build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

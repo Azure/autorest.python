@@ -57,15 +57,15 @@ class PolymorphicrecursiveOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.Fish"
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Fish, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Fish"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -95,7 +95,7 @@ class PolymorphicrecursiveOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.Fish"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -154,7 +154,7 @@ class PolymorphicrecursiveOperations(object):
                  }
              ]
          }.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -165,7 +165,7 @@ class PolymorphicrecursiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphicrecursive.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs

@@ -203,7 +203,7 @@ class ParameterList(MutableSequence):
 
     @property
     def kwargs_to_pop(self) -> List[Parameter]:
-        return self.kwargs
+        return [m for m in self.method if m.is_kwarg]
 
     def method_signature_kwargs(self, async_mode: bool) -> List[str]:
         leftover_kwargs_typing = ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]

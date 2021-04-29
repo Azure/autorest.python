@@ -50,7 +50,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
 
         request = _rest.build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

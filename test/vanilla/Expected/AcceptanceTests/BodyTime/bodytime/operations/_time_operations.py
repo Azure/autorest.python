@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import json
 from typing import TYPE_CHECKING
 import warnings
 
@@ -22,7 +21,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models
+from .._rest import time as rest_time
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -70,7 +70,7 @@ class TimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.time.build_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = rest_time.build_get_request(template_url=self.get.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -112,12 +112,11 @@ class TimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        content = self._serialize.body(time_body, "time")
-        content = json.dumps(content)
+        json = self._serialize.body(time_body, "time")
 
-        request = _rest.time.build_put_request(
-            content=content, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
-        )
+        request = rest_time.build_put_request(
+            json=json, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

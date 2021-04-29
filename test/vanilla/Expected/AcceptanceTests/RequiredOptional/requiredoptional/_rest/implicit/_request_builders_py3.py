@@ -94,7 +94,7 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_optional_body_request(*, json: Any = None, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_put_optional_body_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional body parameter.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -102,7 +102,7 @@ def build_put_optional_body_request(*, json: Any = None, content: Optional[str] 
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

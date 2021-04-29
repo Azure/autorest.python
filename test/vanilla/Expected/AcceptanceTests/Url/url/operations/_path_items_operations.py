@@ -20,7 +20,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models
+from .._rest import path_items as rest_path_items
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -84,7 +85,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.path_items.build_get_all_with_values_request(
+        request = rest_path_items.build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -93,7 +94,7 @@ class PathItemsOperations(object):
             local_string_query=local_string_query,
             template_url=self.get_all_with_values.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -142,7 +143,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.path_items.build_get_global_query_null_request(
+        request = rest_path_items.build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -151,7 +152,7 @@ class PathItemsOperations(object):
             local_string_query=local_string_query,
             template_url=self.get_global_query_null.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -200,7 +201,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.path_items.build_get_global_and_local_query_null_request(
+        request = rest_path_items.build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -209,7 +210,7 @@ class PathItemsOperations(object):
             local_string_query=local_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -257,7 +258,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.path_items.build_get_local_path_item_query_null_request(
+        request = rest_path_items.build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -266,7 +267,7 @@ class PathItemsOperations(object):
             local_string_query=local_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

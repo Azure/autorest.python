@@ -32,7 +32,7 @@ def build_post_required_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: int
+    :paramtype content: Any
     :keyword custom_header:
     :paramtype custom_header: str
     :keyword query: Query parameter with default.
@@ -66,10 +66,10 @@ def build_post_required_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     if custom_header is not None:
         header_parameters["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)

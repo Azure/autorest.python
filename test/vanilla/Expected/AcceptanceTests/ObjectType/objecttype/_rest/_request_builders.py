@@ -54,7 +54,7 @@ def build_put_request(
     :keyword json: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
     :paramtype json: Any
     :keyword content: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-    :paramtype content: object
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

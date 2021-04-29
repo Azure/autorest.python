@@ -20,7 +20,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest, models as _models
+from ... import models as _models
+from ..._rest import files as rest_files
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -61,7 +62,9 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.files.build_get_file_request(template_url=self.get_file.metadata["url"], **kwargs)
+        request = rest_files.build_get_file_request(
+            template_url=self.get_file.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -95,7 +98,9 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.files.build_get_file_large_request(template_url=self.get_file_large.metadata["url"], **kwargs)
+        request = rest_files.build_get_file_large_request(
+            template_url=self.get_file_large.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -129,7 +134,9 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.files.build_get_empty_file_request(template_url=self.get_empty_file.metadata["url"], **kwargs)
+        request = rest_files.build_get_empty_file_request(
+            template_url=self.get_empty_file.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

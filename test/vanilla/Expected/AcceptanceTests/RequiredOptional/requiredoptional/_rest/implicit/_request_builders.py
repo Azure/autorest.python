@@ -121,7 +121,7 @@ def build_put_optional_body_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

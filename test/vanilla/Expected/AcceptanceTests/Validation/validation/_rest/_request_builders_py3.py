@@ -30,6 +30,29 @@ def build_validation_of_method_parameters_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "capacity": "int (optional)",
+                "child": {
+                    "constProperty": "str",
+                    "count": "int (optional)"
+                },
+                "constChild": {
+                    "constProperty": "str",
+                    "constProperty2": "str"
+                },
+                "constInt": "int",
+                "constString": "str",
+                "constStringAsEnum": "str (optional)",
+                "display_names": [
+                    "str (optional)"
+                ],
+                "image": "str (optional)"
+            }
     """
     api_version = "1.0.0"
     accept = "application/json"
@@ -99,6 +122,26 @@ def build_validation_of_body_request(
                 ],
                 "image": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "capacity": "int (optional)",
+                "child": {
+                    "constProperty": "str",
+                    "count": "int (optional)"
+                },
+                "constChild": {
+                    "constProperty": "str",
+                    "constProperty2": "str"
+                },
+                "constInt": "int",
+                "constString": "str",
+                "constStringAsEnum": "str (optional)",
+                "display_names": [
+                    "str (optional)"
+                ],
+                "image": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     api_version = "1.0.0"
@@ -121,9 +164,9 @@ def build_validation_of_body_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(
         method="PUT", url=url, params=query_parameters, headers=header_parameters, json=json, content=content, **kwargs
@@ -186,6 +229,26 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
                 ],
                 "image": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "capacity": "int (optional)",
+                "child": {
+                    "constProperty": "str",
+                    "count": "int (optional)"
+                },
+                "constChild": {
+                    "constProperty": "str",
+                    "constProperty2": "str"
+                },
+                "constInt": "int",
+                "constString": "str",
+                "constStringAsEnum": "str (optional)",
+                "display_names": [
+                    "str (optional)"
+                ],
+                "image": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     constant_param = "constant"
@@ -200,8 +263,8 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)

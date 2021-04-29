@@ -21,6 +21,14 @@ def build_get200_model204_no_model_default_error200_valid_request(**kwargs: Any)
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -42,6 +50,14 @@ def build_get200_model204_no_model_default_error204_valid_request(**kwargs: Any)
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -63,6 +79,14 @@ def build_get200_model204_no_model_default_error201_invalid_request(**kwargs: An
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -84,6 +108,14 @@ def build_get200_model204_no_model_default_error202_none_request(**kwargs: Any) 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -105,6 +137,14 @@ def build_get200_model204_no_model_default_error400_valid_request(**kwargs: Any)
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -126,6 +166,19 @@ def build_get200_model201_model_default_error200_valid_request(**kwargs: Any) ->
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "statusCode": "str (optional)",
+                "textStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -147,6 +200,19 @@ def build_get200_model201_model_default_error201_valid_request(**kwargs: Any) ->
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "statusCode": "str (optional)",
+                "textStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -168,6 +234,19 @@ def build_get200_model201_model_default_error400_valid_request(**kwargs: Any) ->
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "statusCode": "str (optional)",
+                "textStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -189,6 +268,22 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(**
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "httpCode": "str (optional)"
+            }
+            # response body for status code(s): 404
+            response.json() == {
+                "httpStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -210,6 +305,22 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(**
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "httpCode": "str (optional)"
+            }
+            # response body for status code(s): 404
+            response.json() == {
+                "httpStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -231,6 +342,22 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(**
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "httpCode": "str (optional)"
+            }
+            # response body for status code(s): 404
+            response.json() == {
+                "httpStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -252,6 +379,22 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(**
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "httpCode": "str (optional)"
+            }
+            # response body for status code(s): 404
+            response.json() == {
+                "httpStatusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -400,6 +543,14 @@ def build_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -421,6 +572,14 @@ def build_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -549,6 +708,14 @@ def build_get200_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -570,6 +737,14 @@ def build_get200_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -591,6 +766,14 @@ def build_get200_model_a200_invalid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -612,6 +795,14 @@ def build_get200_model_a400_none_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -633,6 +824,14 @@ def build_get200_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -654,6 +853,14 @@ def build_get200_model_a400_invalid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -675,6 +882,14 @@ def build_get200_model_a202_valid_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "statusCode": "str (optional)"
+            }
     """
     accept = "application/json"
 

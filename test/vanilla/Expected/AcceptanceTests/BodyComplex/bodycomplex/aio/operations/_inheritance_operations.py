@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from .._rest import inheritance as rest_inheritance
+from ..._rest import inheritance as rest_inheritance
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,15 +50,15 @@ class InheritanceOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> Any:
+    async def get_valid(self, **kwargs: Any) -> "_models.Siamese":
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Siamese, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Siamese
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Siamese"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -86,13 +86,13 @@ class InheritanceOperations:
     get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
+    async def put_valid(self, complex_body: "_models.Siamese", **kwargs: Any) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.Siamese
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -103,7 +103,7 @@ class InheritanceOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "Siamese")
 
         request = rest_inheritance.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs

@@ -88,7 +88,7 @@ def build_post_required_integer_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: int
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -125,7 +125,7 @@ def build_post_optional_integer_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: int
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -300,7 +300,7 @@ def build_post_required_string_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -337,7 +337,7 @@ def build_post_optional_string_parameter_request(
     :keyword json:
     :paramtype json: Any
     :keyword content:
-    :paramtype content: str
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

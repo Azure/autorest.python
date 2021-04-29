@@ -21,7 +21,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import _rest, models as _models
+from .. import models as _models
+from .._rest import api_version_local as rest_api_version_local
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -69,9 +70,9 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.api_version_local.build_get_method_local_valid_request(
+        request = rest_api_version_local.build_get_method_local_valid_request(
             template_url=self.get_method_local_valid.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -109,9 +110,9 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.api_version_local.build_get_method_local_null_request(
+        request = rest_api_version_local.build_get_method_local_null_request(
             api_version=api_version, template_url=self.get_method_local_null.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -144,9 +145,9 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.api_version_local.build_get_path_local_valid_request(
+        request = rest_api_version_local.build_get_path_local_valid_request(
             template_url=self.get_path_local_valid.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -179,9 +180,9 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.api_version_local.build_get_swagger_local_valid_request(
+        request = rest_api_version_local.build_get_swagger_local_valid_request(
             template_url=self.get_swagger_local_valid.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

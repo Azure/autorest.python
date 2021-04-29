@@ -173,7 +173,7 @@ def build_put_max32_request(
     :keyword json: int body.
     :paramtype json: Any
     :keyword content: int body.
-    :paramtype content: int
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -192,9 +192,9 @@ def build_put_max32_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -210,7 +210,7 @@ def build_put_max64_request(
     :keyword json: int body.
     :paramtype json: Any
     :keyword content: int body.
-    :paramtype content: long
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -229,9 +229,9 @@ def build_put_max64_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -247,7 +247,7 @@ def build_put_min32_request(
     :keyword json: int body.
     :paramtype json: Any
     :keyword content: int body.
-    :paramtype content: int
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -266,9 +266,9 @@ def build_put_min32_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -284,7 +284,7 @@ def build_put_min64_request(
     :keyword json: int body.
     :paramtype json: Any
     :keyword content: int body.
-    :paramtype content: long
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -303,9 +303,9 @@ def build_put_min64_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
@@ -345,7 +345,7 @@ def build_put_unix_time_date_request(
     :keyword json: int body.
     :paramtype json: Any
     :keyword content: int body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -364,9 +364,9 @@ def build_put_unix_time_date_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 

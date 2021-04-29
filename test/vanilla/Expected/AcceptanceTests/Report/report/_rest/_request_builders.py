@@ -32,6 +32,14 @@ def build_get_report_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "str": "int (optional)"
+            }
     """
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
     accept = "application/json"
@@ -66,6 +74,14 @@ def build_get_optional_report_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "str": "int (optional)"
+            }
     """
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
     accept = "application/json"

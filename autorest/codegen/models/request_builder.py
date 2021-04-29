@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from autorest.codegen.models.schema_response import SchemaResponse
-from typing import Any, Dict, List, TypeVar, Optional
+from typing import Any, Dict, List, TypeVar, Optional, Callable
 
 from .base_builder import BaseBuilder, get_converted_parameters
 from .request_builder_parameter import RequestBuilderParameter
@@ -100,6 +100,10 @@ class RequestBuilder(BaseBuilder):
         )
         return file_import
 
+    @staticmethod
+    def get_parameter_converter() -> Callable:
+        return RequestBuilderParameter.from_yaml
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
 
@@ -113,7 +117,7 @@ class RequestBuilder(BaseBuilder):
         first_request = yaml_data["requests"][0]
 
         parameters, multiple_media_type_parameters = (
-            get_converted_parameters(yaml_data, RequestBuilderParameter.from_yaml)
+            get_converted_parameters(yaml_data, cls.get_parameter_converter())
         )
 
         request_builder_class = cls(

@@ -13,15 +13,15 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
+def build_analyze_body_request(*, content: Optional[IO] = None, json: Any = None, **kwargs: Any) -> HttpRequest:
     """Analyze body, that could be different media types.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
-    :keyword json: Input parameter.
-    :paramtype json: Any
     :keyword content: Input parameter.
     :paramtype content: IO
+    :keyword json: Input parameter.
+    :paramtype json: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -47,7 +47,7 @@ def build_analyze_body_request(*, json: Any = None, content: Optional[IO] = None
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=url, headers=header_parameters, content=content, json=json, **kwargs)
 
 
 def build_content_type_with_encoding_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:

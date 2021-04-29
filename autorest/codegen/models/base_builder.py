@@ -105,10 +105,10 @@ class BaseBuilder(BaseModel):
 
     @property
     @abstractmethod
-    def parameter_converter(self) -> Callable:
+    def has_example_template(self) -> bool:
         ...
 
-    @property
+    @staticmethod
     @abstractmethod
-    def has_example_template(self) -> bool:
+    def get_parameter_converter() -> Callable:
         ...

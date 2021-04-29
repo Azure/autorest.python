@@ -42,6 +42,19 @@ def build_put200_succeeded_request_initial(*, json: Any = None, content: Any = N
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -87,6 +100,19 @@ def build_put201_succeeded_request_initial(*, json: Any = None, content: Any = N
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -112,6 +138,24 @@ def build_post202_list_request_initial(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == [
+                {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)",
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
+                }
+            ]
     """
     accept = "application/json"
 
@@ -146,6 +190,19 @@ def build_put200_succeeded_no_state_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -192,6 +249,19 @@ def build_put202_retry200_request_initial(*, json: Any = None, content: Any = No
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 202
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -250,6 +320,31 @@ def build_put201_creating_succeeded200_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -288,6 +383,19 @@ def build_put200_updating_succeeded204_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -346,6 +454,31 @@ def build_put201_creating_failed200_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -394,6 +527,19 @@ def build_put200_acceptedcanceled200_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -431,6 +577,19 @@ def build_put_no_header_in_retry_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 202
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -489,6 +648,19 @@ def build_put_async_retry_succeeded_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -527,6 +699,19 @@ def build_put_async_no_retry_succeeded_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -585,6 +770,19 @@ def build_put_async_retry_failed_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -623,6 +821,19 @@ def build_put_async_no_retrycanceled_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -681,6 +892,19 @@ def build_put_async_no_header_in_retry_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -715,6 +939,12 @@ def build_put_non_resource_request_initial(*, json: Any = None, content: Any = N
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "name": "str (optional)"
+            }
+
+            # response body for status code(s): 202
+            response.json() == {
                 "id": "str (optional)",
                 "name": "str (optional)"
             }
@@ -757,6 +987,12 @@ def build_put_async_non_resource_request_initial(
                 "id": "str (optional)",
                 "name": "str (optional)"
             }
+
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "name": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -791,6 +1027,13 @@ def build_put_sub_resource_request_initial(*, json: Any = None, content: Any = N
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)"
+            }
+
+            # response body for status code(s): 202
+            response.json() == {
                 "id": "str (optional)",
                 "provisioningState": "str (optional)",
                 "provisioningStateValues": "str (optional)"
@@ -835,6 +1078,13 @@ def build_put_async_sub_resource_request_initial(
                 "provisioningState": "str (optional)",
                 "provisioningStateValues": "str (optional)"
             }
+
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -861,6 +1111,34 @@ def build_delete_provisioning202_accepted200_succeeded_request_initial(**kwargs:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -884,6 +1162,34 @@ def build_delete_provisioning202_deleting_failed200_request_initial(**kwargs: An
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -907,6 +1213,34 @@ def build_delete_provisioning202_deletingcanceled200_request_initial(**kwargs: A
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -950,6 +1284,22 @@ def build_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -972,6 +1322,22 @@ def build_delete202_no_retry204_request_initial(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -1126,6 +1492,20 @@ def build_post200_with_payload_request_initial(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "name": "str (optional)"
+            }
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "name": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -1213,6 +1593,19 @@ def build_post202_no_retry204_request_initial(*, json: Any = None, content: Any 
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -1239,6 +1632,22 @@ def build_post_double_headers_final_location_get_request_initial(**kwargs: Any) 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -1262,6 +1671,22 @@ def build_post_double_headers_final_azure_header_get_request_initial(**kwargs: A
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -1285,6 +1710,22 @@ def build_post_double_headers_final_azure_header_get_default_request_initial(**k
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -1320,6 +1761,19 @@ def build_post_async_retry_succeeded_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -1368,6 +1822,19 @@ def build_post_async_no_retry_succeeded_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",

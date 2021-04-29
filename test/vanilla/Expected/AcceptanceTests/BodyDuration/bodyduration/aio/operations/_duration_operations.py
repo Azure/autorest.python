@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import json
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
@@ -22,7 +21,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest, models as _models
+from ... import models as _models
+from ..._rest import duration as rest_duration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -63,7 +63,9 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.duration.build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = rest_duration.build_get_null_request(
+            template_url=self.get_null.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -100,15 +102,11 @@ class DurationOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        content = self._serialize.body(duration_body, "duration")
-        content = json.dumps(content)
+        json = self._serialize.body(duration_body, "duration")
 
-        request = _rest.duration.build_put_positive_duration_request(
-            content=content,
-            content_type=content_type,
-            template_url=self.put_positive_duration.metadata["url"],
-            **kwargs
-        )
+        request = rest_duration.build_put_positive_duration_request(
+            json=json, content_type=content_type, template_url=self.put_positive_duration.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -138,9 +136,9 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.duration.build_get_positive_duration_request(
+        request = rest_duration.build_get_positive_duration_request(
             template_url=self.get_positive_duration.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -174,7 +172,9 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.duration.build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
+        request = rest_duration.build_get_invalid_request(
+            template_url=self.get_invalid.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

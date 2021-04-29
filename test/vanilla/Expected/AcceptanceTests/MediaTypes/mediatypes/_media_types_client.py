@@ -56,7 +56,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from mediatypes.rest import build_analyze_body_request
-        >>> request = build_analyze_body_request(json, content)
+        >>> request = build_analyze_body_request(content, json)
         <HttpRequest [POST], url: '/mediatypes/analyze'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

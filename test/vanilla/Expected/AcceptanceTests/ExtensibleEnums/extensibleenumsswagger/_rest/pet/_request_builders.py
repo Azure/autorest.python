@@ -32,6 +32,16 @@ def build_get_by_pet_id_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                "IntEnum": "str",
+                "name": "str (optional)"
+            }
     """
     accept = "application/json"
 
@@ -74,6 +84,13 @@ def build_add_pet_request(
                 "IntEnum": "str",
                 "name": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                "IntEnum": "str",
+                "name": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -83,8 +100,8 @@ def build_add_pet_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)

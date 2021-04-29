@@ -218,7 +218,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
-        if not self.required and not isinstance(self.schema, AnySchema):
+        if not self.required and not type_annot == "Any":
             type_annot = f"Optional[{type_annot}]"
 
         if self._client_default_value is not None:
@@ -339,3 +339,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.has_multiple_media_types:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
+
+class ParameterOnlyPathsPositional(Parameter):
+
+    @property
+    def is_kwarg(self) -> bool:
+        return not self.location == ParameterLocation.Path
+
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
+        return f'_SERIALIZER.{function_name}({parameters_line})'

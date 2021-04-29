@@ -54,8 +54,14 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
-
-    {{ op_tools.get_request_builder(code_model, operation, request_builder)|indent }}
+    {% if not async_mode %}
+        {% if operation.parameters.kwargs_to_pop %}
+            {% for kwarg in operation.parameters.kwargs_to_pop %}
+    {{ kwarg.pop_from_kwarg | indent }}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    {{ op_tools.get_request_builder(code_model, operation, request_builder, async_mode)|indent }}
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}

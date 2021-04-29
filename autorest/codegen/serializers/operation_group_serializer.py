@@ -29,13 +29,15 @@ class OperationGroupSerializer:
         if self.operation_group.is_empty_operation_group:
             operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
 
+        has_schemas = not self.code_model.no_models and (self.code_model.schemas or self.code_model.enums)
+
         return operation_group_template.render(
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(
                 self.operation_group.imports(
                     self.async_mode,
-                    bool(self.code_model.schemas or self.code_model.enums)
+                    bool(has_schemas)
                 ),
                 is_python_3_file=self.async_mode
             ),

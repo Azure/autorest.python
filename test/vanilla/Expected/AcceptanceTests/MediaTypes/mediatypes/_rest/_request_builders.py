@@ -25,10 +25,10 @@ def build_analyze_body_request(
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
 
-    :keyword json: Input parameter.
-    :paramtype json: Any
     :keyword content: Input parameter.
     :paramtype content: IO
+    :keyword json: Input parameter.
+    :paramtype json: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

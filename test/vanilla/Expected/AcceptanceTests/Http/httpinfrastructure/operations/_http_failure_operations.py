@@ -20,7 +20,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models
+from .._rest import http_failure as rest_http_failure
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -68,9 +69,9 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.http_failure.build_get_empty_error_request(
+        request = rest_http_failure.build_get_empty_error_request(
             template_url=self.get_empty_error.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -107,9 +108,9 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.http_failure.build_get_no_model_error_request(
+        request = rest_http_failure.build_get_no_model_error_request(
             template_url=self.get_no_model_error.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -145,9 +146,9 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.http_failure.build_get_no_model_empty_request(
+        request = rest_http_failure.build_get_no_model_empty_request(
             template_url=self.get_no_model_empty.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

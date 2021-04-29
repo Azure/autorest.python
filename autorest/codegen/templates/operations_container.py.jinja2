@@ -14,7 +14,7 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-{% if code_model.schemas %}
+{% if code_model.schemas and not code_model.no_models %}
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~{{ code_model.namespace }}.models
 {% endif %}
@@ -24,7 +24,7 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
     :param deserializer: An object model deserializer.
     """
 
-{% if code_model.schemas %}
+{% if code_model.schemas and not code_model.no_models %}
     models = _models
 
 {% endif %}

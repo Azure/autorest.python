@@ -21,7 +21,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models
+from .._rest import paging as rest_paging
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -76,9 +77,9 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_pages_partial_url_request(
+                request = rest_paging.build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
-                )
+                )._internal_request
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -86,9 +87,9 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_pages_partial_url_request(
+                request = rest_paging.build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"], **kwargs
-                )
+                )._internal_request
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -118,8 +119,9 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -149,9 +151,9 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_pages_partial_url_operation_request(
+                request = rest_paging.build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
-                )
+                )._internal_request
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -159,9 +161,9 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_pages_partial_url_operation_next_request(
+                request = rest_paging.build_get_pages_partial_url_operation_next_request(
                     next_link=next_link, template_url="/paging/customurl/{nextLink}", **kwargs
-                )
+                )._internal_request
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -184,8 +186,9 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 

@@ -48,6 +48,31 @@ def build_put_non_retry400_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -86,6 +111,31 @@ def build_put_non_retry201_creating400_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -144,6 +194,31 @@ def build_put_non_retry201_creating400_invalid_json_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -182,6 +257,19 @@ def build_put_async_relative_retry400_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -454,6 +542,31 @@ def build_put_error201_no_provisioning_state_payload_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -503,6 +616,19 @@ def build_put_async_relative_retry_no_status_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -542,6 +668,19 @@ def build_put_async_relative_retry_no_status_payload_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",
@@ -746,6 +885,19 @@ def build_put200_invalid_json_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -795,6 +947,19 @@ def build_put_async_relative_retry_invalid_header_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -834,6 +999,19 @@ def build_put_async_relative_retry_invalid_json_polling_request_initial(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "id": "str (optional)",
                 "location": "str (optional)",
                 "name": "str (optional)",

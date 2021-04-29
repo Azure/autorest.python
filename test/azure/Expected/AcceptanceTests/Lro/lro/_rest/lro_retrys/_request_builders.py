@@ -50,6 +50,31 @@ def build_put201_creating_succeeded200_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 201
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -99,6 +124,19 @@ def build_put_async_relative_retry_succeeded_request_initial(
                 },
                 "type": "str (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -128,6 +166,34 @@ def build_delete_provisioning202_accepted200_succeeded_request_initial(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+            # response body for status code(s): 202
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "provisioningState": "str (optional)",
+                "provisioningStateValues": "str (optional)",
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
     """
     accept = "application/json"
 

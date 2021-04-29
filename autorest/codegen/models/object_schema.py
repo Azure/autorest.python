@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Union
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
@@ -210,3 +210,8 @@ class NoModelObjectSchema(ObjectSchema):
     @property
     def docstring_text(self) -> str:
         return "Any"
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Any", import_type=ImportType.STDLIB, typing_section=TypingSection.TYPING)
+        return file_import

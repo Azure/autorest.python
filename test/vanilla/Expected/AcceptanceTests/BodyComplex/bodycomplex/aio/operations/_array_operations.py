@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from .._rest import array as rest_array
+from ..._rest import array as rest_array
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,15 +50,15 @@ class ArrayOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> Any:
+    async def get_valid(self, **kwargs: Any) -> "_models.ArrayWrapper":
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: ArrayWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ArrayWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -102,7 +102,7 @@ class ArrayOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.ArrayWrapper(array=array)
-        json = _complex_body
+        json = self._serialize.body(_complex_body, "ArrayWrapper")
 
         request = rest_array.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
@@ -124,15 +124,15 @@ class ArrayOperations:
     put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> Any:
+    async def get_empty(self, **kwargs: Any) -> "_models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: ArrayWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ArrayWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -176,7 +176,7 @@ class ArrayOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.ArrayWrapper(array=array)
-        json = _complex_body
+        json = self._serialize.body(_complex_body, "ArrayWrapper")
 
         request = rest_array.build_put_empty_request(
             json=json, content_type=content_type, template_url=self.put_empty.metadata["url"], **kwargs
@@ -198,15 +198,15 @@ class ArrayOperations:
     put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> Any:
+    async def get_not_provided(self, **kwargs: Any) -> "_models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: ArrayWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ArrayWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

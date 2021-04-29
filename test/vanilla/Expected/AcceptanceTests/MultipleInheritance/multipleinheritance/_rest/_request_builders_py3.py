@@ -21,6 +21,15 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "isAShowHorse": "bool (optional)",
+                "name": "str"
+            }
     """
     accept = "application/json"
 
@@ -79,6 +88,14 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "name": "str"
+            }
     """
     accept = "application/json"
 
@@ -136,6 +153,15 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "hisses": "bool (optional)",
+                "meows": "bool (optional)"
+            }
     """
     accept = "application/json"
 
@@ -194,6 +220,17 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "hisses": "bool (optional)",
+                "likesMilk": "bool (optional)",
+                "meows": "bool (optional)",
+                "name": "str"
+            }
     """
     accept = "application/json"
 
@@ -256,6 +293,18 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "eatsMiceYet": "bool (optional)",
+                "hisses": "bool (optional)",
+                "likesMilk": "bool (optional)",
+                "meows": "bool (optional)",
+                "name": "str"
+            }
     """
     accept = "application/json"
 

@@ -24,7 +24,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest, models as _models
+from ... import models as _models
+from ..._rest import paging as rest_paging
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,15 +68,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_no_item_name_pages_request(
+                request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_no_item_name_pages_request(
+                request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -97,8 +98,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -121,15 +123,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_null_next_link_name_pages_request(
+                request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_null_next_link_name_pages_request(
+                request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -151,8 +153,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -175,15 +178,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_single_pages_request(
+                request = rest_paging.build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_single_pages_request(
+                request = rest_paging.build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -205,8 +208,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -230,15 +234,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_first_response_empty_request(
+                request = rest_paging.build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_first_response_empty_request(
+                request = rest_paging.build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -260,8 +264,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -299,13 +304,13 @@ class PagingOperations:
                 if paging_get_multiple_pages_options is not None:
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
-                request = _rest.paging.build_get_multiple_pages_request(
+                request = rest_paging.build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
@@ -315,13 +320,13 @@ class PagingOperations:
                 if paging_get_multiple_pages_options is not None:
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
-                request = _rest.paging.build_get_multiple_pages_request(
+                request = rest_paging.build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -343,8 +348,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -373,17 +379,17 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_with_query_params_request(
+                request = rest_paging.build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_next_operation_with_query_params_request(
+                request = rest_paging.build_next_operation_with_query_params_request(
                     template_url="/paging/multiple/nextOperationWithQueryParams", **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             return request
@@ -402,8 +408,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -441,13 +448,13 @@ class PagingOperations:
                 if paging_get_odata_multiple_pages_options is not None:
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
-                request = _rest.paging.build_get_odata_multiple_pages_request(
+                request = rest_paging.build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_odata_multiple_pages.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
@@ -457,13 +464,13 @@ class PagingOperations:
                 if paging_get_odata_multiple_pages_options is not None:
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
-                request = _rest.paging.build_get_odata_multiple_pages_request(
+                request = rest_paging.build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_odata_multiple_pages.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -485,8 +492,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -526,14 +534,14 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
-                request = _rest.paging.build_get_multiple_pages_with_offset_request(
+                request = rest_paging.build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
@@ -545,14 +553,14 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
-                request = _rest.paging.build_get_multiple_pages_with_offset_request(
+                request = rest_paging.build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -574,8 +582,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -599,15 +608,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_multiple_pages_retry_first_request(
+                request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_multiple_pages_retry_first_request(
+                request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -629,8 +638,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -654,15 +664,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_multiple_pages_retry_second_request(
+                request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_multiple_pages_retry_second_request(
+                request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -684,8 +694,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -708,15 +719,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_single_pages_failure_request(
+                request = rest_paging.build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_single_pages_failure_request(
+                request = rest_paging.build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -738,8 +749,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -762,15 +774,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_multiple_pages_failure_request(
+                request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_multiple_pages_failure_request(
+                request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -792,8 +804,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -816,15 +829,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_multiple_pages_failure_uri_request(
+                request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_multiple_pages_failure_uri_request(
+                request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -846,8 +859,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -876,22 +890,22 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_multiple_pages_fragment_next_link_request(
+                request = rest_paging.build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_next_fragment_request(
+                request = rest_paging.build_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
                     template_url="/paging/multiple/fragment/{tenant}/{nextLink}",
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             return request
@@ -910,8 +924,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -944,12 +959,12 @@ class PagingOperations:
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-                request = _rest.paging.build_get_multiple_pages_fragment_with_grouping_next_link_request(
+                request = rest_paging.build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
                     api_version=_api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
@@ -959,13 +974,13 @@ class PagingOperations:
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-                request = _rest.paging.build_next_fragment_with_grouping_request(
+                request = rest_paging.build_next_fragment_with_grouping_request(
                     tenant=_tenant,
                     next_link=next_link,
                     api_version=_api_version,
                     template_url="/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             return request
@@ -984,8 +999,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -1008,13 +1024,13 @@ class PagingOperations:
         if paging_get_multiple_pages_lro_options is not None:
             _maxresults = paging_get_multiple_pages_lro_options.maxresults
             _timeout = paging_get_multiple_pages_lro_options.timeout
-        request = _rest.paging.build_get_multiple_pages_lro_request_initial(
+        request = rest_paging.build_get_multiple_pages_lro_request_initial(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -1069,13 +1085,13 @@ class PagingOperations:
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-                request = _rest.paging.build_get_multiple_pages_lro_request_initial(
+                request = rest_paging.build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
@@ -1085,13 +1101,13 @@ class PagingOperations:
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-                request = _rest.paging.build_get_multiple_pages_lro_request_initial(
+                request = rest_paging.build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                     **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -1113,8 +1129,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [202]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -1178,15 +1195,15 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = _rest.paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
+                request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
             else:
-                request = _rest.paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
+                request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"], **kwargs
-                )
+                )._internal_request
                 request.url = self._client.format_url(request.url)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -1208,8 +1225,9 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+                if response.status_code not in [200]:
+                    map_error(status_code=response.status_code, response=response, error_map=error_map)
+                    raise HttpResponseError(response=response)
 
             return pipeline_response
 

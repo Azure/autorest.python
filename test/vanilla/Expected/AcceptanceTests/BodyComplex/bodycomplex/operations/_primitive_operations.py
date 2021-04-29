@@ -58,15 +58,15 @@ class PrimitiveOperations(object):
     def get_int(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.IntWrapper"
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: IntWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.IntWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -96,14 +96,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_int(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.IntWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.IntWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -114,7 +114,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "IntWrapper")
 
         request = rest_primitive.build_put_int_request(
             json=json, content_type=content_type, template_url=self.put_int.metadata["url"], **kwargs
@@ -139,15 +139,15 @@ class PrimitiveOperations(object):
     def get_long(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.LongWrapper"
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: LongWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LongWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -177,14 +177,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_long(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.LongWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.LongWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -195,7 +195,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "LongWrapper")
 
         request = rest_primitive.build_put_long_request(
             json=json, content_type=content_type, template_url=self.put_long.metadata["url"], **kwargs
@@ -220,15 +220,15 @@ class PrimitiveOperations(object):
     def get_float(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.FloatWrapper"
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: FloatWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.FloatWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -258,14 +258,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_float(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.FloatWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.FloatWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -276,7 +276,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "FloatWrapper")
 
         request = rest_primitive.build_put_float_request(
             json=json, content_type=content_type, template_url=self.put_float.metadata["url"], **kwargs
@@ -301,15 +301,15 @@ class PrimitiveOperations(object):
     def get_double(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.DoubleWrapper"
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: DoubleWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DoubleWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -339,7 +339,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_double(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.DoubleWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -347,7 +347,7 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -358,7 +358,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "DoubleWrapper")
 
         request = rest_primitive.build_put_double_request(
             json=json, content_type=content_type, template_url=self.put_double.metadata["url"], **kwargs
@@ -383,15 +383,15 @@ class PrimitiveOperations(object):
     def get_bool(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.BooleanWrapper"
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: BooleanWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.BooleanWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -421,14 +421,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_bool(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.BooleanWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.BooleanWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -439,7 +439,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "BooleanWrapper")
 
         request = rest_primitive.build_put_bool_request(
             json=json, content_type=content_type, template_url=self.put_bool.metadata["url"], **kwargs
@@ -464,15 +464,15 @@ class PrimitiveOperations(object):
     def get_string(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.StringWrapper"
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: StringWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StringWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -502,14 +502,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_string(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.StringWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.StringWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -520,7 +520,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "StringWrapper")
 
         request = rest_primitive.build_put_string_request(
             json=json, content_type=content_type, template_url=self.put_string.metadata["url"], **kwargs
@@ -545,15 +545,15 @@ class PrimitiveOperations(object):
     def get_date(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.DateWrapper"
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: DateWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DateWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -583,14 +583,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.DateWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.DateWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -601,7 +601,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "DateWrapper")
 
         request = rest_primitive.build_put_date_request(
             json=json, content_type=content_type, template_url=self.put_date.metadata["url"], **kwargs
@@ -626,15 +626,15 @@ class PrimitiveOperations(object):
     def get_date_time(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.DatetimeWrapper"
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: DatetimeWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DatetimeWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -664,14 +664,14 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.DatetimeWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.DatetimeWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -682,7 +682,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "DatetimeWrapper")
 
         request = rest_primitive.build_put_date_time_request(
             json=json, content_type=content_type, template_url=self.put_date_time.metadata["url"], **kwargs
@@ -707,15 +707,15 @@ class PrimitiveOperations(object):
     def get_date_time_rfc1123(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Datetimerfc1123Wrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Datetimerfc1123Wrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -745,7 +745,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time_rfc1123(
         self,
-        complex_body,  # type: Any
+        complex_body,  # type: "_models.Datetimerfc1123Wrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -753,7 +753,7 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -764,7 +764,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
         request = rest_primitive.build_put_date_time_rfc1123_request(
             json=json, content_type=content_type, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
@@ -789,15 +789,15 @@ class PrimitiveOperations(object):
     def get_duration(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.DurationWrapper"
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: DurationWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DurationWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -846,7 +846,7 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.DurationWrapper(field=field)
-        json = _complex_body
+        json = self._serialize.body(_complex_body, "DurationWrapper")
 
         request = rest_primitive.build_put_duration_request(
             json=json, content_type=content_type, template_url=self.put_duration.metadata["url"], **kwargs
@@ -871,15 +871,15 @@ class PrimitiveOperations(object):
     def get_byte(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.ByteWrapper"
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: ByteWrapper, or the result of cls(response)
+        :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ByteWrapper"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -928,7 +928,7 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.ByteWrapper(field=field)
-        json = _complex_body
+        json = self._serialize.body(_complex_body, "ByteWrapper")
 
         request = rest_primitive.build_put_byte_request(
             json=json, content_type=content_type, template_url=self.put_byte.metadata["url"], **kwargs

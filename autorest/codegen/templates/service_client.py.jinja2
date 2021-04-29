@@ -21,7 +21,7 @@ from ._configuration import {{ code_model.class_name }}Configuration
 {% for operation_group in code_model.operation_groups %}
 from .operations import {{ operation_group.class_name }}
 {% endfor %}
-{% if code_model.sorted_schemas %}
+{% if code_model.sorted_schemas and not code_model.no_models %}
 from {{ path_to_models }} import models
 {% endif %}
 
@@ -59,7 +59,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         self._config = {{ code_model.class_name }}Configuration({{ code_model.service_client.config_initialization }})
         self._client = {{ code_model.service_client.pipeline_class(code_model, async_mode) }}(base_url=base_url, config=self._config, **kwargs)
 
-        {% if not code_model.low_level_client %}
+        {% if not code_model.no_models %}
             {% if code_model.sorted_schemas %}
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
             {% else %}
@@ -72,13 +72,13 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
             {% endfor %}
         {% endif %}
-        self._serialize = {{ "Serializer()" if code_model.low_level_client else "Serializer(client_models)" }}
+        self._serialize = {{ "Serializer()" if code_model.no_models else "Serializer(client_models)" }}
         {% if not code_model.options['client_side_validation'] %}
         self._serialize.client_side_validation = False
         {% endif %}
 
     {% set http_response = keywords.async_class + "HttpResponse" %}
-    {{ keywords.def }} {{ "_" if not code_model.low_level_client }}send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
+    {{ keywords.def }} {{ "_" if not code_model.rest_layer }}send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
         {% if not async_mode %}
         # type: (HttpRequest, Any) -> {{ http_response }}
         {% endif %}

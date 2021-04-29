@@ -125,7 +125,7 @@ def build_put_utc_max_date_time_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -165,7 +165,7 @@ def build_put_utc_max_date_time7_digits_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -277,7 +277,7 @@ def build_put_local_positive_offset_max_date_time_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -362,7 +362,7 @@ def build_put_local_negative_offset_max_date_time_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -447,7 +447,7 @@ def build_put_utc_min_date_time_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -508,7 +508,7 @@ def build_put_local_positive_offset_min_date_time_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -569,7 +569,7 @@ def build_put_local_negative_offset_min_date_time_request(
     :keyword json: datetime body.
     :paramtype json: Any
     :keyword content: datetime body.
-    :paramtype content: ~datetime.datetime
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

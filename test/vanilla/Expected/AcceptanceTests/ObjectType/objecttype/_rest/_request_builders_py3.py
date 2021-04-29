@@ -35,7 +35,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_request(*, json: Any = None, content: Optional[object] = None, **kwargs: Any) -> HttpRequest:
+def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
     object error.
 
@@ -44,7 +44,7 @@ def build_put_request(*, json: Any = None, content: Optional[object] = None, **k
     :keyword json: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
     :paramtype json: Any
     :keyword content: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-    :paramtype content: object
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

@@ -97,7 +97,7 @@ def build_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_float_request(*, json: Any = None, content: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_put_big_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put big float value 3.402823e+20.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -105,7 +105,7 @@ def build_put_big_float_request(*, json: Any = None, content: Optional[float] = 
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -152,7 +152,7 @@ def build_get_big_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_request(*, json: Any = None, content: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_put_big_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put big double value 2.5976931e+101.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -160,7 +160,7 @@ def build_put_big_double_request(*, json: Any = None, content: Optional[float] =
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -321,7 +321,7 @@ def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_request(*, json: Any = None, content: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put big decimal value 2.5976931e+101.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -329,7 +329,7 @@ def build_put_big_decimal_request(*, json: Any = None, content: Optional[float] 
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -490,7 +490,7 @@ def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_small_float_request(*, json: Any = None, content: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_put_small_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put small float value 3.402823e-20.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -498,7 +498,7 @@ def build_put_small_float_request(*, json: Any = None, content: Optional[float] 
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -545,7 +545,7 @@ def build_get_small_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_small_double_request(*, json: Any = None, content: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_put_small_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put small double value 2.5976931e-101.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -553,7 +553,7 @@ def build_put_small_double_request(*, json: Any = None, content: Optional[float]
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -600,7 +600,7 @@ def build_get_small_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_small_decimal_request(*, json: Any = None, content: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_put_small_decimal_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put small decimal value 2.5976931e-101.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
@@ -608,7 +608,7 @@ def build_put_small_decimal_request(*, json: Any = None, content: Optional[float
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

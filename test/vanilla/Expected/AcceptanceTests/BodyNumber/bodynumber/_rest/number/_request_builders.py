@@ -124,7 +124,7 @@ def build_put_big_float_request(
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -185,7 +185,7 @@ def build_put_big_double_request(
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -368,7 +368,7 @@ def build_put_big_decimal_request(
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -551,7 +551,7 @@ def build_put_small_float_request(
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -612,7 +612,7 @@ def build_put_small_double_request(
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
@@ -673,7 +673,7 @@ def build_put_small_decimal_request(
     :keyword json: number body.
     :paramtype json: Any
     :keyword content: number body.
-    :paramtype content: float
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

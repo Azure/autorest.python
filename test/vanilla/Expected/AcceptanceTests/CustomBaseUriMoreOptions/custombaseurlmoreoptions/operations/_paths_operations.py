@@ -20,7 +20,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models
+from .._rest import paths as rest_paths
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -81,13 +82,13 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.paths.build_get_empty_request(
+        request = rest_paths.build_get_empty_request(
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
             **kwargs
-        )
+        )._internal_request
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),

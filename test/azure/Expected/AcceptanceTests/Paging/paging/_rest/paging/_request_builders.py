@@ -29,6 +29,22 @@ def build_get_no_item_name_pages_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "value": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -53,6 +69,22 @@ def build_get_null_next_link_name_pages_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -77,6 +109,22 @@ def build_get_single_pages_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -102,6 +150,22 @@ def build_first_response_empty_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "value": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -133,6 +197,22 @@ def build_get_multiple_pages_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
@@ -144,13 +224,13 @@ def build_get_multiple_pages_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     if client_request_id is not None:
         header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if timeout is not None:
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -170,6 +250,22 @@ def build_get_with_query_params_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     required_query_parameter = kwargs.pop("required_query_parameter")  # type: int
     query_constant = True
@@ -203,6 +299,22 @@ def build_next_operation_with_query_params_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     query_constant = True
     accept = "application/json"
@@ -239,6 +351,22 @@ def build_get_odata_multiple_pages_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "odata.nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
@@ -250,13 +378,13 @@ def build_get_odata_multiple_pages_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     if client_request_id is not None:
         header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if timeout is not None:
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -282,6 +410,22 @@ def build_get_multiple_pages_with_offset_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
@@ -297,13 +441,13 @@ def build_get_multiple_pages_with_offset_request(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     if client_request_id is not None:
         header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if timeout is not None:
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -320,6 +464,22 @@ def build_get_multiple_pages_retry_first_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -345,6 +505,22 @@ def build_get_multiple_pages_retry_second_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -369,6 +545,22 @@ def build_get_single_pages_failure_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -393,6 +585,22 @@ def build_get_multiple_pages_failure_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -417,6 +625,22 @@ def build_get_multiple_pages_failure_uri_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -446,6 +670,22 @@ def build_get_multiple_pages_fragment_next_link_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "odata.nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
@@ -484,6 +724,22 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "odata.nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
@@ -524,6 +780,22 @@ def build_get_multiple_pages_lro_request_initial(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 202
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
     maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
@@ -535,13 +807,13 @@ def build_get_multiple_pages_lro_request_initial(
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
     if client_request_id is not None:
         header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if timeout is not None:
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -565,6 +837,22 @@ def build_next_fragment_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "odata.nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
@@ -607,6 +895,22 @@ def build_next_fragment_with_grouping_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "odata.nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     api_version = kwargs.pop("api_version")  # type: str
     accept = "application/json"
@@ -642,6 +946,22 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 

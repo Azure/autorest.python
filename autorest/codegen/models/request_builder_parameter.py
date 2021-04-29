@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
-from .parameter import Parameter, ParameterLocation, ParameterStyle
+from .parameter import ParameterOnlyPathsPositional, ParameterLocation, ParameterStyle
 from .constant_schema import ConstantSchema
 
 def _make_public(name):
@@ -12,7 +12,7 @@ def _make_public(name):
         return name[1:]
     return name
 
-class RequestBuilderParameter(Parameter):
+class RequestBuilderParameter(ParameterOnlyPathsPositional):
 
     @property
     def in_method_signature(self) -> bool:
@@ -59,10 +59,6 @@ class RequestBuilderParameter(Parameter):
         if self.location == ParameterLocation.Body:
             return None
         return super(RequestBuilderParameter, self).default_value
-
-    @staticmethod
-    def serialize_line(function_name: str, parameters_line: str):
-        return f'_SERIALIZER.{function_name}({parameters_line})'
 
     @property
     def is_kwarg(self) -> bool:

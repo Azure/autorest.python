@@ -36,7 +36,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         request = _rest.build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
-        )
+        )._internal_request
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

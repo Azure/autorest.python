@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import _rest
+from .._rest import http_success as rest_http_success
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -65,7 +65,9 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.http_success.build_head200_request(template_url=self.head200.metadata["url"], **kwargs)
+        request = rest_http_success.build_head200_request(
+            template_url=self.head200.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -98,7 +100,9 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.http_success.build_head204_request(template_url=self.head204.metadata["url"], **kwargs)
+        request = rest_http_success.build_head204_request(
+            template_url=self.head204.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 
@@ -131,7 +135,9 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.http_success.build_head404_request(template_url=self.head404.metadata["url"], **kwargs)
+        request = rest_http_success.build_head404_request(
+            template_url=self.head404.metadata["url"], **kwargs
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

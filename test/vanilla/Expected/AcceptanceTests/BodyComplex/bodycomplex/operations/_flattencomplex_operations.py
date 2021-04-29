@@ -57,15 +57,15 @@ class FlattencomplexOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> "_models.MyBaseType"
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: MyBaseType, or the result of cls(response)
+        :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyBaseType"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

@@ -28,6 +28,15 @@ def build_get_sample_resource_group_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "location": "str (optional)",
+                "name": "str (optional)"
+            }
     """
     api_version = "2014-04-01-preview"
     accept = "application/json"

@@ -81,9 +81,21 @@ class CodeGenerator(Plugin):
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
+        low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+        no_models = self._autorestapi.get_boolean_value("no-models", False)
+        rest_layer = self._autorestapi.get_boolean_value("rest-layer", False)
+        no_operations = self._autorestapi.get_boolean_value("no-operations", False)
+        only_path_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
+        if low_level_client:
+            no_models = True
+            rest_layer = True
+            no_operations = True
+            only_path_params_positional = True
         code_model = CodeModel(
-            low_level_client=self._autorestapi.get_boolean_value("low-level-client", False),
-            no_models=self._autorestapi.get_boolean_value("no-models", False),
+            rest_layer=rest_layer,
+            no_models=no_models,
+            no_operations=no_operations,
+            only_path_params_positional=only_path_params_positional,
             options=options
         )
         code_model.module_name = yaml_data["info"]["python_title"]
@@ -130,7 +142,7 @@ class CodeGenerator(Plugin):
             code_model.add_schema_link_to_request_builder()
             code_model.add_schema_link_to_global_parameters()
 
-        if not code_model.low_level_client:
+        if not code_model.no_operations:
             _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:

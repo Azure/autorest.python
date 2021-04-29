@@ -55,7 +55,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         request = _rest.build_get_report_request(
             qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs
-        )
+        )._internal_request
         request.url = self._client.format_url(request.url)
         kwargs.pop("content_type", None)
 

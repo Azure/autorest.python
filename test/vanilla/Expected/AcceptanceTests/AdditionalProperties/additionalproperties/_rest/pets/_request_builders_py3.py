@@ -38,6 +38,16 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "": {
+                    "str": "object (optional)"
+                },
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -72,6 +82,17 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "": {
+                    "str": "object (optional)"
+                },
+                "friendly": "bool (optional)",
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "": {
                     "str": "object (optional)"
                 },
@@ -121,6 +142,16 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "": {
+                    "str": "object (optional)"
+                },
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -155,6 +186,16 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "": {
+                    "str": "str (optional)"
+                },
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "": {
                     "str": "str (optional)"
                 },
@@ -203,6 +244,16 @@ def build_create_ap_in_properties_request(*, json: Any = None, content: Any = No
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "additionalProperties": {
+                    "str": "float (optional)"
+                },
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
+            }
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -239,6 +290,20 @@ def build_create_ap_in_properties_with_ap_string_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "": {
+                    "str": "str (optional)"
+                },
+                "@odata.location": "str",
+                "additionalProperties": {
+                    "str": "float (optional)"
+                },
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
                 "": {
                     "str": "str (optional)"
                 },

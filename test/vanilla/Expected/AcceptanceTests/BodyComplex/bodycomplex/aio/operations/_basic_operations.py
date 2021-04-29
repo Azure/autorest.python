@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from .._rest import basic as rest_basic
+from ..._rest import basic as rest_basic
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,15 +50,15 @@ class BasicOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> Any:
+    async def get_valid(self, **kwargs: Any) -> "_models.Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Basic, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -86,11 +86,11 @@ class BasicOperations:
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
+    async def put_valid(self, complex_body: "_models.Basic", **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
-        :type complex_body: Any
+        :type complex_body: ~bodycomplex.models.Basic
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -101,7 +101,7 @@ class BasicOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = complex_body
+        json = self._serialize.body(complex_body, "Basic")
 
         request = rest_basic.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
@@ -123,15 +123,15 @@ class BasicOperations:
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> Any:
+    async def get_invalid(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Basic, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -159,15 +159,15 @@ class BasicOperations:
     get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> Any:
+    async def get_empty(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Basic, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -195,15 +195,15 @@ class BasicOperations:
     get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Any:
+    async def get_null(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Basic, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -231,15 +231,15 @@ class BasicOperations:
     get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> Any:
+    async def get_not_provided(self, **kwargs: Any) -> "_models.Basic":
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: Basic, or the result of cls(response)
+        :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

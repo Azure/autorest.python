@@ -30,6 +30,22 @@ def build_get_pages_partial_url_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -54,6 +70,22 @@ def build_get_pages_partial_url_operation_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 
@@ -81,6 +113,22 @@ def build_get_pages_partial_url_operation_next_request(
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str (optional)",
+                "values": [
+                    {
+                        "properties": {
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    }
+                ]
+            }
     """
     accept = "application/json"
 

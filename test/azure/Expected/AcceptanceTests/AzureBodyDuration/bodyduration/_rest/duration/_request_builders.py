@@ -53,7 +53,7 @@ def build_put_positive_duration_request(
     :keyword json: duration body.
     :paramtype json: Any
     :keyword content: duration body.
-    :paramtype content: ~datetime.timedelta
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
      See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest

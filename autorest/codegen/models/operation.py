@@ -10,7 +10,7 @@ from typing import Callable, cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, get_converted_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter
+from .parameter import Parameter, ParameterOnlyPathsPositional
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -185,13 +185,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_import("warnings", ImportType.STDLIB)
 
         operation_group_name = self.request_builder.operation_group_name
-        rest_import_name = "..{}rest".format("" if code_model.low_level_client else "_")
+        rest_import_path = "..." if async_mode else ".."
+        rest_import_name = "{}rest".format("" if code_model.rest_layer else "_")
         if operation_group_name:
             file_import.add_from_import(
-                rest_import_name, name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
+                f"{rest_import_path}{rest_import_name}", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
             )
         else:
-            file_import.add_import(rest_import_name, import_type=ImportType.LOCAL)
+            file_import.add_from_import(rest_import_path, rest_import_name, import_type=ImportType.LOCAL)
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:
@@ -230,12 +231,16 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         body_param = self.parameters.body[0]
         return f"json = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ ser_ctxt })"
 
+    @staticmethod
+    def get_parameter_converter() -> Callable:
+        return Parameter.from_yaml
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, Parameter.from_yaml)
+        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, cls.get_parameter_converter())
 
         return cls(
             yaml_data=yaml_data,
@@ -255,3 +260,7 @@ class NoModelOperation(Operation):
     @property
     def body_serialization_str(self) -> str:
         return f"json = {self.parameters.body[0].serialized_name}"
+
+    @staticmethod
+    def get_parameter_converter() -> Callable:
+        return ParameterOnlyPathsPositional.from_yaml

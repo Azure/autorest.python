@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from .._rest import readonlyproperty as rest_readonlyproperty
+from ..._rest import readonlyproperty as rest_readonlyproperty
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,15 +50,15 @@ class ReadonlypropertyOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> Any:
+    async def get_valid(self, **kwargs: Any) -> "_models.ReadonlyObj":
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: ReadonlyObj, or the result of cls(response)
+        :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ReadonlyObj"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -102,7 +102,7 @@ class ReadonlypropertyOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.ReadonlyObj(size=size)
-        json = _complex_body
+        json = self._serialize.body(_complex_body, "ReadonlyObj")
 
         request = rest_readonlyproperty.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
