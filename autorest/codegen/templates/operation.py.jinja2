@@ -37,6 +37,10 @@
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(async_mode, return_type=return_type) }}
 :raises: ~azure.core.exceptions.HttpResponseError
+{% if operation.has_example_template and code_model.no_models %}
+
+{{ op_tools.get_example_template(operation, operation.body_kwarg_to_pass_to_request_builder) }}
+{% endif %}
 """{% endmacro %}
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
@@ -54,13 +58,13 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
-    {% if not async_mode %}
-        {% if operation.parameters.kwargs_to_pop %}
-            {% for kwarg in operation.parameters.kwargs_to_pop %}
+    {% if not async_mode and operation.parameters.kwargs_to_pop %}
+
+        {% for kwarg in operation.parameters.kwargs_to_pop %}
     {{ kwarg.pop_from_kwarg | indent }}
-            {% endfor %}
-        {% endif %}
+        {% endfor %}
     {% endif %}
+
     {{ op_tools.get_request_builder(code_model, operation, request_builder, async_mode)|indent }}
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)

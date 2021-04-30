@@ -4,14 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
+from copy import deepcopy
 from collections.abc import MutableSequence
 import logging
-from typing import cast, List, Callable, Optional
+from typing import cast, List, Callable, Optional, TypeVar, Dict, Set
 
 from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
+from .base_schema import BaseSchema
+from .primitive_schemas import IOSchema, ByteArraySchema
 
+T = TypeVar('T')
+OrderedSet = Dict[T, None]
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -21,6 +26,8 @@ class ParameterList(MutableSequence):
         self, parameters: Optional[List[Parameter]] = None
     ) -> None:
         self.parameters = parameters or []
+        self._json_body: Optional[BaseSchema] = None
+        self._multipart_parameters: Optional[Set[Parameter]] = set()
 
     # MutableSequence
 
@@ -61,7 +68,14 @@ class ParameterList(MutableSequence):
         if not self.has_body:
             raise ValueError(f"Can't get body parameter")
         # Should we check if there is two body? Modeler role right?
-        return self.get_from_location(ParameterLocation.Body)
+        body_params = self.get_from_location(ParameterLocation.Body)
+        if not self._json_body:
+            try:
+                json_param = next(p for p in body_params if not isinstance(p.schema, IOSchema))
+                self._json_body = deepcopy(json_param.schema)
+            except StopIteration:
+                pass
+        return body_params
 
     @staticmethod
     def _wanted_path_parameter(parameter: Parameter):
@@ -91,10 +105,10 @@ class ParameterList(MutableSequence):
         headers = self.get_from_location(ParameterLocation.Header)
         if not headers:
             return headers
-        return {
+        return list({
             header.serialized_name: header
             for header in headers
-        }.values()
+        }.values())
 
     @property
     def grouped(self) -> List[Parameter]:
@@ -143,15 +157,15 @@ class ParameterList(MutableSequence):
         content_type_params = self.get_from_predicate(
             lambda parameter: parameter.serialized_name == "content_type"
         )
-        content_types = set()
+        content_types: OrderedSet[str] = {}
         for param in content_type_params:
             if isinstance(param.schema, ConstantSchema):
-                content_types.add(param.schema.value)
+                content_types[param.schema.value] = None
             else:
                 # enums
-                content_types.update([v.value for v in param.schema.values])
+                content_types.update({v.value: None for v in param.schema.values})
 
-        return list(content_types)
+        return list(content_types.keys())
 
     @property
     def default_content_type(self) -> str:

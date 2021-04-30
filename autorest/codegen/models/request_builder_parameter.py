@@ -14,6 +14,10 @@ def _make_public(name):
 
 class RequestBuilderParameter(ParameterOnlyPathsPositional):
 
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
+        return f'_SERIALIZER.{function_name}({parameters_line})'
+
     @property
     def in_method_signature(self) -> bool:
         return not(

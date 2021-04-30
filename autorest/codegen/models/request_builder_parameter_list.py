@@ -10,7 +10,7 @@ from typing import List, Optional, Set, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
-from .primitive_schemas import IOSchema, AnySchema
+from .primitive_schemas import IOSchema, AnySchema, ByteArraySchema
 from .dictionary_schema import DictionarySchema
 
 T = TypeVar('T')
@@ -27,8 +27,7 @@ class RequestBuilderParameterList(ParameterList):
             parameters  # type: ignore
         )
         self.body_kwarg_names: OrderedSet[str] = {}
-        self._json_body: Optional[BaseSchema] = None
-        self._multipart_parameters: Optional[Set[RequestBuilderParameter]] = set()
+
 
     @property
     def constant(self) -> List[Parameter]:
@@ -92,7 +91,7 @@ class RequestBuilderParameterList(ParameterList):
                             continue
                     elif parameter.is_partial_body:
                         self._change_body_param_name(parameter, "data")
-                    elif isinstance(parameter.schema, IOSchema) or not any([ct for ct in self.content_types if "json" in ct]):
+                    elif isinstance(parameter.schema, (IOSchema, ByteArraySchema)) or not any([ct for ct in self.content_types if "json" in ct]):
                         self._change_body_param_name(parameter, "content")
                     else:
                         self._change_body_param_name(parameter, "json")

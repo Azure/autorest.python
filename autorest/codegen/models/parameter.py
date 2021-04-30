@@ -345,7 +345,3 @@ class ParameterOnlyPathsPositional(Parameter):
     @property
     def is_kwarg(self) -> bool:
         return not self.location == ParameterLocation.Path
-
-    @staticmethod
-    def serialize_line(function_name: str, parameters_line: str):
-        return f'_SERIALIZER.{function_name}({parameters_line})'

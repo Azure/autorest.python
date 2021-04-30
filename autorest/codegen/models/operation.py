@@ -14,6 +14,8 @@ from .parameter import Parameter, ParameterOnlyPathsPositional
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
+from .list_schema import ListSchema
+from .dictionary_schema import DictionarySchema
 from .request_builder import RequestBuilder
 
 _LOGGER = logging.getLogger(__name__)
@@ -160,7 +162,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.merge(param.imports())
 
         for response in [r for r in self.responses if r.has_body]:
-            file_import.merge(cast(BaseSchema, response.schema).imports())
+            if code_model.no_models:
+                file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
+            else:
+                file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -221,7 +226,13 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def has_example_template(self) -> bool:
-        return False
+        if self.parameters.has_body:
+            body_params = self.parameters.body
+            return any([
+                b for b in body_params
+                if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))
+            ])
+        return bool(self.successful_responses_with_bodies)
 
     @property
     def body_serialization_str(self) -> str:
@@ -229,7 +240,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         ser_ctxt = ", serialization_ctxt=serialization_ctxt" if send_xml else ""
         body_is_xml = ", is_xml=True" if send_xml else ""
         body_param = self.parameters.body[0]
-        return f"json = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ ser_ctxt })"
+        return f"{self.body_kwarg_to_pass_to_request_builder} = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ ser_ctxt })"
 
     @staticmethod
     def get_parameter_converter() -> Callable:
@@ -259,7 +270,7 @@ class NoModelOperation(Operation):
 
     @property
     def body_serialization_str(self) -> str:
-        return f"json = {self.parameters.body[0].serialized_name}"
+        return f"{self.body_kwarg_to_pass_to_request_builder} = {self.parameters.body[0].serialized_name}"
 
     @staticmethod
     def get_parameter_converter() -> Callable:

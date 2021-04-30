@@ -95,14 +95,18 @@ error_map.update(kwargs.pop('error_map', {})){%- endmacro -%}
 response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.serialization_type }}', response.headers.get('{{ response_header.name }}'))
 {% endfor %}{% endmacro %}
 
-{% macro response_headers_and_deserialization(response) %}
+{% macro response_headers_and_deserialization(response, code_model) %}
 {% if response.headers %}
 {{ response_headers(response) }}
     {% endif %}
     {% if response.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
     {% elif response.has_body %}
+        {% if code_model.no_models %}
+deserialized = _loads(response.text())
+        {% else %}
 deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
+        {% endif %}
     {% endif %}
 {% endmacro %}
 
@@ -173,7 +177,7 @@ serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 if {{ operation.parameters.body[0].serialized_name }} is not None:
     {{ operation.body_serialization_str }}
 else:
-    json = None
+    {{ operation.body_kwarg_to_pass_to_request_builder }} = None
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(operation, schema_request) %}
@@ -248,12 +252,12 @@ response_headers = {}
       {% set response =  operation.get_response_from_status(status_code) %}
       {% if response.headers or response.has_body %}
 if response.status_code == {{ status_code }}:
-    {{ response_headers_and_deserialization(response)|indent }}
+    {{ response_headers_and_deserialization(response, code_model)|indent }}
       {% endif %}
     {% endfor %}
   {% else %}
     {% set response = operation.responses[0] %}
-{{ response_headers_and_deserialization(response) }}
+{{ response_headers_and_deserialization(response, code_model) }}
   {% endif %}
 {% endif %}
 if cls:
@@ -310,3 +314,22 @@ request = {{ "_" if not operation_group_name and not code_model.rest_layer }}res
 {% endif %}
 request.url = self._client.format_url(request.url{{ ", **path_format_arguments" if operation.parameters.path else "" }})
 kwargs.pop("content_type", None){% endmacro %}
+
+{% macro get_example_template(builder, body_kwargs) %}
+Example:
+    .. code-block:: python
+{% if builder.parameters.has_body and "json" in body_kwargs %}
+
+        # JSON input template you can fill out and use as your `json` input.
+        json = {{ builder.parameters.get_json_template_representation() | indent(8)}}
+{% elif builder.parameters.has_body and "files" in body_kwargs %}
+
+        # multipart input template you can fill out and use as your `files` input.
+        files = {{ builder.parameters.get_files_template_representation() | indent(8)}}
+{% elif builder.successful_responses_with_bodies | first %}
+
+    {% for response in builder.successful_responses_with_bodies %}
+        # response body for status code(s): {{ response.status_codes | join(', ') }}
+        response_body == {{ response.get_json_template_representation() | indent(8) }}
+    {% endfor %}
+{% endif %}{% endmacro %}

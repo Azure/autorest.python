@@ -32,6 +32,10 @@
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(async_mode) }}
 :raises: ~azure.core.exceptions.HttpResponseError
+{% if operation.has_example_template and code_model.no_models %}
+
+{{ op_tools.get_example_template(operation, operation.body_kwarg_to_pass_to_request_builder) }}
+{% endif %}
 """{% endmacro %}
 {% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {# actual template starts here #}
@@ -49,6 +53,12 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
+    {% if not async_mode and operation.parameters.kwargs_to_pop %}
+
+        {% for kwarg in operation.parameters.kwargs_to_pop %}
+    {{ kwarg.pop_from_kwarg | indent }}
+        {% endfor %}
+    {% endif %}
     {{ helper.paging_operation(code_model, operation, async_mode) }}
 
     return {{ operation.get_pager(async_mode) }}(

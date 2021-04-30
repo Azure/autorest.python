@@ -65,16 +65,17 @@ class {{ code_model.class_name }}({{ base_class }}):
             {% else %}
         client_models = {}  # type: Dict[str, Any]
             {% endif %}
-        self._serialize = Serializer({{ "client_models" if code_model.sorted_schemas }})
-        self._deserialize = Deserializer(client_models)
+        {% endif %}
+        self._serialize = {{ "Serializer()" if code_model.no_models else "Serializer(client_models)" }}
+        self._deserialize = {{ "Deserializer()" if code_model.no_models else "Deserializer(client_models)" }}
+        {% if not code_model.options['client_side_validation'] %}
+        self._serialize.client_side_validation = False
+        {% endif %}
+        {% if code_model.operation_groups %}
             {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
         self.{{ operation_group.name }} = {{ operation_group.class_name }}(
             self._client, self._config, self._serialize, self._deserialize)
             {% endfor %}
-        {% endif %}
-        self._serialize = {{ "Serializer()" if code_model.no_models else "Serializer(client_models)" }}
-        {% if not code_model.options['client_side_validation'] %}
-        self._serialize.client_side_validation = False
         {% endif %}
 
     {% set http_response = keywords.async_class + "HttpResponse" %}

@@ -26,25 +26,7 @@
     :rtype: ~{{ core_import }}.HttpRequest
     {% if request_builder.has_example_template %}
 
-    Example:
-        .. code-block:: python
-    {% endif %}
-    {% if request_builder.parameters.has_body and "json" in request_builder.parameters.body_kwarg_names.keys() %}
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {{ request_builder.parameters.get_json_template_representation() | indent(12)}}
-    {% endif %}
-    {% if request_builder.parameters.has_body and "files" in request_builder.parameters.body_kwarg_names.keys() %}
-
-            # multipart input template you can fill out and use as your `files` input.
-            files = {{ request_builder.parameters.get_files_template_representation() | indent(12)}}
-    {% endif %}
-    {% if request_builder.successful_responses_with_bodies | first %}
-
-        {% for response in request_builder.successful_responses_with_bodies %}
-            # response body for status code(s): {{ response.status_codes | join(', ') }}
-            response.json() == {{ response.get_json_template_representation() | indent(12) }}
-        {% endfor %}
+    {{ op_tools.get_example_template(request_builder, request_builder.parameters.body_kwarg_names) | indent }}
     {% endif %}
     """
 {% if not is_python_3_file %}
