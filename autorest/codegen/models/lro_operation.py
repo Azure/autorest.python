@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set, cast
+from typing import Callable, Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation, NoModelOperation
 from .parameter_list import ParameterList
@@ -76,10 +76,14 @@ class LROOperation(Operation):
         return response
 
     @property
+    def schema_of_initial_operation(self) -> Callable:
+        return Operation
+
+    @property
     def initial_operation(self) -> Operation:
-        operation = Operation(
+        operation = self.schema_of_initial_operation(
             yaml_data={},
-            name=self.name.strip("begin") + "_initial",
+            name=self.name[5:] + "_initial",
             description="",
             api_versions=self.api_versions,
             parameters=self.parameters,
@@ -162,4 +166,7 @@ class LROOperation(Operation):
         return file_import
 
 class NoModelLROOperation(LROOperation, NoModelOperation):
-    pass
+
+    @property
+    def schema_of_initial_operation(self) -> Callable:
+        return NoModelOperation

@@ -95,8 +95,8 @@ class RequestBuilderParameterList(ParameterList):
                         self._change_body_param_name(parameter, "content")
                     else:
                         self._change_body_param_name(parameter, "json")
-                        if not self._json_body:
-                            self._json_body = deepcopy(parameter.schema)
+                        if not self.json_body:
+                            self.json_body = deepcopy(parameter.schema)
                         parameter.schema = AnySchema(namespace="", yaml_data={})
                     body_kwargs.append(parameter)
                 elif not parameter.default_value and parameter.required:

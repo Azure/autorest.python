@@ -26,7 +26,7 @@ class ParameterList(MutableSequence):
         self, parameters: Optional[List[Parameter]] = None
     ) -> None:
         self.parameters = parameters or []
-        self._json_body: Optional[BaseSchema] = None
+        self.json_body: Optional[BaseSchema] = None
         self._multipart_parameters: Optional[Set[Parameter]] = set()
 
     # MutableSequence
@@ -69,10 +69,10 @@ class ParameterList(MutableSequence):
             raise ValueError(f"Can't get body parameter")
         # Should we check if there is two body? Modeler role right?
         body_params = self.get_from_location(ParameterLocation.Body)
-        if not self._json_body:
+        if not self.json_body:
             try:
                 json_param = next(p for p in body_params if not isinstance(p.schema, IOSchema))
-                self._json_body = deepcopy(json_param.schema)
+                self.json_body = deepcopy(json_param.schema)
             except StopIteration:
                 pass
         return body_params
@@ -257,7 +257,7 @@ class ParameterList(MutableSequence):
         return json.dumps(template, sort_keys=True, indent=4)
 
     def get_json_template_representation(self) -> str:
-        return json.dumps(self._json_body.get_json_template_representation(), sort_keys=True, indent=4)
+        return json.dumps(self.json_body.get_json_template_representation(), sort_keys=True, indent=4)
 
 class GlobalParameterList(ParameterList):
 

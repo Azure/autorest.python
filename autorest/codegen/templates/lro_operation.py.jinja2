@@ -32,9 +32,9 @@
 {{ helper.lro_operation(code_model, operation, async_mode) }}
 
     def get_long_running_output(pipeline_response):
+        response = pipeline_response.http_response
         {% if operation.lro_response.has_headers %}
         response_headers = {}
-        response = pipeline_response.http_response
         {% endif %}
         {% if operation.lro_response %}
         {{ op_tools.response_headers_and_deserialization(operation.lro_response, code_model)|indent(8) }}

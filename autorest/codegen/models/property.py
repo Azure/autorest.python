@@ -130,6 +130,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return callable(**kwargs)
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
+        if self.is_discriminator:
+            return self.name
         return self._get_template_representation(
             callable=self.schema.get_json_template_representation,
             **kwargs

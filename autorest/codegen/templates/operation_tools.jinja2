@@ -319,6 +319,12 @@ kwargs.pop("content_type", None){% endmacro %}
 Example:
     .. code-block:: python
 {% if builder.parameters.has_body and "json" in body_kwargs %}
+    {% set discriminator_name = builder.parameters.json_body.discriminator_name %}
+    {% if discriminator_name %}
+
+        # {{ discriminator_name }} template as part of your input body
+        {{ discriminator_name }} = '{{ builder.parameters.json_body.subtype_map.values()|join("' or '") }}'
+    {% endif %}
 
         # JSON input template you can fill out and use as your `json` input.
         json = {{ builder.parameters.get_json_template_representation() | indent(8)}}
