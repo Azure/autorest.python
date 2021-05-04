@@ -26,7 +26,18 @@
     :rtype: ~{{ core_import }}.HttpRequest
     {% if request_builder.has_example_template %}
 
-    {{ op_tools.get_example_template(request_builder, request_builder.parameters.body_kwarg_names) | indent }}
+    {{ op_tools.get_example_template() | indent }}
+        {% if request_builder.parameters.has_body %}
+            {% if "json" in request_builder.parameters.body_kwarg_names %}
+    {{ op_tools.get_json_example_template(request_builder, "json", code_model, serialize_json_dict) | indent(12) }}
+            {% endif %}
+            {% if "files" in request_builder.parameters.body_kwarg_names %}
+    {{ op_tools.get_files_example_template(request_builder) | indent(12) }}
+            {% endif %}
+        {% endif %}
+        {% if request_builder.get_json_response_template_to_status_codes() | first %}
+    {{ op_tools.get_json_response_template(request_builder) | indent(12) }}
+        {% endif %}
     {% endif %}
     """
 {% if not is_python_3_file %}

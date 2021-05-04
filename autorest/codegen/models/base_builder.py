@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import json
+from collections import defaultdict
 from typing import Any, Callable, Dict, List, Optional, Union
 from abc import abstractmethod
 from .base_model import BaseModel
@@ -76,16 +76,17 @@ class BaseBuilder(BaseModel):
         self.responses = responses or []
         self.summary = summary
 
-    @property
-    def successful_responses_with_bodies(self) -> List[SchemaResponse]:
+    def get_json_response_template_to_status_codes(self) -> Dict[str, List[Union[str, int]]]:
         # successful status codes of responses that have bodies
-
-        return [
+        responses = [
             response for response in self.responses
             if any(code in self.success_status_code for code in response.status_codes)
             and isinstance(response.schema, (DictionarySchema, ListSchema, ObjectSchema))
         ]
-
+        retval = defaultdict(list)
+        for response in responses:
+            retval[response.get_json_template_representation()].extend(response.status_codes)
+        return retval
 
     @property
     def default_content_type_declaration(self) -> str:

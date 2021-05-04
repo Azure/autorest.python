@@ -3,11 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import json
 from jinja2 import Environment
 
 from .import_serializer import FileImportSerializer
 from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
 
+def serialize_json_dict(template_representation):
+    return json.dumps(template_representation, sort_keys=True, indent=4)
 
 class OperationGroupSerializer:
     def __init__(
@@ -44,4 +47,5 @@ class OperationGroupSerializer:
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,
+            serialize_json_dict=serialize_json_dict,
         )

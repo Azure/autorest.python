@@ -131,7 +131,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         if self.is_discriminator:
-            return self.name
+            return kwargs.pop("discriminator_value", None) or self.name
+        try:
+            if self.schema.discriminator_name:
+                return self.name
+        except AttributeError:
+            pass
         return self._get_template_representation(
             callable=self.schema.get_json_template_representation,
             **kwargs

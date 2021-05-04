@@ -1,7 +1,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% macro paging_operation(code_model, operation, async_mode, success_status_code=operation.success_status_code) %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_builder = operation.request_builder %}
 cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
@@ -18,15 +17,24 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
                 {% if operation.parameters.path %}
             {{ op_tools.path_format_arguments(operation.parameters.path)|indent(12) }}
                 {% endif %}
-            request._internal_request.method = "GET"
+            request.method = "GET"
             request.url = self._client.format_url(next_link{{", **path_format_arguments" if operation.parameters.path}})
             {% endif %}
         return request
 
     {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
-        list_of_elem = deserialized.{{ operation.item_name }}
+        {% if code_model.no_models %}
+            {% set deserialized_str = "_loads(pipeline_response.http_response.text())" %}
+            {% set list_of_elem_str = "deserialized.get('" + (operation._item_name if operation._item_name else "value") + "', [])" %}
+            {% set next_link_str = "deserialized.get('" + operation._next_link_name + "', None)" if operation._next_link_name else "None" %}
+        {% else %}
+            {% set deserialized_str = "self._deserialize('" + response.serialization_type + "', pipeline_response)" %}
+            {% set list_of_elem_str = "deserialized." + operation.item_name %}
+            {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
+        {% endif %}
+        deserialized = {{ deserialized_str }}
+        list_of_elem = {{ list_of_elem_str }}
         if cls:
             list_of_elem = cls(list_of_elem)
         {% if async_mode %}

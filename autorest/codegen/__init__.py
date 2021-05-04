@@ -275,6 +275,7 @@ class CodeGenerator(Plugin):
                 _get_credential_default_policy_type_has_async_version(credential_default_policy_type)
             ),
             "vendor": self._autorestapi.get_boolean_value("vendor", False),
+            "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples"),
         }
 
         if options["basic_setup_py"] and not options["package_version"]:

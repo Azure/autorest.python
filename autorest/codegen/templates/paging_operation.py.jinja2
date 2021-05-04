@@ -34,8 +34,15 @@
 :raises: ~azure.core.exceptions.HttpResponseError
 {% if operation.has_example_template and code_model.no_models %}
 
-{{ op_tools.get_example_template(operation, operation.body_kwarg_to_pass_to_request_builder) }}
-{% endif %}
+{{ op_tools.get_example_template() }}
+    {% if operation.parameters.has_body %}
+
+{{ op_tools.get_json_example_template(operation, operation.parameters.body[0].serialized_name, code_model, serialize_json_dict) | indent(8) }}
+    {% endif %}
+    {% if operation.get_json_response_template_to_status_codes() | first %}
+
+{{ op_tools.get_json_response_template(operation) | indent(8) }}
+    {% endif %}{% endif %}
 """{% endmacro %}
 {% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {# actual template starts here #}

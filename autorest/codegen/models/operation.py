@@ -170,6 +170,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
+        if self.is_stream_response:
+            file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
         file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -232,7 +235,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 b for b in body_params
                 if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))
             ])
-        return bool(self.successful_responses_with_bodies)
+        return bool(self.get_json_response_template_to_status_codes())
 
     @property
     def body_serialization_str(self) -> str:
@@ -270,7 +273,7 @@ class NoModelOperation(Operation):
 
     @property
     def body_serialization_str(self) -> str:
-        return f"{self.body_kwarg_to_pass_to_request_builder} = {self.parameters.body[0].serialized_name}"
+        return f"{self.body_kwarg_to_pass_to_request_builder} = self._serialize.body({self.parameters.body[0].serialized_name}, 'object')"
 
     @staticmethod
     def get_parameter_converter() -> Callable:

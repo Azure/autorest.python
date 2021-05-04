@@ -140,4 +140,4 @@ class RequestBuilder(BaseBuilder):
         if self.parameters.has_body:
             body_kwargs = set(self.parameters.body_kwarg_names.keys())
             return bool(body_kwargs.intersection({"json", "files"}))
-        return bool(self.successful_responses_with_bodies)
+        return bool(self.get_json_response_template_to_status_codes())

@@ -315,27 +315,46 @@ request = {{ "_" if not operation_group_name and not code_model.rest_layer }}res
 request.url = self._client.format_url(request.url{{ ", **path_format_arguments" if operation.parameters.path else "" }})
 kwargs.pop("content_type", None){% endmacro %}
 
-{% macro get_example_template(builder, body_kwargs) %}
+{% macro get_example_template() %}
 Example:
     .. code-block:: python
-{% if builder.parameters.has_body and "json" in body_kwargs %}
-    {% set discriminator_name = builder.parameters.json_body.discriminator_name %}
-    {% if discriminator_name %}
+{% endmacro %}
 
-        # {{ discriminator_name }} template as part of your input body
-        {{ discriminator_name }} = '{{ builder.parameters.json_body.subtype_map.values()|join("' or '") }}'
+{% macro get_json_example_template(builder, param_name, code_model, serialize_json_dict) %}
+
+{% set json_body = builder.parameters.json_body %}
+{% set discriminator_name = json_body.discriminator_name %}
+{% if discriminator_name %}
+# {{ discriminator_name }} template as part of your input body
+{{ discriminator_name }} = '{{ json_body.subtype_map.values()|join("' or '") }}'
+
+{% endif %}
+{% set property_with_discriminator = json_body.property_with_discriminator %}
+{% if property_with_discriminator %}
+# '{{ property_with_discriminator.name }}' can be defined the following ways:
+{% for schema in code_model.sorted_schemas | selectattr("name", "in", property_with_discriminator.schema.subtype_map.values()) %}
+    {% if schema.description %}
+# {{ schema.description }}
     {% endif %}
+{{ property_with_discriminator.name }} = {{ serialize_json_dict(schema.get_json_template_representation()) }}
+    {% if not loop.last %}
+# OR
+    {% endif %}
+{% endfor %}
 
-        # JSON input template you can fill out and use as your `json` input.
-        json = {{ builder.parameters.get_json_template_representation() | indent(8)}}
-{% elif builder.parameters.has_body and "files" in body_kwargs %}
+{% endif %}
+# JSON input template you can fill out and use as your `json` input.
+{{ param_name }} = {{ builder.parameters.get_json_template_representation()}}
+{% endmacro %}
 
-        # multipart input template you can fill out and use as your `files` input.
-        files = {{ builder.parameters.get_files_template_representation() | indent(8)}}
-{% elif builder.successful_responses_with_bodies | first %}
+{% macro get_files_example_template(builder) %}
+# multipart input template you can fill out and use as your `files` input.
+files = {{ builder.parameters.get_files_template_representation()}}
+{% endmacro %}
 
-    {% for response in builder.successful_responses_with_bodies %}
-        # response body for status code(s): {{ response.status_codes | join(', ') }}
-        response_body == {{ response.get_json_template_representation() | indent(8) }}
-    {% endfor %}
-{% endif %}{% endmacro %}
+{% macro get_json_response_template(builder) %}
+
+{% for response_body, status_codes in builder.get_json_response_template_to_status_codes().items() %}
+# response body for status code(s): {{ status_codes | join(', ') }}
+response_body == {{ response_body}}
+{% endfor %}{% endmacro %}

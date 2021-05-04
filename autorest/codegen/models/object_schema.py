@@ -77,6 +77,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         kwargs["object_schema_name"] = self.name # do this to avoid circular
+        if self.discriminator_value:
+            kwargs["discriminator_value"] = self.discriminator_value
         return {
             "{}".format(
                 prop.original_swagger_name
@@ -184,9 +186,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return any(x.readonly or x.constant for x in self.properties)
 
     @property
-    def discriminator_property(self) -> Any:
+    def property_with_discriminator(self) -> Any:
         try:
-            return next(p for p in self.properties if p.is_discriminator)
+            return next(p for p in self.properties if getattr(p.schema, "discriminator_name", None))
         except StopIteration:
             return None
 
