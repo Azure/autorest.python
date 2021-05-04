@@ -108,8 +108,10 @@ def build_put400_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -145,8 +147,10 @@ def build_patch400_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -182,8 +186,10 @@ def build_post400_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -219,8 +225,10 @@ def build_delete400_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -352,8 +360,10 @@ def build_put404_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -389,8 +399,10 @@ def build_patch405_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -426,8 +438,10 @@ def build_post406_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -463,8 +477,10 @@ def build_delete407_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -500,8 +516,10 @@ def build_put409_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -633,8 +651,10 @@ def build_put413_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -670,8 +690,10 @@ def build_patch414_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -707,8 +729,10 @@ def build_post415_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -768,8 +792,10 @@ def build_delete417_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

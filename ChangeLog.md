@@ -1,5 +1,25 @@
 # Change Log
 
+### 2021-04-20 - 5.7.0
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix data plane LRO operations so they poll by default. Bumping minor version because this bug fix will change some default behavior. #936
+
+### 2021-04-07 - 5.6.6
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix docstrings so they don't get split on hyphens  #931
+
 ### 2021-04-07 - 5.6.5
 
 min Autorest core version: 3.1.0

@@ -60,8 +60,10 @@ def build_put500_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -97,8 +99,10 @@ def build_patch500_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -182,8 +186,10 @@ def build_post503_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -219,8 +225,10 @@ def build_delete503_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -256,8 +264,10 @@ def build_put504_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -293,8 +303,10 @@ def build_patch504_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

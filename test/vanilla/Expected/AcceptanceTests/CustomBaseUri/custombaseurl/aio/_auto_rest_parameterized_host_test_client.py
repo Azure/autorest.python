@@ -36,7 +36,6 @@ class AutoRestParameterizedHostTestClient(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self._serialize = Serializer(client_models)
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.

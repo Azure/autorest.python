@@ -36,12 +36,14 @@ def build_update_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "tags": {
                     "str": "str"
                 }
             }
+
     """
     content_type = kwargs.pop("content_type", None)
 

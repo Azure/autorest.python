@@ -91,9 +91,9 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "text/plain")
         if input is not None:
-            json = self._serialize.body(input, "str")
+            content = self._serialize.body(input, "str")
         else:
-            json = None
+            content = None
 
         request = _rest.build_content_type_with_encoding_request(
             content=content,

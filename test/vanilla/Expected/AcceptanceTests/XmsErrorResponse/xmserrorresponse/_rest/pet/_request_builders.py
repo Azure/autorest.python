@@ -36,11 +36,13 @@ def build_get_pet_by_id_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "aniType": "str (optional)",
                 "name": "str (optional)"
             }
+
     """
     accept = "application/json"
 
@@ -76,10 +78,12 @@ def build_do_something_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "actionResponse": "str (optional)"
             }
+
     """
     accept = "application/json"
 

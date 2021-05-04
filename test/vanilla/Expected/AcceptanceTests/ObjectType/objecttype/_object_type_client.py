@@ -42,9 +42,8 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer()
-        self._deserialize = Deserializer(client_models)
         self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
     def _send_request(self, http_request, **kwargs):

@@ -37,6 +37,7 @@ def build_put_array_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = [
                 {
@@ -49,6 +50,7 @@ def build_put_array_request(
                     "type": "str (optional)"
                 }
             ]
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -80,8 +82,9 @@ def build_get_array_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == [
+            response_body == [
                 {
                     "id": "str (optional)",
                     "location": "str (optional)",
@@ -95,6 +98,7 @@ def build_get_array_request(
                     "type": "str (optional)"
                 }
             ]
+
     """
     accept = "application/json"
 
@@ -128,12 +132,14 @@ def build_put_wrapped_array_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = [
                 {
                     "value": "str (optional)"
                 }
             ]
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -166,12 +172,14 @@ def build_get_wrapped_array_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == [
+            response_body == [
                 {
                     "value": "str (optional)"
                 }
             ]
+
     """
     accept = "application/json"
 
@@ -204,6 +212,7 @@ def build_put_dictionary_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "str": {
@@ -219,6 +228,7 @@ def build_put_dictionary_request(
                     "type": "str (optional)"
                 }
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -250,8 +260,9 @@ def build_get_dictionary_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "str": {
                     "id": "str (optional)",
                     "location": "str (optional)",
@@ -265,6 +276,7 @@ def build_get_dictionary_request(
                     "type": "str (optional)"
                 }
             }
+
     """
     accept = "application/json"
 
@@ -297,6 +309,7 @@ def build_put_resource_collection_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "arrayofresources": [
@@ -340,6 +353,7 @@ def build_put_resource_collection_request(
                     "type": "str (optional)"
                 }
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -371,8 +385,9 @@ def build_get_resource_collection_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "arrayofresources": [
                     {
                         "id": "str (optional)",
@@ -414,6 +429,7 @@ def build_get_resource_collection_request(
                     "type": "str (optional)"
                 }
             }
+
     """
     accept = "application/json"
 
@@ -446,6 +462,7 @@ def build_put_simple_product_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "@odata.value": "str (optional)",
@@ -456,8 +473,9 @@ def build_put_simple_product_request(
                 "max_product_display_name": "str (optional)"
             }
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "@odata.value": "str (optional)",
                 "base_product_description": "str (optional)",
                 "base_product_id": "str",
@@ -465,6 +483,7 @@ def build_put_simple_product_request(
                 "max_product_capacity": "str (optional)",
                 "max_product_display_name": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -500,6 +519,7 @@ def build_post_flattened_simple_product_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "@odata.value": "str (optional)",
@@ -510,8 +530,9 @@ def build_post_flattened_simple_product_request(
                 "max_product_display_name": "str (optional)"
             }
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "@odata.value": "str (optional)",
                 "base_product_description": "str (optional)",
                 "base_product_id": "str",
@@ -519,6 +540,7 @@ def build_post_flattened_simple_product_request(
                 "max_product_capacity": "str (optional)",
                 "max_product_display_name": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -557,6 +579,7 @@ def build_put_simple_product_with_grouping_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "@odata.value": "str (optional)",
@@ -567,8 +590,9 @@ def build_put_simple_product_with_grouping_request(
                 "max_product_display_name": "str (optional)"
             }
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "@odata.value": "str (optional)",
                 "base_product_description": "str (optional)",
                 "base_product_id": "str",
@@ -576,6 +600,7 @@ def build_put_simple_product_with_grouping_request(
                 "max_product_capacity": "str (optional)",
                 "max_product_display_name": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

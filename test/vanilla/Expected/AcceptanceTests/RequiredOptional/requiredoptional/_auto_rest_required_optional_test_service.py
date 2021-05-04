@@ -63,7 +63,6 @@ class AutoRestRequiredOptionalTestService(object):
         self._deserialize = Deserializer(client_models)
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
-        self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse

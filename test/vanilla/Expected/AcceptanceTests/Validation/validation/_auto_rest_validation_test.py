@@ -48,7 +48,6 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse

@@ -42,8 +42,9 @@ def build_validation_of_method_parameters_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "capacity": "int (optional)",
                 "child": {
                     "constProperty": "str",
@@ -61,6 +62,7 @@ def build_validation_of_method_parameters_request(
                 ],
                 "image": "str (optional)"
             }
+
     """
     api_version = "1.0.0"
     accept = "application/json"
@@ -115,6 +117,7 @@ def build_validation_of_body_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "capacity": "int (optional)",
@@ -135,8 +138,9 @@ def build_validation_of_body_request(
                 "image": "str (optional)"
             }
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "capacity": "int (optional)",
                 "child": {
                     "constProperty": "str",
@@ -154,6 +158,7 @@ def build_validation_of_body_request(
                 ],
                 "image": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     api_version = "1.0.0"
@@ -226,6 +231,7 @@ def build_post_with_constant_in_body_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "capacity": "int (optional)",
@@ -246,8 +252,9 @@ def build_post_with_constant_in_body_request(
                 "image": "str (optional)"
             }
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "capacity": "int (optional)",
                 "child": {
                     "constProperty": "str",
@@ -265,6 +272,7 @@ def build_post_with_constant_in_body_request(
                 ],
                 "image": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     constant_param = "constant"

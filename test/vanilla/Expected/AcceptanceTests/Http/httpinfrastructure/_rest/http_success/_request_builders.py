@@ -108,8 +108,10 @@ def build_put200_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -145,8 +147,10 @@ def build_patch200_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -182,8 +186,10 @@ def build_post200_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -219,8 +225,10 @@ def build_delete200_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -256,8 +264,10 @@ def build_put201_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -293,8 +303,10 @@ def build_post201_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -330,8 +342,10 @@ def build_put202_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -367,8 +381,10 @@ def build_patch202_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -404,8 +420,10 @@ def build_post202_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -441,8 +459,10 @@ def build_delete202_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -502,8 +522,10 @@ def build_put204_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -539,8 +561,10 @@ def build_patch204_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -576,8 +600,10 @@ def build_post204_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -613,8 +639,10 @@ def build_delete204_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

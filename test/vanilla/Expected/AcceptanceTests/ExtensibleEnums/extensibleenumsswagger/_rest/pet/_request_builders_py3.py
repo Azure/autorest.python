@@ -28,12 +28,14 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "DaysOfWeek": "str (optional). Default value is \"Friday\"",
                 "IntEnum": "str",
                 "name": "str (optional)"
             }
+
     """
     accept = "application/json"
 
@@ -67,6 +69,7 @@ def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "DaysOfWeek": "str (optional). Default value is \"Friday\"",
@@ -74,12 +77,14 @@ def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
                 "name": "str (optional)"
             }
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "DaysOfWeek": "str (optional). Default value is \"Friday\"",
                 "IntEnum": "str",
                 "name": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

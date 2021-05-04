@@ -50,8 +50,10 @@ def build_put_positive_duration_request(*, json: Any = None, content: Any = None
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "timedelta (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

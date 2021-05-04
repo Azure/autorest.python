@@ -233,8 +233,8 @@ class BlobProperties(msrest.serialization.Model):
     :type access_tier: str or ~xmlservice.models.AccessTier
     :param access_tier_inferred:
     :type access_tier_inferred: bool
-    :param archive_status:  Possible values include: "rehydrate-pending-to-hot", "rehydrate-
-     pending-to-cool".
+    :param archive_status:  Possible values include: "rehydrate-pending-to-hot",
+     "rehydrate-pending-to-cool".
     :type archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 

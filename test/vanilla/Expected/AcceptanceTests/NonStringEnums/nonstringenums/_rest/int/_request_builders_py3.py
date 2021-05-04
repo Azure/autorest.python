@@ -29,8 +29,10 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

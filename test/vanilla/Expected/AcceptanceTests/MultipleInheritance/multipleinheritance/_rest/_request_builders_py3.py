@@ -25,11 +25,13 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "isAShowHorse": "bool (optional)",
                 "name": "str"
             }
+
     """
     accept = "application/json"
 
@@ -59,11 +61,13 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "isAShowHorse": "bool (optional)",
                 "name": "str"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -92,10 +96,12 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "name": "str"
             }
+
     """
     accept = "application/json"
 
@@ -125,10 +131,12 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "name": "str"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -157,11 +165,13 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "hisses": "bool (optional)",
                 "meows": "bool (optional)"
             }
+
     """
     accept = "application/json"
 
@@ -191,11 +201,13 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "hisses": "bool (optional)",
                 "meows": "bool (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -224,13 +236,15 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "hisses": "bool (optional)",
                 "likesMilk": "bool (optional)",
                 "meows": "bool (optional)",
                 "name": "str"
             }
+
     """
     accept = "application/json"
 
@@ -261,6 +275,7 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "hisses": "bool (optional)",
@@ -268,6 +283,7 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
                 "meows": "bool (optional)",
                 "name": "str"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -297,14 +313,16 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "eatsMiceYet": "bool (optional)",
                 "hisses": "bool (optional)",
                 "likesMilk": "bool (optional)",
                 "meows": "bool (optional)",
                 "name": "str"
             }
+
     """
     accept = "application/json"
 
@@ -337,6 +355,7 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "eatsMiceYet": "bool (optional)",
@@ -345,6 +364,7 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
                 "meows": "bool (optional)",
                 "name": "str"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

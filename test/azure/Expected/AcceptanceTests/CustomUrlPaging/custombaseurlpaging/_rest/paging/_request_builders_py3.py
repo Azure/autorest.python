@@ -27,8 +27,9 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "nextLink": "str (optional)",
                 "values": [
                     {
@@ -39,6 +40,7 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
                     }
                 ]
             }
+
     """
     accept = "application/json"
 
@@ -64,8 +66,9 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "nextLink": "str (optional)",
                 "values": [
                     {
@@ -76,6 +79,7 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
                     }
                 ]
             }
+
     """
     accept = "application/json"
 
@@ -103,8 +107,9 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "nextLink": "str (optional)",
                 "values": [
                     {
@@ -115,6 +120,7 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
                     }
                 ]
             }
+
     """
     accept = "application/json"
 

@@ -56,10 +56,12 @@ def build_get300_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 300
-            response.json() == [
+            response_body == [
                 "str (optional)"
             ]
+
     """
     accept = "application/json"
 
@@ -141,8 +143,10 @@ def build_put301_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -227,8 +231,10 @@ def build_patch302_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -265,8 +271,10 @@ def build_post303_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -374,8 +382,10 @@ def build_put307_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -411,8 +421,10 @@ def build_patch307_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -448,8 +460,10 @@ def build_post307_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -485,8 +499,10 @@ def build_delete307_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

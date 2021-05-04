@@ -32,13 +32,15 @@ def build_get_complex_type_ref_no_meta_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "RefToModel": {
                     "ID": "str (optional)"
                 },
                 "Something": "str (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -94,13 +96,15 @@ def build_get_complex_type_ref_with_meta_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "RefToModel": {
                     "ID": "str (optional)"
                 },
                 "Something": "str (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -156,8 +160,9 @@ def build_get_simple_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "author": "str (optional)",
                 "date": "str (optional)",
                 "slides": [
@@ -171,6 +176,7 @@ def build_get_simple_request(
                 ],
                 "title": "str (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -228,8 +234,9 @@ def build_get_wrapped_lists_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "BadApples": [
                     "str (optional)"
                 ],
@@ -237,6 +244,7 @@ def build_get_wrapped_lists_request(
                     "str (optional)"
                 ]
             }
+
     """
     accept = "application/xml"
 
@@ -313,8 +321,9 @@ def build_get_empty_list_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "author": "str (optional)",
                 "date": "str (optional)",
                 "slides": [
@@ -328,6 +337,7 @@ def build_get_empty_list_request(
                 ],
                 "title": "str (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -383,8 +393,9 @@ def build_get_empty_wrapped_lists_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "BadApples": [
                     "str (optional)"
                 ],
@@ -392,6 +403,7 @@ def build_get_empty_wrapped_lists_request(
                     "str (optional)"
                 ]
             }
+
     """
     accept = "application/xml"
 
@@ -447,14 +459,16 @@ def build_get_root_list_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == [
+            response_body == [
                 {
                     "expiration": "datetime (optional)",
                     "flavor": "str (optional)",
                     "name": "str (optional)"
                 }
             ]
+
     """
     accept = "application/xml"
 
@@ -510,14 +524,16 @@ def build_get_root_list_single_item_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == [
+            response_body == [
                 {
                     "expiration": "datetime (optional)",
                     "flavor": "str (optional)",
                     "name": "str (optional)"
                 }
             ]
+
     """
     accept = "application/xml"
 
@@ -573,14 +589,16 @@ def build_get_empty_root_list_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == [
+            response_body == [
                 {
                     "expiration": "datetime (optional)",
                     "flavor": "str (optional)",
                     "name": "str (optional)"
                 }
             ]
+
     """
     accept = "application/xml"
 
@@ -636,12 +654,14 @@ def build_get_empty_child_element_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "expiration": "datetime (optional)",
                 "flavor": "str (optional)",
                 "name": "str (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -697,8 +717,9 @@ def build_list_containers_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "Containers": [
                     {
                         "Metadata": {
@@ -721,6 +742,7 @@ def build_list_containers_request(
                 "Prefix": "str",
                 "ServiceEndpoint": "str"
             }
+
     """
     comp = "list"
     accept = "application/xml"
@@ -754,8 +776,9 @@ def build_get_service_properties_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "Cors": [
                     {
                         "AllowedHeaders": "str",
@@ -799,6 +822,7 @@ def build_get_service_properties_request(
                     "Version": "str (optional)"
                 }
             }
+
     """
     comp = "properties"
     restype = "service"
@@ -868,8 +892,9 @@ def build_get_acls_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == [
+            response_body == [
                 {
                     "AccessPolicy": {
                         "Expiry": "datetime",
@@ -879,6 +904,7 @@ def build_get_acls_request(
                     "Id": "str"
                 }
             ]
+
     """
     comp = "acl"
     restype = "container"
@@ -948,8 +974,9 @@ def build_list_blobs_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "Blobs": {
                     "Blob": [
                         {
@@ -1005,6 +1032,7 @@ def build_list_blobs_request(
                 "Prefix": "str",
                 "ServiceEndpoint": "str (optional)"
             }
+
     """
     comp = "list"
     restype = "container"
@@ -1045,10 +1073,12 @@ def build_json_input_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "id": "int (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
 
@@ -1078,10 +1108,12 @@ def build_json_output_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "id": "int (optional)"
             }
+
     """
     accept = "application/json"
 
@@ -1111,11 +1143,13 @@ def build_get_xms_text_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "content": "str (optional)",
                 "language": "str (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -1144,10 +1178,12 @@ def build_get_bytes_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "Bytes": "bytearray (optional)"
             }
+
     """
     accept = "application/xml"
 
@@ -1205,10 +1241,12 @@ def build_get_uri_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "Url": "str (optional)"
             }
+
     """
     accept = "application/xml"
 

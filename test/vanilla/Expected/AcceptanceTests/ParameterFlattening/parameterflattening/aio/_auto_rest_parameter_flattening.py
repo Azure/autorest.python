@@ -36,11 +36,10 @@ class AutoRestParameterFlattening(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
+        self._serialize.client_side_validation = False
         self.availability_sets = AvailabilitySetsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.

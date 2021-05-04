@@ -1089,8 +1089,8 @@ class QueriesOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
-        array format.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the csv-array format.
@@ -1248,8 +1248,8 @@ class QueriesOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-
-        array format.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the ssv-array format.
@@ -1289,8 +1289,8 @@ class QueriesOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-
-        array format.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the tsv-array format.

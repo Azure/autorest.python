@@ -54,55 +54,16 @@ class BasicOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> "_models.Basic"
-        """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplex.models.Basic
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        request = rest_basic.build_get_valid_request(
-            template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
-        request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize("Basic", pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
-
-    @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "_models.Basic"
+        complex_body,  # type: "_models.Boundary"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
-        :type complex_body: ~bodycomplex.models.Basic
+        :type complex_body: ~bodycomplex.models.Boundary
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -113,7 +74,7 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        json = self._serialize.body(complex_body, "Basic")
+        json = self._serialize.body(complex_body, "Boundary")
 
         request = rest_basic.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
@@ -133,159 +94,3 @@ class BasicOperations(object):
             return cls(pipeline_response, None, {})
 
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
-
-    @distributed_trace
-    def get_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> "_models.Basic"
-        """Get a basic complex type that is invalid for the local strong type.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplex.models.Basic
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        request = rest_basic.build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"], **kwargs
-        )._internal_request
-        request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize("Basic", pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
-
-    @distributed_trace
-    def get_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> "_models.Basic"
-        """Get a basic complex type that is empty.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplex.models.Basic
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        request = rest_basic.build_get_empty_request(
-            template_url=self.get_empty.metadata["url"], **kwargs
-        )._internal_request
-        request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize("Basic", pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
-
-    @distributed_trace
-    def get_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> "_models.Basic"
-        """Get a basic complex type whose properties are null.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplex.models.Basic
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        request = rest_basic.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
-        request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize("Basic", pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
-
-    @distributed_trace
-    def get_not_provided(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> "_models.Basic"
-        """Get a basic complex type while the server doesn't provide a response payload.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
-        :rtype: ~bodycomplex.models.Basic
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        request = rest_basic.build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"], **kwargs
-        )._internal_request
-        request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize("Basic", pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/basic/notprovided"}  # type: ignore

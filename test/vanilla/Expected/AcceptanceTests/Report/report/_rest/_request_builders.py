@@ -36,10 +36,12 @@ def build_get_report_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "str": "int (optional)"
             }
+
     """
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
     accept = "application/json"
@@ -78,10 +80,12 @@ def build_get_optional_report_request(
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "str": "int (optional)"
             }
+
     """
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
     accept = "application/json"

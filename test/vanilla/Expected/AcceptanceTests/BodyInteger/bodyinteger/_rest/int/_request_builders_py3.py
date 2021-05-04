@@ -155,8 +155,10 @@ def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -189,8 +191,10 @@ def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "long (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -223,8 +227,10 @@ def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -257,8 +263,10 @@ def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "long (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -312,8 +320,10 @@ def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, *
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "datetime (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

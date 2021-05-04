@@ -50,8 +50,10 @@ def build_put_not_expandable_request(*, json: Any = None, content: Any = None, *
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -105,8 +107,10 @@ def build_put_referenced_request(*, json: Any = None, content: Any = None, **kwa
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -135,11 +139,13 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "ColorConstant": "str",
                 "field1": "str (optional)"
             }
+
     """
     accept = "application/json"
 
@@ -169,11 +175,13 @@ def build_put_referenced_constant_request(*, json: Any = None, content: Any = No
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "ColorConstant": "str",
                 "field1": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

@@ -96,8 +96,10 @@ def build_post_required_integer_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -133,8 +135,10 @@ def build_post_optional_integer_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -171,10 +175,12 @@ def build_post_required_integer_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "int"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -210,10 +216,12 @@ def build_post_optional_integer_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "int (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -308,8 +316,10 @@ def build_post_required_string_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -345,8 +355,10 @@ def build_post_optional_string_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -383,10 +395,12 @@ def build_post_required_string_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "str"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -422,10 +436,12 @@ def build_post_optional_string_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -520,11 +536,13 @@ def build_post_required_class_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "id": "int",
                 "name": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -560,11 +578,13 @@ def build_post_optional_class_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "id": "int",
                 "name": "str (optional)"
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -601,6 +621,7 @@ def build_post_required_class_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": {
@@ -608,6 +629,7 @@ def build_post_required_class_property_request(
                     "name": "str (optional)"
                 }
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -643,6 +665,7 @@ def build_post_optional_class_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": {
@@ -650,6 +673,7 @@ def build_post_optional_class_property_request(
                     "name": "str (optional)"
                 }
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -686,10 +710,12 @@ def build_post_required_array_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = [
                 "str (optional)"
             ]
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -725,10 +751,12 @@ def build_post_optional_array_parameter_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = [
                 "str (optional)"
             ]
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -765,12 +793,14 @@ def build_post_required_array_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": [
                     "str"
                 ]
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -806,12 +836,14 @@ def build_post_optional_array_property_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": [
                     "str (optional)"
                 ]
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

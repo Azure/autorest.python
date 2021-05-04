@@ -33,11 +33,12 @@ def build_upload_file_request(
     Example:
         .. code-block:: python
 
-            # multipart input template you can fill out and use as your `files` input.
+    # multipart input template you can fill out and use as your `files` input.
             files = {
                 "file_content": "IO. File to upload.",
                 "file_name": "str. File name to upload. Name has to be spelled exactly as written here."
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/octet-stream, application/json"
@@ -100,12 +101,13 @@ def build_upload_files_request(
     Example:
         .. code-block:: python
 
-            # multipart input template you can fill out and use as your `files` input.
+    # multipart input template you can fill out and use as your `files` input.
             files = {
                 "file_content": [
                     "IO. Files to upload."
                 ]
             }
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/octet-stream, application/json"

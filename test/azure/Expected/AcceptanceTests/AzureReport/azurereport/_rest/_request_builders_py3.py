@@ -29,10 +29,12 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     Example:
         .. code-block:: python
 
+
             # response body for status code(s): 200
-            response.json() == {
+            response_body == {
                 "str": "int (optional)"
             }
+
     """
     accept = "application/json"
 

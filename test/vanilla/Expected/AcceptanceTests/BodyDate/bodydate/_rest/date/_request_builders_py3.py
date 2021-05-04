@@ -113,8 +113,10 @@ def build_put_max_date_request(*, json: Any = None, content: Any = None, **kwarg
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "date (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -168,8 +170,10 @@ def build_put_min_date_request(*, json: Any = None, content: Any = None, **kwarg
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "date (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

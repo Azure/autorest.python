@@ -1127,8 +1127,8 @@ class PagingOperations:
         :type paging_get_multiple_pages_lro_options: ~custompollerpager.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncCustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
@@ -1247,8 +1247,8 @@ class PagingOperations:
         self,
         **kwargs: Any
     ) -> AsyncIterable["_models.ProductResultValueWithXMSClientName"]:
-        """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
-        name 'indexes'.
+        """A paging operation that returns a paging model whose item name is is overriden by
+        x-ms-client-name 'indexes'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result of cls(response)

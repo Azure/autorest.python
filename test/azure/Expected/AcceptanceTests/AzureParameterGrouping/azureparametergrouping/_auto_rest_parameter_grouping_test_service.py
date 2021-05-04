@@ -50,7 +50,6 @@ class AutoRestParameterGroupingTestService(object):
         self.parameter_grouping = ParameterGroupingOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self._serialize = Serializer(client_models)
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse

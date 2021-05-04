@@ -44,8 +44,10 @@ def build_post_required_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
+
     """
     custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]
     query = kwargs.pop("query", 30)  # type: Optional[int]

@@ -40,12 +40,11 @@ class NonStringEnumsClient(object):
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer()
+        self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
+        self._serialize.client_side_validation = False
         self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
-        self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.

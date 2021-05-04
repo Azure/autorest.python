@@ -133,8 +133,10 @@ def build_put_utc_max_date_time_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "datetime (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -218,8 +220,10 @@ def build_put_utc_min_date_time_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "datetime (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

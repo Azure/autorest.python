@@ -129,8 +129,10 @@ def build_put_optional_body_request(
     Example:
         .. code-block:: python
 
+
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
+
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
