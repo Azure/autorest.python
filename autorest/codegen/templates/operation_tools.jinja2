@@ -332,7 +332,8 @@ Example:
 {% set property_with_discriminator = json_body.property_with_discriminator %}
 {% if property_with_discriminator %}
 # '{{ property_with_discriminator.name }}' can be defined the following ways:
-{% for schema in code_model.sorted_schemas | selectattr("name", "in", property_with_discriminator.schema.subtype_map.values()) %}
+{% set polymorphic_schemas = code_model.sorted_schemas | selectattr("name", "in", property_with_discriminator.schema.subtype_map.values()) | list %}
+{% for schema in polymorphic_schemas[:code_model.options['polymorphic_examples']] %}
     {% if schema.description %}
 # {{ schema.description }}
     {% endif %}
