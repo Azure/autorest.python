@@ -10,7 +10,7 @@
     {{ request_builder.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
     {% endif %}
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your code flow.
 
     {% if request_builder.deprecated -%}
     .. warning::
@@ -22,7 +22,7 @@
     {%- endif %}
     {% set core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest" %}
     :return: Returns an :class:`~{{ core_import }}.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this response into your code flow.
     :rtype: ~{{ core_import }}.HttpRequest
     {% if request_builder.has_example_template %}
 
