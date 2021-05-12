@@ -100,6 +100,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
+        self.deprecated = False
 
     @property
     def python_name(self) -> str:

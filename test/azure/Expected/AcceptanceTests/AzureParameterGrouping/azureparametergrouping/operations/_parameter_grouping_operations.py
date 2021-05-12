@@ -61,7 +61,8 @@ class ParameterGroupingOperations(object):
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Parameter group.
-        :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
+        :type parameter_grouping_post_required_parameters:
+         ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -129,7 +130,8 @@ class ParameterGroupingOperations(object):
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Parameter group.
-        :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
+        :type parameter_grouping_post_optional_parameters:
+         ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -187,7 +189,8 @@ class ParameterGroupingOperations(object):
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
-        :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
+        :type parameter_grouping_post_multi_param_groups_second_param_group:
+         ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

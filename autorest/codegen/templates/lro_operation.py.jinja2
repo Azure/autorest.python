@@ -1,33 +1,13 @@
-{% import 'operation_tools.jinja2' as op_tools %}
-{% import 'lro_operation_helper.jinja2' as helper %}
+{% import 'operation_tools.jinja2' as op_tools with context %}
+{% import 'lro_operation_helper.jinja2' as helper with context %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set operation_name = "begin_"+operation.python_name %}
-{% macro return_docstring(async_mode) %}
-:return: An instance of {{ operation.get_poller(async_mode) }} that returns either {{ operation.responses[0].docstring_text }} or the result of cls(response)
-:rtype: ~{{ operation.get_poller_path(async_mode)}}[{{ operation.responses[0].docstring_type }}]{% endmacro %}
-{% macro response_headers(response) %}
-response_headers = {
-    {% for response_header in response.headers %}
-    '{{ response_header.name }}': self._deserialize('{{ response_header.serialization_type }}', response.headers.get('{{ response_header.name }}')),
-    {% endfor %}
-}
-{% endmacro %}
-{% macro operation_docstring(async_mode) %}
-{{ helper.operation_docstring_helper(code_model, operation, async_mode) }}
-{{ return_docstring(async_mode) }}
-:raises ~azure.core.exceptions.HttpResponseError:
-"""{% endmacro %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{% set return_type_wrapper = [operation.get_poller(async_mode)] %}
-{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
-{%- if not async_mode %}
-    {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
-{% endif %}
-    {{ operation_docstring(async_mode) | indent }}
-{{ helper.lro_operation(code_model, operation, async_mode) }}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
+    {{ op_tools.description(operation, operation_serializer) | indent }}{{ helper.lro_operation() }}
 
     def get_long_running_output(pipeline_response):
         {% if operation.lro_response.has_headers %}
@@ -43,4 +23,4 @@ response_headers = {
         return deserialized
         {% endif %}
 
-{{ helper.lro_operation_return(code_model, operation, async_mode) }}
+{{ helper.lro_operation_return() }}

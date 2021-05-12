@@ -29,7 +29,8 @@ class MultiapiServiceClientOperationsMixin:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v3.models.PagingResult]
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]

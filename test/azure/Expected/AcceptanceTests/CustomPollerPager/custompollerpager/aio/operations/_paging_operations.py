@@ -172,7 +172,8 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~custompollerpagerdefinitions.aio.AsyncCustomPager[~custompollerpager.models.ProductResult]
+        :rtype:
+         ~custompollerpagerdefinitions.aio.AsyncCustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
@@ -296,7 +297,8 @@ class PagingOperations:
         :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group.
-        :type paging_get_multiple_pages_options: ~custompollerpager.models.PagingGetMultiplePagesOptions
+        :type paging_get_multiple_pages_options:
+         ~custompollerpager.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
@@ -445,7 +447,8 @@ class PagingOperations:
         :param client_request_id:
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group.
-        :type paging_get_odata_multiple_pages_options: ~custompollerpager.models.PagingGetOdataMultiplePagesOptions
+        :type paging_get_odata_multiple_pages_options:
+         ~custompollerpager.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.OdataProductResult]
@@ -521,7 +524,8 @@ class PagingOperations:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
-        :type paging_get_multiple_pages_with_offset_options: ~custompollerpager.models.PagingGetMultiplePagesWithOffsetOptions
+        :type paging_get_multiple_pages_with_offset_options:
+         ~custompollerpager.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id:
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1121,16 +1125,21 @@ class PagingOperations:
         :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group.
-        :type paging_get_multiple_pages_lro_options: ~custompollerpager.models.PagingGetMultiplePagesLroOptions
+        :type paging_get_multiple_pages_lro_options:
+         ~custompollerpager.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling.
-         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of AsyncCustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
-        :raises ~azure.core.exceptions.HttpResponseError:
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncCustomPoller that returns an iterator like instance of either
+         ProductResult or the result of cls(response)
+        :rtype:
+         ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
@@ -1237,8 +1246,10 @@ class PagingOperations:
         x-ms-client-name 'indexes'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResultValueWithXMSClientName]
+        :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result
+         of cls(response)
+        :rtype:
+         ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]

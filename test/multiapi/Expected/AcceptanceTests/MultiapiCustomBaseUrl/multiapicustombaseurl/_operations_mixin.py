@@ -28,6 +28,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         id,  # type: int
         **kwargs  # type: Any
     ):
+        # type: (...) -> None
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.
 

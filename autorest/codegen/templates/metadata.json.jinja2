@@ -112,6 +112,7 @@
             {% set operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
             {{ operation_name | tojson }} : {
                 "sync": {
+                    {% set operation_serializer = get_sync_operation_serializer(operation) %}
                     {% if is_lro(operation) and is_paging(operation) %}
                         {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
                         {% set sync_return_type_wrapper = [operation.get_poller(async_mode=False), operation.get_pager(async_mode=False)] %}
@@ -125,11 +126,12 @@
                         {% from "operation.py.jinja2" import operation_docstring with context %}
                         {% set sync_return_type_wrapper = "" %}
                     {% endif %}
-                    "signature": {{ op_tools.method_signature(operation, operation_name, False, False, sync_return_type_wrapper) | tojson }},
-                    "doc": {{ operation_docstring(async_mode=False) | tojson }}
+                    "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation) + "\n") | tojson }},
+                    "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }}
                 },
                 "async": {
                     {% set coroutine = False if is_paging(operation) else True %}
+                    {% set operation_serializer = get_async_operation_serializer(operation) %}
                     "coroutine": {{ coroutine | tojson }},
                     {% if is_lro(operation) and is_paging(operation) %}
                         {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
@@ -144,8 +146,8 @@
                         {% from "operation.py.jinja2" import operation_docstring with context %}
                         {% set async_return_type_wrapper = "" %}
                     {% endif %}
-                    "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
-                    "doc": {{ operation_docstring(async_mode=True) | tojson }}
+                    "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation) + "\n") | tojson }},
+                    "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }}
                 },
                 "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
             }{{ "," if not loop.last else "" }}

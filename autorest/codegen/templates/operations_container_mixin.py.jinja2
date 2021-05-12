@@ -9,6 +9,7 @@
 class {{ operation_group.class_name }}{{ object_base_class }}:
 {% for operation in operation_group.operations %}
 
+{% set operation_serializer = get_operation_serializer(operation) %}
     {% if is_lro(operation) and is_paging(operation) %}
     {%- macro someop() %}{% include "lro_paging_operation.py.jinja2" %}{% endmacro %}
     {% elif is_lro(operation) %}

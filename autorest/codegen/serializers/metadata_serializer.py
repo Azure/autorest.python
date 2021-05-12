@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import functools
 import copy
 import json
 from typing import List, Optional, Set, Tuple, Dict, Union
@@ -17,7 +18,20 @@ from ..models import (
     TokenCredentialSchema,
     ParameterList,
     TypingSection,
-    ImportType
+    ImportType,
+    Operation,
+    LROPagingOperation,
+)
+from .operation_serializer import (
+    SyncOperationSerializer,
+    AsyncOperationSerializer,
+    SyncPagingOperationSerializer,
+    AsyncPagingOperationSerializer,
+    SyncLROOperationSerializer,
+    AsyncLROOperationSerializer,
+    SyncLROPagingOperationSerializer,
+    AsyncLROPagingOperationSerializer,
+    OperationBaseSerializer
 )
 
 def _correct_credential_parameter(global_parameters: ParameterList, async_mode: bool) -> None:
@@ -127,6 +141,17 @@ class MetadataSerializer:
         def _is_paging(operation):
             return isinstance(operation, PagingOperation)
 
+        def _get_operation_serializer(operation: Operation, async_mode: bool) -> OperationBaseSerializer:
+            if isinstance(operation, LROPagingOperation):
+                retcls = AsyncLROPagingOperationSerializer if async_mode else SyncLROPagingOperationSerializer
+            elif isinstance(operation, LROOperation):
+                retcls = AsyncLROOperationSerializer if async_mode else SyncLROOperationSerializer
+            elif isinstance(operation, PagingOperation):
+                retcls = AsyncPagingOperationSerializer if async_mode else SyncPagingOperationSerializer
+            else:
+                retcls = AsyncOperationSerializer if async_mode else SyncOperationSerializer
+            return retcls(self.code_model)
+
         mixin_operation_group: Optional[OperationGroup] = next(
             (operation_group
             for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group),
@@ -183,5 +208,7 @@ class MetadataSerializer:
             ),
             async_config_imports=_json_serialize_imports(
                 config_imports(self.code_model, async_global_parameters, async_mode=True).imports
-            )
+            ),
+            get_async_operation_serializer=functools.partial(_get_operation_serializer, async_mode=True),
+            get_sync_operation_serializer=functools.partial(_get_operation_serializer, async_mode=False),
         )

@@ -95,19 +95,19 @@
         "operations": {
             "test_paging" : {
                 "sync": {
-                    "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
+                    "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e Iterable[\"_models.PagingResult\"]\n",
                     "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "async": {
                     "coroutine": false,
-                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e AsyncItemPaged[\"_models.PagingResult\"]:\n",
+                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e AsyncIterable[\"_models.PagingResult\"]:\n",
                     "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapinoasync.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "call": ""
             },
             "test_different_calls" : {
                 "sync": {
-                    "signature": "def test_different_calls(\n    self,\n    greeting_in_english,  # type: str\n    greeting_in_chinese=None,  # type: Optional[str]\n    greeting_in_french=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+                    "signature": "def test_different_calls(\n    self,\n    greeting_in_english,  # type: str\n    greeting_in_chinese=None,  # type: Optional[str]\n    greeting_in_french=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e None\n",
                     "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test.\n:type greeting_in_chinese: str\n:param greeting_in_french: pass in \u0027bonjour\u0027 to pass test.\n:type greeting_in_french: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "async": {
