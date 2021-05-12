@@ -114,8 +114,7 @@ class HeaderOperations(object):
         via a parameter group.
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
-        :type header_custom_named_request_id_param_grouping_parameters:
-         ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
+        :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

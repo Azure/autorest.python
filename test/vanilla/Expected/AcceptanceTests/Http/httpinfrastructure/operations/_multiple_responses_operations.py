@@ -442,8 +442,7 @@ class MultipleResponsesOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
-         ~httpinfrastructure.models.D
+        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
@@ -495,8 +494,7 @@ class MultipleResponsesOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
-         ~httpinfrastructure.models.D
+        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
@@ -548,8 +546,7 @@ class MultipleResponsesOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
-         ~httpinfrastructure.models.D
+        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
@@ -601,8 +598,7 @@ class MultipleResponsesOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D, or the result of cls(response)
-        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or
-         ~httpinfrastructure.models.D
+        :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]

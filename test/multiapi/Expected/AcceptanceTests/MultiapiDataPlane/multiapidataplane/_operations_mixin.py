@@ -31,22 +31,19 @@ class MultiapiServiceClientOperationsMixin(object):
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["_models.Product"]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
         :type product: ~multiapidataplane.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
+        :keyword polling: By default, your polling method will be LROBasePolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapidataplane.v1.models.Product]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
@@ -67,7 +64,6 @@ class MultiapiServiceClientOperationsMixin(object):
         test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged["_models.PagingResult"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -76,17 +72,13 @@ class MultiapiServiceClientOperationsMixin(object):
         :type test_lro_and_paging_options: ~multiapidataplane.v1.models.TestLroAndPagingOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
+        :keyword polling: By default, your polling method will be LROBasePolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
-         or the result of cls(response)
-        :rtype:
-         ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapidataplane.v1.models.PagingResult]]
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: An instance of LROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
+        :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapidataplane.v1.models.PagingResult]]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro_and_paging')
         if api_version == '1.0.0':
@@ -108,7 +100,6 @@ class MultiapiServiceClientOperationsMixin(object):
         greeting_in_french=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
         """Has added parameters across the API versions.
 
         :param greeting_in_english: pass in 'hello' to pass test.
@@ -145,7 +136,6 @@ class MultiapiServiceClientOperationsMixin(object):
         message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
         """TestOne should be in an FirstVersionOperationsMixin.
 
         :param id: An int parameter.
@@ -176,7 +166,6 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.PagingResult"]
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
