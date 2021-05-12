@@ -236,7 +236,7 @@ class MultiapiServiceClientOperationsMixin:
         return deserialized
     _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
-    async def begin_test_lro_and_paging(
+    def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,

@@ -1114,7 +1114,7 @@ class PagingOperations:
         return deserialized
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
-    async def begin_get_multiple_pages_lro(
+    def begin_get_multiple_pages_lro(
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,

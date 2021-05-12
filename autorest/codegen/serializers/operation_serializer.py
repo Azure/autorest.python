@@ -399,10 +399,6 @@ class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPaging
             [operation.get_pager(async_mode=True)]
         )
 
-    @property
-    def _function_definition(self) -> str:
-        return "async def"
-
     def _response_docstring_text_template(self, operation: LROPagingOperation) -> str:
         lro_doc = AsyncLROOperationSerializer._response_docstring_text_template(self, operation)
         paging_doc = AsyncPagingOperationSerializer._response_docstring_text_template(self, operation)

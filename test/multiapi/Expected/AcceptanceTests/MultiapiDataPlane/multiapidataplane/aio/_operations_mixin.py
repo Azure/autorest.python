@@ -57,7 +57,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return await mixin_instance.begin_test_lro(product, **kwargs)
 
-    async def begin_test_lro_and_paging(
+    def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
