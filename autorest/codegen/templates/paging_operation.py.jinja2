@@ -1,62 +1,15 @@
-{% import 'operation_tools.jinja2' as op_tools %}
-{% import 'paging_operation_helper.jinja2' as helper %}
-{% set request_builder = operation.request_builder %}
-{% macro return_docstring(async_mode) %}
-{% if operation.responses | selectattr('has_body') | first %}
-:return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
-:rtype: ~{{ operation.get_pager_path(async_mode) }}[{% for response in operation.responses %}{{response.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
-{%- else -%}
-:return: None
-:rtype: None{%- endif -%}{%- endmacro -%}
-{% macro operation_docstring(async_mode) %}
-"""{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n') }}
-{% if operation.summary and operation.description %}
-
-{{ operation.description | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n') }}
-{% endif %}
-
-{% if operation.deprecated -%}
-.. warning::
-    This method is deprecated
-
-{% endif -%}
-{% for parameter in operation.parameters.method %}
-{%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-{{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n ')}}
-{% endfor %}
-:{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
-{% endfor %}
-{% if (request_builder.schema_requests | length) > 1 %}
-{{ op_tools.content_type_docstring(operation) }}
-{% endif %}
-:keyword callable cls: A custom type or function that will be passed the direct response
-{{ return_docstring(async_mode) }}
-:raises: ~azure.core.exceptions.HttpResponseError
-{% if operation.has_example_template and code_model.no_models %}
-
-{{ op_tools.get_example_template() }}
-    {% if operation.parameters.has_body %}
-
-{{ op_tools.get_json_example_template(operation, operation.parameters.body[0].serialized_name, code_model, serialize_json_dict) | indent(8) }}
-    {% endif %}
-    {% if operation.get_json_response_template_to_status_codes() | first %}
-
-{{ op_tools.get_json_response_template(operation) | indent(8) }}
-    {% endif %}{% endif %}
-"""{% endmacro %}
-{% macro param_documentation_string(parameter) %}:{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% import 'operation_tools.jinja2' as op_tools with context %}
+{% import 'paging_operation_helper.jinja2' as helper with context %}
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type  %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
 {% endif %}
-{% set return_type_wrapper = ["AsyncIterable" if async_mode else "Iterable"] %}
-{{ op_tools.operation_method_signature(operation, async_mode=async_mode, coroutine=False, return_type_wrapper=return_type_wrapper) }}
-{%- if not async_mode %}
-    {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
-{% endif %}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
 {% if operation.want_description_docstring %}
-    {{ operation_docstring(async_mode) | indent }}
-{% endif %}
+    {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
@@ -66,7 +19,7 @@
     {{ kwarg.pop_from_kwarg | indent }}
         {% endfor %}
     {% endif %}
-    {{ helper.paging_operation(code_model, operation, async_mode) }}
+    {{ helper.paging_operation() }}
 
     return {{ operation.get_pager(async_mode) }}(
         get_next, extract_data

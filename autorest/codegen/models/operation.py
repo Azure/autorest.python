@@ -52,7 +52,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
+<<<<<<< HEAD
         self._request_builder: Optional[RequestBuilder] = None
+=======
+        self.deprecated = False
+>>>>>>> 6de4c8204c9d360ede85c260887b0e503b4ef72b
 
     @property
     def python_name(self) -> str:

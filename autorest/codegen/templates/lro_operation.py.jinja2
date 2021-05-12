@@ -1,5 +1,5 @@
-{% import 'operation_tools.jinja2' as op_tools %}
-{% import 'lro_operation_helper.jinja2' as helper %}
+{% import 'operation_tools.jinja2' as op_tools with context %}
+{% import 'lro_operation_helper.jinja2' as helper with context %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% macro return_docstring(async_mode) %}
 :return: An instance of {{ operation.get_poller(async_mode) }} that returns either {{ operation.responses[0].docstring_text }} or the result of cls(response)
@@ -22,19 +22,14 @@
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{% set return_type_wrapper = [operation.get_poller(async_mode)] %}
-{{ op_tools.operation_method_signature(operation, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
-{%- if not async_mode %}
-    {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
-{% endif %}
-    {{ operation_docstring(async_mode) | indent }}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
+    {{ op_tools.description(operation, operation_serializer) | indent }}{{ helper.lro_operation() }}
     {% if not async_mode and operation.parameters.kwargs_to_pop %}
 
         {% for kwarg in operation.parameters.kwargs_to_pop %}
     {{ kwarg.pop_from_kwarg | indent }}
         {% endfor %}
     {% endif %}
-{{ helper.lro_operation(code_model, operation, async_mode) }}
 
     def get_long_running_output(pipeline_response):
         response = pipeline_response.http_response
@@ -50,4 +45,4 @@
         return deserialized
         {% endif %}
 
-{{ helper.lro_operation_return(code_model, operation, async_mode) }}
+{{ helper.lro_operation_return() }}
