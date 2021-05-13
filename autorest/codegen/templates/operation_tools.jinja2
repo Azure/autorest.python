@@ -1,7 +1,7 @@
 {% macro wrap_string(string, wrapstring) %}{{ string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring=wrapstring)}}{% endmacro %}
 
-{% macro description(operation, operation_serializer) %}
-    {% for description in operation_serializer.description_and_summary(operation) %}
+{% macro description(builder, serializer) %}
+    {% for description in serializer.description_and_summary(builder) %}
         {% if description %}
 {% set description = wrap_string(description, wrapstring='\n') %}
 {{ '"""' + description if loop.first else description }}
@@ -9,13 +9,22 @@
 
         {% endif %}
     {% endfor %}
-    {% for description in operation_serializer.param_description_and_response_docstring(operation) %}
+    {% for description in serializer.param_description_and_response_docstring(builder) %}
         {% if description %}
 {{ wrap_string(description, wrapstring='\n ') }}
         {% else %}
 
         {% endif %}
 {% endfor %}
+{% if serializer.get_example_template(builder) | first %}
+    {% for template_line in serializer.get_example_template(builder) %}
+        {% if template_line %}
+{{ template_line }}
+        {% else %}
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
 """
 {% endmacro %}
 
@@ -283,48 +292,3 @@ request = {{ "_" if not operation_group_name and not code_model.rest_layer }}res
 {% endif %}
 request.url = self._client.format_url(request.url{{ ", **path_format_arguments" if operation.parameters.path else "" }})
 kwargs.pop("content_type", None){% endmacro %}
-
-{% macro get_example_template() %}
-Example:
-    .. code-block:: python
-{% endmacro %}
-
-{% macro get_json_example_template(builder, param_name, code_model, serialize_json_dict) %}
-
-{% set json_body = builder.parameters.json_body %}
-{% set discriminator_name = json_body.discriminator_name %}
-{% if discriminator_name %}
-# {{ discriminator_name }} template as part of your input body
-{{ discriminator_name }} = '{{ json_body.subtype_map.values()|join("' or '") }}'
-
-{% endif %}
-{% set property_with_discriminator = json_body.property_with_discriminator %}
-{% if property_with_discriminator %}
-# '{{ property_with_discriminator.name }}' can be defined the following ways:
-{% set polymorphic_schemas = code_model.sorted_schemas | selectattr("name", "in", property_with_discriminator.schema.subtype_map.values()) | list %}
-{% for schema in polymorphic_schemas[:code_model.options['polymorphic_examples']] %}
-    {% if schema.description %}
-# {{ schema.description }}
-    {% endif %}
-{{ property_with_discriminator.name }} = {{ serialize_json_dict(schema.get_json_template_representation()) }}
-    {% if not loop.last %}
-# OR
-    {% endif %}
-{% endfor %}
-
-{% endif %}
-# JSON input template you can fill out and use as your `json` input.
-{{ param_name }} = {{ builder.parameters.get_json_template_representation()}}
-{% endmacro %}
-
-{% macro get_files_example_template(builder) %}
-# multipart input template you can fill out and use as your `files` input.
-files = {{ builder.parameters.get_files_template_representation()}}
-{% endmacro %}
-
-{% macro get_json_response_template(builder) %}
-
-{% for response_body, status_codes in builder.get_json_response_template_to_status_codes().items() %}
-# response body for status code(s): {{ status_codes | join(', ') }}
-response_body == {{ response_body}}
-{% endfor %}{% endmacro %}

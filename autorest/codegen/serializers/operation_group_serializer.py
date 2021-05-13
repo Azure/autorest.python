@@ -22,9 +22,6 @@ from .operation_serializer import (
     AsyncLROPagingOperationSerializer,
 )
 
-def serialize_json_dict(template_representation):
-    return json.dumps(template_representation, sort_keys=True, indent=4)
-
 class OperationGroupSerializer:
     def __init__(
         self, code_model: CodeModel, env: Environment, operation_group: OperationGroup, async_mode: bool
@@ -83,6 +80,5 @@ class OperationGroupSerializer:
             lro_paging_operation_serializer=lro_paging_operation_serializer_cls(self.code_model),
             is_lro=_is_lro,
             is_paging=_is_paging,
-            serialize_json_dict=serialize_json_dict,
             get_operation_serializer=_get_operation_serializer,
         )

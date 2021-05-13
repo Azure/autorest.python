@@ -23,12 +23,9 @@ from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
 from .parameter_list import ParameterList
-<<<<<<< HEAD
 from .request_builder import RequestBuilder
-
-=======
+from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
->>>>>>> 6de4c8204c9d360ede85c260887b0e503b4ef72b
 
 __all__ = [
     "AzureKeyCredentialSchema",
@@ -55,6 +52,7 @@ __all__ = [
     "SchemaResponse",
     "TokenCredentialSchema",
     "LROPagingOperation",
+    "BaseBuilder",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:

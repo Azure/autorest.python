@@ -1,45 +1,7 @@
 {% import 'keywords.jinja2' as keywords with context %}
-{% import 'operation_tools.jinja2' as op_tools %}
-{{ op_tools.request_builder_method_signature(request_builder, is_python_3_file=is_python_3_file) }}
-    {%- if not is_python_3_file %}
-    {{ op_tools.sync_return_type_annotation("", return_type="HttpRequest") }}
-    {% endif %}
-    """{{ request_builder.summary if request_builder.summary else request_builder.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
-    {% if request_builder.summary and request_builder.description %}
-
-    {{ request_builder.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
-    {% endif %}
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your code flow.
-
-    {% if request_builder.deprecated -%}
-    .. warning::
-        This method is deprecated
-
-    {% endif %}
-    {% if request_builder.parameters.method %}
-    {{ op_tools.method_docstring(request_builder.parameters.method, request_builder) | indent }}
-    {%- endif %}
-    {% set core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest" %}
-    :return: Returns an :class:`~{{ core_import }}.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this response into your code flow.
-    :rtype: ~{{ core_import }}.HttpRequest
-    {% if request_builder.has_example_template %}
-
-    {{ op_tools.get_example_template() | indent }}
-        {% if request_builder.parameters.has_body %}
-            {% if "json" in request_builder.parameters.body_kwarg_names %}
-    {{ op_tools.get_json_example_template(request_builder, "json", code_model, serialize_json_dict) | indent(12) }}
-            {% endif %}
-            {% if "files" in request_builder.parameters.body_kwarg_names %}
-    {{ op_tools.get_files_example_template(request_builder) | indent(12) }}
-            {% endif %}
-        {% endif %}
-        {% if request_builder.get_json_response_template_to_status_codes() | first %}
-    {{ op_tools.get_json_response_template(request_builder) | indent(12) }}
-        {% endif %}
-    {% endif %}
-    """
+{% import 'operation_tools.jinja2' as op_tools with context %}
+{{ request_builder_serializer.method_signature_and_response_type_annotation(request_builder) }}
+    {{ op_tools.description(request_builder, request_builder_serializer) | indent -}}
 {% if not is_python_3_file %}
     {% if request_builder.parameters.kwargs_to_pop %}
         {% for kwarg in request_builder.parameters.kwargs_to_pop %}

@@ -23,10 +23,9 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     """Get null byte value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
-
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -47,10 +46,9 @@ def build_get_empty_request(
     # type: (...) -> HttpRequest
     """Get empty byte value ''.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
-
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -71,10 +69,9 @@ def build_get_non_ascii_request(
     # type: (...) -> HttpRequest
     """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
-
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -90,17 +87,17 @@ def build_get_non_ascii_request(
 
 
 def build_put_non_ascii_request(
-    **kwargs,  # type: Any
+    content,  # type: bytearray
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
-
-    :keyword content: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-    :paramtype content: bytearray
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :param content: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+    :type content: bytearray
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     content_type = kwargs.pop("content_type", None)
@@ -124,10 +121,9 @@ def build_get_invalid_request(
     # type: (...) -> HttpRequest
     """Get invalid byte value ':::SWAGGER::::'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
-
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
