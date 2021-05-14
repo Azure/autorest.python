@@ -7,6 +7,7 @@ msrest>=0.6.21
 azure-core>=1.3.0
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AdditionalProperties
+-e ./Expected/AcceptanceTests/Anything
 -e ./Expected/AcceptanceTests/BodyArray
 -e ./Expected/AcceptanceTests/BodyBoolean
 -e ./Expected/AcceptanceTests/BodyByte

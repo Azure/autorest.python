@@ -182,7 +182,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         excep_schema = default_excp[0].schema
         if isinstance(excep_schema, ObjectSchema):
             return f"_models.{excep_schema.name}"
-        # in this case, it's just an AnySchema
+        # in this case, it's just an AnyObjectSchema
         return "\'object\'"
 
 
