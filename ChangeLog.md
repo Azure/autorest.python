@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-05-14 - 5.8.0
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**New Features**
+
+- Add support for parameters and properties that can be of type "Anything".  #946
+
 ### 2021-04-20 - 5.7.0
 
 min Autorest core version: 3.1.0
