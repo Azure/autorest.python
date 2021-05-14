@@ -10,7 +10,9 @@ from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, AnyObjectSchema, PrimitiveSchema
+from .primitive_schemas import (
+    get_primitive_schema, AnyObjectSchema, PrimitiveSchema, AnySchema
+)
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -27,6 +29,7 @@ from .parameter_list import ParameterList
 
 __all__ = [
     "AzureKeyCredentialSchema",
+    "AnySchema",
     "BaseModel",
     "BaseSchema",
     "CodeModel",
