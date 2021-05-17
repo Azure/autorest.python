@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -955,7 +955,7 @@ class SmartSalmon(Salmon):
     :type iswild: bool
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, object]
+    :type additional_properties: dict[str, any]
     :param college_degree:
     :type college_degree: str
     """
@@ -984,7 +984,7 @@ class SmartSalmon(Salmon):
         siblings: Optional[List["Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
-        additional_properties: Optional[Dict[str, object]] = None,
+        additional_properties: Optional[Dict[str, Any]] = None,
         college_degree: Optional[str] = None,
         **kwargs
     ):

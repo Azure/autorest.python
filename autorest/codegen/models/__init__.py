@@ -27,6 +27,7 @@ from .parameter_list import ParameterList
 
 __all__ = [
     "AzureKeyCredentialSchema",
+    "AnySchema",
     "BaseModel",
     "BaseSchema",
     "CodeModel",
