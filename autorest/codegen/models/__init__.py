@@ -10,7 +10,7 @@ from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, AnyObjectSchema, PrimitiveSchema
+from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -97,7 +97,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
             code_model.schemas[yaml_id] = schema
             schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         else:
-            schema = AnyObjectSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
+            schema = AnySchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
             code_model.primitives[yaml_id] = schema
 
     else:
