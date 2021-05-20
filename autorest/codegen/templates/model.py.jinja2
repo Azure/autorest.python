@@ -59,9 +59,9 @@ class {{ model.name }}(msrest.serialization.Model):
         {{ model.xml_map_content() }}
     }
     {% endif %}
-    {% if (model.properties | selectattr('constant') | first) is defined %}
+    {% if (model.properties | selectattr('constant') | selectattr('required') | first) is defined %}
 
-        {% for p in model.properties | selectattr('constant')%}
+        {% for p in model.properties | selectattr('constant') | selectattr('required') %}
     {{ p.name }} = {{ p.constant_declaration }}
         {% endfor %}
     {% endif %}
