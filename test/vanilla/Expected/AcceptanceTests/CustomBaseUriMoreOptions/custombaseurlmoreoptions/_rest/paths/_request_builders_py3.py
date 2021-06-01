@@ -19,7 +19,8 @@ def build_get_empty_request(
 ) -> HttpRequest:
     """Get a 200 to test a valid base uri.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param key_name: The key name with value 'key1'.
     :type key_name: str
@@ -27,8 +28,9 @@ def build_get_empty_request(
     :type subscription_id: str
     :keyword key_version: The key version. Default value 'v1'.
     :paramtype key_version: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"

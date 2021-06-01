@@ -10,7 +10,7 @@ from autorest.codegen.models.operation import Operation
 from .import_serializer import FileImportSerializer
 from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
 from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup, LROPagingOperation
-from .operation_serializer import (
+from .builder_serializer import (
     OperationBaseSerializer,
     SyncOperationSerializer,
     AsyncOperationSerializer,

@@ -16,25 +16,25 @@ _SERIALIZER = Serializer()
 def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get test coverage report.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
      in for Python). The only effect is, that generators that run all tests several times, can
      distinguish the generated reports.
     :paramtype qualifier: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "str": "int (optional)"
             }
-
     """
     accept = "application/json"
 
@@ -56,25 +56,25 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get optional test coverage report.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
      in for Python). The only effect is, that generators that run all tests several times, can
      distinguish the generated reports.
     :paramtype qualifier: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "str": "int (optional)"
             }
-
     """
     accept = "application/json"
 

@@ -16,10 +16,12 @@ _SERIALIZER = Serializer()
 def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
     """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -37,23 +39,23 @@ def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
 def build_put_not_expandable_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: string body.
     :paramtype json: Any
     :keyword content: string body.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -73,10 +75,12 @@ def build_put_not_expandable_request(*, json: Any = None, content: Any = None, *
 def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
     """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -94,23 +98,23 @@ def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
 def build_put_referenced_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: enum string body.
     :paramtype json: Any
     :keyword content: enum string body.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -130,22 +134,22 @@ def build_put_referenced_request(*, json: Any = None, content: Any = None, **kwa
 def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     """Get value 'green-color' from the constant.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "ColorConstant": "str",
                 "field1": "str (optional)"
             }
-
     """
     accept = "application/json"
 
@@ -162,26 +166,26 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 def build_put_referenced_constant_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Sends value 'green-color' from a constant.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: enum string body.
     :paramtype json: Any
     :keyword content: enum string body.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "ColorConstant": "str",
                 "field1": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

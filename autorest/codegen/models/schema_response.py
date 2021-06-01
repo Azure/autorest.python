@@ -92,11 +92,6 @@ class SchemaResponse(BaseModel):
             return cast(ObjectSchema, self.schema).is_exception
         return False
 
-    def get_json_template_representation(self, **kwargs: Any) -> str:
-        return json.dumps(
-            self.schema.get_json_template_representation(), sort_keys=True, indent=4
-        )
-
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":
 

@@ -17,10 +17,12 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """Basic get that returns an object. Returns object { 'message': 'An object was successfully
     returned' }.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -39,23 +41,23 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
     """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
     object error.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
     :paramtype json: Any
     :keyword content: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "object (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

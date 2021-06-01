@@ -24,10 +24,12 @@ def build_get_valid_request(
     # type: (...) -> HttpRequest
     """Get complex types that have readonly properties.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
@@ -57,14 +59,16 @@ def build_put_valid_request(
     # type: (...) -> HttpRequest
     """Put complex types that have readonly properties.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:

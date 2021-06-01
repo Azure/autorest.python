@@ -10,17 +10,24 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.rest import HttpRequest
+    from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
 from .operations import BasicOperations
+from .operations import PrimitiveOperations
+from .operations import ArrayOperations
+from .operations import DictionaryOperations
+from .operations import InheritanceOperations
+from .operations import PolymorphismOperations
+from .operations import PolymorphicrecursiveOperations
+from .operations import ReadonlypropertyOperations
+from .operations import FlattencomplexOperations
 from . import models
 
 
@@ -29,6 +36,22 @@ class AutoRestComplexTestService(object):
 
     :ivar basic: BasicOperations operations
     :vartype basic: bodycomplex.operations.BasicOperations
+    :ivar primitive: PrimitiveOperations operations
+    :vartype primitive: bodycomplex.operations.PrimitiveOperations
+    :ivar array: ArrayOperations operations
+    :vartype array: bodycomplex.operations.ArrayOperations
+    :ivar dictionary: DictionaryOperations operations
+    :vartype dictionary: bodycomplex.operations.DictionaryOperations
+    :ivar inheritance: InheritanceOperations operations
+    :vartype inheritance: bodycomplex.operations.InheritanceOperations
+    :ivar polymorphism: PolymorphismOperations operations
+    :vartype polymorphism: bodycomplex.operations.PolymorphismOperations
+    :ivar polymorphicrecursive: PolymorphicrecursiveOperations operations
+    :vartype polymorphicrecursive: bodycomplex.operations.PolymorphicrecursiveOperations
+    :ivar readonlyproperty: ReadonlypropertyOperations operations
+    :vartype readonlyproperty: bodycomplex.operations.ReadonlypropertyOperations
+    :ivar flattencomplex: FlattencomplexOperations operations
+    :vartype flattencomplex: bodycomplex.operations.FlattencomplexOperations
     :param base_url: Service URL
     :type base_url: str
     """
@@ -48,6 +71,18 @@ class AutoRestComplexTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.inheritance = InheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.polymorphism = PolymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.polymorphicrecursive = PolymorphicrecursiveOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.readonlyproperty = ReadonlypropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
@@ -56,13 +91,13 @@ class AutoRestComplexTestService(object):
         We have helper methods to create requests specific to this service in `bodycomplex.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodycomplex.rest import build_put_valid_request
-        >>> request = build_put_valid_request(json, content)
-        <HttpRequest [PUT], url: '/complex/basic/valid'>
+        >>> from bodycomplex.rest import build_get_valid_request
+        >>> request = build_get_valid_request()
+        <HttpRequest [GET], url: '/complex/basic/valid'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
         and pass it in.
@@ -75,19 +110,7 @@ class AutoRestComplexTestService(object):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        if kwargs.pop("stream_response", False):
-            return _StreamContextManager(
-                client=self._client._pipeline,
-                request=request_copy,
-            )
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = HttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response,
-        )
-        response.read()
-        return response
+        return self._client.send_request(request_copy, **kwargs)
 
     def close(self):
         # type: () -> None

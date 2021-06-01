@@ -229,16 +229,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         self.parameters.append(chosen_parameter)
 
     @property
-    def has_example_template(self) -> bool:
-        if self.parameters.has_body:
-            body_params = self.parameters.body
-            return any([
-                b for b in body_params
-                if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))
-            ])
-        return bool(self.get_json_response_template_to_status_codes())
-
-    @property
     def body_serialization_str(self) -> str:
         send_xml = bool(self.parameters.has_body and "xml" in self.parameters.content_types)
         ser_ctxt = ", serialization_ctxt=serialization_ctxt" if send_xml else ""

@@ -16,10 +16,12 @@ _SERIALIZER = Serializer()
 def build_head408_request(**kwargs: Any) -> HttpRequest:
     """Return 408 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -37,23 +39,23 @@ def build_head408_request(**kwargs: Any) -> HttpRequest:
 def build_put500_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Return 500 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Simple boolean value true.
     :paramtype json: Any
     :keyword content: Simple boolean value true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -73,23 +75,23 @@ def build_put500_request(*, json: Any = None, content: Any = None, **kwargs: Any
 def build_patch500_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Return 500 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Simple boolean value true.
     :paramtype json: Any
     :keyword content: Simple boolean value true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -109,10 +111,12 @@ def build_patch500_request(*, json: Any = None, content: Any = None, **kwargs: A
 def build_get502_request(**kwargs: Any) -> HttpRequest:
     """Return 502 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -130,10 +134,12 @@ def build_get502_request(**kwargs: Any) -> HttpRequest:
 def build_options502_request(**kwargs: Any) -> HttpRequest:
     """Return 502 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -151,23 +157,23 @@ def build_options502_request(**kwargs: Any) -> HttpRequest:
 def build_post503_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Return 503 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Simple boolean value true.
     :paramtype json: Any
     :keyword content: Simple boolean value true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -187,23 +193,23 @@ def build_post503_request(*, json: Any = None, content: Any = None, **kwargs: An
 def build_delete503_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Return 503 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Simple boolean value true.
     :paramtype json: Any
     :keyword content: Simple boolean value true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -223,23 +229,23 @@ def build_delete503_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_put504_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Return 504 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Simple boolean value true.
     :paramtype json: Any
     :keyword content: Simple boolean value true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -259,23 +265,23 @@ def build_put504_request(*, json: Any = None, content: Any = None, **kwargs: Any
 def build_patch504_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Return 504 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Simple boolean value true.
     :paramtype json: Any
     :keyword content: Simple boolean value true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

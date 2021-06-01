@@ -22,7 +22,7 @@ from ..models import (
     Operation,
     LROPagingOperation,
 )
-from .operation_serializer import (
+from .builder_serializer import (
     SyncOperationSerializer,
     AsyncOperationSerializer,
     SyncPagingOperationSerializer,

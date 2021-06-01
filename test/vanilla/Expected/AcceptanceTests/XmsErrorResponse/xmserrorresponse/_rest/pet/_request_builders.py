@@ -25,24 +25,24 @@ def build_get_pet_by_id_request(
     # type: (...) -> HttpRequest
     """Gets pets by id.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param pet_id: pet id.
     :type pet_id: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "aniType": "str (optional)",
                 "name": "str (optional)"
             }
-
     """
     accept = "application/json"
 
@@ -67,23 +67,23 @@ def build_do_something_request(
     # type: (...) -> HttpRequest
     """Asks pet to do something.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param what_action: what action the pet should do.
     :type what_action: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "actionResponse": "str (optional)"
             }
-
     """
     accept = "application/json"
 
@@ -108,13 +108,15 @@ def build_has_models_param_request(
     """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
     conflict with the input param name 'models'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword models: Make sure model deserialization doesn't conflict with this param name, which
      has input name 'models'. Use client default value in call.
     :paramtype models: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     models = kwargs.pop("models", "value1")  # type: Optional[str]

@@ -10,14 +10,13 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional
 
-    from azure.core.rest import HttpRequest
+    from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ObjectTypeClientConfiguration
 from .operations import ObjectTypeClientOperationsMixin
@@ -59,7 +58,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
         and pass it in.
@@ -72,19 +71,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         """
         request_copy = deepcopy(http_request)
         request_copy.url = self._client.format_url(request_copy.url)
-        if kwargs.pop("stream_response", False):
-            return _StreamContextManager(
-                client=self._client._pipeline,
-                request=request_copy,
-            )
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = HttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response,
-        )
-        response.read()
-        return response
+        return self._client.send_request(request_copy, **kwargs)
 
     def close(self):
         # type: () -> None

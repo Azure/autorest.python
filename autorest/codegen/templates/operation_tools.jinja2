@@ -16,10 +16,13 @@
 
         {% endif %}
 {% endfor %}
-{% if serializer.get_example_template(builder) | first %}
+{% if serializer.want_example_template(builder) %}
+
+Example:
+    .. code-block:: python
     {% for template_line in serializer.get_example_template(builder) %}
         {% if template_line %}
-{{ template_line }}
+        {{ template_line }}
         {% else %}
 
         {% endif %}

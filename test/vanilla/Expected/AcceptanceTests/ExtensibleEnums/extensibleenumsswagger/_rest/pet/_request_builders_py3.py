@@ -17,25 +17,25 @@ _SERIALIZER = Serializer()
 def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     """get pet by id.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param pet_id: Pet id.
     :type pet_id: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "DaysOfWeek": "str (optional). Default value is \"Friday\"",
                 "IntEnum": "str",
                 "name": "str (optional)"
             }
-
     """
     accept = "application/json"
 
@@ -56,19 +56,20 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """add pet.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: pet param.
     :paramtype json: Any
     :keyword content: pet param.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -77,14 +78,12 @@ def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
                 "name": "str (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "DaysOfWeek": "str (optional). Default value is \"Friday\"",
                 "IntEnum": "str",
                 "name": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

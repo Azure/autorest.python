@@ -23,22 +23,22 @@ def build_get_horse_request(
     # type: (...) -> HttpRequest
     """Get a horse with name 'Fred' and isAShowHorse true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "isAShowHorse": "bool (optional)",
                 "name": "str"
             }
-
     """
     accept = "application/json"
 
@@ -58,26 +58,26 @@ def build_put_horse_request(
     # type: (...) -> HttpRequest
     """Put a horse with name 'General' and isAShowHorse false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Put a horse with name 'General' and isAShowHorse false.
     :paramtype json: Any
     :keyword content: Put a horse with name 'General' and isAShowHorse false.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "isAShowHorse": "bool (optional)",
                 "name": "str"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -100,21 +100,21 @@ def build_get_pet_request(
     # type: (...) -> HttpRequest
     """Get a pet with name 'Peanut'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "name": "str"
             }
-
     """
     accept = "application/json"
 
@@ -134,25 +134,25 @@ def build_put_pet_request(
     # type: (...) -> HttpRequest
     """Put a pet with name 'Butter'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Put a pet with name 'Butter'.
     :paramtype json: Any
     :keyword content: Put a pet with name 'Butter'.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "name": "str"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -175,22 +175,22 @@ def build_get_feline_request(
     # type: (...) -> HttpRequest
     """Get a feline where meows and hisses are true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "hisses": "bool (optional)",
                 "meows": "bool (optional)"
             }
-
     """
     accept = "application/json"
 
@@ -210,26 +210,26 @@ def build_put_feline_request(
     # type: (...) -> HttpRequest
     """Put a feline who hisses and doesn't meow.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Put a feline who hisses and doesn't meow.
     :paramtype json: Any
     :keyword content: Put a feline who hisses and doesn't meow.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "hisses": "bool (optional)",
                 "meows": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -252,24 +252,24 @@ def build_get_cat_request(
     # type: (...) -> HttpRequest
     """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "hisses": "bool (optional)",
                 "likesMilk": "bool (optional)",
                 "meows": "bool (optional)",
                 "name": "str"
             }
-
     """
     accept = "application/json"
 
@@ -289,20 +289,21 @@ def build_put_cat_request(
     # type: (...) -> HttpRequest
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
     :paramtype json: Any
     :keyword content: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is
      true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -311,7 +312,6 @@ def build_put_cat_request(
                 "meows": "bool (optional)",
                 "name": "str"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -335,25 +335,25 @@ def build_get_kitten_request(
     """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
     is false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "eatsMiceYet": "bool (optional)",
                 "hisses": "bool (optional)",
                 "likesMilk": "bool (optional)",
                 "meows": "bool (optional)",
                 "name": "str"
             }
-
     """
     accept = "application/json"
 
@@ -374,7 +374,8 @@ def build_put_kitten_request(
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
      eatsMiceYet is true.
@@ -382,13 +383,13 @@ def build_put_kitten_request(
     :keyword content: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
      eatsMiceYet is true.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -398,7 +399,6 @@ def build_put_kitten_request(
                 "meows": "bool (optional)",
                 "name": "str"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

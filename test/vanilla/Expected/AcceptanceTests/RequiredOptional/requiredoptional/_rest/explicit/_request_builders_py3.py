@@ -17,12 +17,14 @@ _SERIALIZER = Serializer()
 def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional body parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword content:
     :paramtype content: IO
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     content_type = kwargs.pop("content_type", None)
@@ -43,12 +45,14 @@ def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kw
 def build_put_required_binary_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     """Test explicitly required body parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword content:
     :paramtype content: IO
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     content_type = kwargs.pop("content_type", None)
@@ -72,23 +76,23 @@ def build_post_required_integer_parameter_request(
     """Test explicitly required integer. Please put null and the client library should throw before
     the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -110,23 +114,23 @@ def build_post_optional_integer_parameter_request(
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -149,25 +153,25 @@ def build_post_required_integer_property_request(
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "int"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -189,25 +193,25 @@ def build_post_optional_integer_property_request(
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "int (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -228,12 +232,14 @@ def build_post_required_integer_header_request(*, header_parameter: int, **kwarg
     """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: int
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -252,12 +258,14 @@ def build_post_required_integer_header_request(*, header_parameter: int, **kwarg
 def build_post_optional_integer_header_request(*, header_parameter: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: int
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -280,23 +288,23 @@ def build_post_required_string_parameter_request(
     """Test explicitly required string. Please put null and the client library should throw before the
     request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -318,23 +326,23 @@ def build_post_optional_string_parameter_request(
 ) -> HttpRequest:
     """Test explicitly optional string. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -355,25 +363,25 @@ def build_post_required_string_property_request(*, json: Any = None, content: An
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "str"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -393,25 +401,25 @@ def build_post_required_string_property_request(*, json: Any = None, content: An
 def build_post_optional_string_property_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "value": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -432,12 +440,14 @@ def build_post_required_string_header_request(*, header_parameter: str, **kwargs
     """Test explicitly required string. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -456,12 +466,14 @@ def build_post_required_string_header_request(*, header_parameter: str, **kwargs
 def build_post_optional_string_header_request(*, body_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword body_parameter:
     :paramtype body_parameter: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -482,26 +494,26 @@ def build_post_required_class_parameter_request(*, json: Any = None, content: An
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "id": "int",
                 "name": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -521,26 +533,26 @@ def build_post_required_class_parameter_request(*, json: Any = None, content: An
 def build_post_optional_class_parameter_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional complex object. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "id": "int",
                 "name": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -561,19 +573,20 @@ def build_post_required_class_property_request(*, json: Any = None, content: Any
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -582,7 +595,6 @@ def build_post_required_class_property_request(*, json: Any = None, content: Any
                     "name": "str (optional)"
                 }
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -602,19 +614,20 @@ def build_post_required_class_property_request(*, json: Any = None, content: Any
 def build_post_optional_class_property_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -623,7 +636,6 @@ def build_post_optional_class_property_request(*, json: Any = None, content: Any
                     "name": "str (optional)"
                 }
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -644,25 +656,25 @@ def build_post_required_array_parameter_request(*, json: Any = None, content: An
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = [
                 "str (optional)"
             ]
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -682,25 +694,25 @@ def build_post_required_array_parameter_request(*, json: Any = None, content: An
 def build_post_optional_array_parameter_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # JSON input template you can fill out and use as your `json` input.
             json = [
                 "str (optional)"
             ]
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -721,19 +733,20 @@ def build_post_required_array_property_request(*, json: Any = None, content: Any
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -741,7 +754,6 @@ def build_post_required_array_property_request(*, json: Any = None, content: Any
                     "str"
                 ]
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -761,19 +773,20 @@ def build_post_required_array_property_request(*, json: Any = None, content: Any
 def build_post_optional_array_property_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -781,7 +794,6 @@ def build_post_optional_array_property_request(*, json: Any = None, content: Any
                     "str (optional)"
                 ]
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -802,12 +814,14 @@ def build_post_required_array_header_request(*, header_parameter: List[str], **k
     """Test explicitly required array. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: list[str]
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -828,12 +842,14 @@ def build_post_optional_array_header_request(
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: list[str]
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"

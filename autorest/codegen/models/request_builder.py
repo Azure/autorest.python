@@ -134,10 +134,3 @@ class RequestBuilder(BaseBuilder):
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
         return request_builder_class
-
-    @property
-    def has_example_template(self) -> bool:
-        if self.parameters.has_body:
-            body_kwargs = set(self.parameters.body_kwarg_names.keys())
-            return bool(body_kwargs.intersection({"json", "files"}))
-        return bool(self.get_json_response_template_to_status_codes())

@@ -11,7 +11,7 @@ from jinja2 import Environment
 from ..models import RequestBuilder
 from .import_serializer import FileImportSerializer
 from ..models import CodeModel
-from .operation_serializer import (
+from .builder_serializer import (
     RequestBuilderGenericSerializer,
     RequestBuilderPython3Serializer,
 )
@@ -28,9 +28,6 @@ class RestSerializer:
         template = self.env.get_template("rest_init.py.jinja2")
         return template.render(code_model=self.code_model, request_builders=self.request_builders)
 
-def serialize_json_dict(template_representation):
-    return json.dumps(template_representation, sort_keys=True, indent=4)
-
 class RestPython3Serializer(RestSerializer):
 
     def serialize_request_builders(self) -> str:
@@ -44,7 +41,6 @@ class RestPython3Serializer(RestSerializer):
                 is_python_3_file=True
             ),
             is_python_3_file=True,
-            serialize_json_dict=serialize_json_dict,
             request_builder_serializer=RequestBuilderPython3Serializer(self.code_model),
         )
 
@@ -61,6 +57,5 @@ class RestGenericSerializer(RestSerializer):
                 is_python_3_file=False
             ),
             is_python_3_file=False,
-            serialize_json_dict=serialize_json_dict,
             request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
         )

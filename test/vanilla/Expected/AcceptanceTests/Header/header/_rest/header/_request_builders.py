@@ -24,12 +24,14 @@ def build_param_existing_key_request(
     # type: (...) -> HttpRequest
     """Send a post request with header value "User-Agent": "overwrite".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
     :paramtype user_agent_parameter: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     user_agent_parameter = kwargs.pop("user_agent_parameter")  # type: str
@@ -52,10 +54,12 @@ def build_response_existing_key_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "User-Agent": "overwrite".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -76,12 +80,14 @@ def build_param_protected_key_request(
     # type: (...) -> HttpRequest
     """Send a post request with header value "Content-Type": "text/html".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword content_type: Send a post request with header value "Content-Type": "text/html".
     :paramtype content_type: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     content_type = kwargs.pop("content_type")  # type: str
@@ -104,10 +110,12 @@ def build_response_protected_key_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "Content-Type": "text/html".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"
@@ -129,14 +137,16 @@ def build_param_integer_request(
     """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
     "negative", "value": -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
     :keyword value: Send a post request with header values 1 or -2.
     :paramtype value: int
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -161,12 +171,14 @@ def build_response_integer_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 1 or -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -190,14 +202,16 @@ def build_param_long_request(
     """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
     "negative", "value": -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
     :keyword value: Send a post request with header values 105 or -2.
     :paramtype value: long
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -222,12 +236,14 @@ def build_response_long_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 105 or -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -251,14 +267,16 @@ def build_param_float_request(
     """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
     "negative", "value": -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
     :keyword value: Send a post request with header values 0.07 or -3.0.
     :paramtype value: float
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -283,12 +301,14 @@ def build_response_float_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 0.07 or -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -312,14 +332,16 @@ def build_param_double_request(
     """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
     "negative", "value": -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
     :keyword value: Send a post request with header values 7e120 or -3.0.
     :paramtype value: float
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -344,12 +366,14 @@ def build_response_double_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 7e120 or -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -373,14 +397,16 @@ def build_param_bool_request(
     """Send a post request with header values "scenario": "true", "value": true or "scenario":
     "false", "value": false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "true" or "false".
     :paramtype scenario: str
     :keyword value: Send a post request with header values true or false.
     :paramtype value: bool
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -405,12 +431,14 @@ def build_response_bool_request(
     # type: (...) -> HttpRequest
     """Get a response with header value "value": true or false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "true" or "false".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -434,7 +462,8 @@ def build_param_string_request(
     """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
     over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
@@ -442,8 +471,9 @@ def build_param_string_request(
     :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
      dog" or null or "".
     :paramtype value: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -469,13 +499,15 @@ def build_response_string_request(
     # type: (...) -> HttpRequest
     """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -499,14 +531,16 @@ def build_param_date_request(
     """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
     "scenario": "min", "value": "0001-01-01".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
     :keyword value: Send a post request with header values "2010-01-01" or "0001-01-01".
     :paramtype value: ~datetime.date
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -531,12 +565,14 @@ def build_response_date_request(
     # type: (...) -> HttpRequest
     """Get a response with header values "2010-01-01" or "0001-01-01".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -560,15 +596,17 @@ def build_param_datetime_request(
     """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
     "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
     :keyword value: Send a post request with header values "2010-01-01T12:34:56Z" or
      "0001-01-01T00:00:00Z".
     :paramtype value: ~datetime.datetime
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -593,12 +631,14 @@ def build_response_datetime_request(
     # type: (...) -> HttpRequest
     """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -622,15 +662,17 @@ def build_param_datetime_rfc1123_request(
     """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
     GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
     :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
      01 Jan 0001 00:00:00 GMT".
     :paramtype value: ~datetime.datetime
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -657,12 +699,14 @@ def build_response_datetime_rfc1123_request(
     """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
     GMT".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -685,14 +729,16 @@ def build_param_duration_request(
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
     :keyword value: Send a post request with header values "P123DT22H14M12.011S".
     :paramtype value: ~datetime.timedelta
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -717,12 +763,14 @@ def build_response_duration_request(
     # type: (...) -> HttpRequest
     """Get a response with header values "P123DT22H14M12.011S".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -745,14 +793,16 @@ def build_param_byte_request(
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
     :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
     :paramtype value: bytearray
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -777,12 +827,14 @@ def build_response_byte_request(
     # type: (...) -> HttpRequest
     """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -806,15 +858,17 @@ def build_param_enum_request(
     """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
     "null", "value": null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
     :paramtype scenario: str
     :keyword value: Send a post request with header values 'GREY'.
     :paramtype value: str or ~header.models.GreyscaleColors
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -840,13 +894,15 @@ def build_response_enum_request(
     # type: (...) -> HttpRequest
     """Get a response with header values "GREY" or null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
     :paramtype scenario: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     scenario = kwargs.pop("scenario")  # type: str
@@ -870,10 +926,12 @@ def build_custom_request_id_request(
     """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
     request.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     accept = "application/json"

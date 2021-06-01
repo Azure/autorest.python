@@ -10,7 +10,7 @@ from copy import deepcopy
 from typing import Any
 
 from azure.core import AsyncPipelineClient
-from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
@@ -52,7 +52,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
         and pass it in.
@@ -70,19 +70,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
             ),
         }
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        if kwargs.pop("stream_response", False):
-            return _AsyncStreamContextManager(
-                client=self._client._pipeline,
-                request=request_copy,
-            )
-        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = AsyncHttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response,
-        )
-        await response.read()
-        return response
+        return self._client.send_request(request_copy, **kwargs)
 
     async def close(self) -> None:
         await self._client.close()

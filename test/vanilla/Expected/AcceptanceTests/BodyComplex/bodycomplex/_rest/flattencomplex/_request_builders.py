@@ -24,10 +24,12 @@ def build_get_valid_request(
     # type: (...) -> HttpRequest
     """get_valid.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
@@ -35,7 +37,7 @@ def build_get_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "kind": "str",
+                "kind": "kind",
                 "propB1": "str (optional)",
                 "propBH1": "str (optional)"
             }

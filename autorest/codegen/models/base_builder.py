@@ -76,18 +76,6 @@ class BaseBuilder(BaseModel):
         self.responses = responses or []
         self.summary = summary
 
-    def get_json_response_template_to_status_codes(self) -> Dict[str, List[Union[str, int]]]:
-        # successful status codes of responses that have bodies
-        responses = [
-            response for response in self.responses
-            if any(code in self.success_status_code for code in response.status_codes)
-            and isinstance(response.schema, (DictionarySchema, ListSchema, ObjectSchema))
-        ]
-        retval = defaultdict(list)
-        for response in responses:
-            retval[response.get_json_template_representation()].extend(response.status_codes)
-        return retval
-
     @property
     def default_content_type_declaration(self) -> str:
         return f'"{self.parameters.default_content_type}"'
@@ -103,11 +91,6 @@ class BaseBuilder(BaseModel):
         """The list of all successfull status code.
         """
         return [code for response in self.responses for code in response.status_codes if code != "default"]
-
-    @property
-    @abstractmethod
-    def has_example_template(self) -> bool:
-        ...
 
     @staticmethod
     @abstractmethod

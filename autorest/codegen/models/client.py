@@ -39,17 +39,11 @@ class Client:
         core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
         if async_mode:
             file_import.add_from_import(
-                core_import, "AsyncHttpResponse", ImportType.AZURECORE
-            )
-            file_import.add_from_import(
-                core_import, "_AsyncStreamContextManager", ImportType.AZURECORE
+                core_import, "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         else:
             file_import.add_from_import(
-                core_import, "HttpResponse", ImportType.AZURECORE
-            )
-            file_import.add_from_import(
-                core_import, "_StreamContextManager", ImportType.AZURECORE
+                core_import, "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         file_import.add_from_import(
             core_import, "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL

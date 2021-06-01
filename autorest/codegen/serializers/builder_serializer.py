@@ -3,12 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from autorest.codegen.models.parameter import Parameter
 import json
+from collections import defaultdict
 from abc import abstractmethod, ABC
 from autorest.codegen.models import code_model
 from autorest.codegen.models.request_builder import RequestBuilder
 from autorest.codegen.models.base_builder import BaseBuilder
-from typing import Any, List, TypeVar, Dict
+from typing import Any, List, TypeVar, Dict, Union
 from ..models import (
     Operation,
     CodeModel,
@@ -17,13 +19,25 @@ from ..models import (
     LROPagingOperation,
     BaseBuilder,
     ObjectSchema,
+    DictionarySchema,
+    ListSchema,
 )
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
-def _serialize_json_dict(template_representation: str) -> Any:
-    return json.dumps(template_representation, sort_keys=True, indent=4)
+def _serialize_json_dict(template_representation: str, indent: int = 4) -> Any:
+    return json.dumps(template_representation, sort_keys=True, indent=indent)
+
+def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
+    template = {
+        param.serialized_name: param.schema.get_files_template_representation(
+            optional=not param.required,
+            description=param.description,
+        )
+        for param in multipart_parameters
+    }
+    return json.dumps(template, sort_keys=True, indent=4)
 
 class BuilderSerializerProtocol(ABC):
 
@@ -38,14 +52,15 @@ class BuilderSerializerProtocol(ABC):
         """The def keyword for the function, i.e. 'def' or 'async def'"""
         ...
 
+    @property
     @abstractmethod
-    def _method_signature(self, builder: BaseBuilder) -> str:
-        """Signature of the builder. Does not include return type annotation"""
+    def _want_inline_type_hints(self) -> bool:
+        """Whether you want inline type hints. If false, your type hints will be commented'"""
         ...
 
     @abstractmethod
-    def _parameters_method_signature(self, builder: BaseBuilder) -> List[str]:
-        """Returns the parameter's portion of the method signature"""
+    def _method_signature(self, builder: BaseBuilder) -> str:
+        """Signature of the builder. Does not include return type annotation"""
         ...
 
     @abstractmethod
@@ -85,6 +100,10 @@ class BuilderSerializerProtocol(ABC):
         """Docstring for content type kwarg"""
 
     @abstractmethod
+    def want_example_template(self, builder: BaseBuilder) -> bool:
+        ...
+
+    @abstractmethod
     def get_example_template(self, builder: BaseBuilder) -> List[str]:
         ...
 
@@ -112,6 +131,10 @@ class BuilderSerializerProtocol(ABC):
     def _get_json_response_template(self, builder: BaseBuilder) -> List[str]:
         ...
 
+    @abstractmethod
+    def _get_json_response_template_to_status_codes(self, builder: BaseBuilder) -> Dict[str, List[Union[str, int]]]:
+        ...
+
 class BuilderBaseSerializer(BuilderSerializerProtocol):
     def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
@@ -121,7 +144,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
         lines.append(f"{self._function_definition} {builder.name}(")
         if self._is_in_class:
             lines.append("    self,")
-        lines.extend(self._parameters_method_signature(builder))
+        lines.extend(builder.parameters.method_signature(self._want_inline_type_hints))
         lines.append(")")
         return "\n".join(lines)
 
@@ -147,8 +170,8 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
     def param_description(self, builder: BaseBuilder) -> List[str]:
         description_list: List[str] = []
         for parameter in builder.parameters.method:
-            description_list.extend(f":param { parameter.serialized_name }: { parameter.description }".replace('\n', '\n ').split("\n"))
-            description_list.append(f":type { parameter.serialized_name }: { parameter.docstring_type }")
+            description_list.extend(f":{parameter.description_keyword} { parameter.serialized_name }: { parameter.description }".replace('\n', '\n ').split("\n"))
+            description_list.append(f":{parameter.docstring_type_keyword} { parameter.serialized_name }: { parameter.docstring_type }")
         try:
             request_builder: RequestBuilder = builder.request_builder
         except AttributeError:
@@ -183,17 +206,29 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
         )
         return content_type_str
 
+    def _get_json_response_template_to_status_codes(self, builder: BaseBuilder) -> Dict[str, List[Union[str, int]]]:
+        # successful status codes of responses that have bodies
+        responses = [
+            response for response in builder.responses
+            if any(code in builder.success_status_code for code in response.status_codes)
+            and isinstance(response.schema, (DictionarySchema, ListSchema, ObjectSchema))
+        ]
+        retval = defaultdict(list)
+        for response in responses:
+            status_codes = [str(status_code) for status_code in response.status_codes]
+            response_json = _serialize_json_dict(response.schema.get_json_template_representation())
+            retval[response_json].extend(status_codes)
+        return retval
+
     def get_example_template(self, builder: BaseBuilder) -> List[str]:
-        if not builder.has_example_template or not self.code_model.no_models:
-            return []
-        template = ["Example:\n    .. code-block:: python"]
-        if self._has_json_example_template:
+        template = []
+        if self._has_json_example_template(builder):
             template.append("")
             template += self._get_json_example_template(builder)
-        if self._has_files_example_template:
+        if self._has_files_example_template(builder):
             template.append("")
             template += self._get_files_example_template(builder)
-        if builder.get_json_response_template_to_status_codes():
+        if self._get_json_response_template_to_status_codes(builder):
             template.append("")
             template += self._get_json_response_template(builder)
         return template
@@ -211,7 +246,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
                         "' or '".join(json_body.subtype_map.values())
                     )
                 )
-                template.append([""])
+                template.append("")
             property_with_discriminator = json_body.property_with_discriminator
             if property_with_discriminator:
                 polymorphic_schemas = [
@@ -224,34 +259,54 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
                 )
                 for i in range(num_schemas):
                     schema = polymorphic_schemas[i]
-                    template.append(
-                        f"{property_with_discriminator.name} = {_serialize_json_dict(schema.get_json_template_representation())}"
+                    polymorphic_property = _serialize_json_dict(
+                        schema.get_json_template_representation(),
+                    )
+                    template.extend(
+                        f"{property_with_discriminator.name} = {polymorphic_property}".splitlines()
                     )
                     if i != num_schemas - 1:
                         template.append("# OR")
                 template.append("")
         template.append("# JSON input template you can fill out and use as your `json` input.")
-        template.append(
-            f"{self._json_example_param_name(builder)} = {builder.parameters.get_json_template_representation()}"
+        json_template = _serialize_json_dict(
+            builder.parameters.json_body.get_json_template_representation(),
+        )
+        template.extend(
+            f"{self._json_example_param_name(builder)} = {json_template}".splitlines()
         )
         return template
 
     def _get_files_example_template(self, builder: BaseBuilder) -> List[str]:
         return [
             "# multipart input template you can fill out and use as your `files` input.",
-            f"files = {builder.parameters.get_files_template_representation()}"
+            f"files = {_serialize_files_dict(builder.parameters._multipart_parameters)}"
         ]
 
     def _get_json_response_template(self, builder: BaseBuilder) -> List[str]:
         template = []
-        for response_body, status_codes in builder._get_json_response_template_to_status_codes().items():
+        for response_body, status_codes in self._get_json_response_template_to_status_codes(builder).items():
             template.append("# response body for status code(s): {}".format(', '.join(status_codes)))
-            template.append(f"response_body == {response_body}")
+            template.extend(f"response.json() == {response_body}".splitlines())
         return template
 
 ############################## REQUEST BUILDERS ##############################
 
 class RequestBuilderBaseSerializer(BuilderBaseSerializer):
+
+    def description_and_summary(self, builder: RequestBuilder) -> List[str]:
+        retval = super().description_and_summary(builder)
+        retval += [
+            "See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.",
+            ""
+        ]
+        return retval
+
+    def want_example_template(self, builder: RequestBuilder) -> bool:
+        if builder.parameters.has_body:
+            body_kwargs = set(builder.parameters.body_kwarg_names.keys())
+            return bool(body_kwargs.intersection({"json", "files"}))
+        return bool(self._get_json_response_template_to_status_codes(builder))
 
     @property
     def _function_definition(self) -> str:
@@ -286,13 +341,10 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):
         return "files" in builder.parameters.body_kwarg_names
 
 class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
-    def _parameters_method_signature(self, builder: RequestBuilder) -> List[str]:
-        params = [
-            f"{param.method_signature(async_mode=False)}"
-            for param in builder.parameters.method
-        ]
-        params.append("**kwargs  # type: Any")
-        return params
+
+    @property
+    def _want_inline_type_hints(self) -> bool:
+        return False
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
@@ -300,13 +352,9 @@ class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
 
 class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
 
-    def _parameters_method_signature(self, builder: RequestBuilder) -> List[str]:
-        params = [
-            f"{param.method_signature(async_mode=True)}"
-            for param in builder.parameters.method
-        ]
-        params.append("**kwargs: Any")
-        return params
+    @property
+    def _want_inline_type_hints(self) -> bool:
+        return True
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
@@ -386,6 +434,17 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         rtype_str = f":rtype: {self._response_docstring_type_template(builder).format(rtype)}"
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
+    def want_example_template(self, builder: BaseBuilder) -> bool:
+        if not self.code_model.no_models:
+            return False
+        if builder.parameters.has_body:
+            body_params = builder.parameters.body
+            return any([
+                b for b in body_params
+                if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))
+            ])
+        return bool(self._get_json_response_template_to_status_codes(builder))
+
     def _json_example_param_name(self, builder: Operation) -> str:
         return builder.parameters.body[0].serialized_name
 
@@ -398,16 +457,12 @@ class OperationBaseSerializer(BuilderBaseSerializer):
 class SyncOperationSerializer(OperationBaseSerializer):
 
     @property
+    def _want_inline_type_hints(self) -> bool:
+        return False
+
+    @property
     def _function_definition(self) -> str:
         return "def"
-
-    def _parameters_method_signature(self, builder: Operation) -> List[str]:
-        params = [
-            f"    {param.method_signature(async_mode=False)}"
-            for param in builder.parameters.method
-        ]
-        params.append("    **kwargs  # type: Any")
-        return params
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
@@ -416,16 +471,12 @@ class SyncOperationSerializer(OperationBaseSerializer):
 class AsyncOperationSerializer(OperationBaseSerializer):
 
     @property
+    def _want_inline_type_hints(self) -> bool:
+        return True
+
+    @property
     def _function_definition(self) -> str:
         return "async def"
-
-    def _parameters_method_signature(self, builder: Operation) -> List[str]:
-        params = [
-            f"    {param.method_signature(async_mode=True)}"
-            for param in builder.parameters.method
-        ]
-        params.append("    **kwargs: Any")
-        return params
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
@@ -470,15 +521,6 @@ class LROOperationBaseSerializer(OperationBaseSerializer):
 
     def cls_type_annotation(self, builder: LROOperation) -> str:
         return f"# type: ClsType[{super()._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
-
-    def _method_signature(self, builder: LROOperation) -> str:
-        lines: List[str] = []
-        lines.append(f"{self._function_definition} begin_{builder.name}(")
-        lines.append("    self,")
-        lines.extend(self._parameters_method_signature(builder))
-        lines.append(")")
-        return "\n".join(lines)
-
 
     @abstractmethod
     def _default_polling_method(self, builder: LROOperation) -> str:

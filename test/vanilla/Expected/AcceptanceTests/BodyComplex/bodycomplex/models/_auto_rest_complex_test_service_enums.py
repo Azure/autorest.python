@@ -27,9 +27,26 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
-class GeoJsonObjectType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """GeoJSON object type."""
+class CMYKColors(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-    POINT = "Point"
-    POLYGON = "Polygon"
-    MULTI_POLYGON = "MultiPolygon"
+    CYAN = "cyan"
+    MAGENTA = "Magenta"
+    YELLOW = "YELLOW"
+    BLAC_K = "blacK"
+
+
+class GoblinSharkColor(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+    """Colors possible"""
+
+    PINK = "pink"
+    GRAY = "gray"
+    BROWN = "brown"
+    #: Uppercase RED.
+    UPPER_RED = "RED"
+    #: Lowercase RED.
+    LOWER_RED = "red"
+
+
+class MyKind(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    KIND1 = "Kind1"

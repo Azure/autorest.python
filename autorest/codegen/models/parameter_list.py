@@ -246,19 +246,6 @@ class ParameterList(MutableSequence):
         object_schema = cast(ObjectSchema, self.body[0].schema)
         return f"{self.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
 
-    def get_files_template_representation(self) -> str:
-        template = {
-            param.serialized_name: param.schema.get_files_template_representation(
-                optional=not param.required,
-                description=param.description,
-            )
-            for param in self._multipart_parameters
-        }
-        return json.dumps(template, sort_keys=True, indent=4)
-
-    def get_json_template_representation(self) -> str:
-        return json.dumps(self.json_body.get_json_template_representation(), sort_keys=True, indent=4)
-
 class GlobalParameterList(ParameterList):
 
     @property

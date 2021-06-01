@@ -115,19 +115,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% else %}
         request_copy.url = self._client.format_url(request_copy.url)
         {% endif %}
-        if kwargs.pop("stream_response", False):
-            return _{{ keywords.async_class }}StreamContextManager(
-                client=self._client._pipeline,
-                request=request_copy,
-            )
-        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = {{ keywords.async_class }}HttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response
-        )
-        {{ keywords.await }}response.read()
-        return response
+        return self._client.send_request(request_copy, **kwargs)
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

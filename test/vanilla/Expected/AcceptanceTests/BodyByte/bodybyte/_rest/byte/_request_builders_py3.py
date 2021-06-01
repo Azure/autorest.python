@@ -16,6 +16,9 @@ _SERIALIZER = Serializer()
 def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get null byte value.
 
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
+
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -35,6 +38,9 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
 def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     """Get empty byte value ''.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -56,6 +62,9 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
     """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
+
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -73,11 +82,14 @@ def build_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_non_ascii_request(content: bytearray, **kwargs: Any) -> HttpRequest:
+def build_put_non_ascii_request(*, content: bytearray, **kwargs: Any) -> HttpRequest:
     """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-    :param content: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-    :type content: bytearray
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
+
+    :keyword content: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+    :paramtype content: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -100,6 +112,9 @@ def build_put_non_ascii_request(content: bytearray, **kwargs: Any) -> HttpReques
 
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get invalid byte value ':::SWAGGER::::'.
+
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

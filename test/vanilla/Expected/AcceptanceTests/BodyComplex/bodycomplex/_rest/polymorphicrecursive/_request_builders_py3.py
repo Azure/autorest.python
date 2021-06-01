@@ -17,10 +17,12 @@ _SERIALIZER = Serializer()
 def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """Get complex types that are polymorphic and have recursive references.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
@@ -28,7 +30,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "fishtype": "str",
+                "fishtype": "fishtype",
                 "length": "float",
                 "siblings": [
                     "..."
@@ -51,7 +53,8 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic and have recursive references.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json: Please put a salmon that looks like this:
      {
@@ -161,16 +164,19 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
          ]
      }.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
+            fishtype = 'Salmon' or 'Shark'
+
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "fishtype": "str",
+                "fishtype": "fishtype",
                 "length": "float",
                 "siblings": [
                     "..."

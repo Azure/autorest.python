@@ -16,19 +16,20 @@ _SERIALIZER = Serializer()
 def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -40,9 +41,8 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
                 "status": "bool (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "": {
                     "str": "object (optional)"
                 },
@@ -50,7 +50,6 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -70,19 +69,20 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
 def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a CatAPTrue which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -95,9 +95,8 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
                 "status": "bool (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "": {
                     "str": "object (optional)"
                 },
@@ -106,7 +105,6 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -126,19 +124,20 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
 def build_create_ap_object_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -150,9 +149,8 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
                 "status": "bool (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "": {
                     "str": "object (optional)"
                 },
@@ -160,7 +158,6 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -180,19 +177,20 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
 def build_create_ap_string_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -204,9 +202,8 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
                 "status": "bool (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "": {
                     "str": "str (optional)"
                 },
@@ -214,7 +211,6 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -234,19 +230,20 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
 def build_create_ap_in_properties_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -258,9 +255,8 @@ def build_create_ap_in_properties_request(*, json: Any = None, content: Any = No
                 "status": "bool (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "additionalProperties": {
                     "str": "float (optional)"
                 },
@@ -268,7 +264,6 @@ def build_create_ap_in_properties_request(*, json: Any = None, content: Any = No
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"
@@ -290,19 +285,20 @@ def build_create_ap_in_properties_with_ap_string_request(
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -318,9 +314,8 @@ def build_create_ap_in_properties_with_ap_string_request(
                 "status": "bool (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "": {
                     "str": "str (optional)"
                 },
@@ -332,7 +327,6 @@ def build_create_ap_in_properties_with_ap_string_request(
                 "name": "str (optional)",
                 "status": "bool (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

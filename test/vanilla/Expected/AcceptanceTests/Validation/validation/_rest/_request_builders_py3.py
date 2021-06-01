@@ -19,7 +19,8 @@ def build_validation_of_method_parameters_request(
 ) -> HttpRequest:
     """Validates input parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
@@ -27,16 +28,16 @@ def build_validation_of_method_parameters_request(
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000.
     :type id: int
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "capacity": "int (optional)",
                 "child": {
                     "constProperty": "str",
@@ -54,7 +55,6 @@ def build_validation_of_method_parameters_request(
                 ],
                 "image": "str (optional)"
             }
-
     """
     api_version = "1.0.0"
     accept = "application/json"
@@ -86,7 +86,8 @@ def build_validation_of_body_request(
 ) -> HttpRequest:
     """Validates body parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
@@ -98,13 +99,13 @@ def build_validation_of_body_request(
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -126,9 +127,8 @@ def build_validation_of_body_request(
                 "image": "str (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "capacity": "int (optional)",
                 "child": {
                     "constProperty": "str",
@@ -146,7 +146,6 @@ def build_validation_of_body_request(
                 ],
                 "image": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     api_version = "1.0.0"
@@ -181,10 +180,12 @@ def build_validation_of_body_request(
 def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     """get_with_constant_in_path.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
     constant_param = "constant"
@@ -202,19 +203,20 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
 def build_post_with_constant_in_body_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """post_with_constant_in_body.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :keyword json:
     :paramtype json: Any
     :keyword content:
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -236,9 +238,8 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
                 "image": "str (optional)"
             }
 
-
             # response body for status code(s): 200
-            response_body == {
+            response.json() == {
                 "capacity": "int (optional)",
                 "child": {
                     "constProperty": "str",
@@ -256,7 +257,6 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
                 ],
                 "image": "str (optional)"
             }
-
     """
     content_type = kwargs.pop("content_type", None)
     constant_param = "constant"

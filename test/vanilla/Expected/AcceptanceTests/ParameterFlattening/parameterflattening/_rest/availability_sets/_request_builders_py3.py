@@ -19,7 +19,8 @@ def build_update_request(
 ) -> HttpRequest:
     """Updates the tags for an availability set.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your code flow.
+    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    code flow.
 
     :param resource_group_name: The name of the resource group.
     :type resource_group_name: str
@@ -29,13 +30,13 @@ def build_update_request(
     :paramtype json: Any
     :keyword content: The tags.
     :paramtype content: Any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's `send_request` method.
-     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this response into your code flow.
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
 
     Example:
         .. code-block:: python
-
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
@@ -43,7 +44,6 @@ def build_update_request(
                     "str": "str"
                 }
             }
-
     """
     content_type = kwargs.pop("content_type", None)
 
