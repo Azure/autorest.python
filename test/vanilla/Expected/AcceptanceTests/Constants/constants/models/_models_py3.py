@@ -176,47 +176,33 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar parameter:  Default value: "value1".
-    :vartype parameter: str
+    :param parameter:
+    :type parameter: str
     """
-
-    _validation = {
-        "parameter": {"constant": True},
-    }
 
     _attribute_map = {
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    parameter = "value1"
-
-    def __init__(self, **kwargs):
+    def __init__(self, *, parameter: Optional[str] = "value1", **kwargs):
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
+        self.parameter = parameter
 
 
 class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar parameter:  Default value: "value1".
-    :vartype parameter: str
+    :param parameter:
+    :type parameter: str
     """
-
-    _validation = {
-        "parameter": {"constant": True},
-    }
 
     _attribute_map = {
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    parameter = "value1"
-
-    def __init__(self, **kwargs):
+    def __init__(self, *, parameter: Optional[str] = None, **kwargs):
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
+        self.parameter = parameter
 
 
 class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):

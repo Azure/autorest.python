@@ -177,8 +177,6 @@ class FlattenedProduct(Resource):
 class FlattenParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param name: Required. Product name with value 'groupproduct'.
@@ -193,8 +191,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
-    :vartype capacity: str
+    :param capacity: Capacity of product. For example, 4 people.
+    :type capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
     :param odata_value: URL value.
@@ -204,7 +202,6 @@ class FlattenParameterGroup(msrest.serialization.Model):
     _validation = {
         "name": {"required": True},
         "product_id": {"required": True},
-        "capacity": {"constant": True},
     }
 
     _attribute_map = {
@@ -218,8 +215,6 @@ class FlattenParameterGroup(msrest.serialization.Model):
         "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
 
-    capacity = "Large"
-
     def __init__(
         self,
         *,
@@ -228,6 +223,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         simple_body_product: Optional["SimpleProduct"] = None,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
+        capacity: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
@@ -238,6 +234,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         self.product_id = product_id
         self.description = description
         self.max_product_display_name = max_product_display_name
+        self.capacity = capacity
         self.generic_value = generic_value
         self.odata_value = odata_value
 
@@ -327,8 +324,6 @@ class ResourceCollection(msrest.serialization.Model):
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product for a given
@@ -339,8 +334,8 @@ class SimpleProduct(BaseProduct):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
-    :vartype capacity: str
+    :param capacity: Capacity of product. For example, 4 people.
+    :type capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
     :param odata_value: URL value.
@@ -349,7 +344,6 @@ class SimpleProduct(BaseProduct):
 
     _validation = {
         "product_id": {"required": True},
-        "capacity": {"constant": True},
     }
 
     _attribute_map = {
@@ -361,20 +355,20 @@ class SimpleProduct(BaseProduct):
         "odata_value": {"key": "details.max_product_image.@odata\\.value", "type": "str"},
     }
 
-    capacity = "Large"
-
     def __init__(
         self,
         *,
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
+        capacity: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
     ):
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.max_product_display_name = max_product_display_name
+        self.capacity = capacity
         self.generic_value = generic_value
         self.odata_value = odata_value
 

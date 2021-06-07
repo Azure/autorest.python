@@ -129,7 +129,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             # map of discriminator value to child's name
             for children_yaml in yaml_data["discriminator"]["immediate"].values():
                 subtype_map[children_yaml["discriminatorValue"]] = children_yaml["language"]["python"]["name"]
-
         if yaml_data.get("properties"):
             properties += [
                 Property.from_yaml(p, has_additional_properties=len(properties) > 0, **kwargs)
