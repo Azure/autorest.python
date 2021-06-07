@@ -45,7 +45,6 @@ class IncorrectReturnedErrorModelOperationsMixin:
             template_url=self.get_incorrect_error_from_server.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

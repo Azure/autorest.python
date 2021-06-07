@@ -66,7 +66,6 @@ class FilesOperations:
             template_url=self.get_file.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -102,7 +101,6 @@ class FilesOperations:
             template_url=self.get_file_large.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -138,7 +136,6 @@ class FilesOperations:
             template_url=self.get_empty_file.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response

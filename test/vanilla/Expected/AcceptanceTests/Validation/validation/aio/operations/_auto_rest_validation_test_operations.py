@@ -54,7 +54,6 @@ class AutoRestValidationTestOperationsMixin:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -95,10 +94,9 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body is not None:
             json = self._serialize.body(body, "Product")
-        else:
-            json = None
 
         request = _rest.build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
@@ -110,7 +108,6 @@ class AutoRestValidationTestOperationsMixin:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -146,7 +143,6 @@ class AutoRestValidationTestOperationsMixin:
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -178,16 +174,14 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body is not None:
             json = self._serialize.body(body, "Product")
-        else:
-            json = None
 
         request = _rest.build_post_with_constant_in_body_request(
             json=json, content_type=content_type, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

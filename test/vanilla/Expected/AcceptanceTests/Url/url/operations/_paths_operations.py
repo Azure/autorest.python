@@ -74,7 +74,6 @@ class PathsOperations(object):
             template_url=self.get_boolean_true.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -109,7 +108,6 @@ class PathsOperations(object):
             template_url=self.get_boolean_false.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -144,7 +142,6 @@ class PathsOperations(object):
             template_url=self.get_int_one_million.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -179,7 +176,6 @@ class PathsOperations(object):
             template_url=self.get_int_negative_one_million.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -214,7 +210,6 @@ class PathsOperations(object):
             template_url=self.get_ten_billion.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -249,7 +244,6 @@ class PathsOperations(object):
             template_url=self.get_negative_ten_billion.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -284,7 +278,6 @@ class PathsOperations(object):
             template_url=self.float_scientific_positive.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -319,7 +312,6 @@ class PathsOperations(object):
             template_url=self.float_scientific_negative.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -354,7 +346,6 @@ class PathsOperations(object):
             template_url=self.double_decimal_positive.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -389,7 +380,6 @@ class PathsOperations(object):
             template_url=self.double_decimal_negative.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -424,7 +414,6 @@ class PathsOperations(object):
             template_url=self.string_unicode.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -459,7 +448,6 @@ class PathsOperations(object):
             template_url=self.string_url_encoded.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -496,7 +484,6 @@ class PathsOperations(object):
             template_url=self.string_url_non_encoded.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -531,7 +518,6 @@ class PathsOperations(object):
             template_url=self.string_empty.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -570,7 +556,6 @@ class PathsOperations(object):
             string_path=string_path, template_url=self.string_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -609,7 +594,6 @@ class PathsOperations(object):
             enum_path=enum_path, template_url=self.enum_valid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -648,7 +632,6 @@ class PathsOperations(object):
             enum_path=enum_path, template_url=self.enum_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -687,7 +670,6 @@ class PathsOperations(object):
             byte_path=byte_path, template_url=self.byte_multi_byte.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -722,7 +704,6 @@ class PathsOperations(object):
             template_url=self.byte_empty.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -761,7 +742,6 @@ class PathsOperations(object):
             byte_path=byte_path, template_url=self.byte_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -796,7 +776,6 @@ class PathsOperations(object):
             template_url=self.date_valid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -836,7 +815,6 @@ class PathsOperations(object):
             date_path=date_path, template_url=self.date_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -871,7 +849,6 @@ class PathsOperations(object):
             template_url=self.date_time_valid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -910,7 +887,6 @@ class PathsOperations(object):
             date_time_path=date_time_path, template_url=self.date_time_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -949,7 +925,6 @@ class PathsOperations(object):
             base64_url_path=base64_url_path, template_url=self.base64_url.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -990,7 +965,6 @@ class PathsOperations(object):
             array_path=array_path, template_url=self.array_csv_in_path.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1029,7 +1003,6 @@ class PathsOperations(object):
             unix_time_url_path=unix_time_url_path, template_url=self.unix_time_url.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

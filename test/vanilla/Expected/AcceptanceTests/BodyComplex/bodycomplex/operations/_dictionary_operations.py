@@ -73,7 +73,6 @@ class DictionaryOperations(object):
             template_url=self.get_valid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -114,13 +113,13 @@ class DictionaryOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
+        json = None
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = rest_dictionary.build_put_valid_request(
             json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -155,7 +154,6 @@ class DictionaryOperations(object):
             template_url=self.get_empty.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -196,13 +194,13 @@ class DictionaryOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
+        json = None
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = rest_dictionary.build_put_empty_request(
             json=json, content_type=content_type, template_url=self.put_empty.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -237,7 +235,6 @@ class DictionaryOperations(object):
             template_url=self.get_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -276,7 +273,6 @@ class DictionaryOperations(object):
             template_url=self.get_not_provided.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

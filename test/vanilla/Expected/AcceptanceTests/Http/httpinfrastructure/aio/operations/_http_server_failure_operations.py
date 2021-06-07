@@ -66,7 +66,6 @@ class HttpServerFailureOperations:
             template_url=self.head501.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -98,7 +97,6 @@ class HttpServerFailureOperations:
             template_url=self.get501.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -129,16 +127,14 @@ class HttpServerFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_server_failure.build_post505_request(
             json=json, content_type=content_type, template_url=self.post505.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -169,16 +165,14 @@ class HttpServerFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_server_failure.build_delete505_request(
             json=json, content_type=content_type, template_url=self.delete505.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

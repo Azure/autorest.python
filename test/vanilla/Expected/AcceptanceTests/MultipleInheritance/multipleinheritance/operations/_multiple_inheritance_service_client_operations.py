@@ -49,7 +49,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = _rest.build_get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -89,13 +88,13 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(horse, "Horse")
 
         request = _rest.build_put_horse_request(
             json=json, content_type=content_type, template_url=self.put_horse.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -131,7 +130,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = _rest.build_get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -172,13 +170,13 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _pet = _models.Pet(name=name)
+        json = None
         json = self._serialize.body(_pet, "Pet")
 
         request = _rest.build_put_pet_request(
             json=json, content_type=content_type, template_url=self.put_pet.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -216,7 +214,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             template_url=self.get_feline.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -256,13 +253,13 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(feline, "Feline")
 
         request = _rest.build_put_feline_request(
             json=json, content_type=content_type, template_url=self.put_feline.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -298,7 +295,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = _rest.build_get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -338,13 +334,13 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(cat, "Cat")
 
         request = _rest.build_put_cat_request(
             json=json, content_type=content_type, template_url=self.put_cat.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -383,7 +379,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             template_url=self.get_kitten.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -425,13 +420,13 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(kitten, "Kitten")
 
         request = _rest.build_put_kitten_request(
             json=json, content_type=content_type, template_url=self.put_kitten.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

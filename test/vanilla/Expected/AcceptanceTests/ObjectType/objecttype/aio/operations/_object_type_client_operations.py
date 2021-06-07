@@ -43,7 +43,6 @@ class ObjectTypeClientOperationsMixin:
 
         request = _rest.build_get_request(template_url=self.get.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -79,13 +78,13 @@ class ObjectTypeClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(put_object, "object")
 
         request = _rest.build_put_request(
             json=json, content_type=content_type, template_url=self.put.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

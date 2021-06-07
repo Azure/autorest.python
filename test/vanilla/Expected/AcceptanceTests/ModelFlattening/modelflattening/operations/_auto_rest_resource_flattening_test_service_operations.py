@@ -52,16 +52,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if resource_array is not None:
             json = self._serialize.body(resource_array, "[Resource]")
-        else:
-            json = None
 
         request = _rest.build_put_array_request(
             json=json, content_type=content_type, template_url=self.put_array.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -94,7 +92,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = _rest.build_get_array_request(template_url=self.get_array.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -135,16 +132,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if resource_array is not None:
             json = self._serialize.body(resource_array, "[WrappedProduct]")
-        else:
-            json = None
 
         request = _rest.build_put_wrapped_array_request(
             json=json, content_type=content_type, template_url=self.put_wrapped_array.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -180,7 +175,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             template_url=self.get_wrapped_array.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -220,16 +214,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if resource_dictionary is not None:
             json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
-        else:
-            json = None
 
         request = _rest.build_put_dictionary_request(
             json=json, content_type=content_type, template_url=self.put_dictionary.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -264,7 +256,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             template_url=self.get_dictionary.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,16 +295,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if resource_complex_object is not None:
             json = self._serialize.body(resource_complex_object, "ResourceCollection")
-        else:
-            json = None
 
         request = _rest.build_put_resource_collection_request(
             json=json, content_type=content_type, template_url=self.put_resource_collection.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -348,7 +337,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             template_url=self.get_resource_collection.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -388,16 +376,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if simple_body_product is not None:
             json = self._serialize.body(simple_body_product, "SimpleProduct")
-        else:
-            json = None
 
         request = _rest.build_put_simple_product_request(
             json=json, content_type=content_type, template_url=self.put_simple_product.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -458,10 +444,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             generic_value=generic_value,
             odata_value=odata_value,
         )
+        json = None
         if _simple_body_product is not None:
             json = self._serialize.body(_simple_body_product, "SimpleProduct")
-        else:
-            json = None
 
         request = _rest.build_post_flattened_simple_product_request(
             json=json,
@@ -470,7 +455,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -517,20 +501,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         _max_product_display_name = None
         _generic_value = None
         _odata_value = None
-        if _name is not None:
-            _name = _name.name
-        if _simple_body_product is not None:
-            _simple_body_product = _simple_body_product.simple_body_product
-        if _product_id is not None:
-            _product_id = _product_id.product_id
-        if _description is not None:
-            _description = _description.description
-        if _max_product_display_name is not None:
-            _max_product_display_name = _max_product_display_name.max_product_display_name
-        if _generic_value is not None:
-            _generic_value = _generic_value.generic_value
-        if _odata_value is not None:
-            _odata_value = _odata_value.odata_value
+        if flatten_parameter_group is not None:
+            _name = flatten_parameter_group.name
+            _simple_body_product = flatten_parameter_group.simple_body_product
+            _product_id = flatten_parameter_group.product_id
+            _description = flatten_parameter_group.description
+            _max_product_display_name = flatten_parameter_group.max_product_display_name
+            _generic_value = flatten_parameter_group.generic_value
+            _odata_value = flatten_parameter_group.odata_value
         _simple_body_product = _models.SimpleProduct(
             product_id=_product_id,
             description=_description,
@@ -538,10 +516,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
+        json = None
         if _simple_body_product is not None:
             json = self._serialize.body(_simple_body_product, "SimpleProduct")
-        else:
-            json = None
 
         request = _rest.build_put_simple_product_with_grouping_request(
             name=_name,
@@ -551,7 +528,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

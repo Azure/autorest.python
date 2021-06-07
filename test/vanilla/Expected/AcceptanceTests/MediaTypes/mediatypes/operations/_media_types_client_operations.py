@@ -55,7 +55,18 @@ class MediaTypesClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-        content = input
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
+            content = input
+        elif content_type.split(";")[0] in ["application/json"]:
+            if input is not None:
+                json = self._serialize.body(input, "SourcePath")
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
+            )
 
         request = _rest.build_analyze_body_request(
             json=json,
@@ -65,7 +76,6 @@ class MediaTypesClientOperationsMixin(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -104,10 +114,9 @@ class MediaTypesClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "text/plain")
+        content = None
         if input is not None:
             content = self._serialize.body(input, "str")
-        else:
-            content = None
 
         request = _rest.build_content_type_with_encoding_request(
             content=content,
@@ -116,7 +125,6 @@ class MediaTypesClientOperationsMixin(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

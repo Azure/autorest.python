@@ -73,7 +73,6 @@ class BoolOperations(object):
             template_url=self.get_true.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -110,13 +109,13 @@ class BoolOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         bool_body = True
+        json = None
         json = self._serialize.body(bool_body, "bool")
 
         request = rest_bool.build_put_true_request(
             json=json, content_type=content_type, template_url=self.put_true.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -151,7 +150,6 @@ class BoolOperations(object):
             template_url=self.get_false.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -188,13 +186,13 @@ class BoolOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         bool_body = False
+        json = None
         json = self._serialize.body(bool_body, "bool")
 
         request = rest_bool.build_put_false_request(
             json=json, content_type=content_type, template_url=self.put_false.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -229,7 +227,6 @@ class BoolOperations(object):
             template_url=self.get_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -268,7 +265,6 @@ class BoolOperations(object):
             template_url=self.get_invalid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

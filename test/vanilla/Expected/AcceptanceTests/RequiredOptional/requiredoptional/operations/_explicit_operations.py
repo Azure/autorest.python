@@ -74,7 +74,8 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")
-        content = input
+        content = None
+        content = body_parameter
 
         request = rest_explicit.build_put_optional_binary_body_request(
             content=content,
@@ -83,7 +84,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -119,7 +119,8 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")
-        content = input
+        content = None
+        content = body_parameter
 
         request = rest_explicit.build_put_required_binary_body_request(
             content=content,
@@ -128,7 +129,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -165,6 +165,7 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(body_parameter, "int")
 
         request = rest_explicit.build_post_required_integer_parameter_request(
@@ -174,7 +175,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -210,10 +210,9 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "int")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_integer_parameter_request(
             json=json,
@@ -222,7 +221,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -260,6 +258,7 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.IntWrapper(value=value)
+        json = None
         json = self._serialize.body(_body_parameter, "IntWrapper")
 
         request = rest_explicit.build_post_required_integer_property_request(
@@ -269,7 +268,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -306,10 +304,9 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.IntOptionalWrapper(value=value)
+        json = None
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "IntOptionalWrapper")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_integer_property_request(
             json=json,
@@ -318,7 +315,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -358,7 +354,6 @@ class ExplicitOperations(object):
             header_parameter=header_parameter, template_url=self.post_required_integer_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -397,7 +392,6 @@ class ExplicitOperations(object):
             header_parameter=header_parameter, template_url=self.post_optional_integer_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -434,6 +428,7 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(body_parameter, "str")
 
         request = rest_explicit.build_post_required_string_parameter_request(
@@ -443,7 +438,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -479,10 +473,9 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "str")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_string_parameter_request(
             json=json,
@@ -491,7 +484,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -529,6 +521,7 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.StringWrapper(value=value)
+        json = None
         json = self._serialize.body(_body_parameter, "StringWrapper")
 
         request = rest_explicit.build_post_required_string_property_request(
@@ -538,7 +531,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -575,10 +567,9 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.StringOptionalWrapper(value=value)
+        json = None
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "StringOptionalWrapper")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_string_property_request(
             json=json,
@@ -587,7 +578,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -627,7 +617,6 @@ class ExplicitOperations(object):
             header_parameter=header_parameter, template_url=self.post_required_string_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -666,7 +655,6 @@ class ExplicitOperations(object):
             body_parameter=body_parameter, template_url=self.post_optional_string_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -703,6 +691,7 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(body_parameter, "Product")
 
         request = rest_explicit.build_post_required_class_parameter_request(
@@ -712,7 +701,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -748,10 +736,9 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "Product")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_class_parameter_request(
             json=json,
@@ -760,7 +747,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -798,6 +784,7 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.ClassWrapper(value=value)
+        json = None
         json = self._serialize.body(_body_parameter, "ClassWrapper")
 
         request = rest_explicit.build_post_required_class_property_request(
@@ -807,7 +794,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -844,10 +830,9 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.ClassOptionalWrapper(value=value)
+        json = None
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_class_property_request(
             json=json,
@@ -856,7 +841,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -893,6 +877,7 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(body_parameter, "[str]")
 
         request = rest_explicit.build_post_required_array_parameter_request(
@@ -902,7 +887,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -938,10 +922,9 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "[str]")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_array_parameter_request(
             json=json,
@@ -950,7 +933,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -988,6 +970,7 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.ArrayWrapper(value=value)
+        json = None
         json = self._serialize.body(_body_parameter, "ArrayWrapper")
 
         request = rest_explicit.build_post_required_array_property_request(
@@ -997,7 +980,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1034,10 +1016,9 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _body_parameter = _models.ArrayOptionalWrapper(value=value)
+        json = None
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")
-        else:
-            json = None
 
         request = rest_explicit.build_post_optional_array_property_request(
             json=json,
@@ -1046,7 +1027,6 @@ class ExplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1086,7 +1066,6 @@ class ExplicitOperations(object):
             header_parameter=header_parameter, template_url=self.post_required_array_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1125,7 +1104,6 @@ class ExplicitOperations(object):
             header_parameter=header_parameter, template_url=self.post_optional_array_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

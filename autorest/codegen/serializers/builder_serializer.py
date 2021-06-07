@@ -477,7 +477,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         retval = []
         for grouped_parameter in builder.parameters.grouped:
             retval.append(f"{grouped_parameter.serialized_name} = None")
-        for grouper_name, grouped_parameters in groupby(builder.parameters.grouped, key=lambda a: a.serialized_name):
+        for grouper_name, grouped_parameters in groupby(builder.parameters.grouped, key=lambda a: a.grouped_by.serialized_name):
             retval.append(f"if {grouper_name} is not None:")
             for grouped_parameter in grouped_parameters:
                 retval.append(f"    {grouped_parameter.serialized_name} = {grouper_name}.{grouped_parameter.serialized_name.lstrip('_')}")
@@ -510,8 +510,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         else:
             retval.append(f"if {body_param.serialized_name} is not None:")
             retval.append("    " + serialize_body_call)
-            retval.append("else:")
-            retval.append(f"    {builder.serialized_body_kwarg} = None")
         return retval
 
     def _set_body_content_kwarg(self, builder: Operation, schema_request: SchemaRequest):
@@ -522,11 +520,21 @@ class OperationBaseSerializer(BuilderBaseSerializer):
             retval.extend(self._serialize_body(builder))
         return retval
 
+    def _content_type_error_check(self, builder: Operation) -> List[str]:
+        retval = ["else:"]
+        retval.append("    raise ValueError(")
+        retval.append("        \"The content_type '{}' is not one of the allowed values: \"")
+        retval.append(f"        \"{builder.parameters.content_types}\".format(content_type)")
+        retval.append("    )")
+        return retval
+
     def _serialize_body_parameters(
         self,
         builder: Operation,
     ) -> List[str]:
         retval = []
+        for body_kwarg in builder.body_kwargs_to_pass_to_request_builder:
+            retval.append(f"{body_kwarg} = None")
         if len(builder.request_builder.schema_requests) == 1:
             retval.extend(self._set_body_content_kwarg(
                 builder, builder.request_builder.schema_requests[0]
@@ -541,6 +549,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):
                         builder, schema_request
                     )
                 ])
+            retval.extend(self._content_type_error_check(builder))
+
         return retval
 
     def _template_url_to_pass_to_request_builder(self, builder: Operation) -> str:

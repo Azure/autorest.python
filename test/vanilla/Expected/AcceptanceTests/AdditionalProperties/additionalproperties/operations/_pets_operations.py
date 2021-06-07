@@ -74,13 +74,13 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = rest_pets.build_create_ap_true_request(
             json=json, content_type=content_type, template_url=self.create_ap_true.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -120,13 +120,13 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = rest_pets.build_create_cat_ap_true_request(
             json=json, content_type=content_type, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -166,13 +166,13 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(create_parameters, "PetAPObject")
 
         request = rest_pets.build_create_ap_object_request(
             json=json, content_type=content_type, template_url=self.create_ap_object.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -212,13 +212,13 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(create_parameters, "PetAPString")
 
         request = rest_pets.build_create_ap_string_request(
             json=json, content_type=content_type, template_url=self.create_ap_string.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -258,13 +258,13 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = rest_pets.build_create_ap_in_properties_request(
             json=json, content_type=content_type, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,6 +304,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
@@ -313,7 +314,6 @@ class PetsOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

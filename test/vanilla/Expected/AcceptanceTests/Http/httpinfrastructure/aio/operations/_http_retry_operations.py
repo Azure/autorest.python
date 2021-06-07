@@ -66,7 +66,6 @@ class HttpRetryOperations:
             template_url=self.head408.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -97,16 +96,14 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_retry.build_put500_request(
             json=json, content_type=content_type, template_url=self.put500.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -137,16 +134,14 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_retry.build_patch500_request(
             json=json, content_type=content_type, template_url=self.patch500.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -178,7 +173,6 @@ class HttpRetryOperations:
             template_url=self.get502.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -210,7 +204,6 @@ class HttpRetryOperations:
             template_url=self.options502.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -245,16 +238,14 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_retry.build_post503_request(
             json=json, content_type=content_type, template_url=self.post503.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -285,16 +276,14 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_retry.build_delete503_request(
             json=json, content_type=content_type, template_url=self.delete503.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -325,16 +314,14 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_retry.build_put504_request(
             json=json, content_type=content_type, template_url=self.put504.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -365,16 +352,14 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_retry.build_patch504_request(
             json=json, content_type=content_type, template_url=self.patch504.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -68,7 +68,6 @@ class PetOperations:
             pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -102,16 +101,14 @@ class PetOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if pet_param is not None:
             json = self._serialize.body(pet_param, "Pet")
-        else:
-            json = None
 
         request = rest_pet.build_add_pet_request(
             json=json, content_type=content_type, template_url=self.add_pet.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

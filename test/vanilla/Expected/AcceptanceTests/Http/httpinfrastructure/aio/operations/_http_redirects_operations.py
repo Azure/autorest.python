@@ -66,7 +66,6 @@ class HttpRedirectsOperations:
             template_url=self.head300.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -102,7 +101,6 @@ class HttpRedirectsOperations:
             template_url=self.get300.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -143,7 +141,6 @@ class HttpRedirectsOperations:
             template_url=self.head301.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -179,7 +176,6 @@ class HttpRedirectsOperations:
             template_url=self.get301.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -215,16 +211,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_put301_request(
             json=json, content_type=content_type, template_url=self.put301.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -259,7 +253,6 @@ class HttpRedirectsOperations:
             template_url=self.head302.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -295,7 +288,6 @@ class HttpRedirectsOperations:
             template_url=self.get302.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -331,16 +323,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_patch302_request(
             json=json, content_type=content_type, template_url=self.patch302.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -375,16 +365,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_post303_request(
             json=json, content_type=content_type, template_url=self.post303.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -420,7 +408,6 @@ class HttpRedirectsOperations:
             template_url=self.head307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -456,7 +443,6 @@ class HttpRedirectsOperations:
             template_url=self.get307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -492,7 +478,6 @@ class HttpRedirectsOperations:
             template_url=self.options307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -527,16 +512,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_put307_request(
             json=json, content_type=content_type, template_url=self.put307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -571,16 +554,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_patch307_request(
             json=json, content_type=content_type, template_url=self.patch307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -615,16 +596,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_post307_request(
             json=json, content_type=content_type, template_url=self.post307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -659,16 +638,14 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_redirects.build_delete307_request(
             json=json, content_type=content_type, template_url=self.delete307.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

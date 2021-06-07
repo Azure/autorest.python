@@ -74,7 +74,6 @@ class DatetimeOperations(object):
             template_url=self.get_null.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -113,7 +112,6 @@ class DatetimeOperations(object):
             template_url=self.get_invalid.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -152,7 +150,6 @@ class DatetimeOperations(object):
             template_url=self.get_overflow.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -191,7 +188,6 @@ class DatetimeOperations(object):
             template_url=self.get_underflow.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -231,13 +227,13 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_max_date_time_request(
             json=json, content_type=content_type, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -276,6 +272,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_max_date_time7_digits_request(
@@ -285,7 +282,6 @@ class DatetimeOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -320,7 +316,6 @@ class DatetimeOperations(object):
             template_url=self.get_utc_lowercase_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -359,7 +354,6 @@ class DatetimeOperations(object):
             template_url=self.get_utc_uppercase_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -401,7 +395,6 @@ class DatetimeOperations(object):
             template_url=self.get_utc_uppercase_max_date_time7_digits.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -441,6 +434,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_positive_offset_max_date_time_request(
@@ -450,7 +444,6 @@ class DatetimeOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -485,7 +478,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_positive_offset_lowercase_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -524,7 +516,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_positive_offset_uppercase_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -564,6 +555,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_negative_offset_max_date_time_request(
@@ -573,7 +565,6 @@ class DatetimeOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -608,7 +599,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_negative_offset_uppercase_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -647,7 +637,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_negative_offset_lowercase_max_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -687,13 +676,13 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_min_date_time_request(
             json=json, content_type=content_type, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -728,7 +717,6 @@ class DatetimeOperations(object):
             template_url=self.get_utc_min_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -768,6 +756,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_positive_offset_min_date_time_request(
@@ -777,7 +766,6 @@ class DatetimeOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -812,7 +800,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_positive_offset_min_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -852,6 +839,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_negative_offset_min_date_time_request(
@@ -861,7 +849,6 @@ class DatetimeOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -896,7 +883,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_negative_offset_min_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -935,7 +921,6 @@ class DatetimeOperations(object):
             template_url=self.get_local_no_offset_min_date_time.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

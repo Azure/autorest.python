@@ -73,7 +73,6 @@ class EnumOperations(object):
             template_url=self.get_not_expandable.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -113,13 +112,13 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(string_body, "str")
 
         request = rest_enum.build_put_not_expandable_request(
             json=json, content_type=content_type, template_url=self.put_not_expandable.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -154,7 +153,6 @@ class EnumOperations(object):
             template_url=self.get_referenced.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -194,13 +192,13 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         json = self._serialize.body(enum_string_body, "str")
 
         request = rest_enum.build_put_referenced_request(
             json=json, content_type=content_type, template_url=self.put_referenced.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -235,7 +233,6 @@ class EnumOperations(object):
             template_url=self.get_referenced_constant.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -276,13 +273,13 @@ class EnumOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")
         _enum_string_body = _models.RefColorConstant(field1=field1)
+        json = None
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = rest_enum.build_put_referenced_constant_request(
             json=json, content_type=content_type, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

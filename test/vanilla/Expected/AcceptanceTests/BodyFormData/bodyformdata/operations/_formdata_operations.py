@@ -82,6 +82,7 @@ class FormdataOperations(object):
             "fileContent": file_content,
             "fileName": file_name,
         }
+        files = None
 
         request = rest_formdata.build_upload_file_request(
             files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
@@ -126,6 +127,7 @@ class FormdataOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")
+        content = None
         content = file_content
 
         request = rest_formdata.build_upload_file_via_body_request(
@@ -175,6 +177,7 @@ class FormdataOperations(object):
         files = {
             "fileContent": file_content,
         }
+        files = None
 
         request = rest_formdata.build_upload_files_request(
             files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs

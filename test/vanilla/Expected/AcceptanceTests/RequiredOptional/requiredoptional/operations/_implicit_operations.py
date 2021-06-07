@@ -77,7 +77,6 @@ class ImplicitOperations(object):
             path_parameter=path_parameter, template_url=self.get_required_path.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -116,7 +115,6 @@ class ImplicitOperations(object):
             query_parameter=query_parameter, template_url=self.put_optional_query.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -155,7 +153,6 @@ class ImplicitOperations(object):
             query_parameter=query_parameter, template_url=self.put_optional_header.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -191,16 +188,14 @@ class ImplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "str")
-        else:
-            json = None
 
         request = rest_implicit.build_put_optional_body_request(
             json=json, content_type=content_type, template_url=self.put_optional_body.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -236,7 +231,8 @@ class ImplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")
-        content = input
+        content = None
+        content = body_parameter
 
         request = rest_implicit.build_put_optional_binary_body_request(
             content=content,
@@ -245,7 +241,6 @@ class ImplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -282,7 +277,6 @@ class ImplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -319,7 +313,6 @@ class ImplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -356,7 +349,6 @@ class ImplicitOperations(object):
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

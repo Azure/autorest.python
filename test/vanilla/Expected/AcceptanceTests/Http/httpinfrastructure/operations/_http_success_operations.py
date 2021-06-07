@@ -73,7 +73,6 @@ class HttpSuccessOperations(object):
             template_url=self.head200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -108,7 +107,6 @@ class HttpSuccessOperations(object):
             template_url=self.get200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -147,7 +145,6 @@ class HttpSuccessOperations(object):
             template_url=self.options200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -187,16 +184,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_put200_request(
             json=json, content_type=content_type, template_url=self.put200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -232,16 +227,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_patch200_request(
             json=json, content_type=content_type, template_url=self.patch200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -277,16 +270,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_post200_request(
             json=json, content_type=content_type, template_url=self.post200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -322,16 +313,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_delete200_request(
             json=json, content_type=content_type, template_url=self.delete200.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -367,16 +356,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_put201_request(
             json=json, content_type=content_type, template_url=self.put201.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -412,16 +399,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_post201_request(
             json=json, content_type=content_type, template_url=self.post201.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -457,16 +442,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_put202_request(
             json=json, content_type=content_type, template_url=self.put202.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -502,16 +485,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_patch202_request(
             json=json, content_type=content_type, template_url=self.patch202.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -547,16 +528,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_post202_request(
             json=json, content_type=content_type, template_url=self.post202.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -592,16 +571,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_delete202_request(
             json=json, content_type=content_type, template_url=self.delete202.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -636,7 +613,6 @@ class HttpSuccessOperations(object):
             template_url=self.head204.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -672,16 +648,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_put204_request(
             json=json, content_type=content_type, template_url=self.put204.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -717,16 +691,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_patch204_request(
             json=json, content_type=content_type, template_url=self.patch204.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -762,16 +734,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_post204_request(
             json=json, content_type=content_type, template_url=self.post204.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -807,16 +777,14 @@ class HttpSuccessOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
+        json = None
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
-        else:
-            json = None
 
         request = rest_http_success.build_delete204_request(
             json=json, content_type=content_type, template_url=self.delete204.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -851,7 +819,6 @@ class HttpSuccessOperations(object):
             template_url=self.head404.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

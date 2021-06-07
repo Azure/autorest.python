@@ -70,6 +70,7 @@ class AvailabilitySetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
+        json = None
         json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
         request = rest_availability_sets.build_update_request(
@@ -81,7 +82,6 @@ class AvailabilitySetsOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

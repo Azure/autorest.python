@@ -66,7 +66,6 @@ class XmlOperations:
             template_url=self.get_complex_type_ref_no_meta.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -100,6 +99,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = rest_xml.build_put_complex_type_ref_no_meta_request(
@@ -109,7 +109,6 @@ class XmlOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -140,7 +139,6 @@ class XmlOperations:
             template_url=self.get_complex_type_ref_with_meta.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -174,6 +172,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = rest_xml.build_put_complex_type_ref_with_meta_request(
@@ -183,7 +182,6 @@ class XmlOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -214,7 +212,6 @@ class XmlOperations:
             template_url=self.get_simple.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -249,13 +246,13 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = rest_xml.build_put_simple_request(
             content=content, content_type=content_type, template_url=self.put_simple.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -287,7 +284,6 @@ class XmlOperations:
             template_url=self.get_wrapped_lists.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -321,13 +317,13 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = rest_xml.build_put_wrapped_lists_request(
             content=content, content_type=content_type, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -359,7 +355,6 @@ class XmlOperations:
             template_url=self.get_headers.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -393,7 +388,6 @@ class XmlOperations:
             template_url=self.get_empty_list.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -427,13 +421,13 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = rest_xml.build_put_empty_list_request(
             content=content, content_type=content_type, template_url=self.put_empty_list.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -464,7 +458,6 @@ class XmlOperations:
             template_url=self.get_empty_wrapped_lists.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -498,6 +491,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = rest_xml.build_put_empty_wrapped_lists_request(
@@ -507,7 +501,6 @@ class XmlOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -538,7 +531,6 @@ class XmlOperations:
             template_url=self.get_root_list.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -572,6 +564,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
@@ -579,7 +572,6 @@ class XmlOperations:
             content=content, content_type=content_type, template_url=self.put_root_list.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -610,7 +602,6 @@ class XmlOperations:
             template_url=self.get_root_list_single_item.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -644,6 +635,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
@@ -654,7 +646,6 @@ class XmlOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -685,7 +676,6 @@ class XmlOperations:
             template_url=self.get_empty_root_list.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -719,6 +709,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
@@ -726,7 +717,6 @@ class XmlOperations:
             content=content, content_type=content_type, template_url=self.put_empty_root_list.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -757,7 +747,6 @@ class XmlOperations:
             template_url=self.get_empty_child_element.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -791,6 +780,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = rest_xml.build_put_empty_child_element_request(
@@ -800,7 +790,6 @@ class XmlOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -831,7 +820,6 @@ class XmlOperations:
             template_url=self.list_containers.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -866,7 +854,6 @@ class XmlOperations:
             template_url=self.get_service_properties.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -900,6 +887,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = rest_xml.build_put_service_properties_request(
@@ -909,7 +897,6 @@ class XmlOperations:
             **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -940,7 +927,6 @@ class XmlOperations:
             template_url=self.get_acls.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -974,6 +960,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")
+        content = None
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         content = self._serialize.body(
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
@@ -983,7 +970,6 @@ class XmlOperations:
             content=content, content_type=content_type, template_url=self.put_acls.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1014,7 +1000,6 @@ class XmlOperations:
             template_url=self.list_blobs.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1050,13 +1035,13 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/json")
         _properties = _models.JSONInput(id=id)
+        json = None
         json = self._serialize.body(_properties, "JSONInput")
 
         request = rest_xml.build_json_input_request(
             json=json, content_type=content_type, template_url=self.json_input.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1087,7 +1072,6 @@ class XmlOperations:
             template_url=self.json_output.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1123,7 +1107,6 @@ class XmlOperations:
             template_url=self.get_xms_text.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1158,7 +1141,6 @@ class XmlOperations:
             template_url=self.get_bytes.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1194,13 +1176,13 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
+        content = None
         content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
         request = rest_xml.build_put_binary_request(
             content=content, content_type=content_type, template_url=self.put_binary.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1230,7 +1212,6 @@ class XmlOperations:
 
         request = rest_xml.build_get_uri_request(template_url=self.get_uri.metadata["url"], **kwargs)._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1266,13 +1247,13 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")
         _model = _models.ModelWithUrlProperty(url=url)
+        content = None
         content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
         request = rest_xml.build_put_uri_request(
             content=content, content_type=content_type, template_url=self.put_uri.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
