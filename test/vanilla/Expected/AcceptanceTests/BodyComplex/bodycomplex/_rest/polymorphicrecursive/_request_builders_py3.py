@@ -56,7 +56,8 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Please put a salmon that looks like this:
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Please put a salmon that looks like this:
      {
          "fishtype": "salmon",
          "species": "king",
@@ -110,7 +111,8 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
          ]
      }.
     :paramtype json: Any
-    :keyword content: Please put a salmon that looks like this:
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Please put a salmon that looks like this:
      {
          "fishtype": "salmon",
          "species": "king",

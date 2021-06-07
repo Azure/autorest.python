@@ -78,14 +78,26 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         return any(response.is_stream_response for response in self.responses)
 
     @property
-    def body_kwarg_to_pass_to_request_builder(self) -> str:
+    def body_kwargs_to_pass_to_request_builder(self) -> List[str]:
+        kwargs = []
         if self.request_builder.multipart:
-            return "files"
+            kwargs.append("files")
         if self.parameters.has_partial_body:
-            return "data"
+            kwargs.append("data")
         if any([ct for ct in self.parameters.content_types if "json" in ct]):
+            kwargs.append("json")
+        if self.request_builder.is_stream or not kwargs:
+            kwargs.append("content")
+        return kwargs
+
+    @property
+    def serialized_body_kwarg(self) -> str:
+        # body serialization can be passed to either "json" or "content"
+        if "json" in self.body_kwargs_to_pass_to_request_builder:
             return "json"
-        return "content"
+        if not self.request_builder.is_stream:
+            return "content"
+        raise ValueError("You should not be trying to serialize this body")
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -228,14 +240,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         chosen_parameter.multiple_media_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
 
-    @property
-    def body_serialization_str(self) -> str:
-        send_xml = bool(self.parameters.has_body and "xml" in self.parameters.content_types)
-        ser_ctxt = ", serialization_ctxt=serialization_ctxt" if send_xml else ""
-        body_is_xml = ", is_xml=True" if send_xml else ""
-        body_param = self.parameters.body[0]
-        return f"{self.body_kwarg_to_pass_to_request_builder} = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ ser_ctxt })"
-
     @staticmethod
     def get_parameter_converter() -> Callable:
         return Parameter.from_yaml
@@ -261,10 +265,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         )
 
 class NoModelOperation(Operation):
-
-    @property
-    def body_serialization_str(self) -> str:
-        return f"{self.body_kwarg_to_pass_to_request_builder} = self._serialize.body({self.parameters.body[0].serialized_name}, 'object')"
 
     @staticmethod
     def get_parameter_converter() -> Callable:

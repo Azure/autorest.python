@@ -222,5 +222,5 @@ class NoModelObjectSchema(ObjectSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "Any", import_type=ImportType.STDLIB, typing_section=TypingSection.TYPING)
+        file_import.add_from_import("typing", "Any", import_type=ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL)
         return file_import

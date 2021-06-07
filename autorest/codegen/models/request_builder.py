@@ -69,14 +69,6 @@ class RequestBuilder(BaseBuilder):
         return any(request.is_stream_request for request in self.schema_requests)
 
     @property
-    def has_body_param_with_object_schema(self) -> bool:
-        try:
-            parameters = self.parameters.body
-            return any([p for p in parameters if p.has_object_schema])
-        except ValueError:
-            return False
-
-    @property
     def operation_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["operationGroupName"]
 
@@ -119,6 +111,8 @@ class RequestBuilder(BaseBuilder):
         parameters, multiple_media_type_parameters = (
             get_converted_parameters(yaml_data, cls.get_parameter_converter())
         )
+        parameter_list = RequestBuilderParameterList(parameters + multiple_media_type_parameters)
+        parameter_list.add_body_kwargs()
 
         request_builder_class = cls(
             yaml_data=yaml_data,
@@ -127,7 +121,7 @@ class RequestBuilder(BaseBuilder):
             method=first_request["protocol"]["http"]["method"].upper(),
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
-            parameters=RequestBuilderParameterList(parameters + multiple_media_type_parameters),
+            parameters=parameter_list,
             description=yaml_data["language"]["python"]["description"],
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             summary=yaml_data["language"]["python"].get("summary"),

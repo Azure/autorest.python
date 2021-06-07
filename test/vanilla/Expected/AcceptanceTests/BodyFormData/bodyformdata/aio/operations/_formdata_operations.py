@@ -77,7 +77,6 @@ class FormdataOperations:
             files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -118,7 +117,6 @@ class FormdataOperations:
             content=content, content_type=content_type, template_url=self.upload_file_via_body.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -162,7 +160,6 @@ class FormdataOperations:
             files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs
         )._internal_request
         request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response

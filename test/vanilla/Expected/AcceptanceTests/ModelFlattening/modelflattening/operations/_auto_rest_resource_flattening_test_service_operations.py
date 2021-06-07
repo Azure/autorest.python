@@ -510,7 +510,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")
-
         _name = None
         _simple_body_product = None
         _product_id = None
@@ -518,14 +517,20 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         _max_product_display_name = None
         _generic_value = None
         _odata_value = None
-        if flatten_parameter_group is not None:
-            _name = flatten_parameter_group.name
-            _simple_body_product = flatten_parameter_group.simple_body_product
-            _product_id = flatten_parameter_group.product_id
-            _description = flatten_parameter_group.description
-            _max_product_display_name = flatten_parameter_group.max_product_display_name
-            _generic_value = flatten_parameter_group.generic_value
-            _odata_value = flatten_parameter_group.odata_value
+        if _name is not None:
+            _name = _name.name
+        if _simple_body_product is not None:
+            _simple_body_product = _simple_body_product.simple_body_product
+        if _product_id is not None:
+            _product_id = _product_id.product_id
+        if _description is not None:
+            _description = _description.description
+        if _max_product_display_name is not None:
+            _max_product_display_name = _max_product_display_name.max_product_display_name
+        if _generic_value is not None:
+            _generic_value = _generic_value.generic_value
+        if _odata_value is not None:
+            _odata_value = _odata_value.odata_value
         _simple_body_product = _models.SimpleProduct(
             product_id=_product_id,
             description=_description,

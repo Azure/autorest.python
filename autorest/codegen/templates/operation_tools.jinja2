@@ -153,12 +153,12 @@ path_format_arguments = {
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
 {% if operation.parameters.body[0].required %}
-{{ operation.body_serialization_str }}
+{{ operation_serializer.body_serialization_str }}
 {% else %}
 if {{ operation.parameters.body[0].serialized_name }} is not None:
-    {{ operation.body_serialization_str }}
+    {{ operation_serializer.body_serialization_str }}
 else:
-    {{ operation.body_kwarg_to_pass_to_request_builder }} = None
+    json = None
 {% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(operation, schema_request) %}
@@ -251,47 +251,12 @@ return deserialized
 return 200 <= response.status_code <= 299
 {% endif %}{% endmacro %}
 
-{% macro get_request_builder(code_model, operation, request_builder, async_mode, url=None) %}
-{% set template_url = url or "self." + operation.name + ".metadata['url']" %}
-{% if request_builder.parameters.has_body %}
-content_type = kwargs.pop("content_type", {{ operation.default_content_type_declaration }})
-{% endif %}
-{% if operation.parameters.grouped %}
-{{ grouped_parameters(operation) }}
-{%- endif -%}
-{% if operation.request_builder.multipart %}
-# Construct form data
-files = {
-    {% for param in operation.parameters.body %}
-    '{{ param.rest_api_name }}': {{ param.serialized_name }},
-    {% endfor %}
-}
-{% endif %}
-{% if operation.parameters.is_flattened %}
-{{ operation.parameters.build_flattened_object() }}
-{% endif %}
-{% for constant_body in operation.parameters.constant_bodies %}
-{{ constant_body.serialized_name }} = {{ constant_body.constant_declaration }}
-{% endfor %}
-{% if operation.parameters.has_body %}
-{{ body_parameters(operation) }}
-{% endif %}
-{% set operation_group_name = request_builder.operation_group_name %}
-request = {{ "_" if not operation_group_name and not code_model.rest_layer }}rest{{ ("_" + operation_group_name) if operation_group_name }}.{{ request_builder.name }}(
-{% if request_builder.parameters.method | rejectattr("is_body") | first %}
-    {% for parameter in request_builder.parameters.method | rejectattr("is_body") %}
-    {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
-    {% endfor %}
-{% endif %}
-{% if request_builder.parameters.has_body %}
-    {{ operation.body_kwarg_to_pass_to_request_builder }}={{ operation.body_kwarg_to_pass_to_request_builder }},
-    content_type=content_type,
-{% endif %}
-    template_url={{ template_url }},
-    **kwargs
-)._internal_request
-{% if operation.parameters.path %}
-{{ path_format_arguments(operation.parameters.path) }}
-{% endif %}
-request.url = self._client.format_url(request.url{{ ", **path_format_arguments" if operation.parameters.path else "" }})
-kwargs.pop("content_type", None){% endmacro %}
+{% macro call_request_builder(builder, serializer) %}
+
+{% for line in serializer.call_request_builder(builder) %}
+    {% if line %}
+{{ line }}
+    {% else %}
+
+    {% endif %}
+{% endfor %}{% endmacro %}

@@ -42,9 +42,11 @@ def build_put500_request(*, json: Any = None, content: Any = None, **kwargs: Any
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Simple boolean value true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Simple boolean value true.
     :paramtype json: Any
-    :keyword content: Simple boolean value true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Simple boolean value true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -78,9 +80,11 @@ def build_patch500_request(*, json: Any = None, content: Any = None, **kwargs: A
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Simple boolean value true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Simple boolean value true.
     :paramtype json: Any
-    :keyword content: Simple boolean value true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Simple boolean value true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -160,9 +164,11 @@ def build_post503_request(*, json: Any = None, content: Any = None, **kwargs: An
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Simple boolean value true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Simple boolean value true.
     :paramtype json: Any
-    :keyword content: Simple boolean value true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Simple boolean value true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -196,9 +202,11 @@ def build_delete503_request(*, json: Any = None, content: Any = None, **kwargs: 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Simple boolean value true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Simple boolean value true.
     :paramtype json: Any
-    :keyword content: Simple boolean value true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Simple boolean value true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -232,9 +240,11 @@ def build_put504_request(*, json: Any = None, content: Any = None, **kwargs: Any
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Simple boolean value true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Simple boolean value true.
     :paramtype json: Any
-    :keyword content: Simple boolean value true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Simple boolean value true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -268,9 +278,11 @@ def build_patch504_request(*, json: Any = None, content: Any = None, **kwargs: A
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Simple boolean value true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Simple boolean value true.
     :paramtype json: Any
-    :keyword content: Simple boolean value true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Simple boolean value true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

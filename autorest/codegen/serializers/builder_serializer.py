@@ -3,14 +3,17 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from functools import partial
+from autorest.codegen.models.schema_request import SchemaRequest
+from itertools import groupby
+from autorest.codegen.models.operation import NoModelOperation
 from autorest.codegen.models.parameter import Parameter
 import json
 from collections import defaultdict
 from abc import abstractmethod, ABC
-from autorest.codegen.models import code_model
 from autorest.codegen.models.request_builder import RequestBuilder
 from autorest.codegen.models.base_builder import BaseBuilder
-from typing import Any, List, TypeVar, Dict, Union
+from typing import Any, Callable, List, TypeVar, Dict, Union, Optional
 from ..models import (
     Operation,
     CodeModel,
@@ -27,9 +30,11 @@ T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
 def _serialize_json_dict(template_representation: str, indent: int = 4) -> Any:
+    # only for template use, since it wraps everything in strings
     return json.dumps(template_representation, sort_keys=True, indent=indent)
 
 def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
+    # only for template use
     template = {
         param.serialized_name: param.schema.get_files_template_representation(
             optional=not param.required,
@@ -38,6 +43,13 @@ def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
         for param in multipart_parameters
     }
     return json.dumps(template, sort_keys=True, indent=4)
+
+def _serialize_parameters_dict(parameters: List[Parameter], dict_name: str, value_callable: Callable) -> List[str]:
+    retval = [f"{dict_name} = {{"]
+    for parameter in parameters:
+        retval.append(f"    \"{parameter.rest_api_name}\": {value_callable(parameter)},")
+    retval.append("}")
+    return retval
 
 class BuilderSerializerProtocol(ABC):
 
@@ -135,6 +147,10 @@ class BuilderSerializerProtocol(ABC):
     def _get_json_response_template_to_status_codes(self, builder: BaseBuilder) -> Dict[str, List[Union[str, int]]]:
         ...
 
+    @abstractmethod
+    def _serialize_path_format_parameters(self, builder: BaseBuilder) -> List[str]:
+        ...
+
 class BuilderBaseSerializer(BuilderSerializerProtocol):
     def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
@@ -144,7 +160,10 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
         lines.append(f"{self._function_definition} {builder.name}(")
         if self._is_in_class:
             lines.append("    self,")
-        lines.extend(builder.parameters.method_signature(self._want_inline_type_hints))
+        lines.extend([
+            ("    " + line)
+            for line in builder.parameters.method_signature(self._want_inline_type_hints)
+        ])
         lines.append(")")
         return "\n".join(lines)
 
@@ -185,24 +204,9 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
         return self.param_description(builder) + self.response_docstring(builder)
 
     def _content_type_docstring(self, builder: Operation) -> str:
-        try:
-            content_type_constant = next(
-                p for p in builder.parameters.constant
-                if p.implementation == "Method" and
-                not p.original_parameter and
-                p.in_method_code and
-                p.serialized_name == "content_type"
-            )
-        except StopIteration:
-            raise ValueError("No content type parameter")
-        media_types: OrderedSet[str] = {
-            media_type: None
-            for request in builder.requests
-            for media_type in request.media_types
-        }
         content_type_str = (
-            f":keyword str content_type: Media type of the body sent to the API. Default value is {content_type_constant.constant_declaration}. " +
-            "Allowed values are: {}.".format('", "'.join(media_types))
+            f":keyword str content_type: Media type of the body sent to the API. Default value is \"{builder.parameters.default_content_type}\". " +
+            "Allowed values are: \"{}.\"".format('", "'.join(builder.parameters.content_types))
         )
         return content_type_str
 
@@ -236,38 +240,43 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
     def _get_json_example_template(self, builder: BaseBuilder) -> List[str]:
         template = []
         json_body = builder.parameters.json_body
-
-        if isinstance(json_body, ObjectSchema):
+        try:
             discriminator_name = json_body.discriminator_name
-            if discriminator_name:
-                template.append(
-                    "{} = '{}'".format(
-                        discriminator_name,
-                        "' or '".join(json_body.subtype_map.values())
-                    )
+        except AttributeError:
+            discriminator_name = None
+        if discriminator_name:
+            template.append(
+                "{} = '{}'".format(
+                    discriminator_name,
+                    "' or '".join(json_body.subtype_map.values())
                 )
-                template.append("")
+            )
+            template.append("")
+
+        try:
             property_with_discriminator = json_body.property_with_discriminator
-            if property_with_discriminator:
-                polymorphic_schemas = [
-                    s for s in self.code_model.sorted_schemas
-                    if s.name in property_with_discriminator.schema.subtype_map.values()
-                ]
-                num_schemas = min(
-                    self.code_model.options['polymorphic_examples'],
-                    len(polymorphic_schemas)
+        except AttributeError:
+            property_with_discriminator = None
+        if property_with_discriminator:
+            polymorphic_schemas = [
+                s for s in self.code_model.sorted_schemas
+                if s.name in property_with_discriminator.schema.subtype_map.values()
+            ]
+            num_schemas = min(
+                self.code_model.options['polymorphic_examples'],
+                len(polymorphic_schemas)
+            )
+            for i in range(num_schemas):
+                schema = polymorphic_schemas[i]
+                polymorphic_property = _serialize_json_dict(
+                    schema.get_json_template_representation(),
                 )
-                for i in range(num_schemas):
-                    schema = polymorphic_schemas[i]
-                    polymorphic_property = _serialize_json_dict(
-                        schema.get_json_template_representation(),
-                    )
-                    template.extend(
-                        f"{property_with_discriminator.name} = {polymorphic_property}".splitlines()
-                    )
-                    if i != num_schemas - 1:
-                        template.append("# OR")
-                template.append("")
+                template.extend(
+                    f"{property_with_discriminator.name} = {polymorphic_property}".splitlines()
+                )
+                if i != num_schemas - 1:
+                    template.append("# OR")
+            template.append("")
         template.append("# JSON input template you can fill out and use as your `json` input.")
         json_template = _serialize_json_dict(
             builder.parameters.json_body.get_json_template_representation(),
@@ -289,6 +298,16 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
             template.append("# response body for status code(s): {}".format(', '.join(status_codes)))
             template.extend(f"response.json() == {response_body}".splitlines())
         return template
+
+    def _serialize_path_format_parameters(self, builder: BaseBuilder) -> List[str]:
+        return _serialize_parameters_dict(
+            builder.parameters.path,
+            dict_name="path_format_arguments",
+            value_callable=partial(
+                Parameter.build_serialize_data_call,
+                function_name="url",
+            )
+        )
 
 ############################## REQUEST BUILDERS ##############################
 
@@ -453,6 +472,139 @@ class OperationBaseSerializer(BuilderBaseSerializer):
 
     def _has_files_example_template(self, builder: RequestBuilder) -> bool:
         return False
+
+    def _serialize_grouped_parameters(self, builder: Operation) -> List[str]:
+        retval = []
+        for grouped_parameter in builder.parameters.grouped:
+            retval.append(f"{grouped_parameter.serialized_name} = None")
+        for grouper_name, grouped_parameters in groupby(builder.parameters.grouped, key=lambda a: a.serialized_name):
+            retval.append(f"if {grouper_name} is not None:")
+            for grouped_parameter in grouped_parameters:
+                retval.append(f"    {grouped_parameter.serialized_name} = {grouper_name}.{grouped_parameter.serialized_name.lstrip('_')}")
+        return retval
+
+    def _serialize_body_call(self, builder: Operation, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str) -> str:
+        body_param = builder.parameters.body[0]
+        body_is_xml = ", is_xml=True" if send_xml else ""
+        pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
+        if isinstance(builder, NoModelOperation):
+            return f"{builder.serialized_body_kwarg} = self._serialize.body({builder.parameters.body[0].serialized_name}, 'object')"
+        return f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
+
+    def _serialize_body(self, builder: Operation) -> List[str]:
+        retval = []
+        send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.parameters.content_types]))
+        ser_ctxt_name = "serialization_ctxt"
+        ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
+        if ser_ctxt:
+            retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
+        body_param = builder.parameters.body[0]
+        serialize_body_call = self._serialize_body_call(
+            builder,
+            send_xml,
+            ser_ctxt,
+            ser_ctxt_name,
+        )
+        if body_param.required:
+            retval.append(serialize_body_call)
+        else:
+            retval.append(f"if {body_param.serialized_name} is not None:")
+            retval.append("    " + serialize_body_call)
+            retval.append("else:")
+            retval.append(f"    {builder.serialized_body_kwarg} = None")
+        return retval
+
+    def _set_body_content_kwarg(self, builder: Operation, schema_request: SchemaRequest):
+        retval = []
+        if schema_request.is_stream_request:
+            retval.append(f"content = {builder.parameters.body[0].serialized_name}")
+        elif schema_request.body_parameter_has_schema and not builder.request_builder.multipart:
+            retval.extend(self._serialize_body(builder))
+        return retval
+
+    def _serialize_body_parameters(
+        self,
+        builder: Operation,
+    ) -> List[str]:
+        retval = []
+        if len(builder.request_builder.schema_requests) == 1:
+            retval.extend(self._set_body_content_kwarg(
+                builder, builder.request_builder.schema_requests[0]
+            ))
+        else:
+            for idx, schema_request in enumerate(builder.request_builder.schema_requests):
+                if_statement = "if" if idx == 0 else "elif"
+                retval.append(f'{if_statement} content_type.split(";")[0] in {schema_request.pre_semicolon_media_types}:')
+                retval.extend([
+                    "    " + line
+                    for line in self._set_body_content_kwarg(
+                        builder, schema_request
+                    )
+                ])
+        return retval
+
+    def _template_url_to_pass_to_request_builder(self, builder: Operation) -> str:
+        return f"self.{builder.name}.metadata['url']"
+
+    def _serialize_files_parameter(self, builder: Operation) -> List[str]:
+        retval = ["files = {"]
+        for parameter in builder.parameters.body:
+            retval.append(f"    \"{parameter.rest_api_name}\": {parameter.serialized_name},")
+        retval.append("}")
+        return retval
+
+    def call_request_builder(self, builder: Operation) -> List[str]:
+        retval = []
+        if builder.request_builder.parameters.has_body:
+            retval.append(
+                f'content_type = kwargs.pop("content_type", {builder.default_content_type_declaration})'
+            )
+        if builder.parameters.grouped:
+            # request builders don't allow grouped parameters, so we group them before making the call
+            retval.extend(self._serialize_grouped_parameters(builder))
+        if builder.request_builder.multipart:
+            # we have to construct our form data before passing to the request as well
+            retval.append("# Construct form data")
+            # files = {
+            #     param.rest_api_name: param.serialized_name
+            #     for param in builder.parameters.body
+            # }
+            # serialized_files_object = _serialize_json_dict(files)
+            # retval.extend(f"files = {serialized_files_object}".splitlines())
+            retval.extend(self._serialize_files_parameter(builder))
+        if builder.parameters.is_flattened:
+            # unflatten before passing to request builder as well
+            retval.append(builder.parameters.build_flattened_object())
+        # we also don't do constant bodies in request builders
+        for constant_body in builder.parameters.constant_bodies:
+            retval.append(f"{constant_body.serialized_name} = {constant_body.constant_declaration}")
+        if builder.parameters.has_body:
+            retval.extend(self._serialize_body_parameters(builder))
+        operation_group_name = builder.request_builder.operation_group_name
+        request_path_name = "{}rest{}.{}".format(
+            "_" if not operation_group_name and not self.code_model.rest_layer else "",
+            ("_" + operation_group_name) if operation_group_name else "",
+            builder.request_builder.name
+        )
+        retval.append("")
+        retval.append(f"request = {request_path_name}(")
+        for parameter in builder.request_builder.parameters.method:
+            if parameter.is_body:
+                continue
+            retval.append(f"    {parameter.serialized_name}={parameter.name_in_high_level_operation},")
+        if builder.request_builder.parameters.has_body:
+            for kwarg in builder.body_kwargs_to_pass_to_request_builder:
+                retval.append(f"    {kwarg}={kwarg},")
+            retval.append(f"    content_type=content_type,")
+        retval.append(f"    template_url={self._template_url_to_pass_to_request_builder(builder)},")
+        retval.append("    **kwargs")
+        retval.append(")._internal_request")
+        if builder.parameters.path:
+            retval.extend(self._serialize_path_format_parameters(builder))
+        retval.append("request.url = self._client.format_url(request.url{})".format(
+            ", **path_format_arguments" if builder.parameters.path else ""
+        ))
+        return retval
 
 class SyncOperationSerializer(OperationBaseSerializer):
 

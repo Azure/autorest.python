@@ -27,10 +27,10 @@ def build_upload_file_request(
     code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape.
+     shape. File to upload.
     :paramtype files: dict[str, Any]
-    :keyword content: Multipart input for files. See the template in our example to find the input
-     shape.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). File to upload.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -41,10 +41,7 @@ def build_upload_file_request(
         .. code-block:: python
 
             # multipart input template you can fill out and use as your `files` input.
-            files = {
-        "file_content": "IO. File to upload.",
-        "file_name": "str. File name to upload. Name has to be spelled exactly as written here."
-    }
+            files = {}
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/octet-stream, application/json"
@@ -70,8 +67,9 @@ def build_upload_file_via_body_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword content: File to upload.
-    :paramtype content: IO
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). File to upload.
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -102,10 +100,10 @@ def build_upload_files_request(
     code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape.
+     shape. Files to upload.
     :paramtype files: dict[str, Any]
-    :keyword content: Multipart input for files. See the template in our example to find the input
-     shape.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Files to upload.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -116,11 +114,7 @@ def build_upload_files_request(
         .. code-block:: python
 
             # multipart input template you can fill out and use as your `files` input.
-            files = {
-        "file_content": [
-            "IO. Files to upload."
-        ]
-    }
+            files = {}
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/octet-stream, application/json"

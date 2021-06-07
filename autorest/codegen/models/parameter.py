@@ -198,10 +198,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         )
 
     @property
-    def has_object_schema(self) -> bool:
-        return isinstance(self.schema, ObjectSchema)
-
-    @property
     def in_method_code(self) -> bool:
         return not (
             isinstance(self.schema, ConstantSchema) and

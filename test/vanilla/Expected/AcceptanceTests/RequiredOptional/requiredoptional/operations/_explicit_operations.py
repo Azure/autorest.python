@@ -74,7 +74,7 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")
-        content = body_parameter
+        content = input
 
         request = rest_explicit.build_put_optional_binary_body_request(
             content=content,
@@ -119,7 +119,7 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")
-        content = body_parameter
+        content = input
 
         request = rest_explicit.build_put_required_binary_body_request(
             content=content,

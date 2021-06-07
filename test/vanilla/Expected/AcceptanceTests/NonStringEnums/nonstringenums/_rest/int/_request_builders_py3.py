@@ -19,9 +19,11 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Input int enum.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Input int enum.
     :paramtype json: Any
-    :keyword content: Input int enum.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Input int enum.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

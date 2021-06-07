@@ -104,12 +104,24 @@ def build_put_non_ascii_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword content: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-    :paramtype content: bytearray
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA
+     F9 F8 F7 F6).
+    :paramtype json: Any
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA
+     F9 F8 F7 F6).
+    :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your `json` input.
+            json = "bytearray (optional)"
     """
     content_type = kwargs.pop("content_type", None)
     accept = "application/json"

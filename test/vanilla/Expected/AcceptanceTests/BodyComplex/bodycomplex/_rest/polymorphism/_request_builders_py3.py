@@ -56,7 +56,8 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Please put a salmon that looks like this:
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Please put a salmon that looks like this:
      {
              'fishtype':'Salmon',
              'location':'alaska',
@@ -90,7 +91,8 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
              ]
            };.
     :paramtype json: Any
-    :keyword content: Please put a salmon that looks like this:
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Please put a salmon that looks like this:
      {
              'fishtype':'Salmon',
              'location':'alaska',
@@ -350,9 +352,11 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json:
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape.
     :paramtype json: Any
-    :keyword content:
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input).
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -404,9 +408,11 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json:
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape.
     :paramtype json: Any
-    :keyword content:
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input).
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -478,8 +484,9 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Please attempt put a sawshark that looks like this, the client should not allow
-     this data to be sent:
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Please attempt put a sawshark that looks like this, the
+     client should not allow this data to be sent:
      {
          "fishtype": "sawshark",
          "species": "snaggle toothed",
@@ -506,8 +513,9 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
          ]
      }.
     :paramtype json: Any
-    :keyword content: Please attempt put a sawshark that looks like this, the client should not
-     allow this data to be sent:
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
+     client should not allow this data to be sent:
      {
          "fishtype": "sawshark",
          "species": "snaggle toothed",

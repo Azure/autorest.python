@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
-from copy import deepcopy
+from copy import copy
 from collections.abc import MutableSequence
 import logging
 from typing import cast, List, Callable, Optional, TypeVar, Dict, Set
@@ -13,7 +13,7 @@ from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
-from .primitive_schemas import IOSchema, ByteArraySchema
+from .primitive_schemas import IOSchema, ByteArraySchema, AnySchema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -26,8 +26,9 @@ class ParameterList(MutableSequence):
         self, parameters: Optional[List[Parameter]] = None
     ) -> None:
         self.parameters = parameters or []
-        self.json_body: Optional[BaseSchema] = None
+        self._json_body: Optional[BaseSchema] = None
         self._multipart_parameters: Optional[Set[Parameter]] = set()
+        self._content_types = None
 
     # MutableSequence
 
@@ -60,6 +61,12 @@ class ParameterList(MutableSequence):
         return self.get_from_predicate(lambda parameter: parameter.location == location)
 
     @property
+    def json_body(self) -> BaseSchema:
+        if not self._json_body:
+            self._json_body = self.body[0].schema
+        return self._json_body
+
+    @property
     def has_body(self) -> bool:
         return self.has_any_location(ParameterLocation.Body)
 
@@ -69,12 +76,6 @@ class ParameterList(MutableSequence):
             raise ValueError(f"Can't get body parameter")
         # Should we check if there is two body? Modeler role right?
         body_params = self.get_from_location(ParameterLocation.Body)
-        if not self.json_body:
-            try:
-                json_param = next(p for p in body_params if not isinstance(p.schema, IOSchema))
-                self.json_body = deepcopy(json_param.schema)
-            except StopIteration:
-                pass
         return body_params
 
     @staticmethod
@@ -154,18 +155,26 @@ class ParameterList(MutableSequence):
 
     @property
     def content_types(self) -> List[str]:
+        if self._content_types:
+            return self._content_types
         content_type_params = self.get_from_predicate(
             lambda parameter: parameter.serialized_name == "content_type"
         )
         content_types: OrderedSet[str] = {}
         for param in content_type_params:
-            if isinstance(param.schema, ConstantSchema):
+            if isinstance(param.schema, dict):
+                if param.schema.get("value"):
+                    content_types[param.schema["value"]["value"]] = None
+                if param.schema.get("choices"):
+                    for choice in param.schema['choices']:
+                        content_types[choice['value']] = None
+            elif isinstance(param.schema, ConstantSchema):
                 content_types[param.schema.value] = None
             else:
                 # enums
                 content_types.update({v.value: None for v in param.schema.values})
-
-        return list(content_types.keys())
+        self._content_types = list(content_types.keys())
+        return self._content_types
 
     @property
     def default_content_type(self) -> str:

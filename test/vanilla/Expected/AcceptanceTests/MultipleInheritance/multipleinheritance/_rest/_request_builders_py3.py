@@ -51,9 +51,11 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Put a horse with name 'General' and isAShowHorse false.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Put a horse with name 'General' and isAShowHorse false.
     :paramtype json: Any
-    :keyword content: Put a horse with name 'General' and isAShowHorse false.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Put a horse with name 'General' and isAShowHorse false.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -121,9 +123,11 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Put a pet with name 'Butter'.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Put a pet with name 'Butter'.
     :paramtype json: Any
-    :keyword content: Put a pet with name 'Butter'.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Put a pet with name 'Butter'.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -191,9 +195,11 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Put a feline who hisses and doesn't meow.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Put a feline who hisses and doesn't meow.
     :paramtype json: Any
-    :keyword content: Put a feline who hisses and doesn't meow.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Put a feline who hisses and doesn't meow.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -264,10 +270,13 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Put a cat with name 'Boots' where likesMilk and hisses is
+     false, meows is true.
     :paramtype json: Any
-    :keyword content: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is
-     true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Put a cat with name 'Boots' where likesMilk and hisses is
+     false, meows is true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -343,11 +352,13 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-     eatsMiceYet is true.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Put a kitten with name 'Kitty' where likesMilk and hisses
+     is false, meows and eatsMiceYet is true.
     :paramtype json: Any
-    :keyword content: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-     eatsMiceYet is true.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Put a kitten with name 'Kitty' where likesMilk and hisses is
+     false, meows and eatsMiceYet is true.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

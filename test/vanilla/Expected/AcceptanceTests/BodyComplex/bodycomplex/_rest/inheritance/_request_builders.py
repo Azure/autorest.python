@@ -71,13 +71,15 @@ def build_put_valid_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
-     which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
-     named "Tomato" with id=-1 and food="french fries".
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Please put a siamese with id=2, name="Siameee",
+     color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and
+     food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries".
     :paramtype json: Any
-    :keyword content: Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
-     which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one
-     named "Tomato" with id=-1 and food="french fries".
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Please put a siamese with id=2, name="Siameee", color=green,
+     breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
+     the 2nd one named "Tomato" with id=-1 and food="french fries".
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

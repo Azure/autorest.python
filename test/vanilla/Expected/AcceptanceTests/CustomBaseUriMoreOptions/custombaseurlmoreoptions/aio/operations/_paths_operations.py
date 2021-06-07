@@ -87,7 +87,6 @@ class PathsOperations:
             ),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
-        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

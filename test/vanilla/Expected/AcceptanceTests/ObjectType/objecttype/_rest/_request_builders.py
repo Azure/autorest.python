@@ -54,9 +54,13 @@ def build_put_request(
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
     code flow.
 
-    :keyword json: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Pass in {'foo': 'bar'} for a 200, anything else for an
+     object error.
     :paramtype json: Any
-    :keyword content: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Pass in {'foo': 'bar'} for a 200, anything else for an
+     object error.
     :paramtype content: Any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

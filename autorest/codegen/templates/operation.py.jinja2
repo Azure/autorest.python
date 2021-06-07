@@ -21,8 +21,7 @@
         {% endfor %}
     {% endif %}
 
-    {{ op_tools.get_request_builder(code_model, operation, request_builder, async_mode)|indent }}
-
+    {{ op_tools.call_request_builder(operation, operation_serializer) | indent }}
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}
 {{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request_builder.url) }}}  # type: ignore
