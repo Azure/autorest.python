@@ -454,6 +454,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
+        capacity: Optional[str] = "Large",
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any
@@ -468,6 +469,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :type description: str
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
+        :param capacity: Capacity of product. For example, 4 people.
+        :type capacity: str
         :param generic_value: Generic URL value.
         :type generic_value: str
         :param odata_value: URL value.
@@ -485,6 +488,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             product_id=product_id,
             description=description,
             max_product_display_name=max_product_display_name,
+            capacity=capacity,
             generic_value=generic_value,
             odata_value=odata_value,
         )
@@ -565,6 +569,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             product_id=_product_id,
             description=_description,
             max_product_display_name=_max_product_display_name,
+            capacity=capacity,
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
