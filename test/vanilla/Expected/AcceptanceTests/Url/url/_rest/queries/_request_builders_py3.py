@@ -26,6 +26,7 @@ def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     bool_query = True
     accept = "application/json"
 
@@ -54,6 +55,7 @@ def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     bool_query = False
     accept = "application/json"
 
@@ -84,6 +86,7 @@ def build_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwarg
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -112,6 +115,7 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     int_query = 1000000
     accept = "application/json"
 
@@ -140,6 +144,7 @@ def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     int_query = -1000000
     accept = "application/json"
 
@@ -170,6 +175,7 @@ def build_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -198,6 +204,7 @@ def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     long_query = 10000000000
     accept = "application/json"
 
@@ -226,6 +233,7 @@ def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     long_query = -10000000000
     accept = "application/json"
 
@@ -256,6 +264,7 @@ def build_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: A
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -284,6 +293,7 @@ def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     float_query = 103400000000000000000
     accept = "application/json"
 
@@ -312,6 +322,7 @@ def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     float_query = -1.034e-20
     accept = "application/json"
 
@@ -342,6 +353,7 @@ def build_float_null_request(*, float_query: Optional[float] = None, **kwargs: A
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -370,6 +382,7 @@ def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     double_query = 9999999.999
     accept = "application/json"
 
@@ -398,6 +411,7 @@ def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     double_query = -9999999.999
     accept = "application/json"
 
@@ -428,6 +442,7 @@ def build_double_null_request(*, double_query: Optional[float] = None, **kwargs:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -456,6 +471,7 @@ def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -484,6 +500,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     string_query = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -514,6 +531,7 @@ def build_string_empty_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     string_query = ""
     accept = "application/json"
 
@@ -544,6 +562,7 @@ def build_string_null_request(*, string_query: Optional[str] = None, **kwargs: A
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -576,6 +595,7 @@ def build_enum_valid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -608,6 +628,7 @@ def build_enum_null_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -638,6 +659,7 @@ def build_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **k
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -666,6 +688,7 @@ def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     byte_query = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -696,6 +719,7 @@ def build_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -724,6 +748,7 @@ def build_date_valid_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     date_query = "2012-01-01"
     accept = "application/json"
 
@@ -754,6 +779,7 @@ def build_date_null_request(*, date_query: Optional[datetime.date] = None, **kwa
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -782,6 +808,7 @@ def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     date_time_query = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -812,6 +839,7 @@ def build_date_time_null_request(*, date_time_query: Optional[datetime.datetime]
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -844,6 +872,7 @@ def build_array_string_csv_valid_request(*, array_query: Optional[List[str]] = N
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -874,6 +903,7 @@ def build_array_string_csv_null_request(*, array_query: Optional[List[str]] = No
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -904,6 +934,7 @@ def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = N
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -937,6 +968,7 @@ def build_array_string_no_collection_format_empty_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -969,6 +1001,7 @@ def build_array_string_ssv_valid_request(*, array_query: Optional[List[str]] = N
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1001,6 +1034,7 @@ def build_array_string_tsv_valid_request(*, array_query: Optional[List[str]] = N
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1033,6 +1067,7 @@ def build_array_string_pipes_valid_request(*, array_query: Optional[List[str]] =
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

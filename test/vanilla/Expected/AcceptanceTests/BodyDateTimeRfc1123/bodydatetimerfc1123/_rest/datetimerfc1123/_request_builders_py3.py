@@ -25,6 +25,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -48,6 +49,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -71,6 +73,7 @@ def build_get_overflow_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -94,6 +97,7 @@ def build_get_underflow_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -129,7 +133,9 @@ def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None
             # JSON input template you can fill out and use as your `json` input.
             json = "datetime (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -155,6 +161,7 @@ def build_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -178,6 +185,7 @@ def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -213,7 +221,9 @@ def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None
             # JSON input template you can fill out and use as your `json` input.
             json = "datetime (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -239,6 +249,7 @@ def build_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

@@ -35,6 +35,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop(
         "input", None
     )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
@@ -68,6 +69,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop(
         "input", "value1"
     )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
@@ -101,6 +103,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input", "value1")  # type: Optional[str]
 
     # Construct URL
@@ -132,6 +135,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input", "value1")  # type: Optional[str]
 
     # Construct URL
@@ -163,6 +167,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
@@ -193,6 +198,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input", "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
@@ -221,6 +227,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = "value1"
 
     # Construct URL
@@ -249,6 +256,7 @@ def build_put_no_model_as_string_required_one_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = "value1"
 
     # Construct URL
@@ -279,6 +287,7 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop(
         "input", None
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
@@ -312,6 +321,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop(
         "input", "value1"
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
@@ -345,6 +355,7 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop(
         "input", None
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
@@ -378,6 +389,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop(
         "input", "value1"
     )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
@@ -411,6 +423,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
@@ -441,6 +454,7 @@ def build_put_model_as_string_required_two_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
@@ -471,6 +485,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
 
     # Construct URL
@@ -501,6 +516,7 @@ def build_put_model_as_string_required_one_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
 
     # Construct URL

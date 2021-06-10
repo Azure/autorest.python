@@ -43,7 +43,9 @@ def build_get_report_request(
                 "str": "int (optional)"
             }
     """
+
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -87,7 +89,9 @@ def build_get_optional_report_request(
                 "str": "int (optional)"
             }
     """
+
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

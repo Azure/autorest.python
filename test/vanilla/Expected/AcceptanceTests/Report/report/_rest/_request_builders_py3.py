@@ -36,6 +36,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -76,6 +77,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL

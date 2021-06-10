@@ -31,6 +31,7 @@ def build_get_null_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -57,6 +58,7 @@ def build_get_empty_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -83,6 +85,7 @@ def build_get_non_ascii_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -123,7 +126,9 @@ def build_put_non_ascii_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bytearray (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -152,6 +157,7 @@ def build_get_invalid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

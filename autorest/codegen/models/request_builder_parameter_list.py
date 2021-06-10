@@ -117,10 +117,12 @@ class RequestBuilderParameterList(ParameterList):
                 raise ValueError("There is no JSON body in these parameters")
         return self._json_body
 
-    @property
-    def kwargs_to_pop(self) -> List[Parameter]:
+    def kwargs_to_pop(self, async_mode: bool) -> List[Parameter]:
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
-        return [k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names.keys()]
+        kwargs = super().kwargs_to_pop(async_mode=async_mode)
+        if not async_mode:
+            kwargs.extend([k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names.keys()])
+        return kwargs
 
     @property
     def method(self) -> List[Parameter]:

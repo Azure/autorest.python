@@ -45,6 +45,7 @@ def build_get_by_pet_id_request(
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -98,7 +99,9 @@ def build_add_pet_request(
                 "name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

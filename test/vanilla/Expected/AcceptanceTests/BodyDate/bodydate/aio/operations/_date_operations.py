@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import functools
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
@@ -68,7 +69,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -103,7 +106,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -138,7 +143,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -173,7 +180,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -205,8 +214,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(date_body, "date")
 
         request = rest_date.build_put_max_date_request(
@@ -214,7 +223,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -245,7 +256,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -277,8 +290,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(date_body, "date")
 
         request = rest_date.build_put_min_date_request(
@@ -286,7 +299,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -317,7 +332,9 @@ class DateOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

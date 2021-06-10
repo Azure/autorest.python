@@ -25,6 +25,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -48,6 +49,7 @@ def build_get_invalid_date_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -71,6 +73,7 @@ def build_get_overflow_date_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -94,6 +97,7 @@ def build_get_underflow_date_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -129,7 +133,9 @@ def build_put_max_date_request(*, json: Any = None, content: Any = None, **kwarg
             # JSON input template you can fill out and use as your `json` input.
             json = "date (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -155,6 +161,7 @@ def build_get_max_date_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -190,7 +197,9 @@ def build_put_min_date_request(*, json: Any = None, content: Any = None, **kwarg
             # JSON input template you can fill out and use as your `json` input.
             json = "date (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -216,6 +225,7 @@ def build_get_min_date_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

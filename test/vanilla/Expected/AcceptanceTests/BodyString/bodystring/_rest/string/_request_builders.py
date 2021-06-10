@@ -31,6 +31,7 @@ def build_get_null_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -69,7 +70,9 @@ def build_put_null_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -98,6 +101,7 @@ def build_get_empty_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -136,7 +140,9 @@ def build_put_empty_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -165,6 +171,7 @@ def build_get_mbcs_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -203,7 +210,9 @@ def build_put_mbcs_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -234,6 +243,7 @@ def build_get_whitespace_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -274,7 +284,9 @@ def build_put_whitespace_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -303,6 +315,7 @@ def build_get_not_provided_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -329,6 +342,7 @@ def build_get_base64_encoded_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -355,6 +369,7 @@ def build_get_base64_url_encoded_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -393,7 +408,9 @@ def build_put_base64_url_encoded_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bytes (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -422,6 +439,7 @@ def build_get_null_base64_url_encoded_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

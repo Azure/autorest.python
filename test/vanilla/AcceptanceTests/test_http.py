@@ -27,6 +27,7 @@
 import unittest
 import subprocess
 import sys
+from azure.core.pipeline import PipelineResponse
 import isodate
 import tempfile
 import requests
@@ -64,6 +65,7 @@ class TestHttp(object):
 
     def assert_status(self, code, func, *args, **kwargs):
         def return_status(pipeline_response, data, headers):
+            assert isinstance(pipeline_response, PipelineResponse)
             return pipeline_response.http_response.status_code
         kwargs['cls'] = return_status
         status_code = func(*args, **kwargs)

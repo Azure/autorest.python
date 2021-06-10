@@ -39,7 +39,7 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         self._serialize.client_side_validation = False
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `urlmulticollectionformat.rest`.
@@ -56,13 +56,13 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
         and pass it in.
 
-        :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.rest.HttpRequest
-        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.rest.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
-        request_copy = deepcopy(http_request)
+        request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 

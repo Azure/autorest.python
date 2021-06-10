@@ -40,6 +40,7 @@ def build_get_horse_request(
                 "name": "str"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -81,7 +82,9 @@ def build_put_horse_request(
                 "name": "str"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -118,6 +121,7 @@ def build_get_pet_request(
                 "name": "str"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -158,7 +162,9 @@ def build_put_pet_request(
                 "name": "str"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -196,6 +202,7 @@ def build_get_feline_request(
                 "meows": "bool (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -237,7 +244,9 @@ def build_put_feline_request(
                 "meows": "bool (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -277,6 +286,7 @@ def build_get_cat_request(
                 "name": "str"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -322,7 +332,9 @@ def build_put_cat_request(
                 "name": "str"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -364,6 +376,7 @@ def build_get_kitten_request(
                 "name": "str"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -411,7 +424,9 @@ def build_put_kitten_request(
                 "name": "str"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

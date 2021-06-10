@@ -24,6 +24,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -47,6 +48,7 @@ def build_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -70,6 +72,7 @@ def build_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -93,6 +96,7 @@ def build_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -128,7 +132,9 @@ def build_put_big_float_request(*, json: Any = None, content: Any = None, **kwar
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -154,6 +160,7 @@ def build_get_big_float_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -189,7 +196,9 @@ def build_put_big_double_request(*, json: Any = None, content: Any = None, **kwa
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -215,6 +224,7 @@ def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -252,7 +262,9 @@ def build_put_big_double_positive_decimal_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -278,6 +290,7 @@ def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -315,7 +328,9 @@ def build_put_big_double_negative_decimal_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -341,6 +356,7 @@ def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -376,7 +392,9 @@ def build_put_big_decimal_request(*, json: Any = None, content: Any = None, **kw
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -402,6 +420,7 @@ def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -439,7 +458,9 @@ def build_put_big_decimal_positive_decimal_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -465,6 +486,7 @@ def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -502,7 +524,9 @@ def build_put_big_decimal_negative_decimal_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -528,6 +552,7 @@ def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -563,7 +588,9 @@ def build_put_small_float_request(*, json: Any = None, content: Any = None, **kw
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -589,6 +616,7 @@ def build_get_small_float_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -624,7 +652,9 @@ def build_put_small_double_request(*, json: Any = None, content: Any = None, **k
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -650,6 +680,7 @@ def build_get_small_double_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -685,7 +716,9 @@ def build_put_small_decimal_request(*, json: Any = None, content: Any = None, **
             # JSON input template you can fill out and use as your `json` input.
             json = "float (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -711,6 +744,7 @@ def build_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

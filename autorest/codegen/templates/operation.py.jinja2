@@ -14,14 +14,11 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
-    {% if not async_mode and operation.parameters.kwargs_to_pop %}
-
-        {% for kwarg in operation.parameters.kwargs_to_pop %}
-    {{ kwarg.pop_from_kwarg | indent }}
-        {% endfor %}
+    {% if operation.parameters.kwargs_to_pop %}
+    {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
 
-    {{ op_tools.call_request_builder(operation, operation_serializer) | indent }}
-    pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
+    {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent }}
+    pipeline_response = {{ keywords.await }}self._client.send_request(request, {{ stream_request_parameter }}, _return_pipeline_response=True, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}
 {{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request_builder.url) }}}  # type: ignore

@@ -41,6 +41,7 @@ def build_get_int_request(
                 "field2": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -82,7 +83,9 @@ def build_put_int_request(
                 "field2": "int (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -120,6 +123,7 @@ def build_get_long_request(
                 "field2": "long (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -161,7 +165,9 @@ def build_put_long_request(
                 "field2": "long (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -199,6 +205,7 @@ def build_get_float_request(
                 "field2": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -240,7 +247,9 @@ def build_put_float_request(
                 "field2": "float (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -278,6 +287,7 @@ def build_get_double_request(
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -321,7 +331,9 @@ def build_put_double_request(
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -359,6 +371,7 @@ def build_get_bool_request(
                 "field_true": "bool (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -400,7 +413,9 @@ def build_put_bool_request(
                 "field_true": "bool (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -439,6 +454,7 @@ def build_get_string_request(
                 "null": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -481,7 +497,9 @@ def build_put_string_request(
                 "null": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -519,6 +537,7 @@ def build_get_date_request(
                 "leap": "date (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -560,7 +579,9 @@ def build_put_date_request(
                 "leap": "date (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -598,6 +619,7 @@ def build_get_date_time_request(
                 "now": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -641,7 +663,9 @@ def build_put_date_time_request(
                 "now": "datetime (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -679,6 +703,7 @@ def build_get_date_time_rfc1123_request(
                 "now": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -722,7 +747,9 @@ def build_put_date_time_rfc1123_request(
                 "now": "datetime (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -759,6 +786,7 @@ def build_get_duration_request(
                 "field": "timedelta (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -799,7 +827,9 @@ def build_put_duration_request(
                 "field": "timedelta (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -836,6 +866,7 @@ def build_get_byte_request(
                 "field": "bytearray (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -878,7 +909,9 @@ def build_put_byte_request(
                 "field": "bytearray (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

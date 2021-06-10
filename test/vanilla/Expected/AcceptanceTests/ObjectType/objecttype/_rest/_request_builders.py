@@ -32,6 +32,7 @@ def build_get_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -73,7 +74,9 @@ def build_put_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "object (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

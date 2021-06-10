@@ -39,6 +39,7 @@ def build_get200_model204_no_model_default_error200_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -73,6 +74,7 @@ def build_get200_model204_no_model_default_error204_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -107,6 +109,7 @@ def build_get200_model204_no_model_default_error201_invalid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -141,6 +144,7 @@ def build_get200_model204_no_model_default_error202_none_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -175,6 +179,7 @@ def build_get200_model204_no_model_default_error400_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -214,6 +219,7 @@ def build_get200_model201_model_default_error200_valid_request(
                 "textStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -253,6 +259,7 @@ def build_get200_model201_model_default_error201_valid_request(
                 "textStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -292,6 +299,7 @@ def build_get200_model201_model_default_error400_valid_request(
                 "textStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -334,6 +342,7 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
                 "httpStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -376,6 +385,7 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
                 "httpStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -418,6 +428,7 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
                 "httpStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -460,6 +471,7 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
                 "httpStatusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -486,6 +498,7 @@ def build_get202_none204_none_default_error202_none_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -512,6 +525,7 @@ def build_get202_none204_none_default_error204_none_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -538,6 +552,7 @@ def build_get202_none204_none_default_error400_valid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -656,6 +671,7 @@ def build_get_default_model_a200_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -690,6 +706,7 @@ def build_get_default_model_a200_none_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -716,6 +733,7 @@ def build_get_default_model_a400_valid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -742,6 +760,7 @@ def build_get_default_model_a400_none_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -861,6 +880,7 @@ def build_get200_model_a200_none_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -895,6 +915,7 @@ def build_get200_model_a200_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -929,6 +950,7 @@ def build_get200_model_a200_invalid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -963,6 +985,7 @@ def build_get200_model_a400_none_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -997,6 +1020,7 @@ def build_get200_model_a400_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1031,6 +1055,7 @@ def build_get200_model_a400_invalid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1065,6 +1090,7 @@ def build_get200_model_a202_valid_request(
                 "statusCode": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL

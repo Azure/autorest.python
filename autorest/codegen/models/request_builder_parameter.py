@@ -28,7 +28,7 @@ class RequestBuilderParameter(ParameterOnlyPathsPositional):
             # If I'm a flattened property of a body, don't want me, want the body param
             or self.target_property_name
             # If I'm a kwarg, don't include in the signature
-            or self.is_hidden_kwarg
+            or self.is_kwarg_to_pop
             or not self.in_method_code
         )
 
@@ -63,6 +63,16 @@ class RequestBuilderParameter(ParameterOnlyPathsPositional):
         if self.location == ParameterLocation.Body:
             return None
         return super(RequestBuilderParameter, self).default_value
+
+    @property
+    def default_value_declaration(self) -> Optional[str]:
+        if self.serialized_name == "content_type":
+            # in request builders we're in a weird scenario
+            # we need to know what the types of content_type are
+            # but we want to serialize content_type with no default.
+            # So, we just return None in default_value_declaration for now
+            return "None"
+        return super().default_value_declaration
 
     @property
     def is_kwarg(self) -> bool:

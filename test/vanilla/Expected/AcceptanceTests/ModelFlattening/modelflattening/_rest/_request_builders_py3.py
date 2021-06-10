@@ -47,7 +47,9 @@ def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: 
                 }
             ]
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -92,6 +94,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
                 }
             ]
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -132,7 +135,9 @@ def build_put_wrapped_array_request(*, json: Any = None, content: Any = None, **
                 }
             ]
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -169,6 +174,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
                 }
             ]
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -217,7 +223,9 @@ def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwa
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -262,6 +270,7 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -338,7 +347,9 @@ def build_put_resource_collection_request(*, json: Any = None, content: Any = No
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -411,6 +422,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -463,7 +475,9 @@ def build_put_simple_product_request(*, json: Any = None, content: Any = None, *
                 "max_product_display_name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -518,7 +532,9 @@ def build_post_flattened_simple_product_request(*, json: Any = None, content: An
                 "max_product_display_name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -577,7 +593,9 @@ def build_put_simple_product_with_grouping_request(
                 "max_product_display_name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

@@ -84,7 +84,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self._client_default_value = client_default_value
-        self.is_hidden_kwarg: bool = False
+        self.is_kwarg_to_pop: bool = False
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
@@ -194,7 +194,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             # If I'm body and it's flattened, I'm not either
             or (self.is_body and self.flattened)
             # If I'm a kwarg, don't include in the signature
-            or self.is_hidden_kwarg
+            or self.is_kwarg_to_pop
         )
 
     @property
@@ -280,16 +280,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self._has_default_value():
             return f"{self.serialized_name}={self.default_value_declaration},  # type: {self.type_annotation}"
         return f"{self.serialized_name},  # type: {self.type_annotation}"
-
-    @property
-    def pop_from_kwarg(self) -> str:
-        # Only entering if we're not python3 file
-        if self._has_default_value():
-            return (
-                f"{self.serialized_name} = kwargs.pop('{self.serialized_name}', " +
-                f"{self.default_value_declaration})  # type: {self.type_annotation}"
-            )
-        return f"{self.serialized_name} = kwargs.pop('{self.serialized_name}')  # type: {self.type_annotation}"
 
     @property
     def full_serialized_name(self) -> str:

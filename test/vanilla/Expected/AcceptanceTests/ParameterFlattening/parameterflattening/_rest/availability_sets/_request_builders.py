@@ -54,7 +54,8 @@ def build_update_request(
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/parameterFlattening/{resourceGroupName}/{availabilitySetName}")

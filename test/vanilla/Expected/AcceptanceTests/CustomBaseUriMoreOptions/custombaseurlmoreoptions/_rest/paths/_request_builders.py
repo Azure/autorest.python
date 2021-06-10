@@ -40,7 +40,9 @@ def build_get_empty_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

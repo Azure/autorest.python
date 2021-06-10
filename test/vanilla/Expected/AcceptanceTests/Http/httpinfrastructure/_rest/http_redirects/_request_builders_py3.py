@@ -24,6 +24,7 @@ def build_head300_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -55,6 +56,7 @@ def build_get300_request(**kwargs: Any) -> HttpRequest:
                 "str (optional)"
             ]
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -78,6 +80,7 @@ def build_head301_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -101,6 +104,7 @@ def build_get301_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -137,7 +141,9 @@ def build_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -163,6 +169,7 @@ def build_head302_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -186,6 +193,7 @@ def build_get302_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -222,7 +230,9 @@ def build_patch302_request(*, json: Any = None, content: Any = None, **kwargs: A
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -261,7 +271,9 @@ def build_post303_request(*, json: Any = None, content: Any = None, **kwargs: An
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -287,6 +299,7 @@ def build_head307_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -310,6 +323,7 @@ def build_get307_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -333,6 +347,7 @@ def build_options307_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -368,7 +383,9 @@ def build_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -406,7 +423,9 @@ def build_patch307_request(*, json: Any = None, content: Any = None, **kwargs: A
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -444,7 +463,9 @@ def build_post307_request(*, json: Any = None, content: Any = None, **kwargs: An
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -482,7 +503,9 @@ def build_delete307_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

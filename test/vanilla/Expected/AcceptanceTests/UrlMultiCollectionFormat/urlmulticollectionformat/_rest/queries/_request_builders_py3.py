@@ -26,6 +26,7 @@ def build_array_string_multi_null_request(*, array_query: Optional[List[str]] = 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -58,6 +59,7 @@ def build_array_string_multi_empty_request(*, array_query: Optional[List[str]] =
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -92,6 +94,7 @@ def build_array_string_multi_valid_request(*, array_query: Optional[List[str]] =
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

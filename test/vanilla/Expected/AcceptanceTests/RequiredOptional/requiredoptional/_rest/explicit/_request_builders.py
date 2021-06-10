@@ -35,7 +35,9 @@ def build_put_optional_binary_body_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -67,7 +69,9 @@ def build_put_required_binary_body_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -109,7 +113,9 @@ def build_post_required_integer_parameter_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -150,7 +156,9 @@ def build_post_optional_integer_parameter_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -194,7 +202,9 @@ def build_post_required_integer_property_request(
                 "value": "int"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -237,7 +247,9 @@ def build_post_optional_integer_property_request(
                 "value": "int (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -269,7 +281,9 @@ def build_post_required_integer_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     header_parameter = kwargs.pop("header_parameter")  # type: int
+
     accept = "application/json"
 
     # Construct URL
@@ -299,7 +313,9 @@ def build_post_optional_integer_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[int]
+
     accept = "application/json"
 
     # Construct URL
@@ -341,7 +357,9 @@ def build_post_required_string_parameter_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -382,7 +400,9 @@ def build_post_optional_string_parameter_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -426,7 +446,9 @@ def build_post_required_string_property_request(
                 "value": "str"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -469,7 +491,9 @@ def build_post_optional_string_property_request(
                 "value": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -501,7 +525,9 @@ def build_post_required_string_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     header_parameter = kwargs.pop("header_parameter")  # type: str
+
     accept = "application/json"
 
     # Construct URL
@@ -531,7 +557,9 @@ def build_post_optional_string_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     body_parameter = kwargs.pop("body_parameter", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -576,7 +604,9 @@ def build_post_required_class_parameter_request(
                 "name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -620,7 +650,9 @@ def build_post_optional_class_parameter_request(
                 "name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -667,7 +699,9 @@ def build_post_required_class_property_request(
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -713,7 +747,9 @@ def build_post_optional_class_property_request(
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -757,7 +793,9 @@ def build_post_required_array_parameter_request(
                 "str (optional)"
             ]
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -800,7 +838,9 @@ def build_post_optional_array_parameter_request(
                 "str (optional)"
             ]
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -846,7 +886,9 @@ def build_post_required_array_property_request(
                 ]
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -891,7 +933,9 @@ def build_post_optional_array_property_request(
                 ]
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -923,7 +967,9 @@ def build_post_required_array_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     header_parameter = kwargs.pop("header_parameter")  # type: List[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -953,7 +999,9 @@ def build_post_optional_array_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[List[str]]
+
     accept = "application/json"
 
     # Construct URL

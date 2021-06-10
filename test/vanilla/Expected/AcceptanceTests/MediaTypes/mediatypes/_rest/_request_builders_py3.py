@@ -41,7 +41,9 @@ def build_analyze_body_request(*, json: Any = None, content: Any = None, **kwarg
                 "source": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
     accept = "application/json"
 
@@ -71,7 +73,9 @@ def build_content_type_with_encoding_request(*, content: Any, **kwargs: Any) -> 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

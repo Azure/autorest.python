@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import functools
 from typing import TYPE_CHECKING
 import warnings
 
@@ -75,7 +76,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -113,7 +114,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -151,7 +152,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -189,7 +190,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -226,8 +227,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = rest_datetimerfc1123.build_put_utc_max_date_time_request(
@@ -235,7 +236,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -269,7 +270,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -307,7 +308,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -344,8 +345,8 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = rest_datetimerfc1123.build_put_utc_min_date_time_request(
@@ -353,7 +354,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -387,7 +388,7 @@ class Datetimerfc1123Operations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

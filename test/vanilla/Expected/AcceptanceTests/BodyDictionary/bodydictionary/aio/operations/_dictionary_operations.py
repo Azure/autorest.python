@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import functools
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
@@ -68,7 +69,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -103,7 +106,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -135,8 +140,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{str}")
 
         request = rest_dictionary.build_put_empty_request(
@@ -144,7 +149,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -175,7 +182,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -210,7 +219,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -245,7 +256,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -280,7 +293,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -315,7 +330,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -347,8 +364,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{bool}")
 
         request = rest_dictionary.build_put_boolean_tfft_request(
@@ -356,7 +373,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -387,7 +406,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -422,7 +443,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -457,7 +480,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -489,8 +514,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{int}")
 
         request = rest_dictionary.build_put_integer_valid_request(
@@ -498,7 +523,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -529,7 +556,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -564,7 +593,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -599,7 +630,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -631,8 +664,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{long}")
 
         request = rest_dictionary.build_put_long_valid_request(
@@ -640,7 +673,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -671,7 +706,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -706,7 +743,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -741,7 +780,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -773,8 +814,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{float}")
 
         request = rest_dictionary.build_put_float_valid_request(
@@ -782,7 +823,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -813,7 +856,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -848,7 +893,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -883,7 +930,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -915,8 +964,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{float}")
 
         request = rest_dictionary.build_put_double_valid_request(
@@ -924,7 +973,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -955,7 +1006,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -990,7 +1043,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1025,7 +1080,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1057,8 +1114,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{str}")
 
         request = rest_dictionary.build_put_string_valid_request(
@@ -1066,7 +1123,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1097,7 +1156,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1132,7 +1193,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1167,7 +1230,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1199,8 +1264,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{date}")
 
         request = rest_dictionary.build_put_date_valid_request(
@@ -1208,7 +1273,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1239,7 +1306,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1274,7 +1343,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1310,7 +1381,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1343,8 +1416,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{iso-8601}")
 
         request = rest_dictionary.build_put_date_time_valid_request(
@@ -1352,7 +1425,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1383,7 +1458,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1418,7 +1495,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1454,7 +1533,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1487,8 +1568,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{rfc-1123}")
 
         request = rest_dictionary.build_put_date_time_rfc1123_valid_request(
@@ -1499,7 +1580,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1530,7 +1613,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1562,8 +1647,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{duration}")
 
         request = rest_dictionary.build_put_duration_valid_request(
@@ -1571,7 +1656,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1603,7 +1690,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1636,8 +1725,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{bytearray}")
 
         request = rest_dictionary.build_put_byte_valid_request(
@@ -1645,7 +1734,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1677,7 +1768,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1713,7 +1806,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1748,7 +1843,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1783,7 +1880,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1819,7 +1918,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1855,7 +1956,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1891,7 +1994,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1924,8 +2029,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{Widget}")
 
         request = rest_dictionary.build_put_complex_valid_request(
@@ -1933,7 +2038,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1964,7 +2071,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1999,7 +2108,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2034,7 +2145,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2069,7 +2182,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2105,7 +2220,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2138,8 +2255,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{[str]}")
 
         request = rest_dictionary.build_put_array_valid_request(
@@ -2147,7 +2264,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2178,7 +2297,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2213,7 +2334,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2249,7 +2372,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2285,7 +2410,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2322,7 +2449,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2356,8 +2485,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(array_body, "{{str}}")
 
         request = rest_dictionary.build_put_dictionary_valid_request(
@@ -2365,7 +2494,9 @@ class DictionaryOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

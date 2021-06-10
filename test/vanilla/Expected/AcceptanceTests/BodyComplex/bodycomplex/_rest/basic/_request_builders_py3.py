@@ -35,6 +35,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -74,7 +75,9 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
                 "name": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     api_version = "2016-02-29"
     accept = "application/json"
 
@@ -117,6 +120,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -150,6 +154,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -183,6 +188,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -216,6 +222,7 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL

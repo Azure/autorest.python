@@ -44,6 +44,7 @@ def build_get_pet_by_id_request(
                 "name": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -85,6 +86,7 @@ def build_do_something_request(
                 "actionResponse": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -119,7 +121,9 @@ def build_has_models_param_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     models = kwargs.pop("models", "value1")  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

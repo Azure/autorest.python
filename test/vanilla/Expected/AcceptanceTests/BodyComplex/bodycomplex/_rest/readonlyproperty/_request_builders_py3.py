@@ -34,6 +34,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
                 "size": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -72,7 +73,9 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
                 "size": "int (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

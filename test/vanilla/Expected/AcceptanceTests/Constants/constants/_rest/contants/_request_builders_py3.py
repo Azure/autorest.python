@@ -198,6 +198,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = "value1"
 
     # Construct URL
@@ -223,6 +224,7 @@ def build_put_no_model_as_string_required_one_value_default_request(**kwargs: An
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     input = "value1"
 
     # Construct URL

@@ -151,6 +151,14 @@ class BuilderSerializerProtocol(ABC):
     def _serialize_path_format_parameters(self, builder: BaseBuilder) -> List[str]:
         ...
 
+    @abstractmethod
+    def _get_kwargs_to_pop(self, builder: BaseBuilder) -> List[Parameter]:
+        ...
+
+    @abstractmethod
+    def pop_kwargs_from_signature(self, builder: BaseBuilder) -> List[str]:
+        ...
+
 class BuilderBaseSerializer(BuilderSerializerProtocol):
     def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
@@ -309,6 +317,18 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
             )
         )
 
+    def pop_kwargs_from_signature(self, builder: Operation) -> List[str]:
+        retval = []
+        for kwarg in self._get_kwargs_to_pop(builder):
+            if kwarg._has_default_value():
+                retval.append(
+                    f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', " +
+                    f"{kwarg.default_value_declaration})  # type: {kwarg.type_annotation}"
+                )
+            else:
+                retval.append(f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}")
+        return retval
+
 ############################## REQUEST BUILDERS ##############################
 
 class RequestBuilderBaseSerializer(BuilderBaseSerializer):
@@ -369,6 +389,9 @@ class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
         return f"{method_signature}:\n    # type: (...) -> {_response_type_annotation}"
 
+    def _get_kwargs_to_pop(self, builder: BaseBuilder):
+        return builder.parameters.kwargs_to_pop(async_mode=False)
+
 class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
 
     @property
@@ -378,6 +401,9 @@ class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
         return f"{method_signature} -> {_response_type_annotation}:"
+
+    def _get_kwargs_to_pop(self, builder: BaseBuilder):
+        return builder.parameters.kwargs_to_pop(async_mode=True)
 
 ############################## NORMAL OPERATIONS ##############################
 
@@ -510,6 +536,9 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         else:
             retval.append(f"if {body_param.serialized_name} is not None:")
             retval.append("    " + serialize_body_call)
+            if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
+                retval.append("else:")
+                retval.append(f"    {body_param.serialized_name} = None")
         return retval
 
     def _set_body_content_kwarg(self, builder: Operation, schema_request: SchemaRequest):
@@ -533,8 +562,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         builder: Operation,
     ) -> List[str]:
         retval = []
-        for body_kwarg in builder.body_kwargs_to_pass_to_request_builder:
-            retval.append(f"{body_kwarg} = None")
         if len(builder.request_builder.schema_requests) == 1:
             retval.extend(self._set_body_content_kwarg(
                 builder, builder.request_builder.schema_requests[0]
@@ -565,10 +592,9 @@ class OperationBaseSerializer(BuilderBaseSerializer):
 
     def call_request_builder(self, builder: Operation) -> List[str]:
         retval = []
-        if builder.request_builder.parameters.has_body:
-            retval.append(
-                f'content_type = kwargs.pop("content_type", {builder.default_content_type_declaration})'
-            )
+        if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
+            for k in builder.body_kwargs_to_pass_to_request_builder:
+                retval.append(f"{k} = None")
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
             retval.extend(self._serialize_grouped_parameters(builder))
@@ -630,6 +656,9 @@ class SyncOperationSerializer(OperationBaseSerializer):
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
         return f"{method_signature}:\n    # type: (...) -> {_response_type_annotation}"
 
+    def _get_kwargs_to_pop(self, builder: BaseBuilder):
+        return builder.parameters.kwargs_to_pop(async_mode=False)
+
 class AsyncOperationSerializer(OperationBaseSerializer):
 
     @property
@@ -643,6 +672,9 @@ class AsyncOperationSerializer(OperationBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
         return f"{method_signature} -> {_response_type_annotation}:"
+
+    def _get_kwargs_to_pop(self, builder: BaseBuilder):
+        return builder.parameters.kwargs_to_pop(async_mode=True)
 
 ############################## PAGING OPERATIONS ##############################
 

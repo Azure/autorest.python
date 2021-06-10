@@ -42,6 +42,7 @@ def build_get_complex_type_ref_no_meta_request(
                 "Something": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -71,7 +72,8 @@ def build_put_complex_type_ref_no_meta_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
@@ -109,6 +111,7 @@ def build_get_complex_type_ref_with_meta_request(
                 "Something": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -138,7 +141,8 @@ def build_put_complex_type_ref_with_meta_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
@@ -184,6 +188,7 @@ def build_get_simple_request(
                 "title": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -213,7 +218,9 @@ def build_put_simple_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/xml"
 
     # Construct URL
@@ -255,6 +262,7 @@ def build_get_wrapped_lists_request(
                 ]
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -284,7 +292,9 @@ def build_put_wrapped_lists_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/xml"
 
     # Construct URL
@@ -353,6 +363,7 @@ def build_get_empty_list_request(
                 "title": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -382,7 +393,8 @@ def build_put_empty_list_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-list")
@@ -422,6 +434,7 @@ def build_get_empty_wrapped_lists_request(
                 ]
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -451,7 +464,8 @@ def build_put_empty_wrapped_lists_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
@@ -490,6 +504,7 @@ def build_get_root_list_request(
                 }
             ]
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -519,7 +534,8 @@ def build_put_root_list_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/root-list")
@@ -558,6 +574,7 @@ def build_get_root_list_single_item_request(
                 }
             ]
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -587,7 +604,8 @@ def build_put_root_list_single_item_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/root-list-single-item")
@@ -626,6 +644,7 @@ def build_get_empty_root_list_request(
                 }
             ]
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -655,7 +674,8 @@ def build_put_empty_root_list_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-root-list")
@@ -692,6 +712,7 @@ def build_get_empty_child_element_request(
                 "name": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -721,7 +742,8 @@ def build_put_empty_child_element_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/empty-child-element")
@@ -776,6 +798,7 @@ def build_list_containers_request(
                 "ServiceEndpoint": "str"
             }
     """
+
     comp = "list"
     accept = "application/xml"
 
@@ -856,6 +879,7 @@ def build_get_service_properties_request(
                 }
             }
     """
+
     comp = "properties"
     restype = "service"
     accept = "application/xml"
@@ -892,7 +916,9 @@ def build_put_service_properties_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     comp = "properties"
     restype = "service"
 
@@ -941,6 +967,7 @@ def build_get_acls_request(
                 }
             ]
     """
+
     comp = "acl"
     restype = "container"
     accept = "application/xml"
@@ -977,7 +1004,9 @@ def build_put_acls_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     comp = "acl"
     restype = "container"
 
@@ -1072,6 +1101,7 @@ def build_list_blobs_request(
                 "ServiceEndpoint": "str (optional)"
             }
     """
+
     comp = "list"
     restype = "container"
     accept = "application/xml"
@@ -1120,7 +1150,8 @@ def build_json_input_request(
                 "id": "int (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/jsoninput")
@@ -1155,6 +1186,7 @@ def build_json_output_request(
                 "id": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1191,6 +1223,7 @@ def build_get_xms_text_request(
                 "language": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -1225,6 +1258,7 @@ def build_get_bytes_request(
                 "Bytes": "bytearray (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -1254,7 +1288,9 @@ def build_put_binary_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/xml"
 
     # Construct URL
@@ -1291,6 +1327,7 @@ def build_get_uri_request(
                 "Url": "str (optional)"
             }
     """
+
     accept = "application/xml"
 
     # Construct URL
@@ -1320,7 +1357,9 @@ def build_put_uri_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/xml"
 
     # Construct URL

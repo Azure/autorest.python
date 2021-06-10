@@ -185,7 +185,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         if self.is_stream_response:
             file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
-
+        file_import.add_import("functools", ImportType.STDLIB)
         file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)

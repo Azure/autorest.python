@@ -25,6 +25,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -48,6 +49,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -71,6 +73,7 @@ def build_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -94,6 +97,7 @@ def build_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -117,6 +121,7 @@ def build_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -140,6 +145,7 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -175,7 +181,9 @@ def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -213,7 +221,9 @@ def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your `json` input.
             json = "long (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -251,7 +261,9 @@ def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your `json` input.
             json = "int (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -289,7 +301,9 @@ def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your `json` input.
             json = "long (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -315,6 +329,7 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -350,7 +365,9 @@ def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, *
             # JSON input template you can fill out and use as your `json` input.
             json = "datetime (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -376,6 +393,7 @@ def build_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -399,6 +417,7 @@ def build_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

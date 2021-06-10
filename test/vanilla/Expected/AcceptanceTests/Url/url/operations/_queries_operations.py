@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import functools
 from typing import TYPE_CHECKING
 import warnings
 
@@ -75,7 +76,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -109,7 +110,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -147,7 +148,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -181,7 +182,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -215,7 +216,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -253,7 +254,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -287,7 +288,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -321,7 +322,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -359,7 +360,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -393,7 +394,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -427,7 +428,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -465,7 +466,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -499,7 +500,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -533,7 +534,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -571,7 +572,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -605,7 +606,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -639,7 +640,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -673,7 +674,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -711,7 +712,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -749,7 +750,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -787,7 +788,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -825,7 +826,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -859,7 +860,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -897,7 +898,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -931,7 +932,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -969,7 +970,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1003,7 +1004,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1041,7 +1042,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1081,7 +1082,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1119,7 +1120,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1157,7 +1158,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1196,7 +1197,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1236,7 +1237,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1276,7 +1277,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1316,7 +1317,7 @@ class QueriesOperations(object):
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

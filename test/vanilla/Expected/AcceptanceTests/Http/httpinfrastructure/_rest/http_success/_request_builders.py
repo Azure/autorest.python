@@ -31,6 +31,7 @@ def build_head200_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -57,6 +58,7 @@ def build_get200_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -83,6 +85,7 @@ def build_options200_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -121,7 +124,9 @@ def build_put200_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -162,7 +167,9 @@ def build_patch200_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -203,7 +210,9 @@ def build_post200_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -244,7 +253,9 @@ def build_delete200_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -285,7 +296,9 @@ def build_put201_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -326,7 +339,9 @@ def build_post201_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -367,7 +382,9 @@ def build_put202_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -408,7 +425,9 @@ def build_patch202_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -449,7 +468,9 @@ def build_post202_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -490,7 +511,9 @@ def build_delete202_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -519,6 +542,7 @@ def build_head204_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -557,7 +581,9 @@ def build_put204_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -598,7 +624,9 @@ def build_patch204_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -639,7 +667,9 @@ def build_post204_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -680,7 +710,9 @@ def build_delete204_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "bool (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -709,6 +741,7 @@ def build_head404_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

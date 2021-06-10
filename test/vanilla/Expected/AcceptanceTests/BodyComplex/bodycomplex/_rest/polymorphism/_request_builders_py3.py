@@ -38,6 +38,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
                 "species": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -146,7 +147,9 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
                 "species": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -181,6 +184,7 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
                 "species": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -234,6 +238,7 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -287,6 +292,7 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -333,6 +339,7 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
                 "species": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -387,7 +394,9 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
                 "species": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -462,7 +471,9 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
                 "species": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -562,7 +573,9 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
                 "species": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

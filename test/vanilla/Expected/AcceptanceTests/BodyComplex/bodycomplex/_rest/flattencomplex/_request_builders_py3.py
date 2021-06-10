@@ -35,6 +35,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
                 "propBH1": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL

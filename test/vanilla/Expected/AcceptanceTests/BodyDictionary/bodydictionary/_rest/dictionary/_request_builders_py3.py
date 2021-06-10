@@ -33,6 +33,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -64,6 +65,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -101,7 +103,9 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
                 "str": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -135,6 +139,7 @@ def build_get_null_value_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -166,6 +171,7 @@ def build_get_null_key_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -197,6 +203,7 @@ def build_get_empty_string_key_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -228,6 +235,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -259,6 +267,7 @@ def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
                 "str": "bool (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -296,7 +305,9 @@ def build_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **k
                 "str": "bool (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -330,6 +341,7 @@ def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "bool (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -361,6 +373,7 @@ def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
                 "str": "bool (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -392,6 +405,7 @@ def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -429,7 +443,9 @@ def build_put_integer_valid_request(*, json: Any = None, content: Any = None, **
                 "str": "int (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -463,6 +479,7 @@ def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -494,6 +511,7 @@ def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
                 "str": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -525,6 +543,7 @@ def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "long (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -562,7 +581,9 @@ def build_put_long_valid_request(*, json: Any = None, content: Any = None, **kwa
                 "str": "long (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -596,6 +617,7 @@ def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "long (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -627,6 +649,7 @@ def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
                 "str": "long (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -658,6 +681,7 @@ def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -695,7 +719,9 @@ def build_put_float_valid_request(*, json: Any = None, content: Any = None, **kw
                 "str": "float (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -729,6 +755,7 @@ def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -760,6 +787,7 @@ def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
                 "str": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -791,6 +819,7 @@ def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -828,7 +857,9 @@ def build_put_double_valid_request(*, json: Any = None, content: Any = None, **k
                 "str": "float (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -862,6 +893,7 @@ def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -893,6 +925,7 @@ def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
                 "str": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -924,6 +957,7 @@ def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -961,7 +995,9 @@ def build_put_string_valid_request(*, json: Any = None, content: Any = None, **k
                 "str": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -995,6 +1031,7 @@ def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1026,6 +1063,7 @@ def build_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
                 "str": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1057,6 +1095,7 @@ def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "date (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1094,7 +1133,9 @@ def build_put_date_valid_request(*, json: Any = None, content: Any = None, **kwa
                 "str": "date (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -1128,6 +1169,7 @@ def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "date (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1159,6 +1201,7 @@ def build_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
                 "str": "date (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1191,6 +1234,7 @@ def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1229,7 +1273,9 @@ def build_put_date_time_valid_request(*, json: Any = None, content: Any = None, 
                 "str": "datetime (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -1263,6 +1309,7 @@ def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1294,6 +1341,7 @@ def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
                 "str": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1326,6 +1374,7 @@ def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1364,7 +1413,9 @@ def build_put_date_time_rfc1123_valid_request(*, json: Any = None, content: Any 
                 "str": "datetime (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -1398,6 +1449,7 @@ def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "timedelta (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1435,7 +1487,9 @@ def build_put_duration_valid_request(*, json: Any = None, content: Any = None, *
                 "str": "timedelta (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -1470,6 +1524,7 @@ def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
                 "str": "bytearray (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1508,7 +1563,9 @@ def build_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwa
                 "str": "bytearray (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -1543,6 +1600,7 @@ def build_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
                 "str": "bytearray (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1575,6 +1633,7 @@ def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
                 "str": "bytes (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1609,6 +1668,7 @@ def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1643,6 +1703,7 @@ def build_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1678,6 +1739,7 @@ def build_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1713,6 +1775,7 @@ def build_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1748,6 +1811,7 @@ def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1789,7 +1853,9 @@ def build_put_complex_valid_request(*, json: Any = None, content: Any = None, **
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -1825,6 +1891,7 @@ def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
                 ]
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1858,6 +1925,7 @@ def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
                 ]
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1891,6 +1959,7 @@ def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
                 ]
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1924,6 +1993,7 @@ def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
                 ]
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1958,6 +2028,7 @@ def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
                 ]
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -1998,7 +2069,9 @@ def build_put_array_valid_request(*, json: Any = None, content: Any = None, **kw
                 ]
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -2034,6 +2107,7 @@ def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -2067,6 +2141,7 @@ def build_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -2101,6 +2176,7 @@ def build_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -2135,6 +2211,7 @@ def build_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -2170,6 +2247,7 @@ def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
                 }
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -2211,7 +2289,9 @@ def build_put_dictionary_valid_request(*, json: Any = None, content: Any = None,
                 }
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

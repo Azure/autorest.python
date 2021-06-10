@@ -35,6 +35,7 @@ def build_get_required_path_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -67,7 +68,9 @@ def build_put_optional_query_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -101,7 +104,9 @@ def build_put_optional_header_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -142,7 +147,9 @@ def build_put_optional_body_request(
             # JSON input template you can fill out and use as your `json` input.
             json = "str (optional)"
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -174,7 +181,9 @@ def build_put_optional_binary_body_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -206,6 +215,7 @@ def build_get_required_global_path_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -238,7 +248,9 @@ def build_get_required_global_query_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     required_global_query = kwargs.pop("required_global_query")  # type: str
+
     accept = "application/json"
 
     # Construct URL
@@ -271,7 +283,9 @@ def build_get_optional_global_query_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     optional_global_query = kwargs.pop("optional_global_query", None)  # type: Optional[int]
+
     accept = "application/json"
 
     # Construct URL

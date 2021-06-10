@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import functools
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
@@ -68,7 +69,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -103,7 +106,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -138,7 +143,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -173,7 +180,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -205,8 +214,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_max_date_time_request(
@@ -214,7 +223,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -245,8 +256,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_max_date_time7_digits_request(
@@ -257,7 +268,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -288,7 +301,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -323,7 +338,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -361,7 +378,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -393,8 +412,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_positive_offset_max_date_time_request(
@@ -405,7 +424,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -436,7 +457,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -471,7 +494,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -503,8 +528,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_negative_offset_max_date_time_request(
@@ -515,7 +540,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -546,7 +573,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -581,7 +610,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -613,8 +644,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_utc_min_date_time_request(
@@ -622,7 +653,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -653,7 +686,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -685,8 +720,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_positive_offset_min_date_time_request(
@@ -697,7 +732,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -728,7 +765,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -760,8 +799,8 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")
-        json = None
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
         json = self._serialize.body(datetime_body, "iso-8601")
 
         request = rest_datetime.build_put_local_negative_offset_min_date_time_request(
@@ -772,7 +811,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -803,7 +844,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -838,7 +881,9 @@ class DatetimeOperations:
         )._internal_request
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

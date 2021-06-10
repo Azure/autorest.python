@@ -27,6 +27,7 @@ def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -51,6 +52,7 @@ def build_response_existing_key_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -76,6 +78,7 @@ def build_param_protected_key_request(*, content_type: str, **kwargs: Any) -> Ht
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -100,6 +103,7 @@ def build_response_protected_key_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -128,6 +132,7 @@ def build_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -155,6 +160,7 @@ def build_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpReque
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -184,6 +190,7 @@ def build_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> Htt
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -211,6 +218,7 @@ def build_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -240,6 +248,7 @@ def build_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -267,6 +276,7 @@ def build_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -296,6 +306,7 @@ def build_param_double_request(*, scenario: str, value: float, **kwargs: Any) ->
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -323,6 +334,7 @@ def build_response_double_request(*, scenario: str, **kwargs: Any) -> HttpReques
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -352,6 +364,7 @@ def build_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> Ht
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -379,6 +392,7 @@ def build_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -410,6 +424,7 @@ def build_param_string_request(*, scenario: str, value: Optional[str] = None, **
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -439,6 +454,7 @@ def build_response_string_request(*, scenario: str, **kwargs: Any) -> HttpReques
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -468,6 +484,7 @@ def build_param_date_request(*, scenario: str, value: datetime.date, **kwargs: A
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -495,6 +512,7 @@ def build_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -525,6 +543,7 @@ def build_param_datetime_request(*, scenario: str, value: datetime.datetime, **k
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -552,6 +571,7 @@ def build_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequ
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -584,6 +604,7 @@ def build_param_datetime_rfc1123_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -613,6 +634,7 @@ def build_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -641,6 +663,7 @@ def build_param_duration_request(*, scenario: str, value: datetime.timedelta, **
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -668,6 +691,7 @@ def build_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequ
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -696,6 +720,7 @@ def build_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -723,6 +748,7 @@ def build_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -755,6 +781,7 @@ def build_param_enum_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -784,6 +811,7 @@ def build_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -809,6 +837,7 @@ def build_custom_request_id_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "application/json"
 
     # Construct URL

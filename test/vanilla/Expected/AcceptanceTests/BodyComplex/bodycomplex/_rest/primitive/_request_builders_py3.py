@@ -34,6 +34,7 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
                 "field2": "int (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -72,7 +73,9 @@ def build_put_int_request(*, json: Any = None, content: Any = None, **kwargs: An
                 "field2": "int (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -107,6 +110,7 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
                 "field2": "long (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -145,7 +149,9 @@ def build_put_long_request(*, json: Any = None, content: Any = None, **kwargs: A
                 "field2": "long (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -180,6 +186,7 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
                 "field2": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -218,7 +225,9 @@ def build_put_float_request(*, json: Any = None, content: Any = None, **kwargs: 
                 "field2": "float (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -253,6 +262,7 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -293,7 +303,9 @@ def build_put_double_request(*, json: Any = None, content: Any = None, **kwargs:
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -328,6 +340,7 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
                 "field_true": "bool (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -366,7 +379,9 @@ def build_put_bool_request(*, json: Any = None, content: Any = None, **kwargs: A
                 "field_true": "bool (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -402,6 +417,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
                 "null": "str (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -441,7 +457,9 @@ def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs:
                 "null": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -476,6 +494,7 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
                 "leap": "date (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -514,7 +533,9 @@ def build_put_date_request(*, json: Any = None, content: Any = None, **kwargs: A
                 "leap": "date (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -549,6 +570,7 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
                 "now": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -589,7 +611,9 @@ def build_put_date_time_request(*, json: Any = None, content: Any = None, **kwar
                 "now": "datetime (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -624,6 +648,7 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
                 "now": "datetime (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -664,7 +689,9 @@ def build_put_date_time_rfc1123_request(*, json: Any = None, content: Any = None
                 "now": "datetime (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -698,6 +725,7 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
                 "field": "timedelta (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -735,7 +763,9 @@ def build_put_duration_request(*, json: Any = None, content: Any = None, **kwarg
                 "field": "timedelta (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL
@@ -769,6 +799,7 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
                 "field": "bytearray (optional)"
             }
     """
+
     accept = "application/json"
 
     # Construct URL
@@ -808,7 +839,9 @@ def build_put_byte_request(*, json: Any = None, content: Any = None, **kwargs: A
                 "field": "bytearray (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     accept = "application/json"
 
     # Construct URL

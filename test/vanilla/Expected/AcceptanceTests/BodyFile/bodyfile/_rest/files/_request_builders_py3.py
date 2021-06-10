@@ -24,6 +24,7 @@ def build_get_file_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "image/png, application/json"
 
     # Construct URL
@@ -47,6 +48,7 @@ def build_get_file_large_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "image/png, application/json"
 
     # Construct URL
@@ -70,6 +72,7 @@ def build_get_empty_file_request(**kwargs: Any) -> HttpRequest:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     accept = "image/png, application/json"
 
     # Construct URL

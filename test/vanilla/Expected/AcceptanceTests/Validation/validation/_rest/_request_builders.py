@@ -64,6 +64,7 @@ def build_validation_of_method_parameters_request(
                 "image": "str (optional)"
             }
     """
+
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -161,7 +162,9 @@ def build_validation_of_body_request(
                 "image": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -203,6 +206,7 @@ def build_get_with_constant_in_path_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
     constant_param = "constant"
 
     # Construct URL
@@ -278,7 +282,9 @@ def build_post_with_constant_in_body_request(
                 "image": "str (optional)"
             }
     """
-    content_type = kwargs.pop("content_type", None)
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
     constant_param = "constant"
     accept = "application/json"
 

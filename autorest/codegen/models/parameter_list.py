@@ -13,6 +13,7 @@ from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
+from .enum_schema import EnumSchema
 from .primitive_schemas import IOSchema, ByteArraySchema, AnySchema
 
 T = TypeVar('T')
@@ -170,7 +171,7 @@ class ParameterList(MutableSequence):
                         content_types[choice['value']] = None
             elif isinstance(param.schema, ConstantSchema):
                 content_types[param.schema.value] = None
-            else:
+            elif isinstance(param.schema, EnumSchema):
                 # enums
                 content_types.update({v.value: None for v in param.schema.values})
         self._content_types = list(content_types.keys())
@@ -224,9 +225,22 @@ class ParameterList(MutableSequence):
     def kwargs(self) -> List[Parameter]:
         return [p for p in self.method if p.is_kwarg]
 
-    @property
-    def kwargs_to_pop(self) -> List[Parameter]:
-        return [m for m in self.method if m.is_kwarg]
+    def kwargs_to_pop(self, async_mode: bool) -> List[Parameter]:
+        seen_kwargs = set()
+        # we want to default to constant schemas for the kwargs if there are multiple
+        # case example: when looking at multiple content type params, we want the one with the constant schema
+        # so we can default to that value when popping
+        kwargs = [p for p in self.parameters if p.is_kwarg_to_pop]
+        retval = []
+        def _iterate_kwargs(kwargs_to_iterate):
+            for kwarg in kwargs_to_iterate:
+                if kwarg.rest_api_name in seen_kwargs:
+                    continue
+                seen_kwargs.add(kwarg.rest_api_name)
+                retval.append(kwarg)
+        _iterate_kwargs([k for k in kwargs if isinstance(k.schema, ConstantSchema)])
+        _iterate_kwargs([k for k in kwargs if not isinstance(k.schema, ConstantSchema)])
+        return retval
 
     def method_signature_kwargs(self, async_mode: bool) -> List[str]:
         leftover_kwargs_typing = ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]
