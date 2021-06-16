@@ -174,7 +174,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
     :param capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
-     in are "None" and "Large". The default value is "Large".
+     in are None and "Large". The default value is None.
     :type capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -299,7 +299,7 @@ class SimpleProduct(BaseProduct):
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
     :param capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
-     in are "None" and "Large". The default value is "Large".
+     in are None and "Large". The default value is None.
     :type capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str

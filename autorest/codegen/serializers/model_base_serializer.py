@@ -72,8 +72,8 @@ class ModelBaseSerializer:
                 description = "Required. "
         elif isinstance(prop.schema, ConstantSchema):
             description += (
-                f" The only acceptable values to pass in are \"None\" and {prop.constant_declaration}. " +
-                f"The default value is {prop.constant_declaration}."
+                f" The only acceptable values to pass in are None and {prop.constant_declaration}. " +
+                f"The default value is {prop.default_value_declaration}."
             )
         if prop.is_discriminator:
             description += "Constant filled by server. "
