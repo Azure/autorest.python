@@ -85,17 +85,17 @@ class CodeGenerator(Plugin):
         no_models = self._autorestapi.get_boolean_value("no-models", False)
         rest_layer = self._autorestapi.get_boolean_value("rest-layer", False)
         no_operations = self._autorestapi.get_boolean_value("no-operations", False)
-        only_path_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
         if low_level_client:
             no_models = True
             rest_layer = True
             no_operations = True
-            only_path_params_positional = True
+            only_path_and_body_params_positional = True
         code_model = CodeModel(
             rest_layer=rest_layer,
             no_models=no_models,
             no_operations=no_operations,
-            only_path_params_positional=only_path_params_positional,
+            only_path_and_body_params_positional=only_path_and_body_params_positional,
             options=options
         )
         code_model.module_name = yaml_data["info"]["python_title"]

@@ -21,7 +21,7 @@ from ._configuration import {{ code_model.class_name }}Configuration
 {% for operation_group in code_model.operation_groups %}
 from .operations import {{ operation_group.class_name }}
 {% endfor %}
-{% if code_model.sorted_schemas and not code_model.no_models %}
+{% if code_model.sorted_schemas %}
 from {{ path_to_models }} import models
 {% endif %}
 
@@ -59,15 +59,13 @@ class {{ code_model.class_name }}({{ base_class }}):
         self._config = {{ code_model.class_name }}Configuration({{ code_model.service_client.config_initialization }})
         self._client = {{ code_model.service_client.pipeline_class(code_model, async_mode) }}(base_url=base_url, config=self._config, **kwargs)
 
-        {% if not code_model.no_models %}
             {% if code_model.sorted_schemas %}
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
             {% else %}
         client_models = {}  # type: Dict[str, Any]
             {% endif %}
-        {% endif %}
-        self._serialize = {{ "Serializer()" if code_model.no_models else "Serializer(client_models)" }}
-        self._deserialize = {{ "Deserializer()" if code_model.no_models else "Deserializer(client_models)" }}
+        self._serialize = {{ "Serializer()" if False else "Serializer(client_models)" }}
+        self._deserialize = {{ "Deserializer()" if False else "Deserializer(client_models)" }}
         {% if not code_model.options['client_side_validation'] %}
         self._serialize.client_side_validation = False
         {% endif %}

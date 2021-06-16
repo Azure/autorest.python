@@ -204,23 +204,23 @@ class NoModelObjectSchema(ObjectSchema):
     This is for when we want to generate Autorest with no models
     """
 
-    @property
-    def type_annotation(self) -> str:
-        return "Any"
+    # @property
+    # def type_annotation(self) -> str:
+    #     return "Any"
 
-    @property
-    def operation_type_annotation(self) -> str:
-        return "Any"
+    # @property
+    # def operation_type_annotation(self) -> str:
+    #     return "Any"
 
-    @property
-    def docstring_type(self) -> str:
-        return "Any"
+    # @property
+    # def docstring_type(self) -> str:
+    #     return "Any"
 
-    @property
-    def docstring_text(self) -> str:
-        return "Any"
+    # @property
+    # def docstring_text(self) -> str:
+    #     return "Any"
 
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_from_import("typing", "Any", import_type=ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL)
-        return file_import
+    # def imports(self) -> FileImport:
+    #     file_import = FileImport()
+    #     file_import.add_from_import("typing", "Any", import_type=ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL)
+    #     return file_import

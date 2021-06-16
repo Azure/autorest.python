@@ -15,11 +15,8 @@
 {% endif %}
 {{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
     {{ op_tools.description(operation, operation_serializer) | indent }}{{ helper.lro_operation() }}
-    {% if not async_mode and operation.parameters.kwargs_to_pop %}
-
-        {% for kwarg in operation.parameters.kwargs_to_pop %}
-    {{ kwarg.pop_from_kwarg | indent }}
-        {% endfor %}
+    {% if operation.parameters.kwargs_to_pop %}
+    {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
 
     def get_long_running_output(pipeline_response):

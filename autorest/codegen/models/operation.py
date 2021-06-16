@@ -175,10 +175,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.merge(param.imports())
 
         for response in [r for r in self.responses if r.has_body]:
-            if code_model.no_models:
-                file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
-            else:
-                file_import.merge(cast(BaseSchema, response.schema).imports())
+            # if code_model.no_models:
+            #     file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
+            # else:
+            file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)

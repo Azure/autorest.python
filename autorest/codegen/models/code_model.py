@@ -58,13 +58,13 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         rest_layer: bool,
         no_models: bool,
         no_operations: bool,
-        only_path_params_positional: bool,
+        only_path_and_body_params_positional: bool,
         options: Dict[str, Any]
     ) -> None:
         self.rest_layer = rest_layer
         self.no_models = no_models
         self.no_operations = no_operations
-        self.only_path_params_positional = only_path_params_positional
+        self.only_path_and_body_params_positional = only_path_and_body_params_positional
         self.options = options
         self.module_name: str = ""
         self.class_name: str = ""

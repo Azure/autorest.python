@@ -8,10 +8,10 @@ cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(opera
 
     def prepare_request(next_link=None):
         if not next_link:
-            {{ op_tools.get_request_builder(code_model, operation, request_builder, async_mode)|indent(12) }}
+            {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent(12) }}
         else:
             {% set url = keywords.escape_str(operation.next_request_builder.url) if operation.next_request_builder else None %}
-            {{ op_tools.get_request_builder(code_model, operation, operation.next_request_builder if operation.next_request_builder else request_builder, async_mode, url=url)|indent(12) }}
+            {{ op_tools.serialize(operation_serializer.call_next_link_request_builder(operation)) | indent(12) }}
             {% if not operation.next_request_builder %}
             # little hacky, but this code will soon be replaced with code that won't need the hack
                 {% if operation.parameters.path %}
@@ -24,15 +24,9 @@ cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(opera
 
     {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        {% if code_model.no_models %}
-            {% set deserialized_str = "_loads(pipeline_response.http_response.text())" %}
-            {% set list_of_elem_str = "deserialized.get('" + (operation._item_name if operation._item_name else "value") + "', [])" %}
-            {% set next_link_str = "deserialized.get('" + operation._next_link_name + "', None)" if operation._next_link_name else "None" %}
-        {% else %}
-            {% set deserialized_str = "self._deserialize('" + response.serialization_type + "', pipeline_response)" %}
-            {% set list_of_elem_str = "deserialized." + operation.item_name %}
-            {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
-        {% endif %}
+        {% set deserialized_str = "self._deserialize('" + response.serialization_type + "', pipeline_response)" %}
+        {% set list_of_elem_str = "deserialized." + operation.item_name %}
+        {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
         deserialized = {{ deserialized_str }}
         list_of_elem = {{ list_of_elem_str }}
         if cls:

@@ -89,6 +89,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
         self.is_partial_body = yaml_data.get("isPartialBody", False)
+        self.def_is_kwarg = False
 
     def __eq__(self, o: "Parameter") -> bool:
         try:
@@ -330,4 +331,4 @@ class ParameterOnlyPathsPositional(Parameter):
 
     @property
     def is_kwarg(self) -> bool:
-        return not self.location == ParameterLocation.Path
+        return not (self.location == ParameterLocation.Path or self.location == ParameterLocation.Body)

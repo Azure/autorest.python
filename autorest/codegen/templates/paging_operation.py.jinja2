@@ -13,11 +13,8 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    {% if not async_mode and operation.parameters.kwargs_to_pop %}
-
-        {% for kwarg in operation.parameters.kwargs_to_pop %}
-    {{ kwarg.pop_from_kwarg | indent }}
-        {% endfor %}
+    {% if operation.parameters.kwargs_to_pop %}
+    {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
     {{ helper.paging_operation() }}
 

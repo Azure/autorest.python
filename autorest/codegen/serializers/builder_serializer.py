@@ -480,8 +480,9 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder: BaseBuilder) -> bool:
-        if not self.code_model.no_models:
-            return False
+        # if not self.code_model.no_models:
+        #     return False
+        return False
         if builder.parameters.has_body:
             body_params = builder.parameters.body
             return any([
@@ -590,7 +591,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         retval.append("}")
         return retval
 
-    def call_request_builder(self, builder: Operation) -> List[str]:
+    def _call_request_builder_helper(self, builder: Operation, request_builder: RequestBuilder) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
             for k in builder.body_kwargs_to_pass_to_request_builder:
@@ -598,7 +599,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
             retval.extend(self._serialize_grouped_parameters(builder))
-        if builder.request_builder.multipart:
+        if request_builder.multipart:
             # we have to construct our form data before passing to the request as well
             retval.append("# Construct form data")
             # files = {
@@ -616,19 +617,19 @@ class OperationBaseSerializer(BuilderBaseSerializer):
             retval.append(f"{constant_body.serialized_name} = {constant_body.constant_declaration}")
         if builder.parameters.has_body:
             retval.extend(self._serialize_body_parameters(builder))
-        operation_group_name = builder.request_builder.operation_group_name
+        operation_group_name = request_builder.operation_group_name
         request_path_name = "{}rest{}.{}".format(
             "_" if not operation_group_name and not self.code_model.rest_layer else "",
             ("_" + operation_group_name) if operation_group_name else "",
-            builder.request_builder.name
+            request_builder.name
         )
         retval.append("")
         retval.append(f"request = {request_path_name}(")
-        for parameter in builder.request_builder.parameters.method:
+        for parameter in request_builder.parameters.method:
             if parameter.is_body:
                 continue
             retval.append(f"    {parameter.serialized_name}={parameter.name_in_high_level_operation},")
-        if builder.request_builder.parameters.has_body:
+        if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")
             retval.append(f"    content_type=content_type,")
@@ -641,6 +642,10 @@ class OperationBaseSerializer(BuilderBaseSerializer):
             ", **path_format_arguments" if builder.parameters.path else ""
         ))
         return retval
+
+    def call_request_builder(self, builder: Operation) -> List[str]:
+        return self._call_request_builder_helper(builder, builder.request_builder)
+
 
 class SyncOperationSerializer(OperationBaseSerializer):
 
@@ -686,6 +691,9 @@ class PagingOperationBaseSerializer(OperationBaseSerializer):
     def cls_type_annotation(self, builder: PagingOperation) -> str:
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
         return f"# type: ClsType[{interior}]"
+
+    def call_next_link_request_builder(self, builder: PagingOperation):
+        return self._call_request_builder_helper(builder, builder.next_request_builder or builder.request_builder)
 
 
 class SyncPagingOperationSerializer(PagingOperationBaseSerializer, SyncOperationSerializer):

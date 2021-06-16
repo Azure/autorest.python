@@ -99,6 +99,7 @@ class RequestBuilderParameterList(ParameterList):
             else:
                 for kwarg in body_kwargs_added:
                     kwarg.required = False
+                    self.def_is_kwarg = True
             self.parameters = body_kwargs_added + self.parameters
         except StopIteration:
             pass

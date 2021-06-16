@@ -240,6 +240,8 @@ class ParameterList(MutableSequence):
                 retval.append(kwarg)
         _iterate_kwargs([k for k in kwargs if isinstance(k.schema, ConstantSchema)])
         _iterate_kwargs([k for k in kwargs if not isinstance(k.schema, ConstantSchema)])
+        if not async_mode:
+            _iterate_kwargs([k for k in self.method if k.is_kwarg])
         return retval
 
     def method_signature_kwargs(self, async_mode: bool) -> List[str]:
