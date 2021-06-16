@@ -1,6 +1,6 @@
 # Change Log
 
-### 2021-06-07 - 5.8.1
+### 2021-06-16 - 5.8.1
 
 min Autorest core version: 3.3.0
 
