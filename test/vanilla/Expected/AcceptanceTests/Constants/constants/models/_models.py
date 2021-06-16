@@ -164,7 +164,8 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    :param parameter:
+    :param parameter:  The only acceptable values to pass in are "None" and "value1". The default
+     value is "value1".
     :type parameter: str
     """
 
@@ -180,7 +181,8 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    :param parameter:
+    :param parameter:  The only acceptable values to pass in are "None" and "value1". The default
+     value is "value1".
     :type parameter: str
     """
 
@@ -232,7 +234,7 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required.  Default value: "value1".
+    :ivar parameter:  Has constant value: "value1".
     :vartype parameter: str
     """
 
@@ -257,7 +259,7 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required.  Default value: "value1".
+    :ivar parameter:  Has constant value: "value1".
     :vartype parameter: str
     """
 

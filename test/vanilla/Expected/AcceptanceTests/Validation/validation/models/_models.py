@@ -17,7 +17,7 @@ class ChildProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Required. Constant string. Default value: "constant".
+    :ivar const_property: Constant string. Has constant value: "constant".
     :vartype const_property: str
     :param count: Count.
     :type count: int
@@ -46,9 +46,9 @@ class ConstantProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Required. Constant string. Default value: "constant".
+    :ivar const_property: Constant string. Has constant value: "constant".
     :vartype const_property: str
-    :ivar const_property2: Required. Constant string2. Default value: "constant2".
+    :ivar const_property2: Constant string2. Has constant value: "constant2".
     :vartype const_property2: str
     """
 
@@ -110,11 +110,12 @@ class Product(msrest.serialization.Model):
     :type child: ~validation.models.ChildProduct
     :param const_child: Required. The product documentation.
     :type const_child: ~validation.models.ConstantProduct
-    :ivar const_int: Required. Constant int. Default value: "0".
+    :ivar const_int: Constant int. Has constant value: 0.
     :vartype const_int: int
-    :ivar const_string: Required. Constant string. Default value: "constant".
+    :ivar const_string: Constant string. Has constant value: "constant".
     :vartype const_string: str
-    :param const_string_as_enum: Constant string as Enum.
+    :param const_string_as_enum: Constant string as Enum. The only acceptable values to pass in are
+     "None" and "constant_string_as_enum". The default value is "constant_string_as_enum".
     :type const_string_as_enum: str
     """
 
