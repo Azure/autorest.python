@@ -1,5 +1,16 @@
 # Change Log
 
+### 2021-06-16 - 5.8.1
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- Fix optional properties with constant schemas. Now, properties that have constant schemas but are optional will not have the hardcoded constant value,
+but will default to its `x-ms-client-default` or `None`  #952
+
 ### 2021-05-17 - 5.8.0
 
 min Autorest core version: 3.3.0

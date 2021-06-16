@@ -1,6 +1,6 @@
 {
     "name": "@autorest/python",
-    "version": "5.8.0",
+    "version": "5.8.1",
     "description": "The Python extension for generators in AutoRest.",
     "scripts": {
         "prepare": "node run-python3.js prepare.py",
@@ -28,7 +28,7 @@
     },
     "devDependencies": {
         "@autorest/autorest": "^3.0.0",
-        "@microsoft.azure/autorest.testserver": "^3.0.23"
+        "@microsoft.azure/autorest.testserver": "^3.0.24"
     },
     "files": [
         "autorest/**/*.py",

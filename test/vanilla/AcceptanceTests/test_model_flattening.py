@@ -208,6 +208,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name = "max name",
+            capacity="Large",
             odata_value = "http://foo",
             generic_value = "https://generic"
         )
@@ -223,6 +224,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name = "max name",
+            capacity="Large",
             odata_value = "http://foo"
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
@@ -231,6 +233,7 @@ class TestModelFlatteningTests(object):
             "123", # product_id
             "product description", # description
             "max name", # max_product_display_name
+            "Large",  # capacity
             None, # generic_value
             "http://foo", # odata_value
         )
@@ -244,6 +247,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name = "max name",
+            capacity="Large",
             odata_value = "http://foo"
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
@@ -252,6 +256,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name="max name",
+            capacity="Large",
             odata_value="http://foo",
             name="groupproduct")
 

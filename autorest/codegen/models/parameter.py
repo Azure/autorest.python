@@ -173,7 +173,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def in_method_code(self) -> bool:
-        return not (isinstance(self.schema, ConstantSchema) and self.location == ParameterLocation.Other)
+        return not (self.constant and self.location == ParameterLocation.Other)
 
     @property
     def implementation(self) -> str:

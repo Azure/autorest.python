@@ -21,7 +21,7 @@ class Error(msrest.serialization.Model):
 
     :param status:
     :type status: int
-    :ivar constant_id: Required.  Default value: "1".
+    :ivar constant_id:  Has constant value: 1.
     :vartype constant_id: int
     :param message:
     :type message: str
