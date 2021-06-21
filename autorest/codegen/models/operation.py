@@ -15,7 +15,6 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
-from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
