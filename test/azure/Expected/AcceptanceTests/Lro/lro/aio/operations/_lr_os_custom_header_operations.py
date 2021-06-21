@@ -51,7 +51,7 @@ class LROsCustomHeaderOperations:
         self._config = config
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -101,19 +101,19 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
-        AsyncOperation header for operation status.
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
@@ -163,7 +163,7 @@ class LROsCustomHeaderOperations:
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -211,7 +211,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -222,8 +222,8 @@ class LROsCustomHeaderOperations:
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
@@ -267,7 +267,7 @@ class LROsCustomHeaderOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
+    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -310,7 +310,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
@@ -320,8 +320,8 @@ class LROsCustomHeaderOperations:
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
@@ -360,7 +360,9 @@ class LROsCustomHeaderOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
-    async def _post_async_retry_succeeded_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
+    async def _post_async_retry_succeeded_initial(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -406,19 +408,19 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
-        AsyncOperation header for operation status.
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)

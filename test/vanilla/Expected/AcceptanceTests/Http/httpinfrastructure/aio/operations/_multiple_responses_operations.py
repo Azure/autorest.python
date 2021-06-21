@@ -48,7 +48,7 @@ class MultipleResponsesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error200_valid(self, **kwargs) -> Optional["_models.MyException"]:
+    async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional["_models.MyException"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -92,7 +92,7 @@ class MultipleResponsesOperations:
     get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error204_valid(self, **kwargs) -> Optional["_models.MyException"]:
+    async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional["_models.MyException"]:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +136,7 @@ class MultipleResponsesOperations:
     get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error201_invalid(self, **kwargs) -> Optional["_models.MyException"]:
+    async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional["_models.MyException"]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -180,7 +180,7 @@ class MultipleResponsesOperations:
     get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error202_none(self, **kwargs) -> Optional["_models.MyException"]:
+    async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional["_models.MyException"]:
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -224,7 +224,7 @@ class MultipleResponsesOperations:
     get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error400_valid(self, **kwargs) -> Optional["_models.MyException"]:
+    async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional["_models.MyException"]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -268,7 +268,9 @@ class MultipleResponsesOperations:
     get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model201_model_default_error200_valid(self, **kwargs) -> Union["_models.MyException", "_models.B"]:
+    async def get200_model201_model_default_error200_valid(
+        self, **kwargs: Any
+    ) -> Union["_models.MyException", "_models.B"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -314,7 +316,9 @@ class MultipleResponsesOperations:
     get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model201_model_default_error201_valid(self, **kwargs) -> Union["_models.MyException", "_models.B"]:
+    async def get200_model201_model_default_error201_valid(
+        self, **kwargs: Any
+    ) -> Union["_models.MyException", "_models.B"]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -360,7 +364,9 @@ class MultipleResponsesOperations:
     get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model201_model_default_error400_valid(self, **kwargs) -> Union["_models.MyException", "_models.B"]:
+    async def get200_model201_model_default_error400_valid(
+        self, **kwargs: Any
+    ) -> Union["_models.MyException", "_models.B"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -407,7 +413,7 @@ class MultipleResponsesOperations:
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error200_valid(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> Union["_models.MyException", "_models.C", "_models.D"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
@@ -458,7 +464,7 @@ class MultipleResponsesOperations:
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error201_valid(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> Union["_models.MyException", "_models.C", "_models.D"]:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
@@ -509,7 +515,7 @@ class MultipleResponsesOperations:
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error404_valid(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> Union["_models.MyException", "_models.C", "_models.D"]:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
@@ -560,7 +566,7 @@ class MultipleResponsesOperations:
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error400_valid(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> Union["_models.MyException", "_models.C", "_models.D"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
@@ -610,7 +616,7 @@ class MultipleResponsesOperations:
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error202_none(self, **kwargs) -> None:
+    async def get202_none204_none_default_error202_none(self, **kwargs: Any) -> None:
         """Send a 202 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -648,7 +654,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error204_none(self, **kwargs) -> None:
+    async def get202_none204_none_default_error204_none(self, **kwargs: Any) -> None:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -686,7 +692,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error400_valid(self, **kwargs) -> None:
+    async def get202_none204_none_default_error400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -724,7 +730,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none202_invalid(self, **kwargs) -> None:
+    async def get202_none204_none_default_none202_invalid(self, **kwargs: Any) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -759,7 +765,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none204_none(self, **kwargs) -> None:
+    async def get202_none204_none_default_none204_none(self, **kwargs: Any) -> None:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -794,7 +800,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_none(self, **kwargs) -> None:
+    async def get202_none204_none_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -829,7 +835,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_invalid(self, **kwargs) -> None:
+    async def get202_none204_none_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -864,7 +870,7 @@ class MultipleResponsesOperations:
     get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a200_valid(self, **kwargs) -> "_models.MyException":
+    async def get_default_model_a200_valid(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -905,7 +911,7 @@ class MultipleResponsesOperations:
     get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a200_none(self, **kwargs) -> "_models.MyException":
+    async def get_default_model_a200_none(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -946,7 +952,7 @@ class MultipleResponsesOperations:
     get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a400_valid(self, **kwargs) -> None:
+    async def get_default_model_a400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -984,7 +990,7 @@ class MultipleResponsesOperations:
     get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a400_none(self, **kwargs) -> None:
+    async def get_default_model_a400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1022,7 +1028,7 @@ class MultipleResponsesOperations:
     get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none200_invalid(self, **kwargs) -> None:
+    async def get_default_none200_invalid(self, **kwargs: Any) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1057,7 +1063,7 @@ class MultipleResponsesOperations:
     get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none200_none(self, **kwargs) -> None:
+    async def get_default_none200_none(self, **kwargs: Any) -> None:
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1092,7 +1098,7 @@ class MultipleResponsesOperations:
     get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none400_invalid(self, **kwargs) -> None:
+    async def get_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1127,7 +1133,7 @@ class MultipleResponsesOperations:
     get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none400_none(self, **kwargs) -> None:
+    async def get_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1162,7 +1168,7 @@ class MultipleResponsesOperations:
     get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a200_none(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a200_none(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
@@ -1204,7 +1210,7 @@ class MultipleResponsesOperations:
     get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a200_valid(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a200_valid(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1245,7 +1251,7 @@ class MultipleResponsesOperations:
     get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a200_invalid(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a200_invalid(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1286,7 +1292,7 @@ class MultipleResponsesOperations:
     get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a400_none(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a400_none(self, **kwargs: Any) -> "_models.MyException":
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1327,7 +1333,7 @@ class MultipleResponsesOperations:
     get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a400_valid(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a400_valid(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1368,7 +1374,7 @@ class MultipleResponsesOperations:
     get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a400_invalid(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a400_invalid(self, **kwargs: Any) -> "_models.MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1409,7 +1415,7 @@ class MultipleResponsesOperations:
     get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a202_valid(self, **kwargs) -> "_models.MyException":
+    async def get200_model_a202_valid(self, **kwargs: Any) -> "_models.MyException":
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

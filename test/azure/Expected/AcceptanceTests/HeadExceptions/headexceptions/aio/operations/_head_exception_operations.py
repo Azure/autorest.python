@@ -43,7 +43,7 @@ class HeadExceptionOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, **kwargs) -> bool:
+    async def head200(self, **kwargs: Any) -> bool:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -80,7 +80,7 @@ class HeadExceptionOperations:
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs) -> bool:
+    async def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -117,7 +117,7 @@ class HeadExceptionOperations:
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs) -> bool:
+    async def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

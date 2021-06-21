@@ -62,14 +62,19 @@ class ModelBaseSerializer:
             description += "."
         if prop.name == "tags":
             description = "A set of tags. " + description
-        if prop.required:
+
+        if prop.constant:
+            description += f' Has constant value: {prop.constant_declaration}.'
+        elif prop.required:
             if description:
                 description = "Required. " + description
             else:
                 description = "Required. "
-        if prop.constant:
-            constant_prop = cast(ConstantSchema, prop.schema)
-            description += f' Default value: "{constant_prop.value}".'
+        elif isinstance(prop.schema, ConstantSchema):
+            description += (
+                f" The only acceptable values to pass in are None and {prop.constant_declaration}. " +
+                f"The default value is {prop.default_value_declaration}."
+            )
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):

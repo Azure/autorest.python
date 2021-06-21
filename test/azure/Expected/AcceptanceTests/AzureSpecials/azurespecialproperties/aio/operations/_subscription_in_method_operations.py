@@ -49,7 +49,7 @@ class SubscriptionInMethodOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_method_local_valid(self, subscription_id: str, **kwargs) -> None:
+    async def post_method_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -95,9 +95,9 @@ class SubscriptionInMethodOperations:
     post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_local_null(self, subscription_id: str, **kwargs) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-
-        side validation should prevent you from making this call.
+    async def post_method_local_null(self, subscription_id: str, **kwargs: Any) -> None:
+        """POST method with subscriptionId modeled in the method.  pass in subscription id = null,
+        client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
          validation should prvenet the call.
@@ -141,7 +141,7 @@ class SubscriptionInMethodOperations:
     post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_path_local_valid(self, subscription_id: str, **kwargs) -> None:
+    async def post_path_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -186,7 +186,7 @@ class SubscriptionInMethodOperations:
     post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_swagger_local_valid(self, subscription_id: str, **kwargs) -> None:
+    async def post_swagger_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 

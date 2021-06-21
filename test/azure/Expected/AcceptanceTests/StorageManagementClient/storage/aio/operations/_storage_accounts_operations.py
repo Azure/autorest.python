@@ -54,13 +54,13 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
+        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs: Any
     ) -> "_models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult, or the result of cls(response)
@@ -115,7 +115,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
-        **kwargs
+        **kwargs: Any
     ) -> Optional["_models.StorageAccount"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -170,7 +170,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller["_models.StorageAccount"]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
@@ -180,15 +180,15 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncARMPolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncARMPolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either StorageAccount or the result of cls(response)
@@ -243,14 +243,14 @@ class StorageAccountsOperations:
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def delete(self, resource_group_name: str, account_name: str, **kwargs) -> None:
+    async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -292,7 +292,9 @@ class StorageAccountsOperations:
     delete.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs) -> "_models.StorageAccount":
+    async def get_properties(
+        self, resource_group_name: str, account_name: str, **kwargs: Any
+    ) -> "_models.StorageAccount":
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -300,8 +302,8 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
@@ -354,7 +356,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountUpdateParameters",
-        **kwargs
+        **kwargs: Any
     ) -> "_models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
@@ -367,8 +369,8 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
@@ -424,7 +426,9 @@ class StorageAccountsOperations:
     update.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs) -> "_models.StorageAccountKeys":
+    async def list_keys(
+        self, resource_group_name: str, account_name: str, **kwargs: Any
+    ) -> "_models.StorageAccountKeys":
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -477,7 +481,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs) -> AsyncIterable["_models.StorageAccountListResult"]:
+    def list(self, **kwargs: Any) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -542,7 +546,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(
-        self, resource_group_name: str, **kwargs
+        self, resource_group_name: str, **kwargs: Any
     ) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
@@ -615,15 +619,15 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "_models.KeyName"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and
+         lower-case letters only.
         :type account_name: str
         :param key_name:
         :type key_name: str or ~storage.models.KeyName

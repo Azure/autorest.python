@@ -173,6 +173,9 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
+    :param capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
+     in are None and "Large". The default value is None.
+    :type capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
     :param odata_value: URL value.
@@ -190,6 +193,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         "product_id": {"key": "productId", "type": "str"},
         "description": {"key": "description", "type": "str"},
         "max_product_display_name": {"key": "max_product_display_name", "type": "str"},
+        "capacity": {"key": "capacity", "type": "str"},
         "generic_value": {"key": "generic_value", "type": "str"},
         "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
@@ -201,6 +205,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         self.product_id = kwargs["product_id"]
         self.description = kwargs.get("description", None)
         self.max_product_display_name = kwargs.get("max_product_display_name", None)
+        self.capacity = kwargs.get("capacity", None)
         self.generic_value = kwargs.get("generic_value", None)
         self.odata_value = kwargs.get("odata_value", None)
 
@@ -283,8 +288,6 @@ class ResourceCollection(msrest.serialization.Model):
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product for a given
@@ -295,8 +298,9 @@ class SimpleProduct(BaseProduct):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
-    :vartype capacity: str
+    :param capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
+     in are None and "Large". The default value is None.
+    :type capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
     :param odata_value: URL value.
@@ -305,7 +309,6 @@ class SimpleProduct(BaseProduct):
 
     _validation = {
         "product_id": {"required": True},
-        "capacity": {"constant": True},
     }
 
     _attribute_map = {
@@ -317,11 +320,10 @@ class SimpleProduct(BaseProduct):
         "odata_value": {"key": "details.max_product_image.@odata\\.value", "type": "str"},
     }
 
-    capacity = "Large"
-
     def __init__(self, **kwargs):
         super(SimpleProduct, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get("max_product_display_name", None)
+        self.capacity = kwargs.get("capacity", None)
         self.generic_value = kwargs.get("generic_value", None)
         self.odata_value = kwargs.get("odata_value", None)
 

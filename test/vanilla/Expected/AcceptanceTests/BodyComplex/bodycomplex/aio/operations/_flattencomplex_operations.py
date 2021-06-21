@@ -48,7 +48,7 @@ class FlattencomplexOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.MyBaseType":
+    async def get_valid(self, **kwargs: Any) -> "_models.MyBaseType":
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

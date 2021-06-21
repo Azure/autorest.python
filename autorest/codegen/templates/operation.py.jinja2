@@ -20,10 +20,10 @@
 {%- endif -%}
 {% endmacro %}
 {% macro operation_docstring(async_mode, return_type=None) %}
-"""{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+"""{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n') }}
 {% if operation.summary and operation.description %}
 
-{{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+{{ operation.description | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n') }}
 {% endif %}
 
 {% if operation.deprecated -%}
@@ -33,7 +33,7 @@
 {% endif -%}
 {% for parameter in operation.parameters.method %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-{{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
+{{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n ')}}
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}

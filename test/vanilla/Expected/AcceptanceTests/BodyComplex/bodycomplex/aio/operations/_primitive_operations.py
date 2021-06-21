@@ -49,7 +49,7 @@ class PrimitiveOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_int(self, **kwargs) -> "_models.IntWrapper":
+    async def get_int(self, **kwargs: Any) -> "_models.IntWrapper":
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -91,7 +91,7 @@ class PrimitiveOperations:
     get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_int(self, complex_body: "_models.IntWrapper", **kwargs) -> None:
+    async def put_int(self, complex_body: "_models.IntWrapper", **kwargs: Any) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
@@ -136,7 +136,7 @@ class PrimitiveOperations:
     put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace_async
-    async def get_long(self, **kwargs) -> "_models.LongWrapper":
+    async def get_long(self, **kwargs: Any) -> "_models.LongWrapper":
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -178,7 +178,7 @@ class PrimitiveOperations:
     get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace_async
-    async def put_long(self, complex_body: "_models.LongWrapper", **kwargs) -> None:
+    async def put_long(self, complex_body: "_models.LongWrapper", **kwargs: Any) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
@@ -223,7 +223,7 @@ class PrimitiveOperations:
     put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace_async
-    async def get_float(self, **kwargs) -> "_models.FloatWrapper":
+    async def get_float(self, **kwargs: Any) -> "_models.FloatWrapper":
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -265,7 +265,7 @@ class PrimitiveOperations:
     get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace_async
-    async def put_float(self, complex_body: "_models.FloatWrapper", **kwargs) -> None:
+    async def put_float(self, complex_body: "_models.FloatWrapper", **kwargs: Any) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
@@ -310,7 +310,7 @@ class PrimitiveOperations:
     put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace_async
-    async def get_double(self, **kwargs) -> "_models.DoubleWrapper":
+    async def get_double(self, **kwargs: Any) -> "_models.DoubleWrapper":
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -352,7 +352,7 @@ class PrimitiveOperations:
     get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace_async
-    async def put_double(self, complex_body: "_models.DoubleWrapper", **kwargs) -> None:
+    async def put_double(self, complex_body: "_models.DoubleWrapper", **kwargs: Any) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -398,7 +398,7 @@ class PrimitiveOperations:
     put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace_async
-    async def get_bool(self, **kwargs) -> "_models.BooleanWrapper":
+    async def get_bool(self, **kwargs: Any) -> "_models.BooleanWrapper":
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -440,7 +440,7 @@ class PrimitiveOperations:
     get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace_async
-    async def put_bool(self, complex_body: "_models.BooleanWrapper", **kwargs) -> None:
+    async def put_bool(self, complex_body: "_models.BooleanWrapper", **kwargs: Any) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
@@ -485,7 +485,7 @@ class PrimitiveOperations:
     put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace_async
-    async def get_string(self, **kwargs) -> "_models.StringWrapper":
+    async def get_string(self, **kwargs: Any) -> "_models.StringWrapper":
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -527,7 +527,7 @@ class PrimitiveOperations:
     get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace_async
-    async def put_string(self, complex_body: "_models.StringWrapper", **kwargs) -> None:
+    async def put_string(self, complex_body: "_models.StringWrapper", **kwargs: Any) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
@@ -572,7 +572,7 @@ class PrimitiveOperations:
     put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace_async
-    async def get_date(self, **kwargs) -> "_models.DateWrapper":
+    async def get_date(self, **kwargs: Any) -> "_models.DateWrapper":
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -614,7 +614,7 @@ class PrimitiveOperations:
     get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace_async
-    async def put_date(self, complex_body: "_models.DateWrapper", **kwargs) -> None:
+    async def put_date(self, complex_body: "_models.DateWrapper", **kwargs: Any) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
@@ -659,7 +659,7 @@ class PrimitiveOperations:
     put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace_async
-    async def get_date_time(self, **kwargs) -> "_models.DatetimeWrapper":
+    async def get_date_time(self, **kwargs: Any) -> "_models.DatetimeWrapper":
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -701,7 +701,7 @@ class PrimitiveOperations:
     get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace_async
-    async def put_date_time(self, complex_body: "_models.DatetimeWrapper", **kwargs) -> None:
+    async def put_date_time(self, complex_body: "_models.DatetimeWrapper", **kwargs: Any) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -746,7 +746,7 @@ class PrimitiveOperations:
     put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace_async
-    async def get_date_time_rfc1123(self, **kwargs) -> "_models.Datetimerfc1123Wrapper":
+    async def get_date_time_rfc1123(self, **kwargs: Any) -> "_models.Datetimerfc1123Wrapper":
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -788,7 +788,7 @@ class PrimitiveOperations:
     get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
-    async def put_date_time_rfc1123(self, complex_body: "_models.Datetimerfc1123Wrapper", **kwargs) -> None:
+    async def put_date_time_rfc1123(self, complex_body: "_models.Datetimerfc1123Wrapper", **kwargs: Any) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -834,7 +834,7 @@ class PrimitiveOperations:
     put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
-    async def get_duration(self, **kwargs) -> "_models.DurationWrapper":
+    async def get_duration(self, **kwargs: Any) -> "_models.DurationWrapper":
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -876,7 +876,7 @@ class PrimitiveOperations:
     get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace_async
-    async def put_duration(self, field: Optional[datetime.timedelta] = None, **kwargs) -> None:
+    async def put_duration(self, field: Optional[datetime.timedelta] = None, **kwargs: Any) -> None:
         """Put complex types with duration properties.
 
         :param field:
@@ -923,7 +923,7 @@ class PrimitiveOperations:
     put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace_async
-    async def get_byte(self, **kwargs) -> "_models.ByteWrapper":
+    async def get_byte(self, **kwargs: Any) -> "_models.ByteWrapper":
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -965,7 +965,7 @@ class PrimitiveOperations:
     get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace_async
-    async def put_byte(self, field: Optional[bytearray] = None, **kwargs) -> None:
+    async def put_byte(self, field: Optional[bytearray] = None, **kwargs: Any) -> None:
         """Put complex types with byte properties.
 
         :param field:

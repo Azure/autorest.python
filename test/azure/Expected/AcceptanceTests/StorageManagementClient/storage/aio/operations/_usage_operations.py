@@ -49,7 +49,7 @@ class UsageOperations:
         self._config = config
 
     @distributed_trace_async
-    async def list(self, **kwargs) -> "_models.UsageListResult":
+    async def list(self, **kwargs: Any) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

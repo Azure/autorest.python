@@ -32,26 +32,36 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.required: bool = yaml_data.get("required", False)
         self.readonly: bool = yaml_data.get("readOnly", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
-        # this bool doesn't consider you to be constant if you are a discriminator
-        self.constant: bool = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
-
         if description:
             self.description = description
         else:
             self.description = yaml_data["language"]["python"]["description"]
 
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+        self.client_default_value = client_default_value
+
+    @property
+    def constant(self) -> bool:
+        # this bool doesn't consider you to be constant if you are a discriminator
+        # you also have to be required to be considered a constant
+        return (
+            isinstance(self.schema, ConstantSchema) and
+            self.required and
+            not self.is_discriminator
+        )
+
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        retval: Dict[str, Union[bool, int, str]] = {}
         if self.required:
-            validation_map["required"] = True
+            retval["required"] = True
         if self.readonly:
-            validation_map["readonly"] = True
+            retval["readonly"] = True
         if self.constant:
-            validation_map["constant"] = True
+            retval["constant"] = True
         if self.schema.validation_map:
             validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
-            validation_map.update(validation_map_from_schema)
-        self.validation_map = validation_map or None
-        self.client_default_value = client_default_value
+            retval.update(validation_map_from_schema)
+        return retval or None
 
     @property
     def escaped_swagger_name(self) -> str:

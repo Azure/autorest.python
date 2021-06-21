@@ -49,7 +49,7 @@ class HeaderOperations:
         self._config = config
 
     @distributed_trace_async
-    async def custom_named_request_id(self, foo_client_request_id: str, **kwargs) -> None:
+    async def custom_named_request_id(self, foo_client_request_id: str, **kwargs: Any) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
@@ -98,7 +98,7 @@ class HeaderOperations:
     async def custom_named_request_id_param_grouping(
         self,
         header_custom_named_request_id_param_grouping_parameters: "_models.HeaderCustomNamedRequestIdParamGroupingParameters",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
@@ -150,7 +150,7 @@ class HeaderOperations:
     custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
     @distributed_trace_async
-    async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs) -> bool:
+    async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs: Any) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.

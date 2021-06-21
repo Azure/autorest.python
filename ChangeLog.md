@@ -1,5 +1,46 @@
 # Change Log
 
+### 2021-06-16 - 5.8.1
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- Fix optional properties with constant schemas. Now, properties that have constant schemas but are optional will not have the hardcoded constant value,
+but will default to its `x-ms-client-default` or `None`  #952
+
+### 2021-05-17 - 5.8.0
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**New Features**
+
+- Add support for parameters and properties that can be of type "Anything".  #946
+
+### 2021-04-20 - 5.7.0
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix data plane LRO operations so they poll by default. Bumping minor version because this bug fix will change some default behavior. #936
+
+### 2021-04-07 - 5.6.6
+
+min Autorest core version: 3.1.0
+
+min Modelerfour version: 4.15.456
+
+**Bug Fixes**
+
+- Fix docstrings so they don't get split on hyphens  #931
+
 ### 2021-04-07 - 5.6.5
 
 min Autorest core version: 3.1.0

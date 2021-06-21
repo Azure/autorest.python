@@ -28,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROWithParamaterizedEndpointsOperationsMixin:
-    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs) -> Optional[str]:
+    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -74,22 +74,22 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     _poll_with_parameterized_endpoints_initial.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs) -> AsyncLROPoller[str]:
+    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: Pass in True if you'd like the AsyncLROBasePolling polling method,
-         False for no polling, or your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncLROBasePolling.
+         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either str or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling = kwargs.pop("polling", False)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]

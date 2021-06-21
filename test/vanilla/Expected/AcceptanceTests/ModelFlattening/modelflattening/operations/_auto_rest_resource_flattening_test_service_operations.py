@@ -487,6 +487,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         product_id,  # type: str
         description=None,  # type: Optional[str]
         max_product_display_name=None,  # type: Optional[str]
+        capacity="Large",  # type: Optional[str]
         generic_value=None,  # type: Optional[str]
         odata_value=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -502,6 +503,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type description: str
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
+        :param capacity: Capacity of product. For example, 4 people.
+        :type capacity: str
         :param generic_value: Generic URL value.
         :type generic_value: str
         :param odata_value: URL value.
@@ -519,6 +522,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             product_id=product_id,
             description=description,
             max_product_display_name=max_product_display_name,
+            capacity=capacity,
             generic_value=generic_value,
             odata_value=odata_value,
         )
@@ -585,6 +589,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         _product_id = None
         _description = None
         _max_product_display_name = None
+        capacity = None
         _generic_value = None
         _odata_value = None
         if flatten_parameter_group is not None:
@@ -593,6 +598,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             _product_id = flatten_parameter_group.product_id
             _description = flatten_parameter_group.description
             _max_product_display_name = flatten_parameter_group.max_product_display_name
+            capacity = flatten_parameter_group.capacity
             _generic_value = flatten_parameter_group.generic_value
             _odata_value = flatten_parameter_group.odata_value
 
@@ -600,6 +606,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             product_id=_product_id,
             description=_description,
             max_product_display_name=_max_product_display_name,
+            capacity=capacity,
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
