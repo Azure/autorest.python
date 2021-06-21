@@ -69,7 +69,7 @@
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
-    {% if constant_parameter.is_kwarg and constant_parameter.rest_api_name == "Constant-Type" %}
+    {% if constant_parameter.is_kwarg and constant_parameter.rest_api_name == "Content-Type" %}
     {{ constant_parameter.serialized_name }} = kwargs.pop("content_type", {{ constant_parameter.constant_declaration }})
     {% else %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}

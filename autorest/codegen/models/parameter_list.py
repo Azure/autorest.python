@@ -102,7 +102,7 @@ class ParameterList(MutableSequence):
             content_type_param = next(iter(
                 [
                     p for p in self.parameters
-                    if p.rest_api_name == "Content-Type" and p.is_kwarg
+                    if p.rest_api_name == "Content-Type"
                 ]
             ))
             return content_type_param
