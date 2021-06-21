@@ -107,7 +107,7 @@ class ParameterList(MutableSequence):
             ))
             return content_type_param
         except StopIteration:
-            a = "b"
+            raise ValueError("You are looking for a Content-Type parameter, but there is none for this operation.")
 
     @property
     def content_type(self) -> str:
