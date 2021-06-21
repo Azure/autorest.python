@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import date as rest_date
+from ...rest import date as rest_date
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -66,7 +66,7 @@ class DateOperations:
 
         request = rest_date.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -103,7 +103,7 @@ class DateOperations:
 
         request = rest_date.build_get_invalid_date_request(
             template_url=self.get_invalid_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -140,7 +140,7 @@ class DateOperations:
 
         request = rest_date.build_get_overflow_date_request(
             template_url=self.get_overflow_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -177,7 +177,7 @@ class DateOperations:
 
         request = rest_date.build_get_underflow_date_request(
             template_url=self.get_underflow_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -219,8 +219,8 @@ class DateOperations:
         json = self._serialize.body(date_body, "date")
 
         request = rest_date.build_put_max_date_request(
-            json=json, content_type=content_type, template_url=self.put_max_date.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_max_date.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -253,7 +253,7 @@ class DateOperations:
 
         request = rest_date.build_get_max_date_request(
             template_url=self.get_max_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -295,8 +295,8 @@ class DateOperations:
         json = self._serialize.body(date_body, "date")
 
         request = rest_date.build_put_min_date_request(
-            json=json, content_type=content_type, template_url=self.put_min_date.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_min_date.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -329,7 +329,7 @@ class DateOperations:
 
         request = rest_date.build_get_min_date_request(
             template_url=self.get_min_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

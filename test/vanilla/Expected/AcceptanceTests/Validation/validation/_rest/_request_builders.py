@@ -22,7 +22,7 @@ def build_validation_of_method_parameters_request(
     subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Validates input parameters on the method. See swagger for details.
@@ -94,7 +94,7 @@ def build_validation_of_body_request(
     subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Validates body parameters on the method. See swagger for details.

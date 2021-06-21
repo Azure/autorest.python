@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import pets as rest_pets
+from ..rest import pets as rest_pets
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -79,8 +79,8 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = rest_pets.build_create_ap_true_request(
-            json=json, content_type=content_type, template_url=self.create_ap_true.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.create_ap_true.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -125,8 +125,8 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = rest_pets.build_create_cat_ap_true_request(
-            json=json, content_type=content_type, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -171,8 +171,8 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPObject")
 
         request = rest_pets.build_create_ap_object_request(
-            json=json, content_type=content_type, template_url=self.create_ap_object.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.create_ap_object.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -217,8 +217,8 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPString")
 
         request = rest_pets.build_create_ap_string_request(
-            json=json, content_type=content_type, template_url=self.create_ap_string.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.create_ap_string.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -263,8 +263,8 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = rest_pets.build_create_ap_in_properties_request(
-            json=json, content_type=content_type, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -309,11 +309,11 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

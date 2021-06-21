@@ -78,7 +78,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.operation_groups: List[OperationGroup] = []
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
-        self.service_client: Client = Client(GlobalParameterList())
+        self.service_client: Client = Client(self, GlobalParameterList())
         self._rest: Optional[Rest] = None
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
 

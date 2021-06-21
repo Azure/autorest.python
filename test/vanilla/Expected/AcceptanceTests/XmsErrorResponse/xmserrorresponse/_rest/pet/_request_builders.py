@@ -20,7 +20,7 @@ _SERIALIZER = Serializer()
 
 def build_get_pet_by_id_request(
     pet_id,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Gets pets by id.
@@ -63,7 +63,7 @@ def build_get_pet_by_id_request(
 
 def build_do_something_request(
     what_action,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Asks pet to do something.

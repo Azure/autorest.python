@@ -13,19 +13,20 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 from .operations import PathsOperations
-from .. import models
 
 
-class AutoRestParameterizedCustomHostTestClient(object):
+class AutoRestParameterizedCustomHostTestClient:
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurlmoreoptions.aio.operations.PathsOperations
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
-    :param dns_suffix: A string value that is used as a global part of the parameterized host. Default value 'host'.
+    :param dns_suffix: A string value that is used as a global part of the parameterized host.
+         Default value 'host'.
     :type dns_suffix: str
     """
 
@@ -40,14 +41,15 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from custombaseurlmoreoptions.rest import build_get_empty_request
-        >>> request = build_get_empty_request(key_name, subscription_id, key_version)
+        >>> request = build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
         <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -63,6 +65,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         path_format_arguments = {
             "dnsSuffix": self._serialize.url(

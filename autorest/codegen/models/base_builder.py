@@ -26,8 +26,6 @@ def get_converted_parameters(yaml_data: Dict[str, Any], parameter_converter: Cal
             parameter = parameter_converter(yaml)
             name = yaml["language"]["python"]["name"]
             if name in _M4_HEADER_PARAMETERS:
-                if name == "content_type":
-                    parameter.is_kwarg_to_pop = True
                 parameters.append(parameter)
             elif multiple_requests:
                 parameter.has_multiple_media_types = True

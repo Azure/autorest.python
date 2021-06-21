@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import pet as rest_pet
+from ..rest import pet as rest_pet
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -76,7 +76,7 @@ class PetOperations(object):
 
         request = rest_pet.build_get_by_pet_id_request(
             pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -120,11 +120,11 @@ class PetOperations(object):
         if pet_param is not None:
             json = self._serialize.body(pet_param, "Pet")
         else:
-            pet_param = None
+            json = None
 
         request = rest_pet.build_add_pet_request(
-            json=json, content_type=content_type, template_url=self.add_pet.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.add_pet.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

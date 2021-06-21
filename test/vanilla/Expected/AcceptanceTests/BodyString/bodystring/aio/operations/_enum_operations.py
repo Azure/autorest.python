@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import enum as rest_enum
+from ...rest import enum as rest_enum
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class EnumOperations:
 
         request = rest_enum.build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -107,8 +107,8 @@ class EnumOperations:
         json = self._serialize.body(string_body, "str")
 
         request = rest_enum.build_put_not_expandable_request(
-            json=json, content_type=content_type, template_url=self.put_not_expandable.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_not_expandable.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -141,7 +141,7 @@ class EnumOperations:
 
         request = rest_enum.build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -183,8 +183,8 @@ class EnumOperations:
         json = self._serialize.body(enum_string_body, "str")
 
         request = rest_enum.build_put_referenced_request(
-            json=json, content_type=content_type, template_url=self.put_referenced.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_referenced.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -217,7 +217,7 @@ class EnumOperations:
 
         request = rest_enum.build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -260,8 +260,8 @@ class EnumOperations:
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = rest_enum.build_put_referenced_constant_request(
-            json=json, content_type=content_type, template_url=self.put_referenced_constant.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_referenced_constant.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

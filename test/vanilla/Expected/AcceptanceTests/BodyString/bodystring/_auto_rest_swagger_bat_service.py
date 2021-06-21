@@ -12,16 +12,15 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestSwaggerBATServiceConfiguration
+from .operations import EnumOperations, StringOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
-
-from ._configuration import AutoRestSwaggerBATServiceConfiguration
-from .operations import StringOperations
-from .operations import EnumOperations
-from . import models
 
 
 class AutoRestSwaggerBATService(object):
@@ -53,15 +52,20 @@ class AutoRestSwaggerBATService(object):
         self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodystring.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from bodystring.rest import build_get_null_request
-        >>> request = build_get_null_request()
+        >>> request = build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/string/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -77,6 +81,7 @@ class AutoRestSwaggerBATService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

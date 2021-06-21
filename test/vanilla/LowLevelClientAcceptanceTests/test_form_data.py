@@ -71,7 +71,7 @@ def test_file_upload_stream(client):
             "fileName": "UploadFile.txt",
         }
         request = formdata.build_upload_file_request(files=files)
-        with client._send_request(request, stream_response=True) as response:
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
                 result.write(data)
@@ -87,7 +87,7 @@ def test_file_upload_file_stream(client, dummy_file):
             "fileName": name,
         }
         request = formdata.build_upload_file_request(files=files)
-        with client._send_request(request, stream_response=True) as response:
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
                 result.write(data)
@@ -101,7 +101,7 @@ def test_file_body_upload(client, dummy_file):
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         request = formdata.build_upload_file_via_body_request(content=stream_data)
-        with client._send_request(request, stream_response=True) as response:
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
                 result.write(data)
@@ -110,7 +110,7 @@ def test_file_body_upload(client, dummy_file):
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
         request = formdata.build_upload_file_via_body_request(content=upload_data)
-        with client._send_request(request, stream_response=True) as response:
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
                 result.write(data)
@@ -134,8 +134,8 @@ def test_file_body_upload_generator(client, dummy_file):
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         streamed_upload = stream_upload(stream_data, len(test_string), 2)
-        request = formdata.build_upload_file_via_body_request(content=stream_upload)
-        with client._send_request(request, stream_response=True) as response:
+        request = formdata.build_upload_file_via_body_request(content=streamed_upload)
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
                 result.write(data)
@@ -145,7 +145,7 @@ def test_file_body_upload_generator(client, dummy_file):
     with open(dummy_file, 'rb') as upload_data:
         streamed_upload = stream_upload(upload_data, len("Test file"), 2)
         request = formdata.build_upload_file_via_body_request(content=streamed_upload)
-        with client._send_request(request, stream_response=True) as response:
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
                 result.write(data)

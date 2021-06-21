@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import basic as rest_basic
+from ..rest import basic as rest_basic
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class BasicOperations(object):
 
         request = rest_basic.build_get_valid_request(
             template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -117,8 +117,8 @@ class BasicOperations(object):
         json = self._serialize.body(complex_body, "Basic")
 
         request = rest_basic.build_put_valid_request(
-            json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -152,7 +152,7 @@ class BasicOperations(object):
 
         request = rest_basic.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -190,7 +190,7 @@ class BasicOperations(object):
 
         request = rest_basic.build_get_empty_request(
             template_url=self.get_empty.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -228,7 +228,7 @@ class BasicOperations(object):
 
         request = rest_basic.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -266,7 +266,7 @@ class BasicOperations(object):
 
         request = rest_basic.build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

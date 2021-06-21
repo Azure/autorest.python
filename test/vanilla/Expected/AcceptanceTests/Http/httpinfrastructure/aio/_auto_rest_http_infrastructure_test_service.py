@@ -13,18 +13,20 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
-from .operations import HttpFailureOperations
-from .operations import HttpSuccessOperations
-from .operations import HttpRedirectsOperations
-from .operations import HttpClientFailureOperations
-from .operations import HttpServerFailureOperations
-from .operations import HttpRetryOperations
-from .operations import MultipleResponsesOperations
 from .. import models
+from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
+from .operations import (
+    HttpClientFailureOperations,
+    HttpFailureOperations,
+    HttpRedirectsOperations,
+    HttpRetryOperations,
+    HttpServerFailureOperations,
+    HttpSuccessOperations,
+    MultipleResponsesOperations,
+)
 
 
-class AutoRestHttpInfrastructureTestService(object):
+class AutoRestHttpInfrastructureTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
@@ -69,14 +71,15 @@ class AutoRestHttpInfrastructureTestService(object):
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `httpinfrastructure.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from httpinfrastructure.rest import build_get_empty_error_request
-        >>> request = build_get_empty_error_request()
+        >>> request = build_get_empty_error_request(**kwargs)
         <HttpRequest [GET], url: '/http/failure/emptybody/error'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -92,6 +95,7 @@ class AutoRestHttpInfrastructureTestService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

@@ -13,9 +13,9 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestReportServiceConfiguration
 from .operations import AutoRestReportServiceOperationsMixin
-from .. import models
 
 
 class AutoRestReportService(AutoRestReportServiceOperationsMixin):
@@ -36,14 +36,15 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `report.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from report.rest import build_get_report_request
-        >>> request = build_get_report_request(qualifier)
+        >>> request = build_get_report_request(qualifier=qualifier, **kwargs)
         <HttpRequest [GET], url: '/report'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -59,6 +60,7 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

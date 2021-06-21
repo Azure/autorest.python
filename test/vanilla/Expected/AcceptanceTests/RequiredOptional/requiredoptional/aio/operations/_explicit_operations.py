@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import explicit as rest_explicit
+from ...rest import explicit as rest_explicit
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -70,11 +70,11 @@ class ExplicitOperations:
         content = body_parameter
 
         request = rest_explicit.build_put_optional_binary_body_request(
-            content=content,
             content_type=content_type,
+            content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -112,11 +112,11 @@ class ExplicitOperations:
         content = body_parameter
 
         request = rest_explicit.build_put_required_binary_body_request(
-            content=content,
             content_type=content_type,
+            content=content,
             template_url=self.put_required_binary_body.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -155,11 +155,11 @@ class ExplicitOperations:
         json = self._serialize.body(body_parameter, "int")
 
         request = rest_explicit.build_post_required_integer_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -197,14 +197,14 @@ class ExplicitOperations:
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "int")
         else:
-            body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_integer_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -244,11 +244,11 @@ class ExplicitOperations:
         json = self._serialize.body(_body_parameter, "IntWrapper")
 
         request = rest_explicit.build_post_required_integer_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_integer_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -287,14 +287,14 @@ class ExplicitOperations:
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "IntOptionalWrapper")
         else:
-            _body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_integer_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -330,7 +330,7 @@ class ExplicitOperations:
 
         request = rest_explicit.build_post_required_integer_header_request(
             header_parameter=header_parameter, template_url=self.post_required_integer_header.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -365,7 +365,7 @@ class ExplicitOperations:
 
         request = rest_explicit.build_post_optional_integer_header_request(
             header_parameter=header_parameter, template_url=self.post_optional_integer_header.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -404,11 +404,11 @@ class ExplicitOperations:
         json = self._serialize.body(body_parameter, "str")
 
         request = rest_explicit.build_post_required_string_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -446,14 +446,14 @@ class ExplicitOperations:
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "str")
         else:
-            body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_string_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -493,11 +493,11 @@ class ExplicitOperations:
         json = self._serialize.body(_body_parameter, "StringWrapper")
 
         request = rest_explicit.build_post_required_string_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_string_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -536,14 +536,14 @@ class ExplicitOperations:
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "StringOptionalWrapper")
         else:
-            _body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_string_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_string_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -579,7 +579,7 @@ class ExplicitOperations:
 
         request = rest_explicit.build_post_required_string_header_request(
             header_parameter=header_parameter, template_url=self.post_required_string_header.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -614,7 +614,7 @@ class ExplicitOperations:
 
         request = rest_explicit.build_post_optional_string_header_request(
             body_parameter=body_parameter, template_url=self.post_optional_string_header.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -653,11 +653,11 @@ class ExplicitOperations:
         json = self._serialize.body(body_parameter, "Product")
 
         request = rest_explicit.build_post_required_class_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -697,14 +697,14 @@ class ExplicitOperations:
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "Product")
         else:
-            body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_class_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -744,11 +744,11 @@ class ExplicitOperations:
         json = self._serialize.body(_body_parameter, "ClassWrapper")
 
         request = rest_explicit.build_post_required_class_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_class_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -787,14 +787,14 @@ class ExplicitOperations:
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
         else:
-            _body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_class_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_class_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -833,11 +833,11 @@ class ExplicitOperations:
         json = self._serialize.body(body_parameter, "[str]")
 
         request = rest_explicit.build_post_required_array_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -875,14 +875,14 @@ class ExplicitOperations:
         if body_parameter is not None:
             json = self._serialize.body(body_parameter, "[str]")
         else:
-            body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_array_parameter_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -922,11 +922,11 @@ class ExplicitOperations:
         json = self._serialize.body(_body_parameter, "ArrayWrapper")
 
         request = rest_explicit.build_post_required_array_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_required_array_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -965,14 +965,14 @@ class ExplicitOperations:
         if _body_parameter is not None:
             json = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")
         else:
-            _body_parameter = None
+            json = None
 
         request = rest_explicit.build_post_optional_array_property_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_optional_array_property.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1008,7 +1008,7 @@ class ExplicitOperations:
 
         request = rest_explicit.build_post_required_array_header_request(
             header_parameter=header_parameter, template_url=self.post_required_array_header.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1043,7 +1043,7 @@ class ExplicitOperations:
 
         request = rest_explicit.build_post_optional_array_header_request(
             header_parameter=header_parameter, template_url=self.post_optional_array_header.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import http_retry as rest_http_retry
+from ..rest import http_retry as rest_http_retry
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class HttpRetryOperations(object):
 
         request = rest_http_retry.build_head408_request(
             template_url=self.head408.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -113,11 +113,11 @@ class HttpRetryOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_retry.build_put500_request(
-            json=json, content_type=content_type, template_url=self.put500.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put500.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -158,11 +158,11 @@ class HttpRetryOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_retry.build_patch500_request(
-            json=json, content_type=content_type, template_url=self.patch500.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.patch500.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -196,7 +196,7 @@ class HttpRetryOperations(object):
 
         request = rest_http_retry.build_get502_request(
             template_url=self.get502.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -230,7 +230,7 @@ class HttpRetryOperations(object):
 
         request = rest_http_retry.build_options502_request(
             template_url=self.options502.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -275,11 +275,11 @@ class HttpRetryOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_retry.build_post503_request(
-            json=json, content_type=content_type, template_url=self.post503.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.post503.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -320,11 +320,11 @@ class HttpRetryOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_retry.build_delete503_request(
-            json=json, content_type=content_type, template_url=self.delete503.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.delete503.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -365,11 +365,11 @@ class HttpRetryOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_retry.build_put504_request(
-            json=json, content_type=content_type, template_url=self.put504.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put504.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -410,11 +410,11 @@ class HttpRetryOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_retry.build_patch504_request(
-            json=json, content_type=content_type, template_url=self.patch504.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.patch504.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

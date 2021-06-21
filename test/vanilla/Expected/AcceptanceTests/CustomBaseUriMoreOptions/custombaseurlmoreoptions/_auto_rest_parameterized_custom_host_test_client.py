@@ -12,15 +12,15 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
+from .operations import PathsOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
-from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
-from .operations import PathsOperations
-from . import models
 
 
 class AutoRestParameterizedCustomHostTestClient(object):
@@ -30,7 +30,8 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :vartype paths: custombaseurlmoreoptions.operations.PathsOperations
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
-    :param dns_suffix: A string value that is used as a global part of the parameterized host. Default value 'host'.
+    :param dns_suffix: A string value that is used as a global part of the parameterized host.
+         Default value 'host'.
     :type dns_suffix: str
     """
 
@@ -51,15 +52,20 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from custombaseurlmoreoptions.rest import build_get_empty_request
-        >>> request = build_get_empty_request(key_name, subscription_id, key_version)
+        >>> request = build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
         <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -75,6 +81,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
+
         request_copy = deepcopy(request)
         path_format_arguments = {
             "dnsSuffix": self._serialize.url(

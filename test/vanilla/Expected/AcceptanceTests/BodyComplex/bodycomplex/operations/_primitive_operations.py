@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import primitive as rest_primitive
+from ..rest import primitive as rest_primitive
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -73,7 +73,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_int_request(
             template_url=self.get_int.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -118,8 +118,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "IntWrapper")
 
         request = rest_primitive.build_put_int_request(
-            json=json, content_type=content_type, template_url=self.put_int.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_int.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -153,7 +153,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_long_request(
             template_url=self.get_long.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -198,8 +198,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "LongWrapper")
 
         request = rest_primitive.build_put_long_request(
-            json=json, content_type=content_type, template_url=self.put_long.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_long.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -233,7 +233,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_float_request(
             template_url=self.get_float.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -278,8 +278,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "FloatWrapper")
 
         request = rest_primitive.build_put_float_request(
-            json=json, content_type=content_type, template_url=self.put_float.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_float.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -313,7 +313,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_double_request(
             template_url=self.get_double.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -359,8 +359,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "DoubleWrapper")
 
         request = rest_primitive.build_put_double_request(
-            json=json, content_type=content_type, template_url=self.put_double.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_double.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -394,7 +394,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_bool_request(
             template_url=self.get_bool.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -439,8 +439,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "BooleanWrapper")
 
         request = rest_primitive.build_put_bool_request(
-            json=json, content_type=content_type, template_url=self.put_bool.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_bool.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -474,7 +474,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_string_request(
             template_url=self.get_string.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -519,8 +519,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "StringWrapper")
 
         request = rest_primitive.build_put_string_request(
-            json=json, content_type=content_type, template_url=self.put_string.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_string.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -554,7 +554,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_date_request(
             template_url=self.get_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -599,8 +599,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "DateWrapper")
 
         request = rest_primitive.build_put_date_request(
-            json=json, content_type=content_type, template_url=self.put_date.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_date.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -634,7 +634,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_date_time_request(
             template_url=self.get_date_time.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -679,8 +679,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "DatetimeWrapper")
 
         request = rest_primitive.build_put_date_time_request(
-            json=json, content_type=content_type, template_url=self.put_date_time.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_date_time.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -714,7 +714,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_date_time_rfc1123_request(
             template_url=self.get_date_time_rfc1123.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -760,8 +760,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
         request = rest_primitive.build_put_date_time_rfc1123_request(
-            json=json, content_type=content_type, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_date_time_rfc1123.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -795,7 +795,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_duration_request(
             template_url=self.get_duration.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -841,8 +841,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(_complex_body, "DurationWrapper")
 
         request = rest_primitive.build_put_duration_request(
-            json=json, content_type=content_type, template_url=self.put_duration.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_duration.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -876,7 +876,7 @@ class PrimitiveOperations(object):
 
         request = rest_primitive.build_get_byte_request(
             template_url=self.get_byte.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -922,8 +922,8 @@ class PrimitiveOperations(object):
         json = self._serialize.body(_complex_body, "ByteWrapper")
 
         request = rest_primitive.build_put_byte_request(
-            json=json, content_type=content_type, template_url=self.put_byte.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_byte.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

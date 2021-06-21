@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import pet as rest_pet
+from ..rest import pet as rest_pet
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -84,7 +84,7 @@ class PetOperations(object):
 
         request = rest_pet.build_get_pet_by_id_request(
             pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -134,7 +134,7 @@ class PetOperations(object):
 
         request = rest_pet.build_do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -185,7 +185,7 @@ class PetOperations(object):
 
         request = rest_pet.build_has_models_param_request(
             models=models, template_url=self.has_models_param.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

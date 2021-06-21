@@ -20,6 +20,8 @@ from .primitive_schemas import AnySchema
 
 _LOGGER = logging.getLogger(__name__)
 
+_HIDDEN_KWARGS = ["content_type"]
+
 
 class ParameterLocation(Enum):
     Path = "path"
@@ -83,13 +85,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.flattened = flattened
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
-        self._client_default_value = client_default_value
-        self.is_kwarg_to_pop: bool = False
+        self.client_default_value = client_default_value
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
         self.is_partial_body = yaml_data.get("isPartialBody", False)
-        self.def_is_kwarg = False
 
     def __eq__(self, o: "Parameter") -> bool:
         try:
@@ -194,8 +194,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             or self.grouped_by
             # If I'm body and it's flattened, I'm not either
             or (self.is_body and self.flattened)
-            # If I'm a kwarg, don't include in the signature
-            or self.is_kwarg_to_pop
         )
 
     @property
@@ -218,8 +216,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if not self.required and not type_annot == "Any":
             type_annot = f"Optional[{type_annot}]"
 
-        if self._client_default_value is not None:
-            return self._client_default_value, self.schema.get_declaration(self._client_default_value), type_annot
+        if self.client_default_value is not None:
+            return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
 
         if self.multiple_media_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
@@ -242,11 +240,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def description_keyword(self) -> str:
-        return "keyword" if self.is_kwarg else "param"
+        return "keyword" if self.is_kwarg or self.is_keyword_only else "param"
 
     @property
     def docstring_type_keyword(self) -> str:
-        return "paramtype" if self.is_kwarg else "type"
+        return "paramtype" if self.is_kwarg or self.is_keyword_only else "type"
 
     @property
     def default_value(self) -> Optional[Any]:
@@ -291,7 +289,21 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def is_kwarg(self) -> bool:
+        # this means "am I in **kwargs?"
+        return self.serialized_name == "content_type"
+
+    @property
+    def is_keyword_only(self) -> bool:
+        # this means in async mode, I am documented like def hello(positional_1, *, me!)
         return False
+
+    @property
+    def is_documented(self) -> bool:
+        return self.serialized_name not in _HIDDEN_KWARGS
+
+    @property
+    def is_positional(self) -> bool:
+        return self.in_method_signature and not (self.is_keyword_only or self.is_kwarg)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
@@ -330,5 +342,5 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 class ParameterOnlyPathsPositional(Parameter):
 
     @property
-    def is_kwarg(self) -> bool:
+    def is_keyword_only(self) -> bool:
         return not (self.location == ParameterLocation.Path or self.location == ParameterLocation.Body)

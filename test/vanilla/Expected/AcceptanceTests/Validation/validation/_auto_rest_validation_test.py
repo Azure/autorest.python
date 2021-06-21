@@ -12,15 +12,15 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestValidationTestConfiguration
+from .operations import AutoRestValidationTestOperationsMixin
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
-
-from ._configuration import AutoRestValidationTestConfiguration
-from .operations import AutoRestValidationTestOperationsMixin
-from . import models
 
 
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
@@ -48,15 +48,20 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-    def _send_request(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `validation.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from validation.rest import build_validation_of_method_parameters_request
-        >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id)
+        >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, **kwargs)
         <HttpRequest [GET], url: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -72,6 +77,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

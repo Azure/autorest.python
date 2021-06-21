@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import dictionary as rest_dictionary
+from ..rest import dictionary as rest_dictionary
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class DictionaryOperations(object):
 
         request = rest_dictionary.build_get_valid_request(
             template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -118,8 +118,8 @@ class DictionaryOperations(object):
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = rest_dictionary.build_put_valid_request(
-            json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -153,7 +153,7 @@ class DictionaryOperations(object):
 
         request = rest_dictionary.build_get_empty_request(
             template_url=self.get_empty.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -199,8 +199,8 @@ class DictionaryOperations(object):
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = rest_dictionary.build_put_empty_request(
-            json=json, content_type=content_type, template_url=self.put_empty.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_empty.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -234,7 +234,7 @@ class DictionaryOperations(object):
 
         request = rest_dictionary.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -272,7 +272,7 @@ class DictionaryOperations(object):
 
         request = rest_dictionary.build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

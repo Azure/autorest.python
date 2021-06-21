@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import files as rest_files
+from ...rest import files as rest_files
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class FilesOperations:
 
         request = rest_files.build_get_file_request(
             template_url=self.get_file.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -102,7 +102,7 @@ class FilesOperations:
 
         request = rest_files.build_get_file_large_request(
             template_url=self.get_file_large.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -139,7 +139,7 @@ class FilesOperations:
 
         request = rest_files.build_get_empty_file_request(
             template_url=self.get_empty_file.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

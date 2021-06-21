@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import readonlyproperty as rest_readonlyproperty
+from ..rest import readonlyproperty as rest_readonlyproperty
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class ReadonlypropertyOperations(object):
 
         request = rest_readonlyproperty.build_get_valid_request(
             template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -118,8 +118,8 @@ class ReadonlypropertyOperations(object):
         json = self._serialize.body(_complex_body, "ReadonlyObj")
 
         request = rest_readonlyproperty.build_put_valid_request(
-            json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

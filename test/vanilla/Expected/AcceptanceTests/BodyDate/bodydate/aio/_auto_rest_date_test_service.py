@@ -13,12 +13,12 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestDateTestServiceConfiguration
 from .operations import DateOperations
-from .. import models
 
 
-class AutoRestDateTestService(object):
+class AutoRestDateTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar date: DateOperations operations
@@ -39,14 +39,15 @@ class AutoRestDateTestService(object):
         self._serialize.client_side_validation = False
         self.date = DateOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodydate.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from bodydate.rest import build_get_null_request
-        >>> request = build_get_null_request()
+        >>> request = build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/date/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -62,6 +63,7 @@ class AutoRestDateTestService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import paths as rest_paths
+from ..rest import paths as rest_paths
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -89,7 +89,7 @@ class PathsOperations(object):
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),

@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import formdata as rest_formdata
+from ..rest import formdata as rest_formdata
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -86,8 +86,8 @@ class FormdataOperations(object):
         }
 
         request = rest_formdata.build_upload_file_request(
-            files=files, content_type=content_type, template_url=self.upload_file.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, files=files, template_url=self.upload_file.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -132,8 +132,8 @@ class FormdataOperations(object):
         content = file_content
 
         request = rest_formdata.build_upload_file_via_body_request(
-            content=content, content_type=content_type, template_url=self.upload_file_via_body.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, content=content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -181,8 +181,8 @@ class FormdataOperations(object):
         }
 
         request = rest_formdata.build_upload_files_request(
-            files=files, content_type=content_type, template_url=self.upload_files.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, files=files, template_url=self.upload_files.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)

@@ -585,7 +585,7 @@ def build_post_flattened_simple_product_request(
 
 def build_put_simple_product_with_grouping_request(
     name,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.

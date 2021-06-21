@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models, rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -57,11 +57,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if resource_array is not None:
             json = self._serialize.body(resource_array, "[Resource]")
         else:
-            resource_array = None
+            json = None
 
         request = _rest.build_put_array_request(
-            json=json, content_type=content_type, template_url=self.put_array.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_array.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -93,7 +93,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.build_get_array_request(template_url=self.get_array.metadata["url"], **kwargs)._internal_request
+        request = _rest.build_get_array_request(
+            template_url=self.get_array.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -139,11 +141,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if resource_array is not None:
             json = self._serialize.body(resource_array, "[WrappedProduct]")
         else:
-            resource_array = None
+            json = None
 
         request = _rest.build_put_wrapped_array_request(
-            json=json, content_type=content_type, template_url=self.put_wrapped_array.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_wrapped_array.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -178,7 +180,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = _rest.build_get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -223,11 +225,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if resource_dictionary is not None:
             json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
         else:
-            resource_dictionary = None
+            json = None
 
         request = _rest.build_put_dictionary_request(
-            json=json, content_type=content_type, template_url=self.put_dictionary.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_dictionary.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -261,7 +263,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = _rest.build_get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -306,11 +308,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if resource_complex_object is not None:
             json = self._serialize.body(resource_complex_object, "ResourceCollection")
         else:
-            resource_complex_object = None
+            json = None
 
         request = _rest.build_put_resource_collection_request(
-            json=json, content_type=content_type, template_url=self.put_resource_collection.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_resource_collection.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -344,7 +346,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = _rest.build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -389,11 +391,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if simple_body_product is not None:
             json = self._serialize.body(simple_body_product, "SimpleProduct")
         else:
-            simple_body_product = None
+            json = None
 
         request = _rest.build_put_simple_product_request(
-            json=json, content_type=content_type, template_url=self.put_simple_product.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_simple_product.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -459,14 +461,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if _simple_body_product is not None:
             json = self._serialize.body(_simple_body_product, "SimpleProduct")
         else:
-            _simple_body_product = None
+            json = None
 
         request = _rest.build_post_flattened_simple_product_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.post_flattened_simple_product.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -533,15 +535,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if _simple_body_product is not None:
             json = self._serialize.body(_simple_body_product, "SimpleProduct")
         else:
-            _simple_body_product = None
+            json = None
 
         request = _rest.build_put_simple_product_with_grouping_request(
             name=_name,
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

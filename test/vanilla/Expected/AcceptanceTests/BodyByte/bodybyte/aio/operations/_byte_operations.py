@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import byte as rest_byte
+from ...rest import byte as rest_byte
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class ByteOperations:
 
         request = rest_byte.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -102,7 +102,7 @@ class ByteOperations:
 
         request = rest_byte.build_get_empty_request(
             template_url=self.get_empty.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -139,7 +139,7 @@ class ByteOperations:
 
         request = rest_byte.build_get_non_ascii_request(
             template_url=self.get_non_ascii.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -181,8 +181,8 @@ class ByteOperations:
         json = self._serialize.body(byte_body, "bytearray")
 
         request = rest_byte.build_put_non_ascii_request(
-            json=json, content_type=content_type, template_url=self.put_non_ascii.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_non_ascii.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -215,7 +215,7 @@ class ByteOperations:
 
         request = rest_byte.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

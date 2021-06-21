@@ -25,6 +25,7 @@ from ..models import (
     DictionarySchema,
     ListSchema,
 )
+from . import utils
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -164,16 +165,12 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
         self.code_model = code_model
 
     def _method_signature(self, builder: BaseBuilder) -> str:
-        lines: List[str] = []
-        lines.append(f"{self._function_definition} {builder.name}(")
-        if self._is_in_class:
-            lines.append("    self,")
-        lines.extend([
-            ("    " + line)
-            for line in builder.parameters.method_signature(self._want_inline_type_hints)
-        ])
-        lines.append(")")
-        return "\n".join(lines)
+        return utils.serialize_method(
+            function_def=self._function_definition,
+            method_name=builder.name,
+            is_in_class=self._is_in_class,
+            method_param_signatures=builder.parameters.method_signature(self._want_inline_type_hints)
+        )
 
     def _response_type_annotation_wrapper(self, builder: BaseBuilder) -> List[str]:
         return []
@@ -196,7 +193,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):
 
     def param_description(self, builder: BaseBuilder) -> List[str]:
         description_list: List[str] = []
-        for parameter in builder.parameters.method:
+        for parameter in [m for m in builder.parameters.method if m.is_documented]:
             description_list.extend(f":{parameter.description_keyword} { parameter.serialized_name }: { parameter.description }".replace('\n', '\n ').split("\n"))
             description_list.append(f":{parameter.docstring_type_keyword} { parameter.serialized_name }: { parameter.docstring_type }")
         try:
@@ -387,7 +384,11 @@ class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
-        return f"{method_signature}:\n    # type: (...) -> {_response_type_annotation}"
+        return utils.method_signature_and_response_type_annotation_template(
+            async_mode=False,
+            method_signature=method_signature,
+            response_type_annotation=_response_type_annotation
+        )
 
     def _get_kwargs_to_pop(self, builder: BaseBuilder):
         return builder.parameters.kwargs_to_pop(async_mode=False)
@@ -400,7 +401,12 @@ class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
-        return f"{method_signature} -> {_response_type_annotation}:"
+        return utils.method_signature_and_response_type_annotation_template(
+            async_mode=True,
+            method_signature=method_signature,
+            response_type_annotation=_response_type_annotation
+        )
+
 
     def _get_kwargs_to_pop(self, builder: BaseBuilder):
         return builder.parameters.kwargs_to_pop(async_mode=True)
@@ -539,7 +545,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):
             retval.append("    " + serialize_body_call)
             if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
                 retval.append("else:")
-                retval.append(f"    {body_param.serialized_name} = None")
+                retval.append(f"    {builder.serialized_body_kwarg} = None")
         return retval
 
     def _set_body_content_kwarg(self, builder: Operation, schema_request: SchemaRequest):
@@ -602,12 +608,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         if request_builder.multipart:
             # we have to construct our form data before passing to the request as well
             retval.append("# Construct form data")
-            # files = {
-            #     param.rest_api_name: param.serialized_name
-            #     for param in builder.parameters.body
-            # }
-            # serialized_files_object = _serialize_json_dict(files)
-            # retval.extend(f"files = {serialized_files_object}".splitlines())
             retval.extend(self._serialize_files_parameter(builder))
         if builder.parameters.is_flattened:
             # unflatten before passing to request builder as well
@@ -632,10 +632,9 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")
-            retval.append(f"    content_type=content_type,")
         retval.append(f"    template_url={self._template_url_to_pass_to_request_builder(builder)},")
         retval.append("    **kwargs")
-        retval.append(")._internal_request")
+        retval.append(")._to_pipeline_transport_request()")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))
         retval.append("request.url = self._client.format_url(request.url{})".format(
@@ -659,7 +658,12 @@ class SyncOperationSerializer(OperationBaseSerializer):
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
-        return f"{method_signature}:\n    # type: (...) -> {_response_type_annotation}"
+        return utils.method_signature_and_response_type_annotation_template(
+            async_mode=False,
+            method_signature=method_signature,
+            response_type_annotation=_response_type_annotation
+        )
+
 
     def _get_kwargs_to_pop(self, builder: BaseBuilder):
         return builder.parameters.kwargs_to_pop(async_mode=False)
@@ -676,7 +680,12 @@ class AsyncOperationSerializer(OperationBaseSerializer):
 
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
-        return f"{method_signature} -> {_response_type_annotation}:"
+        return utils.method_signature_and_response_type_annotation_template(
+            async_mode=True,
+            method_signature=method_signature,
+            response_type_annotation=_response_type_annotation
+        )
+
 
     def _get_kwargs_to_pop(self, builder: BaseBuilder):
         return builder.parameters.kwargs_to_pop(async_mode=True)

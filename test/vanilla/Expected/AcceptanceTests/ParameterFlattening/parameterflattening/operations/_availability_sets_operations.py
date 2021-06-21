@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import availability_sets as rest_availability_sets
+from ..rest import availability_sets as rest_availability_sets
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -88,11 +88,11 @@ class AvailabilitySetsOperations(object):
         request = rest_availability_sets.build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.update.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

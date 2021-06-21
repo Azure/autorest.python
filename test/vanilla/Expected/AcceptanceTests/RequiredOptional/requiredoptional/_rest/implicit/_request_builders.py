@@ -20,7 +20,7 @@ _SERIALIZER = Serializer()
 
 def build_get_required_path_request(
     path_parameter,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly required path parameter.
@@ -200,7 +200,7 @@ def build_put_optional_binary_body_request(
 
 def build_get_required_global_path_request(
     required_global_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly required path parameter.

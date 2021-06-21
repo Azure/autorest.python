@@ -207,13 +207,12 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         operation_group_name = self.request_builder.operation_group_name
         rest_import_path = "..." if async_mode else ".."
-        rest_import_name = "{}rest".format("" if code_model.rest_layer else "_")
         if operation_group_name:
             file_import.add_from_import(
-                f"{rest_import_path}{rest_import_name}", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
+                f"{rest_import_path}rest", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
             )
         else:
-            file_import.add_from_import(rest_import_path, rest_import_name, import_type=ImportType.LOCAL)
+            file_import.add_from_import(rest_import_path, "rest", import_type=ImportType.LOCAL)
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:

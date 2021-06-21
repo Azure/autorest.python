@@ -188,7 +188,7 @@ def test_explict_put_required_binary_body(client):
     test_bytes = bytearray(test_string, encoding='utf-8')
     with io.BytesIO(test_bytes) as stream_data:
         request = explicit.build_put_required_binary_body_request(content=stream_data)
-        client._send_request(request, stream_response=True)
+        client.send_request(request, stream=True)
 
 def test_implicit_put_optional_binary_body(make_request_client):
     request = explicit.build_put_optional_binary_body_request()

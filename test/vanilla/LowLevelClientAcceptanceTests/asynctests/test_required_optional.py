@@ -203,7 +203,7 @@ async def test_explict_put_required_binary_body(client):
     test_bytes = bytearray(test_string, encoding='utf-8')
     with io.BytesIO(test_bytes) as stream_data:
         request = explicit.build_put_required_binary_body_request(content=stream_data)
-        await client._send_request(request, stream_response=True)
+        await client.send_request(request, stream=True)
 
 @pytest.mark.asyncio
 async def test_implicit_put_optional_binary_body(make_request_client):

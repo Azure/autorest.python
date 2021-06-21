@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest, models as _models
+from ... import models as _models, rest
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -46,7 +46,9 @@ class MediaTypesClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", "application/json"
+        )  # type: Optional[Union[str, "_models.ContentType"]]
 
         json = None
         content = None
@@ -62,12 +64,12 @@ class MediaTypesClientOperationsMixin:
             )
 
         request = _rest.build_analyze_body_request(
+            content_type=content_type,
             json=json,
             content=content,
-            content_type=content_type,
             template_url=self.analyze_body.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,14 +110,14 @@ class MediaTypesClientOperationsMixin:
         if input is not None:
             content = self._serialize.body(input, "str")
         else:
-            input = None
+            content = None
 
         request = _rest.build_content_type_with_encoding_request(
-            content=content,
             content_type=content_type,
+            content=content,
             template_url=self.content_type_with_encoding.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

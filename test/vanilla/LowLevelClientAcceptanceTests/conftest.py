@@ -72,7 +72,7 @@ if sys.version_info < (3,5):
 @pytest.fixture()
 def base_make_request():
     def make_request(client, request):
-        response = client._send_request(request)
+        response = client.send_request(request)
         response.raise_for_status()
         return response
     return make_request
@@ -80,7 +80,7 @@ def base_make_request():
 @pytest.fixture()
 def base_make_request_json_response():
     def make_request_json_response(client, request):
-        response = client._send_request(request)
+        response = client.send_request(request)
         response.raise_for_status()
         return response.json()
     return make_request_json_response

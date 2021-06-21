@@ -48,7 +48,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
         assert "Siameeee" ==  deserialized.name
@@ -68,7 +68,7 @@ class TestSendRequest(object):
             },
         )
 
-        async with client._send_request(request, stream_response=True) as response:
+        async with client.send_request(request, stream=True) as response:
             data = ''
             async for chunk in response.iter_text():
                 data += chunk
@@ -108,7 +108,7 @@ class TestSendRequest(object):
             json=siamese_body,
         )
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -144,7 +144,7 @@ class TestSendRequest(object):
             json=siamese.serialize(),
         )
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -161,7 +161,7 @@ class TestSendRequest(object):
                 },
             )
 
-            async with client._send_request(request, stream_response=True) as response:
+            async with client.send_request(request, stream=True) as response:
                 response.raise_for_status()
 
                 async for data in response.iter_bytes():
@@ -192,7 +192,7 @@ class TestSendRequest(object):
             request = HttpRequest("PUT", '/formdata/stream/uploadfile',
                 data=stream_data,
             )
-            response = await client._send_request(request)
+            response = await client.send_request(request)
             assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -204,7 +204,7 @@ class TestSendRequest(object):
 
         request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid")
 
-        response = client._send_request(request)
+        response = client.send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id

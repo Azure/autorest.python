@@ -45,7 +45,7 @@ class TestSendRequest(object):
         request = HttpRequest("GET", "/complex/inheritance/valid",
         )
 
-        response = client._send_request(request)
+        response = client.send_request(request)
         response.raise_for_status()
 
         deserialized = Siamese.deserialize(response)
@@ -66,7 +66,7 @@ class TestSendRequest(object):
             },
         )
 
-        with client._send_request(request, stream_response=True) as response:
+        with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             data = ''.join([chunk for chunk in response.iter_text()])
         json_response = json.loads(data)
@@ -104,7 +104,7 @@ class TestSendRequest(object):
             json=siamese_body
         )
         assert request.headers['Content-Type'] == "application/json"
-        response = client._send_request(request)
+        response = client.send_request(request)
         response.raise_for_status()
         assert response.status_code == 200
 
@@ -137,7 +137,7 @@ class TestSendRequest(object):
             json=siamese.serialize()
         )
         assert request.headers['Content-Type'] == "application/json"
-        response = client._send_request(request)
+        response = client.send_request(request)
         response.raise_for_status()
         assert response.status_code == 200
 
@@ -154,7 +154,7 @@ class TestSendRequest(object):
                 },
             )
 
-            with client._send_request(request, stream_response=True) as response:
+            with client.send_request(request, stream=True) as response:
                 response.raise_for_status()
                 for data in response.iter_bytes():
                     file_length += len(data)
@@ -183,7 +183,7 @@ class TestSendRequest(object):
             request = HttpRequest("PUT", '/formdata/stream/uploadfile',
                 content=stream_data,
             )
-            with client._send_request(request, stream_response=True) as response:
+            with client.send_request(request, stream=True) as response:
                 response.raise_for_status()
 
     def test_send_request_full_url(self):
@@ -198,7 +198,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = client._send_request(request)
+        response = client.send_request(request)
         response.raise_for_status()
 
         deserialized = Siamese.deserialize(response)

@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models, rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -61,7 +61,7 @@ class AutoRestValidationTestOperationsMixin(object):
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -112,17 +112,17 @@ class AutoRestValidationTestOperationsMixin(object):
         if body is not None:
             json = self._serialize.body(body, "Product")
         else:
-            body = None
+            json = None
 
         request = _rest.build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.validation_of_body.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -160,7 +160,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         request = _rest.build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -200,11 +200,11 @@ class AutoRestValidationTestOperationsMixin(object):
         if body is not None:
             json = self._serialize.body(body, "Product")
         else:
-            body = None
+            json = None
 
         request = _rest.build_post_with_constant_in_body_request(
-            json=json, content_type=content_type, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

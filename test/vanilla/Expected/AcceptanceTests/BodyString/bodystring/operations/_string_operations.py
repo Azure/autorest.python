@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import string as rest_string
+from ..rest import string as rest_string
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -117,11 +117,11 @@ class StringOperations(object):
         if string_body is not None:
             json = self._serialize.body(string_body, "str")
         else:
-            string_body = None
+            json = None
 
         request = rest_string.build_put_null_request(
-            json=json, content_type=content_type, template_url=self.put_null.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_null.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -155,7 +155,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_empty_request(
             template_url=self.get_empty.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -197,8 +197,8 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "str")
 
         request = rest_string.build_put_empty_request(
-            json=json, content_type=content_type, template_url=self.put_empty.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_empty.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -232,7 +232,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_mbcs_request(
             template_url=self.get_mbcs.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -274,8 +274,8 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "str")
 
         request = rest_string.build_put_mbcs_request(
-            json=json, content_type=content_type, template_url=self.put_mbcs.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_mbcs.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -311,7 +311,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_whitespace_request(
             template_url=self.get_whitespace.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -355,8 +355,8 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "str")
 
         request = rest_string.build_put_whitespace_request(
-            json=json, content_type=content_type, template_url=self.put_whitespace.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_whitespace.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -390,7 +390,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -428,7 +428,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_base64_encoded_request(
             template_url=self.get_base64_encoded.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -466,7 +466,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_base64_url_encoded_request(
             template_url=self.get_base64_url_encoded.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -511,8 +511,8 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "base64")
 
         request = rest_string.build_put_base64_url_encoded_request(
-            json=json, content_type=content_type, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -546,7 +546,7 @@ class StringOperations(object):
 
         request = rest_string.build_get_null_base64_url_encoded_request(
             template_url=self.get_null_base64_url_encoded.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

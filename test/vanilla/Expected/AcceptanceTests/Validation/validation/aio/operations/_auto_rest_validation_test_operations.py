@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest, models as _models
+from ... import models as _models, rest
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -53,7 +53,7 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -101,17 +101,17 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             json = self._serialize.body(body, "Product")
         else:
-            body = None
+            json = None
 
         request = _rest.build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.validation_of_body.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -148,7 +148,7 @@ class AutoRestValidationTestOperationsMixin:
 
         request = _rest.build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -187,11 +187,11 @@ class AutoRestValidationTestOperationsMixin:
         if body is not None:
             json = self._serialize.body(body, "Product")
         else:
-            body = None
+            json = None
 
         request = _rest.build_post_with_constant_in_body_request(
-            json=json, content_type=content_type, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

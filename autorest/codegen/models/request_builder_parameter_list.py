@@ -99,7 +99,6 @@ class RequestBuilderParameterList(ParameterList):
             else:
                 for kwarg in body_kwargs_added:
                     kwarg.required = False
-                    self.def_is_kwarg = True
             self.parameters = body_kwargs_added + self.parameters
         except StopIteration:
             pass
@@ -122,7 +121,7 @@ class RequestBuilderParameterList(ParameterList):
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         kwargs = super().kwargs_to_pop(async_mode=async_mode)
         if not async_mode:
-            kwargs.extend([k for k in self.kwargs if k.serialized_name not in self.body_kwarg_names.keys()])
+            kwargs.extend([k for k in self.keyword_only if k.serialized_name not in self.body_kwarg_names.keys()])
         return kwargs
 
     @property
@@ -164,7 +163,7 @@ class RequestBuilderParameterList(ParameterList):
             self._multipart_parameters = multipart_parameters
 
         signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
-        signature_parameters.sort(key=lambda item: item.is_kwarg)
+        signature_parameters.sort(key=lambda item: item.is_keyword_only)
         return signature_parameters
 
     @staticmethod

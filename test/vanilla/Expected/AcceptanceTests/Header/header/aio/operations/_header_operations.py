@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import header as rest_header
+from ...rest import header as rest_header
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +68,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_existing_key_request(
             user_agent_parameter=user_agent_parameter, template_url=self.param_existing_key.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -101,7 +101,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_existing_key_request(
             template_url=self.response_existing_key.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -123,11 +123,9 @@ class HeaderOperations:
     response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
     @distributed_trace_async
-    async def param_protected_key(self, content_type: str, **kwargs: Any) -> None:
+    async def param_protected_key(self, **kwargs: Any) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
-        :param content_type: Send a post request with header value "Content-Type": "text/html".
-        :type content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -137,9 +135,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.pop("content_type")  # type: str
+
         request = rest_header.build_param_protected_key_request(
             content_type=content_type, template_url=self.param_protected_key.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -172,7 +172,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_protected_key_request(
             template_url=self.response_protected_key.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -213,7 +213,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_integer_request(
             scenario=scenario, value=value, template_url=self.param_integer.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -248,7 +248,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_integer_request(
             scenario=scenario, template_url=self.response_integer.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -289,7 +289,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_long_request(
             scenario=scenario, value=value, template_url=self.param_long.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -324,7 +324,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_long_request(
             scenario=scenario, template_url=self.response_long.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -365,7 +365,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_float_request(
             scenario=scenario, value=value, template_url=self.param_float.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -400,7 +400,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_float_request(
             scenario=scenario, template_url=self.response_float.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -441,7 +441,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_double_request(
             scenario=scenario, value=value, template_url=self.param_double.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -476,7 +476,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_double_request(
             scenario=scenario, template_url=self.response_double.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -517,7 +517,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_bool_request(
             scenario=scenario, value=value, template_url=self.param_bool.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -552,7 +552,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_bool_request(
             scenario=scenario, template_url=self.response_bool.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -595,7 +595,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_string_request(
             scenario=scenario, value=value, template_url=self.param_string.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -631,7 +631,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_string_request(
             scenario=scenario, template_url=self.response_string.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -672,7 +672,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_date_request(
             scenario=scenario, value=value, template_url=self.param_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -707,7 +707,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_date_request(
             scenario=scenario, template_url=self.response_date.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -749,7 +749,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_datetime_request(
             scenario=scenario, value=value, template_url=self.param_datetime.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -784,7 +784,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_datetime_request(
             scenario=scenario, template_url=self.response_datetime.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -828,7 +828,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_datetime_rfc1123_request(
             scenario=scenario, value=value, template_url=self.param_datetime_rfc1123.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -864,7 +864,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_datetime_rfc1123_request(
             scenario=scenario, template_url=self.response_datetime_rfc1123.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -904,7 +904,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_duration_request(
             scenario=scenario, value=value, template_url=self.param_duration.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -939,7 +939,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_duration_request(
             scenario=scenario, template_url=self.response_duration.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -979,7 +979,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_byte_request(
             scenario=scenario, value=value, template_url=self.param_byte.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1014,7 +1014,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_byte_request(
             scenario=scenario, template_url=self.response_byte.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1058,7 +1058,7 @@ class HeaderOperations:
 
         request = rest_header.build_param_enum_request(
             scenario=scenario, value=value, template_url=self.param_enum.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1094,7 +1094,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_enum_request(
             scenario=scenario, template_url=self.response_enum.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1131,7 +1131,7 @@ class HeaderOperations:
 
         request = rest_header.build_custom_request_id_request(
             template_url=self.custom_request_id.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

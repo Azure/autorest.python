@@ -473,7 +473,7 @@ def build_string_empty_request(
 
 def build_string_null_request(
     string_path,  # type: str
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get null (should throw).
@@ -507,7 +507,7 @@ def build_string_null_request(
 
 def build_enum_valid_request(
     enum_path,  # type: Union[str, "_models.UriColor"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get using uri with 'green color' in path parameter.
@@ -541,7 +541,7 @@ def build_enum_valid_request(
 
 def build_enum_null_request(
     enum_path,  # type: Union[str, "_models.UriColor"]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get null (should throw on the client before the request is sent on wire).
@@ -575,7 +575,7 @@ def build_enum_null_request(
 
 def build_byte_multi_byte_request(
     byte_path,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -641,7 +641,7 @@ def build_byte_empty_request(
 
 def build_byte_null_request(
     byte_path,  # type: bytearray
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get null as byte array (should throw).
@@ -707,7 +707,7 @@ def build_date_valid_request(
 
 def build_date_null_request(
     date_path,  # type: datetime.date
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get null as date - this should throw or be unusable on the client side, depending on date
@@ -774,7 +774,7 @@ def build_date_time_valid_request(
 
 def build_date_time_null_request(
     date_time_path,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get null as date-time, should be disallowed or throw depending on representation of date-time.
@@ -808,7 +808,7 @@ def build_date_time_null_request(
 
 def build_base64_url_request(
     base64_url_path,  # type: bytes
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
@@ -842,7 +842,7 @@ def build_base64_url_request(
 
 def build_array_csv_in_path_request(
     array_path,  # type: List[str]
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
@@ -881,7 +881,7 @@ def build_array_csv_in_path_request(
 
 def build_unix_time_url_request(
     unix_time_url_path,  # type: datetime.datetime
-    **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).

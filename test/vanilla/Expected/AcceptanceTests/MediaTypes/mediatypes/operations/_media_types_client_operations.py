@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest, models as _models
+from .. import models as _models, rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -55,7 +55,9 @@ class MediaTypesClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", "application/json"
+        )  # type: Optional[Union[str, "_models.ContentType"]]
 
         json = None
         content = None
@@ -71,12 +73,12 @@ class MediaTypesClientOperationsMixin(object):
             )
 
         request = _rest.build_analyze_body_request(
+            content_type=content_type,
             json=json,
             content=content,
-            content_type=content_type,
             template_url=self.analyze_body.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -120,14 +122,14 @@ class MediaTypesClientOperationsMixin(object):
         if input is not None:
             content = self._serialize.body(input, "str")
         else:
-            input = None
+            content = None
 
         request = _rest.build_content_type_with_encoding_request(
-            content=content,
             content_type=content_type,
+            content=content,
             template_url=self.content_type_with_encoding.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

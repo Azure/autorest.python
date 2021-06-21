@@ -7,7 +7,7 @@ import re
 from typing import cast, Any, Dict, List, Match, Optional
 from .python_mappings import basic_latin_chars, reserved_words, PadType
 
-
+_M4_HEADER_PARAMETERS = ["content_type", "accept"]
 class NameConverter:
     @staticmethod
     def convert_yaml_names(yaml_data: Dict[str, Any]) -> None:
@@ -64,10 +64,53 @@ class NameConverter:
                         NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                         if parameter.get("origin", "") == "modelerfour:synthesized/content-type":
                             parameter["required"] = False
+                NameConverter._handle_m4_header_parameters(operation.get("requests", []))
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
                 if operation.get("extensions"):
                     NameConverter._convert_extensions(operation)
+
+    @staticmethod
+    def _handle_m4_header_parameters(requests):
+        m4_header_params = []
+        for request in requests:
+            m4_header_params.extend([
+                p for p in request.get('parameters', [])
+                if NameConverter._is_schema_an_m4_header_parameter(p['language']['default']['name'], p)
+            ])
+        m4_header_params_to_remove = []
+        for m4_header in _M4_HEADER_PARAMETERS:
+            params_of_header = [
+                p for p in m4_header_params
+                if p['language']['default']['name'] == m4_header
+            ]
+            if len(params_of_header) < 2:
+                continue
+            param_schema_to_param = {  # if they share the same schema, we don't need to keep both of them in this case
+                id(param['schema']): param
+                for param in params_of_header
+            }
+            if len(param_schema_to_param) == 1:
+                # we'll remove the ones that aren't the first
+                m4_header_params_to_remove.extend([
+                    id(p) for p in params_of_header[1:]
+                ])
+            else:
+                # currently there's max of 2, so assume this is 2 for now
+                # in this case, one of them is a constant and one is not. Set the client default value to the one of the constant
+                param_with_constant_schema = next(p for p in params_of_header if p['schema']['type'] == 'constant')
+                param_with_enum_schema = next(
+                    p for p in params_of_header
+                    if p['schema']['type'] == 'sealed-choice' or p.schema['type'] == 'choice'
+                )
+                param_with_enum_schema['clientDefaultValue'] = param_with_constant_schema['schema']['value']['value']
+                m4_header_params_to_remove.append(id(param_with_constant_schema))
+
+        for request in requests:
+            if not request.get('parameters'):
+                continue
+            request['parameters'] = [p for p in request['parameters'] if id(p) not in m4_header_params_to_remove]
+
 
     @staticmethod
     def _add_multipart_information(parameter: Dict[str, Any], operation: Dict[str, Any]):
@@ -160,9 +203,8 @@ class NameConverter:
 
     @staticmethod
     def _is_schema_an_m4_header_parameter(schema_name: str, schema: Dict[str, Any]) -> bool:
-        m4_header_parameters = ["content_type", "accept"]
         return (
-            schema_name in m4_header_parameters and
+            schema_name in _M4_HEADER_PARAMETERS and
             schema.get('protocol', {}).get('http', {}).get('in', {}) == 'header'
         )
 

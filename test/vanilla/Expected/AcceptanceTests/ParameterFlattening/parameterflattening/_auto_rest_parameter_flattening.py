@@ -12,15 +12,15 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestParameterFlatteningConfiguration
+from .operations import AvailabilitySetsOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
-
-from ._configuration import AutoRestParameterFlatteningConfiguration
-from .operations import AvailabilitySetsOperations
-from . import models
 
 
 class AutoRestParameterFlattening(object):
@@ -51,15 +51,20 @@ class AutoRestParameterFlattening(object):
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def _send_request(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `parameterflattening.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from parameterflattening.rest import build_update_request
-        >>> request = build_update_request(resource_group_name, avset, json, content)
+        >>> request = build_update_request(resource_group_name, avset, json=json, content=content, **kwargs)
         <HttpRequest [PATCH], url: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -75,6 +80,7 @@ class AutoRestParameterFlattening(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

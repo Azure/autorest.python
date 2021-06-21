@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import http_server_failure as rest_http_server_failure
+from ..rest import http_server_failure as rest_http_server_failure
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class HttpServerFailureOperations(object):
 
         request = rest_http_server_failure.build_head501_request(
             template_url=self.head501.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -106,7 +106,7 @@ class HttpServerFailureOperations(object):
 
         request = rest_http_server_failure.build_get501_request(
             template_url=self.get501.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -147,11 +147,11 @@ class HttpServerFailureOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_server_failure.build_post505_request(
-            json=json, content_type=content_type, template_url=self.post505.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.post505.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -192,11 +192,11 @@ class HttpServerFailureOperations(object):
         if boolean_value is not None:
             json = self._serialize.body(boolean_value, "bool")
         else:
-            boolean_value = None
+            json = None
 
         request = rest_http_server_failure.build_delete505_request(
-            json=json, content_type=content_type, template_url=self.delete505.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.delete505.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

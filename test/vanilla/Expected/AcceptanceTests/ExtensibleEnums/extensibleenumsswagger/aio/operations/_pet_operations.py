@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import pet as rest_pet
+from ...rest import pet as rest_pet
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +67,7 @@ class PetOperations:
 
         request = rest_pet.build_get_by_pet_id_request(
             pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,11 +108,11 @@ class PetOperations:
         if pet_param is not None:
             json = self._serialize.body(pet_param, "Pet")
         else:
-            pet_param = None
+            json = None
 
         request = rest_pet.build_add_pet_request(
-            json=json, content_type=content_type, template_url=self.add_pet.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.add_pet.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

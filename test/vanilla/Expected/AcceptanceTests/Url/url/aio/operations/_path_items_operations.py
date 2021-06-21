@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import path_items as rest_path_items
+from ...rest import path_items as rest_path_items
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -90,7 +90,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_all_with_values.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -148,7 +148,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_global_query_null.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -206,7 +206,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -263,7 +263,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

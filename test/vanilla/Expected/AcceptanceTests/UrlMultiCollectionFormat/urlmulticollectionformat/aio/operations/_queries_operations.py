@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import queries as rest_queries
+from ...rest import queries as rest_queries
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +67,7 @@ class QueriesOperations:
 
         request = rest_queries.build_array_string_multi_null_request(
             array_query=array_query, template_url=self.array_string_multi_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -102,7 +102,7 @@ class QueriesOperations:
 
         request = rest_queries.build_array_string_multi_empty_request(
             array_query=array_query, template_url=self.array_string_multi_empty.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -139,7 +139,7 @@ class QueriesOperations:
 
         request = rest_queries.build_array_string_multi_valid_request(
             array_query=array_query, template_url=self.array_string_multi_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

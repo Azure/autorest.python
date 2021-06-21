@@ -27,8 +27,6 @@ class RequestBuilderParameter(ParameterOnlyPathsPositional):
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
             or self.target_property_name
-            # If I'm a kwarg, don't include in the signature
-            or self.is_kwarg_to_pop
             or not self.in_method_code
         )
 
@@ -75,8 +73,8 @@ class RequestBuilderParameter(ParameterOnlyPathsPositional):
         return super().default_value_declaration
 
     @property
-    def is_kwarg(self) -> bool:
-        return not self.location == ParameterLocation.Path
+    def is_keyword_only(self) -> bool:
+        return not self.location == ParameterLocation.Path and not self.is_kwarg
 
     @property
     def full_serialized_name(self) -> str:

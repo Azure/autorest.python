@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import paths as rest_paths
+from ...rest import paths as rest_paths
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -79,7 +79,7 @@ class PathsOperations:
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),

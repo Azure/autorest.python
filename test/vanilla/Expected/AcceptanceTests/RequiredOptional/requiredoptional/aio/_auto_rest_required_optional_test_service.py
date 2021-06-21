@@ -13,13 +13,12 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
-from .operations import ImplicitOperations
-from .operations import ExplicitOperations
 from .. import models
+from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from .operations import ExplicitOperations, ImplicitOperations
 
 
-class AutoRestRequiredOptionalTestService(object):
+class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar implicit: ImplicitOperations operations
@@ -57,14 +56,15 @@ class AutoRestRequiredOptionalTestService(object):
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `requiredoptional.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from requiredoptional.rest import build_get_required_path_request
-        >>> request = build_get_required_path_request(path_parameter)
+        >>> request = build_get_required_path_request(path_parameter, **kwargs)
         <HttpRequest [GET], url: '/reqopt/implicit/required/path/{pathParameter}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -80,6 +80,7 @@ class AutoRestRequiredOptionalTestService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

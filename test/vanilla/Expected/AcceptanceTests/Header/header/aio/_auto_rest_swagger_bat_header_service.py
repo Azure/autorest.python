@@ -13,12 +13,12 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
 from .operations import HeaderOperations
-from .. import models
 
 
-class AutoRestSwaggerBATHeaderService(object):
+class AutoRestSwaggerBATHeaderService:
     """Test Infrastructure for AutoRest.
 
     :ivar header: HeaderOperations operations
@@ -39,14 +39,15 @@ class AutoRestSwaggerBATHeaderService(object):
         self._serialize.client_side_validation = False
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `header.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from header.rest import build_param_existing_key_request
-        >>> request = build_param_existing_key_request(user_agent_parameter)
+        >>> request = build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
         <HttpRequest [POST], url: '/header/param/existingkey'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -62,6 +63,7 @@ class AutoRestSwaggerBATHeaderService(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

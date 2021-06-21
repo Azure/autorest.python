@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import polymorphicrecursive as rest_polymorphicrecursive
+from ..rest import polymorphicrecursive as rest_polymorphicrecursive
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class PolymorphicrecursiveOperations(object):
 
         request = rest_polymorphicrecursive.build_get_valid_request(
             template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -169,8 +169,8 @@ class PolymorphicrecursiveOperations(object):
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphicrecursive.build_put_valid_request(
-            json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import duration as rest_duration
+from ...rest import duration as rest_duration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -66,7 +66,7 @@ class DurationOperations:
 
         request = rest_duration.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,8 +108,8 @@ class DurationOperations:
         json = self._serialize.body(duration_body, "duration")
 
         request = rest_duration.build_put_positive_duration_request(
-            json=json, content_type=content_type, template_url=self.put_positive_duration.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_positive_duration.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -142,7 +142,7 @@ class DurationOperations:
 
         request = rest_duration.build_get_positive_duration_request(
             template_url=self.get_positive_duration.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -179,7 +179,7 @@ class DurationOperations:
 
         request = rest_duration.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

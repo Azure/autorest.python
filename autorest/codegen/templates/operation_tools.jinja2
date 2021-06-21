@@ -256,3 +256,13 @@ return 200 <= response.status_code <= 299
 
     {% endif %}
 {% endfor %}{% endmacro %}
+
+{% macro serialize_with_wrap(lines, wrapstring) %}
+
+{% for line in lines %}
+    {% if line %}
+{{ wrap_string(line, wrapstring=wrapstring) }}
+    {% else %}
+
+    {% endif %}
+{% endfor %}{% endmacro %}

@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import http_failure as rest_http_failure
+from ...rest import http_failure as rest_http_failure
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class HttpFailureOperations:
 
         request = rest_http_failure.build_get_empty_error_request(
             template_url=self.get_empty_error.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -102,7 +102,7 @@ class HttpFailureOperations:
 
         request = rest_http_failure.build_get_no_model_error_request(
             template_url=self.get_no_model_error.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -138,7 +138,7 @@ class HttpFailureOperations:
 
         request = rest_http_failure.build_get_no_model_empty_request(
             template_url=self.get_no_model_empty.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

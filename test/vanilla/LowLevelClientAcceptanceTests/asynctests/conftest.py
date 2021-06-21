@@ -29,7 +29,7 @@ from msrest import Serializer, Deserializer
 @pytest.fixture()
 def base_make_request():
     async def make_request(client, request):
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         response.raise_for_status()
         await response.load_body()
         return response
@@ -38,7 +38,7 @@ def base_make_request():
 @pytest.fixture()
 def base_make_request_json_response():
     async def make_request_json_response(client, request):
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         response.raise_for_status()
         await response.load_body()
         return response.json()
@@ -47,7 +47,7 @@ def base_make_request_json_response():
 @pytest.fixture()
 def base_make_stream_request():
     async def make_stream_request(client, request):
-        response = await client._send_request(request, stream_response=True)
+        response = await client.send_request(request, stream=True)
         response.raise_for_status()
         return response.stream_download()
     return make_stream_request

@@ -12,15 +12,15 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestParameterizedHostTestClientConfiguration
+from .operations import PathsOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
-from ._configuration import AutoRestParameterizedHostTestClientConfiguration
-from .operations import PathsOperations
-from . import models
 
 
 class AutoRestParameterizedHostTestClient(object):
@@ -47,15 +47,20 @@ class AutoRestParameterizedHostTestClient(object):
         self._deserialize = Deserializer(client_models)
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurl.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from custombaseurl.rest import build_get_empty_request
-        >>> request = build_get_empty_request()
+        >>> request = build_get_empty_request(**kwargs)
         <HttpRequest [GET], url: '/customuri'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -71,6 +76,7 @@ class AutoRestParameterizedHostTestClient(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
+
         request_copy = deepcopy(request)
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

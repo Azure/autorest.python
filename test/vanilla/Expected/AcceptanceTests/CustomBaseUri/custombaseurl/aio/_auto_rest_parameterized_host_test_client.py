@@ -13,12 +13,12 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
 from .operations import PathsOperations
-from .. import models
 
 
-class AutoRestParameterizedHostTestClient(object):
+class AutoRestParameterizedHostTestClient:
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
@@ -37,14 +37,15 @@ class AutoRestParameterizedHostTestClient(object):
         self._deserialize = Deserializer(client_models)
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurl.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from custombaseurl.rest import build_get_empty_request
-        >>> request = build_get_empty_request()
+        >>> request = build_get_empty_request(**kwargs)
         <HttpRequest [GET], url: '/customuri'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
@@ -60,6 +61,7 @@ class AutoRestParameterizedHostTestClient(object):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
+
         request_copy = deepcopy(request)
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

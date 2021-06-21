@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import inheritance as rest_inheritance
+from ...rest import inheritance as rest_inheritance
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class InheritanceOperations:
 
         request = rest_inheritance.build_get_valid_request(
             template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -109,8 +109,8 @@ class InheritanceOperations:
         json = self._serialize.body(complex_body, "Siamese")
 
         request = rest_inheritance.build_put_valid_request(
-            json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

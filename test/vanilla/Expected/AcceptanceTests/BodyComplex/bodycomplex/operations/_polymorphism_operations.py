@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import polymorphism as rest_polymorphism
+from ..rest import polymorphism as rest_polymorphism
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class PolymorphismOperations(object):
 
         request = rest_polymorphism.build_get_valid_request(
             template_url=self.get_valid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -149,8 +149,8 @@ class PolymorphismOperations(object):
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphism.build_put_valid_request(
-            json=json, content_type=content_type, template_url=self.put_valid.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -184,7 +184,7 @@ class PolymorphismOperations(object):
 
         request = rest_polymorphism.build_get_dot_syntax_request(
             template_url=self.get_dot_syntax.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -224,7 +224,7 @@ class PolymorphismOperations(object):
 
         request = rest_polymorphism.build_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -264,7 +264,7 @@ class PolymorphismOperations(object):
 
         request = rest_polymorphism.build_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -303,7 +303,7 @@ class PolymorphismOperations(object):
 
         request = rest_polymorphism.build_get_complicated_request(
             template_url=self.get_complicated.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -349,8 +349,8 @@ class PolymorphismOperations(object):
         json = self._serialize.body(complex_body, "Salmon")
 
         request = rest_polymorphism.build_put_complicated_request(
-            json=json, content_type=content_type, template_url=self.put_complicated.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_complicated.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -391,8 +391,8 @@ class PolymorphismOperations(object):
         json = self._serialize.body(complex_body, "Salmon")
 
         request = rest_polymorphism.build_put_missing_discriminator_request(
-            json=json, content_type=content_type, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -464,8 +464,8 @@ class PolymorphismOperations(object):
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphism.build_put_valid_missing_required_request(
-            json=json, content_type=content_type, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

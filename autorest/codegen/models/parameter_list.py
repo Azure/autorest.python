@@ -174,6 +174,8 @@ class ParameterList(MutableSequence):
             elif isinstance(param.schema, EnumSchema):
                 # enums
                 content_types.update({v.value: None for v in param.schema.values})
+            if param.client_default_value:
+                content_types.update({param.client_default_value: None})
         self._content_types = list(content_types.keys())
         return self._content_types
 
@@ -215,11 +217,29 @@ class ParameterList(MutableSequence):
 
     def method_signature(self, async_mode: bool) -> List[str]:
         positional = self.method_signature_positional(async_mode)
+        if async_mode:
+            positional += self.method_signature_keyword_only(async_mode)
         kwargs = self.method_signature_kwargs(async_mode)
         return positional + kwargs
 
     def method_signature_positional(self, async_mode: bool) -> List[str]:
-        return [parameter.method_signature(async_mode) for parameter in self.method if not parameter.is_kwarg]
+        return [parameter.method_signature(async_mode) for parameter in self.positional]
+
+    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
+        if not self.keyword_only:
+            return []
+        return ["*,"] + [parameter.method_signature(async_mode) for parameter in self.keyword_only]
+
+    def method_signature_kwargs(self, async_mode: bool) -> List[str]:
+        return ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]
+
+    @property
+    def positional(self) -> List[Parameter]:
+        return [p for p in self.method if p.is_positional]
+
+    @property
+    def keyword_only(self) -> List[Parameter]:
+        return [p for p in self.method if p.is_keyword_only]
 
     @property
     def kwargs(self) -> List[Parameter]:
@@ -230,7 +250,7 @@ class ParameterList(MutableSequence):
         # we want to default to constant schemas for the kwargs if there are multiple
         # case example: when looking at multiple content type params, we want the one with the constant schema
         # so we can default to that value when popping
-        kwargs = [p for p in self.parameters if p.is_kwarg_to_pop]
+        kwargs = [p for p in self.parameters if p.is_kwarg]
         retval = []
         def _iterate_kwargs(kwargs_to_iterate):
             for kwarg in kwargs_to_iterate:
@@ -244,13 +264,17 @@ class ParameterList(MutableSequence):
             _iterate_kwargs([k for k in self.method if k.is_kwarg])
         return retval
 
-    def method_signature_kwargs(self, async_mode: bool) -> List[str]:
-        leftover_kwargs_typing = ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]
-        if not async_mode:
-            return leftover_kwargs_typing
-        kwargs_signature = [parameter.method_signature(async_mode) for parameter in self.kwargs]
-        asterisk = ["*,"] if kwargs_signature else []
-        return asterisk + kwargs_signature + leftover_kwargs_typing
+    @property
+    def call(self) -> List[str]:
+        retval = [
+            p.serialized_name for p in self.positional
+        ]
+        retval.extend([
+            f"{p.serialized_name}={p.serialized_name}"
+            for p in self.keyword_only
+        ])
+        retval.append("**kwargs")
+        return retval
 
     @property
     def is_flattened(self) -> bool:

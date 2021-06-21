@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import datetimerfc1123 as rest_datetimerfc1123
+from ..rest import datetimerfc1123 as rest_datetimerfc1123
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -73,7 +73,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -111,7 +111,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -149,7 +149,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_overflow_request(
             template_url=self.get_overflow.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -187,7 +187,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_underflow_request(
             template_url=self.get_underflow.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -232,8 +232,8 @@ class Datetimerfc1123Operations(object):
         json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = rest_datetimerfc1123.build_put_utc_max_date_time_request(
-            json=json, content_type=content_type, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -267,7 +267,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_utc_lowercase_max_date_time_request(
             template_url=self.get_utc_lowercase_max_date_time.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -305,7 +305,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_utc_uppercase_max_date_time_request(
             template_url=self.get_utc_uppercase_max_date_time.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -350,8 +350,8 @@ class Datetimerfc1123Operations(object):
         json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = rest_datetimerfc1123.build_put_utc_min_date_time_request(
-            json=json, content_type=content_type, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -385,7 +385,7 @@ class Datetimerfc1123Operations(object):
 
         request = rest_datetimerfc1123.build_get_utc_min_date_time_request(
             template_url=self.get_utc_min_date_time.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

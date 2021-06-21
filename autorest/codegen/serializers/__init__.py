@@ -97,8 +97,7 @@ class JinjaSerializer:
     def _serialize_and_write_rest_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        folder_name = "rest" if code_model.rest_layer else "_rest"
-        rest_path = namespace_path / Path(folder_name)
+        rest_path = namespace_path / Path("rest")
         operation_group_names = {
             rb.operation_group_name for rb in code_model.rest.request_builders
         }

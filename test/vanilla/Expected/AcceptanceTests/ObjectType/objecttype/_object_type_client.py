@@ -12,14 +12,14 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from ._configuration import ObjectTypeClientConfiguration
+from .operations import ObjectTypeClientOperationsMixin
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
-
-from ._configuration import ObjectTypeClientConfiguration
-from .operations import ObjectTypeClientOperationsMixin
 
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
@@ -45,15 +45,20 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `objecttype.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from objecttype.rest import build_get_request
-        >>> request = build_get_request()
+        >>> request = build_get_request(**kwargs)
         <HttpRequest [GET], url: '/objectType/get'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
@@ -69,6 +74,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
+
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)

@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._rest import number as rest_number
+from ..rest import number as rest_number
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -72,7 +72,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_null_request(
             template_url=self.get_null.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -110,7 +110,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_invalid_float_request(
             template_url=self.get_invalid_float.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -148,7 +148,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_invalid_double_request(
             template_url=self.get_invalid_double.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -186,7 +186,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_invalid_decimal_request(
             template_url=self.get_invalid_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -231,8 +231,8 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_float_request(
-            json=json, content_type=content_type, template_url=self.put_big_float.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_big_float.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -266,7 +266,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_float_request(
             template_url=self.get_big_float.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -311,8 +311,8 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_double_request(
-            json=json, content_type=content_type, template_url=self.put_big_double.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_big_double.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -346,7 +346,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_double_request(
             template_url=self.get_big_double.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -388,11 +388,11 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_double_positive_decimal_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -426,7 +426,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_double_positive_decimal_request(
             template_url=self.get_big_double_positive_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -468,11 +468,11 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_double_negative_decimal_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -506,7 +506,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_double_negative_decimal_request(
             template_url=self.get_big_double_negative_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -551,8 +551,8 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_decimal_request(
-            json=json, content_type=content_type, template_url=self.put_big_decimal.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_big_decimal.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -586,7 +586,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_decimal_request(
             template_url=self.get_big_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -628,11 +628,11 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_decimal_positive_decimal_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -666,7 +666,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_decimal_positive_decimal_request(
             template_url=self.get_big_decimal_positive_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -708,11 +708,11 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_big_decimal_negative_decimal_request(
-            json=json,
             content_type=content_type,
+            json=json,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
             **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -746,7 +746,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_big_decimal_negative_decimal_request(
             template_url=self.get_big_decimal_negative_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -791,8 +791,8 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_small_float_request(
-            json=json, content_type=content_type, template_url=self.put_small_float.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_small_float.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -826,7 +826,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_small_float_request(
             template_url=self.get_small_float.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -871,8 +871,8 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_small_double_request(
-            json=json, content_type=content_type, template_url=self.put_small_double.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_small_double.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -906,7 +906,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_small_double_request(
             template_url=self.get_small_double.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -951,8 +951,8 @@ class NumberOperations(object):
         json = self._serialize.body(number_body, "float")
 
         request = rest_number.build_put_small_decimal_request(
-            json=json, content_type=content_type, template_url=self.put_small_decimal.metadata["url"], **kwargs
-        )._internal_request
+            content_type=content_type, json=json, template_url=self.put_small_decimal.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -986,7 +986,7 @@ class NumberOperations(object):
 
         request = rest_number.build_get_small_decimal_request(
             template_url=self.get_small_decimal.metadata["url"], **kwargs
-        )._internal_request
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

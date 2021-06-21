@@ -48,7 +48,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = client._send_request(request)
+        response = client.send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
@@ -68,7 +68,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = client._send_request(request)
+        response = client.send_request(request)
 
         data = b''.join([chunk for chunk in response.stream_download(None)]).decode('utf-8')
         json_response = json.loads(data)
@@ -109,7 +109,7 @@ class TestSendRequest(object):
         )
         request.set_json_body(siamese_body)
 
-        response = client._send_request(request)
+        response = client.send_request(request)
         assert response.status_code == 200
 
     def test_send_request_with_body_serialize(self):
@@ -143,7 +143,7 @@ class TestSendRequest(object):
             }
         )
         request.set_json_body(siamese.serialize())
-        response = client._send_request(request)
+        response = client.send_request(request)
         assert response.status_code == 200
 
     def test_send_request_get_stream(self):
@@ -159,7 +159,7 @@ class TestSendRequest(object):
                 },
             )
 
-            response = client._send_request(request, stream=True)
+            response = client.send_request(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(None)  # want to make pipeline client an optional param in azure-core
@@ -199,7 +199,7 @@ class TestSendRequest(object):
                 },
                 data=stream_data,
             )
-            response = client._send_request(request)
+            response = client.send_request(request)
             assert response.status_code == 200
 
     def test_send_request_full_url(self):
@@ -214,7 +214,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = client._send_request(request)
+        response = client.send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id

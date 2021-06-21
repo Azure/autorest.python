@@ -48,7 +48,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         await response.load_body()
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
@@ -69,7 +69,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
 
         data = b''
         async for chunk in response.stream_download(None):
@@ -113,7 +113,7 @@ class TestSendRequest(object):
         )
         request.set_json_body(siamese_body)
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -149,7 +149,7 @@ class TestSendRequest(object):
         )
         request.set_json_body(siamese.serialize())
 
-        response = await client._send_request(request)
+        response = await client.send_request(request)
         assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -166,7 +166,7 @@ class TestSendRequest(object):
                 },
             )
 
-            response = await client._send_request(request, stream=True)
+            response = await client.send_request(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(None)
@@ -207,7 +207,7 @@ class TestSendRequest(object):
                 },
                 data=stream_data,
             )
-            response = await client._send_request(request)
+            response = await client.send_request(request)
             assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -223,7 +223,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = client._send_request(request)
+        response = client.send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
