@@ -97,7 +97,7 @@ class ParameterList(MutableSequence):
         )
 
     @property
-    def content_type_parameter(self) -> Parameter:
+    def content_type_parameter(self) -> Optional[Parameter]:
         try:
             content_type_param = next(iter(
                 [
