@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -63,9 +63,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_complex_type_ref_no_meta_request(
+        rest_request = rest_xml.build_get_complex_type_ref_no_meta_request(
             template_url=self.get_complex_type_ref_no_meta.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -105,12 +106,13 @@ class XmlOperations:
 
         content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
-        request = rest_xml.build_put_complex_type_ref_no_meta_request(
+        rest_request = rest_xml.build_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -140,9 +142,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_complex_type_ref_with_meta_request(
+        rest_request = rest_xml.build_get_complex_type_ref_with_meta_request(
             template_url=self.get_complex_type_ref_with_meta.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -182,12 +185,13 @@ class XmlOperations:
 
         content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
-        request = rest_xml.build_put_complex_type_ref_with_meta_request(
+        rest_request = rest_xml.build_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -217,9 +221,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_simple_request(
-            template_url=self.get_simple.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_simple_request(template_url=self.get_simple.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -260,9 +263,10 @@ class XmlOperations:
 
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = rest_xml.build_put_simple_request(
+        rest_request = rest_xml.build_put_simple_request(
             content_type=content_type, content=content, template_url=self.put_simple.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -293,9 +297,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_wrapped_lists_request(
+        rest_request = rest_xml.build_get_wrapped_lists_request(
             template_url=self.get_wrapped_lists.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -335,9 +340,10 @@ class XmlOperations:
 
         content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
-        request = rest_xml.build_put_wrapped_lists_request(
+        rest_request = rest_xml.build_put_wrapped_lists_request(
             content_type=content_type, content=content, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -368,9 +374,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_headers_request(
-            template_url=self.get_headers.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_headers_request(template_url=self.get_headers.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -403,9 +408,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_empty_list_request(
-            template_url=self.get_empty_list.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_empty_list_request(template_url=self.get_empty_list.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -445,9 +449,10 @@ class XmlOperations:
 
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = rest_xml.build_put_empty_list_request(
+        rest_request = rest_xml.build_put_empty_list_request(
             content_type=content_type, content=content, template_url=self.put_empty_list.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -477,9 +482,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_empty_wrapped_lists_request(
+        rest_request = rest_xml.build_get_empty_wrapped_lists_request(
             template_url=self.get_empty_wrapped_lists.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -519,12 +525,13 @@ class XmlOperations:
 
         content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
-        request = rest_xml.build_put_empty_wrapped_lists_request(
+        rest_request = rest_xml.build_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -554,9 +561,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_root_list_request(
-            template_url=self.get_root_list.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_root_list_request(template_url=self.get_root_list.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -597,9 +603,10 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = rest_xml.build_put_root_list_request(
+        rest_request = rest_xml.build_put_root_list_request(
             content_type=content_type, content=content, template_url=self.put_root_list.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -629,9 +636,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_root_list_single_item_request(
+        rest_request = rest_xml.build_get_root_list_single_item_request(
             template_url=self.get_root_list_single_item.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -672,12 +680,13 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = rest_xml.build_put_root_list_single_item_request(
+        rest_request = rest_xml.build_put_root_list_single_item_request(
             content_type=content_type,
             content=content,
             template_url=self.put_root_list_single_item.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -707,9 +716,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_empty_root_list_request(
+        rest_request = rest_xml.build_get_empty_root_list_request(
             template_url=self.get_empty_root_list.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -750,9 +760,10 @@ class XmlOperations:
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = rest_xml.build_put_empty_root_list_request(
+        rest_request = rest_xml.build_put_empty_root_list_request(
             content_type=content_type, content=content, template_url=self.put_empty_root_list.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -782,9 +793,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_empty_child_element_request(
+        rest_request = rest_xml.build_get_empty_child_element_request(
             template_url=self.get_empty_child_element.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -824,12 +836,13 @@ class XmlOperations:
 
         content = self._serialize.body(banana, "Banana", is_xml=True)
 
-        request = rest_xml.build_put_empty_child_element_request(
+        rest_request = rest_xml.build_put_empty_child_element_request(
             content_type=content_type,
             content=content,
             template_url=self.put_empty_child_element.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -859,9 +872,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_list_containers_request(
+        rest_request = rest_xml.build_list_containers_request(
             template_url=self.list_containers.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -895,9 +909,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_service_properties_request(
+        rest_request = rest_xml.build_get_service_properties_request(
             template_url=self.get_service_properties.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -937,12 +952,13 @@ class XmlOperations:
 
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
-        request = rest_xml.build_put_service_properties_request(
+        rest_request = rest_xml.build_put_service_properties_request(
             content_type=content_type,
             content=content,
             template_url=self.put_service_properties.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -972,9 +988,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_acls_request(
-            template_url=self.get_acls.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_acls_request(template_url=self.get_acls.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1017,9 +1032,10 @@ class XmlOperations:
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
 
-        request = rest_xml.build_put_acls_request(
+        rest_request = rest_xml.build_put_acls_request(
             content_type=content_type, content=content, template_url=self.put_acls.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1049,9 +1065,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_list_blobs_request(
-            template_url=self.list_blobs.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_list_blobs_request(template_url=self.list_blobs.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1093,9 +1108,10 @@ class XmlOperations:
         _properties = _models.JSONInput(id=id)
         json = self._serialize.body(_properties, "JSONInput")
 
-        request = rest_xml.build_json_input_request(
+        rest_request = rest_xml.build_json_input_request(
             content_type=content_type, json=json, template_url=self.json_input.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1125,9 +1141,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_json_output_request(
-            template_url=self.json_output.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_json_output_request(template_url=self.json_output.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1162,9 +1177,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_xms_text_request(
-            template_url=self.get_xms_text.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_xms_text_request(template_url=self.get_xms_text.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1198,9 +1212,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_bytes_request(
-            template_url=self.get_bytes.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_bytes_request(template_url=self.get_bytes.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1242,9 +1255,10 @@ class XmlOperations:
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
         content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
-        request = rest_xml.build_put_binary_request(
+        rest_request = rest_xml.build_put_binary_request(
             content_type=content_type, content=content, template_url=self.put_binary.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1275,9 +1289,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xml.build_get_uri_request(
-            template_url=self.get_uri.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_xml.build_get_uri_request(template_url=self.get_uri.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1319,9 +1332,10 @@ class XmlOperations:
         _model = _models.ModelWithUrlProperty(url=url)
         content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
-        request = rest_xml.build_put_uri_request(
+        rest_request = rest_xml.build_put_uri_request(
             content_type=content_type, content=content, template_url=self.put_uri.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

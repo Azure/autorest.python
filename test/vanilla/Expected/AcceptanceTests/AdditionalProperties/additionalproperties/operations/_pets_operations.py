@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
@@ -78,9 +78,10 @@ class PetsOperations(object):
 
         json = self._serialize.body(create_parameters, "PetAPTrue")
 
-        request = rest_pets.build_create_ap_true_request(
+        rest_request = rest_pets.build_create_ap_true_request(
             content_type=content_type, json=json, template_url=self.create_ap_true.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -124,9 +125,10 @@ class PetsOperations(object):
 
         json = self._serialize.body(create_parameters, "CatAPTrue")
 
-        request = rest_pets.build_create_cat_ap_true_request(
+        rest_request = rest_pets.build_create_cat_ap_true_request(
             content_type=content_type, json=json, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -170,9 +172,10 @@ class PetsOperations(object):
 
         json = self._serialize.body(create_parameters, "PetAPObject")
 
-        request = rest_pets.build_create_ap_object_request(
+        rest_request = rest_pets.build_create_ap_object_request(
             content_type=content_type, json=json, template_url=self.create_ap_object.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -216,9 +219,10 @@ class PetsOperations(object):
 
         json = self._serialize.body(create_parameters, "PetAPString")
 
-        request = rest_pets.build_create_ap_string_request(
+        rest_request = rest_pets.build_create_ap_string_request(
             content_type=content_type, json=json, template_url=self.create_ap_string.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -262,9 +266,10 @@ class PetsOperations(object):
 
         json = self._serialize.body(create_parameters, "PetAPInProperties")
 
-        request = rest_pets.build_create_ap_in_properties_request(
+        rest_request = rest_pets.build_create_ap_in_properties_request(
             content_type=content_type, json=json, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -308,12 +313,13 @@ class PetsOperations(object):
 
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
-        request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
+        rest_request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

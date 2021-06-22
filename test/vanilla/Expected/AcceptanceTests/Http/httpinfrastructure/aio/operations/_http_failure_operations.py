@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -63,9 +63,10 @@ class HttpFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_failure.build_get_empty_error_request(
+        rest_request = rest_http_failure.build_get_empty_error_request(
             template_url=self.get_empty_error.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -100,9 +101,10 @@ class HttpFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_failure.build_get_no_model_error_request(
+        rest_request = rest_http_failure.build_get_no_model_error_request(
             template_url=self.get_no_model_error.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -136,9 +138,10 @@ class HttpFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_failure.build_get_no_model_empty_request(
+        rest_request = rest_http_failure.build_get_no_model_empty_request(
             template_url=self.get_no_model_empty.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

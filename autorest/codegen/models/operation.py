@@ -199,6 +199,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:
             file_import.add_from_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
+        file_import.add_from_import(
+            "azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE, alias="PipelineTransportHttpRequest"
+        )
 
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"

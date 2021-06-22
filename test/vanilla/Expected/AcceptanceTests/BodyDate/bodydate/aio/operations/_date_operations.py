@@ -18,7 +18,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -64,9 +64,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_date.build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -101,9 +100,10 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_invalid_date_request(
+        rest_request = rest_date.build_get_invalid_date_request(
             template_url=self.get_invalid_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -138,9 +138,10 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_overflow_date_request(
+        rest_request = rest_date.build_get_overflow_date_request(
             template_url=self.get_overflow_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -175,9 +176,10 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_underflow_date_request(
+        rest_request = rest_date.build_get_underflow_date_request(
             template_url=self.get_underflow_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -218,9 +220,10 @@ class DateOperations:
 
         json = self._serialize.body(date_body, "date")
 
-        request = rest_date.build_put_max_date_request(
+        rest_request = rest_date.build_put_max_date_request(
             content_type=content_type, json=json, template_url=self.put_max_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -251,9 +254,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_date.build_get_max_date_request(template_url=self.get_max_date.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -294,9 +296,10 @@ class DateOperations:
 
         json = self._serialize.body(date_body, "date")
 
-        request = rest_date.build_put_min_date_request(
+        rest_request = rest_date.build_put_min_date_request(
             content_type=content_type, json=json, template_url=self.put_min_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -327,9 +330,8 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_date.build_get_min_date_request(template_url=self.get_min_date.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

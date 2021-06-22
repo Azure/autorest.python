@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -73,9 +73,10 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_pet.build_get_pet_by_id_request(
+        rest_request = rest_pet.build_get_pet_by_id_request(
             pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -120,9 +121,10 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_pet.build_do_something_request(
+        rest_request = rest_pet.build_do_something_request(
             what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -168,9 +170,10 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_pet.build_has_models_param_request(
+        rest_request = rest_pet.build_has_models_param_request(
             models=models, template_url=self.has_models_param.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

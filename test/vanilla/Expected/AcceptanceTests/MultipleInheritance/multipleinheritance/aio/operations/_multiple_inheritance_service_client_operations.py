@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -41,9 +41,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.build_get_horse_request(
-            template_url=self.get_horse.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest.build_get_horse_request(template_url=self.get_horse.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -84,9 +83,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         json = self._serialize.body(horse, "Horse")
 
-        request = _rest.build_put_horse_request(
+        rest_request = rest.build_put_horse_request(
             content_type=content_type, json=json, template_url=self.put_horse.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -120,9 +120,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.build_get_pet_request(
-            template_url=self.get_pet.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest.build_get_pet_request(template_url=self.get_pet.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -164,9 +163,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _pet = _models.Pet(name=name)
         json = self._serialize.body(_pet, "Pet")
 
-        request = _rest.build_put_pet_request(
+        rest_request = rest.build_put_pet_request(
             content_type=content_type, json=json, template_url=self.put_pet.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -200,9 +200,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.build_get_feline_request(
-            template_url=self.get_feline.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest.build_get_feline_request(template_url=self.get_feline.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -243,9 +242,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         json = self._serialize.body(feline, "Feline")
 
-        request = _rest.build_put_feline_request(
+        rest_request = rest.build_put_feline_request(
             content_type=content_type, json=json, template_url=self.put_feline.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -279,9 +279,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.build_get_cat_request(
-            template_url=self.get_cat.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest.build_get_cat_request(template_url=self.get_cat.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -322,9 +321,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         json = self._serialize.body(cat, "Cat")
 
-        request = _rest.build_put_cat_request(
+        rest_request = rest.build_put_cat_request(
             content_type=content_type, json=json, template_url=self.put_cat.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -359,9 +359,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = _rest.build_get_kitten_request(
-            template_url=self.get_kitten.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest.build_get_kitten_request(template_url=self.get_kitten.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -404,9 +403,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         json = self._serialize.body(kitten, "Kitten")
 
-        request = _rest.build_put_kitten_request(
+        rest_request = rest.build_put_kitten_request(
             content_type=content_type, json=json, template_url=self.put_kitten.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

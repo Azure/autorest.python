@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
@@ -85,14 +85,15 @@ class AvailabilitySetsOperations(object):
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = rest_availability_sets.build_update_request(
+        rest_request = rest_availability_sets.build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
             **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

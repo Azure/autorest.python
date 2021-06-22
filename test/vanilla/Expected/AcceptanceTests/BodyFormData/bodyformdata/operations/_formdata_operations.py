@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
@@ -85,9 +85,10 @@ class FormdataOperations(object):
             "fileName": file_name,
         }
 
-        request = rest_formdata.build_upload_file_request(
+        rest_request = rest_formdata.build_upload_file_request(
             content_type=content_type, files=files, template_url=self.upload_file.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -131,9 +132,10 @@ class FormdataOperations(object):
 
         content = file_content
 
-        request = rest_formdata.build_upload_file_via_body_request(
+        rest_request = rest_formdata.build_upload_file_via_body_request(
             content_type=content_type, content=content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -180,9 +182,10 @@ class FormdataOperations(object):
             "fileContent": file_content,
         }
 
-        request = rest_formdata.build_upload_files_request(
+        rest_request = rest_formdata.build_upload_files_request(
             content_type=content_type, files=files, template_url=self.upload_files.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)

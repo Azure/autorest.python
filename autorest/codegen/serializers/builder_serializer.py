@@ -618,13 +618,12 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         if builder.parameters.has_body:
             retval.extend(self._serialize_body_parameters(builder))
         operation_group_name = request_builder.operation_group_name
-        request_path_name = "{}rest{}.{}".format(
-            "_" if not operation_group_name and not self.code_model.rest_layer else "",
+        request_path_name = "rest{}.{}".format(
             ("_" + operation_group_name) if operation_group_name else "",
             request_builder.name
         )
         retval.append("")
-        retval.append(f"request = {request_path_name}(")
+        retval.append(f"rest_request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
             if parameter.is_body:
                 continue
@@ -634,7 +633,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):
                 retval.append(f"    {kwarg}={kwarg},")
         retval.append(f"    template_url={self._template_url_to_pass_to_request_builder(builder)},")
         retval.append("    **kwargs")
-        retval.append(")._to_pipeline_transport_request()")
+        retval.append(")")
+        retval.append("request = PipelineTransportHttpRequest._from_rest_request(rest_request)")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))
         retval.append("request.url = self._client.format_url(request.url{})".format(

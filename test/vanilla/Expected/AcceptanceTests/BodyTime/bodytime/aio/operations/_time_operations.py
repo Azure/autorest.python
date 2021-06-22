@@ -18,7 +18,7 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest as PipelineTransportHttpRequest
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
@@ -64,9 +64,8 @@ class TimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_time.build_get_request(
-            template_url=self.get.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        rest_request = rest_time.build_get_request(template_url=self.get.metadata["url"], **kwargs)
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -107,9 +106,10 @@ class TimeOperations:
 
         json = self._serialize.body(time_body, "time")
 
-        request = rest_time.build_put_request(
+        rest_request = rest_time.build_put_request(
             content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs
-        )._to_pipeline_transport_request()
+        )
+        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
