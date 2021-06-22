@@ -9,6 +9,7 @@ from typing import cast, List, Callable, Optional
 
 from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -94,6 +95,25 @@ class ParameterList(MutableSequence):
         return self.get_from_predicate(
             lambda parameter: parameter.constant
         )
+
+    @property
+    def content_type_parameter(self) -> Parameter:
+        try:
+            content_type_param = next(iter(
+                [
+                    p for p in self.parameters
+                    if p.rest_api_name == "Content-Type"
+                ]
+            ))
+            return content_type_param
+        except StopIteration:
+            raise ValueError("You are looking for a Content-Type parameter, but there is none for this operation.")
+
+    @property
+    def content_type(self) -> str:
+        if isinstance(self.content_type_parameter.schema, ConstantSchema):
+            return self.content_type_parameter.schema.get_declaration(self.content_type_parameter.schema.value)
+        return self.content_type_parameter.schema.default_value_declaration
 
     @property
     def method(self) -> List[Parameter]:
