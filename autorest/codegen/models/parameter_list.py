@@ -105,6 +105,7 @@ class ParameterList(MutableSequence):
                     if p.rest_api_name == "Content-Type"
                 ]
             ))
+            content_type_param.is_kwarg = True
             return content_type_param
         except StopIteration:
             raise ValueError("You are looking for a Content-Type parameter, but there is none for this operation.")
