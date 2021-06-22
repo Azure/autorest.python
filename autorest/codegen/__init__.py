@@ -19,7 +19,7 @@ from .serializers import JinjaSerializer
 
 def _get_credential_default_policy_type_has_async_version(credential_default_policy_type: str) -> bool:
     mapping = {
-        "BearerTokenCredentialPolicy": True,
+        "ARMChallengeAuthenticationPolicy": True,
         "AzureKeyCredentialPolicy": False
     }
     return mapping[credential_default_policy_type]
@@ -142,7 +142,7 @@ class CodeGenerator(Plugin):
         credential_scopes = self._get_credential_scopes(credential)
         credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
 
-        if credential_default_policy_type == "BearerTokenCredentialPolicy":
+        if credential_default_policy_type == "ARMChallengeAuthenticationPolicy":
             if not credential_scopes:
                 if azure_arm:
                     credential_scopes = ["https://management.azure.com/.default"]
@@ -150,7 +150,7 @@ class CodeGenerator(Plugin):
                     # If add-credential is specified, we still want to add a credential_scopes variable.
                     # Will make it an empty list so we can differentiate between this case and None
                     _LOGGER.warning(
-                        "You have default credential policy BearerTokenCredentialPolicy"
+                        "You have default credential policy ARMChallengeAuthenticationPolicy"
                         "but not the --credential-scopes flag set while generating non-management plane code. "
                         "This is not recommend because it forces the customer to pass credential scopes "
                         "through kwargs if they want to authenticate."
@@ -159,7 +159,7 @@ class CodeGenerator(Plugin):
             if credential_key_header_name:
                 raise ValueError(
                     "You have passed in a credential key header name with default credential policy type "
-                    "BearerTokenCredentialPolicy. This is not allowed, since credential key header name is tied with "
+                    "ARMChallengeAuthenticationPolicy. This is not allowed, since credential key header name is tied with "
                     "AzureKeyCredentialPolicy. Instead, with this policy it is recommend you pass in "
                     "--credential-scopes."
                 )
@@ -169,7 +169,7 @@ class CodeGenerator(Plugin):
                 raise ValueError(
                     "You have passed in credential scopes with default credential policy type "
                     "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in "
+                    "ARMChallengeAuthenticationPolicy. Instead, with this policy you must pass in "
                     "--credential-key-header-name."
                 )
             if not credential_key_header_name:
@@ -182,11 +182,11 @@ class CodeGenerator(Plugin):
     def _handle_default_authentication_policy(self, azure_arm, credential):
 
         passed_in_credential_default_policy_type = (
-            self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
+            self._autorestapi.get_value("credential-default-policy-type") or "ARMChallengeAuthenticationPolicy"
         )
 
-        # right now, we only allow BearerTokenCredentialPolicy and AzureKeyCredentialPolicy
-        allowed_policies = ["BearerTokenCredentialPolicy", "AzureKeyCredentialPolicy"]
+        # right now, we only allow ARMChallengeAuthenticationPolicy and AzureKeyCredentialPolicy
+        allowed_policies = ["ARMChallengeAuthenticationPolicy", "AzureKeyCredentialPolicy"]
         try:
             credential_default_policy_type = [
                 cp for cp in allowed_policies if cp.lower() == passed_in_credential_default_policy_type.lower()
@@ -194,7 +194,7 @@ class CodeGenerator(Plugin):
         except IndexError:
             raise ValueError(
                 "The credential you pass in with --credential-default-policy-type must be either "
-                "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
+                "ARMChallengeAuthenticationPolicy or AzureKeyCredentialPolicy"
             )
 
         credential_scopes, credential_key_header_name = self._get_credential_param(

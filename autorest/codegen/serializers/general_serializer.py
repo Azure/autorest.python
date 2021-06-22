@@ -18,7 +18,9 @@ def config_imports(code_model, global_parameters: ParameterList, async_mode: boo
     for gp in global_parameters:
         file_import.merge(gp.imports())
     if code_model.options["azure_arm"]:
-        file_import.add_from_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE)
+        async_policy = "ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy"
+        policy = "ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy"
+        file_import.add_from_import("azure.mgmt.core.policies", async_policy if async_mode else policy, ImportType.AZURECORE)
     return file_import
 
 
@@ -53,7 +55,7 @@ class GeneralSerializer:
 
         if (
             self.code_model.options['credential'] and
-            self.code_model.options['credential_default_policy_type'] == "BearerTokenCredentialPolicy"
+            self.code_model.options['credential_default_policy_type'] == "ARMChallengeAuthenticationPolicy"
         ):
             self._correct_credential_parameter()
 
@@ -75,7 +77,7 @@ class GeneralSerializer:
 
         if (
             self.code_model.options['credential'] and
-            self.code_model.options['credential_default_policy_type'] == "BearerTokenCredentialPolicy"
+            self.code_model.options['credential_default_policy_type'] == "ARMChallengeAuthenticationPolicy"
         ):
             self._correct_credential_parameter()
 
