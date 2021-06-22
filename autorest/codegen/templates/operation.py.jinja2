@@ -77,7 +77,7 @@
     {% endfor %}
 {% endif %}
 
-{% if operation.parameters.has_body %}
+{% if operation.parameters.content_type_parameter %}
     {% set content_type_parameter = operation.parameters.content_type_parameter %}
     {% if not content_type_parameter.constant %}
     {{ content_type_parameter.serialized_name }} = kwargs.pop("{{ content_type_parameter.serialized_name }}", {{ content_type_parameter.schema.default_value_declaration }})

@@ -131,11 +131,9 @@ class HeaderOperations:
     response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
     @distributed_trace_async
-    async def param_protected_key(self, content_type: str, **kwargs: Any) -> None:
+    async def param_protected_key(self, **kwargs: Any) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
-        :param content_type: Send a post request with header value "Content-Type": "text/html".
-        :type content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -146,6 +144,7 @@ class HeaderOperations:
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
+        content_type = kwargs.pop("content_type", None)
         # Construct URL
         url = self.param_protected_key.metadata["url"]  # type: ignore
 

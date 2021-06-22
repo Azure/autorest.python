@@ -144,15 +144,11 @@ class HeaderOperations(object):
 
     @distributed_trace
     def param_protected_key(
-        self,
-        content_type,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header value "Content-Type": "text/html".
 
-        :param content_type: Send a post request with header value "Content-Type": "text/html".
-        :type content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -163,6 +159,7 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
+        content_type = kwargs.pop("content_type", None)
         # Construct URL
         url = self.param_protected_key.metadata["url"]  # type: ignore
 
