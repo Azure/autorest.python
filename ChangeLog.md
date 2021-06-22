@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-06-22 - 5.8.2
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- We are now more lenient with our checks for the content type parameter  #956
+
 ### 2021-06-16 - 5.8.1
 
 min Autorest core version: 3.3.0
