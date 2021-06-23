@@ -30,7 +30,7 @@ from azure.core.exceptions import HttpResponseError
 
 from bodystring.aio import AutoRestSwaggerBATService
 from bodystring.models import Colors, RefColorConstant
-from bodystring._rest import string, enum
+from bodystring.rest import string, enum
 import pytest
 
 @pytest.fixture

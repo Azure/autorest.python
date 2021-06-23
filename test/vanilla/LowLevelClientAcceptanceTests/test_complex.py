@@ -31,7 +31,7 @@ from datetime import date, datetime, timedelta, tzinfo
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 from bodycomplex import AutoRestComplexTestService
 from bodycomplex.models import *
-from bodycomplex._rest import (
+from bodycomplex.rest import (
     basic,
     primitive,
     readonlyproperty,

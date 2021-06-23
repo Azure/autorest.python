@@ -26,7 +26,7 @@
 from os.path import dirname, pardir, join, realpath
 
 from extensibleenumsswagger import PetStoreInc
-from extensibleenumsswagger._rest import pet
+from extensibleenumsswagger.rest import pet
 from extensibleenumsswagger.models import (
     Pet,
     DaysOfWeekExtensibleEnum,

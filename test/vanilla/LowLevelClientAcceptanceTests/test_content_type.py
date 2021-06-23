@@ -27,7 +27,7 @@
 import io
 import os
 from mediatypes import MediaTypesClient
-from mediatypes._rest import *
+from mediatypes.rest import *
 
 def test_json_body_no_content_type_kwarg():
     request = build_analyze_body_request(json={"source":"foo"})

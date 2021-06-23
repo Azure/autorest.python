@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from bodybyte.aio import AutoRestSwaggerBATByteService
-from bodybyte._rest import byte
+from bodybyte.rest import byte
 from async_generator import yield_, async_generator
 from base64 import b64encode
 

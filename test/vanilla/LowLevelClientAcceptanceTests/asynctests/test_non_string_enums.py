@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from nonstringenums.aio import NonStringEnumsClient
 from nonstringenums.models import IntEnum, FloatEnum
-from nonstringenums._rest import int, float
+from nonstringenums.rest import int, float
 from async_generator import yield_, async_generator
 
 import pytest

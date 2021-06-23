@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from mediatypes.aio import MediaTypesClient
-from mediatypes._rest import *
+from mediatypes.rest import *
 from async_generator import yield_, async_generator
 
 import pytest

@@ -30,7 +30,7 @@ from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
 
 from httpinfrastructure import AutoRestHttpInfrastructureTestService
-from httpinfrastructure._rest import (
+from httpinfrastructure.rest import (
     http_client_failure,
     http_failure,
     http_redirects,

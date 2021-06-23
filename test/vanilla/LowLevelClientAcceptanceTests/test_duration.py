@@ -29,7 +29,7 @@ import isodate
 from msrest.exceptions import DeserializationError
 
 from bodyduration import AutoRestDurationTestService
-from bodyduration._rest import duration
+from bodyduration.rest import duration
 
 import pytest
 

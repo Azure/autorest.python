@@ -28,7 +28,7 @@
 
 from multipleinheritance.aio import MultipleInheritanceServiceClient
 from multipleinheritance.models import *
-from multipleinheritance._rest import *
+from multipleinheritance.rest import *
 from async_generator import yield_, async_generator
 import pytest
 

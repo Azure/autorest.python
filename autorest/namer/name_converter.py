@@ -60,7 +60,7 @@ class NameConverter:
                 for request in operation.get("requests", []):
                     NameConverter._convert_language_default_python_case(request)
                     for parameter in request.get("parameters", []):
-                        NameConverter._add_multipart_information(parameter, operation)
+                        NameConverter._add_multipart_information(parameter, request)
                         NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                         if parameter.get("origin", "") == "modelerfour:synthesized/content-type":
                             parameter["required"] = False
@@ -113,10 +113,14 @@ class NameConverter:
 
 
     @staticmethod
-    def _add_multipart_information(parameter: Dict[str, Any], operation: Dict[str, Any]):
-        multipart = operation["requests"][0]["protocol"]["http"].get("multipart", False)
-        if multipart and parameter["protocol"]["http"]["in"] == "body":
-            parameter["language"]["default"]["multipart"] = True
+    def _add_multipart_information(parameter: Dict[str, Any], request: Dict[str, Any]):
+        multipart = request["protocol"].get("http", {}).get("multipart", False)
+        if multipart:
+            if parameter["protocol"]["http"]["in"] == "body":
+                parameter["language"]["default"]["multipart"] = True
+            if parameter["language"]["default"]["serializedName"] == "Content-Type":
+                parameter['schema']['value']['value'] = None
+
 
     @staticmethod
     def _convert_extensions(operation: Dict[str, Any]) -> None:

@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 import isodate
 from datetime import timedelta
-from bodydictionary._rest import dictionary
+from bodydictionary.rest import dictionary
 from bodydictionary.aio import AutoRestSwaggerBATDictionaryService
 from bodydictionary.models import Widget
 from azure.core.exceptions import DecodeError

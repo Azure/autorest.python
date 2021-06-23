@@ -33,7 +33,7 @@ from additionalproperties.models import (
     PetAPInProperties,
     PetAPInPropertiesWithAPString
 )
-from additionalproperties._rest.pets import *
+from additionalproperties.rest.pets import *
 
 @pytest.fixture
 def client():

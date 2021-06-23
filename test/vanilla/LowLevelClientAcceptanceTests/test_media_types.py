@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from mediatypes import MediaTypesClient
-from mediatypes._rest import build_analyze_body_request, build_content_type_with_encoding_request
+from mediatypes.rest import build_analyze_body_request, build_content_type_with_encoding_request
 
 import pytest
 

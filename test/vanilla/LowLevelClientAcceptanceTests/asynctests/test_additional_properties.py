@@ -34,7 +34,7 @@ from additionalproperties.models import (
     PetAPInProperties,
     PetAPInPropertiesWithAPString
 )
-from additionalproperties._rest import pets
+from additionalproperties.rest import pets
 
 @pytest.fixture
 @async_generator

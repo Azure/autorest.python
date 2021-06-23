@@ -26,7 +26,7 @@
 import isodate
 import json
 from datetime import timedelta
-from bodydictionary._rest import dictionary
+from bodydictionary.rest import dictionary
 from bodydictionary import AutoRestSwaggerBATDictionaryService
 from bodydictionary.models import Widget
 

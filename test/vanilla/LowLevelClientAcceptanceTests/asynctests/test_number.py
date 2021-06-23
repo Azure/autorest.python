@@ -30,7 +30,7 @@ from async_generator import yield_, async_generator
 from azure.core.exceptions import DecodeError
 
 from bodynumber.aio import AutoRestNumberTestService
-from bodynumber._rest import number
+from bodynumber.rest import number
 
 import pytest
 

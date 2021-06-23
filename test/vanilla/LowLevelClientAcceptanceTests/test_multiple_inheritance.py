@@ -28,7 +28,7 @@
 
 from multipleinheritance import MultipleInheritanceServiceClient
 from multipleinheritance.models import *
-from multipleinheritance._rest import *
+from multipleinheritance.rest import *
 import pytest
 
 @pytest.fixture

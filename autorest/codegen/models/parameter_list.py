@@ -156,7 +156,7 @@ class ParameterList(MutableSequence):
 
     @property
     def content_types(self) -> List[str]:
-        if self._content_types:
+        if self._content_types is not None:
             return self._content_types
         content_type_params = self.get_from_predicate(
             lambda parameter: parameter.serialized_name == "content_type"
@@ -176,7 +176,7 @@ class ParameterList(MutableSequence):
                 content_types.update({v.value: None for v in param.schema.values})
             if param.client_default_value:
                 content_types.update({param.client_default_value: None})
-        self._content_types = list(content_types.keys())
+        self._content_types = list(k for k in content_types.keys() if k is not None)
         return self._content_types
 
     @property

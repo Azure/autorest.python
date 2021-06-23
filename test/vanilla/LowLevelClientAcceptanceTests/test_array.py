@@ -29,7 +29,7 @@ from datetime import date, datetime, timedelta
 from base64 import b64encode
 from bodyarray import AutoRestSwaggerBATArrayService
 from bodyarray.models import Product
-from bodyarray._rest import array
+from bodyarray.rest import array
 import msrest
 
 import pytest

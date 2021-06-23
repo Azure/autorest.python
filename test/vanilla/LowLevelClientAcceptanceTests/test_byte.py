@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from bodybyte import AutoRestSwaggerBATByteService
-from bodybyte._rest import byte
+from bodybyte.rest import byte
 from base64 import b64encode
 import pytest
 

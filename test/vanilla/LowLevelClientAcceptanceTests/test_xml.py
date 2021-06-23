@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from xmlservice import AutoRestSwaggerBATXMLService
-from xmlservice._rest import xml
+from xmlservice.rest import xml
 from xmlservice.models import *
 
 from datetime import date

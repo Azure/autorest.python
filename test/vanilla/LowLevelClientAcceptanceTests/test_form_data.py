@@ -39,7 +39,7 @@ sys.path.append(join(tests, "BodyFormData"))
 
 
 from bodyformdata import AutoRestSwaggerBATFormDataService
-from bodyformdata._rest import formdata
+from bodyformdata.rest import formdata
 import pytest
 
 @pytest.fixture

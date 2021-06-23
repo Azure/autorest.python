@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from objecttype.aio import ObjectTypeClient
-from objecttype._rest import *
+from objecttype.rest import *
 from azure.core.exceptions import HttpResponseError
 
 import pytest

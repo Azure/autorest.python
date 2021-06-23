@@ -29,7 +29,7 @@ from datetime import datetime, timedelta
 from base64 import b64decode
 
 from header import AutoRestSwaggerBATHeaderService
-from header._rest import header
+from header.rest import header
 from header.models import GreyscaleColors
 
 import pytest

@@ -27,9 +27,9 @@
 from datetime import datetime
 from async_generator import yield_, async_generator
 from url.aio import AutoRestUrlTestService
-from url._rest import path_items, paths, queries
+from url.rest import path_items, paths, queries
 from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
-from urlmulticollectionformat._rest import *
+from urlmulticollectionformat.rest import *
 from url.models import UriColor
 from msrest.exceptions import ValidationError
 

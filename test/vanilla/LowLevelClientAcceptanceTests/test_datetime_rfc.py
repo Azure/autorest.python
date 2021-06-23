@@ -28,7 +28,7 @@ import isodate
 from msrest.exceptions import DeserializationError
 
 from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
-from bodydatetimerfc1123._rest import datetimerfc1123
+from bodydatetimerfc1123.rest import datetimerfc1123
 
 import pytest
 

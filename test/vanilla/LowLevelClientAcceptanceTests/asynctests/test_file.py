@@ -28,7 +28,7 @@ from async_generator import yield_, async_generator
 from os.path import dirname, pardir, join, realpath
 import io
 from bodyfile.aio import AutoRestSwaggerBATFileService
-from bodyfile._rest.files import *
+from bodyfile.rest.files import *
 
 import pytest
 

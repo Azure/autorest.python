@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from nonstringenums import NonStringEnumsClient
 from nonstringenums.models import IntEnum, FloatEnum
-from nonstringenums._rest import int, float
+from nonstringenums.rest import int, float
 
 import pytest
 import json

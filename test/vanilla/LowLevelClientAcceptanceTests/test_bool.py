@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from bodyboolean import AutoRestBoolTestService
-from bodyboolean._rest import bool
+from bodyboolean.rest import bool
 import pytest
 from azure.core.exceptions import DecodeError
 

@@ -26,9 +26,9 @@
 
 from datetime import datetime
 from url import AutoRestUrlTestService
-from url._rest import *
+from url.rest import *
 from urlmulticollectionformat import AutoRestUrlMutliCollectionFormatTestService
-from urlmulticollectionformat._rest import *
+from urlmulticollectionformat.rest import *
 from url.models import UriColor
 from msrest.exceptions import ValidationError
 

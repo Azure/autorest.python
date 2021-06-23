@@ -30,7 +30,7 @@ from azure.core.exceptions import HttpResponseError
 from msrest.exceptions import ValidationError
 
 from requiredoptional.aio import AutoRestRequiredOptionalTestService
-from requiredoptional._rest import implicit, explicit
+from requiredoptional.rest import implicit, explicit
 from requiredoptional.models import *
 
 import pytest

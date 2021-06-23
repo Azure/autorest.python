@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 
 from objecttype import ObjectTypeClient
-from objecttype._rest import build_get_request, build_put_request
+from objecttype.rest import build_get_request, build_put_request
 from azure.core.exceptions import HttpResponseError
 
 import pytest

@@ -29,7 +29,7 @@ from modelflattening.models import (
     FlattenedProduct,
     ResourceCollection,
     SimpleProduct)
-from modelflattening._rest import *
+from modelflattening.rest import *
 
 import pytest
 

@@ -33,7 +33,7 @@ from validation.models import (
     Product,
     ConstantProduct,
     ChildProduct)
-from validation._rest import *
+from validation.rest import *
 
 import pytest
 

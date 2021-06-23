@@ -67,7 +67,7 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "multipart/form-data")  # type: Optional[str]
+        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         # Construct form data
         files = {
@@ -159,7 +159,7 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "multipart/form-data")  # type: Optional[str]
+        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         # Construct form data
         files = {

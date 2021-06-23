@@ -29,7 +29,7 @@ import datetime
 from async_generator import yield_, async_generator
 
 from bodydate.aio import AutoRestDateTestService
-from bodydate._rest import date
+from bodydate.rest import date
 
 import pytest
 

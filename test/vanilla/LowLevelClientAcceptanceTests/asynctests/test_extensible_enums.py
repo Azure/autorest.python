@@ -26,7 +26,7 @@
 from async_generator import yield_, async_generator
 
 from extensibleenumsswagger.aio import PetStoreInc
-from extensibleenumsswagger._rest import pet
+from extensibleenumsswagger.rest import pet
 from extensibleenumsswagger.models import (
     Pet,
     DaysOfWeekExtensibleEnum,

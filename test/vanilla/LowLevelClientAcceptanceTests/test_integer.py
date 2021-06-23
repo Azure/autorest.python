@@ -26,7 +26,7 @@
 
 from datetime import datetime
 from bodyinteger import AutoRestIntegerTestService
-from bodyinteger._rest import int
+from bodyinteger.rest import int
 
 import pytest
 import calendar

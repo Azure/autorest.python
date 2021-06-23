@@ -27,7 +27,7 @@ import isodate
 from async_generator import yield_, async_generator
 
 from bodydatetimerfc1123.aio import AutoRestRFC1123DateTimeTestService
-from bodydatetimerfc1123._rest import datetimerfc1123
+from bodydatetimerfc1123.rest import datetimerfc1123
 
 import pytest
 
