@@ -1,0 +1,44 @@
+requests>=2.14.0
+pytest
+pytest-cov
+pytest-asyncio==0.14.0;python_full_version>="3.5.2"
+async_generator;python_full_version>="3.5.2"
+msrest>=0.6.21
+azure-core>=1.3.0
+aiohttp;python_full_version>="3.5.2"
+-e ./Expected/AcceptanceTests/AdditionalPropertiesLowLevel
+-e ./Expected/AcceptanceTests/BodyArrayLowLevel
+-e ./Expected/AcceptanceTests/BodyBooleanLowLevel
+-e ./Expected/AcceptanceTests/BodyByteLowLevel
+-e ./Expected/AcceptanceTests/BodyComplexLowLevel
+-e ./Expected/AcceptanceTests/BodyDateLowLevel
+-e ./Expected/AcceptanceTests/BodyDateTimeLowLevel
+-e ./Expected/AcceptanceTests/BodyDateTimeRfc1123LowLevel
+-e ./Expected/AcceptanceTests/BodyDictionaryLowLevel
+-e ./Expected/AcceptanceTests/BodyDurationLowLevel
+-e ./Expected/AcceptanceTests/BodyFileLowLevel
+-e ./Expected/AcceptanceTests/BodyFormDataLowLevel
+-e ./Expected/AcceptanceTests/BodyIntegerLowLevel
+-e ./Expected/AcceptanceTests/BodyNumberLowLevel
+-e ./Expected/AcceptanceTests/BodyStringLowLevel
+-e ./Expected/AcceptanceTests/BodyTimeLowLevel
+-e ./Expected/AcceptanceTests/CustomBaseUriLowLevel
+-e ./Expected/AcceptanceTests/CustomBaseUriMoreOptionsLowLevel
+-e ./Expected/AcceptanceTests/ExtensibleEnumsLowLevel
+-e ./Expected/AcceptanceTests/HeaderLowLevel
+-e ./Expected/AcceptanceTests/HttpLowLevel
+-e ./Expected/AcceptanceTests/IncorrectErrorResponseLowLevel
+-e ./Expected/AcceptanceTests/MediaTypesLowLevel
+-e ./Expected/AcceptanceTests/ModelFlatteningLowLevel
+-e ./Expected/AcceptanceTests/MultipleInheritanceLowLevel
+-e ./Expected/AcceptanceTests/NoOperationsLowLevel
+-e ./Expected/AcceptanceTests/NonStringEnumsLowLevel
+-e ./Expected/AcceptanceTests/ObjectTypeLowLevel
+-e ./Expected/AcceptanceTests/ParameterFlatteningLowLevel
+-e ./Expected/AcceptanceTests/ReportLowLevel
+-e ./Expected/AcceptanceTests/RequiredOptionalLowLevel
+-e ./Expected/AcceptanceTests/UrlLowLevel
+-e ./Expected/AcceptanceTests/UrlMultiCollectionFormatLowLevel
+-e ./Expected/AcceptanceTests/ValidationLowLevel
+-e ./Expected/AcceptanceTests/XmlLowLevel
+-e ./Expected/AcceptanceTests/XmsErrorResponseLowLevel
