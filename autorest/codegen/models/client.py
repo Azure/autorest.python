@@ -39,6 +39,9 @@ class Client:
         core_import = (self.code_model.namespace if self.code_model.options["vendor"] else "azure") + ".core.rest"
         if async_mode:
             file_import.add_from_import(
+                "typing", "Awaitable", ImportType.STDLIB
+            )
+            file_import.add_from_import(
                 core_import, "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         else:

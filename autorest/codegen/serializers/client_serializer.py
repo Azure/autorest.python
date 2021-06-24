@@ -81,7 +81,7 @@ class ClientSerializer:
 
     def _send_request_signature(self, async_mode: bool) -> str:
         return utils.serialize_method(
-            function_def="async def" if async_mode else "def",
+            function_def="def",
             method_name="send_request",
             is_in_class=True,
             method_param_signatures=self.code_model.service_client.send_request_signature(async_mode)
@@ -92,7 +92,7 @@ class ClientSerializer:
         return utils.method_signature_and_response_type_annotation_template(
             async_mode=async_mode,
             method_signature=send_request_signature,
-            response_type_annotation="AsyncHttpResponse" if async_mode else "HttpResponse",
+            response_type_annotation="Awaitable[AsyncHttpResponse]" if async_mode else "HttpResponse",
         )
 
     def _request_builder_example(self, async_mode: bool) -> List[str]:
