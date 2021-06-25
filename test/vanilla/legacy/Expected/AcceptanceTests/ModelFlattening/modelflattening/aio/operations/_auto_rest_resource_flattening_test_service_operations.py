@@ -504,6 +504,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         _product_id = None
         _description = None
         _max_product_display_name = None
+        capacity = None
         _generic_value = None
         _odata_value = None
         if flatten_parameter_group is not None:
@@ -512,6 +513,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             _product_id = flatten_parameter_group.product_id
             _description = flatten_parameter_group.description
             _max_product_display_name = flatten_parameter_group.max_product_display_name
+            capacity = flatten_parameter_group.capacity
             _generic_value = flatten_parameter_group.generic_value
             _odata_value = flatten_parameter_group.odata_value
         _simple_body_product = _models.SimpleProduct(

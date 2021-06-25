@@ -19,7 +19,7 @@ class PetAPTrue(msrest.serialization.Model):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, object]
+    :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int
     :param name:
@@ -34,7 +34,7 @@ class PetAPTrue(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        "additional_properties": {"key": "", "type": "{object}"},
+        "additional_properties": {"key": "", "type": "{str}"},
         "id": {"key": "id", "type": "int"},
         "name": {"key": "name", "type": "str"},
         "status": {"key": "status", "type": "bool"},
@@ -57,7 +57,7 @@ class CatAPTrue(PetAPTrue):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, object]
+    :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int
     :param name:
@@ -74,7 +74,7 @@ class CatAPTrue(PetAPTrue):
     }
 
     _attribute_map = {
-        "additional_properties": {"key": "", "type": "{object}"},
+        "additional_properties": {"key": "", "type": "{str}"},
         "id": {"key": "id", "type": "int"},
         "name": {"key": "name", "type": "str"},
         "status": {"key": "status", "type": "bool"},

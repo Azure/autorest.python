@@ -69,6 +69,8 @@ class FormdataOperations:
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
+        files = None
+        data = None
         # Construct form data
         files = {
             "fileContent": file_content,
@@ -76,7 +78,7 @@ class FormdataOperations:
         }
 
         rest_request = rest_formdata.build_upload_file_request(
-            content_type=content_type, files=files, template_url=self.upload_file.metadata["url"], **kwargs
+            content_type=content_type, files=files, data=data, template_url=self.upload_file.metadata["url"], **kwargs
         )
         request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)
@@ -161,13 +163,15 @@ class FormdataOperations:
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
+        files = None
+        data = None
         # Construct form data
         files = {
             "fileContent": file_content,
         }
 
         rest_request = rest_formdata.build_upload_files_request(
-            content_type=content_type, files=files, template_url=self.upload_files.metadata["url"], **kwargs
+            content_type=content_type, files=files, data=data, template_url=self.upload_files.metadata["url"], **kwargs
         )
         request = PipelineTransportHttpRequest._from_rest_request(rest_request)
         request.url = self._client.format_url(request.url)

@@ -29,16 +29,16 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> object:
+    async def get(self, **kwargs: Any) -> str:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: object, or the result of cls(response)
-        :rtype: object
+        :return: str, or the result of cls(response)
+        :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[object]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -56,7 +56,7 @@ class ObjectTypeClientOperationsMixin:
             error = self._deserialize.failsafe_deserialize("object", response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -66,12 +66,12 @@ class ObjectTypeClientOperationsMixin:
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, put_object: object, **kwargs: Any) -> None:
+    async def put(self, put_object: str, **kwargs: Any) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-        :type put_object: object
+        :type put_object: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -83,7 +83,7 @@ class ObjectTypeClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(put_object, "object")
+        json = self._serialize.body(put_object, "str")
 
         rest_request = rest.build_put_request(
             content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs

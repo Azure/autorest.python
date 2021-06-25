@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional
+from typing import Any, Awaitable, Optional
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -36,7 +36,7 @@ class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 

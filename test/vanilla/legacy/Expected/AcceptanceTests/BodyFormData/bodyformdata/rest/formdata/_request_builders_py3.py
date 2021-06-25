@@ -14,7 +14,7 @@ _SERIALIZER = Serializer()
 
 
 def build_upload_file_request(
-    *, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+    *, files: Optional[Dict[str, Any]] = None, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Upload file.
 
@@ -24,6 +24,9 @@ def build_upload_file_request(
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. File to upload.
     :paramtype files: dict[str, Any]
+    :keyword data: Pass in dictionary that contains form data to include in the body of the
+     request. File to upload.
+    :paramtype data: dict[str, Any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). File to upload.
     :paramtype content: Any
@@ -52,7 +55,9 @@ def build_upload_file_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, files=files, content=content, **kwargs)
+    return HttpRequest(
+        method="POST", url=url, headers=header_parameters, files=files, data=data, content=content, **kwargs
+    )
 
 
 def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
@@ -87,7 +92,7 @@ def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRe
 
 
 def build_upload_files_request(
-    *, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+    *, files: Optional[Dict[str, Any]] = None, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Upload multiple files.
 
@@ -97,6 +102,9 @@ def build_upload_files_request(
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. Files to upload.
     :paramtype files: dict[str, Any]
+    :keyword data: Pass in dictionary that contains form data to include in the body of the
+     request. Files to upload.
+    :paramtype data: dict[str, Any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Files to upload.
     :paramtype content: Any
@@ -125,4 +133,6 @@ def build_upload_files_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, files=files, content=content, **kwargs)
+    return HttpRequest(
+        method="POST", url=url, headers=header_parameters, files=files, data=data, content=content, **kwargs
+    )

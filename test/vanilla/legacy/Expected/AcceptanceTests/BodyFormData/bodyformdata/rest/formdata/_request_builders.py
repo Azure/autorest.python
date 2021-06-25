@@ -29,6 +29,9 @@ def build_upload_file_request(
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. File to upload.
     :paramtype files: dict[str, Any]
+    :keyword data: Pass in dictionary that contains form data to include in the body of the
+     request. File to upload.
+    :paramtype data: dict[str, Any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). File to upload.
     :paramtype content: Any
@@ -106,6 +109,9 @@ def build_upload_files_request(
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. Files to upload.
     :paramtype files: dict[str, Any]
+    :keyword data: Pass in dictionary that contains form data to include in the body of the
+     request. Files to upload.
+    :paramtype data: dict[str, Any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Files to upload.
     :paramtype content: Any

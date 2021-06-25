@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional
+from typing import Any, Awaitable, Optional
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -39,7 +39,7 @@ class AutoRestSwaggerBATFormDataService:
         self._serialize.client_side_validation = False
         self.formdata = FormdataOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 
@@ -47,7 +47,7 @@ class AutoRestSwaggerBATFormDataService:
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from bodyformdata.rest import build_upload_file_request
-        >>> request = build_upload_file_request(files=files, content=content, **kwargs)
+        >>> request = build_upload_file_request(files=files, data=data, content=content, **kwargs)
         <HttpRequest [POST], url: '/formdata/stream/uploadfile'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

@@ -298,9 +298,9 @@ def regenerate(c, swagger_name=None, debug=False):
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
-    regenerate_vanilla(c, swagger_name, debug)
-    regenerate_azure(c, swagger_name, debug)
-    regenerate_azure_arm(c, swagger_name, debug)
+    regenerate_vanilla_llc(c, swagger_name, debug)
+    regenerate_azure_llc(c, swagger_name, debug)
+    regenerate_azure_arm_llc(c, swagger_name, debug)
 
 @task
 def test(c, env=None):

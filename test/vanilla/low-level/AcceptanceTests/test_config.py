@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from azure.core.pipeline.policies import HttpLoggingPolicy
-from bodystring import AutoRestSwaggerBATService
+from bodystringlowlevel import AutoRestSwaggerBATService
 
 def test_http_logging_policy_default():
     with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional
+from typing import Any, Awaitable, Optional
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -39,7 +39,7 @@ class AutoRestSwaggerBATHeaderService:
         self._serialize.client_side_validation = False
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def send_request(self, request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 

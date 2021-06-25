@@ -159,6 +159,8 @@ class FlattenedProduct(Resource):
 class FlattenParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to Azure.
 
     :param name: Required. Product name with value 'groupproduct'.
@@ -173,6 +175,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
+    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
+    :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
     :param odata_value: URL value.
@@ -182,6 +186,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
     _validation = {
         "name": {"required": True},
         "product_id": {"required": True},
+        "capacity": {"constant": True},
     }
 
     _attribute_map = {
@@ -190,9 +195,12 @@ class FlattenParameterGroup(msrest.serialization.Model):
         "product_id": {"key": "productId", "type": "str"},
         "description": {"key": "description", "type": "str"},
         "max_product_display_name": {"key": "max_product_display_name", "type": "str"},
+        "capacity": {"key": "capacity", "type": "str"},
         "generic_value": {"key": "generic_value", "type": "str"},
         "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
+
+    capacity = "Large"
 
     def __init__(self, **kwargs):
         super(FlattenParameterGroup, self).__init__(**kwargs)

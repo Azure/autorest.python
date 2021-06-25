@@ -36,16 +36,16 @@ class ObjectTypeClientOperationsMixin(object):
     def get(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> object
+        # type: (...) -> str
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: object, or the result of cls(response)
-        :rtype: object
+        :return: str, or the result of cls(response)
+        :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[object]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -61,7 +61,7 @@ class ObjectTypeClientOperationsMixin(object):
             error = self._deserialize.failsafe_deserialize("object", response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -73,7 +73,7 @@ class ObjectTypeClientOperationsMixin(object):
     @distributed_trace
     def put(
         self,
-        put_object,  # type: object
+        put_object,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -81,7 +81,7 @@ class ObjectTypeClientOperationsMixin(object):
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-        :type put_object: object
+        :type put_object: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -93,7 +93,7 @@ class ObjectTypeClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(put_object, "object")
+        json = self._serialize.body(put_object, "str")
 
         rest_request = rest.build_put_request(
             content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs
