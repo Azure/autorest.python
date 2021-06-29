@@ -219,36 +219,36 @@ def _regenerate(
         cmds.append(command_line)
     _run_autorest(cmds, debug=debug)
 
-def _prepare_mapping_and_regenerate(c, mapping, swagger_name=None, debug=False, **kwargs):
+def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None, debug=False, **kwargs):
     if swagger_name:
         prepared_mapping = {k: v for k, v in mapping.items() if swagger_name.lower() in k.lower()}
     else:
         prepared_mapping = mapping
-    _regenerate(prepared_mapping, debug, swagger_group=_SwaggerGroup.VANILLA, **kwargs)
+    _regenerate(prepared_mapping, debug, swagger_group=swagger_group, **kwargs)
 
 @task
-def regenerate_vanilla(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
+def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS,  _SwaggerGroup.VANILLA, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
-def regenerate_azure(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
+def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_azure_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
-def regenerate_azure_arm(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, **kwargs)
+def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
 
 @task
 def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, swagger_name, debug, low_level_client=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
 def regenerate_namespace_folders_test(c, debug=False):
@@ -279,9 +279,9 @@ def regenerate_package_name_setup_py(c, debug=False):
 @task
 def regenerate_legacy(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
-    regenerate_vanilla(c, swagger_name, debug)
-    regenerate_azure(c, swagger_name, debug)
-    regenerate_azure_arm(c, swagger_name, debug)
+    regenerate_vanilla_legacy(c, swagger_name, debug)
+    regenerate_azure_legacy(c, swagger_name, debug)
+    regenerate_azure_arm_legacy(c, swagger_name, debug)
     if not swagger_name:
         regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)

@@ -68,7 +68,7 @@ class TestSendRequest(object):
             },
         )
 
-        response = client.send_request(request)
+        response = client.send_request(request, stream=True)
 
         data = b''.join([chunk for chunk in response.stream_download(None)]).decode('utf-8')
         json_response = json.loads(data)
@@ -176,7 +176,7 @@ class TestSendRequest(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
+                join(cwd, pardir, pardir, pardir, pardir,
                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:

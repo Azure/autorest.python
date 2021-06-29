@@ -233,7 +233,7 @@ def test_primitive_get_and_put_date_time(make_request, make_request_json_respons
     request = primitive.build_get_date_time_request()
     datetime_result = make_request_json_response(request)
 
-    assert min_date ==  datetime_result['field']
+    assert min_date ==  datetime.strptime(datetime_result['field'], '%a, %d %b %Y %H:%M:%S %Z')
 
     json = {
         "field": isodate.parse_datetime("0001-01-01T00:00:00Z"),
@@ -250,7 +250,9 @@ def test_primitive_get_and_put_date_time_rfc1123(make_request, make_request_json
     # we are not using the min date of year 1 because of the latest msrest update
     # with msrest update, minimal year we can parse is 100, instead of 1
     min_date = datetime(2001, 1, 1)
-    assert min_date.replace(tzinfo=UTC()) ==  datetimerfc1123_result['field']
+    # assert min_date.replace(tzinfo=UTC()) == datetimerfc1123_result['field']
+    # assert min_date.replace(tzinfo=UTC()) == datetime.strptime(datetimerfc1123_result['field'], '%a, %d %b %Y %H:%M:%S %Z')
+    raise ValueError(min_date.replace(tzinfo=UTC()))
 
     # we can still model year 1 though with the latest msrest update
     json = {
@@ -471,64 +473,62 @@ def test_polymorphismrecursive_get_and_put_valid(make_request, make_request_json
         "fishtype": "salmon",
         "species": "king",
         "length": 1.0,
-        "location": "alaska",
-        "iswild": True,
         "siblings": [
             {
                 "fishtype": "shark",
                 "species": "predator",
                 "length": 20.0,
-                "age": 6,
-                "birthday": "2012-01-05T01:00:00.000Z",
                 "siblings": [
                     {
                         "fishtype": "salmon",
                         "species": "coho",
                         "length": 2.0,
-                        "age": 2,
-                        "location": "atlantic",
-                        "iswild": True,
                         "siblings": [
                             {
                                 "fishtype": "shark",
                                 "species": "predator",
                                 "length": 20.0,
                                 "age": 6,
-                                "birthday": "2012-01-05T01:00:00.000Z"
+                                "birthday": "2012-01-05T01: 00: 00.000Z"
                             },
                             {
                                 "fishtype": "sawshark",
                                 "species": "dangerous",
                                 "length": 10.0,
                                 "age": 105,
-                                "birthday": "1900-01-05T01:00:00.000Z",
-                                "picture": "//////4=",
+                                "birthday": "1900-01-05T01: 00: 00.000Z",
+                                "picture": " //////4="
                             }
                         ],
+                        "location": "atlantic",
+                        "iswild": True
                     },
                     {
                         "fishtype": "sawshark",
                         "species": "dangerous",
                         "length": 10.0,
+                        "siblings": [],
                         "age": 105,
                         "birthday": "1900-01-05T01:00:00.000Z",
-                        "picture": "//////4=",
-                        "siblings": []
+                        "picture": "//////4="
                     }
-                 ]
+                ],
+                "age": 6,
+                "birthday": "2012-01-05T01:00:00.000Z"
             },
             {
                 "fishtype": "sawshark",
                 "species": "dangerous",
                 "length": 10.0,
+                "siblings": [],
                 "age": 105,
                 "birthday": "1900-01-05T01:00:00.000Z",
-                "picture": "//////4=",
-                "siblings": []
+                "picture": "//////4="
             }
-        ]
+        ],
+        "location": "alaska",
+        "iswild": True
     }
-
     # PUT polymorphicrecursive/valid
     request = polymorphicrecursive.build_put_valid_request(json=json)
     make_request(request)

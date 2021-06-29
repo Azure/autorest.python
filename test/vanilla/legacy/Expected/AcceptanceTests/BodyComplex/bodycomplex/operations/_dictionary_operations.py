@@ -70,8 +70,9 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_dictionary.build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_dictionary.build_get_valid_request(
+            template_url=self.get_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -116,10 +117,9 @@ class DictionaryOperations(object):
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        rest_request = rest_dictionary.build_put_valid_request(
+        request = rest_dictionary.build_put_valid_request(
             content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -151,8 +151,9 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_dictionary.build_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_dictionary.build_get_empty_request(
+            template_url=self.get_empty.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -197,10 +198,9 @@ class DictionaryOperations(object):
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        rest_request = rest_dictionary.build_put_empty_request(
+        request = rest_dictionary.build_put_empty_request(
             content_type=content_type, json=json, template_url=self.put_empty.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -232,8 +232,9 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_dictionary.build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_dictionary.build_get_null_request(
+            template_url=self.get_null.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -269,10 +270,9 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_dictionary.build_get_not_provided_request(
+        request = rest_dictionary.build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -81,7 +81,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_path_items.build_get_all_with_values_request(
+        request = rest_path_items.build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -90,8 +90,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_all_with_values.metadata["url"],
             **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -140,7 +139,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_path_items.build_get_global_query_null_request(
+        request = rest_path_items.build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -149,8 +148,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_global_query_null.metadata["url"],
             **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -199,7 +197,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_path_items.build_get_global_and_local_query_null_request(
+        request = rest_path_items.build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -208,8 +206,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
             **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -257,7 +254,7 @@ class PathItemsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_path_items.build_get_local_path_item_query_null_request(
+        request = rest_path_items.build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -266,8 +263,7 @@ class PathItemsOperations:
             local_string_query=local_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
             **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

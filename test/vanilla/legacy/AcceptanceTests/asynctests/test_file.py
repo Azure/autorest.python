@@ -78,7 +78,7 @@ class TestFile(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, pardir,
+                join(cwd, pardir, pardir, pardir, pardir, pardir,
                      "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:
@@ -126,7 +126,7 @@ class TestFile(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, pardir,
+                join(cwd, pardir, pardir, pardir, pardir, pardir,
                      "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:

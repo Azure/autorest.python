@@ -70,10 +70,9 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_enum.build_get_not_expandable_request(
+        request = rest_enum.build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -117,10 +116,9 @@ class EnumOperations(object):
 
         json = self._serialize.body(string_body, "str")
 
-        rest_request = rest_enum.build_put_not_expandable_request(
+        request = rest_enum.build_put_not_expandable_request(
             content_type=content_type, json=json, template_url=self.put_not_expandable.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -152,10 +150,9 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_enum.build_get_referenced_request(
+        request = rest_enum.build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -199,10 +196,9 @@ class EnumOperations(object):
 
         json = self._serialize.body(enum_string_body, "str")
 
-        rest_request = rest_enum.build_put_referenced_request(
+        request = rest_enum.build_put_referenced_request(
             content_type=content_type, json=json, template_url=self.put_referenced.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -234,10 +230,9 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_enum.build_get_referenced_constant_request(
+        request = rest_enum.build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -282,10 +277,9 @@ class EnumOperations(object):
         _enum_string_body = _models.RefColorConstant(field1=field1)
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
-        rest_request = rest_enum.build_put_referenced_constant_request(
+        request = rest_enum.build_put_referenced_constant_request(
             content_type=content_type, json=json, template_url=self.put_referenced_constant.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -72,14 +72,13 @@ class MediaTypesClientOperationsMixin(object):
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        rest_request = rest.build_analyze_body_request(
+        request = rest.build_analyze_body_request(
             content_type=content_type,
             json=json,
             content=content,
             template_url=self.analyze_body.metadata["url"],
             **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -125,13 +124,12 @@ class MediaTypesClientOperationsMixin(object):
         else:
             content = None
 
-        rest_request = rest.build_content_type_with_encoding_request(
+        request = rest.build_content_type_with_encoding_request(
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],
             **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

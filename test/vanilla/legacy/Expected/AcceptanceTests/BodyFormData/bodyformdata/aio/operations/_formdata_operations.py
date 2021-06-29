@@ -77,10 +77,9 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        rest_request = rest_formdata.build_upload_file_request(
+        request = rest_formdata.build_upload_file_request(
             content_type=content_type, files=files, data=data, template_url=self.upload_file.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -121,10 +120,9 @@ class FormdataOperations:
 
         content = file_content
 
-        rest_request = rest_formdata.build_upload_file_via_body_request(
+        request = rest_formdata.build_upload_file_via_body_request(
             content_type=content_type, content=content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -170,10 +168,9 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        rest_request = rest_formdata.build_upload_files_request(
+        request = rest_formdata.build_upload_files_request(
             content_type=content_type, files=files, data=data, template_url=self.upload_files.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

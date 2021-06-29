@@ -70,8 +70,9 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_polymorphism.build_get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_polymorphism.build_get_valid_request(
+            template_url=self.get_valid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -147,10 +148,9 @@ class PolymorphismOperations(object):
 
         json = self._serialize.body(complex_body, "Fish")
 
-        rest_request = rest_polymorphism.build_put_valid_request(
+        request = rest_polymorphism.build_put_valid_request(
             content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -182,10 +182,9 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_polymorphism.build_get_dot_syntax_request(
+        request = rest_polymorphism.build_get_dot_syntax_request(
             template_url=self.get_dot_syntax.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -223,10 +222,9 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_polymorphism.build_get_composed_with_discriminator_request(
+        request = rest_polymorphism.build_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -264,10 +262,9 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_polymorphism.build_get_composed_without_discriminator_request(
+        request = rest_polymorphism.build_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -304,10 +301,9 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_polymorphism.build_get_complicated_request(
+        request = rest_polymorphism.build_get_complicated_request(
             template_url=self.get_complicated.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -352,10 +348,9 @@ class PolymorphismOperations(object):
 
         json = self._serialize.body(complex_body, "Salmon")
 
-        rest_request = rest_polymorphism.build_put_complicated_request(
+        request = rest_polymorphism.build_put_complicated_request(
             content_type=content_type, json=json, template_url=self.put_complicated.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -395,10 +390,9 @@ class PolymorphismOperations(object):
 
         json = self._serialize.body(complex_body, "Salmon")
 
-        rest_request = rest_polymorphism.build_put_missing_discriminator_request(
+        request = rest_polymorphism.build_put_missing_discriminator_request(
             content_type=content_type, json=json, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -469,10 +463,9 @@ class PolymorphismOperations(object):
 
         json = self._serialize.body(complex_body, "Fish")
 
-        rest_request = rest_polymorphism.build_put_valid_missing_required_request(
+        request = rest_polymorphism.build_put_valid_missing_required_request(
             content_type=content_type, json=json, template_url=self.put_valid_missing_required.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

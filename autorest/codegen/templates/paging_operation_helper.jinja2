@@ -43,8 +43,7 @@ cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(opera
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in {{ success_status_code|string() }}:
-            {{ op_tools.handle_error_response(code_model, operation) | indent(12) }}
+        {{ op_tools.handle_error_response(code_model, operation) | indent(12) }}
 
         return pipeline_response
 {%- endmacro -%}

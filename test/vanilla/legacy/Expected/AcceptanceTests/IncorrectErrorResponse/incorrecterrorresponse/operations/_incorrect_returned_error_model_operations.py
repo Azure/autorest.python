@@ -49,10 +49,9 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest.build_get_incorrect_error_from_server_request(
+        request = rest.build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

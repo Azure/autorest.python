@@ -68,10 +68,9 @@ class IntOperations:
         else:
             json = None
 
-        rest_request = rest_int.build_put_request(
+        request = rest_int.build_put_request(
             content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -105,8 +104,9 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_int.build_get_request(template_url=self.get.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_int.build_get_request(
+            template_url=self.get.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

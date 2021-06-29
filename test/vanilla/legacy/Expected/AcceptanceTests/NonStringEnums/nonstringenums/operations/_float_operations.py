@@ -77,10 +77,9 @@ class FloatOperations(object):
         else:
             json = None
 
-        rest_request = rest_float.build_put_request(
+        request = rest_float.build_put_request(
             content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -115,8 +114,9 @@ class FloatOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_float.build_get_request(template_url=self.get.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_float.build_get_request(
+            template_url=self.get.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

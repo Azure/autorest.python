@@ -63,8 +63,9 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_byte.build_get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_byte.build_get_null_request(
+            template_url=self.get_null.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -99,8 +100,9 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_byte.build_get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_byte.build_get_empty_request(
+            template_url=self.get_empty.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -135,8 +137,9 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_byte.build_get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_byte.build_get_non_ascii_request(
+            template_url=self.get_non_ascii.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -177,10 +180,9 @@ class ByteOperations:
 
         json = self._serialize.body(byte_body, "bytearray")
 
-        rest_request = rest_byte.build_put_non_ascii_request(
+        request = rest_byte.build_put_non_ascii_request(
             content_type=content_type, json=json, template_url=self.put_non_ascii.metadata["url"], **kwargs
-        )
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -211,8 +213,9 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        rest_request = rest_byte.build_get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
-        request = PipelineTransportHttpRequest._from_rest_request(rest_request)
+        request = rest_byte.build_get_invalid_request(
+            template_url=self.get_invalid.metadata["url"], **kwargs
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

@@ -66,7 +66,6 @@ class TestComplex(object):
     def test_basic_get_and_put_valid(self, client):
         # GET basic/valid
         basic_result = client.basic.get_valid()
-        raise ValueError(basic_result.serialize())
         assert 2 ==  basic_result.id
         assert "abc" ==  basic_result.name
         assert CMYKColors.yellow.value ==  basic_result.color
