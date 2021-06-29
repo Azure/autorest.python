@@ -159,8 +159,8 @@ class CodeGenerator(Plugin):
             if credential_key_header_name:
                 raise ValueError(
                     "You have passed in a credential key header name with default credential policy type "
-                    "ARMChallengeAuthenticationPolicy. This is not allowed, since credential key header name is tied with "
-                    "AzureKeyCredentialPolicy. Instead, with this policy it is recommend you pass in "
+                    "ARMChallengeAuthenticationPolicy. This is not allowed, since credential key header name is tied "
+                    "with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you pass in "
                     "--credential-scopes."
                 )
         else:
