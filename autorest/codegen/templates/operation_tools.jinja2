@@ -26,8 +26,7 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 
 {# content type docstring #}
 {% macro content_type_docstring(operation) %}
-{% set content_type_constant = operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
-:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.constant_declaration }}.
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ operation.parameters.content_type }}.
  Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
 {# error map handling #}
@@ -166,7 +165,7 @@ _form_content = {
     {% endfor %}
 }
 {% else %}
-    {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
+    {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.parameters.content_type %}
     {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
     {% if operation.parameters.has_body %}
         {% set body_content_kwargs_signature = ", **body_content_kwargs" %}

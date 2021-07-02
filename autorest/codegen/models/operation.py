@@ -15,7 +15,6 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
-from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -104,15 +103,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     @property
     def python_name(self) -> str:
         return self.name
-
-    @property
-    def request_content_type(self) -> str:
-        return next(iter(
-            [
-                p.schema.get_declaration(cast(ConstantSchema, p.schema).value)
-                for p in self.parameters.constant if p.serialized_name == "content_type"
-            ]
-        ))
 
     @property
     def is_stream_request(self) -> bool:
