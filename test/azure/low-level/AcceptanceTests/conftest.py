@@ -29,7 +29,7 @@ import os
 import signal
 from os.path import dirname, realpath
 from azure.core.pipeline.policies import SansIOHTTPPolicy
-
+from msrest import Serializer, Deserializer
 import pytest
 
 
@@ -64,16 +64,16 @@ if sys.version_info < (3,5):
 
 @pytest.fixture()
 def base_make_request():
-    def make_request(client, request):
-        response = client.send_request(request)
+    def make_request(client, request, **kwargs):
+        response = client.send_request(request, **kwargs)
         response.raise_for_status()
         return response
     return make_request
 
 @pytest.fixture()
 def base_make_request_json_response():
-    def make_request_json_response(client, request):
-        response = client.send_request(request)
+    def make_request_json_response(client, request, **kwargs):
+        response = client.send_request(request, **kwargs)
         response.raise_for_status()
         return response.json()
     return make_request_json_response
@@ -111,3 +111,11 @@ def credential():
 @pytest.fixture()
 def authentication_policy():
     return SansIOHTTPPolicy()
+
+@pytest.fixture()
+def serializer():
+    return Serializer()
+
+@pytest.fixture()
+def deserializer():
+    return Deserializer()

@@ -23,21 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
+import functools
 import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from paging import AutoRestPagingTestService
-from custombaseurlpaging import AutoRestParameterizedHostTestPagingClient
-
+from azure.core.rest import HttpRequest
+from azure.core.paging import ItemPaged
+from paginglowlevel import AutoRestPagingTestService
+from paginglowlevel.rest import paging
 from azure.core.exceptions import HttpResponseError
 
 
@@ -48,143 +39,246 @@ def client():
     with AutoRestPagingTestService(base_url="http://localhost:3000") as client:
         yield client
 
+@pytest.fixture
+def extract_data_fixture(deserializer):
+    def _callback(pipeline_response, **kwargs):
+        item_name = kwargs.pop("item_name", "value")
+        next_link_name = kwargs.pop("next_link_name", "nextLink")
+        try:
+            deserialized = pipeline_response.http_response.json() # in the case of LRO + paging, the LRO returns an old response to us
+        except AttributeError:
+            deserialized = deserializer("object", pipeline_response.http_response)
+        list_of_elem = deserialized[item_name]
+        return deserialized.get(next_link_name, None), iter(list_of_elem)
+    return _callback
 
 @pytest.fixture
-def custom_url_client():
-    with AutoRestParameterizedHostTestPagingClient(host="host:3000") as client:
-        yield client
+def get_next_fixture(client):
+    def _callback(prepare_request, next_link=None):
+        request = prepare_request(next_link)
 
-class TestPaging(object):
-    def test_get_no_item_name_pages(self, client):
-        pages = client.paging.get_no_item_name_pages()
-        items = [i for i in pages]
-        assert len(items) == 1
-        assert items[0].properties.id == 1
-        assert items[0].properties.name == "Product"
+        pipeline_response = client.send_request(
+            request,
+            _return_pipeline_response=True
+        )
+        pipeline_response.http_response.raise_for_status()
 
-    def test_get_null_next_link_name_pages(self, client):
-        pages = client.paging.get_null_next_link_name_pages()
-        items = [i for i in pages]
-        assert len(items) == 1
-        assert items[0].properties.id == 1
-        assert items[0].properties.name == "Product"
+        return pipeline_response
+    return _callback
 
-    def test_get_single_pages_with_cb(self, client):
-        def cb(list_of_obj):
-            for obj in list_of_obj:
-                obj.marked = True
-            return list_of_obj
-        pages = client.paging.get_single_pages(cls=cb)
-        assert all(obj.marked for obj in pages)
+def default_prepare_request(next_link=None, **kwargs):
+    initial_request = kwargs.pop("initial_request")
+    next_request = kwargs.pop("next_request", None)
+    if not next_link:
+        request = initial_request()
+    elif next_request:
+        try:
+            request = next_request(next_link)
+        except TypeError:
+            request = next_request()  # the query one doesn't take next link
+    else:
+        request = initial_request(template_url=next_link)
+    return request
 
-    def test_get_single_pages(self, client):
-        pages = client.paging.get_single_pages()
-        items = [i for i in pages]
-        assert len(items) == 1
-        assert items[0].properties.id == 1
-        assert items[0].properties.name == "Product"
+@pytest.fixture
+def get_pager(get_next_fixture, extract_data_fixture):
+    def _callback(initial_request, **kwargs):
+        prepare_request = functools.partial(
+            default_prepare_request,
+            initial_request=initial_request,
+            **kwargs
+        )
+        get_next = functools.partial(
+            get_next_fixture,
+            prepare_request,
+        )
+        extract_data = kwargs.pop("extract_data", None)
+        if not extract_data:
+            extract_data = functools.partial(
+                extract_data_fixture,
+                **kwargs
+            )
 
-    def test_get_multiple_pages(self, client):
-        pages = client.paging.get_multiple_pages()
-        items = [i for i in pages]
-        assert len(items) == 10
+        return ItemPaged(get_next, extract_data)
+    return _callback
 
-    def test_query_params(self, client):
-        pages = client.paging.get_with_query_params(required_query_parameter='100')
-        items = [i for i in pages]
-        assert len(items) == 2
+def test_get_no_item_name_pages(get_pager):
+    pages = get_pager(initial_request=paging.build_get_no_item_name_pages_request)
+    items = [i for i in pages]
+    assert len(items) == 1
+    assert items[0]['properties']['id'] == 1
+    assert items[0]['properties']['name'] == "Product"
 
-    def test_get_odata_multiple_pages(self, client):
-        pages = client.paging.get_odata_multiple_pages()
-        items = [i for i in pages]
-        assert len(items) == 10
+def test_get_null_next_link_name_pages(get_pager):
+    def extract_data(pipeline_response):
+        deserialized = pipeline_response.http_response.json()
+        list_of_elem = deserialized['values']
+        # defined as None next link in swagger
+        return None, iter(list_of_elem)
+    pages = get_pager(
+        initial_request=paging.build_get_null_next_link_name_pages_request,
+        item_name="values",
+        extract_data=extract_data
+    )
+    items = [i for i in pages]
+    assert len(items) == 1
+    assert items[0]['properties']['id'] == 1
+    assert items[0]['properties']['name'] == "Product"
 
-    def test_get_multiple_pages_retry_first(self, client):
-        pages = client.paging.get_multiple_pages_retry_first()
-        items = [i for i in pages]
-        assert len(items) == 10
+def test_get_single_pages(get_pager):
+    pages = get_pager(initial_request=paging.build_get_single_pages_request, item_name="values")
+    items = [i for i in pages]
+    assert len(items) == 1
+    assert items[0]['properties']['id'] == 1
+    assert items[0]['properties']['name'] == "Product"
 
-    def test_get_multiple_pages_retry_second(self, client):
-        pages = client.paging.get_multiple_pages_retry_second()
-        items = [i for i in pages]
-        assert len(items) == 10
+def test_get_multiple_pages(get_pager):
+    pages = get_pager(initial_request=paging.build_get_multiple_pages_request, item_name="values")
+    items = [i for i in pages]
+    assert len(items) == 10
 
-    def test_get_multiple_pages_with_offset(self, client):
-        from paging.models import PagingGetMultiplePagesWithOffsetOptions
-        options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
-        pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
-        items = [i for i in pages]
-        assert len(items) == 10
-        assert items[-1].properties.id == 110
+def test_query_params(get_pager):
+    initial_request = functools.partial(
+        paging.build_get_with_query_params_request,
+        required_query_parameter='100'
+    )
+    pages = get_pager(
+        initial_request=initial_request,
+        next_request=paging.build_next_operation_with_query_params_request,
+        item_name="values"
+    )
+    items = [i for i in pages]
+    assert len(items) == 2
+
+def test_get_odata_multiple_pages(get_pager):
+    pages = get_pager(
+        initial_request=paging.build_get_odata_multiple_pages_request,
+        item_name="values",
+        next_link_name="odata.nextLink",
+    )
+    items = [i for i in pages]
+    assert len(items) == 10
+
+def test_get_multiple_pages_retry_first(get_pager):
+    pages = get_pager(
+        initial_request=paging.build_get_multiple_pages_retry_first_request,
+        item_name="values",
+    )
+    items = [i for i in pages]
+    assert len(items) == 10
+
+def test_get_multiple_pages_retry_second(get_pager):
+    pages = get_pager(
+        initial_request=paging.build_get_multiple_pages_retry_second_request,
+        item_name="values",
+    )
+    items = [i for i in pages]
+    assert len(items) == 10
+
+def test_get_multiple_pages_with_offset(get_pager):
+    initial_request = functools.partial(
+        paging.build_get_multiple_pages_with_offset_request,
+        100,
+    )
+    pages = get_pager(
+        initial_request=initial_request,
+        item_name="values"
+    )
+    items = [i for i in pages]
+    assert len(items) == 10
+    assert items[-1]['properties']['id'] == 110
 
 
-    def test_get_single_pages_failure(self, client):
-        pages = client.paging.get_single_pages_failure()
-        with pytest.raises(HttpResponseError):
-            list(pages)
+def test_get_single_pages_failure(get_pager):
+    pages = get_pager(
+        initial_request=paging.build_get_single_pages_failure_request,
+        item_name="values"
+    )
+    with pytest.raises(HttpResponseError):
+        list(pages)
 
-    def test_get_multiple_pages_failure(self, client):
-        pages = client.paging.get_multiple_pages_failure()
-        with pytest.raises(HttpResponseError):
-            list(pages)
+def test_get_multiple_pages_failure(get_pager):
+    pages = get_pager(
+        initial_request=paging.build_get_multiple_pages_failure_request,
+        item_name="values"
+    )
+    with pytest.raises(HttpResponseError):
+        list(pages)
 
-    def test_get_multiple_pages_failure_uri(self, client):
-        pages = client.paging.get_multiple_pages_failure_uri()
-        with pytest.raises(HttpResponseError):
-            list(pages)
+def test_get_multiple_pages_failure_uri(get_pager):
+    pages = get_pager(
+        initial_request=paging.build_get_multiple_pages_failure_uri_request,
+        item_name="values"
+    )
+    with pytest.raises(HttpResponseError):
+        list(pages)
 
-    def test_paging_fragment_path(self, client):
+def test_paging_fragment_path(get_pager):
+    initial_request = functools.partial(
+        paging.build_get_multiple_pages_fragment_next_link_request,
+        "test_user",
+        api_version="1.6"
+    )
+    next_request = functools.partial(
+        paging.build_next_fragment_request,
+        "test_user",
+        api_version="1.6"
+    )
+    pages = get_pager(
+        initial_request=initial_request,
+        next_request=next_request,
+        item_name="values",
+        next_link_name="odata.nextLink",
+    )
+    items = [i for i in pages]
+    assert len(items) == 10
 
-        pages = client.paging.get_multiple_pages_fragment_next_link("1.6", "test_user")
-        items = [i for i in pages]
-        assert len(items) == 10
+    with pytest.raises(AttributeError):
+        # Be sure this method is not generated (Transform work)
+        paging.build_get_multiple_pages_fragment_next_link_next_request
 
-        with pytest.raises(AttributeError):
-            # Be sure this method is not generated (Transform work)
-            client.paging.get_multiple_pages_fragment_next_link_next()  # pylint: disable=E1101
+@pytest.mark.skip(reason="Can't figure this out yet, going to add later")
+def test_get_multiple_pages_lro(client, get_next_fixture, extract_data_fixture):
+    """LRO + Paging at the same time.
+    """
+    from azure.mgmt.core.polling.arm_polling import ARMPolling
+    from azure.core.polling import LROPoller
+    # initial LRO call
+    pipeline_response = client.send_request(
+        paging.build_get_multiple_pages_lro_request(),
+        _return_pipeline_response=True
+    )
+    pipeline_response.http_response.raise_for_status()
+    prepare_request = functools.partial(
+        default_prepare_request,
+        initial_request=paging.build_get_multiple_pages_lro_request,
+    )
+    def get_long_running_output(pipeline_response):
+        def internal_get_next(next_link=None):
+            if next_link is None:
+                return pipeline_response
+            else:
+                return get_next_fixture(prepare_request, next_link)
+        extract_data = functools.partial(
+            extract_data_fixture,
+            item_name="values"
+        )
+        return ItemPaged(internal_get_next, extract_data)
 
-    def test_custom_url_get_pages_partial_url(self, custom_url_client):
-        paged = list(custom_url_client.paging.get_pages_partial_url("local"))
+    polling_method = ARMPolling(timeout=0)
+    poller = LROPoller(client._client, pipeline_response, get_long_running_output, polling_method)
+    pager = poller.result()
 
-        assert len(paged) == 2
-        assert paged[0].properties.id == 1
-        assert paged[1].properties.id == 2
+    # paging calls
+    items = list(pager)
 
-    def test_custom_url_get_pages_partial_url_operation(self, custom_url_client):
-        paged = list(custom_url_client.paging.get_pages_partial_url_operation("local"))
+    assert len(items) == 10
+    assert items[0]['properties']['id'] == 1
+    assert items[1]['properties']['id'] == 2
 
-        assert len(paged) == 2
-        assert paged[0].properties.id == 1
-        assert paged[1].properties.id == 2
-
-    def test_get_multiple_pages_lro(self, client):
-        """LRO + Paging at the same time.
-        """
-        from azure.mgmt.core.polling.arm_polling import ARMPolling
-        poller = client.paging.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0))
-        pager = poller.result()
-
-        items = list(pager)
-
-        assert len(items) == 10
-        assert items[0].properties.id == 1
-        assert items[1].properties.id == 2
-
-    def test_item_name_with_xms_client_name(self, client):
-        pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()
-        items = [i for i in pages]
-        assert len(items) == 1
-
-    def test_initial_response_no_items(self, client):
-        pages = client.paging.first_response_empty()
-        items = [i for i in pages]
-        assert len(items) == 1
-
-    def test_models(self):
-        from paging.models import OperationResult
-        if sys.version_info >= (3,5):
-            from paging.models._models_py3 import OperationResult as OperationResultPy3
-            assert OperationResult == OperationResultPy3
-        else:
-            from paging.models._models import OperationResult as OperationResultPy2
-            assert OperationResult == OperationResultPy2
+def test_initial_response_no_items(get_pager):
+    pages = get_pager(
+        paging.build_first_response_empty_request,
+    )
+    items = [i for i in pages]
+    assert len(items) == 1

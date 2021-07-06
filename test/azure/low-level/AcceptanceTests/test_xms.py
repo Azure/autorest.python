@@ -24,20 +24,10 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
 from azure.core.exceptions import HttpResponseError
 
-from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
-from azurespecialproperties import models
+from azurespecialpropertieslowlevel import AutoRestAzureSpecialParametersTestClient
+from azurespecialpropertieslowlevel.rest import xms_client_request_id, header
 
 import pytest
 
@@ -66,38 +56,37 @@ def client_no_request_id(credential, authentication_policy):
     ) as client:
         yield client
 
+@pytest.fixture
+def make_request(client, base_make_request):
+    def _make_request(request, **kwargs):
+        return base_make_request(client, request, **kwargs)
+    return _make_request
 
-class TestXmsRequestClientId(object):
-    def test_client_request_id_in_exception(self, client):
-        with pytest.raises(HttpResponseError):
-            client.xms_client_request_id.get()
 
-    def test_xms_request_client_id_in_client_none(self, client):
-        client.xms_client_request_id.get(request_id=None)
+def test_client_request_id_in_exception(make_request):
+    request = xms_client_request_id.build_get_request()
+    with pytest.raises(HttpResponseError):
+        make_request(request)
 
-    def test_xms_request_client_id_in_client(self, client):
-        client.xms_client_request_id.get(request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+def test_xms_request_client_id_in_client_none(make_request):
+    request = xms_client_request_id.build_get_request()
+    make_request(request, request_id=None)
 
-    def test_xms_request_client_overwrite_via_parameter(self, client_no_request_id):
-        # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
-        # We disable the request_id policy for this test
-        client_no_request_id.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+def test_xms_request_client_id_in_client(make_request):
+    request = xms_client_request_id.build_get_request()
+    make_request(request, request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
-    def test_xms_custom_named_request_id(self, client):
-        client.header.custom_named_request_id(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+def test_xms_request_client_overwrite_via_parameter(client_no_request_id):
+    # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
+    # We disable the request_id policy for this test
+    request = xms_client_request_id.build_param_get_request(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    response = client_no_request_id.send_request(request)
+    response.raise_for_status()
 
-    def test_xms_custom_named_request_id_parameter_group(self, client):
-        param_group = models.HeaderCustomNamedRequestIdParamGroupingParameters(
-            foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
-        )
-        client.header.custom_named_request_id_param_grouping(header_custom_named_request_id_param_grouping_parameters=param_group)
+def test_xms_custom_named_request_id(make_request):
+    request = header.build_custom_named_request_id_request(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    make_request(request)
 
-    def test_models(self):
-        from azurespecialproperties.models import Error
-
-        if sys.version_info >= (3,5):
-            from azurespecialproperties.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from azurespecialproperties.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_xms_custom_named_request_id_parameter_group(make_request):
+    request = header.build_custom_named_request_id_param_grouping_request(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    make_request(request)

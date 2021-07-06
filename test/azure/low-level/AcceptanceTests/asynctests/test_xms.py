@@ -25,20 +25,12 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
 from azure.core.exceptions import HttpResponseError
 
-from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
-from azurespecialproperties import models
+from azurespecialpropertieslowlevel import AutoRestAzureSpecialParametersTestClient
+from azurespecialpropertieslowlevel.rest import xms_client_request_id, header
+
+from azurespecialpropertieslowlevel.aio import AutoRestAzureSpecialParametersTestClient
 
 import pytest
 
@@ -69,36 +61,43 @@ async def client_no_request_id(credential, authentication_policy):
     ) as client:
         await yield_(client)
 
+@pytest.fixture
+def make_request(client, base_make_request):
+    async def _make_request(request, **kwargs):
+        return await base_make_request(client, request, **kwargs)
+    return _make_request
 
-class TestXmsRequestClientId(object):
-    @pytest.mark.asyncio
-    async def test_client_request_id_in_exception(self, client):
-        # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-        with pytest.raises(HttpResponseError):
-            await client.xms_client_request_id.get()
 
-    @pytest.mark.asyncio
-    async def test_xms_request_client_id_in_client_none(self, client):
-        # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-        await client.xms_client_request_id.get(request_id=None)
+@pytest.mark.asyncio
+async def test_client_request_id_in_exception(make_request):
+    request = xms_client_request_id.build_get_request()
+    with pytest.raises(HttpResponseError):
+        await make_request(request)
 
-    @pytest.mark.asyncio
-    async def test_xms_request_client_id_in_client(self, client):
-        await client.xms_client_request_id.get(request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+@pytest.mark.asyncio
+async def test_xms_request_client_id_in_client_none(make_request):
+    request = xms_client_request_id.build_get_request()
+    await make_request(request, request_id=None)
 
-    @pytest.mark.asyncio
-    async def test_xms_request_client_overwrite_via_parameter(self, client_no_request_id):
-        # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
-        # We disable the request_id policy for this test
-        await client_no_request_id.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+@pytest.mark.asyncio
+async def test_xms_request_client_id_in_client(make_request):
+    request = xms_client_request_id.build_get_request()
+    await make_request(request, request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
-    @pytest.mark.asyncio
-    async def test_xms_custom_named_request_id(self, client):
-        await client.header.custom_named_request_id(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+@pytest.mark.asyncio
+async def test_xms_request_client_overwrite_via_parameter(client_no_request_id):
+    # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
+    # We disable the request_id policy for this test
+    request = xms_client_request_id.build_param_get_request(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    response = await client_no_request_id.send_request(request)
+    response.raise_for_status()
 
-    @pytest.mark.asyncio
-    async def test_xms_custom_named_request_id_parameter_group(self, client):
-        param_group = models.HeaderCustomNamedRequestIdParamGroupingParameters(
-            foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
-        )
-        await client.header.custom_named_request_id_param_grouping(header_custom_named_request_id_param_grouping_parameters=param_group)
+@pytest.mark.asyncio
+async def test_xms_custom_named_request_id(make_request):
+    request = header.build_custom_named_request_id_request(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    await make_request(request)
+
+@pytest.mark.asyncio
+async def test_xms_custom_named_request_id_parameter_group(make_request):
+    request = header.build_custom_named_request_id_param_grouping_request(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    await make_request(request)

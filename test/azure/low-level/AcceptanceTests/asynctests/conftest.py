@@ -27,8 +27,8 @@ import pytest
 
 @pytest.fixture()
 def base_make_request():
-    async def make_request(client, request):
-        response = await client.send_request(request)
+    async def make_request(client, request, **kwargs):
+        response = await client.send_request(request, **kwargs)
         response.raise_for_status()
         return response
     return make_request
