@@ -76,7 +76,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return super().xml_serialization_ctxt()
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        kwargs["object_schema_name"] = self.name # do this to avoid circular
+        object_schema_names = kwargs.get("object_schema_names", [])
+        object_schema_names.append(self.name)  # do tis to avoid circular
+        kwargs["object_schema_names"] = object_schema_names
         if self.discriminator_value:
             kwargs["discriminator_value"] = self.discriminator_value
         return {
@@ -87,7 +89,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         }
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
-        kwargs["object_schema_name"] = self.name # do this to avoid circular
+        object_schema_names = kwargs.get("object_schema_names", [])
+        object_schema_names.append(self.name)  # do tis to avoid circular
+        kwargs["object_schema_names"] = object_schema_names
         return {
             "{}".format(
                 prop.original_swagger_name

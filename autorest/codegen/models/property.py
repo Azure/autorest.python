@@ -123,7 +123,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         kwargs["optional"] = not self.required
         kwargs["default_value_declaration"] = self.default_value_declaration
         try:
-            if self.schema.name == kwargs.pop("object_schema_name", ""):
+            if self.schema.name in kwargs.get("object_schema_names", []):
                 return f"..."
         except AttributeError:
             pass

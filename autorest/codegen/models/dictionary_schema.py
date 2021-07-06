@@ -68,7 +68,7 @@ class DictionarySchema(BaseSchema):
         **kwargs: Any
     ) -> Any:
         try:
-            if self.element_type.name == kwargs.pop("object_schema_name", ""):
+            if self.element_type.name in kwargs.get("object_schema_names", []):
                 return {"str": "..."}
         except AttributeError:
             pass
