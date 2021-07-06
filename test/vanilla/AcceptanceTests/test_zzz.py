@@ -45,6 +45,7 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+            "LLCRequiredToOptional": 1,  # adding in LLC PR
         }
 
         print("Coverage:")
@@ -57,7 +58,6 @@ class TestAcceptance(object):
             'FormdataStreamUploadFile': 1, # Form data not supported yet
             'StreamUploadFile': 1, # Form data not supported yet
             "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
-            "LLCRequiredToOptional": 1,  # adding in LLC PR
         }
         for name in optional_report:
             if "Options" in name:
