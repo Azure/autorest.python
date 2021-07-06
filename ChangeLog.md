@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-06-22 - 5.8.3
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- Fix LRO path parameterization when we have a constant path parameter #968
+
 ### 2021-06-22 - 5.8.2
 
 min Autorest core version: 3.3.0
