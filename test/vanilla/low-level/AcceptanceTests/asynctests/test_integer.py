@@ -28,8 +28,8 @@ from async_generator import yield_, async_generator
 from datetime import datetime
 from azure.core.exceptions import DecodeError
 
-from bodyinteger.aio import AutoRestIntegerTestService
-from bodyinteger.rest import int
+from bodyintegerlowlevel.aio import AutoRestIntegerTestService
+from bodyintegerlowlevel.rest import int as int_rest
 import calendar
 try:
     from datetime import timezone
@@ -51,26 +51,26 @@ def make_request(client, base_make_request):
 
 @pytest.mark.asyncio
 async def test_max_min_32_bit(make_request):
-    request = int.build_put_max32_request(json=2147483647) # sys.maxint
+    request = int_rest.build_put_max32_request(json=2147483647) # sys.maxint
     await make_request(request)
 
-    request = int.build_put_min32_request(json=-2147483648)
+    request = int_rest.build_put_min32_request(json=-2147483648)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_max_min_64_bit(make_request):
-    request = int.build_put_max64_request(json=9223372036854776000)  # sys.maxsize
+    request = int_rest.build_put_max64_request(json=9223372036854776000)  # sys.maxsize
     await make_request(request)
 
-    request = int.build_put_min64_request(json=-9223372036854776000)
+    request = int_rest.build_put_min64_request(json=-9223372036854776000)
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid(make_request):
-    request = int.build_get_null_request()
+    request = int_rest.build_get_null_request()
     await make_request(request)
 
-    request = int.build_get_invalid_request()
+    request = int_rest.build_get_invalid_request()
     with pytest.raises(DecodeError):
         await make_request(request)
 
@@ -78,34 +78,34 @@ async def test_get_null_and_invalid(make_request):
 async def test_get_overflow(make_request):
     # Testserver excepts these to fail, but they won't in Python and it's ok.
 
-    request = int.build_get_overflow_int32_request()
+    request = int_rest.build_get_overflow_int32_request()
     await make_request(request)
 
-    request = int.build_get_overflow_int64_request()
+    request = int_rest.build_get_overflow_int64_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_get_underflow(make_request):
-    request = int.build_get_underflow_int32_request()
+    request = int_rest.build_get_underflow_int32_request()
     await make_request(request)
 
-    request = int.build_get_underflow_int64_request()
+    request = int_rest.build_get_underflow_int64_request()
     await make_request(request)
 
 @pytest.mark.asyncio
 async def test_unix_time_date(make_request):
     unix_date = datetime(year=2016, month=4, day=13)
-    request = int.build_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
+    request = int_rest.build_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
     await make_request(request)
 
-    request = int.build_get_unix_time_request()
+    request = int_rest.build_get_unix_time_request()
     assert unix_date.utctimetuple() == datetime.fromtimestamp((await make_request(request)).json(), TZ_UTC).utctimetuple()
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid_unix_time(make_request):
-    request = int.build_get_null_unix_time_request()
+    request = int_rest.build_get_null_unix_time_request()
     assert (await make_request(request)).text == ''
 
-    request = int.build_get_invalid_unix_time_request()
+    request = int_rest.build_get_invalid_unix_time_request()
     with pytest.raises(DecodeError):
         await make_request(request)

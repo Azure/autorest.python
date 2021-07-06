@@ -23,9 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from nonstringenums.aio import NonStringEnumsClient
-from nonstringenums.models import IntEnum, FloatEnum
-from nonstringenums.rest import int, float
+from nonstringenumslowlevel.aio import NonStringEnumsClient
+from nonstringenumslowlevel.rest import int, float
 from async_generator import yield_, async_generator
 
 import pytest
@@ -44,20 +43,20 @@ def make_request_json_response(client, base_make_request_json_response):
 
 @pytest.mark.asyncio
 async def test_put_int_enum(make_request_json_response):
-    request = int.build_put_request(json=IntEnum.TWO_HUNDRED)
+    request = int.build_put_request(json=200)
     assert await make_request_json_response(request) == "Nice job posting an int enum"
 
 @pytest.mark.asyncio
 async def test_get_int_enum(make_request_json_response):
     request = int.build_get_request()
-    assert await make_request_json_response(request) == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
+    assert await make_request_json_response(request) == 429
 
 @pytest.mark.asyncio
 async def test_put_float_enum(make_request_json_response):
-    request = float.build_put_request(json=FloatEnum.TWO_HUNDRED4)
+    request = float.build_put_request(json=200.4)
     assert await make_request_json_response(request) == "Nice job posting a float enum"
 
 @pytest.mark.asyncio
 async def test_get_float_enum(make_request_json_response):
     request = float.build_get_request()
-    assert await make_request_json_response(request) == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1.value
+    assert await make_request_json_response(request) == 429.1

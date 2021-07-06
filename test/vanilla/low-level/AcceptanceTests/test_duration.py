@@ -28,8 +28,8 @@ from datetime import timedelta
 import isodate
 from msrest.exceptions import DeserializationError
 
-from bodyduration import AutoRestDurationTestService
-from bodyduration.rest import duration
+from bodydurationlowlevel import AutoRestDurationTestService
+from bodydurationlowlevel.rest import duration
 
 import pytest
 

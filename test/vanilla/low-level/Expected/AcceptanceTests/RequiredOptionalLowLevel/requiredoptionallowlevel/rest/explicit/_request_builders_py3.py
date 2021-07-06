@@ -14,7 +14,7 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def build_put_optional_binary_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional body parameter.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your

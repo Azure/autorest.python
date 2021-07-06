@@ -26,68 +26,9 @@
 # --------------------------------------------------------------------------
 import io
 import pytest
-from mediatypes.aio import MediaTypesClient
-from mediatypes.rest import *
-
-def test_json_body_no_content_type_kwarg():
-    request = build_analyze_body_request(json={"source":"foo"})
-    assert request.headers["Content-Type"] == "application/json"
-    assert request.content == '{"source": "foo"}'
-
-
-def test_json_body_content_type_kwarg():
-    request = build_analyze_body_request(json=[{"source":"foo"}], content_type="application/json+cloudevents-batch")
-    assert request.headers["Content-Type"] == "application/json+cloudevents-batch"
-    assert request.content == '[{"source": "foo"}]'
-
-def test_string_body_no_content_type_kwarg():
-    request = build_analyze_body_request(content="hello")
-    assert request.headers["Content-Type"] == "text/plain"
-
-def test_string_body_content_type_kwarg():
-    request = build_analyze_body_request(content="hello", content_type="text/plain")
-    assert request.headers["Content-Type"] == "text/plain"
-
-def test_io_body_no_content_type_kwarg():
-    request = build_analyze_body_request(content=b"PDF")
-    assert request.headers["Content-Type"] == "application/octet-stream"
-    assert request._internal_request.headers["Content-Type"] == "application/octet-stream"
-
-def test_io_body_content_type_kwarg():
-    request = build_analyze_body_request(content=b"PDF", content_type="application/pdf")
-    assert request.headers["Content-Type"] == "application/pdf"
-
-def test_stream_no_content_type_kwarg():
-    test_string = "Upload file test case"
-    test_bytes = bytearray(test_string, encoding='utf-8')
-    with io.BytesIO(test_bytes) as stream_data:
-        request = build_analyze_body_request(content=stream_data)
-    assert request.headers["Content-Type"] == "application/octet-stream"
-
-def test_stream_content_type_kwarg():
-    test_string = "Upload file test case"
-    test_bytes = bytearray(test_string, encoding='utf-8')
-    with io.BytesIO(test_bytes) as stream_data:
-        request = build_analyze_body_request(content=stream_data, content_type="application/json")
-    assert request.headers["Content-Type"] == "application/json"
-
-def test_file_description_no_content_type_kwarg():
-    with open(__file__) as fd:
-        request = build_analyze_body_request(content=fd)
-    assert request.headers["Content-Type"] == "application/octet-stream"
-
-def test_file_description_content_type_kwarg():
-    with open(__file__) as fd:
-        request = build_analyze_body_request(content=fd, content_type="application/pdf")
-    assert request.headers["Content-Type"] == "application/pdf"
-
-def test_content_type_in_headers_no_content_type_kwarg():
-    request = build_analyze_body_request(content="", headers={"Content-Type": "application/exotic"})
-    assert request.headers["Content-Type"] == "application/exotic"
-
-def test_content_type_in_headers_content_type_kwarg():
-    request = build_analyze_body_request(content="", headers={"Content-Type": "application/exotic"}, content_type="application/pdf")
-    assert request.headers["Content-Type"] == "application/pdf"
+from mediatypeslowlevel.aio import MediaTypesClient
+from mediatypeslowlevel.rest import *
+from async_generator import yield_, async_generator
 
 @pytest.mark.asyncio
 async def test_stream_unread_until_send_request():
@@ -95,13 +36,14 @@ async def test_stream_unread_until_send_request():
         def __init__(self):
             self.call_count = 0
 
-        def streaming_body(self, data):
+        @async_generator
+        async def streaming_body(self, data):
             self.call_count += 1
-            yield data
+            await yield_(data)
 
     fake_stream = FakeStream()
     request = build_analyze_body_request(content=fake_stream.streaming_body(b"PDF"))
-    assert request.headers["Content-Type"] == "application/octet-stream"
+    assert not request.headers.get("Content-Type")
     assert fake_stream.call_count == 0
     await MediaTypesClient().send_request(request)
     assert fake_stream.call_count == 1

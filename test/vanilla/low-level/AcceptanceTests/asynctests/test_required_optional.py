@@ -29,9 +29,8 @@ import io
 from azure.core.exceptions import HttpResponseError
 from msrest.exceptions import ValidationError
 
-from requiredoptional.aio import AutoRestRequiredOptionalTestService
-from requiredoptional.rest import implicit, explicit
-from requiredoptional.models import *
+from requiredoptionallowlevel.aio import AutoRestRequiredOptionalTestService
+from requiredoptionallowlevel.rest import implicit, explicit
 
 import pytest
 
@@ -96,7 +95,7 @@ async def test_post_optional_integer(make_request_required_client):
     await make_request_required_client(request)
 
 
-    request = explicit.build_post_optional_integer_property_request(json=IntOptionalWrapper(value=None).serialize())
+    request = explicit.build_post_optional_integer_property_request(json={"value": None})
     await make_request_required_client(request)
 
     request = explicit.build_post_optional_integer_header_request(header_parameter=None)
@@ -108,7 +107,7 @@ async def test_post_optional_string(make_request_required_client):
     await make_request_required_client(request)
 
 
-    request = explicit.build_post_optional_string_property_request(json=StringOptionalWrapper(value=None).serialize())
+    request = explicit.build_post_optional_string_property_request(json={"value": None})
     await make_request_required_client(request)
 
     request = explicit.build_post_optional_string_header_request(body_parameter=None)
@@ -119,7 +118,7 @@ async def test_post_optional_class(make_request_required_client):
     request = explicit.build_post_optional_class_parameter_request()
     await make_request_required_client(request)
 
-    request = explicit.build_post_optional_class_property_request(json=ClassOptionalWrapper(value=None).serialize())
+    request = explicit.build_post_optional_class_property_request(json={"value": None})
     await make_request_required_client(request)
 
 @pytest.mark.asyncio
@@ -127,7 +126,7 @@ async def test_post_optional_array(make_request_required_client):
     request = explicit.build_post_optional_array_parameter_request(json=None)
     await make_request_required_client(request)
 
-    request = explicit.build_post_optional_array_property_request(json=ArrayOptionalWrapper(value=None).serialize())
+    request = explicit.build_post_optional_array_property_request(json={"value": None})
     await make_request_required_client(request)
 
     request = explicit.build_post_optional_array_header_request(header_parameter=None)
@@ -160,7 +159,7 @@ async def test_post_required_string(make_request_client):
     assert "Not Found" in str(ex.value)
 
     with pytest.raises(HttpResponseError)as ex:
-        request = explicit.build_post_required_string_property_request(json=StringWrapper(value=None).serialize())
+        request = explicit.build_post_required_string_property_request(json={"value": None})
         await make_request_client(request)
     assert "Not Found" in str(ex.value)
 
@@ -176,7 +175,7 @@ async def test_post_required_array(make_request_client):
     assert "Not Found" in str(ex.value)
 
     with pytest.raises(HttpResponseError) as ex:
-        request = explicit.build_post_required_array_property_request(json=ArrayWrapper(value=None).serialize())
+        request = explicit.build_post_required_array_property_request(json={"value": None})
         await make_request_client(request)
     assert "Not Found" in str(ex.value)
 
@@ -188,7 +187,7 @@ async def test_post_required_class(make_request_client):
     assert "Not Found" in str(ex.value)
 
     with pytest.raises(HttpResponseError) as ex:
-        request = explicit.build_post_required_class_property_request(json=ClassWrapper(value=None).serialize())
+        request = explicit.build_post_required_class_property_request(json={"value": None})
         await make_request_client(request)
     assert "Not Found" in str(ex.value)
 

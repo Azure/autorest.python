@@ -31,7 +31,6 @@ def base_make_request():
     async def make_request(client, request):
         response = await client.send_request(request)
         response.raise_for_status()
-        await response.load_body()
         return response
     return make_request
 

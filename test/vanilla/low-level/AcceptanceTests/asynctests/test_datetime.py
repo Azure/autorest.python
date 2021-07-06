@@ -29,8 +29,8 @@ from async_generator import yield_, async_generator
 
 from msrest.exceptions import DeserializationError, SerializationError
 
-from bodydatetime.aio import AutoRestDateTimeTestService
-from bodydatetime.rest import datetime
+from bodydatetimelowlevel.aio import AutoRestDateTimeTestService
+from bodydatetimelowlevel.rest import datetime
 
 import pytest
 

@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+from async_generator import yield_, async_generator
 import subprocess
 import sys
 import io
@@ -38,8 +38,8 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyFormData"))
 
 
-from bodyformdata import AutoRestSwaggerBATFormDataService
-from bodyformdata.rest import formdata
+from bodyformdatalowlevel.aio import AutoRestSwaggerBATFormDataService
+from bodyformdatalowlevel.rest import formdata
 import pytest
 
 @pytest.fixture
@@ -51,14 +51,15 @@ def dummy_file():
     os.remove(dummy.name)
 
 @pytest.fixture
-def client():
-    with AutoRestSwaggerBATFormDataService(
+@async_generator
+async def client(connection_data_block_size=None):
+    async with AutoRestSwaggerBATFormDataService(
         base_url="http://localhost:3000",
         connection_data_block_size = 2,
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6
     ) as client:
-        yield client
+        await yield_(client)
 
 @pytest.mark.asyncio
 async def test_file_upload_stream(client):
@@ -72,7 +73,7 @@ async def test_file_upload_stream(client):
             "fileName": "UploadFile.txt",
         }
         request = formdata.build_upload_file_request(files=files)
-        async with client.send_request(request, steram=True) as response:
+        async with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             async for data in response.iter_bytes():
                 result.write(data)
@@ -89,7 +90,7 @@ async def test_file_upload_file_stream(client, dummy_file):
             "fileName": name,
         }
         request = formdata.build_upload_file_request(files=files)
-        async with client.send_request(request, steram=True) as response:
+        async with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             async for data in response.iter_bytes():
                 result.write(data)
@@ -104,7 +105,7 @@ async def test_file_body_upload(client, dummy_file):
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         request = formdata.build_upload_file_via_body_request(content=stream_data)
-        async with client.send_request(request, steram=True) as response:
+        async with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             async for data in response.iter_bytes():
                 result.write(data)
@@ -113,7 +114,7 @@ async def test_file_body_upload(client, dummy_file):
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
         request = formdata.build_upload_file_via_body_request(content=upload_data)
-        async with client.send_request(request, steram=True) as response:
+        async with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             async for data in response.iter_bytes():
                 result.write(data)
@@ -125,7 +126,8 @@ async def test_file_body_upload_generator(client, dummy_file):
     test_string = "Upload file test case"
     test_bytes = bytearray(test_string, encoding='utf-8')
 
-    def stream_upload(data, length, block_size):
+    @async_generator
+    async def stream_upload(data, length, block_size):
         progress = 0
         while True:
             block = data.read(block_size)
@@ -133,13 +135,13 @@ async def test_file_body_upload_generator(client, dummy_file):
             print("Progress... {}%".format(int(progress*100/length)))
             if not block:
                 break
-            yield block
+            await yield_(block)
 
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         streamed_upload = stream_upload(stream_data, len(test_string), 2)
-        request = formdata.build_upload_file_via_body_request(content=stream_upload)
-        async with client.send_request(request, steram=True) as response:
+        request = formdata.build_upload_file_via_body_request(content=streamed_upload, headers={"Content-Type": "application/octet-stream"})
+        async with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             async for data in response.iter_bytes():
                 result.write(data)
@@ -149,7 +151,7 @@ async def test_file_body_upload_generator(client, dummy_file):
     with open(dummy_file, 'rb') as upload_data:
         streamed_upload = stream_upload(upload_data, len("Test file"), 2)
         request = formdata.build_upload_file_via_body_request(content=streamed_upload)
-        async with client.send_request(request, steram=True) as response:
+        async with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             async for data in response.iter_bytes():
                 result.write(data)

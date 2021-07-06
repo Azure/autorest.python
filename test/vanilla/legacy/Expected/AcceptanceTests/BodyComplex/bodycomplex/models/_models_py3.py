@@ -955,7 +955,7 @@ class SmartSalmon(Salmon):
     :type iswild: bool
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, str]
+    :type additional_properties: dict[str, object]
     :param college_degree:
     :type college_degree: str
     """
@@ -972,7 +972,7 @@ class SmartSalmon(Salmon):
         "siblings": {"key": "siblings", "type": "[Fish]"},
         "location": {"key": "location", "type": "str"},
         "iswild": {"key": "iswild", "type": "bool"},
-        "additional_properties": {"key": "", "type": "{str}"},
+        "additional_properties": {"key": "", "type": "{object}"},
         "college_degree": {"key": "college_degree", "type": "str"},
     }
 
@@ -984,7 +984,7 @@ class SmartSalmon(Salmon):
         siblings: Optional[List["Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
-        additional_properties: Optional[Dict[str, str]] = None,
+        additional_properties: Optional[Dict[str, object]] = None,
         college_degree: Optional[str] = None,
         **kwargs
     ):

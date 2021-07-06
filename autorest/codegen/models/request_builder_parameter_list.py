@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.object_schema import NoModelObjectSchema
 import json
 from autorest.codegen.models.base_schema import BaseSchema
 from copy import copy
@@ -95,7 +94,7 @@ class RequestBuilderParameterList(ParameterList):
             )
             body_kwargs_added.append(content_kwarg)
             if len(body_kwargs_added) == 1:
-                body_kwargs_added[0].required = True
+                body_kwargs_added[0].required = body_method_param.required
             else:
                 for kwarg in body_kwargs_added:
                     kwarg.required = False

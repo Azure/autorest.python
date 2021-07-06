@@ -26,9 +26,8 @@
 # --------------------------------------------------------------------------
 
 
-from multipleinheritance import MultipleInheritanceServiceClient
-from multipleinheritance.models import *
-from multipleinheritance.rest import *
+from multipleinheritancelowlevel import MultipleInheritanceServiceClient
+from multipleinheritancelowlevel.rest import *
 import pytest
 
 @pytest.fixture
@@ -44,43 +43,43 @@ def make_request_json_response(client, base_make_request_json_response):
 
 def test_get_pet(make_request_json_response):
     request = build_get_pet_request()
-    assert Pet(name="Peanut") == Pet.deserialize(make_request_json_response(request))
+    assert {"name": "Peanut"} == make_request_json_response(request)
 
 def test_put_pet(make_request_json_response):
-    request = build_put_pet_request(json=Pet(name="Butter").serialize())
+    request = build_put_pet_request(json={"name": "Butter"})
     result = make_request_json_response(request)
     assert result == "Pet was correct!"
 
 def test_get_horse(make_request_json_response):
     request = build_get_horse_request()
-    assert Horse(name="Fred", is_a_show_horse=True) == Horse.deserialize(make_request_json_response(request))
+    assert {"name": "Fred", "isAShowHorse": True} == make_request_json_response(request)
 
 def test_put_horse(make_request_json_response):
-    request = build_put_horse_request(json=Horse(name="General", is_a_show_horse=False).serialize())
+    request = build_put_horse_request(json={"name": "General", "isAShowHorse": False})
     result = make_request_json_response(request)
     assert result == "Horse was correct!"
 
 def test_get_feline(make_request_json_response):
     request = build_get_feline_request()
-    assert Feline(meows=True, hisses=True) == Feline.deserialize(make_request_json_response(request))
+    assert {"meows": True, "hisses": True} == make_request_json_response(request)
 
 def test_put_feline(make_request_json_response):
-    request = build_put_feline_request(json=Feline(meows=False, hisses=True).serialize())
+    request = build_put_feline_request(json={"meows": False, "hisses": True})
     result = make_request_json_response(request)
     assert result == "Feline was correct!"
 
 def test_get_cat(make_request_json_response):
     request = build_get_cat_request()
-    assert Cat(name="Whiskers", likes_milk=True, meows=True, hisses=True) == Cat.deserialize(make_request_json_response(request))
+    assert {"name": "Whiskers", "likesMilk": True, "meows": True, "hisses": True} == make_request_json_response(request)
 
 def test_put_cat(make_request_json_response):
-    request = build_put_cat_request(json=Cat(name="Boots", likes_milk=False, meows=True, hisses=False).serialize())
+    request = build_put_cat_request(json={"name": "Boots", "likesMilk": False, "meows": True, "hisses": False})
     assert make_request_json_response(request) == "Cat was correct!"
 
 def test_get_kitten(make_request_json_response):
     request = build_get_kitten_request()
-    assert Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False) == Kitten.deserialize(make_request_json_response(request))
+    assert {"name": "Gatito", "likesMilk": True, "meows": True, "hisses": True, "eatsMiceYet": False} == make_request_json_response(request)
 
 def test_put_kitten(make_request_json_response):
-    request = build_put_kitten_request(json=Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True).serialize())
+    request = build_put_kitten_request(json={"name": "Kitty", "likesMilk": False, "meows": True, "hisses": False, "eatsMiceYet": True})
     assert "Kitten was correct!" == make_request_json_response(request)

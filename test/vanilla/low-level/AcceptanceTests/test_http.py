@@ -29,8 +29,8 @@ import requests
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
 
-from httpinfrastructure import AutoRestHttpInfrastructureTestService
-from httpinfrastructure.rest import (
+from httpinfrastructurelowlevel import AutoRestHttpInfrastructureTestService
+from httpinfrastructurelowlevel.rest import (
     http_client_failure,
     http_failure,
     http_redirects,
@@ -107,7 +107,7 @@ def make_request_assert_raises_with_status_and_response_contains_message(client,
         with pytest.raises(HttpResponseError) as ex:
             base_make_request(client, request)
         assert ex.value.status_code == status_code
-        assert message in str(ex.value)
+        assert ex.value.response.json()['message'] == message
     return _make_request
 
 def test_get200_model204(make_request, make_request_assert_status, make_request_assert_raises_with_status_and_response_contains_message):

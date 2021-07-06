@@ -24,8 +24,8 @@
 #
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
-from objecttype.aio import ObjectTypeClient
-from objecttype.rest import *
+from objecttypelowlevel.aio import ObjectTypeClient
+from objecttypelowlevel.rest import *
 from azure.core.exceptions import HttpResponseError
 
 import pytest
@@ -57,4 +57,4 @@ async def test_put_object_fail(make_request):
     request = build_put_request(json={"should": "fail"})
     with pytest.raises(HttpResponseError) as ex:
        await make_request(request)
-    assert "The object you passed was incorrect" in str(ex.value)
+    assert ex.value.response.json()['message'] == 'The object you passed was incorrect'

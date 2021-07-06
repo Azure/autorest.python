@@ -26,9 +26,8 @@
 import isodate
 import json
 from datetime import timedelta
-from bodydictionary.rest import dictionary
-from bodydictionary import AutoRestSwaggerBATDictionaryService
-from bodydictionary.models import Widget
+from bodydictionarylowlevel.rest import dictionary
+from bodydictionarylowlevel import AutoRestSwaggerBATDictionaryService
 
 
 import pytest
@@ -71,9 +70,9 @@ def get_serialized_dict():
 
 @pytest.fixture
 def test_dict():
-    test_product1 = Widget(integer=1, string="2").serialize()
-    test_product2 = Widget(integer=3, string="4").serialize()
-    test_product3 = Widget(integer=5, string="6").serialize()
+    test_product1 = {"integer": 1, "string": "2"}
+    test_product2 = {"integer": 3, "string": "4"}
+    test_product3 = {"integer": 5, "string": "6"}
     return {"0":test_product1, "1":test_product2, "2":test_product3}
 
 # Primitive types
@@ -339,10 +338,10 @@ def test_get_complex_item_null_and_empty(make_request_json_response, test_dict):
     request = dictionary.build_get_complex_item_null_request()
     assert test_dict_null == make_request_json_response(request)
 
-    test_dict_empty = {"0":test_dict["0"], "1":Widget().serialize(), "2":test_dict["2"]}
+    test_dict_empty = {"0":test_dict["0"], "1": {}, "2":test_dict["2"]}
 
     request = dictionary.build_get_complex_item_empty_request()
-    assert make_request_json_response(request) ==  test_dict_empty
+    assert make_request_json_response(request) == test_dict_empty
 
 def test_get_array_empty(make_request, make_request_json_response):
     request = dictionary.build_get_array_null_request()

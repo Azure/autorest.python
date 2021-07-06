@@ -25,13 +25,8 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 
-from extensibleenumsswagger.aio import PetStoreInc
-from extensibleenumsswagger.rest import pet
-from extensibleenumsswagger.models import (
-    Pet,
-    DaysOfWeekExtensibleEnum,
-    IntEnum,
-)
+from extensibleenumsswaggerlowlevel.aio import PetStoreInc
+from extensibleenumsswaggerlowlevel.rest import pet
 
 import pytest
 
@@ -52,31 +47,31 @@ async def test_get_by_pet_id(make_request_json_response):
     # Now enum return are always string (Autorest.Python 3.0)
 
     request = pet.build_get_by_pet_id_request(pet_id="tommy")
-    tommy = Pet.deserialize(await make_request_json_response(request))
-    assert tommy.days_of_week ==  "Monday"
-    assert tommy.int_enum ==  "1"
+    tommy = await make_request_json_response(request)
+    assert tommy["DaysOfWeek"] == "Monday"
+    assert tommy["IntEnum"] == "1"
 
     request = pet.build_get_by_pet_id_request(pet_id="casper")
-    casper = Pet.deserialize(await make_request_json_response(request))
-    assert casper.days_of_week ==  "Weekend"
-    assert casper.int_enum ==  "2"
+    casper = await make_request_json_response(request)
+    assert casper["DaysOfWeek"] ==  "Weekend"
+    assert casper["IntEnum"] ==  "2"
 
     request = pet.build_get_by_pet_id_request(pet_id="scooby")
-    scooby = Pet.deserialize(await make_request_json_response(request))
-    assert scooby.days_of_week ==  "Thursday"
+    scooby = await make_request_json_response(request)
+    assert scooby["DaysOfWeek"] ==  "Thursday"
     # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
     # "allowedValues" of "x-ms-enum" is not supported in Python
-    assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
+    assert scooby["IntEnum"] ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
 
 @pytest.mark.asyncio
 async def test_add_pet(make_request_json_response):
-    retriever = Pet(
-        name="Retriever",
-        int_enum=IntEnum.three,
-        days_of_week=DaysOfWeekExtensibleEnum.friday
-    )
-    request = pet.build_add_pet_request(json=retriever.serialize())
-    returned_pet = Pet.deserialize(await make_request_json_response(request))
-    assert returned_pet.days_of_week ==  "Friday"
-    assert returned_pet.int_enum ==  "3"
-    assert returned_pet.name ==  "Retriever"
+    retriever = {
+        "name": "Retriever",
+        "IntEnum": "3",
+        "DaysOfWeek": "Friday"
+    }
+    request = pet.build_add_pet_request(json=retriever)
+    returned_pet = await make_request_json_response(request)
+    assert returned_pet["DaysOfWeek"] ==  "Friday"
+    assert returned_pet["IntEnum"] ==  "3"
+    assert returned_pet["name"] ==  "Retriever"

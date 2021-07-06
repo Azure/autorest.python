@@ -28,7 +28,8 @@
 import datetime
 from async_generator import yield_, async_generator
 
-from bodytime.aio import AutoRestTimeTestService
+from bodytimelowlevel.aio import AutoRestTimeTestService
+from bodytimelowlevel.rest import time
 import pytest
 
 @pytest.fixture
@@ -37,13 +38,17 @@ async def client():
     async with AutoRestTimeTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
-class TestTime(object):
+@pytest.mark.asyncio
+async def test_get(client):
+    request = time.build_get_request()
+    response = await client.send_request(request)
+    response.raise_for_status()
+    assert datetime.datetime.strptime(response.json(), '%H:%M:%S').time() == datetime.time(11, 34, 56)
 
-    @pytest.mark.asyncio
-    async def test_get(self, client):
-        assert await client.time.get() == datetime.time(11, 34, 56)
 
-    @pytest.mark.asyncio
-    async def test_put(self, client):
-        result = await client.time.put(datetime.time(8, 7, 56))
-        assert result == "Nice job posting time"
+@pytest.mark.asyncio
+async def test_put(client):
+    request = time.build_put_request(json=datetime.time(8, 7, 56).strftime("%H:%M:%S"))
+    response = await client.send_request(request)
+    response.raise_for_status()
+    assert response.json() == "Nice job posting time"

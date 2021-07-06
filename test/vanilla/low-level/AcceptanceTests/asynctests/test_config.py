@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from azure.core.pipeline.policies import HttpLoggingPolicy
-from bodystring.aio import AutoRestSwaggerBATService
+from bodystringlowlevel.aio import AutoRestSwaggerBATService
 
 @pytest.mark.asyncio
 async def test_http_logging_policy_default():

@@ -29,8 +29,8 @@ import pytest
 from async_generator import yield_, async_generator
 from azure.core.exceptions import DecodeError
 
-from bodynumber.aio import AutoRestNumberTestService
-from bodynumber.rest import number
+from bodynumberlowlevel.aio import AutoRestNumberTestService
+from bodynumberlowlevel.rest import number
 
 import pytest
 

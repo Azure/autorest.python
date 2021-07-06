@@ -37,8 +37,7 @@ cwd = dirname(realpath(__file__))
 class TestSendRequest(object):
 
     def test_send_request_with_body_get_model_deserialize(self):
-        from bodycomplex import AutoRestComplexTestService
-        from bodycomplex.models import Siamese
+        from bodycomplexlowlevel import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
@@ -48,15 +47,14 @@ class TestSendRequest(object):
         response = client.send_request(request)
         response.raise_for_status()
 
-        deserialized = Siamese.deserialize(response)
-        assert 2 ==  deserialized.id
-        assert "Siameeee" ==  deserialized.name
-        assert -1 ==  deserialized.hates[1].id
-        assert "Tomato" == deserialized.hates[1].name
+        deserialized = response.json()
+        assert 2 ==  deserialized['id']
+        assert "Siameeee" ==  deserialized['name']
+        assert -1 ==  deserialized['hates'][1]['id']
+        assert "Tomato" == deserialized['hates'][1]['name']
 
-    def test_send_request_with_body_get_direct_json(self):
-        from bodycomplex import AutoRestComplexTestService
-        from bodycomplex.models import Siamese
+    def test_send_request_with_stream_get_direct_json(self):
+        from bodycomplexlowlevel import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
@@ -76,7 +74,7 @@ class TestSendRequest(object):
         assert "Tomato" == json_response['hates'][1]['name']
 
     def test_send_request_with_body_put_json_dumps(self):
-        from bodycomplex import AutoRestComplexTestService
+        from bodycomplexlowlevel import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
@@ -108,41 +106,8 @@ class TestSendRequest(object):
         response.raise_for_status()
         assert response.status_code == 200
 
-    def test_send_request_with_body_serialize(self):
-        from bodycomplex import AutoRestComplexTestService
-        from bodycomplex.models import Siamese, Dog
-
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
-
-        siamese = Siamese(
-            id=2,
-            name="Siameeee",
-            color="green",
-            hates=[
-                Dog(
-                    id=1,
-                    name="Potato",
-                    food="tomato"
-                ),
-                Dog(
-                    id=-1,
-                    name="Tomato",
-                    food="french fries"
-                )
-            ],
-            breed="persian"
-        )
-
-        request = HttpRequest("PUT", "/complex/inheritance/valid",
-            json=siamese.serialize()
-        )
-        assert request.headers['Content-Type'] == "application/json"
-        response = client.send_request(request)
-        response.raise_for_status()
-        assert response.status_code == 200
-
     def test_send_request_get_stream(self):
-        from bodyfile import AutoRestSwaggerBATFileService
+        from bodyfilelowlevel import AutoRestSwaggerBATFileService
 
         client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
         file_length = 0
@@ -163,7 +128,7 @@ class TestSendRequest(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
+                join(cwd, pardir, pardir, pardir, pardir,
                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:
@@ -171,7 +136,7 @@ class TestSendRequest(object):
             assert sample_data == hash(file_handle.getvalue())
 
     def test_send_request_put_stream(self):
-        from bodyformdata import AutoRestSwaggerBATFormDataService
+        from bodyformdatalowlevel import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
             base_url="http://localhost:3000",
@@ -182,13 +147,13 @@ class TestSendRequest(object):
         with io.BytesIO(test_bytes) as stream_data:
             request = HttpRequest("PUT", '/formdata/stream/uploadfile',
                 content=stream_data,
+                headers={"Content-Type": "application/octet-stream"}
             )
             with client.send_request(request, stream=True) as response:
                 response.raise_for_status()
 
     def test_send_request_full_url(self):
-        from bodycomplex import AutoRestComplexTestService
-        from bodycomplex.models import Siamese
+        from bodycomplexlowlevel import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://fakeUrl")
 
@@ -201,8 +166,8 @@ class TestSendRequest(object):
         response = client.send_request(request)
         response.raise_for_status()
 
-        deserialized = Siamese.deserialize(response)
-        assert 2 ==  deserialized.id
-        assert "Siameeee" ==  deserialized.name
-        assert -1 ==  deserialized.hates[1].id
-        assert "Tomato" ==  deserialized.hates[1].name
+        deserialized = response.json()
+        assert 2 ==  deserialized['id']
+        assert "Siameeee" ==  deserialized['name']
+        assert -1 ==  deserialized['hates'][1]['id']
+        assert "Tomato" ==  deserialized['hates'][1]['name']

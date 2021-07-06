@@ -30,8 +30,8 @@ from async_generator import yield_, async_generator
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, AsyncRedirectPolicy
 
-from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
-from httpinfrastructure.rest import (
+from httpinfrastructurelowlevel.aio import AutoRestHttpInfrastructureTestService
+from httpinfrastructurelowlevel.rest import (
     multiple_responses,
     http_server_failure,
     http_failure,
@@ -109,7 +109,7 @@ def make_request_assert_raises_with_status_and_response_contains_message(client,
         with pytest.raises(HttpResponseError) as ex:
             await base_make_request(client, request)
         assert ex.value.status_code == status_code
-        assert message in str(ex.value)
+        assert ex.value.response.json()['message'] == message
     return _make_request
 
 @pytest.mark.asyncio

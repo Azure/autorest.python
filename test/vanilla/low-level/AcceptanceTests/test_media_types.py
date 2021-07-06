@@ -23,8 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from mediatypes import MediaTypesClient
-from mediatypes.rest import build_analyze_body_request, build_content_type_with_encoding_request
+from mediatypeslowlevel import MediaTypesClient
+from mediatypeslowlevel.rest import build_analyze_body_request, build_content_type_with_encoding_request
 
 import pytest
 

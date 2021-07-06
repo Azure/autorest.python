@@ -75,4 +75,5 @@ async def test_model_put_true(make_request):
 @pytest.mark.asyncio
 async def test_model_get_invalid(make_request):
     request = bool.build_get_invalid_request()
-    assert (await make_request(request)).text == "true1"
+    with pytest.raises(DecodeError):
+        await make_request(request)  # this behavior is diff from sync

@@ -21,7 +21,7 @@ class PetAPTrue(msrest.serialization.Model):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, str]
+    :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
     :param name:
@@ -36,14 +36,19 @@ class PetAPTrue(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        "additional_properties": {"key": "", "type": "{str}"},
+        "additional_properties": {"key": "", "type": "{object}"},
         "id": {"key": "id", "type": "int"},
         "name": {"key": "name", "type": "str"},
         "status": {"key": "status", "type": "bool"},
     }
 
     def __init__(
-        self, *, id: int, additional_properties: Optional[Dict[str, str]] = None, name: Optional[str] = None, **kwargs
+        self,
+        *,
+        id: int,
+        additional_properties: Optional[Dict[str, object]] = None,
+        name: Optional[str] = None,
+        **kwargs
     ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = additional_properties
@@ -61,7 +66,7 @@ class CatAPTrue(PetAPTrue):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, str]
+    :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
     :param name:
@@ -78,7 +83,7 @@ class CatAPTrue(PetAPTrue):
     }
 
     _attribute_map = {
-        "additional_properties": {"key": "", "type": "{str}"},
+        "additional_properties": {"key": "", "type": "{object}"},
         "id": {"key": "id", "type": "int"},
         "name": {"key": "name", "type": "str"},
         "status": {"key": "status", "type": "bool"},
@@ -89,7 +94,7 @@ class CatAPTrue(PetAPTrue):
         self,
         *,
         id: int,
-        additional_properties: Optional[Dict[str, str]] = None,
+        additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
         **kwargs

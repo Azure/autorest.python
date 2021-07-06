@@ -28,8 +28,8 @@ import isodate
 import datetime
 from msrest.exceptions import DeserializationError
 
-from bodydate import AutoRestDateTestService
-from bodydate.rest import date
+from bodydatelowlevel import AutoRestDateTestService
+from bodydatelowlevel.rest import date
 
 import pytest
 

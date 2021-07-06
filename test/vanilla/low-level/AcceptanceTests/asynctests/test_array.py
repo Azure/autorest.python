@@ -303,7 +303,7 @@ async def test_get_dictionary_and_dictionary_item_empty(make_request_json_respon
 @pytest.mark.asyncio
 async def test_array_get_invalid(make_request_json_response):
     request = array.build_get_invalid_request()
-    with pytest.raises(json.decoder.JSONDecodeError):
+    with pytest.raises(DecodeError):  # raises a diff error than the sync version
         await make_request_json_response(request)
 
 @pytest.mark.asyncio

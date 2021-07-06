@@ -29,6 +29,7 @@ from datetime import date, datetime, timedelta
 from base64 import b64encode
 from bodyarraylowlevel import AutoRestSwaggerBATArrayService
 from bodyarraylowlevel.rest import array
+from azure.core.exceptions import DecodeError
 import msrest
 
 import pytest

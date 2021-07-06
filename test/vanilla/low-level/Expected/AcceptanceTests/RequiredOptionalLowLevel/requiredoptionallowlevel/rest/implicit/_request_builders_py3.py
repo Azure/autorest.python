@@ -143,7 +143,7 @@ def build_put_optional_body_request(*, json: Any = None, content: Any = None, **
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_put_optional_binary_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional body parameter.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your

@@ -111,9 +111,8 @@ class JinjaSerializer:
                 code_model, env, output_path, request_builders
             )
         if not "" in operation_group_names:
-            general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
             self._autorestapi.write_file(
-                rest_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()
+                rest_path / Path("__init__.py"), code_model.options['license_header']
             )
 
 

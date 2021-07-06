@@ -25,13 +25,13 @@
 #
 # --------------------------------------------------------------------------
 
-from attr import make_class
 from azure.core.exceptions import HttpResponseError
 
-from bodystring import AutoRestSwaggerBATService
-from bodystring.models import Colors, RefColorConstant
-from bodystring.rest import string, enum
+from bodystringlowlevel import AutoRestSwaggerBATService
+from bodystringlowlevel.rest import string, enum
 import pytest
+from msrest import Serializer, Deserializer
+from base64 import b64decode
 
 @pytest.fixture
 def client():
@@ -102,7 +102,7 @@ def test_mbcs(make_request, make_request_json_response):
     request = string.build_get_mbcs_request()
     assert test_str == make_request_json_response(request)
 
-    request = string.build_put_mbcs_request(content=test_str)
+    request = string.build_put_mbcs_request(json=test_str)
     make_request(request)
 
 def test_whitespace(make_request, make_request_json_response):
@@ -119,12 +119,12 @@ def test_get_not_provided(make_request):
 
 def test_enum_not_expandable(make_request, make_request_json_response):
     request = enum.build_get_not_expandable_request()
-    assert Colors.RED_COLOR == make_request_json_response(request)
+    assert "red color" == make_request_json_response(request)
 
     request = enum.build_put_not_expandable_request(json='red color')
     make_request(request)
 
-    request = enum.build_put_not_expandable_request(json=Colors.RED_COLOR)
+    request = enum.build_put_not_expandable_request(json='red color')
     make_request(request)
     # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
     # but now we allow the user to pass strings as enums, so the raised exception is different.
@@ -133,15 +133,19 @@ def test_enum_not_expandable(make_request, make_request_json_response):
     with pytest.raises(HttpResponseError):
         make_request(request)
 
-def test_get_base64_encdoded(make_request):
+def test_get_base64_encoded(make_request):
     request = string.build_get_base64_encoded_request()
-    assert make_request(request).text.encode() ==  'a string that gets encoded with base64'.encode()
+    assert b64decode(make_request(request).text) == 'a string that gets encoded with base64'.encode()
 
-def test_base64_url_encoded(make_request, make_request_json_response):
+def test_base64_url_encoded(make_request):
+    # the b64 encoding and decoding is taken from msrest
     request = string.build_get_base64_url_encoded_request()
-    assert make_request_json_response(request) ==  'a string that gets encoded with base64url'.encode()
+    response = make_request(request).text
+    response = Deserializer.deserialize_base64(response)
+    assert response == 'a string that gets encoded with base64url'.encode()
 
-    request = string.build_put_base64_url_encoded_request(content='a string that gets encoded with base64url'.encode())
+    content = Serializer.serialize_base64('a string that gets encoded with base64url'.encode())
+    request = string.build_put_base64_url_encoded_request(json=content)
     make_request(request)
 
 def test_get_null_base64_url_encoded(make_request):
@@ -149,19 +153,19 @@ def test_get_null_base64_url_encoded(make_request):
     assert make_request(request).text == ''
 
 def test_enum_referenced(make_request, make_request_json_response):
-    request = enum.build_put_referenced_request(json=Colors.RED_COLOR)
+    request = enum.build_put_referenced_request(json='red color')
     make_request(request)
 
     request = enum.build_put_referenced_request(json="red color")
     make_request(request)
 
     request = enum.build_get_referenced_request()
-    assert make_request_json_response(request) == Colors.RED_COLOR
+    assert make_request_json_response(request) == 'red color'
 
 def test_enum_referenced_constant(make_request, make_request_json_response):
-    request = enum.build_put_referenced_request(json=RefColorConstant().serialize())
+    request = enum.build_put_referenced_request(json='red color')
     make_request(request)
 
     request = enum.build_get_referenced_constant_request()
-    response = RefColorConstant.deserialize(make_request_json_response(request))
-    assert response.color_constant ==  Colors.GREEN_COLOR.value
+    response = make_request_json_response(request)
+    assert response == {'field1': 'Sample String'} # there's no constant on the response, so just getting field1

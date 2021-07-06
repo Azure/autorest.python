@@ -25,9 +25,8 @@
 # --------------------------------------------------------------------------
 import isodate
 from datetime import timedelta
-from bodydictionary.rest import dictionary
-from bodydictionary.aio import AutoRestSwaggerBATDictionaryService
-from bodydictionary.models import Widget
+from bodydictionarylowlevel.rest import dictionary
+from bodydictionarylowlevel.aio import AutoRestSwaggerBATDictionaryService
 from azure.core.exceptions import DecodeError
 from async_generator import yield_, async_generator
 
@@ -74,9 +73,9 @@ def get_serialized_dict():
 @pytest.fixture
 @pytest.mark.asyncio
 async def test_dict():
-    test_product1 = Widget(integer=1, string="2").serialize()
-    test_product2 = Widget(integer=3, string="4").serialize()
-    test_product3 = Widget(integer=5, string="6").serialize()
+    test_product1 = {"integer": 1, "string": "2"}
+    test_product2 = {"integer": 3, "string": "4"}
+    test_product3 = {"integer": 5, "string": "6"}
     return {"0":test_product1, "1":test_product2, "2":test_product3}
 
 # Primitive types
@@ -372,7 +371,7 @@ async def test_get_complex_item_null_and_empty(make_request_json_response, test_
     request = dictionary.build_get_complex_item_null_request()
     assert test_dict_null == await make_request_json_response(request)
 
-    test_dict_empty = {"0":test_dict["0"], "1":Widget().serialize(), "2":test_dict["2"]}
+    test_dict_empty = {"0":test_dict["0"], "1": {}, "2":test_dict["2"]}
 
     request = dictionary.build_get_complex_item_empty_request()
     assert await make_request_json_response(request) ==  test_dict_empty

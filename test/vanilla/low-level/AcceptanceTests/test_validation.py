@@ -27,12 +27,8 @@ import sys
 
 from msrest.exceptions import ValidationError
 
-from validation import AutoRestValidationTest
-from validation.models import (
-    Product,
-    ConstantProduct,
-    ChildProduct)
-from validation.rest import *
+from validationlowlevel import AutoRestValidationTest
+from validationlowlevel.rest import *
 
 import pytest
 
@@ -60,19 +56,26 @@ def constant_body():
     the commented line.
     See https://github.com/Azure/autorest.modelerfour/issues/83
     """
-    #return Product(child=ChildProduct())
-    return Product(
-        child=ChildProduct(),
-        const_child=ConstantProduct(),
-    )
+    return {
+        'child': {
+            'constProperty': 'constant'
+        },
+        'constChild': {
+            'constProperty': 'constant',
+            'constProperty2': 'constant2'
+        },
+        'constInt': 0,
+        'constString': 'constant',
+        'constStringAsEnum': 'constant_string_as_enum'
+    }
 
 def test_with_constant_in_path(make_request):
     request = build_get_with_constant_in_path_request()
     make_request(request)
 
 def test_post_with_constant_in_body(make_request_json_response, constant_body):
-    request = build_post_with_constant_in_body_request(json=constant_body.serialize())
-    product = Product.deserialize(make_request_json_response(request))
+    request = build_post_with_constant_in_body_request(json=constant_body)
+    product = make_request_json_response(request)
     assert product is not None
 
 def test_min_length_validation(make_request):

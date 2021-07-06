@@ -27,8 +27,8 @@
 from decimal import Decimal
 import pytest
 
-from bodynumber import AutoRestNumberTestService
-from bodynumber.rest import number
+from bodynumberlowlevel import AutoRestNumberTestService
+from bodynumberlowlevel.rest import number
 
 import pytest
 

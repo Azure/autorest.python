@@ -28,12 +28,8 @@ import sys
 from msrest.exceptions import ValidationError
 from async_generator import yield_, async_generator
 
-from validation.aio import AutoRestValidationTest
-from validation.models import (
-    Product,
-    ConstantProduct,
-    ChildProduct)
-from validation.rest import *
+from validationlowlevel.aio import AutoRestValidationTest
+from validationlowlevel.rest import *
 
 import pytest
 
@@ -64,11 +60,18 @@ def constant_body():
     the commented line.
     See https://github.com/Azure/autorest.modelerfour/issues/83
     """
-    #return Product(child=ChildProduct())
-    return Product(
-        child=ChildProduct(),
-        const_child=ConstantProduct(),
-    )
+    return {
+        'child': {
+            'constProperty': 'constant'
+        },
+        'constChild': {
+            'constProperty': 'constant',
+            'constProperty2': 'constant2'
+        },
+        'constInt': 0,
+        'constString': 'constant',
+        'constStringAsEnum': 'constant_string_as_enum'
+    }
 
 @pytest.mark.asyncio
 async def test_with_constant_in_path(make_request):
@@ -77,8 +80,8 @@ async def test_with_constant_in_path(make_request):
 
 @pytest.mark.asyncio
 async def test_post_with_constant_in_body(make_request_json_response, constant_body):
-    request = build_post_with_constant_in_body_request(json=constant_body.serialize())
-    product = Product.deserialize(await make_request_json_response(request))
+    request = build_post_with_constant_in_body_request(json=constant_body)
+    product = await make_request_json_response(request)
     assert product is not None
 
 @pytest.mark.asyncio

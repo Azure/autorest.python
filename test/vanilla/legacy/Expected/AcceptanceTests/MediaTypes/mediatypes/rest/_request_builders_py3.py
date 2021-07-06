@@ -58,7 +58,7 @@ def build_analyze_body_request(*, json: Any = None, content: Any = None, **kwarg
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_content_type_with_encoding_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_content_type_with_encoding_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
     See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your

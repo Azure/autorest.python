@@ -28,9 +28,8 @@ import isodate
 from datetime import datetime, timedelta
 from base64 import b64decode
 
-from header import AutoRestSwaggerBATHeaderService
-from header.rest import header
-from header.models import GreyscaleColors
+from headerlowlevel import AutoRestSwaggerBATHeaderService
+from headerlowlevel.rest import header
 
 import pytest
 
@@ -135,7 +134,7 @@ def test_string(make_request, make_request_value_response_header):
     assert make_request_value_response_header(request) == ""
 
 def test_enum(make_request, make_request_value_response_header):
-    request = header.build_param_enum_request(scenario="valid", value=GreyscaleColors.GREY)
+    request = header.build_param_enum_request(scenario="valid", value="GREY")
     make_request(request)
 
     request = header.build_param_enum_request(scenario="valid", value="GREY")
@@ -146,7 +145,7 @@ def test_enum(make_request, make_request_value_response_header):
 
 
     request = header.build_response_enum_request(scenario="valid")
-    assert make_request_value_response_header(request) == GreyscaleColors.grey
+    assert make_request_value_response_header(request) == "GREY"
 
     # We receive an empty string.
     # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
@@ -225,6 +224,7 @@ def test_response_protected_key(make_request):
     request = header.build_response_protected_key_request()
     assert make_request(request).headers['Content-Type'] == "text/html; charset=utf-8"
 
+@pytest.mark.xfail(reason="https://github.com/Azure/azure-sdk-for-python/issues/17757")
 def test_custom_request_id(make_request):
     custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
     request = header.build_custom_request_id_request(headers=custom_headers)

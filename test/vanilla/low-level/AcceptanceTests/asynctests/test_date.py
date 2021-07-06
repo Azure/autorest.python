@@ -28,8 +28,8 @@ import isodate
 import datetime
 from async_generator import yield_, async_generator
 
-from bodydate.aio import AutoRestDateTestService
-from bodydate.rest import date
+from bodydatelowlevel.aio import AutoRestDateTestService
+from bodydatelowlevel.rest import date
 
 import pytest
 

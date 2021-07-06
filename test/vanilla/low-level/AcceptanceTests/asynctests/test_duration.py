@@ -28,8 +28,8 @@ from datetime import timedelta
 from async_generator import yield_, async_generator
 import isodate
 
-from bodyduration.aio import AutoRestDurationTestService
-from bodyduration.rest import duration
+from bodydurationlowlevel.aio import AutoRestDurationTestService
+from bodydurationlowlevel.rest import duration
 
 import pytest
 

@@ -25,8 +25,8 @@
 # --------------------------------------------------------------------------
 import io
 from os.path import dirname, pardir, join, realpath
-from bodyfile import AutoRestSwaggerBATFileService
-from bodyfile.rest import files
+from bodyfilelowlevel import AutoRestSwaggerBATFileService
+from bodyfilelowlevel.rest import files
 
 import pytest
 
@@ -45,7 +45,7 @@ def test_get_file(client):
     with io.BytesIO() as file_handle:
         request = files.build_get_file_request()
         with client.send_request(request, stream=True) as response:
-            assert not response.internal_response._content_consumed
+            assert not response._internal_response._content_consumed
             assert not response.is_closed
             assert not response.is_stream_consumed
             for data in response.iter_raw():
@@ -56,9 +56,9 @@ def test_get_file(client):
         assert file_length !=  0
         assert response.is_closed
         assert response.is_stream_consumed
-        assert response.internal_response._content_consumed
+        assert response._internal_response._content_consumed
         sample_file = realpath(
-        join(cwd, pardir, pardir, pardir,
+        join(cwd, pardir, pardir, pardir, pardir,
             "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
         with open(sample_file, 'rb') as data:
@@ -71,7 +71,7 @@ def test_get_empty_file(client):
     with io.BytesIO() as file_handle:
         request = files.build_get_empty_file_request()
         with client.send_request(request, stream=True) as response:
-            assert not response.internal_response._content_consumed
+            assert not response._internal_response._content_consumed
 
             for data in response.iter_raw():
                 file_length += len(data)
@@ -84,9 +84,8 @@ def test_files_long_running(client):
     file_length = 0
     request = files.build_get_file_large_request()
     with client.send_request(request, stream=True) as response:
-        chunk_size = 4095  # make less than connection data block size to make sure chunk size is working
-        for data in response.iter_bytes(chunk_size=chunk_size):
-            assert 0 < len(data) <= chunk_size
+        for data in response.iter_bytes():
+            assert 0 < len(data) <= response._connection_data_block_size
             file_length += len(data)
 
     assert file_length ==  3000 * 1024 * 1024

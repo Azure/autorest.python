@@ -27,30 +27,24 @@
 
 import datetime
 
-from bodytime import AutoRestTimeTestService
+from bodytimelowlevel import AutoRestTimeTestService
+from bodytimelowlevel.rest import time
 import pytest
-import sys
 
 @pytest.fixture
 def client():
     with AutoRestTimeTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestTime(object):
+def test_get(client):
+    request = time.build_get_request()
+    response = client.send_request(request)
+    response.raise_for_status()
+    assert datetime.datetime.strptime(response.json(), '%H:%M:%S').time() == datetime.time(11, 34, 56)
 
-    def test_get(self, client):
-        assert client.time.get() == datetime.time(11, 34, 56)
 
-    def test_put(self, client):
-        result = client.time.put(datetime.time(8, 7, 56))
-        assert result == "Nice job posting time"
-
-    def test_models(self):
-        from bodytime.models import Error
-
-        if sys.version_info >= (3,5):
-            from bodytime.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodytime.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+def test_put(client):
+    request = time.build_put_request(json=datetime.time(8, 7, 56).strftime("%H:%M:%S"))
+    response = client.send_request(request)
+    response.raise_for_status()
+    assert response.json() == "Nice job posting time"

@@ -38,8 +38,8 @@ tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
 sys.path.append(join(tests, "BodyFormData"))
 
 
-from bodyformdata import AutoRestSwaggerBATFormDataService
-from bodyformdata.rest import formdata
+from bodyformdatalowlevel import AutoRestSwaggerBATFormDataService
+from bodyformdatalowlevel.rest import formdata
 import pytest
 
 @pytest.fixture
@@ -100,7 +100,7 @@ def test_file_body_upload(client, dummy_file):
 
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
-        request = formdata.build_upload_file_via_body_request(content=stream_data)
+        request = formdata.build_upload_file_via_body_request(content=stream_data, headers={"Content-Type": "application/octet-stream"})
         with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
@@ -109,7 +109,7 @@ def test_file_body_upload(client, dummy_file):
 
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
-        request = formdata.build_upload_file_via_body_request(content=upload_data)
+        request = formdata.build_upload_file_via_body_request(content=upload_data, headers={"Content-Type": "application/octet-stream"})
         with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
@@ -134,7 +134,7 @@ def test_file_body_upload_generator(client, dummy_file):
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
         streamed_upload = stream_upload(stream_data, len(test_string), 2)
-        request = formdata.build_upload_file_via_body_request(content=streamed_upload)
+        request = formdata.build_upload_file_via_body_request(content=streamed_upload, headers={"Content-Type": "application/octet-stream"})
         with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():
@@ -144,7 +144,7 @@ def test_file_body_upload_generator(client, dummy_file):
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
         streamed_upload = stream_upload(upload_data, len("Test file"), 2)
-        request = formdata.build_upload_file_via_body_request(content=streamed_upload)
+        request = formdata.build_upload_file_via_body_request(content=streamed_upload, headers={"Content-Type": "application/octet-stream"})
         with client.send_request(request, stream=True) as response:
             response.raise_for_status()
             for data in response.iter_bytes():

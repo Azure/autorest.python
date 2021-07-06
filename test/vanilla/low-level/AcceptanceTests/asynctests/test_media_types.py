@@ -23,8 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from mediatypes.aio import MediaTypesClient
-from mediatypes.rest import *
+from mediatypeslowlevel.aio import MediaTypesClient
+from mediatypeslowlevel.rest import *
 from async_generator import yield_, async_generator
 
 import pytest

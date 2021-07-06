@@ -24,11 +24,9 @@
 #
 # --------------------------------------------------------------------------
 
-from typing import Dict
 import pytest
 import isodate
-from datetime import date, datetime, timedelta, tzinfo
-from msrest.exceptions import DeserializationError
+from datetime import datetime, timedelta, tzinfo
 from bodycomplexlowlevel import AutoRestComplexTestService
 from bodycomplexlowlevel.rest import (
     basic,
@@ -41,6 +39,8 @@ from bodycomplexlowlevel.rest import (
     inheritance,
 )
 from azure.core.exceptions import HttpResponseError
+from msrest import Serializer, Deserializer
+from base64 import b64decode, b64encode
 
 class UTC(tzinfo):
     def utcoffset(self,dt):
@@ -106,7 +106,7 @@ def test_basic_get_empty(make_request, make_request_json_response):
     basic_result = make_request_json_response(request)
     assert basic_result == {}
 
-def test_basic_get_null(make_request, make_request_json_response):
+def test_basic_get_null(make_request_json_response):
     # GET basic/null
     request = basic.build_get_null_request()
     basic_result = make_request_json_response(request)
@@ -118,7 +118,7 @@ def test_basic_get_not_provided(make_request):
     request = basic.build_get_not_provided_request()
     assert make_request(request).text == ''
 
-def test_basic_get_invalid(make_request, make_request_json_response):
+def test_basic_get_invalid(make_request_json_response):
     # GET basic/invalid
     request = basic.build_get_invalid_request()
     basic_result = make_request_json_response(request)
@@ -148,8 +148,8 @@ def test_primitive_get_and_put_long(make_request, make_request_json_response):
     assert -999511627788 ==  long_result['field2']
 
     # PUT primitive/long
-    long_request = {'field1':1099511627775, 'field2':-999511627788}
-    request = primitive.build_put_long_request(json=long_request)
+    json = {'field1':1099511627775, 'field2':-999511627788}
+    request = primitive.build_put_long_request(json=json)
     make_request(request)
 
 def test_primitive_get_and_put_float(make_request, make_request_json_response):
@@ -224,7 +224,7 @@ def test_primitive_get_and_put_date(make_request, make_request_json_response):
     json = {
         "field": '0001-01-01',
         "leap": '2016-02-29'
-    }  # can't pass isodate yet, waiting on JSON serializer work
+    }
     request = primitive.build_put_date_request(json=json)
     make_request(request)
 
@@ -233,11 +233,11 @@ def test_primitive_get_and_put_date_time(make_request, make_request_json_respons
     request = primitive.build_get_date_time_request()
     datetime_result = make_request_json_response(request)
 
-    assert min_date ==  datetime.strptime(datetime_result['field'], '%a, %d %b %Y %H:%M:%S %Z')
+    assert min_date ==  Deserializer.deserialize_iso(datetime_result['field'])
 
     json = {
-        "field": isodate.parse_datetime("0001-01-01T00:00:00Z"),
-        "now": isodate.parse_datetime("2015-05-18T18:38:00Z")
+        "field": "0001-01-01T00:00:00Z",
+        "now": "2015-05-18T18:38:00Z"
     }
     request = primitive.build_put_date_time_request(json=json)
     make_request(request)
@@ -250,14 +250,12 @@ def test_primitive_get_and_put_date_time_rfc1123(make_request, make_request_json
     # we are not using the min date of year 1 because of the latest msrest update
     # with msrest update, minimal year we can parse is 100, instead of 1
     min_date = datetime(2001, 1, 1)
-    # assert min_date.replace(tzinfo=UTC()) == datetimerfc1123_result['field']
-    # assert min_date.replace(tzinfo=UTC()) == datetime.strptime(datetimerfc1123_result['field'], '%a, %d %b %Y %H:%M:%S %Z')
-    raise ValueError(min_date.replace(tzinfo=UTC()))
+    assert min_date.replace(tzinfo=UTC()) == Deserializer.deserialize_rfc(datetimerfc1123_result['field'])
 
     # we can still model year 1 though with the latest msrest update
     json = {
-        "field": isodate.parse_datetime("0001-01-01T00:00:00Z"),
-        "now": isodate.parse_datetime("2015-05-18T11:38:00Z")
+        "field": Serializer.serialize_rfc(isodate.parse_datetime("0001-01-01T00:00:00Z")),
+        "now": Serializer.serialize_rfc(isodate.parse_datetime("2015-05-18T11:38:00Z"))
     }
     request = primitive.build_put_date_time_rfc1123_request(json=json)
     make_request(request)
@@ -267,27 +265,27 @@ def test_primitive_get_and_put_duration(make_request, make_request_json_response
     expected = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
     request = primitive.build_get_duration_request()
     duration_result = make_request_json_response(request)
-    assert expected ==  duration_result['field']
+    assert expected == Deserializer.deserialize_duration(duration_result['field'])
 
-    request = primitive.build_put_duration_request(json={"field": expected})
+    request = primitive.build_put_duration_request(json={"field": Serializer.serialize_duration(expected)})
+    make_request(request)
 
 def test_primitive_get_and_put_byte(make_request, make_request_json_response):
     # GET primitive/byte
     request = primitive.build_get_byte_request()
     byte_result = make_request_json_response(request)
     valid_bytes = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x000, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
-    assert valid_bytes ==  byte_result['field']
+    assert valid_bytes == bytearray(b64decode(byte_result['field']))
 
     # PUT primitive/byte
-    request = primitive.build_put_byte_request(json={"field": valid_bytes})
+    request = primitive.build_put_byte_request(json={"field": b64encode(valid_bytes).decode()})
     make_request(request)
 
 # COMPLEX TYPE WITH READ ONLY PROPERTIES
 
 def test_readonlyproperty_get_and_put_valid(make_request, make_request_json_response):
     # GET readonly/valid
-    valid_obj = {"size": 2}
-    valid_obj['id'] = '1234'
+    valid_obj = {"size": 2, 'id': '1234'}
     request = readonlyproperty.build_get_valid_request()
     readonly_result = make_request_json_response(request)
     assert readonly_result ==  valid_obj
@@ -373,11 +371,11 @@ def test_inheritance_get_and_put_valid(make_request, make_request_json_response)
     inheritance_result = make_request_json_response(request)
     assert 2 ==  inheritance_result['id']
     assert "Siameeee" ==  inheritance_result['name']
-    assert -1 ==  inheritance_result.hates[1]['id']
-    assert "Tomato" ==  inheritance_result.hates[1]['name']
+    assert -1 ==  inheritance_result['hates'][1]['id']
+    assert "Tomato" ==  inheritance_result['hates'][1]['name']
 
     # PUT inheritance/valid
-    siamese_request = {
+    json = {
         'id': 2,
         'name': "Siameeee",
         'color': "green",
@@ -385,7 +383,7 @@ def test_inheritance_get_and_put_valid(make_request, make_request_json_response)
         'hates': [{"id": 1, "name": "Potato", "food": "tomato"},
                   {"id": -1, "name": "Tomato", "food": "french fries"}]
         }
-    request = inheritance.build_put_valid_request(json=siamese_request)
+    request = inheritance.build_put_valid_request(json=json)
     make_request(request)
 
 # COMPLEX TYPES THAT INVOLVE POLYMORPHISM
@@ -393,14 +391,13 @@ def test_inheritance_get_and_put_valid(make_request, make_request_json_response)
 def test_get_composed_with_discriminator(make_request_json_response):
     request = polymorphism.build_get_composed_with_discriminator_request()
     result = make_request_json_response(request)
-    raise ValueError(result)
-    assert isinstance(result.sample_fish, DotSalmon)
+    assert result['sampleSalmon']['fish.type'] == "DotSalmon"
 
 def test_get_composed_without_discriminator(make_request_json_response):
     request = polymorphism.build_get_composed_without_discriminator_request()
     result = make_request_json_response(request)
-    raise ValueError(result)
-    assert isinstance(result.sample_fish, DotFish)
+    with pytest.raises(KeyError):
+        result['sampleSalmon']['fish.type']  # shouldn't have a discriminator
 
 def test_polymorphism_get_and_put_valid(make_request, make_request_json_response):
     # GET polymorphism/valid
@@ -409,53 +406,82 @@ def test_polymorphism_get_and_put_valid(make_request, make_request_json_response
     assert result is not None
     assert result['location'] ==  "alaska"
     assert len(result['siblings']) ==  3
-    raise ValueError(result['siblings'])
-    # assert isinstance(result['siblings'][0],  Shark)
-    # assert isinstance(result['siblings'][1],  Sawshark)
-    # assert isinstance(result['siblings'][2],  Goblinshark)
-    assert result['siblings'][0].age ==  6
-    assert result['siblings'][1].age ==  105
-    assert result['siblings'][2].age ==  1
+    assert result['siblings'][0]['fishtype'] == 'shark'
+    assert result['siblings'][1]['fishtype'] == 'sawshark'
+    assert result['siblings'][2]['fishtype'] == 'goblin'
+    assert result['siblings'][0]['age'] ==  6
+    assert result['siblings'][1]['age'] ==  105
+    assert result['siblings'][2]['age'] ==  1
 
 
     # PUT polymorphism/valid
-    request = Salmon(length=1,
-        iswild = True,
-        location = "alaska",
-        species = "king",
-        siblings = [Shark(length=20,
-                            birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
-                            age=6, species="predator"),
-                    Sawshark(length=10,
-                                birthday=isodate.parse_datetime("1900-01-05T01:00:00Z"),
-                                age=105, species="dangerous",
-                                picture=bytearray([255, 255, 255, 255, 254])),
-                    Goblinshark(length=30,
-                                birthday=isodate.parse_datetime("2015-08-08T00:00:00Z"),
-                                age=1, species="scary", jawsize=5, color='pinkish-gray')]
-        )
-    request = polymorphism.build_put_valid_request(json=request.serialize())
+    json = {
+        "fishtype": "salmon",
+        "species": "king",
+        "length": 1.0,
+        "siblings": [
+            {
+                "fishtype": "shark",
+                "species": "predator",
+                "length": 20.0,
+                "age": 6,
+                "birthday": "2012-01-05T01:00:00.000Z"
+            },
+            {
+                "fishtype": "sawshark",
+                "species": "dangerous",
+                "length": 10.0,
+                "age": 105,
+                "birthday": "1900-01-05T01:00:00.000Z",
+                "picture": "//////4="
+            },
+            {
+                "fishtype": "goblin",
+                "species": "scary",
+                "length": 30.0,
+                "age": 1,
+                "birthday": "2015-08-08T00:00:00.000Z",
+                "jawsize": 5,
+                "color": "pinkish-gray"
+            }
+        ],
+        "location": "alaska",
+        "iswild": True
+    }
+    request = polymorphism.build_put_valid_request(json=json)
     make_request(request)
 
-def test_polymorphism_put_valid_missing_required(make_request, make_request_json_response):
-    bad_request = Salmon(length=1,
-        iswild=True,
-        location="alaska",
-        species="king",
-        siblings = [
-            Shark(length=20,
-                    birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
-                    age=6, species="predator"),
-            Sawshark(length=10, birthday=None, age=105, species="dangerous",
-                        picture=bytearray([255, 255, 255, 255, 254]))]
-        )
+def test_polymorphism_put_valid_missing_required(make_request):
+    json = {
+        "fishtype": "salmon",
+        "species": "king",
+        "length": 1.0,
+        "siblings": [
+            {
+                "fishtype": "shark",
+                "species": "predator",
+                "length": 20.0,
+                "age": 6,
+                "birthday": "2012-01-05T01:00:00.000Z"
+            },
+            {
+                "fishtype": "sawshark",
+                "species": "dangerous",
+                "length": 10.0,
+                "age": 105,
+                "picture": "//////4="
+            }
+        ],
+        "location": "alaska",
+        "iswild": True
+    }
 
-    request = polymorphism.build_put_valid_missing_required_request(json=bad_request.serialize())
+    request = polymorphism.build_put_valid_missing_required_request(json=json)
 
     # in convenience layer, this raises a ValidationError (when generated with client side validation)
     with pytest.raises(HttpResponseError) as e:
         make_request(request)
-    assert "Reached server in scenario: /complex/polymorphism/missingrequired/invalid" in str(e.value)
+    assert "Reached server in scenario: /complex/polymorphism/missingrequired/invalid" in str(e.value.response.text)
 
 # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
 
@@ -489,15 +515,15 @@ def test_polymorphismrecursive_get_and_put_valid(make_request, make_request_json
                                 "species": "predator",
                                 "length": 20.0,
                                 "age": 6,
-                                "birthday": "2012-01-05T01: 00: 00.000Z"
+                                "birthday": "2012-01-05T01:00:00.000Z"
                             },
                             {
                                 "fishtype": "sawshark",
                                 "species": "dangerous",
                                 "length": 10.0,
                                 "age": 105,
-                                "birthday": "1900-01-05T01: 00: 00.000Z",
-                                "picture": " //////4="
+                                "birthday": "1900-01-05T01:00:00.000Z",
+                                "picture": "//////4="
                             }
                         ],
                         "location": "atlantic",
@@ -544,37 +570,45 @@ def test_polymorphism_get_and_put_complicated(make_request, make_request_json_re
 # Complex types that uses missing discriminator
 
 def test_polymorphism_get_and_put_missing_discriminator(make_request, make_request_json_response):
-    regular_salmon = Salmon(
-        iswild=True,
-        location='alaska',
-        species='king',
-        length=1.0,
-        siblings=[Shark(
-            age=6,
-            birthday=isodate.parse_datetime("2012-01-05T01:00:00Z"),
-            length=20,
-            species='predator'
-        ), Sawshark(
-            age=105,
-            length=10,
-            species="dangerous",
-            birthday=isodate.parse_datetime("1900-01-05T01:00:00Z"),
-            picture=bytearray([255, 255, 255, 255, 254])
-        ), Goblinshark(
-            length=30,
-            birthday=isodate.parse_datetime("2015-08-08T00:00:00Z"),
-            age=1,
-            species="scary",
-            jawsize=5,
-            color='pinkish-gray'
-        )]
-    )
+    json = {
+        "fishtype": "salmon",
+        "species": "king",
+        "length": 1.0,
+        "siblings": [
+            {
+                "fishtype": "shark",
+                "species": "predator",
+                "length": 20.0,
+                "age": 6,
+                "birthday": "2012-01-05T01:00:00.000Z"
+            },
+            {
+                "fishtype": "sawshark",
+                "species": "dangerous",
+                "length": 10.0,
+                "age": 105,
+                "birthday": "1900-01-05T01:00:00.000Z",
+                "picture": "//////4="
+            },
+            {
+                "fishtype": "goblin",
+                "species": "scary",
+                "length": 30.0,
+                "age": 1,
+                "birthday": "2015-08-08T00:00:00.000Z",
+                "jawsize": 5,
+                "color": "pinkish-gray"
+            }
+        ],
+        "location": "alaska",
+        "iswild": True
+    }
     # Not raise is enough of a test
-    request = polymorphism.build_put_missing_discriminator_request(json=regular_salmon.serialize())
+    request = polymorphism.build_put_missing_discriminator_request(json=json)
     make_request(request)
 
     # Dot syntax
     request = polymorphism.build_get_dot_syntax_request()
     dot_salmon = make_request_json_response(request)
-    assert dot_salmon['fish_type'] == "DotSalmon"
+    assert dot_salmon['fish.type'] == "DotSalmon"
     assert dot_salmon['location'] == "sweden"
