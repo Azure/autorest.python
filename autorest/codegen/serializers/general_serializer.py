@@ -54,10 +54,8 @@ class GeneralSerializer:
 
         template = self.env.get_template("service_client.py.jinja2")
 
-        if (
-            self.code_model.options['credential'] and
-            self.code_model.options['credential_default_policy_type'] == "ARMChallengeAuthenticationPolicy"
-        ):
+        if (self.code_model.options['credential'] and self.code_model.options['credential_default_policy_type'] in [
+            "ARMChallengeAuthenticationPolicy", "BearerTokenCredentialPolicy"]):
             self._correct_credential_parameter()
 
         return template.render(
@@ -76,10 +74,8 @@ class GeneralSerializer:
             package_name = package_name[len("azure-"):]
         sdk_moniker = package_name if package_name else self.code_model.class_name.lower()
 
-        if (
-            self.code_model.options['credential'] and
-            self.code_model.options['credential_default_policy_type'] == "ARMChallengeAuthenticationPolicy"
-        ):
+        if (self.code_model.options['credential'] and self.code_model.options['credential_default_policy_type'] in [
+            "ARMChallengeAuthenticationPolicy", "BearerTokenCredentialPolicy"]):
             self._correct_credential_parameter()
 
         template = self.env.get_template("config.py.jinja2")

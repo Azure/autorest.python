@@ -125,7 +125,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         credential_schema: Union[AzureKeyCredentialSchema, TokenCredentialSchema]
-        if self.options["credential_default_policy_type"] == "ARMChallengeAuthenticationPolicy":
+        if self.options["credential_default_policy_type"] in ["ARMChallengeAuthenticationPolicy",
+                                                              "BearerTokenCredentialPolicy"]:
             credential_schema = TokenCredentialSchema(async_mode=False)
         else:
             credential_schema = AzureKeyCredentialSchema()

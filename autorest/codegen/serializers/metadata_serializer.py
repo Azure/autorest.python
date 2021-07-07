@@ -141,10 +141,8 @@ class MetadataSerializer:
         # In this case, we need two copies of the credential global parameter
         # for typing purposes.
         async_global_parameters = self.code_model.global_parameters
-        if (
-            self.code_model.options['credential'] and
-            self.code_model.options['credential_default_policy_type'] == "ARMChallengeAuthenticationPolicy"
-        ):
+        if (self.code_model.options['credential'] and self.code_model.options['credential_default_policy_type'] in [
+            "ARMChallengeAuthenticationPolicy", "BearerTokenCredentialPolicy"]):
             # this ensures that the TokenCredentialSchema showing up in the list of code model's global parameters
             # is sync. This way we only have to make a copy for an async_credential
             _correct_credential_parameter(self.code_model.global_parameters, False)
