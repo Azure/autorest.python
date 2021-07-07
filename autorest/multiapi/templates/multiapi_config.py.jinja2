@@ -93,6 +93,6 @@ class {{ code_model.service_client.name }}Configuration(Configuration):
         if self.credential and not self.authentication_policy:
             {% set credential_default_policy_type = ("Async" if (async_mode and code_model.config.credential_default_policy_type_has_async_version) else "") + code_model.config.credential_default_policy_type %}
             {% set credential_param_type = ("'" + code_model.config.credential_key_header_name + "', ") if code_model.config.credential_key_header_name else ("*self.credential_scopes, " if "ARMChallengeAuthenticationPolicy" in credential_default_policy_type else "") %}
-            {% set policy_source = "" if "ARMChallengeAuthenticationPolicy" in credential_default_policy_type else "policies."}
+            {% set policy_source = "" if "ARMChallengeAuthenticationPolicy" in credential_default_policy_type else "policies." %}
             self.authentication_policy ={{ policy_source }}{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
         {% endif %}
