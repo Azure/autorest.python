@@ -62,27 +62,27 @@ async def client_no_request_id(credential, authentication_policy):
         await yield_(client)
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    async def _make_request(request, **kwargs):
-        return await base_make_request(client, request, **kwargs)
-    return _make_request
+def send_request(client, base_send_request):
+    async def _send_request(request, **kwargs):
+        return await base_send_request(client, request, **kwargs)
+    return _send_request
 
 
 @pytest.mark.asyncio
-async def test_client_request_id_in_exception(make_request):
+async def test_client_request_id_in_exception(send_request):
     request = xms_client_request_id.build_get_request()
     with pytest.raises(HttpResponseError):
-        await make_request(request)
+        await send_request(request)
 
 @pytest.mark.asyncio
-async def test_xms_request_client_id_in_client_none(make_request):
+async def test_xms_request_client_id_in_client_none(send_request):
     request = xms_client_request_id.build_get_request()
-    await make_request(request, request_id=None)
+    await send_request(request, request_id=None)
 
 @pytest.mark.asyncio
-async def test_xms_request_client_id_in_client(make_request):
+async def test_xms_request_client_id_in_client(send_request):
     request = xms_client_request_id.build_get_request()
-    await make_request(request, request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    await send_request(request, request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
 @pytest.mark.asyncio
 async def test_xms_request_client_overwrite_via_parameter(client_no_request_id):
@@ -93,11 +93,11 @@ async def test_xms_request_client_overwrite_via_parameter(client_no_request_id):
     response.raise_for_status()
 
 @pytest.mark.asyncio
-async def test_xms_custom_named_request_id(make_request):
+async def test_xms_custom_named_request_id(send_request):
     request = header.build_custom_named_request_id_request(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_xms_custom_named_request_id_parameter_group(make_request):
+async def test_xms_custom_named_request_id_parameter_group(send_request):
     request = header.build_custom_named_request_id_param_grouping_request(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
-    await make_request(request)
+    await send_request(request)

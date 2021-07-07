@@ -73,70 +73,70 @@ def unencoded_query():
     return 'value1&q2=value2&q3=value3'
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
-def test_subscription_in_credentials(make_request, valid_subscription):
+def test_subscription_in_credentials(send_request, valid_subscription):
     # valid_api_version = '2.0'
     request = subscription_in_credentials.build_post_method_global_not_provided_valid_request(subscription_id=valid_subscription)
-    make_request(request)
+    send_request(request)
     request = subscription_in_credentials.build_post_method_global_valid_request(subscription_id=valid_subscription)
-    make_request(request)
+    send_request(request)
     request = subscription_in_credentials.build_post_path_global_valid_request(subscription_id=valid_subscription)
-    make_request(request)
+    send_request(request)
     request = subscription_in_credentials.build_post_swagger_global_valid_request(subscription_id=valid_subscription)
-    make_request(request)
+    send_request(request)
 
-def test_subscription_in_method(make_request, valid_subscription):
+def test_subscription_in_method(send_request, valid_subscription):
     request = subscription_in_method.build_post_method_local_valid_request(valid_subscription)
-    make_request(request)
+    send_request(request)
     request = subscription_in_method.build_post_path_local_valid_request(valid_subscription)
-    make_request(request)
+    send_request(request)
     request = subscription_in_method.build_post_swagger_local_valid_request(valid_subscription)
-    make_request(request)
+    send_request(request)
     with pytest.raises(ValidationError):
         request = subscription_in_method.build_post_method_local_null_request(None)
 
-def test_api_version_default(make_request):
+def test_api_version_default(send_request):
     request = api_version_default.build_get_method_global_not_provided_valid_request()
-    make_request(request)
+    send_request(request)
     request = api_version_default.build_get_method_global_valid_request()
-    make_request(request)
+    send_request(request)
     request = api_version_default.build_get_path_global_valid_request()
-    make_request(request)
+    send_request(request)
     request = api_version_default.build_get_swagger_global_valid_request()
-    make_request(request)
+    send_request(request)
 
-def test_api_version_local(make_request):
+def test_api_version_local(send_request):
     request = api_version_local.build_get_method_local_valid_request()
-    make_request(request)
+    send_request(request)
     request = api_version_local.build_get_method_local_null_request()
-    make_request(request)
+    send_request(request)
     request = api_version_local.build_get_path_local_valid_request()
-    make_request(request)
+    send_request(request)
     request = api_version_local.build_get_swagger_local_valid_request()
-    make_request(request)
+    send_request(request)
 
-def test_skip_url_encoding(make_request, unencoded_path, unencoded_query):
+def test_skip_url_encoding(send_request, unencoded_path, unencoded_query):
     request = skip_url_encoding.build_get_method_path_valid_request(unencoded_path)
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_path_valid_request(unencoded_path)
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_swagger_path_valid_request()
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_method_query_valid_request(q1=unencoded_query)
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_path_query_valid_request(q1=unencoded_query)
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_swagger_query_valid_request()
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_method_query_null_request()
-    make_request(request)
+    send_request(request)
     request = skip_url_encoding.build_get_method_query_null_request(q1=None)
-    make_request(request)
+    send_request(request)
 
-def test_azure_odata(make_request):
+def test_azure_odata(send_request):
     request = odata.build_get_with_filter_request(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
-    make_request(request)
+    send_request(request)

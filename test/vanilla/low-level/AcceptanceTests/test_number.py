@@ -38,98 +38,98 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
-def test_big_float(make_request, make_request_json_response):
+def test_big_float(send_request, send_request_json_response):
     request = number.build_put_big_float_request(json=3.402823e+20)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_big_float_request()
-    assert make_request_json_response(request) ==  3.402823e+20
+    assert send_request_json_response(request) ==  3.402823e+20
 
-def test_small_float(make_request, make_request_json_response):
+def test_small_float(send_request, send_request_json_response):
     request = number.build_put_small_float_request(json=3.402823e-20)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_small_float_request()
-    assert make_request_json_response(request) ==  3.402823e-20
+    assert send_request_json_response(request) ==  3.402823e-20
 
-def test_big_double(make_request, make_request_json_response):
+def test_big_double(send_request, send_request_json_response):
     request = number.build_put_big_double_request(json=2.5976931e+101)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_big_double_request()
-    assert make_request_json_response(request) ==  2.5976931e+101
+    assert send_request_json_response(request) ==  2.5976931e+101
 
-def test_small_double(make_request, make_request_json_response):
+def test_small_double(send_request, send_request_json_response):
     request = number.build_put_small_double_request(json=2.5976931e-101)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_small_double_request()
-    assert make_request_json_response(request) ==  2.5976931e-101
+    assert send_request_json_response(request) ==  2.5976931e-101
 
-def test_big_double_negative_decimal(make_request, make_request_json_response):
+def test_big_double_negative_decimal(send_request, send_request_json_response):
     request = number.build_get_big_double_negative_decimal_request(json=-99999999.99)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_big_double_negative_decimal_request()
-    assert make_request_json_response(request) ==  -99999999.99
+    assert send_request_json_response(request) ==  -99999999.99
 
-def test_big_double_positive_decimal(make_request, make_request_json_response):
+def test_big_double_positive_decimal(send_request, send_request_json_response):
     request = number.build_put_big_double_positive_decimal_request(json=99999999.99)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_big_double_positive_decimal_request()
-    assert make_request_json_response(request) ==  99999999.99
+    assert send_request_json_response(request) ==  99999999.99
 
-def test_big_decimal(make_request, make_request_json_response):
+def test_big_decimal(send_request, send_request_json_response):
     request = number.build_put_big_decimal_request(json=2.5976931e+101)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_big_decimal_request()
-    assert make_request_json_response(request) ==  2.5976931e+101
+    assert send_request_json_response(request) ==  2.5976931e+101
 
-def test_small_decimal(make_request, make_request_json_response):
+def test_small_decimal(send_request, send_request_json_response):
     request = number.build_put_small_decimal_request(json=2.5976931e-101)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_small_decimal_request()
-    assert make_request_json_response(request) ==  2.5976931e-101
+    assert send_request_json_response(request) ==  2.5976931e-101
 
-def test_get_big_decimal_negative_decimal(make_request, make_request_json_response):
+def test_get_big_decimal_negative_decimal(send_request, send_request_json_response):
     request = number.build_put_big_decimal_negative_decimal_request(json=-99999999.99)
 
     request = number.build_get_big_decimal_negative_decimal_request()
-    assert make_request_json_response(request) ==  -99999999.99
+    assert send_request_json_response(request) ==  -99999999.99
 
-def test_get_big_decimal_positive_decimal(make_request, make_request_json_response):
+def test_get_big_decimal_positive_decimal(send_request, send_request_json_response):
     request = number.build_put_big_decimal_positive_decimal_request(json=99999999.99)
-    make_request(request)
+    send_request(request)
 
     request = number.build_get_big_decimal_positive_decimal_request()
-    assert make_request_json_response(request) ==  99999999.99
+    assert send_request_json_response(request) ==  99999999.99
 
-def test_get_null(make_request):
+def test_get_null(send_request):
     request = number.build_get_null_request()
-    assert make_request(request).text == ''
+    assert send_request(request).text == ''
 
-def test_get_invalid_decimal(make_request):
+def test_get_invalid_decimal(send_request):
     request = number.build_get_invalid_decimal_request()
-    assert make_request(request).text == '9223372036854775910.980089k'
+    assert send_request(request).text == '9223372036854775910.980089k'
 
-def test_get_invalid_double(make_request):
+def test_get_invalid_double(send_request):
     request = number.build_get_invalid_double_request()
-    assert make_request(request).text == '9223372036854775910.980089k'
+    assert send_request(request).text == '9223372036854775910.980089k'
 
-def test_get_invalid_float(make_request):
+def test_get_invalid_float(send_request):
     request = number.build_get_invalid_float_request()
-    assert make_request(request).text == '2147483656.090096789909j'
+    assert send_request(request).text == '2147483656.090096789909j'

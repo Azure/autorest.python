@@ -36,22 +36,22 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    async def _make_request(request):
-        return await base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    async def _send_request(request):
+        return await base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_pdf(make_request_json_response):
+async def test_pdf(send_request_json_response):
     request = build_analyze_body_request(content=b"PDF", content_type="application/pdf")
-    assert await make_request_json_response(request) == "Nice job with PDF"
+    assert await send_request_json_response(request) == "Nice job with PDF"
 
 @pytest.mark.asyncio
-async def test_json(make_request_json_response):
+async def test_json(send_request_json_response):
     request = build_analyze_body_request(json={"source":"foo"})
-    assert await make_request_json_response(request) == "Nice job with JSON"
+    assert await send_request_json_response(request) == "Nice job with JSON"
 
 @pytest.mark.asyncio
-async def test_content_type_with_encoding(make_request_json_response):
+async def test_content_type_with_encoding(send_request_json_response):
     request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; encoding=UTF-8')
-    assert await make_request_json_response(request) == "Nice job sending content type with encoding"
+    assert await send_request_json_response(request) == "Nice job sending content type with encoding"

@@ -36,21 +36,21 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
-def test_get_object(make_request):
+def test_get_object(send_request):
     request = build_get_request()
-    assert make_request(request).json() == {"message": "An object was successfully returned"}
+    assert send_request(request).json() == {"message": "An object was successfully returned"}
 
-def test_put_object_success(make_request):
+def test_put_object_success(send_request):
     request = build_put_request(json={"foo": "bar"})
-    assert make_request(request).text == ''
+    assert send_request(request).text == ''
 
-def test_put_object_fail(make_request):
+def test_put_object_fail(send_request):
     request = build_put_request(json={"should": "fail"})
     with pytest.raises(HttpResponseError) as ex:
-        make_request(request)
+        send_request(request)
     assert ex.value.response.json()['message'] == 'The object you passed was incorrect'

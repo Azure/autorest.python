@@ -37,29 +37,29 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_text_response(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request).text
-    return _make_request
+def send_request_text_response(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request).text
+    return _send_request
 
-def test_json_xml(make_request):
+def test_json_xml(send_request):
     request = xml.build_json_input_request(json={"id": 42})
-    make_request(request)
+    send_request(request)
 
     request = xml.build_json_output_request()
-    assert make_request(request).json()['id'] == 42
+    assert send_request(request).json()['id'] == 42
 
-def test_simple(make_request, make_request_text_response):
+def test_simple(send_request, send_request_text_response):
     # Slideshow
 
     request = xml.build_get_simple_request()
-    slideshow = ET.fromstring(make_request_text_response(request))
+    slideshow = ET.fromstring(send_request_text_response(request))
     assert slideshow.attrib['title'] == "Sample Slide Show"
     assert slideshow.attrib['date'] == "Date of publication"
     assert slideshow.attrib['author'] == "Yours Truly"
@@ -81,44 +81,44 @@ def test_simple(make_request, make_request_text_response):
     assert items[2].text == "Who buys WonderWidgets"
 
     request = xml.build_put_simple_request(content=slideshow, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_empty_child_element(make_request, make_request_text_response):
+def test_empty_child_element(send_request, send_request_text_response):
     request = xml.build_get_empty_child_element_request()
-    banana = ET.fromstring(make_request_text_response(request))
+    banana = ET.fromstring(send_request_text_response(request))
     assert banana.attrib == {}# That's the point of this test, it was an empty node.
     request = xml.build_put_empty_child_element_request(content=banana, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_empty_root_list(make_request, make_request_text_response):
+def test_empty_root_list(send_request, send_request_text_response):
     request = xml.build_get_empty_root_list_request()
-    empty = ET.fromstring(make_request_text_response(request))
+    empty = ET.fromstring(send_request_text_response(request))
     assert empty.tag == 'bananas'
     assert empty.attrib == {}
-    assert make_request_text_response(request) == "<?xml version='1.0' encoding='UTF-8'?>\n<bananas/>"
+    assert send_request_text_response(request) == "<?xml version='1.0' encoding='UTF-8'?>\n<bananas/>"
     request = xml.build_put_empty_root_list_request(content=empty, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_root_list_single_item(make_request, make_request_text_response):
+def test_root_list_single_item(send_request, send_request_text_response):
     request = xml.build_get_root_list_single_item_request()
-    xml_body = ET.fromstring(make_request_text_response(request))
+    xml_body = ET.fromstring(send_request_text_response(request))
     bananas = list(xml_body.iterfind('banana'))
     assert len(bananas) == 1
     assert next(bananas[0].iterfind('name')).text == "Cavendish"
     request = xml.build_put_root_list_single_item_request(content=xml_body, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_root_list(make_request, make_request_text_response):
+def test_root_list(send_request, send_request_text_response):
     request = xml.build_get_root_list_request()
-    xml_body = ET.fromstring(make_request_text_response(request))
+    xml_body = ET.fromstring(send_request_text_response(request))
     bananas = list(xml_body.iterfind('banana'))
     assert len(bananas) == 2
     request = xml.build_put_root_list_request(content=xml_body, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_empty_wrapped_lists(make_request, make_request_text_response):
+def test_empty_wrapped_lists(send_request, send_request_text_response):
     request = xml.build_get_empty_wrapped_lists_request()
-    bananas = ET.fromstring(make_request_text_response(request))
+    bananas = ET.fromstring(send_request_text_response(request))
     """
     <AppleBarrel>
         <GoodApples></GoodApples>
@@ -130,50 +130,50 @@ def test_empty_wrapped_lists(make_request, make_request_text_response):
     bad_apples = [a for a in bananas.iterfind('BadApples') if a.text]
     assert len(bad_apples) == 0
     request = xml.build_put_empty_wrapped_lists_request(content=bananas, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_get_empty(make_request, make_request_text_response):
+def test_get_empty(send_request, send_request_text_response):
     request = xml.build_get_empty_list_request()
-    slideshow = ET.fromstring(make_request_text_response(request))
+    slideshow = ET.fromstring(send_request_text_response(request))
     request = xml.build_put_empty_list_request(content=slideshow, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_wrapped_lists(make_request, make_request_text_response):
+def test_wrapped_lists(send_request, send_request_text_response):
     request = xml.build_get_wrapped_lists_request()
-    bananas = ET.fromstring(make_request_text_response(request))
+    bananas = ET.fromstring(send_request_text_response(request))
     good_apples = bananas.find('GoodApples')
     assert [a.text for a in good_apples.iterfind('Apple')] == ['Fuji', 'Gala']
 
     bad_apples = bananas.find('BadApples')
     assert [a.text for a in bad_apples.iterfind('Apple')] == ['Red Delicious']
     request = xml.build_put_wrapped_lists_request(content=bananas, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_complex_types(make_request, make_request_text_response):
+def test_complex_types(send_request, send_request_text_response):
     request = xml.build_get_complex_type_ref_no_meta_request()
-    root = ET.fromstring(make_request_text_response(request))
+    root = ET.fromstring(send_request_text_response(request))
     ref_to_model = root.find('RefToModel')
     assert ref_to_model.find('ID').text == "myid"
     request = xml.build_put_complex_type_ref_no_meta_request(content=root, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
     request = xml.build_get_complex_type_ref_with_meta_request()
-    root = ET.fromstring(make_request_text_response(request))
+    root = ET.fromstring(send_request_text_response(request))
     ref_to_model = root.find('XMLComplexTypeWithMeta')
     assert ref_to_model.find('ID').text == "myid"
     request = xml.build_put_complex_type_ref_with_meta_request(content=root, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_list_containers(make_request_text_response):
+def test_list_containers(send_request_text_response):
     request = xml.build_list_containers_request()
-    xml_body = ET.fromstring(make_request_text_response(request))
+    xml_body = ET.fromstring(send_request_text_response(request))
     containers = xml_body.find('Containers')
     container_list = list(containers.iterfind('Container'))
     assert len(container_list) == 3
 
-def test_list_blobs(make_request_text_response):
+def test_list_blobs(send_request_text_response):
     request = xml.build_list_blobs_request()
-    xml_body = ET.fromstring(make_request_text_response(request))
+    xml_body = ET.fromstring(send_request_text_response(request))
     blobs_xml_body = xml_body.find('Blobs')
     blobs = list(blobs_xml_body.iterfind('Blob'))
     assert len(blobs) == 5
@@ -198,43 +198,43 @@ def test_list_blobs(make_request_text_response):
     assert metadata_body.find("BlobNumber").text == "01"
     assert metadata_body.find("SomeMetadataName").text == "SomeMetadataValue"
 
-def test_service_properties(make_request, make_request_text_response):
+def test_service_properties(send_request, send_request_text_response):
     request = xml.build_get_service_properties_request()
-    properties = ET.fromstring(make_request_text_response(request))
+    properties = ET.fromstring(send_request_text_response(request))
     assert properties.find('HourMetrics') is not None
     assert properties.find('MinuteMetrics') is not None
     request = xml.build_put_service_properties_request(content=properties, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_acls(make_request, make_request_text_response):
+def test_acls(send_request, send_request_text_response):
     request = xml.build_get_acls_request()
-    acls = ET.fromstring(make_request_text_response(request))
+    acls = ET.fromstring(send_request_text_response(request))
     signed_identifiers = list(acls.iterfind('SignedIdentifier'))
     assert len(signed_identifiers) == 1
     assert signed_identifiers[0].find('Id').text == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
     request = xml.build_put_acls_request(content=acls, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_xms_text(make_request_text_response):
+def test_xms_text(send_request_text_response):
     request = xml.build_get_xms_text_request()
-    xml_object = ET.fromstring(make_request_text_response(request))
+    xml_object = ET.fromstring(send_request_text_response(request))
     assert xml_object.attrib['language'] == "english"
     assert xml_object.text == "I am text"
 
-def test_bytes(make_request_text_response, make_request):
+def test_bytes(send_request_text_response, send_request):
     request = xml.build_get_bytes_request()
-    bytes_object = ET.fromstring(make_request_text_response(request))
+    bytes_object = ET.fromstring(send_request_text_response(request))
     assert bytes_object.tag == 'ModelWithByteProperty'
     assert b64decode(bytes_object.find('Bytes').text) == b"Hello world"
 
     request = xml.build_put_binary_request(content=bytes_object, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)
 
-def test_url(make_request_text_response, make_request):
+def test_url(send_request_text_response, send_request):
     request = xml.build_get_uri_request()
-    url_object = ET.fromstring(make_request_text_response(request))
+    url_object = ET.fromstring(send_request_text_response(request))
     assert url_object.tag == 'ModelWithUrlProperty'
     assert url_object.find('Url').text == 'https://myaccount.blob.core.windows.net/'
 
     request = xml.build_put_uri_request(content=url_object, headers={"Content-Type": "application/xml"})
-    make_request(request)
+    send_request(request)

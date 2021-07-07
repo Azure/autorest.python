@@ -39,49 +39,49 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
-def test_model_get_and_put_max_date(make_request, make_request_json_response):
+def test_model_get_and_put_max_date(send_request, send_request_json_response):
     max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
     request = date.build_put_max_date_request(json=str(max_date))
-    make_request(request)
+    send_request(request)
 
     request = date.build_get_max_date_request()
-    assert max_date == isodate.parse_date(make_request_json_response(request))
+    assert max_date == isodate.parse_date(send_request_json_response(request))
 
-def test_model_get_and_put_min_date(make_request, make_request_json_response):
+def test_model_get_and_put_min_date(send_request, send_request_json_response):
     min_date = isodate.parse_date("0001-01-01T00:00:00Z")
     request = date.build_put_min_date_request(json=str(min_date))
-    make_request(request)
+    send_request(request)
 
     request = date.build_get_min_date_request()
-    assert min_date == isodate.parse_date(make_request_json_response(request))
+    assert min_date == isodate.parse_date(send_request_json_response(request))
 
-def test_model_get_null(make_request):
+def test_model_get_null(send_request):
     request = date.build_get_null_request()
-    assert make_request(request).text == ''
+    assert send_request(request).text == ''
 
-def test_model_get_invalid_date(make_request_json_response):
+def test_model_get_invalid_date(send_request_json_response):
     request = date.build_get_invalid_date_request()
-    assert datetime.date(2001, 1, 1) == isodate.parse_date(make_request_json_response(request))
+    assert datetime.date(2001, 1, 1) == isodate.parse_date(send_request_json_response(request))
 
-def test_model_get_overflow_date(make_request_json_response):
+def test_model_get_overflow_date(send_request_json_response):
     request = date.build_get_overflow_date_request()
     with pytest.raises(ValueError) as ex:
-        isodate.parse_date(make_request_json_response(request))
+        isodate.parse_date(send_request_json_response(request))
     assert "day is out of range for month" in str(ex.value)
 
-def test_model_get_underflow_date(make_request_json_response):
+def test_model_get_underflow_date(send_request_json_response):
     request = date.build_get_underflow_date_request()
     with pytest.raises(ValueError) as ex:
-        isodate.parse_date(make_request_json_response(request))
+        isodate.parse_date(send_request_json_response(request))
     assert "year 0 is out of range" in str(ex.value)

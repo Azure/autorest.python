@@ -35,13 +35,13 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    async def _make_request(request):
-        return await base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    async def _send_request(request):
+        return await base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_create_ap_true(make_request_json_response):
+async def test_create_ap_true(send_request_json_response):
     json = {
         'birthdate': '2017-12-13T02:29:51Z',
         'complexProperty': {
@@ -51,11 +51,11 @@ async def test_create_ap_true(make_request_json_response):
         "name": "Puppy",
     }
     request = pets.build_create_ap_true_request(json=json)
-    response = await make_request_json_response(request)
+    response = await send_request_json_response(request)
     assert response["birthdate"] == '2017-12-13T02:29:51Z'
 
 @pytest.mark.asyncio
-async def test_create_cat_ap_true(make_request_json_response):
+async def test_create_cat_ap_true(send_request_json_response):
     json = {
         'birthdate': '2017-12-13T02:29:51Z',
         'complexProperty': {'color': 'Red'},
@@ -64,11 +64,11 @@ async def test_create_cat_ap_true(make_request_json_response):
         'friendly': True
     }
     request = pets.build_create_cat_ap_true_request(json=json)
-    response = await make_request_json_response(request)
+    response = await send_request_json_response(request)
     assert response['birthdate'] ==  '2017-12-13T02:29:51Z'
 
 @pytest.mark.asyncio
-async def test_create_ap_object(make_request_json_response):
+async def test_create_ap_object(send_request_json_response):
     json = {
         "id": 2,
         "name": "Hira",
@@ -83,11 +83,11 @@ async def test_create_ap_object(make_request_json_response):
         'picture': '//////4='
     }
     request = pets.build_create_ap_object_request(json=json)
-    response = await make_request_json_response(request)
+    response = await send_request_json_response(request)
     assert response['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
 
 @pytest.mark.asyncio
-async def test_create_ap_string(make_request_json_response):
+async def test_create_ap_string(send_request_json_response):
     json = {
         "id": 3,
         "name": 'Tommy',
@@ -96,11 +96,11 @@ async def test_create_ap_string(make_request_json_response):
         'city': 'Bombay'
     }
     request = pets.build_create_ap_string_request(json=json)
-    response = await make_request_json_response(request)
+    response = await send_request_json_response(request)
     assert response['color'] ==  'red'
 
 @pytest.mark.asyncio
-async def test_create_ap_in_properties(make_request_json_response):
+async def test_create_ap_in_properties(send_request_json_response):
     json = {
         "id": 4,
         "name": 'Bunny',
@@ -111,11 +111,11 @@ async def test_create_ap_in_properties(make_request_json_response):
         }
     }
     request = pets.build_create_ap_in_properties_request(json=json)
-    response = await make_request_json_response(request)
+    response = await send_request_json_response(request)
     assert response["additionalProperties"]['weight'] ==  599
 
 @pytest.mark.asyncio
-async def test_create_ap_in_properties_with_ap_string(make_request_json_response):
+async def test_create_ap_in_properties_with_ap_string(send_request_json_response):
     json = {
         "id": 5,
         "name": 'Funny',
@@ -130,6 +130,6 @@ async def test_create_ap_in_properties_with_ap_string(make_request_json_response
         }
     }
     request = pets.build_create_ap_in_properties_with_ap_string_request(json=json)
-    response = await make_request_json_response(request)
+    response = await send_request_json_response(request)
     assert response['color'] == 'red'
     assert response['additionalProperties']['weight'] == 599

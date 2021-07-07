@@ -41,35 +41,35 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    async def _make_request(request):
-        return await base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    async def _send_request(request):
+        return await base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    async def _make_request(request):
-        return await base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    async def _send_request(request):
+        return await base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_null(make_request):
+async def test_null(send_request):
     request = string.build_get_null_request()
-    assert (await make_request(request)).text == ''
+    assert (await send_request(request)).text == ''
 
     request = string.build_put_null_request(content=None)
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_empty(make_request, make_request_json_response):
+async def test_empty(send_request, send_request_json_response):
     request = string.build_get_empty_request()
-    assert "" == await make_request_json_response(request)
+    assert "" == await send_request_json_response(request)
     # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
     request = string.build_put_empty_request(json="")
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_mbcs(make_request, make_request_json_response):
+async def test_mbcs(send_request, send_request_json_response):
     try:
         test_str = (
             "\xe5\x95\x8a\xe9\xbd\x84\xe4\xb8\x82\xe7\x8b\x9b\xe7\x8b"
@@ -105,79 +105,79 @@ async def test_mbcs(make_request, make_request_json_response):
             b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
 
     request = string.build_get_mbcs_request()
-    assert test_str == await make_request_json_response(request)
+    assert test_str == await send_request_json_response(request)
 
     request = string.build_put_mbcs_request(json=test_str)
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_whitespace(make_request, make_request_json_response):
+async def test_whitespace(send_request, send_request_json_response):
     test_str = "    Now is the time for all good men to come to the aid of their country    "
     request = string.build_get_whitespace_request()
-    assert test_str == await make_request_json_response(request)
+    assert test_str == await send_request_json_response(request)
 
     request = string.build_put_whitespace_request(json=test_str)
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_get_not_provided(make_request):
+async def test_get_not_provided(send_request):
     request = string.build_get_not_provided_request()
-    assert (await make_request(request)).text == ''
+    assert (await send_request(request)).text == ''
 
 @pytest.mark.asyncio
-async def test_enum_not_expandable(make_request, make_request_json_response):
+async def test_enum_not_expandable(send_request, send_request_json_response):
     request = enum.build_get_not_expandable_request()
-    assert "red color" == await make_request_json_response(request)
+    assert "red color" == await send_request_json_response(request)
 
     request = enum.build_put_not_expandable_request(json='red color')
-    await make_request(request)
+    await send_request(request)
 
     request = enum.build_put_not_expandable_request(json='red color')
-    await make_request(request)
+    await send_request(request)
     # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
     # but now we allow the user to pass strings as enums, so the raised exception is different.
 
     request = enum.build_put_not_expandable_request(json='not a color')
     with pytest.raises(HttpResponseError):
-        await make_request(request)
+        await send_request(request)
 
 @pytest.mark.asyncio
-async def test_get_base64_encoded(make_request):
+async def test_get_base64_encoded(send_request):
     request = string.build_get_base64_encoded_request()
-    assert b64decode((await make_request(request)).text) == 'a string that gets encoded with base64'.encode()
+    assert b64decode((await send_request(request)).text) == 'a string that gets encoded with base64'.encode()
 
 @pytest.mark.asyncio
-async def test_base64_url_encoded(make_request):
+async def test_base64_url_encoded(send_request):
     # the b64 encoding and decoding is taken from msrest
     request = string.build_get_base64_url_encoded_request()
-    response = (await make_request(request)).text
+    response = (await send_request(request)).text
     response = Deserializer.deserialize_base64(response)
     assert response == 'a string that gets encoded with base64url'.encode()
 
     content = Serializer.serialize_base64('a string that gets encoded with base64url'.encode())
     request = string.build_put_base64_url_encoded_request(json=content)
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_get_null_base64_url_encoded(make_request):
+async def test_get_null_base64_url_encoded(send_request):
     request = string.build_get_null_base64_url_encoded_request()
-    assert (await make_request(request)).text == ''
+    assert (await send_request(request)).text == ''
 
 @pytest.mark.asyncio
-async def test_enum_referenced(make_request, make_request_json_response):
+async def test_enum_referenced(send_request, send_request_json_response):
     request = enum.build_put_referenced_request(json='red color')
-    await make_request(request)
+    await send_request(request)
 
     request = enum.build_put_referenced_request(json="red color")
-    await make_request(request)
+    await send_request(request)
 
     request = enum.build_get_referenced_request()
-    assert await make_request_json_response(request) == 'red color'
+    assert await send_request_json_response(request) == 'red color'
 
 @pytest.mark.asyncio
-async def test_enum_referenced_constant(make_request, make_request_json_response):
+async def test_enum_referenced_constant(send_request, send_request_json_response):
     request = enum.build_put_referenced_request(json='red color')
-    await make_request(request)
+    await send_request(request)
 
     request = enum.build_get_referenced_constant_request()
-    assert await make_request_json_response(request) == {'field1': 'Sample String'} # there's no constant on the response, so just getting field1
+    assert await send_request_json_response(request) == {'field1': 'Sample String'} # there's no constant on the response, so just getting field1

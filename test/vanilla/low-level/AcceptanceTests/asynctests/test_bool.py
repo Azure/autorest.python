@@ -36,44 +36,44 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    async def _make_request(request):
-        return await base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    async def _send_request(request):
+        return await base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    async def _make_request(request):
-        return await base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    async def _send_request(request):
+        return await base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_model_get_true(make_request_json_response):
+async def test_model_get_true(send_request_json_response):
     request = bool.build_get_true_request()
-    assert await make_request_json_response(request) == True
+    assert await send_request_json_response(request) == True
 
 @pytest.mark.asyncio
-async def test_model_get_false(make_request_json_response):
+async def test_model_get_false(send_request_json_response):
     request = bool.build_get_false_request()
-    assert not await make_request_json_response(request)
+    assert not await send_request_json_response(request)
 
 @pytest.mark.asyncio
-async def test_model_get_null(make_request):
+async def test_model_get_null(send_request):
     request = bool.build_get_null_request()
-    assert (await make_request(request)).text == ''
+    assert (await send_request(request)).text == ''
 
 @pytest.mark.asyncio
-async def test_model_put_false(make_request):
+async def test_model_put_false(send_request):
     request = bool.build_put_false_request(json=False)  # have to pass in bc we don't do constant bodies in request builders
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_model_put_true(make_request):
+async def test_model_put_true(send_request):
     request = bool.build_put_true_request(json=True)  # have to pass in bc we don't do constant bodies in request builders
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_model_get_invalid(make_request):
+async def test_model_get_invalid(send_request):
     request = bool.build_get_invalid_request()
     with pytest.raises(DecodeError):
-        await make_request(request)  # this behavior is diff from sync
+        await send_request(request)  # this behavior is diff from sync

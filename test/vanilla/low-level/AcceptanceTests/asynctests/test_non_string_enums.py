@@ -36,27 +36,27 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_put_int_enum(make_request_json_response):
+async def test_put_int_enum(send_request_json_response):
     request = int.build_put_request(json=200)
-    assert await make_request_json_response(request) == "Nice job posting an int enum"
+    assert await send_request_json_response(request) == "Nice job posting an int enum"
 
 @pytest.mark.asyncio
-async def test_get_int_enum(make_request_json_response):
+async def test_get_int_enum(send_request_json_response):
     request = int.build_get_request()
-    assert await make_request_json_response(request) == 429
+    assert await send_request_json_response(request) == 429
 
 @pytest.mark.asyncio
-async def test_put_float_enum(make_request_json_response):
+async def test_put_float_enum(send_request_json_response):
     request = float.build_put_request(json=200.4)
-    assert await make_request_json_response(request) == "Nice job posting a float enum"
+    assert await send_request_json_response(request) == "Nice job posting a float enum"
 
 @pytest.mark.asyncio
-async def test_get_float_enum(make_request_json_response):
+async def test_get_float_enum(send_request_json_response):
     request = float.build_get_request()
-    assert await make_request_json_response(request) == 429.1
+    assert await send_request_json_response(request) == 429.1

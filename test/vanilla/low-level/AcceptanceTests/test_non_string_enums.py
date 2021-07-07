@@ -35,23 +35,23 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
-def test_put_int_enum(make_request_json_response):
+def test_put_int_enum(send_request_json_response):
     request = int.build_put_request(json=200)
-    assert make_request_json_response(request) == "Nice job posting an int enum"
+    assert send_request_json_response(request) == "Nice job posting an int enum"
 
-def test_get_int_enum(make_request_json_response):
+def test_get_int_enum(send_request_json_response):
     request = int.build_get_request()
-    assert make_request_json_response(request) == 429
+    assert send_request_json_response(request) == 429
 
-def test_put_float_enum(make_request_json_response):
+def test_put_float_enum(send_request_json_response):
     request = float.build_put_request(json=200.4)
-    assert make_request_json_response(request) == "Nice job posting a float enum"
+    assert send_request_json_response(request) == "Nice job posting a float enum"
 
-def test_get_float_enum(make_request_json_response):
+def test_get_float_enum(send_request_json_response):
     request = float.build_get_request()
-    assert make_request_json_response(request) == 429.1
+    assert send_request_json_response(request) == 429.1

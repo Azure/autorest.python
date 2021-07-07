@@ -36,39 +36,39 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
-def test_get_by_pet_id(make_request_json_response):
+def test_get_by_pet_id(send_request_json_response):
     # Now enum return are always string (Autorest.Python 3.0)
 
     request = pet.build_get_by_pet_id_request(pet_id="tommy")
-    tommy = make_request_json_response(request)
+    tommy = send_request_json_response(request)
     assert tommy["DaysOfWeek"] == "Monday"
     assert tommy["IntEnum"] == "1"
 
     request = pet.build_get_by_pet_id_request(pet_id="casper")
-    casper = make_request_json_response(request)
+    casper = send_request_json_response(request)
     assert casper["DaysOfWeek"] ==  "Weekend"
     assert casper["IntEnum"] ==  "2"
 
     request = pet.build_get_by_pet_id_request(pet_id="scooby")
-    scooby = make_request_json_response(request)
+    scooby = send_request_json_response(request)
     assert scooby["DaysOfWeek"] ==  "Thursday"
     # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
     # "allowedValues" of "x-ms-enum" is not supported in Python
     assert scooby["IntEnum"] ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
 
-def test_add_pet(make_request_json_response):
+def test_add_pet(send_request_json_response):
     retriever = {
         "name": "Retriever",
         "IntEnum": "3",
         "DaysOfWeek": "Friday"
     }
     request = pet.build_add_pet_request(json=retriever)
-    returned_pet = make_request_json_response(request)
+    returned_pet = send_request_json_response(request)
     assert returned_pet["DaysOfWeek"] ==  "Friday"
     assert returned_pet["IntEnum"] ==  "3"
     assert returned_pet["name"] ==  "Retriever"

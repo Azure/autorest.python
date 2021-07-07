@@ -34,27 +34,27 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    def _make_request(request):
-        return base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    def _send_request(request):
+        return base_send_request(client, request)
+    return _send_request
 
-def test_non_ascii(make_request):
+def test_non_ascii(send_request):
     tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
     request = byte.build_put_non_ascii_request(json=b64encode(tests).decode())
-    make_request(request)
+    send_request(request)
 
     request = byte.build_get_non_ascii_request()
-    make_request(request)
+    send_request(request)
 
-def test_get_null(make_request):
+def test_get_null(send_request):
     request = byte.build_get_null_request()
-    assert make_request(request).text == ''
+    assert send_request(request).text == ''
 
-def test_get_empty(make_request):
+def test_get_empty(send_request):
     request = byte.build_get_empty_request()
-    assert b'""' == make_request(request).content  # in convenience layer, we deserialize as bytearray specif
+    assert b'""' == send_request(request).content  # in convenience layer, we deserialize as bytearray specif
 
-def test_get_invalid(make_request):
+def test_get_invalid(send_request):
     request = byte.build_get_invalid_request()
-    assert make_request(request).content == b'"::::SWAGGER::::"'
+    assert send_request(request).content == b'"::::SWAGGER::::"'

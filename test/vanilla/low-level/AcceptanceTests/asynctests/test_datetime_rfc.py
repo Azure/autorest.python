@@ -39,55 +39,55 @@ async def client():
 
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    async def _make_request(request):
-        return await base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    async def _send_request(request):
+        return await base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    async def _make_request(request):
-        return await base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    async def _send_request(request):
+        return await base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_get_null(make_request):
+async def test_get_null(send_request):
     request = datetimerfc1123.build_get_null_request()
-    assert (await make_request(request)).text == ''
+    assert (await send_request(request)).text == ''
 
 @pytest.mark.asyncio
-async def test_get_invalid(make_request_json_response):
+async def test_get_invalid(send_request_json_response):
     request = datetimerfc1123.build_get_invalid_request()
-    assert "Tue, 01 Dec 2000 00:00:0A ABC" == await make_request_json_response(request)
+    assert "Tue, 01 Dec 2000 00:00:0A ABC" == await send_request_json_response(request)
 
 @pytest.mark.asyncio
-async def test_get_underflow(make_request_json_response):
+async def test_get_underflow(send_request_json_response):
     request = datetimerfc1123.build_get_underflow_request()
-    assert "Tue, 00 Jan 0000 00:00:00 GMT" == await make_request_json_response(request)
+    assert "Tue, 00 Jan 0000 00:00:00 GMT" == await send_request_json_response(request)
 
 @pytest.mark.asyncio
-async def test_get_overflow(make_request_json_response):
+async def test_get_overflow(send_request_json_response):
     request = datetimerfc1123.build_get_overflow_request()
-    assert "Sat, 1 Jan 10000 00:00:00 GMT" == await make_request_json_response(request)
+    assert "Sat, 1 Jan 10000 00:00:00 GMT" == await send_request_json_response(request)
 
 @pytest.mark.asyncio
-async def test_utc_max_date_time(make_request, msrest_serializer):
+async def test_utc_max_date_time(send_request, msrest_serializer):
     max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
 
     request = datetimerfc1123.build_get_utc_lowercase_max_date_time_request()
-    await make_request(request)
+    await send_request(request)
 
     request = datetimerfc1123.build_get_utc_uppercase_max_date_time_request()
-    await make_request(request)
+    await send_request(request)
 
     request = datetimerfc1123.build_put_utc_max_date_time_request(json=msrest_serializer.serialize_rfc(max_date))
-    await make_request(request)
+    await send_request(request)
 
 @pytest.mark.asyncio
-async def test_utc_min_date_time(make_request, msrest_serializer):
+async def test_utc_min_date_time(send_request, msrest_serializer):
     min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
     request = datetimerfc1123.build_get_utc_min_date_time_request()
-    await make_request(request)
+    await send_request(request)
 
     request = datetimerfc1123.build_put_utc_min_date_time_request(json=msrest_serializer.serialize_rfc(min_date))
-    await make_request(request)
+    await send_request(request)

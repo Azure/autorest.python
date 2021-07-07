@@ -40,30 +40,30 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-def make_request(client, base_make_request):
-    async def _make_request(request):
-        return await base_make_request(client, request)
-    return _make_request
+def send_request(client, base_send_request):
+    async def _send_request(request):
+        return await base_send_request(client, request)
+    return _send_request
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    async def _make_request(request):
-        return await base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    async def _send_request(request):
+        return await base_send_request_json_response(client, request)
+    return _send_request
 
 @pytest.mark.asyncio
-async def test_get_null_and_invalid(make_request, make_request_json_response):
+async def test_get_null_and_invalid(send_request, send_request_json_response):
     request = duration.build_get_null_request()
-    assert (await make_request(request)).text == ''
+    assert (await send_request(request)).text == ''
 
     request = duration.build_get_invalid_request()
     with pytest.raises(isodate.ISO8601Error):
-        isodate.parse_duration(await make_request_json_response(request))
+        isodate.parse_duration(await send_request_json_response(request))
 
 @pytest.mark.asyncio
-async def test_positive_duration(make_request, make_request_json_response):
+async def test_positive_duration(send_request, send_request_json_response):
     request = duration.build_get_positive_duration_request()
-    assert isodate.duration.Duration(4, 45005, 0, years=3, months=6) == isodate.parse_duration(await make_request_json_response(request))
+    assert isodate.duration.Duration(4, 45005, 0, years=3, months=6) == isodate.parse_duration(await send_request_json_response(request))
 
     request = duration.build_put_positive_duration_request(json=isodate.duration_isoformat(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
-    await make_request(request)
+    await send_request(request)

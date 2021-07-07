@@ -26,17 +26,17 @@
 import pytest
 
 @pytest.fixture()
-def base_make_request():
-    async def make_request(client, request, **kwargs):
+def base_send_request():
+    async def send_request(client, request, **kwargs):
         response = await client.send_request(request, **kwargs)
         response.raise_for_status()
         return response
-    return make_request
+    return send_request
 
 @pytest.fixture()
-def base_make_request_json_response():
-    async def make_request_json_response(client, request):
+def base_send_request_json_response():
+    async def send_request_json_response(client, request):
         response = await client.send_request(request)
         response.raise_for_status()
         return response.json()
-    return make_request_json_response
+    return send_request_json_response

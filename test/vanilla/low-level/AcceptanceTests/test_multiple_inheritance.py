@@ -36,50 +36,50 @@ def client():
         yield client
 
 @pytest.fixture
-def make_request_json_response(client, base_make_request_json_response):
-    def _make_request(request):
-        return base_make_request_json_response(client, request)
-    return _make_request
+def send_request_json_response(client, base_send_request_json_response):
+    def _send_request(request):
+        return base_send_request_json_response(client, request)
+    return _send_request
 
-def test_get_pet(make_request_json_response):
+def test_get_pet(send_request_json_response):
     request = build_get_pet_request()
-    assert {"name": "Peanut"} == make_request_json_response(request)
+    assert {"name": "Peanut"} == send_request_json_response(request)
 
-def test_put_pet(make_request_json_response):
+def test_put_pet(send_request_json_response):
     request = build_put_pet_request(json={"name": "Butter"})
-    result = make_request_json_response(request)
+    result = send_request_json_response(request)
     assert result == "Pet was correct!"
 
-def test_get_horse(make_request_json_response):
+def test_get_horse(send_request_json_response):
     request = build_get_horse_request()
-    assert {"name": "Fred", "isAShowHorse": True} == make_request_json_response(request)
+    assert {"name": "Fred", "isAShowHorse": True} == send_request_json_response(request)
 
-def test_put_horse(make_request_json_response):
+def test_put_horse(send_request_json_response):
     request = build_put_horse_request(json={"name": "General", "isAShowHorse": False})
-    result = make_request_json_response(request)
+    result = send_request_json_response(request)
     assert result == "Horse was correct!"
 
-def test_get_feline(make_request_json_response):
+def test_get_feline(send_request_json_response):
     request = build_get_feline_request()
-    assert {"meows": True, "hisses": True} == make_request_json_response(request)
+    assert {"meows": True, "hisses": True} == send_request_json_response(request)
 
-def test_put_feline(make_request_json_response):
+def test_put_feline(send_request_json_response):
     request = build_put_feline_request(json={"meows": False, "hisses": True})
-    result = make_request_json_response(request)
+    result = send_request_json_response(request)
     assert result == "Feline was correct!"
 
-def test_get_cat(make_request_json_response):
+def test_get_cat(send_request_json_response):
     request = build_get_cat_request()
-    assert {"name": "Whiskers", "likesMilk": True, "meows": True, "hisses": True} == make_request_json_response(request)
+    assert {"name": "Whiskers", "likesMilk": True, "meows": True, "hisses": True} == send_request_json_response(request)
 
-def test_put_cat(make_request_json_response):
+def test_put_cat(send_request_json_response):
     request = build_put_cat_request(json={"name": "Boots", "likesMilk": False, "meows": True, "hisses": False})
-    assert make_request_json_response(request) == "Cat was correct!"
+    assert send_request_json_response(request) == "Cat was correct!"
 
-def test_get_kitten(make_request_json_response):
+def test_get_kitten(send_request_json_response):
     request = build_get_kitten_request()
-    assert {"name": "Gatito", "likesMilk": True, "meows": True, "hisses": True, "eatsMiceYet": False} == make_request_json_response(request)
+    assert {"name": "Gatito", "likesMilk": True, "meows": True, "hisses": True, "eatsMiceYet": False} == send_request_json_response(request)
 
-def test_put_kitten(make_request_json_response):
+def test_put_kitten(send_request_json_response):
     request = build_put_kitten_request(json={"name": "Kitty", "likesMilk": False, "meows": True, "hisses": False, "eatsMiceYet": True})
-    assert "Kitten was correct!" == make_request_json_response(request)
+    assert "Kitten was correct!" == send_request_json_response(request)
