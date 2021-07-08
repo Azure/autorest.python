@@ -58,10 +58,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         show_builders: bool,
         show_models: bool,
         show_operations: bool,
+        show_send_request: bool,
         only_path_and_body_params_positional: bool,
         options: Dict[str, Any]
     ) -> None:
         self.rest_layer_name = "rest" if show_builders else "_rest"
+        self.send_request_name = "send_request" if show_send_request else "_send_request"
         self.show_models = show_models
         self.show_operations = show_operations
         self.only_path_and_body_params_positional = only_path_and_body_params_positional

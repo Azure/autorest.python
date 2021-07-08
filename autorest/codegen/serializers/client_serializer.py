@@ -82,7 +82,7 @@ class ClientSerializer:
     def _send_request_signature(self, async_mode: bool) -> str:
         return utils.serialize_method(
             function_def="def",
-            method_name="send_request",
+            method_name=self.code_model.send_request_name,
             is_in_class=True,
             method_param_signatures=self.code_model.service_client.send_request_signature(async_mode)
         )
@@ -100,10 +100,16 @@ class ClientSerializer:
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
         request_builder = self.code_model.rest.request_builders[0]
         request_builder_signature = ", ".join(request_builder.parameters.call)
-        retval.append(f">>> from {self.code_model.namespace}.rest import {request_builder.name}")
-        retval.append(f">>> request = {request_builder.name}({request_builder_signature})")
+        if request_builder.operation_group_name:
+            rest_imported = request_builder.operation_group_name
+            request_builder_name = f"{request_builder.operation_group_name}.{request_builder.name}"
+        else:
+            rest_imported = request_builder.name
+            request_builder_name = request_builder.name
+        retval.append(f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}")
+        retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
         retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
-        retval.append(f">>> response = {'await ' if async_mode else ''}client.send_request(request)")
+        retval.append(f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)")
         retval.append(f"<{http_response}: 200 OK>")
         return retval
 

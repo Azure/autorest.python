@@ -86,18 +86,21 @@ class CodeGenerator(Plugin):
         show_models = self._autorestapi.get_boolean_value("show-models", True)
         show_builders = self._autorestapi.get_boolean_value("show-builders", False)
         show_operations = self._autorestapi.get_boolean_value("show-operations", True)
+        show_send_request = self._autorestapi.get_boolean_value("show-send-request", False)
         only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
         if low_level_client:
             show_models = False
             show_builders = True
             show_operations = False
+            show_send_request = True
             only_path_and_body_params_positional = True
         code_model = CodeModel(
             show_builders=show_builders,
             show_models=show_models,
             show_operations=show_operations,
+            show_send_request=show_send_request,
             only_path_and_body_params_positional=only_path_and_body_params_positional,
-            options=options
+            options=options,
         )
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
