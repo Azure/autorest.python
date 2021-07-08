@@ -1,5 +1,46 @@
 # Change Log
 
+### 2021-07-06 - 5.8.3
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- Fix LRO path parameterization when we have a constant path parameter #968
+
+### 2021-06-22 - 5.8.2
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- We are now more lenient with our checks for the content type parameter  #956
+
+### 2021-06-16 - 5.8.1
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- Fix optional properties with constant schemas. Now, properties that have constant schemas but are optional will not have the hardcoded constant value,
+but will default to its `x-ms-client-default` or `None`  #952
+
+### 2021-05-17 - 5.8.0
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**New Features**
+
+- Add support for parameters and properties that can be of type "Anything".  #946
+
 ### 2021-04-20 - 5.7.0
 
 min Autorest core version: 3.1.0

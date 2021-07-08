@@ -164,47 +164,35 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar parameter:  Default value: "value1".
-    :vartype parameter: str
+    :param parameter:  The only acceptable values to pass in are None and "value1". The default
+     value is "value1".
+    :type parameter: str
     """
-
-    _validation = {
-        "parameter": {"constant": True},
-    }
 
     _attribute_map = {
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    parameter = "value1"
-
     def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
+        self.parameter = kwargs.get("parameter", "value1")
 
 
 class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar parameter:  Default value: "value1".
-    :vartype parameter: str
+    :param parameter:  The only acceptable values to pass in are None and "value1". The default
+     value is None.
+    :type parameter: str
     """
-
-    _validation = {
-        "parameter": {"constant": True},
-    }
 
     _attribute_map = {
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    parameter = "value1"
-
     def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
+        self.parameter = kwargs.get("parameter", None)
 
 
 class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
@@ -246,7 +234,7 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required.  Default value: "value1".
+    :ivar parameter:  Has constant value: "value1".
     :vartype parameter: str
     """
 
@@ -271,7 +259,7 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required.  Default value: "value1".
+    :ivar parameter:  Has constant value: "value1".
     :vartype parameter: str
     """
 

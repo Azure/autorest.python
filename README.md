@@ -27,10 +27,9 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ^3.1.0
-# For changes to modelerfour
+version: ~3.3.0
 use-extension:
-  "@autorest/modelerfour": ^4.15.456
+  "@autorest/modelerfour": ~4.19.1
 
 modelerfour:
   group-parameters: true

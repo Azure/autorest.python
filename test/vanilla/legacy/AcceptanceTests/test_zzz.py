@@ -45,6 +45,7 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+            "LLCRequiredToOptional": 1,  # adding in LLC PR
         }
 
         print("Coverage:")

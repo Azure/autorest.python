@@ -28,6 +28,11 @@
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
     {% if operation.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
+    {% if operation.parameters.path|selectattr("constant") %}
+        {% for constant_parameter in operation.parameters.path|selectattr("constant") %}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
+        {% endfor %}
+    {% endif %}
     {{ op_tools.path_format_arguments(operation.parameters.path)|indent }}
 
     {% endif %}

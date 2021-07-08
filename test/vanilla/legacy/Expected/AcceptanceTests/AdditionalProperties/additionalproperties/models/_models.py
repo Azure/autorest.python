@@ -19,7 +19,7 @@ class PetAPTrue(msrest.serialization.Model):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, object]
+    :type additional_properties: dict[str, any]
     :param id: Required.
     :type id: int
     :param name:
@@ -57,7 +57,7 @@ class CatAPTrue(PetAPTrue):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, object]
+    :type additional_properties: dict[str, any]
     :param id: Required.
     :type id: int
     :param name:
@@ -199,7 +199,7 @@ class PetAPObject(msrest.serialization.Model):
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, object]
+    :type additional_properties: dict[str, any]
     :param id: Required.
     :type id: int
     :param name:

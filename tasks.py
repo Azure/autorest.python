@@ -32,6 +32,7 @@ _SERVICE_TO_README_PATH = {
 
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
+    'Anything': 'any-type.json',
     'ParameterFlattening': 'parameter-flattening.json',
     'BodyArray': 'body-array.json',
     'BodyBoolean': 'body-boolean.json',

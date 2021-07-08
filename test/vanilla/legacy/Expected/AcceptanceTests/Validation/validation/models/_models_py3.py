@@ -19,7 +19,7 @@ class ChildProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Required. Constant string. Default value: "constant".
+    :ivar const_property: Constant string. Has constant value: "constant".
     :vartype const_property: str
     :param count: Count.
     :type count: int
@@ -48,9 +48,9 @@ class ConstantProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Required. Constant string. Default value: "constant".
+    :ivar const_property: Constant string. Has constant value: "constant".
     :vartype const_property: str
-    :ivar const_property2: Required. Constant string2. Default value: "constant2".
+    :ivar const_property2: Constant string2. Has constant value: "constant2".
     :vartype const_property2: str
     """
 
@@ -114,12 +114,13 @@ class Product(msrest.serialization.Model):
     :type child: ~validation.models.ChildProduct
     :param const_child: Required. The product documentation.
     :type const_child: ~validation.models.ConstantProduct
-    :ivar const_int: Required. Constant int. Default value: "0".
+    :ivar const_int: Constant int. Has constant value: 0.
     :vartype const_int: int
-    :ivar const_string: Required. Constant string. Default value: "constant".
+    :ivar const_string: Constant string. Has constant value: "constant".
     :vartype const_string: str
-    :ivar const_string_as_enum: Constant string as Enum. Default value: "constant_string_as_enum".
-    :vartype const_string_as_enum: str
+    :param const_string_as_enum: Constant string as Enum. The only acceptable values to pass in are
+     None and "constant_string_as_enum". The default value is None.
+    :type const_string_as_enum: str
     """
 
     _validation = {
@@ -130,7 +131,6 @@ class Product(msrest.serialization.Model):
         "const_child": {"required": True},
         "const_int": {"required": True, "constant": True},
         "const_string": {"required": True, "constant": True},
-        "const_string_as_enum": {"constant": True},
     }
 
     _attribute_map = {
@@ -146,7 +146,6 @@ class Product(msrest.serialization.Model):
 
     const_int = 0
     const_string = "constant"
-    const_string_as_enum = "constant_string_as_enum"
 
     def __init__(
         self,
@@ -156,6 +155,7 @@ class Product(msrest.serialization.Model):
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
+        const_string_as_enum: Optional[str] = None,
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
@@ -164,3 +164,4 @@ class Product(msrest.serialization.Model):
         self.image = image
         self.child = child
         self.const_child = const_child
+        self.const_string_as_enum = const_string_as_enum

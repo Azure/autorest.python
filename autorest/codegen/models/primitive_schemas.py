@@ -415,7 +415,8 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         "date": DateSchema,
         "duration": DurationSchema,
         "byte-array": ByteArraySchema,
-        "any": AnyObjectSchema,
+        "any": AnySchema,
+        "any-object": AnyObjectSchema,
         "binary": IOSchema
     }
     schema_type = yaml_data["type"]

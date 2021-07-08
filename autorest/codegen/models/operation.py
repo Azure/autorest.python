@@ -14,8 +14,6 @@ from .parameter import Parameter, ParameterOnlyPathsPositional
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
-from .list_schema import ListSchema
-from .dictionary_schema import DictionarySchema
 from .request_builder import RequestBuilder
 
 _LOGGER = logging.getLogger(__name__)
