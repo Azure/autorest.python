@@ -6,10 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
-from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -33,8 +32,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :vartype operation_group_two: multiapiwithsubmodule.submodule.v2.aio.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param base_url: Service URL
-    :type base_url: str
+    :param str base_url: Service URL
     """
 
     def __init__(
@@ -50,52 +48,27 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
+
         self.operation_group_one = OperationGroupOneOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.operation_group_two = OperationGroupTwoOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
 
     async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
 
-        We have helper methods to create requests specific to this service in `multiapiwithsubmodule.submodule.v2.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
-
-        >>> from multiapiwithsubmodule.submodule.v2.rest import build_test_one_request
-        >>> request = build_test_one_request(id, message)
-        <HttpRequest [PUT], url: '/multiapi/testOneEndpoint'>
-        >>> response = await client.send_request(request)
-        <AsyncHttpResponse: 200 OK>
-
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
-
-        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
-        and pass it in.
-
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.rest.HttpRequest
-        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
+        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.rest.AsyncHttpResponse
+        :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
         """
-        request_copy = deepcopy(http_request)
-        request_copy.url = self._client.format_url(request_copy.url)
-        if kwargs.pop("stream_response", False):
-            return _AsyncStreamContextManager(
-                client=self._client,
-                request=request_copy,
-            )
-        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = AsyncHttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response
-        )
-        await response.read()
-        return response
+        http_request.url = self._client.format_url(http_request.url)
+        stream = kwargs.pop("stream", True)
+        pipeline_response = await self._client._pipeline.run(http_request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     async def close(self) -> None:
         await self._client.close()

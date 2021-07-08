@@ -10,11 +10,10 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
-from azure.core.rest import HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import _rest, models as _models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,15 +59,22 @@ class OperationGroupTwoOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+        api_version = "2.0.0"
+        accept = "application/json"
 
-        request = _rest.operation_group_two.build_test_four_request(
-            parameter_one=parameter_one,
-            template_url=self.test_four.metadata['url'],
-            **kwargs
-        )
-        request.url = self._client.format_url(request.url)
-        kwargs.pop("content_type", None)
+        # Construct URL
+        url = self.test_four.metadata['url']  # type: ignore
 
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['parameterOne'] = self._serialize.query("parameter_one", parameter_one, 'bool')
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

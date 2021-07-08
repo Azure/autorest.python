@@ -14,10 +14,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
-from azure.core.rest import HttpRequest
-
-from .._rest import *
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

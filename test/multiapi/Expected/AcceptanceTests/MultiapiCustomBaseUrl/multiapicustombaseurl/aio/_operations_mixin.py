@@ -14,10 +14,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
-from azure.core.rest import HttpRequest
-
-from ..._rest import *
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):

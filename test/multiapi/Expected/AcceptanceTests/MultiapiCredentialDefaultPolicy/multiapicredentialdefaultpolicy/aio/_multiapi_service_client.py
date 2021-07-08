@@ -9,11 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from copy import deepcopy
 from typing import Any, Optional
 
 from azure.core.credentials import AzureKeyCredential
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin

@@ -6,11 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse, _StreamContextManager
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -18,7 +16,7 @@ if TYPE_CHECKING:
     from typing import Any
 
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest
+    from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
@@ -47,52 +45,27 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
-        self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
+        self._deserialize = Deserializer(client_models)
+
 
     def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
         """Runs the network request through the client's chained policies.
 
-        We have helper methods to create requests specific to this service in `multiapicustombaseurl.v2.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
-
-        >>> from multiapicustombaseurl.v2.rest import build_test_request
-        >>> request = build_test_request(id)
-        <HttpRequest [PUT], url: '/test'>
-        >>> response = client.send_request(request)
-        <HttpResponse: 200 OK>
-
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
-
-        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
-        and pass it in.
-
         :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.rest.HttpRequest
-        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
+        :type http_request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.rest.HttpResponse
+        :rtype: ~azure.core.pipeline.transport.HttpResponse
         """
-        request_copy = deepcopy(http_request)
         path_format_arguments = {
             'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
-        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        if kwargs.pop("stream_response", False):
-            return _StreamContextManager(
-                client=self._client._pipeline,
-                request=request_copy,
-            )
-        pipeline_response = self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = HttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response
-        )
-        response.read()
-        return response
+        http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
+        stream = kwargs.pop("stream", True)
+        pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     def close(self):
         # type: () -> None
