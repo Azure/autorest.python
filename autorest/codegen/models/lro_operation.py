@@ -6,7 +6,7 @@
 import logging
 from typing import Callable, Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
-from .operation import Operation, NoModelOperation
+from .operation import Operation
 from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .imports import ImportType, TypingSection
@@ -171,9 +171,3 @@ class LROOperation(Operation):
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
-
-class NoModelLROOperation(LROOperation, NoModelOperation):
-
-    @property
-    def schema_of_initial_operation(self) -> Callable:
-        return NoModelOperation

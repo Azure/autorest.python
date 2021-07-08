@@ -20,7 +20,7 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
-from ...rest import paging as rest_paging
+from ..._rest import paging as rest_paging
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

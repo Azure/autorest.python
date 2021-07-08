@@ -28,10 +28,10 @@ def build_analyze_body_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Input parameter.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter.
-    :paramtype content: Any
+    :paramtype content: any
     :keyword str content_type: Media type of the body sent to the API. Default value is
      "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
      "image/tiff", "application/json."
@@ -76,7 +76,7 @@ def build_content_type_with_encoding_request(
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

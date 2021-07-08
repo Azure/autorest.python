@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 
 from ... import models as _models
-from ...rest import operation_group_two as rest_operation_group_two
+from ..._rest import operation_group_two as rest_operation_group_two
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

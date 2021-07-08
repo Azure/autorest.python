@@ -58,22 +58,17 @@ class JinjaSerializer:
                     code_model=code_model, env=env, namespace_path=namespace_path,
                 )
 
-        if not code_model.no_operations:
-            self._serialize_and_write_convenience_layer(code_model=code_model, env=env, namespace_path=namespace_path)
-
-    def _serialize_and_write_convenience_layer(
-        self, code_model: CodeModel, env: Environment, namespace_path: Path
-    ) -> None:
-        # if not code_model.no_models and (code_model.schemas or code_model.enums):
-        if code_model.schemas or code_model.enums:
-            self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-        if code_model.operation_groups:
+        if code_model.show_operations and code_model.operation_groups:
             self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
             if code_model.options["multiapi"]:
                 self._serialize_and_write_metadata(
                     code_model, env=env, namespace_path=namespace_path
                 )
+
+        if code_model.show_models and (code_model.schemas or code_model.enums):
+            self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
@@ -97,7 +92,7 @@ class JinjaSerializer:
     def _serialize_and_write_rest_layer(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
-        rest_path = namespace_path / Path("rest")
+        rest_path = namespace_path / Path(code_model.rest_layer_name)
         operation_group_names = {
             rb.operation_group_name for rb in code_model.rest.request_builders
         }

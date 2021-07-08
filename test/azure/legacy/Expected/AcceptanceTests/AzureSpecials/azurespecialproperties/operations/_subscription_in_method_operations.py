@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..rest import subscription_in_method as rest_subscription_in_method
+from .._rest import subscription_in_method as rest_subscription_in_method
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

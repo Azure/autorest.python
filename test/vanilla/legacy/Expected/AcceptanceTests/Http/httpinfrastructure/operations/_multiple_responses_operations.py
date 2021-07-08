@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import multiple_responses as rest_multiple_responses
+from .._rest import multiple_responses as rest_multiple_responses
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

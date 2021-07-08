@@ -17,7 +17,7 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
 from azure.core.rest import HttpRequest
 
-from .. import models as _models, rest
+from .. import _rest as rest, models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

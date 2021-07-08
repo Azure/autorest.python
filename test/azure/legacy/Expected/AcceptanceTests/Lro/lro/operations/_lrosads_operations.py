@@ -25,7 +25,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from ..rest import lrosads as rest_lrosads
+from .._rest import lrosads as rest_lrosads
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

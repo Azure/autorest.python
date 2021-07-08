@@ -3,14 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from autorest.codegen.models.lro_paging_operation import LROPagingOperation
 import logging
 from typing import Dict, List, Any, Set
 
 from .base_model import BaseModel
-from .operation import NoModelOperation, Operation
-from .lro_operation import LROOperation, NoModelLROOperation
-from .paging_operation import NoModelPagingOperation, PagingOperation
-from .lro_paging_operation import LROPagingOperation, NoModelLROPagingOperation
+from .operation import Operation
+from .lro_operation import LROOperation
+from .paging_operation import PagingOperation
 from .imports import FileImport, ImportType
 
 
@@ -94,17 +94,13 @@ class OperationGroup(BaseModel):
             lro_operation = operation_yaml.get("extensions", {}).get("x-ms-long-running-operation")
             paging_operation = operation_yaml.get("extensions", {}).get("x-ms-pageable")
             if lro_operation and paging_operation:
-                operation_schema = NoModelLROPagingOperation if code_model.no_models else LROPagingOperation
-                operation = operation_schema.from_yaml(operation_yaml)
+                operation = LROPagingOperation.from_yaml(operation_yaml)
             elif lro_operation:
-                operation_schema = NoModelLROOperation if code_model.no_models else LROOperation
-                operation = operation_schema.from_yaml(operation_yaml)
+                operation = LROOperation.from_yaml(operation_yaml)
             elif paging_operation:
-                operation_schema = NoModelPagingOperation if code_model.no_models else PagingOperation
-                operation = operation_schema.from_yaml(operation_yaml)
+                operation = PagingOperation.from_yaml(operation_yaml)
             else:
-                operation_schema = NoModelOperation if code_model.no_models else Operation
-                operation = operation_schema.from_yaml(operation_yaml)
+                operation = Operation.from_yaml(operation_yaml)
             operations.append(operation)
             api_versions.update(operation.api_versions)
 

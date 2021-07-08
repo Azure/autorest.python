@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ..rest import http_success as rest_http_success
+from .._rest import http_success as rest_http_success
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

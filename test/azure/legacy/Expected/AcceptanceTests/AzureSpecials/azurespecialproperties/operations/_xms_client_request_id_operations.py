@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..rest import xms_client_request_id as rest_xms_client_request_id
+from .._rest import xms_client_request_id as rest_xms_client_request_id
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

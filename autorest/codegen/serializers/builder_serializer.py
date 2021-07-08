@@ -6,7 +6,6 @@
 from functools import partial
 from autorest.codegen.models.schema_request import SchemaRequest
 from itertools import groupby
-from autorest.codegen.models.operation import NoModelOperation
 from autorest.codegen.models.parameter import Parameter
 import json
 from collections import defaultdict
@@ -356,15 +355,12 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):
         return "HttpRequest"
 
     def response_docstring(self, builder: RequestBuilder) -> List[str]:
-        core_import = "{}.core.rest".format(
-            self.code_model.namespace if self.code_model.options["vendor"] else "azure"
-        )
         response_str = (
-            f":return: Returns an :class:`~{ core_import }.HttpRequest` that you will pass to the client's " +
+            f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's " +
             "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to " +
             "incorporate this response into your code flow."
         )
-        rtype_str = f":rtype: ~{ core_import }.HttpRequest"
+        rtype_str = f":rtype: ~azure.core.rest.HttpRequest"
         return [response_str, rtype_str]
 
     def _json_example_param_name(self, builder: RequestBuilder) -> str:
@@ -486,9 +482,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder: BaseBuilder) -> bool:
-        # if not self.code_model.no_models:
-        #     return False
-        return False
+        if self.code_model.show_models:
+            return False
         if builder.parameters.has_body:
             body_params = builder.parameters.body
             return any([
@@ -520,8 +515,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         body_param = builder.parameters.body[0]
         body_is_xml = ", is_xml=True" if send_xml else ""
         pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
-        if isinstance(builder, NoModelOperation):
-            return f"{builder.serialized_body_kwarg} = self._serialize.body({builder.parameters.body[0].serialized_name}, 'object')"
         return f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, '{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
 
     def _serialize_body(self, builder: Operation) -> List[str]:

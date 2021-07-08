@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import http_redirects as rest_http_redirects
+from .._rest import http_redirects as rest_http_redirects
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

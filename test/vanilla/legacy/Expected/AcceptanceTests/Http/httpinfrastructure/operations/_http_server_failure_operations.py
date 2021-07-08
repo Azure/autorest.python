@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import http_server_failure as rest_http_server_failure
+from .._rest import http_server_failure as rest_http_server_failure
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

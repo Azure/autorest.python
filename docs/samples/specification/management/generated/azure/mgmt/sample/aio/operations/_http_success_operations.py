@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ...rest import http_success as rest_http_success
+from ..._rest import http_success as rest_http_success
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

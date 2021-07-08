@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import availability_sets as rest_availability_sets
+from .._rest import availability_sets as rest_availability_sets
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

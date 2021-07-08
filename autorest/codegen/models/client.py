@@ -62,20 +62,19 @@ class Client:
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
-        core_import = (self.code_model.namespace if self.code_model.options["vendor"] else "azure") + ".core.rest"
         if async_mode:
             file_import.add_from_import(
                 "typing", "Awaitable", ImportType.STDLIB
             )
             file_import.add_from_import(
-                core_import, "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
+                "azure.core.rest", "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         else:
             file_import.add_from_import(
-                core_import, "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
+                "azure.core.rest", "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
         file_import.add_from_import(
-            core_import, "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
+            "azure.core.rest", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
         for og in self.code_model.operation_groups:
             file_import.add_from_import(

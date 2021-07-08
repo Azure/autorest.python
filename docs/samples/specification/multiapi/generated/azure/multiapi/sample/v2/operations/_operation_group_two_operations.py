@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..rest import operation_group_two as rest_operation_group_two
+from .._rest import operation_group_two as rest_operation_group_two
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

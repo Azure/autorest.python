@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import duration as rest_duration
+from .._rest import duration as rest_duration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

@@ -108,24 +108,20 @@ class IOSchema(PrimitiveSchema):
 class AnySchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
-        return "Any"
+        return "object"
 
     @property
     def docstring_type(self) -> str:
-        return "Any"
+        return "any"
 
     @property
     def type_annotation(self) -> str:
         return "Any"
 
-class AnyObjectSchema(PrimitiveSchema):
-    @property
-    def serialization_type(self) -> str:
-        return "object"
-
-    @property
-    def docstring_type(self) -> str:
-        return "object"
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        return file_import
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
@@ -416,7 +412,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         "duration": DurationSchema,
         "byte-array": ByteArraySchema,
         "any": AnySchema,
-        "any-object": AnyObjectSchema,
+        "any-object": AnySchema,
         "binary": IOSchema
     }
     schema_type = yaml_data["type"]

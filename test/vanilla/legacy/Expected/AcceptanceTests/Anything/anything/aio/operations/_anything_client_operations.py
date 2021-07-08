@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import rest
+from ... import _rest as rest
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,8 +34,8 @@ class AnythingClientOperationsMixin:
         successfully returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: any, or the result of cls(response)
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -56,7 +56,7 @@ class AnythingClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Any", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -71,7 +71,7 @@ class AnythingClientOperationsMixin:
         else to get an object error.
 
         :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-        :type input: Any
+        :type input: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -83,7 +83,7 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(input, "Any")
+        json = self._serialize.body(input, "object")
 
         request = rest.build_put_object_request(
             content_type=content_type,
@@ -111,8 +111,8 @@ class AnythingClientOperationsMixin:
         """Basic get that returns an string as anything. Returns string 'foo'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: any, or the result of cls(response)
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -133,7 +133,7 @@ class AnythingClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Any", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -148,7 +148,7 @@ class AnythingClientOperationsMixin:
         get an object error.
 
         :param input: Pass in 'anything' for a 200, anything else for an object error.
-        :type input: Any
+        :type input: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -160,7 +160,7 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(input, "Any")
+        json = self._serialize.body(input, "object")
 
         request = rest.build_put_string_request(
             content_type=content_type,
@@ -188,8 +188,8 @@ class AnythingClientOperationsMixin:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Any, or the result of cls(response)
-        :rtype: Any
+        :return: any, or the result of cls(response)
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -210,7 +210,7 @@ class AnythingClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Any", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -225,7 +225,7 @@ class AnythingClientOperationsMixin:
         to get an object error.
 
         :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error.
-        :type input: Any
+        :type input: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -237,7 +237,7 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(input, "Any")
+        json = self._serialize.body(input, "object")
 
         request = rest.build_put_array_request(
             content_type=content_type,

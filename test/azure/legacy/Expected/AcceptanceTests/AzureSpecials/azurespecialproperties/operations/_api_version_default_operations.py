@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..rest import api_version_default as rest_api_version_default
+from .._rest import api_version_default as rest_api_version_default
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

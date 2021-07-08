@@ -20,7 +20,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 from .. import models as _models
-from ..rest import paging as rest_paging
+from .._rest import paging as rest_paging
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

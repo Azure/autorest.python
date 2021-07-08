@@ -143,7 +143,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         excep_schema = default_excp[0].schema
         if isinstance(excep_schema, ObjectSchema):
             return f"_models.{excep_schema.name}"
-        # in this case, it's just an AnyObjectSchema
+        # in this case, it's just an AnySchema
         return "\'object\'"
 
     @property
@@ -167,9 +167,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.merge(param.imports())
 
         for response in [r for r in self.responses if r.has_body]:
-            # if code_model.no_models:
-            #     file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
-            # else:
             file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
@@ -200,8 +197,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         file_import.add_from_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Generic", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
-        core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
-        file_import.add_from_import(core_import, "HttpRequest", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
         if async_mode:
             file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:
@@ -216,10 +212,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         rest_import_path = "..." if async_mode else ".."
         if operation_group_name:
             file_import.add_from_import(
-                f"{rest_import_path}rest", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
+                f"{rest_import_path}{code_model.rest_layer_name}", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
             )
         else:
-            file_import.add_from_import(rest_import_path, "rest", import_type=ImportType.LOCAL)
+            file_import.add_from_import(rest_import_path, code_model.rest_layer_name, import_type=ImportType.LOCAL, alias="rest")
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:
@@ -269,9 +265,3 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
         )
-
-class NoModelOperation(Operation):
-
-    @staticmethod
-    def get_parameter_converter() -> Callable:
-        return ParameterOnlyPathsPositional.from_yaml

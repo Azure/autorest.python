@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from ..rest import pet as rest_pet
+from .._rest import pet as rest_pet
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

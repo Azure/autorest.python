@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..rest import skip_url_encoding as rest_skip_url_encoding
+from .._rest import skip_url_encoding as rest_skip_url_encoding
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

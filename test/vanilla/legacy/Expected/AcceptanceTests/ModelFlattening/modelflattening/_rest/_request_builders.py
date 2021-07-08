@@ -29,10 +29,10 @@ def build_put_array_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -129,10 +129,10 @@ def build_put_wrapped_array_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -214,10 +214,10 @@ def build_put_dictionary_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -316,10 +316,10 @@ def build_put_resource_collection_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a ResourceCollection to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a ResourceCollection to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -331,32 +331,10 @@ def build_put_resource_collection_request(
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "arrayofresources": [
-                    {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
+                    "..."
                 ],
                 "dictionaryofresources": {
-                    "str": {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
+                    "str": "..."
                 },
                 "productresource": {
                     "id": "str (optional)",
@@ -409,32 +387,10 @@ def build_get_resource_collection_request(
             # response body for status code(s): 200
             response.json() == {
                 "arrayofresources": [
-                    {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
+                    "..."
                 ],
                 "dictionaryofresources": {
-                    "str": {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
+                    "str": "..."
                 },
                 "productresource": {
                     "id": "str (optional)",
@@ -474,10 +430,10 @@ def build_put_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -534,10 +490,10 @@ def build_post_flattened_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to post.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to post.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -585,7 +541,7 @@ def build_post_flattened_simple_product_request(
 
 def build_put_simple_product_with_grouping_request(
     name,  # type: str
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
@@ -597,10 +553,10 @@ def build_put_simple_product_with_grouping_request(
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put.
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

@@ -77,9 +77,8 @@ class RequestBuilder(BaseBuilder):
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
-        core_import = (code_model.namespace if code_model.options["vendor"] else "azure") + ".core.rest"
         file_import.add_from_import(
-            core_import,
+            "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )

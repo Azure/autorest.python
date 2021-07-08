@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ..rest import head_exception as rest_head_exception
+from .._rest import head_exception as rest_head_exception
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import rest
+from .. import _rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -36,16 +36,16 @@ class ObjectTypeClientOperationsMixin(object):
     def get(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> object
+        # type: (...) -> Any
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: object, or the result of cls(response)
-        :rtype: object
+        :return: any, or the result of cls(response)
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[object]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -74,7 +74,7 @@ class ObjectTypeClientOperationsMixin(object):
     @distributed_trace
     def put(
         self,
-        put_object,  # type: object
+        put_object,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -82,7 +82,7 @@ class ObjectTypeClientOperationsMixin(object):
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-        :type put_object: object
+        :type put_object: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

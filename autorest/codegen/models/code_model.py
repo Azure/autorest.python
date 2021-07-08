@@ -55,15 +55,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     def __init__(
         self,
-        rest_layer: bool,
-        no_models: bool,
-        no_operations: bool,
+        show_builders: bool,
+        show_models: bool,
+        show_operations: bool,
         only_path_and_body_params_positional: bool,
         options: Dict[str, Any]
     ) -> None:
-        self.rest_layer = rest_layer
-        self.no_models = no_models
-        self.no_operations = no_operations
+        self.rest_layer_name = "rest" if show_builders else "_rest"
+        self.show_models = show_models
+        self.show_operations = show_operations
         self.only_path_and_body_params_positional = only_path_and_body_params_positional
         self.options = options
         self.module_name: str = ""

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from .imports import FileImport
 from .lro_operation import LROOperation
-from .paging_operation import PagingOperation, NoModelPagingOperation
+from .paging_operation import PagingOperation
 
 class LROPagingOperation(PagingOperation, LROOperation):
 
@@ -22,6 +22,3 @@ class LROPagingOperation(PagingOperation, LROOperation):
         """The list of all successfull status code.
         """
         return [200]
-
-class NoModelLROPagingOperation(LROPagingOperation, NoModelPagingOperation):
-    pass

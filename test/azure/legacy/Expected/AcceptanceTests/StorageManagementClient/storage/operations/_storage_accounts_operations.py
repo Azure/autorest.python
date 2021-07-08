@@ -26,7 +26,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from ..rest import storage_accounts as rest_storage_accounts
+from .._rest import storage_accounts as rest_storage_accounts
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

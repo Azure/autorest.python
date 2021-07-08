@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import json
 from jinja2 import Environment
 from autorest.codegen.models.operation import Operation
 
@@ -53,7 +52,6 @@ class OperationGroupSerializer:
         if self.operation_group.is_empty_operation_group:
             operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
 
-        # has_schemas = not self.code_model.no_models and (self.code_model.schemas or self.code_model.enums)
         has_schemas = self.code_model.schemas or self.code_model.enums
         operation_serializer_cls = AsyncOperationSerializer if self.async_mode else SyncOperationSerializer
         paging_operation_serializer_cls = (

@@ -6,7 +6,7 @@
 import logging
 from typing import cast, Dict, List, Any, Optional, Set
 
-from .operation import NoModelOperation, Operation
+from .operation import Operation
 from .schema_response import SchemaResponse
 from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
@@ -148,6 +148,3 @@ class PagingOperation(Operation):
             )
 
         return file_import
-
-class NoModelPagingOperation(PagingOperation, NoModelOperation):
-    pass

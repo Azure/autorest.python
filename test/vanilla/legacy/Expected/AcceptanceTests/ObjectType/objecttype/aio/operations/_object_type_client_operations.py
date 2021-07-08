@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import rest
+from ... import _rest as rest
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -29,16 +29,16 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> object:
+    async def get(self, **kwargs: Any) -> Any:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: object, or the result of cls(response)
-        :rtype: object
+        :return: any, or the result of cls(response)
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[object]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -67,12 +67,12 @@ class ObjectTypeClientOperationsMixin:
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, put_object: object, **kwargs: Any) -> None:
+    async def put(self, put_object: Any, **kwargs: Any) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
-        :type put_object: object
+        :type put_object: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
