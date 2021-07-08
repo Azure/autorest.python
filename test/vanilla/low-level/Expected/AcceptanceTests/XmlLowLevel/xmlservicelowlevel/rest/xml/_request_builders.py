@@ -845,17 +845,11 @@ def build_get_service_properties_request(
                     }
                 ],
                 "DefaultServiceVersion": "str (optional)",
-                "DeleteRetentionPolicy": {
-                    "Days": "int (optional)",
-                    "Enabled": "bool"
-                },
+                "DeleteRetentionPolicy": "...",
                 "HourMetrics": {
                     "Enabled": "bool",
                     "IncludeAPIs": "bool (optional)",
-                    "RetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
-                    },
+                    "RetentionPolicy": "...",
                     "Version": "str (optional)"
                 },
                 "Logging": {
@@ -868,15 +862,7 @@ def build_get_service_properties_request(
                     "Version": "str",
                     "Write": "bool"
                 },
-                "MinuteMetrics": {
-                    "Enabled": "bool",
-                    "IncludeAPIs": "bool (optional)",
-                    "RetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
-                    },
-                    "Version": "str (optional)"
-                }
+                "MinuteMetrics": "..."
             }
     """
 

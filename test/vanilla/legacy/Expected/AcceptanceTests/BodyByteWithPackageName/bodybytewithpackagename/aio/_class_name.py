@@ -6,23 +6,25 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional
+from copy import deepcopy
+from typing import Any, Awaitable, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import ClassNameConfiguration
 from .operations import ByteOperations
-from .. import models
 
 
-class ClassName(object):
+class ClassName:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar byte: ByteOperations operations
     :vartype byte: bodybytewithpackagename.aio.operations.ByteOperations
-    :param str base_url: Service URL
+    :param base_url: Service URL
+    :type base_url: str
     """
 
     def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
@@ -33,24 +35,38 @@ class ClassName(object):
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
+        self._serialize.client_side_validation = False
         self.byte = ByteOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
         """Runs the network request through the client's chained policies.
 
-        :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.pipeline.transport.HttpRequest
-        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
+        We have helper methods to create requests specific to this service in `bodybytewithpackagename.rest`.
+        Use these helper methods to create the request you pass to this method. See our example below:
+
+        >>> from bodybytewithpackagename.rest import build_get_null_request
+        >>> request = build_get_null_request(**kwargs)
+        <HttpRequest [GET], url: '/byte/null'>
+        >>> response = await client.send_request(request)
+        <AsyncHttpResponse: 200 OK>
+
+        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
+
+        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
+        and pass it in.
+
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.rest.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
+        :rtype: ~azure.core.rest.AsyncHttpResponse
         """
-        http_request.url = self._client.format_url(http_request.url)
-        stream = kwargs.pop("stream", True)
-        pipeline_response = await self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+
+        request_copy = deepcopy(request)
+        request_copy.url = self._client.format_url(request_copy.url)
+        return self._client.send_request(request_copy, **kwargs)
 
     async def close(self) -> None:
         await self._client.close()

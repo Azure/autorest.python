@@ -12,7 +12,7 @@ import warnings
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest as PipelineTransportHttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
@@ -77,7 +77,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -85,14 +84,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_no_item_name_pages_request(
-                    template_url=self.get_no_item_name_pages.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -145,7 +141,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -153,14 +148,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_null_next_link_name_pages_request(
-                    template_url=self.get_null_next_link_name_pages.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -213,7 +205,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -221,14 +212,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_single_pages_request(
-                    template_url=self.get_single_pages.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -282,7 +270,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -290,14 +277,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_first_response_empty_request(
-                    template_url=self.first_response_empty.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -365,7 +349,6 @@ class PagingOperations(object):
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -381,14 +364,11 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_multiple_pages.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -447,7 +427,6 @@ class PagingOperations(object):
                 request = rest_paging.build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -455,8 +434,7 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_next_operation_with_query_params_request(
-                    template_url=self.get_with_query_params.metadata['url'],
-                    **kwargs
+                    template_url='/paging/multiple/nextOperationWithQueryParams',
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -527,7 +505,6 @@ class PagingOperations(object):
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_odata_multiple_pages.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -543,14 +520,11 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_odata_multiple_pages.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -621,7 +595,6 @@ class PagingOperations(object):
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -640,14 +613,11 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_multiple_pages_with_offset.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -701,7 +671,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -709,14 +678,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_multiple_pages_retry_first_request(
-                    template_url=self.get_multiple_pages_retry_first.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -770,7 +736,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -778,14 +743,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_multiple_pages_retry_second_request(
-                    template_url=self.get_multiple_pages_retry_second.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -838,7 +800,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -846,14 +807,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_single_pages_failure_request(
-                    template_url=self.get_single_pages_failure.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -906,7 +864,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -914,14 +871,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_multiple_pages_failure_request(
-                    template_url=self.get_multiple_pages_failure.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -974,7 +928,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -982,14 +935,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_multiple_pages_failure_uri_request(
-                    template_url=self.get_multiple_pages_failure_uri.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -1050,7 +1000,6 @@ class PagingOperations(object):
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -1061,8 +1010,7 @@ class PagingOperations(object):
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
-                    **kwargs
+                    template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -1128,7 +1076,6 @@ class PagingOperations(object):
                     tenant=_tenant,
                     api_version=_api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -1144,8 +1091,7 @@ class PagingOperations(object):
                     tenant=_tenant,
                     next_link=next_link,
                     api_version=_api_version,
-                    template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
-                    **kwargs
+                    template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -1202,7 +1148,6 @@ class PagingOperations(object):
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata['url'],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1221,6 +1166,7 @@ class PagingOperations(object):
         return deserialized
 
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+
 
     def begin_get_multiple_pages_lro(
         self,
@@ -1270,7 +1216,6 @@ class PagingOperations(object):
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -1286,14 +1231,11 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.begin_get_multiple_pages_lro.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -1309,7 +1251,7 @@ class PagingOperations(object):
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
 
-            if response.status_code not in [202]:
+            if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1325,10 +1267,7 @@ class PagingOperations(object):
         if cont_token is None:
             raw_result = self._get_multiple_pages_lro_initial(
                 client_request_id=client_request_id,
-
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-
-
                 cls=lambda x,y,z: x,
                 **kwargs
             )
@@ -1390,7 +1329,6 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -1398,14 +1336,11 @@ class PagingOperations(object):
                 
 
                 request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):

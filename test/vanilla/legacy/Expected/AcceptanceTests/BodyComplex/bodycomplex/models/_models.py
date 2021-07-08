@@ -853,7 +853,7 @@ class SmartSalmon(Salmon):
     :type iswild: bool
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, any]
+    :type additional_properties: dict[str, object]
     :param college_degree:
     :type college_degree: str
     """

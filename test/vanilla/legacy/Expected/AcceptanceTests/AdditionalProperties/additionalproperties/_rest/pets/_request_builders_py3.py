@@ -21,10 +21,10 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -36,7 +36,7 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "": {
-                    "str": "object (optional)"
+                    "str": "any (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -46,7 +46,7 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "object (optional)"
+                    "str": "any (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -78,10 +78,10 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -93,7 +93,7 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "": {
-                    "str": "object (optional)"
+                    "str": "any (optional)"
                 },
                 "friendly": "bool (optional)",
                 "id": "int",
@@ -104,7 +104,7 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "object (optional)"
+                    "str": "any (optional)"
                 },
                 "friendly": "bool (optional)",
                 "id": "int",
@@ -137,10 +137,10 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -152,7 +152,7 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "": {
-                    "str": "object (optional)"
+                    "str": "any (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -162,7 +162,7 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "object (optional)"
+                    "str": "any (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -194,10 +194,10 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -251,10 +251,10 @@ def build_create_ap_in_properties_request(*, json: Any = None, content: Any = No
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -310,10 +310,10 @@ def build_create_ap_in_properties_with_ap_string_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

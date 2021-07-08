@@ -10,26 +10,25 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
-from azure.core.rest import HttpResponse
 from msrest import Deserializer, Serializer
+
+from . import models
+from ._configuration import PollingPagingExampleConfiguration
+from .operations import PollingPagingExampleOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.rest import HttpRequest
-
-from ._configuration import PollingPagingExampleConfiguration
-from .operations import PollingPagingExampleOperationsMixin
-from . import models
-
+    from azure.core.rest import HttpRequest, HttpResponse
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.
-
+    
     :param base_url: Service URL
     :type base_url: str
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
     """
 
     def __init__(
@@ -43,45 +42,46 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         self._config = PollingPagingExampleConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
+        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
-        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
+        self._serialize.client_side_validation = False
 
 
-    def _send_request(self, http_request, **kwargs):
-        # type: (HttpRequest, Any) -> HttpResponse
+    def send_request(
+        self,
+        request,  # type: HttpRequest
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpResponse
+        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azure.directives.sample.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azure.directives.sample.rest import prepare_basic_polling_initial
-        >>> request = prepare_basic_polling_initial(product)
+        >>> from azure.directives.sample.rest import build_basic_polling_request_initial
+        >>> request = build_basic_polling_request_initial(json=json, content=content, **kwargs)
         <HttpRequest [PUT], url: '/basic/polling'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
         and pass it in.
 
-        :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.rest.HttpRequest
-        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.rest.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.HttpResponse
         """
-        request_copy = deepcopy(http_request)
+
+        request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        stream_response = kwargs.pop("stream_response", True)
-        pipeline_response = self._client._pipeline.run(request_copy, stream=stream_response, **kwargs)
-        return HttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response
-        )
+        return self._client.send_request(request_copy, **kwargs)
 
     def close(self):
         # type: () -> None

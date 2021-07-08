@@ -36,7 +36,7 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "": {
-                    "str": "str (optional)"
+                    "str": "object (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -46,7 +46,7 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "str (optional)"
+                    "str": "object (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -140,7 +140,7 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "": {
-                    "str": "object (optional)"
+                    "str": "Any (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
@@ -150,7 +150,7 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "object (optional)"
+                    "str": "Any (optional)"
                 },
                 "id": "int",
                 "name": "str (optional)",
