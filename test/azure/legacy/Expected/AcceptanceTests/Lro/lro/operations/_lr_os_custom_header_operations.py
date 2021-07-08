@@ -136,9 +136,7 @@ class LROsCustomHeaderOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._put_async_retry_succeeded_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._put_async_retry_succeeded_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -254,9 +252,7 @@ class LROsCustomHeaderOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._put201_creating_succeeded200_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._put201_creating_succeeded200_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -357,9 +353,7 @@ class LROsCustomHeaderOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post202_retry200_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post202_retry200_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -464,9 +458,7 @@ class LROsCustomHeaderOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post_async_retry_succeeded_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post_async_retry_succeeded_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)

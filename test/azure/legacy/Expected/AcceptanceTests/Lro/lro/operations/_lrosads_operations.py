@@ -127,9 +127,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._put_non_retry400_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._put_non_retry400_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -236,9 +234,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._put_non_retry201_creating400_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._put_non_retry201_creating400_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -346,7 +342,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_non_retry201_creating400_invalid_json_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -457,9 +453,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._put_async_relative_retry400_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._put_async_relative_retry400_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -812,9 +806,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post_non_retry400_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post_non_retry400_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -913,9 +905,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post202_non_retry400_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post202_non_retry400_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -1018,9 +1008,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post_async_relative_retry400_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post_async_relative_retry400_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -1124,7 +1112,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_error201_no_provisioning_state_payload_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -1237,7 +1225,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_no_status_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -1357,7 +1345,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_no_status_payload_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -1630,9 +1618,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post202_no_location_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post202_no_location_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -1737,7 +1723,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry_no_payload_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -1840,9 +1826,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._put200_invalid_json_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._put200_invalid_json_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -1954,7 +1938,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_invalid_header_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -2074,7 +2058,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_invalid_json_polling_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -2437,9 +2421,7 @@ class LROSADsOperations(object):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._post202_retry_invalid_header_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
-            )
+            raw_result = self._post202_retry_invalid_header_initial(product=product, cls=lambda x, y, z: x, **kwargs)
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
@@ -2544,7 +2526,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry_invalid_header_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)
@@ -2650,7 +2632,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry_invalid_json_polling_initial(
-                content_type=content_type, product=product, cls=lambda x, y, z: x, **kwargs
+                product=product, cls=lambda x, y, z: x, **kwargs
             )
 
         kwargs.pop("error_map", None)

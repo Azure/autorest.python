@@ -587,9 +587,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
 
         return retval
 
-    def _template_url_to_pass_to_request_builder(self, builder: Operation) -> str:
-        return f"self.{builder.name}.metadata['url']"
-
     def _serialize_files_parameter(self, builder: Operation) -> List[str]:
         retval = ["files = {"]
         for parameter in builder.parameters.body:
@@ -597,7 +594,12 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         retval.append("}")
         return retval
 
-    def _call_request_builder_helper(self, builder: Operation, request_builder: RequestBuilder) -> List[str]:
+    def _call_request_builder_helper(
+        self,
+        builder: Operation,
+        request_builder: RequestBuilder,
+        template_url: Optional[str] = None,
+    ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
             for k in builder.body_kwargs_to_pass_to_request_builder:
@@ -631,7 +633,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):
         if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")
-        retval.append(f"    template_url={self._template_url_to_pass_to_request_builder(builder)},")
+        template_url = template_url or f"self.{builder.name}.metadata['url']"
+        retval.append(f"    template_url={template_url},")
         retval.append("    **kwargs")
         retval.append(")._to_pipeline_transport_request()")
         if builder.parameters.path:
@@ -700,8 +703,19 @@ class PagingOperationBaseSerializer(OperationBaseSerializer):
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
         return f"# type: ClsType[{interior}]"
 
-    def call_next_link_request_builder(self, builder: PagingOperation):
-        return self._call_request_builder_helper(builder, builder.next_request_builder or builder.request_builder)
+    def call_next_link_request_builder(self, builder: PagingOperation) -> List[str]:
+        if builder.next_operation:
+            request_builder = builder.next_request_builder
+            template_url = f"'{request_builder.url}'"
+        else:
+            request_builder = builder.request_builder
+            template_url = "next_link"
+        request_builder = builder.next_request_builder or builder.request_builder
+        return self._call_request_builder_helper(
+            builder,
+            request_builder,
+            template_url=template_url,
+        )
 
 
 class SyncPagingOperationSerializer(PagingOperationBaseSerializer, SyncOperationSerializer):
@@ -820,6 +834,10 @@ class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOpe
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
 class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
+
+    @property
+    def _function_definition(self) -> str:
+        return "async def"
 
     def _response_docstring_type_wrapper(self, builder: LROPagingOperation) -> List[str]:
         return (

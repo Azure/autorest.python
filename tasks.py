@@ -367,7 +367,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 def regenerate_custom_poller_pager(c, debug=False):
     cwd = os.getcwd()
     cmd = (
-        f'autorest test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+        f'autorest test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 

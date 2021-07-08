@@ -198,7 +198,6 @@ class StorageAccountsOperations(object):
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
-                content_type=content_type,
                 cls=lambda x, y, z: x,
                 **kwargs
             )

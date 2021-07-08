@@ -8,9 +8,12 @@
 
 try:
     from ._request_builders_py3 import build_poll_with_parameterized_endpoints_request_initial
+    from ._request_builders_py3 import build_poll_with_constant_parameterized_endpoints_request_initial
 except (SyntaxError, ImportError):
     from ._request_builders import build_poll_with_parameterized_endpoints_request_initial  # type: ignore
+    from ._request_builders import build_poll_with_constant_parameterized_endpoints_request_initial  # type: ignore
 
 __all__ = [
     "build_poll_with_parameterized_endpoints_request_initial",
+    "build_poll_with_constant_parameterized_endpoints_request_initial",
 ]

@@ -10,11 +10,9 @@
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
         raw_result = {{ keywords.await }}self.{{ operation.initial_operation.name }}(
-            {% for parameter in operation.parameters.method %}
+            {% for parameter in operation.parameters.method | rejectattr("serialized_name", "equalto", "content_type") %}
             {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-
             {% endfor %}
-
             cls=lambda x,y,z: x,
             **kwargs
         )

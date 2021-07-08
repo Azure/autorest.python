@@ -84,7 +84,7 @@ class PagingOperations:
             else:
 
                 request = rest_paging.build_get_pages_partial_url_request(
-                    template_url=self.get_pages_partial_url.metadata["url"], **kwargs
+                    template_url=next_link, **kwargs
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -157,7 +157,7 @@ class PagingOperations:
             else:
 
                 request = rest_paging.build_get_pages_partial_url_operation_next_request(
-                    next_link=next_link, template_url=self.get_pages_partial_url_operation.metadata["url"], **kwargs
+                    next_link=next_link, template_url="/paging/customurl/{nextLink}", **kwargs
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

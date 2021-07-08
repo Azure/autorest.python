@@ -238,12 +238,7 @@ def build_get_composed_with_discriminator_request(
                     }
                 ],
                 "salmons": [
-                    {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
-                    }
+                    "..."
                 ],
                 "sampleFish": "sample_fish",
                 "sampleSalmon": {
@@ -295,12 +290,7 @@ def build_get_composed_without_discriminator_request(
                     }
                 ],
                 "salmons": [
-                    {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
-                    }
+                    "..."
                 ],
                 "sampleFish": "sample_fish",
                 "sampleSalmon": {

@@ -7,22 +7,22 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, Optional, TYPE_CHECKING
 
 from azure.core.credentials import AzureKeyCredential
-from azure.core.rest import AsyncHttpResponse, HttpRequest, _AsyncStreamContextManager
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
+
+from ._configuration import AutoRestHeadTestServiceConfiguration
+from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-from ._configuration import AutoRestHeadTestServiceConfiguration
-from .operations import HttpSuccessOperations
 
-
-class AutoRestHeadTestService(object):
+class AutoRestHeadTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
@@ -40,50 +40,39 @@ class AutoRestHeadTestService(object):
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer()
-        self._deserialize = Deserializer(client_models)
-        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
         self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `headwithazurekeycredentialpolicy.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
         >>> from headwithazurekeycredentialpolicy.rest import build_head200_request
-        >>> request = build_head200_request()
+        >>> request = build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
-        For more information on this code flow, see https://aka.ms/azsdk/python/llcwiki
+        For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
         and pass it in.
 
-        :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.rest.HttpRequest
-        :keyword bool stream_response: Whether the response payload will be streamed. Defaults to False.
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.rest.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.rest.AsyncHttpResponse
         """
-        request_copy = deepcopy(http_request)
+
+        request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        if kwargs.pop("stream_response", False):
-            return _AsyncStreamContextManager(
-                client=self._client,
-                request=request_copy,
-            )
-        pipeline_response = await self._client._pipeline.run(request_copy._internal_request, **kwargs)
-        response = AsyncHttpResponse(
-            status_code=pipeline_response.http_response.status_code,
-            request=request_copy,
-            _internal_response=pipeline_response.http_response,
-        )
-        await response.read()
-        return response
+        return self._client.send_request(request_copy, **kwargs)
 
     async def close(self) -> None:
         await self._client.close()
