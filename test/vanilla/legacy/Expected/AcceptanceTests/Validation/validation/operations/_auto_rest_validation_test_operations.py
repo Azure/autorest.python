@@ -60,7 +60,6 @@ class AutoRestValidationTestOperationsMixin(object):
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -121,7 +120,6 @@ class AutoRestValidationTestOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.validation_of_body.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -159,7 +157,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_with_constant_in_path_request(
-            template_url=self.get_with_constant_in_path.metadata["url"], **kwargs
+            template_url=self.get_with_constant_in_path.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -203,7 +201,9 @@ class AutoRestValidationTestOperationsMixin(object):
             json = None
 
         request = rest.build_post_with_constant_in_body_request(
-            content_type=content_type, json=json, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.post_with_constant_in_body.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -64,7 +64,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_enum.build_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"], **kwargs
+            template_url=self.get_not_expandable.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -107,7 +107,9 @@ class EnumOperations:
         json = self._serialize.body(string_body, "str")
 
         request = rest_enum.build_put_not_expandable_request(
-            content_type=content_type, json=json, template_url=self.put_not_expandable.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_not_expandable.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -140,7 +142,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_enum.build_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"], **kwargs
+            template_url=self.get_referenced.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -183,7 +185,9 @@ class EnumOperations:
         json = self._serialize.body(enum_string_body, "str")
 
         request = rest_enum.build_put_referenced_request(
-            content_type=content_type, json=json, template_url=self.put_referenced.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_referenced.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -216,7 +220,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_enum.build_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"], **kwargs
+            template_url=self.get_referenced_constant.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -260,7 +264,9 @@ class EnumOperations:
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = rest_enum.build_put_referenced_constant_request(
-            content_type=content_type, json=json, template_url=self.put_referenced_constant.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_referenced_constant.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

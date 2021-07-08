@@ -78,7 +78,6 @@ class PathsOperations:
             subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),

@@ -69,7 +69,8 @@ class SubscriptionInMethodOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_subscription_in_method.build_post_method_local_valid_request(
-            subscription_id=subscription_id, template_url=self.post_method_local_valid.metadata["url"], **kwargs
+            subscription_id=subscription_id,
+            template_url=self.post_method_local_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -106,7 +107,8 @@ class SubscriptionInMethodOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_subscription_in_method.build_post_method_local_null_request(
-            subscription_id=subscription_id, template_url=self.post_method_local_null.metadata["url"], **kwargs
+            subscription_id=subscription_id,
+            template_url=self.post_method_local_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -142,7 +144,8 @@ class SubscriptionInMethodOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_subscription_in_method.build_post_path_local_valid_request(
-            subscription_id=subscription_id, template_url=self.post_path_local_valid.metadata["url"], **kwargs
+            subscription_id=subscription_id,
+            template_url=self.post_path_local_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -179,7 +182,8 @@ class SubscriptionInMethodOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_subscription_in_method.build_post_swagger_local_valid_request(
-            subscription_id=subscription_id, template_url=self.post_swagger_local_valid.metadata["url"], **kwargs
+            subscription_id=subscription_id,
+            template_url=self.post_swagger_local_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -49,7 +49,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_horse_request(
-            template_url=self.get_horse.metadata["url"], **kwargs
+            template_url=self.get_horse.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -95,7 +95,9 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         json = self._serialize.body(horse, "Horse")
 
         request = rest.build_put_horse_request(
-            content_type=content_type, json=json, template_url=self.put_horse.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_horse.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -132,7 +134,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_pet_request(
-            template_url=self.get_pet.metadata["url"], **kwargs
+            template_url=self.get_pet.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -179,7 +181,9 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         json = self._serialize.body(_pet, "Pet")
 
         request = rest.build_put_pet_request(
-            content_type=content_type, json=json, template_url=self.put_pet.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_pet.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -216,7 +220,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_feline_request(
-            template_url=self.get_feline.metadata["url"], **kwargs
+            template_url=self.get_feline.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -262,7 +266,9 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         json = self._serialize.body(feline, "Feline")
 
         request = rest.build_put_feline_request(
-            content_type=content_type, json=json, template_url=self.put_feline.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_feline.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -299,7 +305,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_cat_request(
-            template_url=self.get_cat.metadata["url"], **kwargs
+            template_url=self.get_cat.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -345,7 +351,9 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         json = self._serialize.body(cat, "Cat")
 
         request = rest.build_put_cat_request(
-            content_type=content_type, json=json, template_url=self.put_cat.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_cat.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -383,7 +391,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_kitten_request(
-            template_url=self.get_kitten.metadata["url"], **kwargs
+            template_url=self.get_kitten.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -431,7 +439,9 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         json = self._serialize.body(kitten, "Kitten")
 
         request = rest.build_put_kitten_request(
-            content_type=content_type, json=json, template_url=self.put_kitten.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_kitten.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -635,7 +635,6 @@ class OperationBaseSerializer(BuilderBaseSerializer):
                 retval.append(f"    {kwarg}={kwarg},")
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
-        retval.append("    **kwargs")
         retval.append(")._to_pipeline_transport_request()")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))

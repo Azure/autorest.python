@@ -65,7 +65,7 @@ class TimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_time.build_get_request(
-            template_url=self.get.metadata["url"], **kwargs
+            template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -108,7 +108,9 @@ class TimeOperations:
         json = self._serialize.body(time_body, "time")
 
         request = rest_time.build_put_request(
-            content_type=content_type, json=json, template_url=self.put.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

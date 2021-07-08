@@ -72,7 +72,7 @@ class ApiVersionLocalOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_local.build_get_method_local_valid_request(
-            template_url=self.get_method_local_valid.metadata["url"], **kwargs
+            template_url=self.get_method_local_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -111,7 +111,8 @@ class ApiVersionLocalOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_local.build_get_method_local_null_request(
-            api_version=api_version, template_url=self.get_method_local_null.metadata["url"], **kwargs
+            api_version=api_version,
+            template_url=self.get_method_local_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -145,7 +146,7 @@ class ApiVersionLocalOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_local.build_get_path_local_valid_request(
-            template_url=self.get_path_local_valid.metadata["url"], **kwargs
+            template_url=self.get_path_local_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -179,7 +180,7 @@ class ApiVersionLocalOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_local.build_get_swagger_local_valid_request(
-            template_url=self.get_swagger_local_valid.metadata["url"], **kwargs
+            template_url=self.get_swagger_local_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

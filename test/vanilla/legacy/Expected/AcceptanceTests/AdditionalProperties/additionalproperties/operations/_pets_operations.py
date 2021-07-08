@@ -79,7 +79,9 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = rest_pets.build_create_ap_true_request(
-            content_type=content_type, json=json, template_url=self.create_ap_true.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -125,7 +127,9 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = rest_pets.build_create_cat_ap_true_request(
-            content_type=content_type, json=json, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.create_cat_ap_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -171,7 +175,9 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPObject")
 
         request = rest_pets.build_create_ap_object_request(
-            content_type=content_type, json=json, template_url=self.create_ap_object.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_object.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -217,7 +223,9 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPString")
 
         request = rest_pets.build_create_ap_string_request(
-            content_type=content_type, json=json, template_url=self.create_ap_string.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -263,7 +271,9 @@ class PetsOperations(object):
         json = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = rest_pets.build_create_ap_in_properties_request(
-            content_type=content_type, json=json, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.create_ap_in_properties.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -312,7 +322,6 @@ class PetsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -45,7 +45,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_poll_with_parameterized_endpoints_request_initial(
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"], **kwargs
+            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
         )._to_pipeline_transport_request()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -157,7 +157,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_poll_with_constant_parameterized_endpoints_request_initial(
-            template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"], **kwargs
+            template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
         )._to_pipeline_transport_request()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

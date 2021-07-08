@@ -65,7 +65,8 @@ class UsageOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_usage.build_list_request(
-            subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
+            subscription_id=self._config.subscription_id,
+            template_url=self.list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

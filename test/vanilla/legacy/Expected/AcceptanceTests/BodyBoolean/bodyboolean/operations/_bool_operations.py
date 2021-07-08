@@ -71,7 +71,7 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_bool.build_get_true_request(
-            template_url=self.get_true.metadata["url"], **kwargs
+            template_url=self.get_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -114,7 +114,9 @@ class BoolOperations(object):
         json = self._serialize.body(bool_body, "bool")
 
         request = rest_bool.build_put_true_request(
-            content_type=content_type, json=json, template_url=self.put_true.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -148,7 +150,7 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_bool.build_get_false_request(
-            template_url=self.get_false.metadata["url"], **kwargs
+            template_url=self.get_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -191,7 +193,9 @@ class BoolOperations(object):
         json = self._serialize.body(bool_body, "bool")
 
         request = rest_bool.build_put_false_request(
-            content_type=content_type, json=json, template_url=self.put_false.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -225,7 +229,7 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_bool.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
+            template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -263,7 +267,7 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_bool.build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"], **kwargs
+            template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

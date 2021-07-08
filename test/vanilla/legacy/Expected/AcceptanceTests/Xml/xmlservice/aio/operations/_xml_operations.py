@@ -64,7 +64,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_complex_type_ref_no_meta_request(
-            template_url=self.get_complex_type_ref_no_meta.metadata["url"], **kwargs
+            template_url=self.get_complex_type_ref_no_meta.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -109,7 +109,6 @@ class XmlOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -141,7 +140,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_complex_type_ref_with_meta_request(
-            template_url=self.get_complex_type_ref_with_meta.metadata["url"], **kwargs
+            template_url=self.get_complex_type_ref_with_meta.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -186,7 +185,6 @@ class XmlOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -218,7 +216,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_simple_request(
-            template_url=self.get_simple.metadata["url"], **kwargs
+            template_url=self.get_simple.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -261,7 +259,9 @@ class XmlOperations:
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = rest_xml.build_put_simple_request(
-            content_type=content_type, content=content, template_url=self.put_simple.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_simple.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -294,7 +294,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_wrapped_lists_request(
-            template_url=self.get_wrapped_lists.metadata["url"], **kwargs
+            template_url=self.get_wrapped_lists.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -336,7 +336,9 @@ class XmlOperations:
         content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = rest_xml.build_put_wrapped_lists_request(
-            content_type=content_type, content=content, template_url=self.put_wrapped_lists.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_wrapped_lists.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -369,7 +371,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_headers_request(
-            template_url=self.get_headers.metadata["url"], **kwargs
+            template_url=self.get_headers.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -404,7 +406,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_list_request(
-            template_url=self.get_empty_list.metadata["url"], **kwargs
+            template_url=self.get_empty_list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -446,7 +448,9 @@ class XmlOperations:
         content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = rest_xml.build_put_empty_list_request(
-            content_type=content_type, content=content, template_url=self.put_empty_list.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_empty_list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -478,7 +482,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_wrapped_lists_request(
-            template_url=self.get_empty_wrapped_lists.metadata["url"], **kwargs
+            template_url=self.get_empty_wrapped_lists.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -523,7 +527,6 @@ class XmlOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -555,7 +558,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_root_list_request(
-            template_url=self.get_root_list.metadata["url"], **kwargs
+            template_url=self.get_root_list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -598,7 +601,9 @@ class XmlOperations:
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = rest_xml.build_put_root_list_request(
-            content_type=content_type, content=content, template_url=self.put_root_list.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_root_list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -630,7 +635,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_root_list_single_item_request(
-            template_url=self.get_root_list_single_item.metadata["url"], **kwargs
+            template_url=self.get_root_list_single_item.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -676,7 +681,6 @@ class XmlOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_root_list_single_item.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -708,7 +712,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_root_list_request(
-            template_url=self.get_empty_root_list.metadata["url"], **kwargs
+            template_url=self.get_empty_root_list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -751,7 +755,9 @@ class XmlOperations:
         content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = rest_xml.build_put_empty_root_list_request(
-            content_type=content_type, content=content, template_url=self.put_empty_root_list.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_empty_root_list.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -783,7 +789,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_child_element_request(
-            template_url=self.get_empty_child_element.metadata["url"], **kwargs
+            template_url=self.get_empty_child_element.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -828,7 +834,6 @@ class XmlOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_empty_child_element.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -860,7 +865,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_list_containers_request(
-            template_url=self.list_containers.metadata["url"], **kwargs
+            template_url=self.list_containers.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -896,7 +901,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_service_properties_request(
-            template_url=self.get_service_properties.metadata["url"], **kwargs
+            template_url=self.get_service_properties.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -941,7 +946,6 @@ class XmlOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_service_properties.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -973,7 +977,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_acls_request(
-            template_url=self.get_acls.metadata["url"], **kwargs
+            template_url=self.get_acls.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1018,7 +1022,9 @@ class XmlOperations:
         )
 
         request = rest_xml.build_put_acls_request(
-            content_type=content_type, content=content, template_url=self.put_acls.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_acls.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1050,7 +1056,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_list_blobs_request(
-            template_url=self.list_blobs.metadata["url"], **kwargs
+            template_url=self.list_blobs.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1094,7 +1100,9 @@ class XmlOperations:
         json = self._serialize.body(_properties, "JSONInput")
 
         request = rest_xml.build_json_input_request(
-            content_type=content_type, json=json, template_url=self.json_input.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.json_input.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1126,7 +1134,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_json_output_request(
-            template_url=self.json_output.metadata["url"], **kwargs
+            template_url=self.json_output.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1163,7 +1171,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_xms_text_request(
-            template_url=self.get_xms_text.metadata["url"], **kwargs
+            template_url=self.get_xms_text.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1199,7 +1207,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_bytes_request(
-            template_url=self.get_bytes.metadata["url"], **kwargs
+            template_url=self.get_bytes.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1243,7 +1251,9 @@ class XmlOperations:
         content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
         request = rest_xml.build_put_binary_request(
-            content_type=content_type, content=content, template_url=self.put_binary.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_binary.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1276,7 +1286,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_uri_request(
-            template_url=self.get_uri.metadata["url"], **kwargs
+            template_url=self.get_uri.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1320,7 +1330,9 @@ class XmlOperations:
         content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
         request = rest_xml.build_put_uri_request(
-            content_type=content_type, content=content, template_url=self.put_uri.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.put_uri.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

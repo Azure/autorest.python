@@ -90,7 +90,6 @@ class ParameterGroupingOperations:
             query=_query,
             json=json,
             template_url=self.post_required.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -136,7 +135,9 @@ class ParameterGroupingOperations:
             _query = parameter_grouping_post_optional_parameters.query
 
         request = rest_parameter_grouping.build_post_optional_request(
-            custom_header=_custom_header, query=_query, template_url=self.post_optional.metadata["url"], **kwargs
+            custom_header=_custom_header,
+            query=_query,
+            template_url=self.post_optional.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -197,7 +198,6 @@ class ParameterGroupingOperations:
             header_two=_header_two,
             query_two=_query_two,
             template_url=self.post_multi_param_groups.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -243,7 +243,6 @@ class ParameterGroupingOperations:
             header_one=_header_one,
             query_one=_query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

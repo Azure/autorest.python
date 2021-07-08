@@ -73,7 +73,10 @@ class OdataOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_odata.build_get_with_filter_request(
-            filter=filter, top=top, orderby=orderby, template_url=self.get_with_filter.metadata["url"], **kwargs
+            filter=filter,
+            top=top,
+            orderby=orderby,
+            template_url=self.get_with_filter.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

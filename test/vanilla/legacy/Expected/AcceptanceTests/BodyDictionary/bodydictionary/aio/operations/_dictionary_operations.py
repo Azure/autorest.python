@@ -65,7 +65,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
+            template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -102,7 +102,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_empty_request(
-            template_url=self.get_empty.metadata["url"], **kwargs
+            template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -145,7 +145,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{str}")
 
         request = rest_dictionary.build_put_empty_request(
-            content_type=content_type, json=json, template_url=self.put_empty.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -178,7 +180,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_null_value_request(
-            template_url=self.get_null_value.metadata["url"], **kwargs
+            template_url=self.get_null_value.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -215,7 +217,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_null_key_request(
-            template_url=self.get_null_key.metadata["url"], **kwargs
+            template_url=self.get_null_key.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -252,7 +254,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_empty_string_key_request(
-            template_url=self.get_empty_string_key.metadata["url"], **kwargs
+            template_url=self.get_empty_string_key.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -289,7 +291,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"], **kwargs
+            template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -326,7 +328,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_boolean_tfft_request(
-            template_url=self.get_boolean_tfft.metadata["url"], **kwargs
+            template_url=self.get_boolean_tfft.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -369,7 +371,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{bool}")
 
         request = rest_dictionary.build_put_boolean_tfft_request(
-            content_type=content_type, json=json, template_url=self.put_boolean_tfft.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_boolean_tfft.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -402,7 +406,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_boolean_invalid_null_request(
-            template_url=self.get_boolean_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_boolean_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -439,7 +443,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_boolean_invalid_string_request(
-            template_url=self.get_boolean_invalid_string.metadata["url"], **kwargs
+            template_url=self.get_boolean_invalid_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -476,7 +480,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_integer_valid_request(
-            template_url=self.get_integer_valid.metadata["url"], **kwargs
+            template_url=self.get_integer_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -519,7 +523,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{int}")
 
         request = rest_dictionary.build_put_integer_valid_request(
-            content_type=content_type, json=json, template_url=self.put_integer_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_integer_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -552,7 +558,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_int_invalid_null_request(
-            template_url=self.get_int_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_int_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -589,7 +595,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_int_invalid_string_request(
-            template_url=self.get_int_invalid_string.metadata["url"], **kwargs
+            template_url=self.get_int_invalid_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -626,7 +632,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_long_valid_request(
-            template_url=self.get_long_valid.metadata["url"], **kwargs
+            template_url=self.get_long_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -669,7 +675,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{long}")
 
         request = rest_dictionary.build_put_long_valid_request(
-            content_type=content_type, json=json, template_url=self.put_long_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_long_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -702,7 +710,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_long_invalid_null_request(
-            template_url=self.get_long_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_long_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -739,7 +747,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_long_invalid_string_request(
-            template_url=self.get_long_invalid_string.metadata["url"], **kwargs
+            template_url=self.get_long_invalid_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -776,7 +784,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_float_valid_request(
-            template_url=self.get_float_valid.metadata["url"], **kwargs
+            template_url=self.get_float_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -819,7 +827,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{float}")
 
         request = rest_dictionary.build_put_float_valid_request(
-            content_type=content_type, json=json, template_url=self.put_float_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_float_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -852,7 +862,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_float_invalid_null_request(
-            template_url=self.get_float_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_float_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -889,7 +899,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_float_invalid_string_request(
-            template_url=self.get_float_invalid_string.metadata["url"], **kwargs
+            template_url=self.get_float_invalid_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -926,7 +936,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_double_valid_request(
-            template_url=self.get_double_valid.metadata["url"], **kwargs
+            template_url=self.get_double_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -969,7 +979,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{float}")
 
         request = rest_dictionary.build_put_double_valid_request(
-            content_type=content_type, json=json, template_url=self.put_double_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_double_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1002,7 +1014,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_double_invalid_null_request(
-            template_url=self.get_double_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_double_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1039,7 +1051,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_double_invalid_string_request(
-            template_url=self.get_double_invalid_string.metadata["url"], **kwargs
+            template_url=self.get_double_invalid_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1076,7 +1088,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_string_valid_request(
-            template_url=self.get_string_valid.metadata["url"], **kwargs
+            template_url=self.get_string_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1119,7 +1131,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{str}")
 
         request = rest_dictionary.build_put_string_valid_request(
-            content_type=content_type, json=json, template_url=self.put_string_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_string_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1152,7 +1166,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_string_with_null_request(
-            template_url=self.get_string_with_null.metadata["url"], **kwargs
+            template_url=self.get_string_with_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1189,7 +1203,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_string_with_invalid_request(
-            template_url=self.get_string_with_invalid.metadata["url"], **kwargs
+            template_url=self.get_string_with_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1226,7 +1240,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_valid_request(
-            template_url=self.get_date_valid.metadata["url"], **kwargs
+            template_url=self.get_date_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1269,7 +1283,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{date}")
 
         request = rest_dictionary.build_put_date_valid_request(
-            content_type=content_type, json=json, template_url=self.put_date_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_date_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1302,7 +1318,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_invalid_null_request(
-            template_url=self.get_date_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_date_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1339,7 +1355,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_invalid_chars_request(
-            template_url=self.get_date_invalid_chars.metadata["url"], **kwargs
+            template_url=self.get_date_invalid_chars.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1377,7 +1393,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_time_valid_request(
-            template_url=self.get_date_time_valid.metadata["url"], **kwargs
+            template_url=self.get_date_time_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1421,7 +1437,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{iso-8601}")
 
         request = rest_dictionary.build_put_date_time_valid_request(
-            content_type=content_type, json=json, template_url=self.put_date_time_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_date_time_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1454,7 +1472,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_time_invalid_null_request(
-            template_url=self.get_date_time_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_date_time_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1491,7 +1509,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_time_invalid_chars_request(
-            template_url=self.get_date_time_invalid_chars.metadata["url"], **kwargs
+            template_url=self.get_date_time_invalid_chars.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1529,7 +1547,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_date_time_rfc1123_valid_request(
-            template_url=self.get_date_time_rfc1123_valid.metadata["url"], **kwargs
+            template_url=self.get_date_time_rfc1123_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1576,7 +1594,6 @@ class DictionaryOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_date_time_rfc1123_valid.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1609,7 +1626,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_duration_valid_request(
-            template_url=self.get_duration_valid.metadata["url"], **kwargs
+            template_url=self.get_duration_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1652,7 +1669,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{duration}")
 
         request = rest_dictionary.build_put_duration_valid_request(
-            content_type=content_type, json=json, template_url=self.put_duration_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_duration_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1686,7 +1705,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_byte_valid_request(
-            template_url=self.get_byte_valid.metadata["url"], **kwargs
+            template_url=self.get_byte_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1730,7 +1749,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{bytearray}")
 
         request = rest_dictionary.build_put_byte_valid_request(
-            content_type=content_type, json=json, template_url=self.put_byte_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_byte_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1764,7 +1785,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_byte_invalid_null_request(
-            template_url=self.get_byte_invalid_null.metadata["url"], **kwargs
+            template_url=self.get_byte_invalid_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1802,7 +1823,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_base64_url_request(
-            template_url=self.get_base64_url.metadata["url"], **kwargs
+            template_url=self.get_base64_url.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1839,7 +1860,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_null_request(
-            template_url=self.get_complex_null.metadata["url"], **kwargs
+            template_url=self.get_complex_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1876,7 +1897,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_empty_request(
-            template_url=self.get_complex_empty.metadata["url"], **kwargs
+            template_url=self.get_complex_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1914,7 +1935,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_item_null_request(
-            template_url=self.get_complex_item_null.metadata["url"], **kwargs
+            template_url=self.get_complex_item_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1952,7 +1973,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_item_empty_request(
-            template_url=self.get_complex_item_empty.metadata["url"], **kwargs
+            template_url=self.get_complex_item_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1990,7 +2011,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_valid_request(
-            template_url=self.get_complex_valid.metadata["url"], **kwargs
+            template_url=self.get_complex_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2034,7 +2055,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{Widget}")
 
         request = rest_dictionary.build_put_complex_valid_request(
-            content_type=content_type, json=json, template_url=self.put_complex_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_complex_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2067,7 +2090,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_array_null_request(
-            template_url=self.get_array_null.metadata["url"], **kwargs
+            template_url=self.get_array_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2104,7 +2127,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_array_empty_request(
-            template_url=self.get_array_empty.metadata["url"], **kwargs
+            template_url=self.get_array_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2141,7 +2164,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_array_item_null_request(
-            template_url=self.get_array_item_null.metadata["url"], **kwargs
+            template_url=self.get_array_item_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2178,7 +2201,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_array_item_empty_request(
-            template_url=self.get_array_item_empty.metadata["url"], **kwargs
+            template_url=self.get_array_item_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2216,7 +2239,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_array_valid_request(
-            template_url=self.get_array_valid.metadata["url"], **kwargs
+            template_url=self.get_array_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2260,7 +2283,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{[str]}")
 
         request = rest_dictionary.build_put_array_valid_request(
-            content_type=content_type, json=json, template_url=self.put_array_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_array_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2293,7 +2318,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_dictionary_null_request(
-            template_url=self.get_dictionary_null.metadata["url"], **kwargs
+            template_url=self.get_dictionary_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2330,7 +2355,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_dictionary_empty_request(
-            template_url=self.get_dictionary_empty.metadata["url"], **kwargs
+            template_url=self.get_dictionary_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2368,7 +2393,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_dictionary_item_null_request(
-            template_url=self.get_dictionary_item_null.metadata["url"], **kwargs
+            template_url=self.get_dictionary_item_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2406,7 +2431,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_dictionary_item_empty_request(
-            template_url=self.get_dictionary_item_empty.metadata["url"], **kwargs
+            template_url=self.get_dictionary_item_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2445,7 +2470,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_dictionary_valid_request(
-            template_url=self.get_dictionary_valid.metadata["url"], **kwargs
+            template_url=self.get_dictionary_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2490,7 +2515,9 @@ class DictionaryOperations:
         json = self._serialize.body(array_body, "{{str}}")
 
         request = rest_dictionary.build_put_dictionary_valid_request(
-            content_type=content_type, json=json, template_url=self.put_dictionary_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_dictionary_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

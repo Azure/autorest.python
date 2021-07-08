@@ -55,7 +55,8 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_report_request(
-            qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs
+            qualifier=qualifier,
+            template_url=self.get_report.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -99,7 +100,8 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest.build_get_optional_report_request(
-            qualifier=qualifier, template_url=self.get_optional_report.metadata["url"], **kwargs
+            qualifier=qualifier,
+            template_url=self.get_optional_report.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

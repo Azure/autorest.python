@@ -64,7 +64,7 @@ class HttpServerFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_http_server_failure.build_head501_request(
-            template_url=self.head501.metadata["url"], **kwargs
+            template_url=self.head501.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -97,7 +97,7 @@ class HttpServerFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_http_server_failure.build_get501_request(
-            template_url=self.get501.metadata["url"], **kwargs
+            template_url=self.get501.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -139,7 +139,9 @@ class HttpServerFailureOperations:
             json = None
 
         request = rest_http_server_failure.build_post505_request(
-            content_type=content_type, json=json, template_url=self.post505.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.post505.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -181,7 +183,9 @@ class HttpServerFailureOperations:
             json = None
 
         request = rest_http_server_failure.build_delete505_request(
-            content_type=content_type, json=json, template_url=self.delete505.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.delete505.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -30,6 +30,8 @@ class PagingOperation(Operation):
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
+        *,
+        override_success_response_to_200: bool = False
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
@@ -48,6 +50,7 @@ class PagingOperation(Operation):
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
+        self.override_success_response_to_200 = override_success_response_to_200
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]

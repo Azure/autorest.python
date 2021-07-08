@@ -78,7 +78,6 @@ class HeaderOperations(object):
         request = rest_header.build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -127,7 +126,6 @@ class HeaderOperations(object):
         request = rest_header.build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -170,7 +168,6 @@ class HeaderOperations(object):
         request = rest_header.build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -73,7 +73,6 @@ class ExplicitOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -115,7 +114,6 @@ class ExplicitOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_required_binary_body.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -158,7 +156,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -203,7 +200,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -247,7 +243,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -293,7 +288,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -329,7 +323,8 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_explicit.build_post_required_integer_header_request(
-            header_parameter=header_parameter, template_url=self.post_required_integer_header.metadata["url"], **kwargs
+            header_parameter=header_parameter,
+            template_url=self.post_required_integer_header.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -364,7 +359,8 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_explicit.build_post_optional_integer_header_request(
-            header_parameter=header_parameter, template_url=self.post_optional_integer_header.metadata["url"], **kwargs
+            header_parameter=header_parameter,
+            template_url=self.post_optional_integer_header.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -407,7 +403,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -452,7 +447,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -496,7 +490,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -542,7 +535,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -578,7 +570,8 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_explicit.build_post_required_string_header_request(
-            header_parameter=header_parameter, template_url=self.post_required_string_header.metadata["url"], **kwargs
+            header_parameter=header_parameter,
+            template_url=self.post_required_string_header.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -613,7 +606,8 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_explicit.build_post_optional_string_header_request(
-            body_parameter=body_parameter, template_url=self.post_optional_string_header.metadata["url"], **kwargs
+            body_parameter=body_parameter,
+            template_url=self.post_optional_string_header.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -656,7 +650,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -703,7 +696,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -747,7 +739,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -793,7 +784,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -836,7 +826,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -881,7 +870,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -925,7 +913,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -971,7 +958,6 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_property.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1007,7 +993,8 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_explicit.build_post_required_array_header_request(
-            header_parameter=header_parameter, template_url=self.post_required_array_header.metadata["url"], **kwargs
+            header_parameter=header_parameter,
+            template_url=self.post_required_array_header.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1042,7 +1029,8 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_explicit.build_post_optional_array_header_request(
-            header_parameter=header_parameter, template_url=self.post_optional_array_header.metadata["url"], **kwargs
+            header_parameter=header_parameter,
+            template_url=self.post_optional_array_header.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

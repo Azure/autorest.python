@@ -89,7 +89,6 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.check_name_availability.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -132,7 +131,6 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -263,7 +261,6 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.delete.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -311,7 +308,6 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.get_properties.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -377,7 +373,6 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -425,7 +420,6 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.list_keys.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -468,20 +462,20 @@ class StorageAccountsOperations(object):
             if not next_link:
 
                 request = rest_storage_accounts.build_list_request(
-                    subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
+                    subscription_id=self._config.subscription_id,
+                    template_url=self.list.metadata["url"],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_storage_accounts.build_list_request(
-                    subscription_id=self._config.subscription_id, template_url=self.list.metadata["url"], **kwargs
+                    subscription_id=self._config.subscription_id,
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -537,7 +531,6 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
-                    **kwargs
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
@@ -546,14 +539,11 @@ class StorageAccountsOperations(object):
                 request = rest_storage_accounts.build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    template_url=self.list_by_resource_group.metadata["url"],
-                    **kwargs
+                    template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
-                # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "GET"
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -619,7 +609,6 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.regenerate_key.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

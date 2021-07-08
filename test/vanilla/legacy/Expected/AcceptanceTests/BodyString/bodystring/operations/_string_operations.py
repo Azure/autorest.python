@@ -71,7 +71,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
+            template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -120,7 +120,9 @@ class StringOperations(object):
             json = None
 
         request = rest_string.build_put_null_request(
-            content_type=content_type, json=json, template_url=self.put_null.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -154,7 +156,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_empty_request(
-            template_url=self.get_empty.metadata["url"], **kwargs
+            template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -197,7 +199,9 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "str")
 
         request = rest_string.build_put_empty_request(
-            content_type=content_type, json=json, template_url=self.put_empty.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -231,7 +235,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"], **kwargs
+            template_url=self.get_mbcs.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -274,7 +278,9 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "str")
 
         request = rest_string.build_put_mbcs_request(
-            content_type=content_type, json=json, template_url=self.put_mbcs.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_mbcs.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -310,7 +316,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"], **kwargs
+            template_url=self.get_whitespace.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -355,7 +361,9 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "str")
 
         request = rest_string.build_put_whitespace_request(
-            content_type=content_type, json=json, template_url=self.put_whitespace.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_whitespace.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -389,7 +397,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"], **kwargs
+            template_url=self.get_not_provided.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -427,7 +435,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"], **kwargs
+            template_url=self.get_base64_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -465,7 +473,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"], **kwargs
+            template_url=self.get_base64_url_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -511,7 +519,9 @@ class StringOperations(object):
         json = self._serialize.body(string_body, "base64")
 
         request = rest_string.build_put_base64_url_encoded_request(
-            content_type=content_type, json=json, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_base64_url_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -545,7 +555,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_string.build_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"], **kwargs
+            template_url=self.get_null_base64_url_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -75,7 +75,6 @@ class SubscriptionInCredentialsOperations(object):
         request = rest_subscription_in_credentials.build_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_valid.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -112,7 +111,6 @@ class SubscriptionInCredentialsOperations(object):
         request = rest_subscription_in_credentials.build_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_null.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -149,7 +147,6 @@ class SubscriptionInCredentialsOperations(object):
         request = rest_subscription_in_credentials.build_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -186,7 +183,6 @@ class SubscriptionInCredentialsOperations(object):
         request = rest_subscription_in_credentials.build_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_path_global_valid.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -223,7 +219,6 @@ class SubscriptionInCredentialsOperations(object):
         request = rest_subscription_in_credentials.build_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_swagger_global_valid.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

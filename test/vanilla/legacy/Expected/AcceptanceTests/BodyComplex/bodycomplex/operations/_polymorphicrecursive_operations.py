@@ -71,7 +71,7 @@ class PolymorphicrecursiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphicrecursive.build_get_valid_request(
-            template_url=self.get_valid.metadata["url"], **kwargs
+            template_url=self.get_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -169,7 +169,9 @@ class PolymorphicrecursiveOperations(object):
         json = self._serialize.body(complex_body, "Fish")
 
         request = rest_polymorphicrecursive.build_put_valid_request(
-            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

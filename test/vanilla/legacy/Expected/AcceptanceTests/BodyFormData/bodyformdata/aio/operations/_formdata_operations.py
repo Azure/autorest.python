@@ -78,7 +78,10 @@ class FormdataOperations:
         }
 
         request = rest_formdata.build_upload_file_request(
-            content_type=content_type, files=files, data=data, template_url=self.upload_file.metadata["url"], **kwargs
+            content_type=content_type,
+            files=files,
+            data=data,
+            template_url=self.upload_file.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -121,7 +124,9 @@ class FormdataOperations:
         content = file_content
 
         request = rest_formdata.build_upload_file_via_body_request(
-            content_type=content_type, content=content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
+            content_type=content_type,
+            content=content,
+            template_url=self.upload_file_via_body.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -169,7 +174,10 @@ class FormdataOperations:
         }
 
         request = rest_formdata.build_upload_files_request(
-            content_type=content_type, files=files, data=data, template_url=self.upload_files.metadata["url"], **kwargs
+            content_type=content_type,
+            files=files,
+            data=data,
+            template_url=self.upload_files.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

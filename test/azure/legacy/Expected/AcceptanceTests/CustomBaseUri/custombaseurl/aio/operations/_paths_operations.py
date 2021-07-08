@@ -66,7 +66,7 @@ class PathsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_paths.build_get_empty_request(
-            template_url=self.get_empty.metadata["url"], **kwargs
+            template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

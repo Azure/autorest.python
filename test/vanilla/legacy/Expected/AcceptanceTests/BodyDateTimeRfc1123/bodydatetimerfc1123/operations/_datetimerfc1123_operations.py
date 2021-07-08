@@ -72,7 +72,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
+            template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -110,7 +110,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"], **kwargs
+            template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -148,7 +148,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"], **kwargs
+            template_url=self.get_overflow.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -186,7 +186,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"], **kwargs
+            template_url=self.get_underflow.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -232,7 +232,9 @@ class Datetimerfc1123Operations(object):
         json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = rest_datetimerfc1123.build_put_utc_max_date_time_request(
-            content_type=content_type, json=json, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_utc_max_date_time.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -266,7 +268,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"], **kwargs
+            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -304,7 +306,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"], **kwargs
+            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -350,7 +352,9 @@ class Datetimerfc1123Operations(object):
         json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = rest_datetimerfc1123.build_put_utc_min_date_time_request(
-            content_type=content_type, json=json, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_utc_min_date_time.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -384,7 +388,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_datetimerfc1123.build_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"], **kwargs
+            template_url=self.get_utc_min_date_time.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

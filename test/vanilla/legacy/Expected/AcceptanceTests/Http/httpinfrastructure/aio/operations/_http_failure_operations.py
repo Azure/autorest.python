@@ -64,7 +64,7 @@ class HttpFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_http_failure.build_get_empty_error_request(
-            template_url=self.get_empty_error.metadata["url"], **kwargs
+            template_url=self.get_empty_error.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -101,7 +101,7 @@ class HttpFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_http_failure.build_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata["url"], **kwargs
+            template_url=self.get_no_model_error.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -137,7 +137,7 @@ class HttpFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_http_failure.build_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata["url"], **kwargs
+            template_url=self.get_no_model_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

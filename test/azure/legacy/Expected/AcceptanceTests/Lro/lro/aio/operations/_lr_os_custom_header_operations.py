@@ -71,7 +71,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -187,7 +186,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -290,7 +288,9 @@ class LROsCustomHeaderOperations:
             json = None
 
         request = rest_lr_os_custom_header.build_post202_retry200_request_initial(
-            content_type=content_type, json=json, template_url=self._post202_retry200_initial.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self._post202_retry200_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -387,7 +387,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

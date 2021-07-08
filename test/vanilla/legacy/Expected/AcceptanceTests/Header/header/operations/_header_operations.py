@@ -76,7 +76,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_existing_key_request(
-            user_agent_parameter=user_agent_parameter, template_url=self.param_existing_key.metadata["url"], **kwargs
+            user_agent_parameter=user_agent_parameter,
+            template_url=self.param_existing_key.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -110,7 +111,7 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_existing_key_request(
-            template_url=self.response_existing_key.metadata["url"], **kwargs
+            template_url=self.response_existing_key.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -149,7 +150,8 @@ class HeaderOperations(object):
         content_type = kwargs.pop("content_type")  # type: str
 
         request = rest_header.build_param_protected_key_request(
-            content_type=content_type, template_url=self.param_protected_key.metadata["url"], **kwargs
+            content_type=content_type,
+            template_url=self.param_protected_key.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -183,7 +185,7 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_protected_key_request(
-            template_url=self.response_protected_key.metadata["url"], **kwargs
+            template_url=self.response_protected_key.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -228,7 +230,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_integer_request(
-            scenario=scenario, value=value, template_url=self.param_integer.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_integer.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -266,7 +270,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_integer_request(
-            scenario=scenario, template_url=self.response_integer.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_integer.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -311,7 +316,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_long_request(
-            scenario=scenario, value=value, template_url=self.param_long.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_long.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -349,7 +356,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_long_request(
-            scenario=scenario, template_url=self.response_long.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_long.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -394,7 +402,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_float_request(
-            scenario=scenario, value=value, template_url=self.param_float.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_float.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -432,7 +442,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_float_request(
-            scenario=scenario, template_url=self.response_float.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_float.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -477,7 +488,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_double_request(
-            scenario=scenario, value=value, template_url=self.param_double.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_double.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -515,7 +528,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_double_request(
-            scenario=scenario, template_url=self.response_double.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_double.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -560,7 +574,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_bool_request(
-            scenario=scenario, value=value, template_url=self.param_bool.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_bool.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -598,7 +614,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_bool_request(
-            scenario=scenario, template_url=self.response_bool.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_bool.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -645,7 +662,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_string_request(
-            scenario=scenario, value=value, template_url=self.param_string.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -684,7 +703,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_string_request(
-            scenario=scenario, template_url=self.response_string.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -729,7 +749,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_date_request(
-            scenario=scenario, value=value, template_url=self.param_date.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -767,7 +789,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_date_request(
-            scenario=scenario, template_url=self.response_date.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -813,7 +836,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_datetime_request(
-            scenario=scenario, value=value, template_url=self.param_datetime.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_datetime.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -851,7 +876,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_datetime_request(
-            scenario=scenario, template_url=self.response_datetime.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_datetime.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -897,7 +923,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_datetime_rfc1123_request(
-            scenario=scenario, value=value, template_url=self.param_datetime_rfc1123.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_datetime_rfc1123.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -936,7 +964,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_datetime_rfc1123_request(
-            scenario=scenario, template_url=self.response_datetime_rfc1123.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_datetime_rfc1123.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -980,7 +1009,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_duration_request(
-            scenario=scenario, value=value, template_url=self.param_duration.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_duration.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1018,7 +1049,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_duration_request(
-            scenario=scenario, template_url=self.response_duration.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_duration.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1062,7 +1094,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_byte_request(
-            scenario=scenario, value=value, template_url=self.param_byte.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_byte.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1100,7 +1134,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_byte_request(
-            scenario=scenario, template_url=self.response_byte.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_byte.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1146,7 +1181,9 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_param_enum_request(
-            scenario=scenario, value=value, template_url=self.param_enum.metadata["url"], **kwargs
+            scenario=scenario,
+            value=value,
+            template_url=self.param_enum.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1185,7 +1222,8 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_response_enum_request(
-            scenario=scenario, template_url=self.response_enum.metadata["url"], **kwargs
+            scenario=scenario,
+            template_url=self.response_enum.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1223,7 +1261,7 @@ class HeaderOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_header.build_custom_request_id_request(
-            template_url=self.custom_request_id.metadata["url"], **kwargs
+            template_url=self.custom_request_id.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -71,7 +71,7 @@ class FlattencomplexOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_flattencomplex.build_get_valid_request(
-            template_url=self.get_valid.metadata["url"], **kwargs
+            template_url=self.get_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

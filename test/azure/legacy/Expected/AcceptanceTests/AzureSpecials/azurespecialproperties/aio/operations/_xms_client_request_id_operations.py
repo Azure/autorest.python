@@ -66,7 +66,7 @@ class XMsClientRequestIdOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xms_client_request_id.build_get_request(
-            template_url=self.get.metadata["url"], **kwargs
+            template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -102,7 +102,8 @@ class XMsClientRequestIdOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xms_client_request_id.build_param_get_request(
-            x_ms_client_request_id=x_ms_client_request_id, template_url=self.param_get.metadata["url"], **kwargs
+            x_ms_client_request_id=x_ms_client_request_id,
+            template_url=self.param_get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

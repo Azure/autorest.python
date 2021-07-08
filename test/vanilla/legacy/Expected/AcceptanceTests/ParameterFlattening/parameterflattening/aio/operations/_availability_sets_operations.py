@@ -80,7 +80,6 @@ class AvailabilitySetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

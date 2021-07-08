@@ -68,7 +68,9 @@ class LROSADsOperations:
             json = None
 
         request = rest_lrosads.build_put_non_retry400_request_initial(
-            content_type=content_type, json=json, template_url=self._put_non_retry400_initial.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self._put_non_retry400_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -171,7 +173,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_non_retry201_creating400_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -277,7 +278,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -383,7 +383,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry400_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -487,7 +486,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete_non_retry400_request_initial(
-            template_url=self._delete_non_retry400_initial.metadata["url"], **kwargs
+            template_url=self._delete_non_retry400_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -564,7 +563,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete202_non_retry400_request_initial(
-            template_url=self._delete202_non_retry400_initial.metadata["url"], **kwargs
+            template_url=self._delete202_non_retry400_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -641,7 +640,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete_async_relative_retry400_request_initial(
-            template_url=self._delete_async_relative_retry400_initial.metadata["url"], **kwargs
+            template_url=self._delete_async_relative_retry400_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -729,7 +728,9 @@ class LROSADsOperations:
             json = None
 
         request = rest_lrosads.build_post_non_retry400_request_initial(
-            content_type=content_type, json=json, template_url=self._post_non_retry400_initial.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self._post_non_retry400_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -822,7 +823,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_non_retry400_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -917,7 +917,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry400_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1018,7 +1017,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1123,7 +1121,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1240,7 +1237,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1345,7 +1341,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete204_succeeded_request_initial(
-            template_url=self._delete204_succeeded_initial.metadata["url"], **kwargs
+            template_url=self._delete204_succeeded_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1418,7 +1414,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete_async_relative_retry_no_status_request_initial(
-            template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"], **kwargs
+            template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1509,7 +1505,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_no_location_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1605,7 +1600,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1707,7 +1701,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put200_invalid_json_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1809,7 +1802,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -1926,7 +1918,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2031,7 +2022,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete202_retry_invalid_header_request_initial(
-            template_url=self._delete202_retry_invalid_header_initial.metadata["url"], **kwargs
+            template_url=self._delete202_retry_invalid_header_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2109,7 +2100,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete_async_relative_retry_invalid_header_request_initial(
-            template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"], **kwargs
+            template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2190,7 +2181,7 @@ class LROSADsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_lrosads.build_delete_async_relative_retry_invalid_json_polling_request_initial(
-            template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"], **kwargs
+            template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2285,7 +2276,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_retry_invalid_header_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2383,7 +2373,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -2485,7 +2474,6 @@ class LROSADsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

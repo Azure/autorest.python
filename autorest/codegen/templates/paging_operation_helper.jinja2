@@ -13,12 +13,10 @@ cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(opera
             {% set url = keywords.escape_str(operation.next_request_builder.url) if operation.next_request_builder else None %}
             {{ op_tools.serialize(operation_serializer.call_next_link_request_builder(operation)) | indent(12) }}
             {% if not operation.next_request_builder %}
-            # little hacky, but this code will soon be replaced with code that won't need the hack
                 {% if operation.parameters.path %}
             {{ op_tools.path_format_arguments(operation.parameters.path)|indent(12) }}
                 {% endif %}
             request.method = "GET"
-            request.url = self._client.format_url(next_link{{", **path_format_arguments" if operation.parameters.path}})
             {% endif %}
         return request
 

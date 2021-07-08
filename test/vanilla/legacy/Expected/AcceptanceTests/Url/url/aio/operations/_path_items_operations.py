@@ -89,7 +89,6 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_all_with_values.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -147,7 +146,6 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_global_query_null.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -205,7 +203,6 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -262,7 +259,6 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

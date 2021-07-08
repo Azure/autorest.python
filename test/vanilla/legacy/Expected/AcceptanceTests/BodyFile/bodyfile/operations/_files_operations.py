@@ -71,7 +71,7 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_files.build_get_file_request(
-            template_url=self.get_file.metadata["url"], **kwargs
+            template_url=self.get_file.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -109,7 +109,7 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_files.build_get_file_large_request(
-            template_url=self.get_file_large.metadata["url"], **kwargs
+            template_url=self.get_file_large.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -147,7 +147,7 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_files.build_get_empty_file_request(
-            template_url=self.get_empty_file.metadata["url"], **kwargs
+            template_url=self.get_empty_file.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

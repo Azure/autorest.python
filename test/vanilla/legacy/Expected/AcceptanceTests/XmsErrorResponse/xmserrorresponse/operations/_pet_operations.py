@@ -83,7 +83,8 @@ class PetOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_pet.build_get_pet_by_id_request(
-            pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs
+            pet_id=pet_id,
+            template_url=self.get_pet_by_id.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -133,7 +134,8 @@ class PetOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_pet.build_do_something_request(
-            what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
+            what_action=what_action,
+            template_url=self.do_something.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -184,7 +186,8 @@ class PetOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_pet.build_has_models_param_request(
-            models=models, template_url=self.has_models_param.metadata["url"], **kwargs
+            models=models,
+            template_url=self.has_models_param.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

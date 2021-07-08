@@ -71,7 +71,7 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_basic.build_get_valid_request(
-            template_url=self.get_valid.metadata["url"], **kwargs
+            template_url=self.get_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -117,7 +117,9 @@ class BasicOperations(object):
         json = self._serialize.body(complex_body, "Basic")
 
         request = rest_basic.build_put_valid_request(
-            content_type=content_type, json=json, template_url=self.put_valid.metadata["url"], **kwargs
+            content_type=content_type,
+            json=json,
+            template_url=self.put_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -151,7 +153,7 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_basic.build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"], **kwargs
+            template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -189,7 +191,7 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_basic.build_get_empty_request(
-            template_url=self.get_empty.metadata["url"], **kwargs
+            template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -227,7 +229,7 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_basic.build_get_null_request(
-            template_url=self.get_null.metadata["url"], **kwargs
+            template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -265,7 +267,7 @@ class BasicOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_basic.build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"], **kwargs
+            template_url=self.get_not_provided.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

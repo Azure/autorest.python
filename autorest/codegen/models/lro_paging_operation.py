@@ -18,8 +18,9 @@ class LROPagingOperation(PagingOperation, LROOperation):
         return file_import
 
     @property
-    def paging_success_status_code(self):
-        # hardcode paging's success status code in lro + paging to be 200
+    def success_status_code(self):
+        """The list of all successfull status code.
+        """
         return [200]
 
 class NoModelLROPagingOperation(LROPagingOperation, NoModelPagingOperation):

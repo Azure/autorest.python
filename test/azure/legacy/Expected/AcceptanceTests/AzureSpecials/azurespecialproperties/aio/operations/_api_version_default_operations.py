@@ -65,7 +65,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_default.build_get_method_global_valid_request(
-            template_url=self.get_method_global_valid.metadata["url"], **kwargs
+            template_url=self.get_method_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -98,7 +98,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_default.build_get_method_global_not_provided_valid_request(
-            template_url=self.get_method_global_not_provided_valid.metadata["url"], **kwargs
+            template_url=self.get_method_global_not_provided_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -131,7 +131,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_default.build_get_path_global_valid_request(
-            template_url=self.get_path_global_valid.metadata["url"], **kwargs
+            template_url=self.get_path_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -164,7 +164,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_api_version_default.build_get_swagger_global_valid_request(
-            template_url=self.get_swagger_global_valid.metadata["url"], **kwargs
+            template_url=self.get_swagger_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

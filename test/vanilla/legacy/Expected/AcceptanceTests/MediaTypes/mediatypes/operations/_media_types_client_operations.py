@@ -77,7 +77,6 @@ class MediaTypesClientOperationsMixin(object):
             json=json,
             content=content,
             template_url=self.analyze_body.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -128,7 +127,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

@@ -60,7 +60,7 @@ class HeadExceptionOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_head_exception.build_head200_request(
-            template_url=self.head200.metadata["url"], **kwargs
+            template_url=self.head200.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -93,7 +93,7 @@ class HeadExceptionOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_head_exception.build_head204_request(
-            template_url=self.head204.metadata["url"], **kwargs
+            template_url=self.head204.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
@@ -126,7 +126,7 @@ class HeadExceptionOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_head_exception.build_head404_request(
-            template_url=self.head404.metadata["url"], **kwargs
+            template_url=self.head404.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 

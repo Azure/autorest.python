@@ -79,7 +79,6 @@ class GroupOperations(object):
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             template_url=self.get_sample_resource_group.metadata["url"],
-            **kwargs
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
