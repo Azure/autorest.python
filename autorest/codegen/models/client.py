@@ -30,12 +30,38 @@ class Client:
             return "AsyncPipelineClient"
         return "PipelineClient"
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
         file_import.add_from_import("msrest", "Deserializer", ImportType.AZURECORE)
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
+        any_optional_gp = any(not gp.required for gp in self.parameters)
+
+        if any_optional_gp or self.code_model.service_client.base_url:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
+        if self.code_model.options["azure_arm"]:
+            file_import.add_from_import(
+                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE
+            )
+        else:
+            file_import.add_from_import(
+                "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
+            )
+
+        for gp in self.code_model.global_parameters:
+            file_import.merge(gp.imports())
+        file_import.add_from_import(
+            "._configuration", f"{self.code_model.class_name}Configuration",
+            ImportType.LOCAL
+        )
+
+        return file_import
+
+    def imports(self, async_mode: bool) -> FileImport:
+        file_import = self._imports_shared(async_mode)
         core_import = (self.code_model.namespace if self.code_model.options["vendor"] else "azure") + ".core.rest"
         if async_mode:
             file_import.add_from_import(
@@ -51,35 +77,9 @@ class Client:
         file_import.add_from_import(
             core_import, "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
-        any_optional_gp = any(not gp.required for gp in self.parameters)
-
-        if any_optional_gp or self.code_model.service_client.base_url:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-
-        if self.code_model.options["azure_arm"]:
-            file_import.add_from_import(
-                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE
-            )
-        else:
-            file_import.add_from_import(
-                "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
-            )
-
-        if not self.code_model.sorted_schemas:
-            # in this case, we have client_models = {} in the service client, which needs a type annotation
-            # this import will always be commented, so will always add it to the typing section
-            file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.TYPING)
-        file_import.add_from_import("copy", "deepcopy", ImportType.STDLIB)
-
-        for gp in self.code_model.global_parameters:
-            file_import.merge(gp.imports())
-        file_import.add_from_import(
-            "._configuration", f"{self.code_model.class_name}Configuration",
-            ImportType.LOCAL
-        )
         for og in self.code_model.operation_groups:
             file_import.add_from_import(
-                ".operations", f"{og.class_name}", ImportType.LOCAL
+                ".operations", og.class_name, ImportType.LOCAL
             )
 
         if self.code_model.sorted_schemas:
@@ -87,7 +87,22 @@ class Client:
             file_import.add_from_import(
                 path_to_models, "models", ImportType.LOCAL
             )
+        else:
+            # in this case, we have client_models = {} in the service client, which needs a type annotation
+            # this import will always be commented, so will always add it to the typing section
+            file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.TYPING)
+        file_import.add_from_import("copy", "deepcopy", ImportType.STDLIB)
+        return file_import
 
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
+        file_import = self._imports_shared(async_mode)
+        try:
+            mixin_operation = next(og for og in self.code_model.operation_groups if og.is_empty_operation_group)
+            file_import.add_from_import(
+                "._operations_mixin", mixin_operation.class_name, ImportType.LOCAL
+            )
+        except StopIteration:
+            pass
         return file_import
 
     @property

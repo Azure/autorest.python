@@ -72,8 +72,8 @@ def _mixin_imports(mixin_operation_group: Optional[OperationGroup]) -> Tuple[Opt
     if not mixin_operation_group:
         return None, None
 
-    sync_mixin_imports = mixin_operation_group.imports(async_mode=False, has_schemas=False)
-    async_mixin_imports = mixin_operation_group.imports(async_mode=True, has_schemas=False)
+    sync_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=False, has_schemas=False)
+    async_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=True, has_schemas=False)
 
     return _json_serialize_imports(sync_mixin_imports.imports), _json_serialize_imports(async_mixin_imports.imports)
 
@@ -129,8 +129,7 @@ class MetadataSerializer:
             file_import.add_from_import(
                 "._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL
             )
-
-        file_import.merge(self.code_model.service_client.imports(self.code_model, async_mode=async_mode))
+        file_import.merge(self.code_model.service_client.imports_for_multiapi(async_mode=async_mode))
         return _json_serialize_imports(file_import.imports)
 
 

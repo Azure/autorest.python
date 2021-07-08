@@ -130,7 +130,7 @@
                     "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }}
                 },
                 "async": {
-                    {% set coroutine = False if is_paging(operation) else True %}
+                    {% set coroutine = False if (is_paging(operation) and not is_lro(operation)) else True %}
                     {% set operation_serializer = get_async_operation_serializer(operation) %}
                     "coroutine": {{ coroutine | tojson }},
                     {% if is_lro(operation) and is_paging(operation) %}

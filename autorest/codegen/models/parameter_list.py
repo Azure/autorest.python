@@ -206,6 +206,9 @@ class ParameterList(MutableSequence):
             lambda parameter: parameter.implementation == self.implementation
         )
         for parameter in parameters_of_this_implementation:
+            # we don't want content_type in operation level
+            if parameter.serialized_name == "content_type":
+                continue
             if parameter.in_method_signature:
                 if not parameter.default_value and parameter.required:
                     signature_parameters_no_default_value.append(parameter)

@@ -37,6 +37,12 @@ class OperationGroup(BaseModel):
         self.operations = operations
         self.api_versions = api_versions
 
+    def imports_for_multiapi(self, async_mode: bool, has_schemas: bool) -> FileImport:
+        file_import = FileImport()
+        for operation in self.operations:
+            file_import.merge(operation.imports_for_multiapi(self.code_model, async_mode))
+        return file_import
+
     def imports(self, async_mode: bool, has_schemas: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
@@ -59,6 +65,7 @@ class OperationGroup(BaseModel):
 
         # import request builders
         return file_import
+
 
     @property
     def filename(self) -> str:

@@ -9,15 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar, Union
-import warnings
+from typing import Any, AsyncIterable, Optional
 
-from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
-from azure.core.polling.async_base_polling import AsyncLROBasePolling
+from azure.core.async_paging import AsyncItemPaged
+from azure.core.polling import AsyncLROPoller
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -33,13 +28,16 @@ class MultiapiServiceClientOperationsMixin(object):
         :type product: ~multiapidataplane.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncLROBasePolling.
-         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
+         for this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns either Product or the result of
+         cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapidataplane.v1.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
@@ -54,7 +52,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return await mixin_instance.begin_test_lro(product, **kwargs)
 
-    def begin_test_lro_and_paging(
+    async def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
@@ -68,13 +66,17 @@ class MultiapiServiceClientOperationsMixin(object):
         :type test_lro_and_paging_options: ~multiapidataplane.v1.models.TestLroAndPagingOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncLROBasePolling.
-         Pass in False for this operation to not poll, or pass in your own initialized polling object for a personal polling strategy.
+        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
+         for this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapidataplane.v1.models.PagingResult]]
-        :raises ~azure.core.exceptions.HttpResponseError:
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns an iterator like instance of either
+         PagingResult or the result of cls(response)
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapidataplane.v1.models.PagingResult]]
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('begin_test_lro_and_paging')
         if api_version == '1.0.0':
@@ -87,7 +89,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
+        return await mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
     async def test_different_calls(
         self,
@@ -161,7 +163,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs: Any
-    ) -> AsyncItemPaged["_models.PagingResult"]:
+    ) -> AsyncIterable["_models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

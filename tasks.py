@@ -335,12 +335,15 @@ def regenerate_services(c, swagger_name=None, debug=False):
     _run_autorest(cmds[0], debug)
 
 
-def _multiapi_command_line(location):
+def _multiapi_command_line(location, debug):
     cwd = os.getcwd()
-    return (
+    cmd = (
         f'autorest {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
         f'--python-sdks-folder={cwd}/test/'
     )
+    if debug:
+        cmd += " --python.debugger"
+    return cmd
 
 @task
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
@@ -360,7 +363,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapicustombaseurl/README.md",
     ]
 
-    cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
+    cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
 
     _run_autorest(cmds, debug)
 
