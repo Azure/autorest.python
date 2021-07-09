@@ -63,9 +63,7 @@ class Client:
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
         if async_mode:
-            file_import.add_from_import(
-                "typing", "Awaitable", ImportType.STDLIB
-            )
+            file_import.add_from_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_from_import(
                 "azure.core.rest", "AsyncHttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
@@ -73,19 +71,13 @@ class Client:
             file_import.add_from_import(
                 "azure.core.rest", "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
             )
-        file_import.add_from_import(
-            "azure.core.rest", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
-        )
+        file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL)
         for og in self.code_model.operation_groups:
-            file_import.add_from_import(
-                ".operations", og.class_name, ImportType.LOCAL
-            )
+            file_import.add_from_import(".operations", og.class_name, ImportType.LOCAL)
 
         if self.code_model.sorted_schemas:
             path_to_models = ".." if async_mode else "."
-            file_import.add_from_import(
-                path_to_models, "models", ImportType.LOCAL
-            )
+            file_import.add_from_import(path_to_models, "models", ImportType.LOCAL)
         else:
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
@@ -97,9 +89,7 @@ class Client:
         file_import = self._imports_shared(async_mode)
         try:
             mixin_operation = next(og for og in self.code_model.operation_groups if og.is_empty_operation_group)
-            file_import.add_from_import(
-                "._operations_mixin", mixin_operation.class_name, ImportType.LOCAL
-            )
+            file_import.add_from_import("._operations_mixin", mixin_operation.class_name, ImportType.LOCAL)
         except StopIteration:
             pass
         return file_import
@@ -124,8 +114,7 @@ class Client:
 
     def method_parameters_signature(self, async_mode) -> List[str]:
         return [
-            parameter.method_signature(async_mode)
-            for parameter in self.method_parameters
+            parameter.method_signature(async_mode) for parameter in self.method_parameters
         ] + self.parameters.method_signature_kwargs(async_mode)
 
     def send_request_signature(self, async_mode) -> List[str]:

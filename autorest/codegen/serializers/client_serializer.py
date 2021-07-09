@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models import code_model, request_builder
 from typing import List
 from . import utils
 from ..models import CodeModel
+
 
 class ClientSerializer:
     def __init__(self, code_model: CodeModel) -> None:
@@ -17,7 +17,7 @@ class ClientSerializer:
             function_def="def",
             method_name="__init__",
             is_in_class=True,
-            method_param_signatures=self.code_model.service_client.method_parameters_signature(async_mode)
+            method_param_signatures=self.code_model.service_client.method_parameters_signature(async_mode),
         )
 
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
@@ -30,10 +30,7 @@ class ClientSerializer:
 
     def class_definition(self, async_mode) -> str:
         class_name = self.code_model.class_name
-        has_mixin_og = any(
-            og for og in self.code_model.operation_groups
-            if og.is_empty_operation_group
-        )
+        has_mixin_og = any(og for og in self.code_model.operation_groups if og.is_empty_operation_group)
         base_class = ""
         if has_mixin_og:
             base_class = f"{class_name}OperationsMixin"
@@ -53,7 +50,10 @@ class ClientSerializer:
             retval.append(f":param {param.serialized_name}: {param.description}")
             retval.append(f":type {param.serialized_name}: {param.docstring_type}")
         if self.code_model.has_lro_operations:
-            retval.append(":keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.")
+            retval.append(
+                ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
+                "if no Retry-After header is present."
+            )
         retval.append('"""')
         return retval
 
@@ -66,17 +66,16 @@ class ClientSerializer:
         retval.append(f"client_models = {client_models_value}")
         retval.append(f"self._serialize = Serializer(client_models)")
         retval.append(f"self._deserialize = Deserializer(client_models)")
-        if not self.code_model.options['client_side_validation']:
+        if not self.code_model.options["client_side_validation"]:
             retval.append("self._serialize.client_side_validation = False")
-        operation_groups = [
-            og for og in self.code_model.operation_groups
-            if not og.is_empty_operation_group
-        ]
+        operation_groups = [og for og in self.code_model.operation_groups if not og.is_empty_operation_group]
         if operation_groups:
-            retval.extend([
-                f"self.{og.name} = {og.class_name}(self._client, self._config, self._serialize, self._deserialize)"
-                for og in operation_groups
-            ])
+            retval.extend(
+                [
+                    f"self.{og.name} = {og.class_name}(self._client, self._config, self._serialize, self._deserialize)"
+                    for og in operation_groups
+                ]
+            )
         return retval
 
     def _send_request_signature(self, async_mode: bool) -> str:
@@ -84,7 +83,7 @@ class ClientSerializer:
             function_def="def",
             method_name=self.code_model.send_request_name,
             is_in_class=True,
-            method_param_signatures=self.code_model.service_client.send_request_signature(async_mode)
+            method_param_signatures=self.code_model.service_client.send_request_signature(async_mode),
         )
 
     def send_request_signature_and_response_type_annotation(self, async_mode: bool) -> str:
@@ -109,21 +108,25 @@ class ClientSerializer:
         retval.append(f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}")
         retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
         retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
-        retval.append(f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)")
+        retval.append(
+            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
+        )
         retval.append(f"<{http_response}: 200 OK>")
         return retval
 
     def send_request_description(self, async_mode: bool) -> List[str]:
         retval = ['"""Runs the network request through the client\'s chained policies.']
         retval.append("")
-        retval.append(f"We have helper methods to create requests specific to this service in `{self.code_model.namespace}.rest`.")
+        retval.append(
+            f"We have helper methods to create requests specific to this service in `{self.code_model.namespace}.rest`."
+        )
         retval.append("Use these helper methods to create the request you pass to this method. See our example below:")
         retval.append("")
         retval.extend(self._request_builder_example(async_mode))
         retval.append("")
         retval.append("For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart")
         retval.append(f"")
-        core_import = "{}.core.rest".format(self.code_model.namespace if self.code_model.options["vendor"] else 'azure')
+        core_import = "{}.core.rest".format(self.code_model.namespace if self.code_model.options["vendor"] else "azure")
         retval.append(f"For advanced cases, you can also create your own :class:`~{core_import}.HttpRequest`")
         retval.append(f"and pass it in.")
         retval.append("")

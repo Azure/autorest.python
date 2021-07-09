@@ -97,7 +97,8 @@ class NameConverter:
                 ])
             else:
                 # currently there's max of 2, so assume this is 2 for now
-                # in this case, one of them is a constant and one is not. Set the client default value to the one of the constant
+                # in this case, one of them is a constant and one is not.
+                # Set the client default value to the one of the constant
                 param_with_constant_schema = next(p for p in params_of_header if p['schema']['type'] == 'constant')
                 param_with_enum_schema = next(
                     p for p in params_of_header

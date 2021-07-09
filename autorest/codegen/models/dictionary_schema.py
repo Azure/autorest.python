@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, Optional, cast
+from typing import Any, Callable, Dict, Optional
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -64,7 +64,7 @@ class DictionarySchema(BaseSchema):
 
     def _get_template_representation(
         self,
-        callable: Callable,
+        template_representation_callable: Callable,
         **kwargs: Any
     ) -> Any:
         try:
@@ -73,18 +73,18 @@ class DictionarySchema(BaseSchema):
         except AttributeError:
             pass
         return {
-            "str": callable(**kwargs)
+            "str": template_representation_callable(**kwargs)
         }
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return self._get_template_representation(
-            callable=self.element_type.get_json_template_representation,
+            template_representation_callable=self.element_type.get_json_template_representation,
             **kwargs
         )
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
         return self._get_template_representation(
-            callable=self.element_type.get_files_template_representation,
+            template_representation_callable=self.element_type.get_files_template_representation,
             **kwargs
         )
 

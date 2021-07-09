@@ -3,38 +3,18 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.schema_response import SchemaResponse
 from typing import Any, Dict, List, TypeVar, Optional, Callable
 
 from .base_builder import BaseBuilder, get_converted_parameters
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
+from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
-
-def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
-    response_media_types: OrderedSet[str] = {}
-
-    json_media_types = [media_type for media_type in media_types if "json" in media_type]
-    xml_media_types = [media_type for media_type in media_types if "xml" in media_type]
-
-    if not sorted(json_media_types + xml_media_types) == sorted(media_types):
-        raise ValueError("The non-binary responses with schemas of {self.name} have incorrect json or xml mime types")
-    if json_media_types:
-        if "application/json" in json_media_types:
-            response_media_types["application/json"] = None
-        else:
-            response_media_types[json_media_types[0]] = None
-    if xml_media_types:
-        if "application/xml" in xml_media_types:
-            response_media_types["application/xml"] = None
-        else:
-            response_media_types[xml_media_types[0]] = None
-    return response_media_types
 
 class RequestBuilder(BaseBuilder):
     def __init__(
@@ -72,7 +52,7 @@ class RequestBuilder(BaseBuilder):
     def operation_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["operationGroupName"]
 
-    def imports(self, code_model) -> FileImport:
+    def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
             file_import.merge(parameter.imports())

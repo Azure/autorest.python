@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Union
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes

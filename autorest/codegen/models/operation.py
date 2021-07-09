@@ -10,7 +10,7 @@ from typing import Callable, cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, get_converted_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter, ParameterOnlyPathsPositional
+from .parameter import Parameter
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -177,7 +177,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         return file_import
 
 
-    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
+    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
         return self._imports_shared()
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
@@ -212,10 +212,18 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         rest_import_path = "..." if async_mode else ".."
         if operation_group_name:
             file_import.add_from_import(
-                f"{rest_import_path}{code_model.rest_layer_name}", name_import=operation_group_name, import_type=ImportType.LOCAL, alias=f"rest_{operation_group_name}"
+                f"{rest_import_path}{code_model.rest_layer_name}",
+                name_import=operation_group_name,
+                import_type=ImportType.LOCAL,
+                alias=f"rest_{operation_group_name}"
             )
         else:
-            file_import.add_from_import(rest_import_path, code_model.rest_layer_name, import_type=ImportType.LOCAL, alias="rest")
+            file_import.add_from_import(
+                rest_import_path,
+                code_model.rest_layer_name,
+                import_type=ImportType.LOCAL,
+                alias="rest"
+            )
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:

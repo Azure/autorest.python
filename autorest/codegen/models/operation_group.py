@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.lro_paging_operation import LROPagingOperation
 import logging
 from typing import Dict, List, Any, Set
 
@@ -11,6 +10,7 @@ from .base_model import BaseModel
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
+from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType
 
 
@@ -37,7 +37,7 @@ class OperationGroup(BaseModel):
         self.operations = operations
         self.api_versions = api_versions
 
-    def imports_for_multiapi(self, async_mode: bool, has_schemas: bool) -> FileImport:
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
             file_import.merge(operation.imports_for_multiapi(self.code_model, async_mode))

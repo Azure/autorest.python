@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-import json
 from enum import Enum
 
 from typing import Dict, Optional, List, Any, Union, Tuple
@@ -14,8 +13,6 @@ from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .list_schema import ListSchema
 from .constant_schema import ConstantSchema
-from .object_schema import ObjectSchema
-from .primitive_schemas import AnySchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -47,7 +44,7 @@ class ParameterStyle(Enum):
     multipart = "multipart"
 
 
-class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
+class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -268,15 +265,16 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def docstring_type(self) -> str:
         return self.multiple_media_types_docstring_type or self.schema.docstring_type
 
-    def _has_default_value(self):
+    @property
+    def has_default_value(self):
         return self.default_value is not None or not self.required
 
     def method_signature(self, async_mode: bool) -> str:
         if async_mode:
-            if self._has_default_value():
+            if self.has_default_value:
                 return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
             return f"{self.serialized_name}: {self.type_annotation},"
-        if self._has_default_value():
+        if self.has_default_value:
             return f"{self.serialized_name}={self.default_value_declaration},  # type: {self.type_annotation}"
         return f"{self.serialized_name},  # type: {self.type_annotation}"
 

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, TypeVar, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
@@ -22,10 +22,13 @@ from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
-from .parameter_list import ParameterList
+from .parameter_list import GlobalParameterList, ParameterList
+from .request_builder_parameter_list import RequestBuilderParameterList
 from .request_builder import RequestBuilder
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
+from .request_builder_parameter import RequestBuilderParameter
+from .schema_request import SchemaRequest
 
 __all__ = [
     "AzureKeyCredentialSchema",
@@ -54,6 +57,7 @@ __all__ = [
     "TokenCredentialSchema",
     "LROPagingOperation",
     "BaseBuilder",
+    "SchemaRequest",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
@@ -110,3 +114,31 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     return schema
+
+BuilderType = TypeVar(
+    "BuilderType",
+    bound=Union[
+        RequestBuilder,
+        Operation,
+        LROPagingOperation,
+        LROOperation,
+        PagingOperation,
+    ]
+)
+
+ParameterListType = TypeVar(
+    "ParameterListType",
+    bound=Union[
+        ParameterList,
+        GlobalParameterList,
+        RequestBuilderParameterList,
+    ],
+)
+
+ParameterType = TypeVar(
+    "ParameterType",
+    bound=Union[
+        Parameter,
+        RequestBuilderParameter,
+    ],
+)

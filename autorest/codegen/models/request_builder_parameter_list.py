@@ -3,15 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import json
-from autorest.codegen.models.base_schema import BaseSchema
 from copy import copy
-from typing import List, Optional, Set, TypeVar, Dict
+from typing import List, Optional, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
-from .primitive_schemas import IOSchema, AnySchema, ByteArraySchema
+from .primitive_schemas import IOSchema, AnySchema
 from .dictionary_schema import DictionarySchema
+from .base_schema import BaseSchema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -80,7 +79,8 @@ class RequestBuilderParameterList(ParameterList):
                 json_kwarg = copy(body_method_param)
                 self._change_body_param_name(json_kwarg, "json")
                 json_kwarg.description = (
-                    "Pass in a JSON-serializable object (usually a dictionary). See the template in our example to find the input shape. " +
+                    "Pass in a JSON-serializable object (usually a dictionary). "
+                    "See the template in our example to find the input shape. " +
                     json_kwarg.description
                 )
                 json_kwarg.schema = AnySchema(namespace="", yaml_data={})
@@ -89,7 +89,8 @@ class RequestBuilderParameterList(ParameterList):
             self._change_body_param_name(content_kwarg, "content")
             content_kwarg.schema = AnySchema(namespace="", yaml_data={})
             content_kwarg.description = (
-                "Pass in binary content you want in the body of the request (typically bytes, a byte iterator, or stream input). " +
+                "Pass in binary content you want in the body of the request (typically bytes, "
+                "a byte iterator, or stream input). " +
                 content_kwarg.description
             )
             body_kwargs_added.append(content_kwarg)
@@ -137,10 +138,12 @@ class RequestBuilderParameterList(ParameterList):
             lambda parameter: parameter.implementation == self.implementation or parameter.in_method_code
         )
         seen_content_type = False
-        multipart_parameters = set()
 
         for parameter in parameters:
-            if parameter.location == ParameterLocation.Body and parameter.serialized_name not in _REQUEST_BUILDER_BODY_NAMES:
+            if (
+                parameter.location == ParameterLocation.Body and
+                parameter.serialized_name not in _REQUEST_BUILDER_BODY_NAMES
+            ):
                 # we keep the original body param from the swagger for documentation purposes
                 # we don't want it in the method signature
                 continue
@@ -158,8 +161,6 @@ class RequestBuilderParameterList(ParameterList):
                     signature_parameters_no_default_value.append(parameter)
                 else:
                     signature_parameters_default_value.append(parameter)
-        if not self._multipart_parameters:
-            self._multipart_parameters = multipart_parameters
 
         signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
         signature_parameters.sort(key=lambda item: item.is_keyword_only)

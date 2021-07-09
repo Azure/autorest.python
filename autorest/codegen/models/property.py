@@ -127,7 +127,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def _get_template_representation(
         self,
-        callable: Callable,
+        template_representation_callable: Callable,
         **kwargs: Any
     ) -> Any:
         kwargs["optional"] = not self.required
@@ -137,7 +137,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 return f"..."
         except AttributeError:
             pass
-        return callable(**kwargs)
+        return template_representation_callable(**kwargs)
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         if self.is_discriminator:
@@ -148,13 +148,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         except AttributeError:
             pass
         return self._get_template_representation(
-            callable=self.schema.get_json_template_representation,
+            template_representation_callable=self.schema.get_json_template_representation,
             **kwargs
         )
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
         return self._get_template_representation(
-            callable=self.schema.get_files_template_representation,
+            template_representation_callable=self.schema.get_files_template_representation,
             **kwargs
         )
 

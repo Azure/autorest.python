@@ -3,18 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import json
-from copy import copy
 from collections.abc import MutableSequence
 import logging
-from typing import cast, List, Callable, Optional, TypeVar, Dict, Set
+from typing import cast, List, Callable, Optional, TypeVar, Dict
 
 from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
-from .primitive_schemas import IOSchema, ByteArraySchema, AnySchema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -22,13 +19,12 @@ OrderedSet = Dict[T, None]
 _LOGGER = logging.getLogger(__name__)
 
 
-class ParameterList(MutableSequence):
+class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def __init__(
         self, parameters: Optional[List[Parameter]] = None
     ) -> None:
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
-        self._multipart_parameters: Optional[Set[Parameter]] = set()
         self._content_types = None
 
     # MutableSequence
@@ -176,7 +172,7 @@ class ParameterList(MutableSequence):
                 content_types.update({v.value: None for v in param.schema.values})
             if param.client_default_value:
                 content_types.update({param.client_default_value: None})
-        self._content_types = list(k for k in content_types.keys() if k is not None)
+        self._content_types = [k for k in content_types if k is not None]
         return self._content_types
 
     @property
@@ -233,7 +229,8 @@ class ParameterList(MutableSequence):
             return []
         return ["*,"] + [parameter.method_signature(async_mode) for parameter in self.keyword_only]
 
-    def method_signature_kwargs(self, async_mode: bool) -> List[str]:
+    @staticmethod
+    def method_signature_kwargs(async_mode: bool) -> List[str]:
         return ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]
 
     @property

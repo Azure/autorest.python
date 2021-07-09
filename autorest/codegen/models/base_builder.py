@@ -3,15 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from collections import defaultdict
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
 from abc import abstractmethod
 from .base_model import BaseModel
-from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
-from .dictionary_schema import DictionarySchema
-from .object_schema import ObjectSchema
-from .list_schema import ListSchema
+
+if TYPE_CHECKING:
+    from . import ParameterListType
+
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
@@ -65,7 +64,7 @@ class BaseBuilder(BaseModel):
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
-        parameters: ParameterList,
+        parameters: "ParameterListType",
         responses: Optional[List[SchemaResponse]] = None,
         summary: Optional[str] = None,
     ) -> None:
@@ -88,8 +87,7 @@ class BaseBuilder(BaseModel):
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:
-        """The list of all successfull status code.
-        """
+        """The list of all successfull status code."""
         return [code for response in self.responses for code in response.status_codes if code != "default"]
 
     @staticmethod
