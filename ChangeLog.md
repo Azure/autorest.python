@@ -1,5 +1,15 @@
 # Change Log
 
+### 2021-07-09 - 5.8.4
+
+min Autorest core version: 3.4.5
+
+min Modelerfour version: 4.19.1
+
+**Bug Fixes**
+
+- Fix case where we have a grouped parameter whose name is a reserved property name #970
+
 ### 2021-07-06 - 5.8.3
 
 min Autorest core version: 3.3.0
