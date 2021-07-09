@@ -70,7 +70,6 @@ class StorageManagementClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `storage.rest`.

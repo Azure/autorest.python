@@ -65,10 +65,6 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_operation_group_one.build_test_two_request(
             template_url=self.test_two.metadata['url'],
         )._to_pipeline_transport_request()

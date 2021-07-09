@@ -27,7 +27,6 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/null")
 
@@ -65,7 +64,6 @@ def build_put_positive_duration_request(*, json: Any = None, content: Any = None
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/positiveduration")
 
@@ -91,7 +89,6 @@ def build_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/positiveduration")
 
@@ -115,7 +112,6 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/duration/invalid")
 

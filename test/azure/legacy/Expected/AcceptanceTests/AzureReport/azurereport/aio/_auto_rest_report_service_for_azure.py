@@ -37,7 +37,6 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         self._serialize.client_side_validation = False
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azurereport.rest`.

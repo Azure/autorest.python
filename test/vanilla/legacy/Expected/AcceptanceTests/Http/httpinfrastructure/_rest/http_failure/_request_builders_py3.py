@@ -26,7 +26,6 @@ def build_get_empty_error_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/emptybody/error")
 
@@ -50,7 +49,6 @@ def build_get_no_model_error_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/nomodel/error")
 
@@ -74,7 +72,6 @@ def build_get_no_model_empty_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/nomodel/empty")
 

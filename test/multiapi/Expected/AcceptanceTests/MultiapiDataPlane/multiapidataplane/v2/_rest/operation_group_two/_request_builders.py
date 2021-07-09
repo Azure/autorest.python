@@ -38,7 +38,6 @@ def build_test_four_request(
 
     api_version = "2.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
 

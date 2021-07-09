@@ -50,7 +50,6 @@ def build_put200_succeeded_request(*, json: Any = None, content: Any = None, **k
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/200/succeeded")
 
@@ -100,7 +99,6 @@ def build_put201_succeeded_request(*, json: Any = None, content: Any = None, **k
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/201/succeeded")
 
@@ -138,7 +136,6 @@ def build_post202_list_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/list")
 
@@ -186,7 +183,6 @@ def build_put200_succeeded_no_state_request(*, json: Any = None, content: Any = 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/200/succeeded/nostate")
 
@@ -237,7 +233,6 @@ def build_put202_retry200_request(*, json: Any = None, content: Any = None, **kw
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/202/retry/200")
 
@@ -288,7 +283,6 @@ def build_put201_creating_succeeded200_request(*, json: Any = None, content: Any
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/201/creating/succeeded/200")
 
@@ -339,7 +333,6 @@ def build_put200_updating_succeeded204_request(*, json: Any = None, content: Any
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/200/updating/succeeded/200")
 
@@ -390,7 +383,6 @@ def build_put201_creating_failed200_request(*, json: Any = None, content: Any = 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/201/created/failed/200")
 
@@ -441,7 +433,6 @@ def build_put200_acceptedcanceled200_request(*, json: Any = None, content: Any =
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/200/accepted/canceled/200")
 
@@ -491,7 +482,6 @@ def build_put_no_header_in_retry_request(*, json: Any = None, content: Any = Non
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/put/noheader/202/200")
 
@@ -542,7 +532,6 @@ def build_put_async_retry_succeeded_request(*, json: Any = None, content: Any = 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putasync/retry/succeeded")
 
@@ -593,7 +582,6 @@ def build_put_async_no_retry_succeeded_request(*, json: Any = None, content: Any
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putasync/noretry/succeeded")
 
@@ -644,7 +632,6 @@ def build_put_async_retry_failed_request(*, json: Any = None, content: Any = Non
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putasync/retry/failed")
 
@@ -695,7 +682,6 @@ def build_put_async_no_retrycanceled_request(*, json: Any = None, content: Any =
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putasync/noretry/canceled")
 
@@ -746,7 +732,6 @@ def build_put_async_no_header_in_retry_request(*, json: Any = None, content: Any
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putasync/noheader/201/200")
 
@@ -795,7 +780,6 @@ def build_put_non_resource_request(*, json: Any = None, content: Any = None, **k
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putnonresource/202/200")
 
@@ -844,7 +828,6 @@ def build_put_async_non_resource_request(*, json: Any = None, content: Any = Non
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putnonresourceasync/202/200")
 
@@ -893,7 +876,6 @@ def build_put_sub_resource_request(*, json: Any = None, content: Any = None, **k
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putsubresource/202/200")
 
@@ -942,7 +924,6 @@ def build_put_async_sub_resource_request(*, json: Any = None, content: Any = Non
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/putsubresourceasync/202/200")
 
@@ -979,7 +960,6 @@ def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) ->
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/provisioning/202/accepted/200/succeeded")
 
@@ -1014,7 +994,6 @@ def build_delete_provisioning202_deleting_failed200_request(**kwargs: Any) -> Ht
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/provisioning/202/deleting/200/failed")
 
@@ -1049,7 +1028,6 @@ def build_delete_provisioning202_deletingcanceled200_request(**kwargs: Any) -> H
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/provisioning/202/deleting/200/canceled")
 
@@ -1073,7 +1051,6 @@ def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/204/succeeded")
 
@@ -1107,7 +1084,6 @@ def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/202/retry/200")
 
@@ -1141,7 +1117,6 @@ def build_delete202_no_retry204_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/202/noretry/204")
 
@@ -1166,7 +1141,6 @@ def build_delete_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/delete/noheader")
 
@@ -1191,7 +1165,6 @@ def build_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/deleteasync/noheader/202/204")
 
@@ -1216,7 +1189,6 @@ def build_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/deleteasync/retry/succeeded")
 
@@ -1241,7 +1213,6 @@ def build_delete_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/deleteasync/noretry/succeeded")
 
@@ -1266,7 +1237,6 @@ def build_delete_async_retry_failed_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/deleteasync/retry/failed")
 
@@ -1291,7 +1261,6 @@ def build_delete_async_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/deleteasync/retry/canceled")
 
@@ -1325,7 +1294,6 @@ def build_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/post/payload/200")
 
@@ -1367,7 +1335,6 @@ def build_post202_retry200_request(*, json: Any = None, content: Any = None, **k
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/post/202/retry/200")
 
@@ -1417,7 +1384,6 @@ def build_post202_no_retry204_request(*, json: Any = None, content: Any = None, 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/post/202/noretry/204")
 
@@ -1454,7 +1420,6 @@ def build_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpR
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalLocationGet")
 
@@ -1489,7 +1454,6 @@ def build_post_double_headers_final_azure_header_get_request(**kwargs: Any) -> H
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalAzureHeaderGet")
 
@@ -1524,7 +1488,6 @@ def build_post_double_headers_final_azure_header_get_default_request(**kwargs: A
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault")
 
@@ -1573,7 +1536,6 @@ def build_post_async_retry_succeeded_request(*, json: Any = None, content: Any =
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/postasync/retry/succeeded")
 
@@ -1624,7 +1586,6 @@ def build_post_async_no_retry_succeeded_request(*, json: Any = None, content: An
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/postasync/noretry/succeeded")
 
@@ -1669,7 +1630,6 @@ def build_post_async_retry_failed_request(*, json: Any = None, content: Any = No
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/postasync/retry/failed")
 
@@ -1714,7 +1674,6 @@ def build_post_async_retrycanceled_request(*, json: Any = None, content: Any = N
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/postasync/retry/canceled")
 

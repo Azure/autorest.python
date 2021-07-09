@@ -50,7 +50,6 @@ def build_get_sample_resource_group_request(
 
     api_version = "2014-04-01-preview"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
     path_format_arguments = {

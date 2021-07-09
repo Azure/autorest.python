@@ -34,7 +34,6 @@ def build_get_object_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/anything/object")
 
@@ -104,7 +103,6 @@ def build_get_string_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/anything/string")
 
@@ -174,7 +172,6 @@ def build_get_array_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/anything/array")
 

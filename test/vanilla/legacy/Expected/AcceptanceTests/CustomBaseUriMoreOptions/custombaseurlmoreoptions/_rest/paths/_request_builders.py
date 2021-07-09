@@ -44,7 +44,6 @@ def build_get_empty_request(
     key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
     path_format_arguments = {

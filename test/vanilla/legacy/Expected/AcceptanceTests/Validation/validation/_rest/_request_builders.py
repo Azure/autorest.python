@@ -67,7 +67,6 @@ def build_validation_of_method_parameters_request(
 
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
@@ -167,7 +166,6 @@ def build_validation_of_body_request(
 
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
@@ -208,7 +206,6 @@ def build_get_with_constant_in_path_request(
     """
 
     constant_param = "constant"
-
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {
@@ -287,7 +284,6 @@ def build_post_with_constant_in_body_request(
 
     constant_param = "constant"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {

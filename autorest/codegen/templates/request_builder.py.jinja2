@@ -1,14 +1,15 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools with context %}
 {{ request_builder_serializer.method_signature_and_response_type_annotation(request_builder) }}
-    {{ op_tools.description(request_builder, request_builder_serializer) | indent -}}
+    {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
+{% if request_builder.parameters.kwargs_to_pop(is_python_3_file) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}
+{% endif %}
 {% if request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endfor %}
 {% endif %}
-
     # Construct URL
     url = kwargs.pop("template_url", {{ keywords.escape_str(request_builder.url) }})
 {% if request_builder.parameters.path %}

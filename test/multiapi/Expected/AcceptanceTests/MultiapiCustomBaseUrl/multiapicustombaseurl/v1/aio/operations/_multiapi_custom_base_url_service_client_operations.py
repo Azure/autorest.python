@@ -42,10 +42,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_request(
             id=id,
             template_url=self.test.metadata['url'],

@@ -68,10 +68,6 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_operation_group_two.build_test_four_request(
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],

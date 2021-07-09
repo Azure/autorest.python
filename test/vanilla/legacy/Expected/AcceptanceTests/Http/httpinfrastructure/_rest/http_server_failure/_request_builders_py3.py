@@ -26,7 +26,6 @@ def build_head501_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/server/501")
 
@@ -50,7 +49,6 @@ def build_get501_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/server/501")
 
@@ -88,7 +86,6 @@ def build_post505_request(*, json: Any = None, content: Any = None, **kwargs: An
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/server/505")
 
@@ -128,7 +125,6 @@ def build_delete505_request(*, json: Any = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/failure/server/505")
 

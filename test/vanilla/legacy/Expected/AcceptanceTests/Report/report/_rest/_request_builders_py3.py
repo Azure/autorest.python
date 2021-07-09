@@ -38,7 +38,6 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/report")
 
@@ -79,7 +78,6 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/report/optional")
 

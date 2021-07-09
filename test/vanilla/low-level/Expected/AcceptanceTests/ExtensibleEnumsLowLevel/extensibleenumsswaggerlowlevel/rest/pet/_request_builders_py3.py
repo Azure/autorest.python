@@ -39,7 +39,6 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
     path_format_arguments = {
@@ -92,7 +91,6 @@ def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/extensibleenums/pet/addPet")
 

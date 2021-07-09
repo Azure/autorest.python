@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 
 class AutoRestPagingTestService(object):
     """Long-running Operation for AutoRest.
-    
+
     :ivar paging: PagingOperations operations
     :vartype paging: custompollerpager.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -48,7 +48,6 @@ class AutoRestPagingTestService(object):
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -62,7 +61,6 @@ class AutoRestPagingTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custompollerpager.rest`.

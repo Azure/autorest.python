@@ -43,7 +43,6 @@ def build_get_int_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/integer")
 
@@ -87,7 +86,6 @@ def build_put_int_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/integer")
 
@@ -125,7 +123,6 @@ def build_get_long_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/long")
 
@@ -169,7 +166,6 @@ def build_put_long_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/long")
 
@@ -207,7 +203,6 @@ def build_get_float_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/float")
 
@@ -251,7 +246,6 @@ def build_put_float_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/float")
 
@@ -289,7 +283,6 @@ def build_get_double_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/double")
 
@@ -335,7 +328,6 @@ def build_put_double_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/double")
 
@@ -373,7 +365,6 @@ def build_get_bool_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/bool")
 
@@ -417,7 +408,6 @@ def build_put_bool_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/bool")
 
@@ -456,7 +446,6 @@ def build_get_string_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/string")
 
@@ -501,7 +490,6 @@ def build_put_string_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/string")
 
@@ -539,7 +527,6 @@ def build_get_date_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/date")
 
@@ -583,7 +570,6 @@ def build_put_date_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/date")
 
@@ -621,7 +607,6 @@ def build_get_date_time_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
@@ -667,7 +652,6 @@ def build_put_date_time_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
@@ -705,7 +689,6 @@ def build_get_date_time_rfc1123_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
@@ -751,7 +734,6 @@ def build_put_date_time_rfc1123_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
@@ -788,7 +770,6 @@ def build_get_duration_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/duration")
 
@@ -831,7 +812,6 @@ def build_put_duration_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/duration")
 
@@ -868,7 +848,6 @@ def build_get_byte_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/byte")
 
@@ -913,7 +892,6 @@ def build_put_byte_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/primitive/byte")
 

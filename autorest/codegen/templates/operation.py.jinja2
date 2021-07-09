@@ -14,10 +14,9 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
-    {% if operation.parameters.kwargs_to_pop %}
+    {% if operation.parameters.kwargs_to_pop(async_mode) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
-
     {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent }}
     pipeline_response = {{ keywords.await }}self._client.send_request(request, {{ stream_request_parameter }}, _return_pipeline_response=True, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}

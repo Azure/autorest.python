@@ -35,7 +35,6 @@ def build_get_with_filter_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/odata/filter")
 

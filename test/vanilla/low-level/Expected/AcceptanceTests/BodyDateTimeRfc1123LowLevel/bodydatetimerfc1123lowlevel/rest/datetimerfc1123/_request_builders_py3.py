@@ -27,7 +27,6 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/null")
 
@@ -51,7 +50,6 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/invalid")
 
@@ -75,7 +73,6 @@ def build_get_overflow_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/overflow")
 
@@ -99,7 +96,6 @@ def build_get_underflow_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/underflow")
 
@@ -137,7 +133,6 @@ def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/max")
 
@@ -163,7 +158,6 @@ def build_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/max/lowercase")
 
@@ -187,7 +181,6 @@ def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/max/uppercase")
 
@@ -225,7 +218,6 @@ def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/min")
 
@@ -251,7 +243,6 @@ def build_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/datetimerfc1123/min")
 

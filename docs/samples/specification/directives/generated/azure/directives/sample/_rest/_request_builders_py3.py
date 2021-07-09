@@ -58,7 +58,6 @@ def build_basic_polling_request_initial(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/basic/polling')
 
@@ -108,9 +107,7 @@ def build_basic_paging_request(
             }
     """
 
-
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/basic/paging')
 

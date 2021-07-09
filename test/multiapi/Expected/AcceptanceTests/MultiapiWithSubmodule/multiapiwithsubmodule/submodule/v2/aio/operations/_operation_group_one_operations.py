@@ -62,11 +62,8 @@ class OperationGroupOneOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-
-        
         if parameter_one is not None:
             json = self._serialize.body(parameter_one, 'ModelTwo')
         else:
@@ -114,10 +111,6 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_operation_group_one.build_test_three_request(
             template_url=self.test_three.metadata['url'],
         )._to_pipeline_transport_request()

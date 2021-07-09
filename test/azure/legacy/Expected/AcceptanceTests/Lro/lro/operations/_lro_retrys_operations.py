@@ -66,7 +66,6 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -135,11 +134,9 @@ class LRORetrysOperations(object):
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
 
             if cls:
@@ -173,7 +170,6 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -247,11 +243,9 @@ class LRORetrysOperations(object):
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             response_headers = {}
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
@@ -352,7 +346,6 @@ class LRORetrysOperations(object):
         kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
 
             if cls:
@@ -437,7 +430,6 @@ class LRORetrysOperations(object):
         kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             if cls:
                 return cls(pipeline_response, None, {})
 
@@ -522,7 +514,6 @@ class LRORetrysOperations(object):
         kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             if cls:
                 return cls(pipeline_response, None, {})
 
@@ -553,7 +544,6 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -617,11 +607,9 @@ class LRORetrysOperations(object):
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             if cls:
                 return cls(pipeline_response, None, {})
 
@@ -652,7 +640,6 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -722,11 +709,9 @@ class LRORetrysOperations(object):
 
         kwargs.pop("error_map", None)
         kwargs.pop("content_type", None)
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             if cls:
                 return cls(pipeline_response, None, {})
 

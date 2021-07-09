@@ -64,7 +64,6 @@ def build_create_ap_true_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/true")
 
@@ -126,7 +125,6 @@ def build_create_cat_ap_true_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/true-subclass")
 
@@ -186,7 +184,6 @@ def build_create_ap_object_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/type/object")
 
@@ -246,7 +243,6 @@ def build_create_ap_string_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/type/string")
 
@@ -306,7 +302,6 @@ def build_create_ap_in_properties_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/in/properties")
 
@@ -374,7 +369,6 @@ def build_create_ap_in_properties_with_ap_string_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/additionalProperties/in/properties/with/additionalProperties/string")
 

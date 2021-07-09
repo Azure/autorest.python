@@ -26,7 +26,6 @@ def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
@@ -64,7 +63,6 @@ def build_put_not_expandable_request(*, json: Any = None, content: Any = None, *
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
@@ -90,7 +88,6 @@ def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/enum/Referenced")
 
@@ -128,7 +125,6 @@ def build_put_referenced_request(*, json: Any = None, content: Any = None, **kwa
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/enum/Referenced")
 
@@ -163,7 +159,6 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
@@ -204,7 +199,6 @@ def build_put_referenced_constant_request(*, json: Any = None, content: Any = No
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 

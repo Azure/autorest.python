@@ -203,7 +203,6 @@ def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs:
     """
 
     input = "value1"
-
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
 
@@ -229,7 +228,6 @@ def build_put_no_model_as_string_required_one_value_default_request(**kwargs: An
     """
 
     input = "value1"
-
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
 

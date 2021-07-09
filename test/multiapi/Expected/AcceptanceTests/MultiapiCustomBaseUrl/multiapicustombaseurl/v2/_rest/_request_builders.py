@@ -39,7 +39,6 @@ def build_test_request(
 
     api_version = "2.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/test')
 

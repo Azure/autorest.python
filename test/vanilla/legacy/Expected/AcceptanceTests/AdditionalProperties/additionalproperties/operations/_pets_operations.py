@@ -73,7 +73,6 @@ class PetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPTrue")
@@ -121,7 +120,6 @@ class PetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "CatAPTrue")
@@ -169,7 +167,6 @@ class PetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPObject")
@@ -217,7 +214,6 @@ class PetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPString")
@@ -265,7 +261,6 @@ class PetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPInProperties")
@@ -313,7 +308,6 @@ class PetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")

@@ -35,7 +35,6 @@ def build_get_method_global_valid_request(
 
     api_version = "2015-07-01-preview"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview")
 
@@ -67,7 +66,6 @@ def build_get_method_global_not_provided_valid_request(
 
     api_version = "2015-07-01-preview"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url", "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
@@ -101,7 +99,6 @@ def build_get_path_global_valid_request(
 
     api_version = "2015-07-01-preview"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview")
 
@@ -133,7 +130,6 @@ def build_get_swagger_global_valid_request(
 
     api_version = "2015-07-01-preview"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview")
 

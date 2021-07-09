@@ -58,7 +58,6 @@ def build_put_array_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/array")
 
@@ -100,7 +99,6 @@ def build_get_array_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/array")
 
@@ -146,7 +144,6 @@ def build_put_wrapped_array_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
 
@@ -186,7 +183,6 @@ def build_get_wrapped_array_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
 
@@ -234,7 +230,6 @@ def build_put_dictionary_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/dictionary")
 
@@ -276,7 +271,6 @@ def build_get_dictionary_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/dictionary")
 
@@ -330,7 +324,6 @@ def build_put_resource_collection_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
 
@@ -378,7 +371,6 @@ def build_get_resource_collection_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
 
@@ -432,7 +424,6 @@ def build_put_simple_product_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/customFlattening")
 
@@ -488,7 +479,6 @@ def build_post_flattened_simple_product_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/customFlattening")
 
@@ -547,7 +537,6 @@ def build_put_simple_product_with_grouping_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/model-flatten/customFlattening/parametergrouping/{name}/")
     path_format_arguments = {

@@ -57,7 +57,6 @@ def build_list_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages")
     path_format_arguments = {

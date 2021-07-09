@@ -33,7 +33,6 @@ def build_head300_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/300")
 
@@ -68,7 +67,6 @@ def build_get300_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/300")
 
@@ -95,7 +93,6 @@ def build_head301_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
@@ -122,7 +119,6 @@ def build_get301_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
@@ -164,7 +160,6 @@ def build_put301_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
@@ -193,7 +188,6 @@ def build_head302_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
@@ -220,7 +214,6 @@ def build_get302_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
@@ -262,7 +255,6 @@ def build_patch302_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
@@ -306,7 +298,6 @@ def build_post303_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/303")
 
@@ -335,7 +326,6 @@ def build_head307_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -362,7 +352,6 @@ def build_get307_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -389,7 +378,6 @@ def build_options307_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -430,7 +418,6 @@ def build_put307_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -473,7 +460,6 @@ def build_patch307_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -516,7 +502,6 @@ def build_post307_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
@@ -559,7 +544,6 @@ def build_delete307_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 

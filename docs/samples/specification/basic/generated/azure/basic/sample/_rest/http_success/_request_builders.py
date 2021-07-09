@@ -32,8 +32,6 @@ def build_head200_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
-
     # Construct URL
     url = kwargs.pop("template_url", '/http/success/200')
 
@@ -59,8 +57,6 @@ def build_head204_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
-
     # Construct URL
     url = kwargs.pop("template_url", '/http/success/204')
 
@@ -85,8 +81,6 @@ def build_head404_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
-
-
 
     # Construct URL
     url = kwargs.pop("template_url", '/http/success/404')

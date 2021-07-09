@@ -26,7 +26,6 @@ def build_get_true_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/true")
 
@@ -64,7 +63,6 @@ def build_put_true_request(*, json: Any = None, content: Any = None, **kwargs: A
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/true")
 
@@ -90,7 +88,6 @@ def build_get_false_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/false")
 
@@ -128,7 +125,6 @@ def build_put_false_request(*, json: Any = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/false")
 
@@ -154,7 +150,6 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/null")
 
@@ -178,7 +173,6 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/invalid")
 

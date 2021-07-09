@@ -55,7 +55,6 @@ def build_post_required_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postRequired/{path}")
     path_format_arguments = {
@@ -100,7 +99,6 @@ def build_post_optional_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postOptional")
 
@@ -146,7 +144,6 @@ def build_post_multi_param_groups_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/postMultipleParameterGroups")
 
@@ -187,7 +184,6 @@ def build_post_shared_parameter_group_object_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/parameterGrouping/sharedParameterGroupObject")
 

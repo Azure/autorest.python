@@ -51,7 +51,6 @@ def build_test_four_request(
 
     api_version = "3.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
 
@@ -90,10 +89,8 @@ def build_test_five_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
     api_version = "3.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFiveEndpoint')
 

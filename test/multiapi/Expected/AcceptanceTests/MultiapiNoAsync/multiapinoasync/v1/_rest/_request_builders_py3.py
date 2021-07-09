@@ -34,10 +34,8 @@ def build_test_one_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
 
@@ -100,7 +98,6 @@ def build_test_lro_request_initial(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/lro')
 
@@ -158,9 +155,7 @@ def build_test_lro_and_paging_request_initial(
             }
     """
 
-
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/lroAndPaging')
 
@@ -200,10 +195,8 @@ def build_test_different_calls_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 

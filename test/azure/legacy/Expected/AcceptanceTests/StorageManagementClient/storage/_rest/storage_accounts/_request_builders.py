@@ -67,7 +67,6 @@ def build_check_name_availability_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
@@ -180,7 +179,6 @@ def build_create_request_initial(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -234,7 +232,6 @@ def build_delete_request(
     """
 
     api_version = "2015-05-01-preview"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -323,7 +320,6 @@ def build_get_properties_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -446,7 +442,6 @@ def build_update_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -508,7 +503,6 @@ def build_list_keys_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -597,7 +591,6 @@ def build_list_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
     path_format_arguments = {
@@ -684,7 +677,6 @@ def build_list_by_resource_group_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -758,7 +750,6 @@ def build_regenerate_key_request(
 
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",

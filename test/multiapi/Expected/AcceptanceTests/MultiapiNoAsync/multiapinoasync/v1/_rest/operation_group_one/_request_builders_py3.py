@@ -27,10 +27,8 @@ def build_test_two_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-
     api_version = "1.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
 

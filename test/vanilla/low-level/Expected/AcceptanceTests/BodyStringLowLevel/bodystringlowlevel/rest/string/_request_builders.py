@@ -33,7 +33,6 @@ def build_get_null_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/null")
 
@@ -74,7 +73,6 @@ def build_put_null_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/null")
 
@@ -103,7 +101,6 @@ def build_get_empty_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/empty")
 
@@ -144,7 +141,6 @@ def build_put_empty_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/empty")
 
@@ -173,7 +169,6 @@ def build_get_mbcs_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/mbcs")
 
@@ -214,7 +209,6 @@ def build_put_mbcs_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/mbcs")
 
@@ -245,7 +239,6 @@ def build_get_whitespace_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/whitespace")
 
@@ -288,7 +281,6 @@ def build_put_whitespace_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/whitespace")
 
@@ -317,7 +309,6 @@ def build_get_not_provided_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/notProvided")
 
@@ -344,7 +335,6 @@ def build_get_base64_encoded_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/base64Encoding")
 
@@ -371,7 +361,6 @@ def build_get_base64_url_encoded_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
@@ -412,7 +401,6 @@ def build_put_base64_url_encoded_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
@@ -441,7 +429,6 @@ def build_get_null_base64_url_encoded_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/string/nullBase64UrlEncoding")
 

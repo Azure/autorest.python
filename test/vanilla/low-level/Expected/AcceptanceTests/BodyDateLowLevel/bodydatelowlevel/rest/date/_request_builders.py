@@ -34,7 +34,6 @@ def build_get_null_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/null")
 
@@ -61,7 +60,6 @@ def build_get_invalid_date_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/invaliddate")
 
@@ -88,7 +86,6 @@ def build_get_overflow_date_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/overflowdate")
 
@@ -115,7 +112,6 @@ def build_get_underflow_date_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/underflowdate")
 
@@ -156,7 +152,6 @@ def build_put_max_date_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/max")
 
@@ -185,7 +180,6 @@ def build_get_max_date_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/max")
 
@@ -226,7 +220,6 @@ def build_put_min_date_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/min")
 
@@ -255,7 +248,6 @@ def build_get_min_date_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/date/min")
 

@@ -48,10 +48,6 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_one_request(
             id=id,
             message=message,
@@ -83,11 +79,8 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-
-        
         if product is not None:
             json = self._serialize.body(product, 'Product')
         else:
@@ -157,12 +150,9 @@ class MultiapiServiceClientOperationsMixin:
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
@@ -195,10 +185,6 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-
-
-        
         _maxresults = None
         _timeout = None
         if test_lro_and_paging_options is not None:
@@ -262,10 +248,8 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _maxresults = None
                 _timeout = None
                 if test_lro_and_paging_options is not None:
@@ -281,7 +265,6 @@ class MultiapiServiceClientOperationsMixin:
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _maxresults = None
                 _timeout = None
                 if test_lro_and_paging_options is not None:
@@ -381,10 +364,6 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],

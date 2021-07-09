@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.
-    
+
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param endpoint: Pass in https://localhost:3000.
@@ -40,7 +40,6 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -52,7 +51,6 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         request: HttpRequest,
         **kwargs: Any
     ) -> Awaitable[AsyncHttpResponse]:
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `multiapicustombaseurl.v1.rest`.

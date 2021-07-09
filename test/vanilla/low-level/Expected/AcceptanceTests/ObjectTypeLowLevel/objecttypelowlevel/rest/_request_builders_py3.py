@@ -27,7 +27,6 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/objectType/get")
 
@@ -68,7 +67,6 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/objectType/put")
 

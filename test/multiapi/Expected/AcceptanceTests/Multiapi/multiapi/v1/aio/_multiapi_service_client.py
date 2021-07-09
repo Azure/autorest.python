@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
-    
+
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapi.v1.aio.operations.OperationGroupOneOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -45,7 +45,6 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -58,7 +57,6 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         request: HttpRequest,
         **kwargs: Any
     ) -> Awaitable[AsyncHttpResponse]:
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `multiapi.v1.rest`.

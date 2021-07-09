@@ -33,7 +33,6 @@ def build_head408_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/408")
 
@@ -74,7 +73,6 @@ def build_put500_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/500")
 
@@ -117,7 +115,6 @@ def build_patch500_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/500")
 
@@ -146,7 +143,6 @@ def build_get502_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/502")
 
@@ -173,7 +169,6 @@ def build_options502_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/502")
 
@@ -214,7 +209,6 @@ def build_post503_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/503")
 
@@ -257,7 +251,6 @@ def build_delete503_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/503")
 
@@ -300,7 +293,6 @@ def build_put504_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/504")
 
@@ -343,7 +335,6 @@ def build_patch504_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/http/retry/504")
 

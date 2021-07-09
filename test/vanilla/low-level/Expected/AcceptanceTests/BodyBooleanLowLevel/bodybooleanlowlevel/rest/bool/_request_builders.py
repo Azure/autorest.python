@@ -33,7 +33,6 @@ def build_get_true_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/true")
 
@@ -74,7 +73,6 @@ def build_put_true_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/true")
 
@@ -103,7 +101,6 @@ def build_get_false_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/false")
 
@@ -144,7 +141,6 @@ def build_put_false_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/false")
 
@@ -173,7 +169,6 @@ def build_get_null_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/null")
 
@@ -200,7 +195,6 @@ def build_get_invalid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/bool/invalid")
 

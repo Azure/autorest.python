@@ -26,7 +26,6 @@ def build_get_file_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "image/png, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/files/stream/nonempty")
 
@@ -50,7 +49,6 @@ def build_get_file_large_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "image/png, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/files/stream/verylarge")
 
@@ -74,7 +72,6 @@ def build_get_empty_file_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "image/png, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/files/stream/empty")
 

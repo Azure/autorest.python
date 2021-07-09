@@ -31,7 +31,6 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -66,7 +65,6 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url", "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
@@ -99,7 +97,6 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url", "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
@@ -133,7 +130,6 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",

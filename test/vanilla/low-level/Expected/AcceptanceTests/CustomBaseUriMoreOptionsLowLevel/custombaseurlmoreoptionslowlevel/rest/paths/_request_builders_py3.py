@@ -35,7 +35,6 @@ def build_get_empty_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
     path_format_arguments = {

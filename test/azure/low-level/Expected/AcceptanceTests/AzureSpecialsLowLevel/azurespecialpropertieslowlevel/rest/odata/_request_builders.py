@@ -44,7 +44,6 @@ def build_get_with_filter_request(
     orderby = kwargs.pop("orderby", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/odata/filter")
 

@@ -31,7 +31,6 @@ def build_post_method_global_valid_request(subscription_id: str, **kwargs: Any) 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -66,7 +65,6 @@ def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url", "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
@@ -101,7 +99,6 @@ def build_post_method_global_not_provided_valid_request(subscription_id: str, **
 
     api_version = "2015-07-01-preview"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -140,7 +137,6 @@ def build_post_path_global_valid_request(subscription_id: str, **kwargs: Any) ->
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -175,7 +171,6 @@ def build_post_swagger_global_valid_request(subscription_id: str, **kwargs: Any)
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",

@@ -33,7 +33,6 @@ def build_get_null_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/byte/null")
 
@@ -60,7 +59,6 @@ def build_get_empty_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/byte/empty")
 
@@ -87,7 +85,6 @@ def build_get_non_ascii_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/byte/nonAscii")
 
@@ -130,7 +127,6 @@ def build_put_non_ascii_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/byte/nonAscii")
 
@@ -159,7 +155,6 @@ def build_get_invalid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/byte/invalid")
 

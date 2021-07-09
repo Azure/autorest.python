@@ -45,7 +45,6 @@ def build_upload_file_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
@@ -78,7 +77,6 @@ def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRe
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
@@ -123,7 +121,6 @@ def build_upload_files_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
 

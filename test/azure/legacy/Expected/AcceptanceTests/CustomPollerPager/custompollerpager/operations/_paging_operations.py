@@ -63,18 +63,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -82,7 +78,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -127,18 +122,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -146,7 +137,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -191,18 +181,14 @@ class PagingOperations(object):
         :rtype: ~custompollerpagerdefinitions.CustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -210,7 +196,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_single_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -256,18 +241,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -275,7 +256,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_first_response_empty_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -327,17 +307,13 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _maxresults = None
                 _timeout = None
                 if paging_get_multiple_pages_options is not None:
@@ -353,7 +329,6 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _maxresults = None
                 _timeout = None
                 if paging_get_multiple_pages_options is not None:
@@ -412,18 +387,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
@@ -432,7 +403,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_next_operation_with_query_params_request(
                     template_url='/paging/multiple/nextOperationWithQueryParams',
                 )._to_pipeline_transport_request()
@@ -483,17 +453,13 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _maxresults = None
                 _timeout = None
                 if paging_get_odata_multiple_pages_options is not None:
@@ -509,7 +475,6 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _maxresults = None
                 _timeout = None
                 if paging_get_odata_multiple_pages_options is not None:
@@ -570,17 +535,13 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _maxresults = None
                 _offset = None
                 _timeout = None
@@ -599,7 +560,6 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _maxresults = None
                 _offset = None
                 _timeout = None
@@ -657,18 +617,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -676,7 +632,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -722,18 +677,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -741,7 +692,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -786,18 +736,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -805,7 +751,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_single_pages_failure_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -850,18 +795,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -869,7 +810,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -914,18 +854,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -933,7 +869,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -984,18 +919,14 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
@@ -1005,7 +936,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
@@ -1055,17 +985,13 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _api_version = None
                 _tenant = None
                 if custom_parameter_group is not None:
@@ -1080,7 +1006,6 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _api_version = None
                 _tenant = None
                 if custom_parameter_group is not None:
@@ -1133,10 +1058,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-
-
-        
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
@@ -1201,10 +1122,8 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
-                
                 _maxresults = None
                 _timeout = None
                 if paging_get_multiple_pages_lro_options is not None:
@@ -1220,7 +1139,6 @@ class PagingOperations(object):
                 request.url = self._client.format_url(request.url)
 
             else:
-                
                 _maxresults = None
                 _timeout = None
                 if paging_get_multiple_pages_lro_options is not None:
@@ -1315,18 +1233,14 @@ class PagingOperations(object):
          ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -1334,7 +1248,6 @@ class PagingOperations(object):
 
             else:
                 
-
                 request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()

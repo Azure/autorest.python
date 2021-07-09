@@ -38,7 +38,6 @@ def build_custom_named_request_id_request(
     foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestId")
 
@@ -73,7 +72,6 @@ def build_custom_named_request_id_param_grouping_request(
     foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdParamGrouping")
 
@@ -107,7 +105,6 @@ def build_custom_named_request_id_head_request(
     foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdHead")
 

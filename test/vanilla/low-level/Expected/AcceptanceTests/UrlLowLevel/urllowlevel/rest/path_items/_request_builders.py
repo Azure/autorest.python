@@ -57,7 +57,6 @@ def build_get_all_with_values_request(
     local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -126,7 +125,6 @@ def build_get_global_query_null_request(
     local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -195,7 +193,6 @@ def build_get_global_and_local_query_null_request(
     local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -263,7 +260,6 @@ def build_get_local_path_item_query_null_request(
     local_string_query = kwargs.pop("local_string_query", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop(
         "template_url",

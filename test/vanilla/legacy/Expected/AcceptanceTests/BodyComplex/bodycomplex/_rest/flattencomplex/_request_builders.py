@@ -44,7 +44,6 @@ def build_get_valid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/flatten/valid")
 

@@ -50,7 +50,6 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/")
 

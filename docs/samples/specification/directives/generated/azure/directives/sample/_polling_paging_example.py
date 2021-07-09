@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.
-    
+
     :param base_url: Service URL
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
@@ -42,7 +42,6 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         self._config = PollingPagingExampleConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
@@ -55,7 +54,6 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpResponse
-        
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azure.directives.sample.rest`.

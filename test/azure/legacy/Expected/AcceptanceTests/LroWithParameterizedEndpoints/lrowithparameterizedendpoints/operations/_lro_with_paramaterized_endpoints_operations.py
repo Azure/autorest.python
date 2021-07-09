@@ -111,7 +111,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("str", pipeline_response)
 
             if cls:
@@ -223,7 +222,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("str", pipeline_response)
 
             if cls:

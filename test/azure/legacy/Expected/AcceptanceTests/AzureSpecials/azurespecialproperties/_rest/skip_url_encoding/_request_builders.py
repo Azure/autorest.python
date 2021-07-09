@@ -37,7 +37,6 @@ def build_get_method_path_valid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}")
     path_format_arguments = {
@@ -71,7 +70,6 @@ def build_get_path_valid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}")
     path_format_arguments = {
@@ -103,7 +101,6 @@ def build_get_swagger_path_valid_request(
 
     unencoded_path_param = "path1/path2/path3"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}")
     path_format_arguments = {
@@ -138,7 +135,6 @@ def build_get_method_query_valid_request(
     q1 = kwargs.pop("q1")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/valid")
 
@@ -173,7 +169,6 @@ def build_get_method_query_null_request(
     q1 = kwargs.pop("q1", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/null")
 
@@ -209,7 +204,6 @@ def build_get_path_query_valid_request(
     q1 = kwargs.pop("q1")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/query/valid")
 
@@ -241,7 +235,6 @@ def build_get_swagger_query_valid_request(
 
     q1 = "value1&q2=value2&q3=value3"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/query/valid")
 

@@ -27,7 +27,6 @@ def build_poll_with_parameterized_endpoints_request_initial(**kwargs: Any) -> Ht
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lroParameterizedEndpoints")
 
@@ -52,7 +51,6 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(**kwargs: A
 
     constant_parameter = "iAmConstant"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lroConstantParameterizedEndpoints/{constantParameter}")
     path_format_arguments = {

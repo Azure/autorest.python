@@ -46,7 +46,6 @@ def build_get_pet_by_id_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
     path_format_arguments = {
@@ -88,7 +87,6 @@ def build_do_something_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
     path_format_arguments = {
@@ -125,7 +123,6 @@ def build_has_models_param_request(
     models = kwargs.pop("models", "value1")  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
 

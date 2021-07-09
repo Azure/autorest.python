@@ -47,7 +47,6 @@ def build_get_valid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphicrecursive/valid")
 
@@ -201,7 +200,6 @@ def build_put_valid_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphicrecursive/valid")
 

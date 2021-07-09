@@ -39,18 +39,14 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest.build_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -58,7 +54,6 @@ class MultiapiServiceClientOperationsMixin(object):
 
             else:
                 
-
                 request = rest.build_test_paging_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -118,10 +113,6 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,

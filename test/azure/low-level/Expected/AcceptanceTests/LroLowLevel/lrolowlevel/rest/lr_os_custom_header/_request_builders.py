@@ -59,7 +59,6 @@ def build_put_async_retry_succeeded_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/customheader/putasync/retry/succeeded")
 
@@ -114,7 +113,6 @@ def build_put201_creating_succeeded200_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/customheader/put/201/creating/succeeded/200")
 
@@ -162,7 +160,6 @@ def build_post202_retry200_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/customheader/post/202/retry/200")
 
@@ -211,7 +208,6 @@ def build_post_async_retry_succeeded_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/lro/customheader/postasync/retry/succeeded")
 

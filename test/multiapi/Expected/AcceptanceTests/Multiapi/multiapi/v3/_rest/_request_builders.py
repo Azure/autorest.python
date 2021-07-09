@@ -45,9 +45,7 @@ def build_test_paging_request(
             }
     """
 
-
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/paging')
 
@@ -90,7 +88,6 @@ def build_test_different_calls_request(
 
     api_version = "3.0.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 

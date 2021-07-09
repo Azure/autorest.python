@@ -49,10 +49,6 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_one_request(
             id=id,
             message=message,
@@ -102,10 +98,6 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest.build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,

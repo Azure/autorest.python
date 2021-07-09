@@ -44,7 +44,6 @@ def build_get_valid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/valid")
 
@@ -90,7 +89,6 @@ def build_put_valid_request(
 
     api_version = "2016-02-29"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/valid")
 
@@ -133,7 +131,6 @@ def build_get_invalid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/invalid")
 
@@ -170,7 +167,6 @@ def build_get_empty_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/empty")
 
@@ -207,7 +203,6 @@ def build_get_null_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/null")
 
@@ -244,7 +239,6 @@ def build_get_not_provided_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/notprovided")
 

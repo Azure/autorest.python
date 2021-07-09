@@ -64,11 +64,8 @@ class OperationGroupTwoOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
 
-
-        
         json = None
         content = None
         if content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
@@ -121,10 +118,6 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_operation_group_two.build_test_five_request(
             template_url=self.test_five.metadata['url'],
         )._to_pipeline_transport_request()

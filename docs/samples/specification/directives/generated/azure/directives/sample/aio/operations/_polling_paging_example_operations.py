@@ -34,11 +34,8 @@ class PollingPagingExampleOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-
-        
         if product is not None:
             json = self._serialize.body(product, 'Product')
         else:
@@ -108,12 +105,9 @@ class PollingPagingExampleOperationsMixin:
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
-        
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
@@ -146,18 +140,14 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPager[~azure.directives.sample.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        
-
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
         def prepare_request(next_link=None):
             if not next_link:
                 
-
                 request = rest.build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -165,7 +155,6 @@ class PollingPagingExampleOperationsMixin:
 
             else:
                 
-
                 request = rest.build_basic_paging_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()

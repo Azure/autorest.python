@@ -44,7 +44,6 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
 
@@ -84,7 +83,6 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
 
@@ -126,7 +124,6 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/paging/customurl/{nextLink}")
     path_format_arguments = {

@@ -29,7 +29,6 @@ def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/existingkey")
 
@@ -54,7 +53,6 @@ def build_response_existing_key_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/existingkey")
 
@@ -80,7 +78,6 @@ def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/protectedkey")
 
@@ -105,7 +102,6 @@ def build_response_protected_key_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/protectedkey")
 
@@ -134,7 +130,6 @@ def build_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/integer")
 
@@ -162,7 +157,6 @@ def build_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpReque
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/integer")
 
@@ -192,7 +186,6 @@ def build_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> Htt
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/long")
 
@@ -220,7 +213,6 @@ def build_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/long")
 
@@ -250,7 +242,6 @@ def build_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/float")
 
@@ -278,7 +269,6 @@ def build_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/float")
 
@@ -308,7 +298,6 @@ def build_param_double_request(*, scenario: str, value: float, **kwargs: Any) ->
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/double")
 
@@ -336,7 +325,6 @@ def build_response_double_request(*, scenario: str, **kwargs: Any) -> HttpReques
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/double")
 
@@ -366,7 +354,6 @@ def build_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> Ht
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/bool")
 
@@ -394,7 +381,6 @@ def build_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/bool")
 
@@ -426,7 +412,6 @@ def build_param_string_request(*, scenario: str, value: Optional[str] = None, **
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/string")
 
@@ -456,7 +441,6 @@ def build_response_string_request(*, scenario: str, **kwargs: Any) -> HttpReques
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/string")
 
@@ -486,7 +470,6 @@ def build_param_date_request(*, scenario: str, value: datetime.date, **kwargs: A
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/date")
 
@@ -514,7 +497,6 @@ def build_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/date")
 
@@ -545,7 +527,6 @@ def build_param_datetime_request(*, scenario: str, value: datetime.datetime, **k
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/datetime")
 
@@ -573,7 +554,6 @@ def build_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequ
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/datetime")
 
@@ -606,7 +586,6 @@ def build_param_datetime_rfc1123_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/datetimerfc1123")
 
@@ -636,7 +615,6 @@ def build_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/datetimerfc1123")
 
@@ -665,7 +643,6 @@ def build_param_duration_request(*, scenario: str, value: datetime.timedelta, **
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/duration")
 
@@ -693,7 +670,6 @@ def build_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequ
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/duration")
 
@@ -722,7 +698,6 @@ def build_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) 
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/byte")
 
@@ -750,7 +725,6 @@ def build_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/byte")
 
@@ -783,7 +757,6 @@ def build_param_enum_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/param/prim/enum")
 
@@ -813,7 +786,6 @@ def build_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/response/prim/enum")
 
@@ -839,7 +811,6 @@ def build_custom_request_id_request(**kwargs: Any) -> HttpRequest:
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 

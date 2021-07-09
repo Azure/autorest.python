@@ -47,7 +47,6 @@ def build_get_valid_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/valid")
 
@@ -161,7 +160,6 @@ def build_put_valid_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/valid")
 
@@ -199,7 +197,6 @@ def build_get_dot_syntax_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
 
@@ -251,7 +248,6 @@ def build_get_composed_with_discriminator_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
 
@@ -303,7 +299,6 @@ def build_get_composed_without_discriminator_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
 
@@ -353,7 +348,6 @@ def build_get_complicated_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
 
@@ -413,7 +407,6 @@ def build_put_complicated_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
 
@@ -493,7 +486,6 @@ def build_put_missing_discriminator_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
 
@@ -598,7 +590,6 @@ def build_put_valid_missing_required_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")
 

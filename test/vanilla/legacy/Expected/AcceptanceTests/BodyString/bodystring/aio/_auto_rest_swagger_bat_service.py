@@ -43,7 +43,6 @@ class AutoRestSwaggerBATService:
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
-
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodystring.rest`.

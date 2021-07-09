@@ -5,7 +5,6 @@
 {% set request_builder = operation.request_builder %}
 cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(operation) }}
     {{ op_tools.error_map(operation, code_model)|indent }}
-
     def prepare_request(next_link=None):
         if not next_link:
             {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent(12) }}

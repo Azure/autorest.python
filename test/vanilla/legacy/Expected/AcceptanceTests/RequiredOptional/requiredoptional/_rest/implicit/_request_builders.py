@@ -37,7 +37,6 @@ def build_get_required_path_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
     path_format_arguments = {
@@ -72,7 +71,6 @@ def build_put_optional_query_request(
     query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
 
@@ -108,7 +106,6 @@ def build_put_optional_header_request(
     query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
 
@@ -151,7 +148,6 @@ def build_put_optional_body_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
 
@@ -185,7 +181,6 @@ def build_put_optional_binary_body_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
 
@@ -217,7 +212,6 @@ def build_get_required_global_path_request(
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
     path_format_arguments = {
@@ -252,7 +246,6 @@ def build_get_required_global_query_request(
     required_global_query = kwargs.pop("required_global_query")  # type: str
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/query")
 
@@ -287,7 +280,6 @@ def build_get_optional_global_query_request(
     optional_global_query = kwargs.pop("optional_global_query", None)  # type: Optional[int]
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/optional/query")
 

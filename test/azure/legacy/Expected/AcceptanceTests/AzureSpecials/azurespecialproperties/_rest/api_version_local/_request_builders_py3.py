@@ -28,7 +28,6 @@ def build_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
 
     api_version = "2.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/2.0")
 
@@ -59,7 +58,6 @@ def build_get_method_local_null_request(*, api_version: Optional[str] = None, **
     """
 
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/null")
 
@@ -89,7 +87,6 @@ def build_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
 
     api_version = "2.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/local/2.0")
 
@@ -118,7 +115,6 @@ def build_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
 
     api_version = "2.0"
     accept = "application/json"
-
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/apiVersion/swagger/string/none/query/local/2.0")
 

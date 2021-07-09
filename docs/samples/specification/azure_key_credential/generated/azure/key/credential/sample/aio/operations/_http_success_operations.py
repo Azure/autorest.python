@@ -54,10 +54,6 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_http_success.build_head200_request(
             template_url=self.head200.metadata['url'],
         )._to_pipeline_transport_request()
@@ -93,10 +89,6 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_http_success.build_head204_request(
             template_url=self.head204.metadata['url'],
         )._to_pipeline_transport_request()
@@ -132,10 +124,6 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-
-
-        
-
         request = rest_http_success.build_head404_request(
             template_url=self.head404.metadata['url'],
         )._to_pipeline_transport_request()
