@@ -41,17 +41,17 @@ class AutoRestParameterFlattening:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `parameterflattening.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from parameterflattening.rest import build_update_request
-        >>> request = build_update_request(resource_group_name, avset, json=json, content=content, **kwargs)
+        >>> from parameterflattening._rest import availability_sets
+        >>> request = availability_sets.build_update_request(resource_group_name, avset, json=json, content=content, **kwargs)
         <HttpRequest [PATCH], url: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'>
-        >>> response = await client.send_request(request)
+        >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

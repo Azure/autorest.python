@@ -49,7 +49,7 @@ class AutoRestSwaggerBATXMLService(object):
         self._serialize.client_side_validation = False
         self.xml = XmlOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class AutoRestSwaggerBATXMLService(object):
         We have helper methods to create requests specific to this service in `xmlservice.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from xmlservice.rest import build_get_complex_type_ref_no_meta_request
-        >>> request = build_get_complex_type_ref_no_meta_request(**kwargs)
+        >>> from xmlservice._rest import xml
+        >>> request = xml.build_get_complex_type_ref_no_meta_request(**kwargs)
         <HttpRequest [GET], url: '/xml/complex-type-ref-no-meta'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

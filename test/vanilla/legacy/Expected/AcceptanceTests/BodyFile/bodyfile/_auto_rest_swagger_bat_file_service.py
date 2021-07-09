@@ -49,7 +49,7 @@ class AutoRestSwaggerBATFileService(object):
         self._serialize.client_side_validation = False
         self.files = FilesOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class AutoRestSwaggerBATFileService(object):
         We have helper methods to create requests specific to this service in `bodyfile.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyfile.rest import build_get_file_request
-        >>> request = build_get_file_request(**kwargs)
+        >>> from bodyfile._rest import files
+        >>> request = files.build_get_file_request(**kwargs)
         <HttpRequest [GET], url: '/files/stream/nonempty'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

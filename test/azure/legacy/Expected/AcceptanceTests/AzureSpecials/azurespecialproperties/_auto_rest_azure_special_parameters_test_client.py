@@ -100,7 +100,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -112,10 +112,10 @@ class AutoRestAzureSpecialParametersTestClient(object):
         We have helper methods to create requests specific to this service in `azurespecialproperties.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azurespecialproperties.rest import build_get_request
-        >>> request = build_get_request(**kwargs)
+        >>> from azurespecialproperties._rest import xms_client_request_id
+        >>> request = xms_client_request_id.build_get_request(**kwargs)
         <HttpRequest [GET], url: '/azurespecials/overwrite/x-ms-client-request-id/method/'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

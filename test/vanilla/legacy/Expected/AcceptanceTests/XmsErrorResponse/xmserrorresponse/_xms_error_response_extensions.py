@@ -49,7 +49,7 @@ class XMSErrorResponseExtensions(object):
         self._serialize.client_side_validation = False
         self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class XMSErrorResponseExtensions(object):
         We have helper methods to create requests specific to this service in `xmserrorresponse.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from xmserrorresponse.rest import build_get_pet_by_id_request
-        >>> request = build_get_pet_by_id_request(pet_id, **kwargs)
+        >>> from xmserrorresponse._rest import pet
+        >>> request = pet.build_get_pet_by_id_request(pet_id, **kwargs)
         <HttpRequest [GET], url: '/errorStatusCodes/Pets/{petId}/GetPet'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

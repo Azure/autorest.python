@@ -55,8 +55,8 @@ class AutoRestParameterizedHostTestPagingClient(object):
         We have helper methods to create requests specific to this service in `custombaseurlpaginglowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlpaginglowlevel.rest import build_get_pages_partial_url_request
-        >>> request = build_get_pages_partial_url_request(**kwargs)
+        >>> from custombaseurlpaginglowlevel.rest import paging
+        >>> request = paging.build_get_pages_partial_url_request(**kwargs)
         <HttpRequest [GET], url: '/paging/customurl/partialnextlink'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

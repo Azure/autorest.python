@@ -56,8 +56,8 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         We have helper methods to create requests specific to this service in `urlmulticollectionformatlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from urlmulticollectionformatlowlevel.rest import build_array_string_multi_null_request
-        >>> request = build_array_string_multi_null_request(array_query=array_query, **kwargs)
+        >>> from urlmulticollectionformatlowlevel.rest import queries
+        >>> request = queries.build_array_string_multi_null_request(array_query=array_query, **kwargs)
         <HttpRequest [GET], url: '/queries/array/multi/string/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

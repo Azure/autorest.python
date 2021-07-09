@@ -59,7 +59,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self.operation_group_two = OperationGroupTwoOperations(self._client, self._config, self._serialize, self._deserialize)
 
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -71,10 +71,10 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         We have helper methods to create requests specific to this service in `multiapiwithsubmodule.submodule.v3.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapiwithsubmodule.submodule.v3.rest import build_test_paging_request
+        >>> from multiapiwithsubmodule.submodule.v3._rest import build_test_paging_request
         >>> request = build_test_paging_request(**kwargs)
         <HttpRequest [GET], url: '/multiapi/paging'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

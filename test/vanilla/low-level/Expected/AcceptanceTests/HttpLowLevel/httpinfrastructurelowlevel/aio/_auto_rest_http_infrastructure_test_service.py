@@ -45,8 +45,8 @@ class AutoRestHttpInfrastructureTestService:
         We have helper methods to create requests specific to this service in `httpinfrastructurelowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from httpinfrastructurelowlevel.rest import build_get_empty_error_request
-        >>> request = build_get_empty_error_request(**kwargs)
+        >>> from httpinfrastructurelowlevel.rest import http_failure
+        >>> request = http_failure.build_get_empty_error_request(**kwargs)
         <HttpRequest [GET], url: '/http/failure/emptybody/error'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

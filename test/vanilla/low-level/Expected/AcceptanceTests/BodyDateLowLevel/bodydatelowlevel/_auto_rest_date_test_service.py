@@ -56,8 +56,8 @@ class AutoRestDateTestService(object):
         We have helper methods to create requests specific to this service in `bodydatelowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydatelowlevel.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodydatelowlevel.rest import date
+        >>> request = date.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/date/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

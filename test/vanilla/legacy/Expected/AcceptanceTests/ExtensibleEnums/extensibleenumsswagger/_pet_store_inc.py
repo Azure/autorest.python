@@ -49,7 +49,7 @@ class PetStoreInc(object):
         self._serialize.client_side_validation = False
         self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class PetStoreInc(object):
         We have helper methods to create requests specific to this service in `extensibleenumsswagger.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from extensibleenumsswagger.rest import build_get_by_pet_id_request
-        >>> request = build_get_by_pet_id_request(pet_id, **kwargs)
+        >>> from extensibleenumsswagger._rest import pet
+        >>> request = pet.build_get_by_pet_id_request(pet_id, **kwargs)
         <HttpRequest [GET], url: '/extensibleenums/pet/{petId}'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

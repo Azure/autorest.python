@@ -49,7 +49,7 @@ class AutoRestNumberTestService(object):
         self._serialize.client_side_validation = False
         self.number = NumberOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class AutoRestNumberTestService(object):
         We have helper methods to create requests specific to this service in `bodynumber.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodynumber.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodynumber._rest import number
+        >>> request = number.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/number/null'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

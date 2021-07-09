@@ -45,8 +45,8 @@ class AutoRestParameterGroupingTestService:
         We have helper methods to create requests specific to this service in `azureparametergroupinglowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azureparametergroupinglowlevel.rest import build_post_required_request
-        >>> request = build_post_required_request(path, json=json, content=content, custom_header=custom_header, query=query, **kwargs)
+        >>> from azureparametergroupinglowlevel.rest import parameter_grouping
+        >>> request = parameter_grouping.build_post_required_request(path, json=json, content=content, custom_header=custom_header, query=query, **kwargs)
         <HttpRequest [POST], url: '/parameterGrouping/postRequired/{path}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

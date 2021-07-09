@@ -64,8 +64,8 @@ class StorageManagementClient(object):
         We have helper methods to create requests specific to this service in `storagelowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from storagelowlevel.rest import build_check_name_availability_request
-        >>> request = build_check_name_availability_request(subscription_id, json=json, content=content, **kwargs)
+        >>> from storagelowlevel.rest import storage_accounts
+        >>> request = storage_accounts.build_check_name_availability_request(subscription_id, json=json, content=content, **kwargs)
         <HttpRequest [POST], url: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

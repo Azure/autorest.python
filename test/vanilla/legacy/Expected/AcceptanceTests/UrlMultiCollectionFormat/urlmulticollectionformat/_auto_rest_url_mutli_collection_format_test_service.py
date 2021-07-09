@@ -49,7 +49,7 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         self._serialize.client_side_validation = False
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class AutoRestUrlMutliCollectionFormatTestService(object):
         We have helper methods to create requests specific to this service in `urlmulticollectionformat.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from urlmulticollectionformat.rest import build_array_string_multi_null_request
-        >>> request = build_array_string_multi_null_request(array_query=array_query, **kwargs)
+        >>> from urlmulticollectionformat._rest import queries
+        >>> request = queries.build_array_string_multi_null_request(array_query=array_query, **kwargs)
         <HttpRequest [GET], url: '/queries/array/multi/string/null'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

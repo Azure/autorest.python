@@ -45,8 +45,8 @@ class AutoRestTimeTestService:
         We have helper methods to create requests specific to this service in `bodytimelowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodytimelowlevel.rest import build_get_request
-        >>> request = build_get_request(**kwargs)
+        >>> from bodytimelowlevel.rest import time
+        >>> request = time.build_get_request(**kwargs)
         <HttpRequest [GET], url: '/time/get'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

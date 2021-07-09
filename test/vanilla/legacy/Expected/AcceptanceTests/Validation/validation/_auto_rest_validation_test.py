@@ -48,7 +48,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -60,10 +60,10 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         We have helper methods to create requests specific to this service in `validation.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from validation.rest import build_validation_of_method_parameters_request
+        >>> from validation._rest import build_validation_of_method_parameters_request
         >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, **kwargs)
         <HttpRequest [GET], url: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

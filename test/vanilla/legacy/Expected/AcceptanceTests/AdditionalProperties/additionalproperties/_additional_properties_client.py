@@ -49,7 +49,7 @@ class AdditionalPropertiesClient(object):
         self._serialize.client_side_validation = False
         self.pets = PetsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class AdditionalPropertiesClient(object):
         We have helper methods to create requests specific to this service in `additionalproperties.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from additionalproperties.rest import build_create_ap_true_request
-        >>> request = build_create_ap_true_request(json=json, content=content, **kwargs)
+        >>> from additionalproperties._rest import pets
+        >>> request = pets.build_create_ap_true_request(json=json, content=content, **kwargs)
         <HttpRequest [PUT], url: '/additionalProperties/true'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

@@ -59,8 +59,8 @@ class AutoRestParameterizedCustomHostTestClient(object):
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptionslowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlmoreoptionslowlevel.rest import build_get_empty_request
-        >>> request = build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
+        >>> from custombaseurlmoreoptionslowlevel.rest import paths
+        >>> request = paths.build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
         <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

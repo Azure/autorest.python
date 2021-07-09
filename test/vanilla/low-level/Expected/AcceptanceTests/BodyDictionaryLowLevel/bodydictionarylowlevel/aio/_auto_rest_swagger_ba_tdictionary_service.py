@@ -45,8 +45,8 @@ class AutoRestSwaggerBATDictionaryService:
         We have helper methods to create requests specific to this service in `bodydictionarylowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydictionarylowlevel.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodydictionarylowlevel.rest import dictionary
+        >>> request = dictionary.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/dictionary/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

@@ -50,7 +50,7 @@ class AutoRestParameterGroupingTestService(object):
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -62,10 +62,10 @@ class AutoRestParameterGroupingTestService(object):
         We have helper methods to create requests specific to this service in `azureparametergrouping.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azureparametergrouping.rest import build_post_required_request
-        >>> request = build_post_required_request(path, json=json, content=content, custom_header=custom_header, query=query, **kwargs)
+        >>> from azureparametergrouping._rest import parameter_grouping
+        >>> request = parameter_grouping.build_post_required_request(path, json=json, content=content, custom_header=custom_header, query=query, **kwargs)
         <HttpRequest [POST], url: '/parameterGrouping/postRequired/{path}'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

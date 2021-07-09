@@ -56,8 +56,8 @@ class AutoRestIntegerTestService(object):
         We have helper methods to create requests specific to this service in `bodyintegerlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyintegerlowlevel.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodyintegerlowlevel.rest import int
+        >>> request = int.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/int/null'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

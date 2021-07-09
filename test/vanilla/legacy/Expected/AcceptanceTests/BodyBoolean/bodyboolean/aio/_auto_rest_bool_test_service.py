@@ -39,17 +39,17 @@ class AutoRestBoolTestService:
         self._serialize.client_side_validation = False
         self.bool = BoolOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodyboolean.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyboolean.rest import build_get_true_request
-        >>> request = build_get_true_request(**kwargs)
+        >>> from bodyboolean._rest import bool
+        >>> request = bool.build_get_true_request(**kwargs)
         <HttpRequest [GET], url: '/bool/true'>
-        >>> response = await client.send_request(request)
+        >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

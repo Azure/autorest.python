@@ -45,8 +45,8 @@ class AutoRestSwaggerBATService:
         We have helper methods to create requests specific to this service in `bodystringlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodystringlowlevel.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodystringlowlevel.rest import string
+        >>> request = string.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/string/null'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

@@ -39,17 +39,17 @@ class AnythingClient(AnythingClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `anything.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from anything.rest import build_get_object_request
+        >>> from anything._rest import build_get_object_request
         >>> request = build_get_object_request(**kwargs)
         <HttpRequest [GET], url: '/anything/object'>
-        >>> response = await client.send_request(request)
+        >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

@@ -54,7 +54,7 @@ class MultiapiServiceClient(object):
         self.operation_group_one = OperationGroupOneOperations(self._client, self._config, self._serialize, self._deserialize)
 
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -66,10 +66,10 @@ class MultiapiServiceClient(object):
         We have helper methods to create requests specific to this service in `multiapi.v0.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapi.v0.rest import build_test_two_request
-        >>> request = build_test_two_request(**kwargs)
+        >>> from multiapi.v0._rest import operation_group_one
+        >>> request = operation_group_one.build_test_two_request(**kwargs)
         <HttpRequest [GET], url: '/multiapi/one/testTwoEndpoint'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

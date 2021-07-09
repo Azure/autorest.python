@@ -52,7 +52,7 @@ class AutoRestHeadTestService(object):
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -64,10 +64,10 @@ class AutoRestHeadTestService(object):
         We have helper methods to create requests specific to this service in `head.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from head.rest import build_head200_request
-        >>> request = build_head200_request(**kwargs)
+        >>> from head._rest import http_success
+        >>> request = http_success.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

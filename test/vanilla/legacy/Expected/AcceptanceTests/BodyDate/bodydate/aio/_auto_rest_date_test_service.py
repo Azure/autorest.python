@@ -39,17 +39,17 @@ class AutoRestDateTestService:
         self._serialize.client_side_validation = False
         self.date = DateOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
 
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodydate.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydate.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodydate._rest import date
+        >>> request = date.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/date/null'>
-        >>> response = await client.send_request(request)
+        >>> response = await client._send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

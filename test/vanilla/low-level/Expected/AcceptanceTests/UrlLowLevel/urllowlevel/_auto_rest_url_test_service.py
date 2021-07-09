@@ -62,8 +62,8 @@ class AutoRestUrlTestService(object):
         We have helper methods to create requests specific to this service in `urllowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from urllowlevel.rest import build_get_boolean_true_request
-        >>> request = build_get_boolean_true_request(**kwargs)
+        >>> from urllowlevel.rest import paths
+        >>> request = paths.build_get_boolean_true_request(**kwargs)
         <HttpRequest [GET], url: '/paths/bool/true/{boolPath}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

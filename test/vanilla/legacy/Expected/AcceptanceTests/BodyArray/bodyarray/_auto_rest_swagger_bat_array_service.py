@@ -49,7 +49,7 @@ class AutoRestSwaggerBATArrayService(object):
         self._serialize.client_side_validation = False
         self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +61,10 @@ class AutoRestSwaggerBATArrayService(object):
         We have helper methods to create requests specific to this service in `bodyarray.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyarray.rest import build_get_null_request
-        >>> request = build_get_null_request(**kwargs)
+        >>> from bodyarray._rest import array
+        >>> request = array.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/array/null'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

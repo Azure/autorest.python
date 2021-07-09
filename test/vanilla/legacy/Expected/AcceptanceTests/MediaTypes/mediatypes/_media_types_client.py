@@ -46,7 +46,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -58,10 +58,10 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         We have helper methods to create requests specific to this service in `mediatypes.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from mediatypes.rest import build_analyze_body_request
+        >>> from mediatypes._rest import build_analyze_body_request
         >>> request = build_analyze_body_request(json=json, content=content, **kwargs)
         <HttpRequest [POST], url: '/mediatypes/analyze'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

@@ -52,7 +52,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
+    def _send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -64,10 +64,10 @@ class AutoRestParameterizedCustomHostTestClient(object):
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlmoreoptions.rest import build_get_empty_request
-        >>> request = build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
+        >>> from custombaseurlmoreoptions._rest import paths
+        >>> request = paths.build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
         <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

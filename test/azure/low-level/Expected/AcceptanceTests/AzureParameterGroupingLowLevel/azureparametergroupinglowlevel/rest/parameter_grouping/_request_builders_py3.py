@@ -32,10 +32,10 @@ def build_post_required_request(
     :type path: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: Any
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
-    :paramtype content: Any
+    :paramtype content: any
     :keyword custom_header:
     :paramtype custom_header: str
     :keyword query: Query parameter with default.

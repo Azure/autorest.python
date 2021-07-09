@@ -49,8 +49,8 @@ class AutoRestHeadTestService:
         We have helper methods to create requests specific to this service in `headlowlevel.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headlowlevel.rest import build_head200_request
-        >>> request = build_head200_request(**kwargs)
+        >>> from headlowlevel.rest import http_success
+        >>> request = http_success.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
