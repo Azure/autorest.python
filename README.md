@@ -27,7 +27,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ~3.3.0
+version: ~3.4.5
 use-extension:
   "@autorest/modelerfour": ~4.19.1
 
