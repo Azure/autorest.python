@@ -185,8 +185,9 @@ class CodeGenerator(Plugin):
 
     def _handle_default_authentication_policy(self, azure_arm, credential):
 
+        default_policy = 'ARMChallengeAuthenticationPolicy' if azure_arm else "BearerTokenCredentialPolicy"
         passed_in_credential_default_policy_type = (
-            self._autorestapi.get_value("credential-default-policy-type") or "ARMChallengeAuthenticationPolicy"
+            self._autorestapi.get_value("credential-default-policy-type") or default_policy
         )
 
         # right now, we only allow ARMChallengeAuthenticationPolicy, BearerTokenCredentialPolicy and
