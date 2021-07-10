@@ -139,6 +139,14 @@ class TestParameter(object):
         first_group = FirstParameterGroup(header_one = header_parameter)
         client.parameter_grouping.post_shared_parameter_group_object(first_group)
 
+    def test_post_reserved_words(self, client):
+        from azureparametergrouping.models import ParameterGroupingPostReservedWordsParameters
+        group = ParameterGroupingPostReservedWordsParameters(
+            from_property="bob",
+            accept="yes"
+        )
+        client.parameter_grouping.post_reserved_words(group)
+
     def test_subscription_in_credentials(self, azure_client):
         # valid_api_version = '2.0'
         azure_client.subscription_in_credentials.post_method_global_not_provided_valid()

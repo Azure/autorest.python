@@ -50,20 +50,7 @@ class NameConverter:
                 for exception in operation.get('exceptions', []):
                     NameConverter._convert_language_default_python_case(exception)
                 for parameter in operation.get("parameters", []):
-                    # in the case of there bein `groupedBy`, we are looking at a grouped parameter
-                    # since this parameter is a property of a grouped model, we want its name to
-                    # correspond to the property name it gets generated as. Hence us padding it
-                    # like a property
-                    pad_type = PadType.Parameter
-                    name_prefix = None
-                    if parameter.get('groupedBy'):
-                        # grouped parameters start with a _
-                        name_prefix = parameter['language']['default']['name'][0]
-                        pad_type = PadType.Property
-                        parameter['language']['default']['name'] = parameter['language']['default']['name'][1:]
-                    NameConverter._convert_language_default_python_case(
-                        parameter, pad_string=pad_type, name_prefix=name_prefix
-                    )
+                    NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                 for request in operation.get("requests", []):
                     NameConverter._convert_language_default_python_case(request)
                     for parameter in request.get("parameters", []):
@@ -170,8 +157,7 @@ class NameConverter:
         *,
         pad_string: Optional[PadType] = None,
         convert_name: bool = False,
-        all_upper: bool = False,
-        name_prefix: Optional[str] = None,
+        all_upper: bool = False
     ) -> None:
         if not schema.get("language") or schema["language"].get("python"):
             return
@@ -186,8 +172,6 @@ class NameConverter:
             schema_python_name = NameConverter._to_valid_python_name(
                 name=schema_name, pad_string=pad_string, convert_name=convert_name
             )
-        if name_prefix:
-            schema_python_name = name_prefix + schema_python_name
         # need to add the lower in case certain words, like LRO, are overriden to
         # always return LRO. Without .lower(), for example, begin_lro would be
         # begin_LRO

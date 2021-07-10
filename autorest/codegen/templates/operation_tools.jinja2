@@ -90,7 +90,7 @@ deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_r
     {% for grouper_name, grouped_parameters in operation.parameters.grouped|groupby("grouped_by.serialized_name") %}
 if {{ grouper_name }} is not None:
         {% for grouped_parameter in grouped_parameters %}
-    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name.lstrip('_') }}
+    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.corresponding_grouped_property.name }}
         {% endfor %}
     {% endfor %}
 {% endif %}
