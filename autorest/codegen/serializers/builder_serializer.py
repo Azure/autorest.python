@@ -190,7 +190,7 @@ class BuilderSerializerProtocol(ABC):
     @staticmethod
     @abstractmethod
     def _method_signature_and_response_type_annotation_template(
-        method_signature: str, _response_type_annotation: str
+        method_signature: str, response_type_annotation: str
     ) -> str:
         """Template for how to combine the method signature + the response type annotation together. Called by
         method_signature_and_response_type_annotation"""
@@ -478,9 +478,9 @@ class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
         return False
 
     @staticmethod
-    def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
+    def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=False, method_signature=method_signature, response_type_annotation=_response_type_annotation
+            async_mode=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
@@ -493,9 +493,9 @@ class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
         return True
 
     @staticmethod
-    def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
+    def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=True, method_signature=method_signature, response_type_annotation=_response_type_annotation
+            async_mode=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
@@ -662,9 +662,9 @@ class SyncOperationSerializer(OperationBaseSerializer):
         return "def"
 
     @staticmethod
-    def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
+    def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=False, method_signature=method_signature, response_type_annotation=_response_type_annotation
+            async_mode=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
@@ -681,9 +681,9 @@ class AsyncOperationSerializer(OperationBaseSerializer):
         return "async def"
 
     @staticmethod
-    def _method_signature_and_response_type_annotation_template(method_signature: str, _response_type_annotation: str):
+    def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=True, method_signature=method_signature, response_type_annotation=_response_type_annotation
+            async_mode=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):

@@ -126,15 +126,14 @@ class ClientSerializer:
         retval.append("")
         retval.append("For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart")
         retval.append(f"")
-        core_import = "{}.core.rest".format(self.code_model.namespace if self.code_model.options["vendor"] else "azure")
-        retval.append(f"For advanced cases, you can also create your own :class:`~{core_import}.HttpRequest`")
+        retval.append(f"For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`")
         retval.append(f"and pass it in.")
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(f":type request: ~{core_import}.HttpRequest")
+        retval.append(f":type request: ~azure.core.rest.HttpRequest")
         retval.append(":keyword bool stream: Whether the response payload will be streamed. Defaults to False.")
         retval.append(":return: The response of your network call. Does not do error handling on your response.")
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(f":rtype: ~{core_import}.{http_response}")
+        retval.append(f":rtype: ~azure.core.rest.{http_response}")
         retval.append('"""')
         return retval
