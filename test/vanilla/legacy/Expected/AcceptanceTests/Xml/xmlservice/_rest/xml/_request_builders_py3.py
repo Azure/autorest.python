@@ -759,11 +759,17 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
                     }
                 ],
                 "DefaultServiceVersion": "str (optional)",
-                "DeleteRetentionPolicy": "...",
+                "DeleteRetentionPolicy": {
+                    "Days": "int (optional)",
+                    "Enabled": "bool"
+                },
                 "HourMetrics": {
                     "Enabled": "bool",
                     "IncludeAPIs": "bool (optional)",
-                    "RetentionPolicy": "...",
+                    "RetentionPolicy": {
+                        "Days": "int (optional)",
+                        "Enabled": "bool"
+                    },
                     "Version": "str (optional)"
                 },
                 "Logging": {
@@ -776,7 +782,15 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
                     "Version": "str",
                     "Write": "bool"
                 },
-                "MinuteMetrics": "..."
+                "MinuteMetrics": {
+                    "Enabled": "bool",
+                    "IncludeAPIs": "bool (optional)",
+                    "RetentionPolicy": {
+                        "Days": "int (optional)",
+                        "Enabled": "bool"
+                    },
+                    "Version": "str (optional)"
+                }
             }
     """
 

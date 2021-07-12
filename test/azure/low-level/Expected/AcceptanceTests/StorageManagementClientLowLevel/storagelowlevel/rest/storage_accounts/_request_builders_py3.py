@@ -155,7 +155,17 @@ def build_create_request(
                     },
                     "primaryLocation": "str (optional)",
                     "provisioningState": "str (optional)",
-                    "secondaryEndpoints": "...",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
                     "secondaryLocation": "str (optional)",
                     "statusOfPrimary": "str (optional)",
                     "statusOfSecondary": "str (optional)"
@@ -287,7 +297,17 @@ def build_get_properties_request(
                     },
                     "primaryLocation": "str (optional)",
                     "provisioningState": "str (optional)",
-                    "secondaryEndpoints": "...",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
                     "secondaryLocation": "str (optional)",
                     "statusOfPrimary": "str (optional)",
                     "statusOfSecondary": "str (optional)"
@@ -399,7 +419,17 @@ def build_update_request(
                     },
                     "primaryLocation": "str (optional)",
                     "provisioningState": "str (optional)",
-                    "secondaryEndpoints": "...",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
                     "secondaryLocation": "str (optional)",
                     "statusOfPrimary": "str (optional)",
                     "statusOfSecondary": "str (optional)"
@@ -543,7 +573,17 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
                             },
                             "primaryLocation": "str (optional)",
                             "provisioningState": "str (optional)",
-                            "secondaryEndpoints": "...",
+                            "secondaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
                             "secondaryLocation": "str (optional)",
                             "statusOfPrimary": "str (optional)",
                             "statusOfSecondary": "str (optional)"
@@ -619,7 +659,17 @@ def build_list_by_resource_group_request(resource_group_name: str, subscription_
                             },
                             "primaryLocation": "str (optional)",
                             "provisioningState": "str (optional)",
-                            "secondaryEndpoints": "...",
+                            "secondaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
                             "secondaryLocation": "str (optional)",
                             "statusOfPrimary": "str (optional)",
                             "statusOfSecondary": "str (optional)"

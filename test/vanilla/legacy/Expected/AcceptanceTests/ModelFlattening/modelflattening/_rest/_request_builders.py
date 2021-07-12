@@ -325,10 +325,32 @@ def build_put_resource_collection_request(
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "arrayofresources": [
-                    "..."
+                    {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
+                    }
                 ],
                 "dictionaryofresources": {
-                    "str": "..."
+                    "str": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
+                    }
                 },
                 "productresource": {
                     "id": "str (optional)",
@@ -380,10 +402,32 @@ def build_get_resource_collection_request(
             # response body for status code(s): 200
             response.json() == {
                 "arrayofresources": [
-                    "..."
+                    {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
+                    }
                 ],
                 "dictionaryofresources": {
-                    "str": "..."
+                    "str": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
+                        "p.name": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)",
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
+                    }
                 },
                 "productresource": {
                     "id": "str (optional)",

@@ -178,7 +178,7 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "fish.type": "fish_type",
+                "fish.type": "fish.type",
                 "species": "str (optional)"
             }
     """
@@ -214,14 +214,22 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish_type",
+                        "fish.type": "fish.type",
                         "species": "str (optional)"
                     }
                 ],
                 "salmons": [
-                    "..."
+                    {
+                        "fish.type": "DotSalmon",
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)",
+                        "species": "str (optional)"
+                    }
                 ],
-                "sampleFish": "sample_fish",
+                "sampleFish": {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                },
                 "sampleSalmon": {
                     "fish.type": "DotSalmon",
                     "iswild": "bool (optional)",
@@ -262,14 +270,22 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish_type",
+                        "fish.type": "fish.type",
                         "species": "str (optional)"
                     }
                 ],
                 "salmons": [
-                    "..."
+                    {
+                        "fish.type": "DotSalmon",
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)",
+                        "species": "str (optional)"
+                    }
                 ],
-                "sampleFish": "sample_fish",
+                "sampleFish": {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                },
                 "sampleSalmon": {
                     "fish.type": "DotSalmon",
                     "iswild": "bool (optional)",
@@ -313,7 +329,7 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -367,7 +383,7 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -424,7 +440,7 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -443,7 +459,7 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."

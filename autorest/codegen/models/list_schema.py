@@ -61,29 +61,11 @@ class ListSchema(BaseSchema):
     def has_xml_serialization_ctxt(self) -> bool:
         return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
 
-    def _get_template_representation(
-        self,
-        template_representation_callable: Callable,
-        **kwargs: Any
-    ) -> Any:
-        try:
-            if self.element_type.name in kwargs.get("object_schema_names", []):  # type: ignore
-                return ["..."]
-        except AttributeError:
-            pass
-        return [template_representation_callable(**kwargs)]
-
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        return self._get_template_representation(
-            template_representation_callable=self.element_type.get_json_template_representation,
-            **kwargs
-        )
+        return [self.element_type.get_json_template_representation(**kwargs)]
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
-        return self._get_template_representation(
-            template_representation_callable=self.element_type.get_files_template_representation,
-            **kwargs
-        )
+        return [self.element_type.get_files_template_representation(**kwargs)]
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         attrs_list = []

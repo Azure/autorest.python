@@ -191,7 +191,7 @@ def build_get_dot_syntax_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "fish.type": "fish_type",
+                "fish.type": "fish.type",
                 "species": "str (optional)"
             }
     """
@@ -230,14 +230,22 @@ def build_get_composed_with_discriminator_request(
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish_type",
+                        "fish.type": "fish.type",
                         "species": "str (optional)"
                     }
                 ],
                 "salmons": [
-                    "..."
+                    {
+                        "fish.type": "DotSalmon",
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)",
+                        "species": "str (optional)"
+                    }
                 ],
-                "sampleFish": "sample_fish",
+                "sampleFish": {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                },
                 "sampleSalmon": {
                     "fish.type": "DotSalmon",
                     "iswild": "bool (optional)",
@@ -281,14 +289,22 @@ def build_get_composed_without_discriminator_request(
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish_type",
+                        "fish.type": "fish.type",
                         "species": "str (optional)"
                     }
                 ],
                 "salmons": [
-                    "..."
+                    {
+                        "fish.type": "DotSalmon",
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)",
+                        "species": "str (optional)"
+                    }
                 ],
-                "sampleFish": "sample_fish",
+                "sampleFish": {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                },
                 "sampleSalmon": {
                     "fish.type": "DotSalmon",
                     "iswild": "bool (optional)",
@@ -335,7 +351,7 @@ def build_get_complicated_request(
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -392,7 +408,7 @@ def build_put_complicated_request(
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -452,7 +468,7 @@ def build_put_missing_discriminator_request(
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
@@ -471,7 +487,7 @@ def build_put_missing_discriminator_request(
                 "location": "str (optional)",
                 "siblings": [
                     {
-                        "fishtype": "salmon",
+                        "fishtype": "fishtype",
                         "length": "float",
                         "siblings": [
                             "..."
