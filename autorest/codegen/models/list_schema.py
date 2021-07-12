@@ -3,10 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, Optional, Union, cast
+from typing import Any, Callable, Dict, Optional, Union
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
-from .object_schema import ObjectSchema
 
 
 class ListSchema(BaseSchema):
@@ -68,7 +67,7 @@ class ListSchema(BaseSchema):
         **kwargs: Any
     ) -> Any:
         try:
-            if cast(ObjectSchema, self.element_type).name in kwargs.get("object_schema_names", []):
+            if self.element_type.name in kwargs.get("object_schema_names", []):  # type: ignore
                 return ["..."]
         except AttributeError:
             pass
