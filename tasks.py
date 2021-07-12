@@ -111,6 +111,8 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
     'AzureSpecials': 'azurespecialproperties',
     'StorageManagementClient': 'storage',
     'CustomUrlPaging': 'custombaseurlpaging',
+    'LLCInitial': 'llcpackage',
+    'LLCUpdateOne': 'llcpackage'
 }
 
 _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
