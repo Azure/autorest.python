@@ -123,6 +123,8 @@ jobs:
       - script: |
           cd $(TestFolder)/vanilla/low-level
           tox -e ci
+          tox -e initial-ci
+          tox -e update-ci
         displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
       - task: PublishTestResults@2
         displayName: 'Publish low level "vanilla" Test Results'

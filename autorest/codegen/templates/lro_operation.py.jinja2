@@ -23,6 +23,7 @@
         response_headers = {}
         {% endif %}
         {% if operation.lro_response %}
+        response = pipeline_response.http_response
         {{ op_tools.response_headers_and_deserialization(operation.lro_response, code_model)|indent(8) }}
         {% endif %}
         if cls:

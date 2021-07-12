@@ -135,6 +135,7 @@ class LROsCustomHeaderOperations:
 
         def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
@@ -245,6 +246,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
 
             if cls:

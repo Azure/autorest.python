@@ -158,6 +158,7 @@ class MultiapiServiceClientOperationsMixin(object):
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
@@ -325,7 +326,6 @@ class MultiapiServiceClientOperationsMixin(object):
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             def internal_get_next(next_link=None):
                 if next_link is None:
                     return pipeline_response
