@@ -89,7 +89,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         try:
             # add discriminator prop if there is one
             discriminator = next(p for p in self.properties if p.is_discriminator)
-            representation[discriminator.original_swagger_name] = self.discriminator_value or discriminator.original_swagger_name
+            representation[
+                discriminator.original_swagger_name
+            ] = self.discriminator_value or discriminator.original_swagger_name
         except StopIteration:
             pass
 
