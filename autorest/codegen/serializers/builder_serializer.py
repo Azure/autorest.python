@@ -435,6 +435,8 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=ab
         return retval
 
     def want_example_template(self, builder: BuilderType) -> bool:
+        if self.code_model.rest_layer_name == "_rest":
+            return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
             body_kwargs = set(builder.parameters.body_kwarg_names.keys())
             return bool(body_kwargs.intersection({"json", "files"}))

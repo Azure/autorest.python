@@ -23,15 +23,6 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "isAShowHorse": "bool (optional)",
-                "name": "str"
-            }
     """
 
     accept = "application/json"
@@ -61,15 +52,6 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "isAShowHorse": "bool (optional)",
-                "name": "str"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -97,14 +79,6 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "name": "str"
-            }
     """
 
     accept = "application/json"
@@ -134,14 +108,6 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "name": "str"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -169,15 +135,6 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "hisses": "bool (optional)",
-                "meows": "bool (optional)"
-            }
     """
 
     accept = "application/json"
@@ -207,15 +164,6 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "hisses": "bool (optional)",
-                "meows": "bool (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -243,17 +191,6 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
-                "name": "str"
-            }
     """
 
     accept = "application/json"
@@ -285,17 +222,6 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
-                "name": "str"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -324,18 +250,6 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "eatsMiceYet": "bool (optional)",
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
-                "name": "str"
-            }
     """
 
     accept = "application/json"
@@ -368,18 +282,6 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "eatsMiceYet": "bool (optional)",
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
-                "name": "str"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

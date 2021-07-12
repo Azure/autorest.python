@@ -37,22 +37,6 @@ def build_put_array_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = [
-                {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
-                    "tags": {
-                        "str": "str (optional)"
-                    },
-                    "type": "str (optional)"
-                }
-            ]
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -83,25 +67,6 @@ def build_get_array_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "tags": {
-                        "str": "str (optional)"
-                    },
-                    "type": "str (optional)"
-                }
-            ]
     """
 
     accept = "application/json"
@@ -135,16 +100,6 @@ def build_put_wrapped_array_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = [
-                {
-                    "value": "str (optional)"
-                }
-            ]
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -176,16 +131,6 @@ def build_get_wrapped_array_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "value": "str (optional)"
-                }
-            ]
     """
 
     accept = "application/json"
@@ -218,25 +163,6 @@ def build_put_dictionary_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "str": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "tags": {
-                        "str": "str (optional)"
-                    },
-                    "type": "str (optional)"
-                }
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -267,25 +193,6 @@ def build_get_dictionary_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "tags": {
-                        "str": "str (optional)"
-                    },
-                    "type": "str (optional)"
-                }
-            }
     """
 
     accept = "application/json"
@@ -318,53 +225,6 @@ def build_put_resource_collection_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "arrayofresources": [
-                    {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                ],
-                "dictionaryofresources": {
-                    "str": {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                },
-                "productresource": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "tags": {
-                        "str": "str (optional)"
-                    },
-                    "type": "str (optional)"
-                }
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -395,53 +255,6 @@ def build_get_resource_collection_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "arrayofresources": [
-                    {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                ],
-                "dictionaryofresources": {
-                    "str": {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                },
-                "productresource": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
-                    "p.name": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)",
-                    "tags": {
-                        "str": "str (optional)"
-                    },
-                    "type": "str (optional)"
-                }
-            }
     """
 
     accept = "application/json"
@@ -474,29 +287,6 @@ def build_put_simple_product_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "@odata.value": "str (optional)",
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "@odata.value": "str (optional)",
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -533,29 +323,6 @@ def build_post_flattened_simple_product_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "@odata.value": "str (optional)",
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "@odata.value": "str (optional)",
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -595,29 +362,6 @@ def build_put_simple_product_with_grouping_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "@odata.value": "str (optional)",
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "@odata.value": "str (optional)",
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
-                "generic_value": "str (optional)",
-                "max_product_capacity": "str (optional)",
-                "max_product_display_name": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

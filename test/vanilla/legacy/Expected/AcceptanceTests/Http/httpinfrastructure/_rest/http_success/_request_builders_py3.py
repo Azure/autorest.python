@@ -98,12 +98,6 @@ def build_put200_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -137,12 +131,6 @@ def build_patch200_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -176,12 +164,6 @@ def build_post200_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -215,12 +197,6 @@ def build_delete200_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -254,12 +230,6 @@ def build_put201_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -293,12 +263,6 @@ def build_post201_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -332,12 +296,6 @@ def build_put202_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -371,12 +329,6 @@ def build_patch202_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -410,12 +362,6 @@ def build_post202_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -449,12 +395,6 @@ def build_delete202_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -511,12 +451,6 @@ def build_put204_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -550,12 +484,6 @@ def build_patch204_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -589,12 +517,6 @@ def build_post204_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -628,12 +550,6 @@ def build_delete204_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

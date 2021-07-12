@@ -35,24 +35,6 @@ def build_list_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "value": [
-                    {
-                        "currentValue": "int (optional)",
-                        "limit": "int (optional)",
-                        "name": {
-                            "localizedValue": "str (optional)",
-                            "value": "str (optional)"
-                        },
-                        "unit": "str (optional)"
-                    }
-                ]
-            }
     """
 
     api_version = "2015-05-01-preview"

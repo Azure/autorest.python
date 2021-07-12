@@ -34,14 +34,6 @@ def build_get_report_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": "int (optional)"
-            }
     """
 
     qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]

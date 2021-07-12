@@ -46,14 +46,6 @@ def build_get300_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 300
-            response.json() == [
-                "str (optional)"
-            ]
     """
 
     accept = "application/json"
@@ -130,12 +122,6 @@ def build_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -216,12 +202,6 @@ def build_patch302_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -256,12 +236,6 @@ def build_post303_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -364,12 +338,6 @@ def build_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -403,12 +371,6 @@ def build_patch307_request(*, json: Any = None, content: Any = None, **kwargs: A
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -442,12 +404,6 @@ def build_post307_request(*, json: Any = None, content: Any = None, **kwargs: An
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -481,12 +437,6 @@ def build_delete307_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

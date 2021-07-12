@@ -27,14 +27,6 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": "int (optional)"
-            }
     """
 
     accept = "application/json"
@@ -67,14 +59,6 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": "int (optional)"
-            }
     """
 
     accept = "application/json"

@@ -39,22 +39,6 @@ def build_check_name_availability_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "name": "str",
-                "type": "str (optional). Default value is \"Microsoft.Storage/storageAccounts\""
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "message": "str (optional)",
-                "nameAvailable": "bool (optional)",
-                "reason": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -121,66 +105,6 @@ def build_create_request_initial(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "accountType": "str (optional)",
-                "id": "str (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "lastGeoFailoverTime": "datetime (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -280,54 +204,6 @@ def build_get_properties_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "lastGeoFailoverTime": "datetime (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
     """
 
     api_version = "2015-05-01-preview"
@@ -396,70 +272,6 @@ def build_update_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "accountType": "str (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "id": "str (optional)",
-                "lastGeoFailoverTime": "datetime (optional)",
-                "location": "str",
-                "name": "str (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
-                    },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)",
-                "tags": {
-                    "str": "str (optional)"
-                },
-                "type": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -518,15 +330,6 @@ def build_list_keys_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "key1": "str (optional)",
-                "key2": "str (optional)"
-            }
     """
 
     api_version = "2015-05-01-preview"
@@ -568,59 +371,6 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "id": "str (optional)",
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "location": "str",
-                        "name": "str (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
-                            },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
-                            },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                ]
-            }
     """
 
     api_version = "2015-05-01-preview"
@@ -659,59 +409,6 @@ def build_list_by_resource_group_request(resource_group_name: str, subscription_
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str (optional)",
-                "value": [
-                    {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "id": "str (optional)",
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "location": "str",
-                        "name": "str (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
-                            },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
-                            },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)",
-                        "tags": {
-                            "str": "str (optional)"
-                        },
-                        "type": "str (optional)"
-                    }
-                ]
-            }
     """
 
     api_version = "2015-05-01-preview"
@@ -771,20 +468,6 @@ def build_regenerate_key_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "keyName": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "key1": "str (optional)",
-                "key2": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

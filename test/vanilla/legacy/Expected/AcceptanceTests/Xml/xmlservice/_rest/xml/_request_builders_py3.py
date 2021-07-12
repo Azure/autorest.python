@@ -23,17 +23,6 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "RefToModel": {
-                    "ID": "str (optional)"
-                },
-                "Something": "str (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -85,17 +74,6 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "RefToModel": {
-                    "ID": "str (optional)"
-                },
-                "Something": "str (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -147,25 +125,6 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "author": "str (optional)",
-                "date": "str (optional)",
-                "slides": [
-                    {
-                        "items": [
-                            "str (optional)"
-                        ],
-                        "title": "str (optional)",
-                        "type": "str (optional)"
-                    }
-                ],
-                "title": "str (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -219,19 +178,6 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "BadApples": [
-                    "str (optional)"
-                ],
-                "GoodApples": [
-                    "str (optional)"
-                ]
-            }
     """
 
     accept = "application/xml"
@@ -303,25 +249,6 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "author": "str (optional)",
-                "date": "str (optional)",
-                "slides": [
-                    {
-                        "items": [
-                            "str (optional)"
-                        ],
-                        "title": "str (optional)",
-                        "type": "str (optional)"
-                    }
-                ],
-                "title": "str (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -373,19 +300,6 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "BadApples": [
-                    "str (optional)"
-                ],
-                "GoodApples": [
-                    "str (optional)"
-                ]
-            }
     """
 
     accept = "application/xml"
@@ -437,18 +351,6 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "expiration": "datetime (optional)",
-                    "flavor": "str (optional)",
-                    "name": "str (optional)"
-                }
-            ]
     """
 
     accept = "application/xml"
@@ -500,18 +402,6 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "expiration": "datetime (optional)",
-                    "flavor": "str (optional)",
-                    "name": "str (optional)"
-                }
-            ]
     """
 
     accept = "application/xml"
@@ -563,18 +453,6 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "expiration": "datetime (optional)",
-                    "flavor": "str (optional)",
-                    "name": "str (optional)"
-                }
-            ]
     """
 
     accept = "application/xml"
@@ -626,16 +504,6 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "expiration": "datetime (optional)",
-                "flavor": "str (optional)",
-                "name": "str (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -687,34 +555,6 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Containers": [
-                    {
-                        "Metadata": {
-                            "str": "str (optional)"
-                        },
-                        "Name": "str",
-                        "Properties": {
-                            "Etag": "str",
-                            "Last-Modified": "datetime",
-                            "LeaseDuration": "str (optional)",
-                            "LeaseState": "str (optional)",
-                            "LeaseStatus": "str (optional)",
-                            "PublicAccess": "str (optional)"
-                        }
-                    }
-                ],
-                "Marker": "str (optional)",
-                "MaxResults": "int",
-                "NextMarker": "str",
-                "Prefix": "str",
-                "ServiceEndpoint": "str"
-            }
     """
 
     comp = "list"
@@ -743,55 +583,6 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Cors": [
-                    {
-                        "AllowedHeaders": "str",
-                        "AllowedMethods": "str",
-                        "AllowedOrigins": "str",
-                        "ExposedHeaders": "str",
-                        "MaxAgeInSeconds": "int"
-                    }
-                ],
-                "DefaultServiceVersion": "str (optional)",
-                "DeleteRetentionPolicy": {
-                    "Days": "int (optional)",
-                    "Enabled": "bool"
-                },
-                "HourMetrics": {
-                    "Enabled": "bool",
-                    "IncludeAPIs": "bool (optional)",
-                    "RetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
-                    },
-                    "Version": "str (optional)"
-                },
-                "Logging": {
-                    "Delete": "bool",
-                    "Read": "bool",
-                    "RetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
-                    },
-                    "Version": "str",
-                    "Write": "bool"
-                },
-                "MinuteMetrics": {
-                    "Enabled": "bool",
-                    "IncludeAPIs": "bool (optional)",
-                    "RetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
-                    },
-                    "Version": "str (optional)"
-                }
-            }
     """
 
     comp = "properties"
@@ -859,21 +650,6 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "AccessPolicy": {
-                        "Expiry": "datetime",
-                        "Permission": "str",
-                        "Start": "datetime"
-                    },
-                    "Id": "str"
-                }
-            ]
     """
 
     comp = "acl"
@@ -941,67 +717,6 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Blobs": {
-                    "Blob": [
-                        {
-                            "Deleted": "bool",
-                            "Metadata": {
-                                "str": "str (optional)"
-                            },
-                            "Name": "str",
-                            "Properties": {
-                                "AccessTier": "str (optional)",
-                                "AccessTierInferred": "bool (optional)",
-                                "ArchiveStatus": "str (optional)",
-                                "BlobType": "str (optional)",
-                                "Cache-Control": "str (optional)",
-                                "Content-Disposition": "str (optional)",
-                                "Content-Encoding": "str (optional)",
-                                "Content-Language": "str (optional)",
-                                "Content-Length": "long (optional)",
-                                "Content-MD5": "str (optional)",
-                                "Content-Type": "str (optional)",
-                                "CopyCompletionTime": "datetime (optional)",
-                                "CopyId": "str (optional)",
-                                "CopyProgress": "str (optional)",
-                                "CopySource": "str (optional)",
-                                "CopyStatus": "str (optional)",
-                                "CopyStatusDescription": "str (optional)",
-                                "DeletedTime": "datetime (optional)",
-                                "DestinationSnapshot": "str (optional)",
-                                "Etag": "str",
-                                "IncrementalCopy": "bool (optional)",
-                                "Last-Modified": "datetime",
-                                "LeaseDuration": "str (optional)",
-                                "LeaseState": "str (optional)",
-                                "LeaseStatus": "str (optional)",
-                                "RemainingRetentionDays": "int (optional)",
-                                "ServerEncrypted": "bool (optional)",
-                                "x-ms-blob-sequence-number": "int (optional)"
-                            },
-                            "Snapshot": "str"
-                        }
-                    ],
-                    "BlobPrefix": [
-                        {
-                            "Name": "str"
-                        }
-                    ]
-                },
-                "ContainerName": "str",
-                "Delimiter": "str",
-                "Marker": "str",
-                "MaxResults": "int",
-                "NextMarker": "str",
-                "Prefix": "str",
-                "ServiceEndpoint": "str (optional)"
-            }
     """
 
     comp = "list"
@@ -1039,14 +754,6 @@ def build_json_input_request(*, json: Any = None, content: Any = None, **kwargs:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "id": "int (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -1072,14 +779,6 @@ def build_json_output_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "int (optional)"
-            }
     """
 
     accept = "application/json"
@@ -1104,15 +803,6 @@ def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "content": "str (optional)",
-                "language": "str (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -1136,14 +826,6 @@ def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Bytes": "bytearray (optional)"
-            }
     """
 
     accept = "application/xml"
@@ -1197,14 +879,6 @@ def build_get_uri_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "Url": "str (optional)"
-            }
     """
 
     accept = "application/xml"

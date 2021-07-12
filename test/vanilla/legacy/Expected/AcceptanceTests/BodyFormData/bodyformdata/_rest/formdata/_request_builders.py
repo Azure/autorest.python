@@ -39,9 +39,6 @@ def build_upload_file_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -114,9 +111,6 @@ def build_upload_files_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

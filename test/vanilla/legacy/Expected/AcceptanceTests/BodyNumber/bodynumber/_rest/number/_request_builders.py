@@ -140,12 +140,6 @@ def build_put_big_float_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -208,12 +202,6 @@ def build_put_big_double_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -276,12 +264,6 @@ def build_put_big_double_positive_decimal_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -344,12 +326,6 @@ def build_put_big_double_negative_decimal_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -412,12 +388,6 @@ def build_put_big_decimal_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -480,12 +450,6 @@ def build_put_big_decimal_positive_decimal_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -548,12 +512,6 @@ def build_put_big_decimal_negative_decimal_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -616,12 +574,6 @@ def build_put_small_float_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -684,12 +636,6 @@ def build_put_small_double_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -752,12 +698,6 @@ def build_put_small_decimal_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

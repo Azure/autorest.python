@@ -24,19 +24,6 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishtype": "fishtype",
-                "length": "float",
-                "siblings": [
-                    "..."
-                ],
-                "species": "str (optional)"
-            }
     """
 
     accept = "application/json"
@@ -130,21 +117,6 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            fishtype = 'Salmon' or 'Shark'
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "fishtype": "fishtype",
-                "length": "float",
-                "siblings": [
-                    "..."
-                ],
-                "species": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -172,15 +144,6 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fish.type": "fish.type",
-                "species": "str (optional)"
-            }
     """
 
     accept = "application/json"
@@ -206,37 +169,6 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishes": [
-                    {
-                        "fish.type": "fish.type",
-                        "species": "str (optional)"
-                    }
-                ],
-                "salmons": [
-                    {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
-                    }
-                ],
-                "sampleFish": {
-                    "fish.type": "fish.type",
-                    "species": "str (optional)"
-                },
-                "sampleSalmon": {
-                    "fish.type": "DotSalmon",
-                    "iswild": "bool (optional)",
-                    "location": "str (optional)",
-                    "species": "str (optional)"
-                }
-            }
     """
 
     accept = "application/json"
@@ -262,37 +194,6 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishes": [
-                    {
-                        "fish.type": "fish.type",
-                        "species": "str (optional)"
-                    }
-                ],
-                "salmons": [
-                    {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
-                    }
-                ],
-                "sampleFish": {
-                    "fish.type": "fish.type",
-                    "species": "str (optional)"
-                },
-                "sampleSalmon": {
-                    "fish.type": "DotSalmon",
-                    "iswild": "bool (optional)",
-                    "location": "str (optional)",
-                    "species": "str (optional)"
-                }
-            }
     """
 
     accept = "application/json"
@@ -317,28 +218,6 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
-                "siblings": [
-                    {
-                        "fishtype": "fishtype",
-                        "length": "float",
-                        "siblings": [
-                            "..."
-                        ],
-                        "species": "str (optional)"
-                    }
-                ],
-                "species": "str (optional)"
-            }
     """
 
     accept = "application/json"
@@ -369,30 +248,6 @@ def build_put_complicated_request(*, json: Any = None, content: Any = None, **kw
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            fishtype = 'SmartSalmon'
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
-                "siblings": [
-                    {
-                        "fishtype": "fishtype",
-                        "length": "float",
-                        "siblings": [
-                            "..."
-                        ],
-                        "species": "str (optional)"
-                    }
-                ],
-                "species": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -426,49 +281,6 @@ def build_put_missing_discriminator_request(*, json: Any = None, content: Any = 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            fishtype = 'SmartSalmon'
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
-                "siblings": [
-                    {
-                        "fishtype": "fishtype",
-                        "length": "float",
-                        "siblings": [
-                            "..."
-                        ],
-                        "species": "str (optional)"
-                    }
-                ],
-                "species": "str (optional)"
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
-                "siblings": [
-                    {
-                        "fishtype": "fishtype",
-                        "length": "float",
-                        "siblings": [
-                            "..."
-                        ],
-                        "species": "str (optional)"
-                    }
-                ],
-                "species": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -555,21 +367,6 @@ def build_put_valid_missing_required_request(*, json: Any = None, content: Any =
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            fishtype = 'Salmon' or 'Shark'
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "fishtype": "fishtype",
-                "length": "float",
-                "siblings": [
-                    "..."
-                ],
-                "species": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

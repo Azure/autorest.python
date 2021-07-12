@@ -122,12 +122,6 @@ def build_put_max_date_request(*, json: Any = None, content: Any = None, **kwarg
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "date (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -184,12 +178,6 @@ def build_put_min_date_request(*, json: Any = None, content: Any = None, **kwarg
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = "date (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

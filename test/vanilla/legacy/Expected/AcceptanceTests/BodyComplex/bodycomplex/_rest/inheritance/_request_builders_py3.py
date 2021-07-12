@@ -24,24 +24,6 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "breed": "str (optional)",
-                "color": "str (optional)",
-                "hates": [
-                    {
-                        "food": "str (optional)",
-                        "id": "int (optional)",
-                        "name": "str (optional)"
-                    }
-                ],
-                "id": "int (optional)",
-                "name": "str (optional)"
-            }
     """
 
     accept = "application/json"
@@ -75,24 +57,6 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your `json` input.
-            json = {
-                "breed": "str (optional)",
-                "color": "str (optional)",
-                "hates": [
-                    {
-                        "food": "str (optional)",
-                        "id": "int (optional)",
-                        "name": "str (optional)"
-                    }
-                ],
-                "id": "int (optional)",
-                "name": "str (optional)"
-            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
