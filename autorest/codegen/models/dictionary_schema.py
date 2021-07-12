@@ -3,9 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Callable, Dict, Optional, cast
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
+from .object_schema import ObjectSchema
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
@@ -68,7 +69,7 @@ class DictionarySchema(BaseSchema):
         **kwargs: Any
     ) -> Any:
         try:
-            if self.element_type.name in kwargs.get("object_schema_names", []):
+            if cast(ObjectSchema, self.element_type).name in kwargs.get("object_schema_names", []):
                 return {"str": "..."}
         except AttributeError:
             pass

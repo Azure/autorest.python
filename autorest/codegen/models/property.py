@@ -133,7 +133,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         kwargs["optional"] = not self.required
         kwargs["default_value_declaration"] = self.default_value_declaration
         try:
-            if self.schema.name in kwargs.get("object_schema_names", []):
+            if self.schema.name in kwargs.get("object_schema_names", []):  # type: ignore
                 return f"..."
         except AttributeError:
             pass
@@ -143,7 +143,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.is_discriminator:
             return kwargs.pop("discriminator_value", None) or self.name
         try:
-            if self.schema.discriminator_name:
+            if self.schema.discriminator_name:  # type: ignore
                 return self.name
         except AttributeError:
             pass

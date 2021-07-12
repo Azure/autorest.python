@@ -25,7 +25,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     ) -> None:
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
-        self._content_types = None
+        self._content_types: Optional[List[str]] = None
 
     # MutableSequence
 
@@ -165,7 +165,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
                 if param.schema.get("choices"):
                     for choice in param.schema['choices']:
                         content_types[choice['value']] = None
-            elif isinstance(param.schema, ConstantSchema):
+            elif isinstance(param.schema, ConstantSchema) and param.schema.value:
                 content_types[param.schema.value] = None
             elif isinstance(param.schema, EnumSchema):
                 # enums

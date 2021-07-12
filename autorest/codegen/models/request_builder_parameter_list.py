@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import copy
-from typing import List, Optional, TypeVar, Dict
+from typing import List, Optional, TypeVar, Dict, TYPE_CHECKING
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
@@ -17,17 +17,18 @@ OrderedSet = Dict[T, None]
 
 _REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
 
+if TYPE_CHECKING:
+    from . import ParameterType
+
 class RequestBuilderParameterList(ParameterList):
     def __init__(
         self, parameters: Optional[List[RequestBuilderParameter]] = None
     ) -> None:
-        # need to include init to override type failure.
-        # RequestBuilderParameterList takes in a list of RequestBuilderParameter,
-        # while ParameterList takes in a list of Parameter
         super(RequestBuilderParameterList, self).__init__(
             parameters  # type: ignore
         )
         self.body_kwarg_names: OrderedSet[str] = {}
+        self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore
 
 
     @property

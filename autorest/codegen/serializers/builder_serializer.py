@@ -23,6 +23,7 @@ from ..models import (
     SchemaRequest,
     Parameter,
     RequestBuilder,
+    RequestBuilderParameter,
 )
 from . import utils
 
@@ -135,7 +136,7 @@ def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
     for grouped_parameter in builder.parameters.grouped:
         retval.append(f"{grouped_parameter.serialized_name} = None")
     for grouper_name, grouped_parameters in groupby(
-        builder.parameters.grouped, key=lambda a: a.grouped_by.serialized_name
+        builder.parameters.grouped, key=lambda a: cast(Parameter, a.grouped_by).serialized_name
     ):
         retval.append(f"if {grouper_name} is not None:")
         for grouped_parameter in grouped_parameters:
@@ -286,7 +287,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
         description_list.append("")
         return description_list
 
-    def param_description(self, builder: Union[RequestBuilder, Operation]) -> List[str]:
+    def param_description(self, builder: Union[RequestBuilder, Operation]) -> List[str]:  # pylint: disable=no-self-use
         description_list: List[str] = []
         for parameter in [m for m in builder.parameters.method if m.is_documented]:
             description_list.extend(
@@ -518,7 +519,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []
 
-    def param_description(self, builder: BuilderType) -> List[str]:
+    def param_description(self, builder: BuilderType) -> List[str]:  # pylint: disable=no-self-use
         description_list = super().param_description(builder)
         description_list.append(
             ":keyword callable cls: A custom type or function that will be passed the direct response"
@@ -628,7 +629,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
         for parameter in request_builder.parameters.method:
             if parameter.is_body:
                 continue
-            retval.append(f"    {parameter.serialized_name}={parameter.name_in_high_level_operation},")
+            high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
+            retval.append(f"    {parameter.serialized_name}={high_level_name},")
         if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")

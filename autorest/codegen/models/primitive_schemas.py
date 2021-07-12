@@ -22,7 +22,7 @@ class RawString(object):
         return "r'{}'".format(self.string.replace('\'', '\\\''))
 
 def _add_optional_and_default_value_template_representation(
-    representation: str,
+    representation: str,   # pylint: disable=unused-argument
     *,
     optional: bool = True,
     default_value_declaration: Optional[str] = None,
