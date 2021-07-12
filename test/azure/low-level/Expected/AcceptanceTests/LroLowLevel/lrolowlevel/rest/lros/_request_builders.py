@@ -43,14 +43,18 @@ def build_put200_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -95,14 +99,18 @@ def build_put201_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 201
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -142,8 +150,10 @@ def build_post202_list_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
             ]
     """
@@ -185,14 +195,18 @@ def build_put200_succeeded_no_state_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -238,14 +252,18 @@ def build_put202_retry200_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -291,14 +309,18 @@ def build_put201_creating_succeeded200_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200, 201
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -344,14 +366,18 @@ def build_put200_updating_succeeded204_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -397,14 +423,18 @@ def build_put201_creating_failed200_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200, 201
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -450,14 +480,18 @@ def build_put200_acceptedcanceled200_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -502,14 +536,18 @@ def build_put_no_header_in_retry_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -555,14 +593,18 @@ def build_put_async_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -608,14 +650,18 @@ def build_put_async_no_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -661,14 +707,18 @@ def build_put_async_retry_failed_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -714,14 +764,18 @@ def build_put_async_no_retrycanceled_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -767,14 +821,18 @@ def build_put_async_no_header_in_retry_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 201
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -920,14 +978,18 @@ def build_put_sub_resource_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -971,14 +1033,18 @@ def build_put_async_sub_resource_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1018,8 +1084,10 @@ def build_delete_provisioning202_accepted200_succeeded_request(
 
             # response body for status code(s): 200, 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1055,8 +1123,10 @@ def build_delete_provisioning202_deleting_failed200_request(
 
             # response body for status code(s): 200, 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1092,8 +1162,10 @@ def build_delete_provisioning202_deletingcanceled200_request(
 
             # response body for status code(s): 200, 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1154,8 +1226,10 @@ def build_delete202_retry200_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1190,8 +1264,10 @@ def build_delete202_no_retry204_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1430,8 +1506,10 @@ def build_post202_retry200_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1476,14 +1554,18 @@ def build_post202_no_retry204_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1523,8 +1605,10 @@ def build_post_double_headers_final_location_get_request(
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1560,8 +1644,10 @@ def build_post_double_headers_final_azure_header_get_request(
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1597,8 +1683,10 @@ def build_post_double_headers_final_azure_header_get_default_request(
 
             # response body for status code(s): 202
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1640,14 +1728,18 @@ def build_post_async_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1693,14 +1785,18 @@ def build_post_async_no_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1746,8 +1842,10 @@ def build_post_async_retry_failed_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 
@@ -1793,8 +1891,10 @@ def build_post_async_retrycanceled_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "provisioningState": "str (optional)",
-                "provisioningStateValues": "str (optional)"
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                }
             }
     """
 

@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, Union
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -129,35 +129,39 @@ def build_create_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "accountType": "str (optional)"
+                "properties": {
+                    "accountType": "str (optional)"
+                }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "lastGeoFailoverTime": "datetime (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
+                "properties": {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
                     },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)"
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": "...",
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
             }
     """
 
@@ -270,30 +274,32 @@ def build_get_properties_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "lastGeoFailoverTime": "datetime (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
+                "properties": {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
                     },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)"
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": "...",
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
             }
     """
 
@@ -367,39 +373,43 @@ def build_update_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "accountType": "str (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
+                "properties": {
+                    "accountType": "str (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
+                    }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "accountType": "str (optional)",
-                "creationTime": "datetime (optional)",
-                "customDomain": {
-                    "name": "str (optional)",
-                    "useSubDomain": "bool (optional)"
-                },
-                "lastGeoFailoverTime": "datetime (optional)",
-                "primaryEndpoints": {
-                    "FooPoint": {
-                        "Bar.Point": {
-                            "RecursivePoint": "..."
-                        }
+                "properties": {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
                     },
-                    "blob": "str (optional)",
-                    "dummyEndPoint": "...",
-                    "queue": "str (optional)",
-                    "table": "str (optional)"
-                },
-                "primaryLocation": "str (optional)",
-                "provisioningState": "str (optional)",
-                "secondaryEndpoints": "...",
-                "secondaryLocation": "str (optional)",
-                "statusOfPrimary": "str (optional)",
-                "statusOfSecondary": "str (optional)"
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": "...",
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
             }
     """
 
@@ -518,30 +528,32 @@ def build_list_request(
                 "nextLink": "str (optional)",
                 "value": [
                     {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
+                        "properties": {
+                            "accountType": "str (optional)",
+                            "creationTime": "datetime (optional)",
+                            "customDomain": {
+                                "name": "str (optional)",
+                                "useSubDomain": "bool (optional)"
                             },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": "...",
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)"
+                            "lastGeoFailoverTime": "datetime (optional)",
+                            "primaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "primaryLocation": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "secondaryEndpoints": "...",
+                            "secondaryLocation": "str (optional)",
+                            "statusOfPrimary": "str (optional)",
+                            "statusOfSecondary": "str (optional)"
+                        }
                     }
                 ]
             }
@@ -597,30 +609,32 @@ def build_list_by_resource_group_request(
                 "nextLink": "str (optional)",
                 "value": [
                     {
-                        "accountType": "str (optional)",
-                        "creationTime": "datetime (optional)",
-                        "customDomain": {
-                            "name": "str (optional)",
-                            "useSubDomain": "bool (optional)"
-                        },
-                        "lastGeoFailoverTime": "datetime (optional)",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": "..."
-                                }
+                        "properties": {
+                            "accountType": "str (optional)",
+                            "creationTime": "datetime (optional)",
+                            "customDomain": {
+                                "name": "str (optional)",
+                                "useSubDomain": "bool (optional)"
                             },
-                            "blob": "str (optional)",
-                            "dummyEndPoint": "...",
-                            "queue": "str (optional)",
-                            "table": "str (optional)"
-                        },
-                        "primaryLocation": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "secondaryEndpoints": "...",
-                        "secondaryLocation": "str (optional)",
-                        "statusOfPrimary": "str (optional)",
-                        "statusOfSecondary": "str (optional)"
+                            "lastGeoFailoverTime": "datetime (optional)",
+                            "primaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "primaryLocation": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "secondaryEndpoints": "...",
+                            "secondaryLocation": "str (optional)",
+                            "statusOfPrimary": "str (optional)",
+                            "statusOfSecondary": "str (optional)"
+                        }
                     }
                 ]
             }
