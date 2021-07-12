@@ -145,6 +145,14 @@ def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
             )
     return retval
 
+def _content_type_docstring(builder: BuilderType) -> str:
+    content_type_str = (
+        ":keyword str content_type: Media type of the body sent to the API. " +
+        f'Default value is "{builder.parameters.default_content_type}". ' +
+        'Allowed values are: "{}."'.format('", "'.join(builder.parameters.content_types))
+    )
+    return content_type_str
+
 class BuilderSerializerProtocol(ABC):
     @property
     @abstractmethod
@@ -201,10 +209,6 @@ class BuilderSerializerProtocol(ABC):
     def response_docstring(self, builder: BuilderType) -> List[str]:
         """Response portion of the docstring"""
         ...
-
-    @abstractmethod
-    def _content_type_docstring(self, builder: BuilderType) -> str:
-        """Docstring for content type kwarg"""
 
     @abstractmethod
     def want_example_template(self, builder: BuilderType) -> bool:
@@ -299,19 +303,11 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
             request_builder = cast(RequestBuilder, builder)
 
         if len(request_builder.schema_requests) > 1:
-            description_list.append(self._content_type_docstring(builder))
+            description_list.append(_content_type_docstring(builder))
         return description_list
 
     def param_description_and_response_docstring(self, builder: BuilderType) -> List[str]:
         return self.param_description(builder) + self.response_docstring(builder)
-
-    def _content_type_docstring(self, builder: BuilderType) -> str:
-        content_type_str = (
-            f':keyword str content_type: Media type of the body sent to the API. "\
-            "Default value is "{builder.parameters.default_content_type}". '\
-            'Allowed values are: "{}."'.format('", "'.join(builder.parameters.content_types))
-        )
-        return content_type_str
 
     def _get_json_response_template_to_status_codes(self, builder: BuilderType) -> Dict[str, List[str]]:
         # successful status codes of responses that have bodies

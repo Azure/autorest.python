@@ -71,6 +71,11 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'NoOperations': 'no-operations.json',
 }
 
+_UPDATE_SWAGGER_MAPPINGS = {
+    'LLCInitial': 'llc_initial.json',
+    'LLCUpdateOne': 'llc_update1.json'
+}
+
 _AZURE_SWAGGER_MAPPINGS = {
     'AzureBodyDuration': 'body-duration.json',
     'AzureReport': 'azure-report.json',
@@ -233,7 +238,17 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS,  _SwaggerGroup.VANILLA, swagger_name, debug, low_level_client=True, **kwargs)
+    mapping = _VANILLA_SWAGGER_MAPPINGS
+    mapping.update(_UPDATE_SWAGGER_MAPPINGS)
+    return _prepare_mapping_and_regenerate(
+        c,
+        mapping,
+        _SwaggerGroup.VANILLA,
+        swagger_name,
+        debug,
+        low_level_client=True,
+        **kwargs
+    )
 
 @task
 def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):

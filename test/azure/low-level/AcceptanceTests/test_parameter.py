@@ -34,6 +34,8 @@ from azurespecialpropertieslowlevel.rest import (
     api_version_local,
     odata,
 )
+from azureparametergroupinglowlevel import AutoRestParameterGroupingTestService
+from azureparametergroupinglowlevel.rest import parameter_grouping
 
 
 import pytest
@@ -45,6 +47,11 @@ def valid_subscription():
 @pytest.fixture
 def client(valid_subscription, credential, authentication_policy):
     with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        yield client
+
+@pytest.fixture
+def parameter_grouping_client():
+    with AutoRestParameterGroupingTestService(base_url="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture
@@ -77,6 +84,72 @@ def send_request(client, base_send_request):
     def _send_request(request):
         return base_send_request(client, request)
     return _send_request
+
+@pytest.fixture
+def send_request_parameter_grouping(parameter_grouping_client, base_send_request):
+    def _send_request(request):
+        return base_send_request(parameter_grouping_client, request)
+    return _send_request
+
+def test_post_all_required_parameters(send_request_parameter_grouping, body_parameter, header_parameter, query_parameter, path_parameter):
+    request = parameter_grouping.build_post_required_request(
+        path=path_parameter,
+        json=body_parameter,
+        query=query_parameter,
+        custom_header=header_parameter
+    )
+    send_request_parameter_grouping(request)
+
+def test_post_required_parameters_null_optional_parameters(send_request_parameter_grouping, body_parameter, path_parameter):
+    request = parameter_grouping.build_post_required_request(
+        path=path_parameter,
+        json=body_parameter,
+        query=None,
+    )
+    send_request_parameter_grouping(request)
+
+def test_post_required_parameters_with_null_required_property(path_parameter):
+    # with pytest.raises(TypeError):
+    #     parameter_grouping.build_post_required_request(
+    #         path=path_parameter,
+    #         json=None,
+    #         content=None,
+    #     )
+    with pytest.raises(TypeError):
+        parameter_grouping.build_post_required_request()
+
+def test_post_all_optional(send_request_parameter_grouping, header_parameter, query_parameter):
+    request = parameter_grouping.build_post_optional_request(
+        custom_header=header_parameter,
+        query=query_parameter
+    )
+    send_request_parameter_grouping(request)
+
+def test_post_none_optional(send_request_parameter_grouping):
+    request = parameter_grouping.build_post_optional_request()
+    send_request_parameter_grouping(request)
+
+def test_post_all_multi_param_groups(send_request_parameter_grouping, header_parameter, query_parameter):
+    request = parameter_grouping.build_post_multi_param_groups_request(
+        header_one=header_parameter,
+        query_one=query_parameter,
+        header_two="header2",
+        query_two=42,
+    )
+    send_request_parameter_grouping(request)
+
+def test_post_some_multi_param_groups(send_request_parameter_grouping, header_parameter):
+    request = parameter_grouping.build_post_multi_param_groups_request(
+        header_one=header_parameter,
+        query_two=42,
+    )
+    send_request_parameter_grouping(request)
+
+def test_post_shared_parameter_group_object(send_request_parameter_grouping, header_parameter):
+    request = parameter_grouping.build_post_shared_parameter_group_object_request(
+        header_one=header_parameter
+    )
+    send_request_parameter_grouping(request)
 
 def test_subscription_in_credentials(send_request, valid_subscription):
     # valid_api_version = '2.0'

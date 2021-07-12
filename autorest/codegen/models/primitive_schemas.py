@@ -27,6 +27,7 @@ def _add_optional_and_default_value_template_representation(
     optional: bool = True,
     default_value_declaration: Optional[str] = None,
     description: Optional[str] = None,
+    **kwargs: Any
 ):
     if optional:
         representation += " (optional)"
