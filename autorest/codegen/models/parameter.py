@@ -5,13 +5,15 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 import logging
-from typing import Dict, Optional, List, Any, Union, Tuple
+from typing import Dict, Optional, List, Any, Union, Tuple, cast
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .list_schema import ListSchema
 from .constant_schema import ConstantSchema
+from .object_schema import ObjectSchema
+from .property import Property
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -170,6 +172,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             # If I'm a kwarg, don't include in the signature
             or self.is_kwarg
         )
+
+    @property
+    def corresponding_grouped_property(self) -> Property:
+        if not self.grouped_by:
+            raise ValueError("Should only be calling if your parameter is grouped")
+        try:
+            return next(
+                p for p in cast(ObjectSchema, self.grouped_by.schema).properties
+                if any(op for op in p.yaml_data['originalParameter'] if id(op) == self.id)
+            )
+        except StopIteration:
+            raise ValueError("There is not a corresponding grouped property for your parameter.")
 
     @property
     def in_method_code(self) -> bool:

@@ -151,6 +151,15 @@ class TestParameter(object):
         await client.parameter_grouping.post_shared_parameter_group_object(first_group)
 
     @pytest.mark.asyncio
+    async def test_post_reserved_words(self, client):
+        from azureparametergrouping.models import ParameterGroupingPostReservedWordsParameters
+        group = ParameterGroupingPostReservedWordsParameters(
+            from_property="bob",
+            accept="yes"
+        )
+        await client.parameter_grouping.post_reserved_words(group)
+
+    @pytest.mark.asyncio
     async def test_subscription_in_credentials(self, azure_client):
         # valid_api_version = '2.0'
         await azure_client.subscription_in_credentials.post_method_global_not_provided_valid()
