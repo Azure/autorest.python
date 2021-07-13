@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_incorrect_error_from_server_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get an error response from the server that is not as described in our Error object. Want to
@@ -34,6 +35,10 @@ def build_get_incorrect_error_from_server_request(
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/incorrectError")
+    url = kwargs.pop("template_url", '/incorrectError')
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        **kwargs
+    )

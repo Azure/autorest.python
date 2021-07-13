@@ -4,6 +4,9 @@
 
 _SERIALIZER = Serializer()
 
+{% if not is_python_3_file %}
+# fmt: off
+{% endif %}
 {% for request_builder in request_builders %}
 
 {% include "request_builder.py.jinja2" %}

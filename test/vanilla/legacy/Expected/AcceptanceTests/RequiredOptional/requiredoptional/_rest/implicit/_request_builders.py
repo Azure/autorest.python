@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_required_path_request(
     path_parameter,  # type: str
@@ -38,21 +39,26 @@ def build_get_required_path_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
+    url = kwargs.pop("template_url", '/reqopt/implicit/required/path/{pathParameter}')
     path_format_arguments = {
-        "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
+        'pathParameter': _SERIALIZER.url("path_parameter", path_parameter, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_optional_query_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly optional query parameter.
@@ -68,26 +74,32 @@ def build_put_optional_query_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
+    query_parameter = kwargs.pop('query_parameter', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/query')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_parameter is not None:
-        query_parameters["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
+        query_parameters['queryParameter'] = _SERIALIZER.query("query_parameter", query_parameter, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_optional_header_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly optional header parameter.
@@ -103,23 +115,28 @@ def build_put_optional_header_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
+    query_parameter = kwargs.pop('query_parameter', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/header')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if query_parameter is not None:
-        header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['queryParameter'] = _SERIALIZER.header("query_parameter", query_parameter, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_optional_body_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly optional body parameter.
@@ -139,23 +156,28 @@ def build_put_optional_body_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/body')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_optional_binary_body_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly optional body parameter.
@@ -172,19 +194,24 @@ def build_put_optional_binary_body_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/binary-body')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_required_global_path_request(
@@ -207,21 +234,26 @@ def build_get_required_global_path_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
+    url = kwargs.pop("template_url", '/reqopt/global/required/path/{required-global-path}')
     path_format_arguments = {
-        "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
+        'required-global-path': _SERIALIZER.url("required_global_path", required_global_path, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_required_global_query_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly required query parameter.
@@ -237,25 +269,31 @@ def build_get_required_global_query_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    required_global_query = kwargs.pop("required_global_query")  # type: str
+    required_global_query = kwargs.pop('required_global_query')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/global/required/query")
+    url = kwargs.pop("template_url", '/reqopt/global/required/query')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["required-global-query"] = _SERIALIZER.query("required_global_query", required_global_query, "str")
+    query_parameters['required-global-query'] = _SERIALIZER.query("required_global_query", required_global_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_optional_global_query_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test implicitly optional query parameter.
@@ -271,21 +309,25 @@ def build_get_optional_global_query_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    optional_global_query = kwargs.pop("optional_global_query", None)  # type: Optional[int]
+    optional_global_query = kwargs.pop('optional_global_query', None)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/global/optional/query")
+    url = kwargs.pop("template_url", '/reqopt/global/optional/query')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if optional_global_query is not None:
-        query_parameters["optional-global-query"] = _SERIALIZER.query(
-            "optional_global_query", optional_global_query, "int"
-        )
+        query_parameters['optional-global-query'] = _SERIALIZER.query("optional_global_query", optional_global_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

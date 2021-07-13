@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_param_existing_key_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header value "User-Agent": "overwrite".
@@ -35,22 +36,27 @@ def build_param_existing_key_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    user_agent_parameter = kwargs.pop("user_agent_parameter")  # type: str
+    user_agent_parameter = kwargs.pop('user_agent_parameter')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/existingkey")
+    url = kwargs.pop("template_url", '/header/param/existingkey')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["User-Agent"] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['User-Agent'] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_existing_key_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "User-Agent": "overwrite".
@@ -66,17 +72,22 @@ def build_response_existing_key_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/existingkey")
+    url = kwargs.pop("template_url", '/header/response/existingkey')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_protected_key_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header value "Content-Type": "text/html".
@@ -90,22 +101,27 @@ def build_param_protected_key_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop("content_type")  # type: str
+    content_type = kwargs.pop('content_type')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/protectedkey")
+    url = kwargs.pop("template_url", '/header/param/protectedkey')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_protected_key_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "Content-Type": "text/html".
@@ -121,17 +137,22 @@ def build_response_protected_key_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/protectedkey")
+    url = kwargs.pop("template_url", '/header/response/protectedkey')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_integer_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
@@ -150,24 +171,29 @@ def build_param_integer_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: int
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: int
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/integer")
+    url = kwargs.pop("template_url", '/header/param/prim/integer')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_integer_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 1 or -2.
@@ -183,22 +209,27 @@ def build_response_integer_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/integer")
+    url = kwargs.pop("template_url", '/header/response/prim/integer')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_long_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
@@ -217,24 +248,29 @@ def build_param_long_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: int
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: int
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/long")
+    url = kwargs.pop("template_url", '/header/param/prim/long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "long")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'long')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_long_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 105 or -2.
@@ -250,22 +286,27 @@ def build_response_long_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/long")
+    url = kwargs.pop("template_url", '/header/response/prim/long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_float_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
@@ -284,24 +325,29 @@ def build_param_float_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: float
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/float")
+    url = kwargs.pop("template_url", '/header/param/prim/float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'float')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_float_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 0.07 or -3.0.
@@ -317,22 +363,27 @@ def build_response_float_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/float")
+    url = kwargs.pop("template_url", '/header/response/prim/float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_double_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
@@ -351,24 +402,29 @@ def build_param_double_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: float
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/double")
+    url = kwargs.pop("template_url", '/header/param/prim/double')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'float')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_double_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "value": 7e120 or -3.0.
@@ -384,22 +440,27 @@ def build_response_double_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/double")
+    url = kwargs.pop("template_url", '/header/response/prim/double')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_bool_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "true", "value": true or "scenario":
@@ -418,24 +479,29 @@ def build_param_bool_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: bool
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: bool
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/bool")
+    url = kwargs.pop("template_url", '/header/param/prim/bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'bool')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_bool_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header value "value": true or false.
@@ -451,22 +517,27 @@ def build_response_bool_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/bool")
+    url = kwargs.pop("template_url", '/header/response/prim/bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_string_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
@@ -487,25 +558,30 @@ def build_param_string_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value", None)  # type: Optional[str]
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/string")
+    url = kwargs.pop("template_url", '/header/param/prim/string')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     if value is not None:
-        header_parameters["value"] = _SERIALIZER.header("value", value, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['value'] = _SERIALIZER.header("value", value, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_string_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
@@ -522,22 +598,27 @@ def build_response_string_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/string")
+    url = kwargs.pop("template_url", '/header/response/prim/string')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_date_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
@@ -556,24 +637,29 @@ def build_param_date_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: datetime.date
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: datetime.date
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/date")
+    url = kwargs.pop("template_url", '/header/param/prim/date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "date")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'date')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_date_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "2010-01-01" or "0001-01-01".
@@ -589,22 +675,27 @@ def build_response_date_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/date")
+    url = kwargs.pop("template_url", '/header/response/prim/date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_datetime_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
@@ -624,24 +715,29 @@ def build_param_datetime_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: datetime.datetime
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: datetime.datetime
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/datetime")
+    url = kwargs.pop("template_url", '/header/param/prim/datetime')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'iso-8601')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_datetime_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
@@ -657,22 +753,27 @@ def build_response_datetime_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/datetime")
+    url = kwargs.pop("template_url", '/header/response/prim/datetime')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_datetime_rfc1123_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
@@ -692,25 +793,30 @@ def build_param_datetime_rfc1123_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value", None)  # type: Optional[datetime.datetime]
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value', None)  # type: Optional[datetime.datetime]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/datetimerfc1123")
+    url = kwargs.pop("template_url", '/header/param/prim/datetimerfc1123')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     if value is not None:
-        header_parameters["value"] = _SERIALIZER.header("value", value, "rfc-1123")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['value'] = _SERIALIZER.header("value", value, 'rfc-1123')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_datetime_rfc1123_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
@@ -727,22 +833,27 @@ def build_response_datetime_rfc1123_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/datetimerfc1123")
+    url = kwargs.pop("template_url", '/header/response/prim/datetimerfc1123')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_duration_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
@@ -760,24 +871,29 @@ def build_param_duration_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: datetime.timedelta
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: datetime.timedelta
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/duration")
+    url = kwargs.pop("template_url", '/header/param/prim/duration')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'duration')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_duration_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "P123DT22H14M12.011S".
@@ -793,22 +909,27 @@ def build_response_duration_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/duration")
+    url = kwargs.pop("template_url", '/header/response/prim/duration')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_byte_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
@@ -826,24 +947,29 @@ def build_param_byte_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value")  # type: bytearray
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value')  # type: bytearray
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/byte")
+    url = kwargs.pop("template_url", '/header/param/prim/byte')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['value'] = _SERIALIZER.header("value", value, 'bytearray')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_byte_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
@@ -859,22 +985,27 @@ def build_response_byte_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/byte")
+    url = kwargs.pop("template_url", '/header/response/prim/byte')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_param_enum_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
@@ -894,25 +1025,30 @@ def build_param_enum_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
-    value = kwargs.pop("value", None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value', None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/enum")
+    url = kwargs.pop("template_url", '/header/param/prim/enum')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     if value is not None:
-        header_parameters["value"] = _SERIALIZER.header("value", value, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['value'] = _SERIALIZER.header("value", value, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_response_enum_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a response with header values "GREY" or null.
@@ -929,22 +1065,27 @@ def build_response_enum_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    scenario = kwargs.pop("scenario")  # type: str
+    scenario = kwargs.pop('scenario')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/enum")
+    url = kwargs.pop("template_url", '/header/response/prim/enum')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_custom_request_id_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
@@ -961,10 +1102,15 @@ def build_custom_request_id_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    url = kwargs.pop("template_url", '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

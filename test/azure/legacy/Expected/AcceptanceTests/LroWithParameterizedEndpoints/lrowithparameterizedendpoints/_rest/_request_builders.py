@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_poll_with_parameterized_endpoints_request_initial(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Poll with method and client level parameters in endpoint.
@@ -35,17 +36,22 @@ def build_poll_with_parameterized_endpoints_request_initial(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/lroParameterizedEndpoints")
+    url = kwargs.pop("template_url", '/lroParameterizedEndpoints')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_poll_with_constant_parameterized_endpoints_request_initial(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Poll with method and client level parameters in endpoint, with a constant value.
@@ -62,14 +68,19 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(
     constant_parameter = "iAmConstant"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/lroConstantParameterizedEndpoints/{constantParameter}")
+    url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
     path_format_arguments = {
-        "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, "str", skip_quote=True),
+        'constantParameter': _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_test_one_request(
     **kwargs  # type: Any

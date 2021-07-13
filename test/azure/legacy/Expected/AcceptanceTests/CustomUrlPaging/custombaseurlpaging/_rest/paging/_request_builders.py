@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_pages_partial_url_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """A paging operation that combines custom url, paging and partial URL and expect to concat after
@@ -36,17 +37,22 @@ def build_get_pages_partial_url_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
+    url = kwargs.pop("template_url", '/paging/customurl/partialnextlink')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_pages_partial_url_operation_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """A paging operation that combines custom url, paging and partial URL with next operation.
@@ -62,13 +68,18 @@ def build_get_pages_partial_url_operation_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
+    url = kwargs.pop("template_url", '/paging/customurl/partialnextlinkop')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_pages_partial_url_operation_next_request(
@@ -91,14 +102,19 @@ def build_get_pages_partial_url_operation_next_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/customurl/{nextLink}")
+    url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
     path_format_arguments = {
-        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
