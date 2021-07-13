@@ -134,11 +134,3 @@ ParameterListType = TypeVar(
         RequestBuilderParameterList,
     ],
 )
-
-ParameterType = TypeVar(
-    "ParameterType",
-    bound=Union[
-        Parameter,
-        RequestBuilderParameter,
-    ],
-)

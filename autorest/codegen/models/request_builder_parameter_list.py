@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import copy
-from typing import List, Optional, TypeVar, Dict, TYPE_CHECKING
+from typing import List, Optional, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
@@ -17,8 +17,6 @@ OrderedSet = Dict[T, None]
 
 _REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
 
-if TYPE_CHECKING:
-    from . import ParameterType
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
