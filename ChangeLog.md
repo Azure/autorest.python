@@ -1,5 +1,17 @@
 # Change Log
 
+### 2021-xx-xx - 5.9.0
+
+min Autorest core version: 3.3.0
+
+min Modelerfour version: 4.19.1
+
+**New Features**
+
+- We have added a **provisional** `rest` layer to our generated code. We have also added the following **provisional** flags listed [here](https://github.com/Azure/autorest.python/wiki/Generating-Low-Level-Client#generate-a-low-level-client). NOTE: any code generated with these provisional  #875
+flags is also provisional, and require `azure-core` version `1.16.0` and up to run.
+- With this new release, we are also dropping support for Python 3.5 + async.  #875
+
 ### 2021-07-06 - 5.8.3
 
 min Autorest core version: 3.3.0

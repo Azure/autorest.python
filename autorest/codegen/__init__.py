@@ -87,7 +87,7 @@ class CodeGenerator(Plugin):
         show_builders = self._autorestapi.get_boolean_value("show-builders", False)
         show_operations = self._autorestapi.get_boolean_value("show-operations", True)
         show_send_request = self._autorestapi.get_boolean_value("show-send-request", False)
-        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-params-positional", False)
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value("only-path-and-body-params-positional", False)
         if low_level_client:
             show_models = False
             show_builders = True
