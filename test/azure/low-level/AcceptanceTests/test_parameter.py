@@ -125,11 +125,8 @@ def test_post_all_optional(send_request_parameter_grouping, header_parameter, qu
     )
     send_request_parameter_grouping(request)
 
-@pytest.mark.skip(
-    reason="With parameter grouping, passing in None for the group model ensures everything is None. Not the case without grouping"
-)
 def test_post_none_optional(send_request_parameter_grouping):
-    request = parameter_grouping.build_post_optional_request()
+    request = parameter_grouping.build_post_optional_request(query=None)
     send_request_parameter_grouping(request)
 
 def test_post_all_multi_param_groups(send_request_parameter_grouping, header_parameter, query_parameter):
