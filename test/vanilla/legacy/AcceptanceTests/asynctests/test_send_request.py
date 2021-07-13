@@ -49,7 +49,7 @@ class TestSendRequest(object):
             },
         )
         async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
-            response = await client.send_request(request)
+            response = await client._send_request(request)
 
             deserialized = Siamese.deserialize(response)
             assert 2 ==  deserialized.id
@@ -70,7 +70,7 @@ class TestSendRequest(object):
         )
 
         async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
-            response = await client.send_request(request, stream=True)
+            response = await client._send_request(request, stream=True)
             chunks = []
             async for chunk in response.stream_download(None):
                 chunks.append(chunk)
@@ -112,7 +112,7 @@ class TestSendRequest(object):
         )
         request.set_json_body(siamese_body)
         async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
-            response = await client.send_request(request)
+            response = await client._send_request(request)
             assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -146,7 +146,7 @@ class TestSendRequest(object):
         )
         request.set_json_body(siamese.serialize())
         async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
-            response = await client.send_request(request)
+            response = await client._send_request(request)
             assert response.status_code == 200
 
     @pytest.mark.asyncio
@@ -163,7 +163,7 @@ class TestSendRequest(object):
                 },
             )
 
-            response = await client.send_request(request, stream=True)
+            response = await client._send_request(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(None)  # want to make pipeline client an optional param in azure-core
@@ -205,7 +205,7 @@ class TestSendRequest(object):
                 },
                 data=stream_data,
             )
-            response = await client.send_request(request, stream=True)
+            response = await client._send_request(request, stream=True)
             assert response.status_code == 200
         await client.close()
 
@@ -220,7 +220,7 @@ class TestSendRequest(object):
             },
         )
         async with AutoRestComplexTestService(base_url="http://fakeUrl") as client:
-            response = await client.send_request(request)
+            response = await client._send_request(request)
 
             deserialized = Siamese.deserialize(response)
             assert 2 ==  deserialized.id
