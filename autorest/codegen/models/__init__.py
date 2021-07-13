@@ -58,6 +58,7 @@ __all__ = [
     "LROPagingOperation",
     "BaseBuilder",
     "SchemaRequest",
+    "RequestBuilderParameter",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
