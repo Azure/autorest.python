@@ -23,6 +23,13 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
+```yaml !$(low-level-client)
+modelerfour:
+  group-parameters: true
+  flatten-models: true
+  flatten-payloads: true
+```
+
 ```yaml !$(multiapiscript)
 pass-thru:
   - model-deduplicator
@@ -32,9 +39,6 @@ use-extension:
   "@autorest/modelerfour": ~4.19.1
 
 modelerfour:
-  group-parameters: true
-  flatten-models: true
-  flatten-payloads: true
   resolve-schema-name-collisons: true
   always-create-content-type-parameter: true
   multiple-request-parameter-flattening: false
