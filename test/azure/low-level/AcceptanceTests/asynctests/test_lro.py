@@ -191,7 +191,7 @@ async def test_happy_put201_creating_succeeded200(get_poller):
 @pytest.mark.asyncio
 async def test_happy_put201_creating_failed200(assert_polling_raises_with_message, get_poller):
     request = lros.build_put201_creating_failed200_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
     request = lros.build_put201_creating_failed200_request()
     process = await (await get_poller(request, polling=False)).result()
@@ -209,7 +209,7 @@ async def test_happy_put200_updating_succeeded204(get_poller):
 @pytest.mark.asyncio
 async def test_happy_put200_acceptedcanceled200(get_poller, assert_polling_raises_with_message):
     request = lros.build_put200_acceptedcanceled200_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
     request = lros.build_put200_acceptedcanceled200_request()
     process = await (await get_poller(request, polling=False)).result()
@@ -283,10 +283,10 @@ async def test_happy_put_retry_succeeded(get_poller):
 @pytest.mark.asyncio
 async def test_happy_put_retry_failed_canceled(get_poller, assert_polling_raises_with_message):
     request = lros.build_put_async_retry_failed_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
     request = lros.build_put_async_no_retrycanceled_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
 @pytest.mark.asyncio
 async def test_post202_retry200(get_poller, get_long_running_output_return_none):
@@ -316,10 +316,10 @@ async def test_happy_delete_no_header_in_retry(get_poller, get_long_running_outp
 @pytest.mark.asyncio
 async def test_happy_delete_async_retry_failed_canceled(assert_polling_raises_with_message):
     request = lros.build_delete_async_retrycanceled_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
     request = lros.build_delete_async_retry_failed_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
 @pytest.mark.asyncio
 async def test_happy_delete_async_succeeded(get_poller, get_long_running_output_return_none):
@@ -356,10 +356,10 @@ async def test_happy_post(get_poller):
 @pytest.mark.asyncio
 async def test_happy_post_async_retry_failed_canceled(assert_polling_raises_with_message):
     request = lros.build_post_async_retry_failed_request()
-    assert_polling_raises_with_message(request, "Internal Server Error")
+    await assert_polling_raises_with_message(request, "Internal Server Error")
 
     request = lros.build_post_async_retrycanceled_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'OK'")
 
 @pytest.mark.asyncio
 async def test_happy_post_async_succeeded(get_poller):
@@ -428,26 +428,26 @@ async def test_custom_headers_post202_retry200(get_poller, custom_headers):
 @pytest.mark.asyncio
 async def test_sads_put_non_retry(assert_initial_call_raises_with_message, assert_polling_raises_with_message):
     request = lrosads.build_put_non_retry400_request()
-    assert_initial_call_raises_with_message(request, "Bad Request")
+    await assert_initial_call_raises_with_message(request, "Bad Request")
 
     request = lrosads.build_put_non_retry201_creating400_request()
-    assert_polling_raises_with_message(request, "Error from the server")
+    await assert_polling_raises_with_message(request, "Error from the server")
 
 @pytest.mark.asyncio
 async def test_sads_put_async_relative(assert_polling_raises_with_message):
     request = lrosads.build_put_async_relative_retry400_request()
-    assert_polling_raises_with_message(request, "Operation returned an invalid status 'Bad Request'")
+    await assert_polling_raises_with_message(request, "Operation returned an invalid status 'Bad Request'")
 
     request = lrosads.build_put_async_relative_retry_no_status_request()
-    assert_polling_raises_with_message(request, "no status found in body")
+    await assert_polling_raises_with_message(request, "no status found in body")
 
     request = lrosads.build_put_async_relative_retry_no_status_payload_request()
-    assert_polling_raises_with_message(request, "The response from long running operation does not contain a body.")
+    await assert_polling_raises_with_message(request, "The response from long running operation does not contain a body.")
 
 @pytest.mark.asyncio
 async def test_sads_put_error201_no_provisioning_state_payload(assert_polling_raises_with_message):
     request = lrosads.build_put_error201_no_provisioning_state_payload_request()
-    assert_polling_raises_with_message(request, "The response from long running operation does not contain a body.")
+    await assert_polling_raises_with_message(request, "The response from long running operation does not contain a body.")
 
 @pytest.mark.asyncio
 async def test_sads_put200_invalid_json_with_exception(get_poller):
@@ -472,20 +472,21 @@ async def test_sads_put_non_retry201_creating400_invalid_json_with_exception(get
     with pytest.raises(DecodeError):
         await (await get_poller(request)).wait()
 
-def tests_lro_sads_delete_non_retry(assert_initial_call_raises_with_message, assert_polling_raises_with_message):
+@pytest.mark.asyncio
+async def tests_lro_sads_delete_non_retry(assert_initial_call_raises_with_message, assert_polling_raises_with_message):
     request = lrosads.build_delete_non_retry400_request()
-    assert_initial_call_raises_with_message(request, "Bad Request")
+    await assert_initial_call_raises_with_message(request, "Bad Request")
 
     request = lrosads.build_delete202_non_retry400_request()
-    assert_polling_raises_with_message(request, "Bad Request")
+    await assert_polling_raises_with_message(request, "Bad Request")
 
 @pytest.mark.asyncio
 async def test_sads_delete_async_relative(assert_polling_raises_with_message):
     request = lrosads.build_delete_async_relative_retry400_request()
-    assert_polling_raises_with_message(request, "Bad Request")
+    await assert_polling_raises_with_message(request, "Bad Request")
 
     request = lrosads.build_delete_async_relative_retry_no_status_request()
-    assert_polling_raises_with_message(request, "no status found in body")
+    await assert_polling_raises_with_message(request, "no status found in body")
 
 @pytest.mark.asyncio
 async def test_sads_delete204_succeeded(get_poller):
@@ -513,18 +514,18 @@ async def test_sads_delete202_retry_invalid_header_with_exception(get_poller):
 @pytest.mark.asyncio
 async def test_sads_post_non_retry(assert_initial_call_raises_with_message, assert_polling_raises_with_message):
     request = lrosads.build_post_non_retry400_request()
-    assert_initial_call_raises_with_message(request, "Bad Request")
+    await assert_initial_call_raises_with_message(request, "Bad Request")
 
     request = lrosads.build_post202_non_retry400_request()
-    assert_polling_raises_with_message(request, "Bad Request")
+    await assert_polling_raises_with_message(request, "Bad Request")
 
 @pytest.mark.asyncio
 async def test_sads_post_async_relative(assert_polling_raises_with_message):
     request = lrosads.build_post_async_relative_retry400_request()
-    assert_polling_raises_with_message(request, "Bad Request")
+    await assert_polling_raises_with_message(request, "Bad Request")
 
     request = lrosads.build_post_async_relative_retry_no_payload_request()
-    assert_polling_raises_with_message(request, "The response from long running operation does not contain a body.")
+    await assert_polling_raises_with_message(request, "The response from long running operation does not contain a body.")
 
 @pytest.mark.asyncio
 async def test_sads_post202_no_location(get_poller):
