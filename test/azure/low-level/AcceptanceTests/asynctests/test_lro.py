@@ -116,7 +116,9 @@ def get_poller(get_long_running_output, client):
         pipeline_response.http_response.raise_for_status()
         polling = kwargs.pop("polling", True)
         deserializer = kwargs.pop("get_long_running_output", get_long_running_output)
-        polling_method = AutorestTestARMPolling(kwargs.pop("polling_interval", 0)) if polling else AsyncNoPolling()
+        polling_method = kwargs.pop("polling_method", None)
+        if not polling_method:
+            polling_method = AutorestTestARMPolling(kwargs.pop("polling_interval", 0)) if polling else AsyncNoPolling()
         return AsyncLROPoller(client._client, pipeline_response, deserializer, polling_method)
     return _callback
 
@@ -166,8 +168,9 @@ async def test_post_double_headers_final(get_poller):
     product = await poller.result()
     assert product['id'] == "100"
 
-    request = lros.build_post_double_headers_final_azure_header_get_default_request()
-    product = await (await get_poller(request)).result()
+    polling_method = AutorestTestARMPolling(0, lro_options={"final-state-via": "azure-async-operation"})
+    request = lros.build_post_double_headers_final_azure_header_get_request()
+    product = await (await get_poller(request, polling_method=polling_method)).result()
     assert product['id'] == "100"
 
 @pytest.mark.asyncio
