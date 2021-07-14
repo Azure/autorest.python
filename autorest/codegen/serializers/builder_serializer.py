@@ -429,7 +429,8 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=ab
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
-            "See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your code flow.",
+            "See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this "
+            "request builder into your code flow.",
             "",
         ]
         return retval
