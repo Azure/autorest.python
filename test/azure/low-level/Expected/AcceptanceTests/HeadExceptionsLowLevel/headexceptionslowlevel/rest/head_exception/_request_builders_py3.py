@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_head200_request(**kwargs: Any) -> HttpRequest:
     """Return 200 status code if successful.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -34,8 +34,8 @@ def build_head200_request(**kwargs: Any) -> HttpRequest:
 def build_head204_request(**kwargs: Any) -> HttpRequest:
     """Return 204 status code if successful.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -52,8 +52,8 @@ def build_head204_request(**kwargs: Any) -> HttpRequest:
 def build_head404_request(**kwargs: Any) -> HttpRequest:
     """Return 404 status code if successful.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

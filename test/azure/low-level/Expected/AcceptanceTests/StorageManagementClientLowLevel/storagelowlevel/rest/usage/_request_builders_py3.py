@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     """Gets the current usage count and the limit for the resources under the subscription.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
