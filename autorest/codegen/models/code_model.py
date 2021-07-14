@@ -5,10 +5,12 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, List, Dict, Optional, Any, Set, Union
+from typing import cast, List, Dict, Optional, Any, Set
 
 from .base_schema import BaseSchema
-from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
+from .credential_schema_policy import (
+    BearerTokenCredentialPolicy, CredentialSchemaPolicy
+)
 from .enum_schema import EnumSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
@@ -68,6 +70,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
         self.service_client: Client = Client()
+        self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
@@ -124,14 +127,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        credential_schema: Union[AzureKeyCredentialSchema, TokenCredentialSchema]
-        if self.options["credential_default_policy_type"] == "BearerTokenCredentialPolicy":
-            credential_schema = TokenCredentialSchema(async_mode=False)
-        else:
-            credential_schema = AzureKeyCredentialSchema()
         credential_parameter = Parameter(
             yaml_data={},
-            schema=credential_schema,
+            schema=self.credential_schema_policy.credential,
             serialized_name="credential",
             rest_api_name="credential",
             implementation="Client",
@@ -202,6 +200,20 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             operation_group.operations = [
                 operation for operation in operation_group.operations if operation not in next_operations
             ]
+
+    @property
+    def challenge_authentication_policy(self) -> CredentialSchemaPolicy:
+        return BearerTokenCredentialPolicy()
+
+    @property
+    def credential_schema_policy(self) -> CredentialSchemaPolicy:
+        if not self._credential_schema_policy:
+            raise ValueError("You want to find the Credential Schema Policy, but have not given a value")
+        return self._credential_schema_policy
+
+    @credential_schema_policy.setter
+    def credential_schema_policy(self, val: CredentialSchemaPolicy) -> None:
+        self._credential_schema_policy = val
 
     @staticmethod
     def _add_properties_from_inheritance_helper(schema, properties) -> List[Property]:

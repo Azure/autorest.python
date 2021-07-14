@@ -14,15 +14,10 @@ from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import ParameterList
+from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
+from .models.credential_schema_policy import get_credential_schema_policy, CredentialSchemaPolicy
 from .serializers import JinjaSerializer
 
-
-def _get_credential_default_policy_type_has_async_version(credential_default_policy_type: str) -> bool:
-    mapping = {
-        "BearerTokenCredentialPolicy": True,
-        "AzureKeyCredentialPolicy": False
-    }
-    return mapping[credential_default_policy_type]
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -62,6 +57,8 @@ class CodeGenerator(Plugin):
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
         code_model = CodeModel(options)
+        if code_model.options['credential']:
+            self._handle_default_authentication_policy(code_model)
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
         code_model.description = (
@@ -138,11 +135,15 @@ class CodeGenerator(Plugin):
             )
         return credential_scopes
 
-    def _get_credential_param(self, azure_arm, credential, credential_default_policy_type):
-        credential_scopes = self._get_credential_scopes(credential)
+    def _initialize_credential_schema_policy(
+        self, code_model: CodeModel, credential_schema_policy: CredentialSchemaPolicy
+    ):
+        credential_scopes = self._get_credential_scopes(code_model.options['credential'])
         credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
+        azure_arm = code_model.options['azure_arm']
+        credential = code_model.options['credential']
 
-        if credential_default_policy_type == "BearerTokenCredentialPolicy":
+        if hasattr(credential_schema_policy, "credential_scopes"):
             if not credential_scopes:
                 if azure_arm:
                     credential_scopes = ["https://management.azure.com/.default"]
@@ -150,26 +151,32 @@ class CodeGenerator(Plugin):
                     # If add-credential is specified, we still want to add a credential_scopes variable.
                     # Will make it an empty list so we can differentiate between this case and None
                     _LOGGER.warning(
-                        "You have default credential policy BearerTokenCredentialPolicy"
+                        "You have default credential policy %s "
                         "but not the --credential-scopes flag set while generating non-management plane code. "
                         "This is not recommend because it forces the customer to pass credential scopes "
-                        "through kwargs if they want to authenticate."
+                        "through kwargs if they want to authenticate.",
+                        credential_schema_policy.name
                     )
                     credential_scopes = []
+
             if credential_key_header_name:
                 raise ValueError(
                     "You have passed in a credential key header name with default credential policy type "
-                    "BearerTokenCredentialPolicy. This is not allowed, since credential key header name is tied with "
-                    "AzureKeyCredentialPolicy. Instead, with this policy it is recommend you pass in "
-                    "--credential-scopes."
+                    f"{credential_schema_policy.name}. This is not allowed, since credential key header "
+                    "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
+                    "pass in --credential-scopes."
                 )
+            credential_schema_policy.initialize(
+                credential=TokenCredentialSchema(async_mode=False),
+                credential_scopes=credential_scopes,
+            )
         else:
             # currently the only other credential policy is AzureKeyCredentialPolicy
             if credential_scopes:
                 raise ValueError(
                     "You have passed in credential scopes with default credential policy type "
                     "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in "
+                    f"{code_model.challenge_authentication_policy.name}. Instead, with this policy you must pass in "
                     "--credential-key-header-name."
                 )
             if not credential_key_header_name:
@@ -177,31 +184,19 @@ class CodeGenerator(Plugin):
                 _LOGGER.info(
                     "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
                 )
-        return credential_scopes, credential_key_header_name
-
-    def _handle_default_authentication_policy(self, azure_arm, credential):
-
-        passed_in_credential_default_policy_type = (
-            self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
-        )
-
-        # right now, we only allow BearerTokenCredentialPolicy and AzureKeyCredentialPolicy
-        allowed_policies = ["BearerTokenCredentialPolicy", "AzureKeyCredentialPolicy"]
-        try:
-            credential_default_policy_type = [
-                cp for cp in allowed_policies if cp.lower() == passed_in_credential_default_policy_type.lower()
-            ][0]
-        except IndexError:
-            raise ValueError(
-                "The credential you pass in with --credential-default-policy-type must be either "
-                "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
+            credential_schema_policy.initialize(
+                credential=AzureKeyCredentialSchema(),
+                credential_key_header_name=credential_key_header_name,
             )
 
-        credential_scopes, credential_key_header_name = self._get_credential_param(
-            azure_arm, credential, credential_default_policy_type
+    def _handle_default_authentication_policy(self, code_model: CodeModel):
+        credential_schema_policy_name = (
+            self._autorestapi.get_value("credential-default-policy-type") or
+            code_model.challenge_authentication_policy.name
         )
-
-        return credential_default_policy_type, credential_scopes, credential_key_header_name
+        credential_schema_policy = get_credential_schema_policy(credential_schema_policy_name)
+        self._initialize_credential_schema_policy(code_model, credential_schema_policy)
+        code_model.credential_schema_policy = credential_schema_policy
 
 
     def _build_code_model_options(self) -> Dict[str, Any]:
@@ -212,13 +207,6 @@ class CodeGenerator(Plugin):
             self._autorestapi.get_boolean_value("add-credentials", False) or
             self._autorestapi.get_boolean_value("add-credential", False)
         )
-
-        credential_default_policy_type, credential_scopes, credential_key_header_name = (
-            self._handle_default_authentication_policy(
-                azure_arm, credential
-            )
-        )
-
 
         license_header = self._autorestapi.get_value("header-text")
         if license_header:
@@ -231,8 +219,6 @@ class CodeGenerator(Plugin):
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "credential": credential,
-            "credential_scopes": credential_scopes,
-            "credential_key_header_name": credential_key_header_name,
             "head_as_boolean": self._autorestapi.get_boolean_value("head-as-boolean", False),
             "license_header": license_header,
             "keep_version_file": self._autorestapi.get_boolean_value("keep-version-file", False),
@@ -244,10 +230,6 @@ class CodeGenerator(Plugin):
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", False),
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
-            "credential_default_policy_type": credential_default_policy_type,
-            "credential_default_policy_type_has_async_version": (
-                _get_credential_default_policy_type_has_async_version(credential_default_policy_type)
-            )
         }
 
         if options["basic_setup_py"] and not options["package_version"]:
