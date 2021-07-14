@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, TypeVar, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
@@ -22,8 +22,13 @@ from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
-from .parameter_list import ParameterList
-
+from .parameter_list import GlobalParameterList, ParameterList
+from .request_builder_parameter_list import RequestBuilderParameterList
+from .request_builder import RequestBuilder
+from .base_builder import BaseBuilder
+from .lro_paging_operation import LROPagingOperation
+from .request_builder_parameter import RequestBuilderParameter
+from .schema_request import SchemaRequest
 
 __all__ = [
     "AzureKeyCredentialSchema",
@@ -47,8 +52,13 @@ __all__ = [
     "ParameterList",
     "OperationGroup",
     "Property",
+    "RequestBuilder",
     "SchemaResponse",
     "TokenCredentialSchema",
+    "LROPagingOperation",
+    "BaseBuilder",
+    "SchemaRequest",
+    "RequestBuilderParameter",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
@@ -90,7 +100,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         schema = DictionarySchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
-    elif schema_type in ["object", "and", "group"]:
+    elif schema_type in ["object", "and", "group", "any-object"]:
         if _generate_as_object_schema(yaml_data):
             # To avoid infinite loop, create the right instance in memory,
             # put it in the index, and then parse the object.
@@ -100,9 +110,28 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         else:
             schema = AnySchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
             code_model.primitives[yaml_id] = schema
-
     else:
         schema = get_primitive_schema(namespace=namespace, yaml_data=yaml_data)
         code_model.primitives[yaml_id] = schema
 
     return schema
+
+BuilderType = TypeVar(
+    "BuilderType",
+    bound=Union[
+        RequestBuilder,
+        Operation,
+        LROPagingOperation,
+        LROOperation,
+        PagingOperation,
+    ]
+)
+
+ParameterListType = TypeVar(
+    "ParameterListType",
+    bound=Union[
+        ParameterList,
+        GlobalParameterList,
+        RequestBuilderParameterList,
+    ],
+)

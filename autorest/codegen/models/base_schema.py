@@ -35,8 +35,7 @@ class BaseSchema(BaseModel, ABC):
         return bool(self.xml_metadata)
 
     def xml_serialization_ctxt(self) -> Optional[str]:
-        """Return the serialization context in case this schema is used in an operation.
-        """
+        """Return the serialization context in case this schema is used in an operation."""
         attrs_list = []
         if self.xml_metadata.get("name"):
             attrs_list.append(f"'name': '{self.xml_metadata['name']}'")
@@ -127,3 +126,13 @@ class BaseSchema(BaseModel, ABC):
     @property
     def serialization_constraints(self) -> Optional[List[str]]:  # pylint: disable=no-self-use
         return None
+
+    @abstractmethod
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        """Template of what this schema would look like as JSON input"""
+        ...
+
+    @abstractmethod
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        """Template of what this schema would look like as files input"""
+        ...

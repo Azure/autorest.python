@@ -9,7 +9,14 @@ from autorest.codegen.models import CodeModel, ObjectSchema
 
 @pytest.fixture
 def code_model():
-    return CodeModel(options={})
+    return CodeModel(
+        show_builders=False,
+        show_models=True,
+        show_operations=True,
+        show_send_request=False,
+        only_path_and_body_params_positional=False,
+        options={},
+    )
 
 def get_schemas_in_dict_form(schemas):
     dict_schemas = {}

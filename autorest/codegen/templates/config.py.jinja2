@@ -1,12 +1,11 @@
+{% import 'keywords.jinja2' as keywords with context %}
 {% set version_import = ".._version" if async_mode else "._version" %}
-{% set async_prefix = "Async" if async_mode else "" %}
 {% macro method_signature() %}
 def __init__(
     self,
     {% for param_signature in code_model.global_parameters.method_signature(async_mode) %}
     {{ param_signature }}
     {% endfor %}
-    {{ "**kwargs: Any" if async_mode else "**kwargs  # type: Any" }}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
 # coding=utf-8
@@ -27,8 +26,8 @@ class {{ code_model.class_name }}Configuration(Configuration):
 
 {% endif %}
 {% for parameter in code_model.global_parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
-    :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+    :{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}
+    :{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
     """
 
@@ -68,9 +67,9 @@ class {{ code_model.class_name }}Configuration(Configuration):
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get('http_logging_policy') or {{ "ARM" if code_model.options['azure_arm'] else "policies." }}HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get('retry_policy') or policies.{{ async_prefix }}RetryPolicy(**kwargs)
+        self.retry_policy = kwargs.get('retry_policy') or policies.{{ keywords.async_class }}RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ async_prefix }}RedirectPolicy(**kwargs)
+        self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ keywords.async_class }}RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
         {% if code_model.options['credential'] %}
         {# only adding this if credential_scopes is not passed during code generation #}

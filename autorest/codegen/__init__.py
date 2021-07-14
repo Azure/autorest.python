@@ -13,11 +13,39 @@ from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
-from .models.parameter_list import ParameterList
-from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .models.credential_schema_policy import get_credential_schema_policy, CredentialSchemaPolicy
+from .models.parameter_list import GlobalParameterList
+from .models.rest import Rest
 from .serializers import JinjaSerializer
+from .models.credential_schema_policy import CredentialSchemaPolicy, get_credential_schema_policy
+from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 
+
+def _get_credential_default_policy_type_has_async_version(credential_default_policy_type: str) -> bool:
+    mapping = {
+        "BearerTokenCredentialPolicy": True,
+        "AzureKeyCredentialPolicy": False
+    }
+    return mapping[credential_default_policy_type]
+
+def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
+    # Create operations
+    if code_model.show_operations and yaml_data.get("operationGroups"):
+        code_model.operation_groups = [
+            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
+        ]
+    if code_model.show_models and yaml_data.get("schemas"):
+        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
+
+        code_model.add_inheritance_to_models()
+        code_model.sort_schemas()
+        code_model.link_operation_to_request_builder()
+        code_model.add_schema_link_to_operation()
+        code_model.generate_single_parameter_from_multiple_media_types_operation()
+
+    if code_model.show_operations:
+        # LRO operation
+        code_model.format_lro_operations()
+        code_model.remove_next_operation()
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -56,7 +84,35 @@ class CodeGenerator(Plugin):
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
-        code_model = CodeModel(options)
+        low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+        show_models = self._autorestapi.get_boolean_value(
+            "show-models",
+            not low_level_client
+        )
+        show_builders = self._autorestapi.get_boolean_value(
+            "show-builders",
+            low_level_client
+        )
+        show_operations = self._autorestapi.get_boolean_value(
+            "show-operations",
+            not low_level_client
+        )
+        show_send_request = self._autorestapi.get_boolean_value(
+            "show-send-request",
+            low_level_client
+        )
+        only_path_and_body_params_positional = self._autorestapi.get_boolean_value(
+            "only-path-and-body-params-positional",
+            low_level_client
+        )
+        code_model = CodeModel(
+            show_builders=show_builders,
+            show_models=show_models,
+            show_operations=show_operations,
+            show_send_request=show_send_request,
+            only_path_and_body_params_positional=only_path_and_body_params_positional,
+            options=options,
+        )
         if code_model.options['credential']:
             self._handle_default_authentication_policy(code_model)
         code_model.module_name = yaml_data["info"]["python_title"]
@@ -66,9 +122,8 @@ class CodeGenerator(Plugin):
         )
 
         # Global parameters
-        code_model.global_parameters = ParameterList(
+        code_model.global_parameters = GlobalParameterList(
             [Parameter.from_yaml(param) for param in yaml_data.get("globalParameters", [])],
-            implementation="Client",
         )
 
         # Custom URL
@@ -79,17 +134,13 @@ class CodeGenerator(Plugin):
             # UGLY as hell.....
             if yaml_data.get("operationGroups"):
                 first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                code_model.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                code_model.service_client.custom_base_url = (
+                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                )
         else:
             for host in dollar_host:
                 code_model.global_parameters.remove(host)
-            code_model.base_url = dollar_host[0].yaml_data["clientDefaultValue"]
-
-        # Create operations
-        if yaml_data.get("operationGroups"):
-            code_model.operation_groups = [
-                OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
-            ]
+            code_model.service_client.base_url = dollar_host[0].yaml_data["clientDefaultValue"]
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -98,23 +149,17 @@ class CodeGenerator(Plugin):
             namespace = yaml_data["info"]["python_title"]
         code_model.namespace = namespace
 
+        code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
         if yaml_data.get("schemas"):
             exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
 
             for type_list in yaml_data["schemas"].values():
                 for schema in type_list:
                     build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
-            # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-
-            code_model.add_inheritance_to_models()
-            code_model.sort_schemas()
-            code_model.add_schema_link_to_operation()
+            code_model.add_schema_link_to_request_builder()
             code_model.add_schema_link_to_global_parameters()
-            code_model.generate_single_parameter_from_multiple_media_types()
 
-        # LRO operation
-        code_model.format_lro_operations()
-        code_model.remove_next_operation()
+        _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
             code_model.add_credential_global_parameter()
@@ -230,6 +275,7 @@ class CodeGenerator(Plugin):
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", False),
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
+            "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
         }
 
         if options["basic_setup_py"] and not options["package_version"]:

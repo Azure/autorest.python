@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from enum import Enum
 import logging
+from enum import Enum
+
 from typing import Dict, Optional, List, Any, Union, Tuple, cast
 
 from .imports import FileImport, ImportType, TypingSection
@@ -17,6 +18,8 @@ from .property import Property
 
 
 _LOGGER = logging.getLogger(__name__)
+
+_HIDDEN_KWARGS = ["content_type"]
 
 
 class ParameterLocation(Enum):
@@ -43,7 +46,7 @@ class ParameterStyle(Enum):
     multipart = "multipart"
 
 
-class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
+class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -81,11 +84,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.flattened = flattened
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
-        self._client_default_value = client_default_value
-        self.is_kwarg: bool = self.rest_api_name == "Content-Type" and self.constant
+        self.client_default_value = client_default_value
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
+        self.is_partial_body = yaml_data.get("isPartialBody", False)
+
+    def __hash__(self) -> int:
+        return hash(self.serialized_name)
+
+    @staticmethod
+    def serialize_line(function_name: str, parameters_line: str):
+        return f'self._serialize.{function_name}({parameters_line})'
 
     def build_serialize_data_call(self, function_name: str) -> str:
 
@@ -128,7 +138,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         ]
         parameters_line = ', '.join(parameters)
 
-        serialize_line = f'self._serialize.{function_name}({parameters_line})'
+        serialize_line = self.serialize_line(function_name, parameters_line)
 
         if self.explode:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
@@ -145,6 +155,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.required
 
     @property
+    def is_multipart(self) -> bool:
+        return self.yaml_data["language"]["python"].get("multipart", False)
+
+    @property
     def constant_declaration(self) -> str:
         if self.schema:
             if isinstance(self.schema, ConstantSchema):
@@ -159,6 +173,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.schema.xml_serialization_ctxt() or ""
 
     @property
+    def is_body(self) -> bool:
+        return self.location == ParameterLocation.Body
+
+    @property
     def in_method_signature(self) -> bool:
         return not(
             # If I only have one value, I can't be set, so no point being in signature
@@ -168,9 +186,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             # If I'm grouped, my grouper will be on signature, not me
             or self.grouped_by
             # If I'm body and it's flattened, I'm not either
-            or (self.location == ParameterLocation.Body and self.flattened)
-            # If I'm a kwarg, don't include in the signature
-            or self.is_kwarg
+            or (self.is_body and self.flattened)
         )
 
     @property
@@ -187,7 +203,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def in_method_code(self) -> bool:
-        return not (self.constant and self.location == ParameterLocation.Other)
+        return not (
+            self.constant and
+            self.location == ParameterLocation.Other or
+            self.rest_api_name == '$host'
+        )
 
     @property
     def implementation(self) -> str:
@@ -198,11 +218,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
-        if not self.required:
+        if not self.required and not type_annot == "Any":
             type_annot = f"Optional[{type_annot}]"
 
-        if self._client_default_value is not None:
-            return self._client_default_value, self.schema.get_declaration(self._client_default_value), type_annot
+        if self.client_default_value is not None:
+            return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
 
         if self.multiple_media_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
@@ -224,10 +244,26 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return default_value, default_value_declaration, type_annot
 
     @property
+    def description_keyword(self) -> str:
+        return "keyword" if self.is_kwarg or self.is_keyword_only else "param"
+
+    @property
+    def docstring_type_keyword(self) -> str:
+        return "paramtype" if self.is_kwarg or self.is_keyword_only else "type"
+
+    @property
     def default_value(self) -> Optional[Any]:
         # exposing default_value because client_default_value doesn't get updated with
         # default values we bubble up from the schema
         return self._default_value()[0]
+
+    @property
+    def default_value_declaration(self) -> Optional[Any]:
+        return self._default_value()[1]
+
+    @property
+    def type_annotation(self) -> str:
+        return self._default_value()[2]
 
     @property
     def serialization_type(self) -> str:
@@ -237,15 +273,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def docstring_type(self) -> str:
         return self.multiple_media_types_docstring_type or self.schema.docstring_type
 
+    @property
+    def has_default_value(self):
+        return self.default_value is not None or not self.required
+
     def method_signature(self, async_mode: bool) -> str:
-        default_value, default_value_declaration, type_annot = self._default_value()
-        if default_value is not None or not self.required:
-            if async_mode:
-                return f"{self.serialized_name}: {type_annot} = {default_value_declaration},"
-            return f"{self.serialized_name}={default_value_declaration},  # type: {type_annot}"
         if async_mode:
-            return f"{self.serialized_name}: {type_annot},"
-        return f"{self.serialized_name},  # type: {type_annot}"
+            if self.has_default_value:
+                return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
+            return f"{self.serialized_name}: {self.type_annotation},"
+        if self.has_default_value:
+            return f"{self.serialized_name}={self.default_value_declaration},  # type: {self.type_annotation}"
+        return f"{self.serialized_name},  # type: {self.type_annotation}"
 
     @property
     def full_serialized_name(self) -> str:
@@ -253,6 +292,24 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.implementation == "Client":
             origin_name = f"self._config.{self.serialized_name}"
         return origin_name
+
+    @property
+    def is_kwarg(self) -> bool:
+        # this means "am I in **kwargs?"
+        return self.serialized_name == "content_type"
+
+    @property
+    def is_keyword_only(self) -> bool:
+        # this means in async mode, I am documented like def hello(positional_1, *, me!)
+        return False
+
+    @property
+    def is_documented(self) -> bool:
+        return self.serialized_name not in _HIDDEN_KWARGS
+
+    @property
+    def is_positional(self) -> bool:
+        return self.in_method_signature and not (self.is_keyword_only or self.is_kwarg)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
@@ -287,3 +344,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.has_multiple_media_types:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
+
+class ParameterOnlyPathsPositional(Parameter):
+
+    @property
+    def is_keyword_only(self) -> bool:
+        return not (self.location == ParameterLocation.Path or self.location == ParameterLocation.Body)

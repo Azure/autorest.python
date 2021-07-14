@@ -4,12 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set, cast
+from typing import Callable, Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
-from .parameter import Parameter
+from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
-from .schema_request import SchemaRequest
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 
@@ -22,14 +21,10 @@ class LROOperation(Operation):
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
-        url: str,
-        method: str,
-        multipart: bool,
         api_versions: Set[str],
-        requests: List[SchemaRequest],
+        parameters: ParameterList,
+        multiple_media_type_parameters: ParameterList,
         summary: Optional[str] = None,
-        parameters: Optional[List[Parameter]] = None,
-        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
@@ -39,25 +34,22 @@ class LROOperation(Operation):
             yaml_data,
             name,
             description,
-            url,
-            method,
-            multipart,
             api_versions,
-            requests,
-            summary,
             parameters,
             multiple_media_type_parameters,
+            summary,
             responses,
             exceptions,
             want_description_docstring,
             want_tracing,
         )
-        self.lro_response: Optional[SchemaResponse] = None
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
+        self.name = "begin_" + self.name
 
-    def set_lro_response_type(self) -> None:
+    @property
+    def lro_response(self) -> Optional[SchemaResponse]:
         if not self.responses:
-            return
+            return None
         responses_with_bodies = [r for r in self.responses if r.has_body]
         num_response_schemas = {r.schema for r in responses_with_bodies}
         response = None
@@ -81,7 +73,28 @@ class LROOperation(Operation):
 
         elif num_response_schemas:
             response = responses_with_bodies[0]
-        self.lro_response = response
+        return response
+
+    @property
+    def schema_of_initial_operation(self) -> Callable:
+        return Operation
+
+    @property
+    def initial_operation(self) -> Operation:
+        operation = self.schema_of_initial_operation(
+            yaml_data={},
+            name=self.name[5:] + "_initial",
+            description="",
+            api_versions=self.api_versions,
+            parameters=self.parameters,
+            multiple_media_type_parameters=self.multiple_media_type_parameters,
+            summary=self.summary,
+            responses=self.responses,
+            want_description_docstring=False,
+            want_tracing=False,
+        )
+        operation.request_builder = self.request_builder
+        return operation
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -119,6 +132,13 @@ class LROOperation(Operation):
 
     def get_base_polling_method(self, async_mode: bool) -> str:
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
+
+    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
+        file_import = super().imports_for_multiapi(code_model, async_mode)
+        poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
+        poller = self.get_poller(async_mode)
+        file_import.add_from_import(poller_import_path, poller, ImportType.AZURECORE, TypingSection.CONDITIONAL)
+        return file_import
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)

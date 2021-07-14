@@ -3,13 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import List
 from pathlib import Path
-
 from jinja2 import PackageLoader, Environment
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel
-
+from ..models.request_builder import RequestBuilder
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_generic_serializer import ModelGenericSerializer
@@ -18,6 +18,7 @@ from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_group_serializer import OperationGroupSerializer
 from .metadata_serializer import MetadataSerializer
+from .rest_serializer import RestPython3Serializer, RestGenericSerializer, RestSerializer
 
 __all__ = [
     "JinjaSerializer",
@@ -49,23 +50,25 @@ class JinjaSerializer:
                 self._autorestapi.read_file(namespace_path / "_patch.py")
             )
 
-        if code_model.schemas or code_model.enums:
-            self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-
-        if code_model.operation_groups:
-            self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-
+        if code_model.rest.request_builders:
+            self._serialize_and_write_rest_layer(code_model=code_model, env=env, namespace_path=namespace_path)
             if not code_model.options["no_async"]:
-                self._serialize_and_write_aio_folder(
+                self._serialize_and_write_aio_top_level_folder(
                     code_model=code_model, env=env, namespace_path=namespace_path,
                 )
+
+        if code_model.show_operations and code_model.operation_groups:
+            self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
             if code_model.options["multiapi"]:
                 self._serialize_and_write_metadata(
                     code_model, env=env, namespace_path=namespace_path
                 )
+
+        if code_model.show_models and (code_model.schemas or code_model.enums):
+            self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
@@ -84,6 +87,55 @@ class JinjaSerializer:
             )
         self._autorestapi.write_file(
             models_path / Path("__init__.py"), ModelInitSerializer(code_model=code_model, env=env).serialize()
+        )
+
+    def _serialize_and_write_rest_layer(
+        self, code_model: CodeModel, env: Environment, namespace_path: Path
+    ) -> None:
+        rest_path = namespace_path / Path(code_model.rest_layer_name)
+        operation_group_names = {
+            rb.operation_group_name for rb in code_model.rest.request_builders
+        }
+
+        for operation_group_name in operation_group_names:
+            output_path = rest_path / Path(operation_group_name) if operation_group_name else rest_path
+            request_builders = [
+                r for r in code_model.rest.request_builders if r.operation_group_name == operation_group_name
+            ]
+            self._serialize_and_write_single_rest_layer(
+                code_model, env, output_path, request_builders
+            )
+        if not "" in operation_group_names:
+            self._autorestapi.write_file(
+                rest_path / Path("__init__.py"), code_model.options['license_header']
+            )
+
+
+    def _serialize_and_write_single_rest_layer(
+        self, code_model: CodeModel, env: Environment, output_path: Path, request_builders: List[RequestBuilder]
+    ) -> None:
+
+        # write generic request builders file
+        self._autorestapi.write_file(
+            output_path / Path("_request_builders.py"),
+            RestGenericSerializer(
+                code_model=code_model, env=env, request_builders=request_builders
+            ).serialize_request_builders()
+        )
+
+        # write python3 request builders file
+        self._autorestapi.write_file(
+            output_path / Path("_request_builders_py3.py"),
+            RestPython3Serializer(
+                code_model=code_model, env=env, request_builders=request_builders
+            ).serialize_request_builders()
+        )
+
+        # write rest init file
+        self._autorestapi.write_file(
+            output_path / Path("__init__.py"), RestSerializer(
+                code_model=code_model, env=env, request_builders=request_builders
+            ).serialize_init()
         )
 
     def _serialize_and_write_operations_folder(
@@ -156,7 +208,7 @@ class JinjaSerializer:
     ) -> None:
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
 
-        if code_model.operation_groups:
+        if code_model.rest.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path("__init__.py"), general_serializer.serialize_init_file()
             )
@@ -173,7 +225,7 @@ class JinjaSerializer:
             p = p.parent
 
         # Write the service client
-        if code_model.operation_groups:
+        if code_model.rest.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path(f"_{code_model.module_name}.py"),
                 general_serializer.serialize_service_client_file()
@@ -185,7 +237,7 @@ class JinjaSerializer:
         self._autorestapi.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
 
         # Write the config file
-        if code_model.operation_groups:
+        if code_model.rest.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file()
             )
@@ -194,7 +246,9 @@ class JinjaSerializer:
         if code_model.options["basic_setup_py"]:
             self._autorestapi.write_file(Path("setup.py"), general_serializer.serialize_setup_file())
 
-    def _serialize_and_write_aio_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
+    def _serialize_and_write_aio_top_level_folder(
+        self, code_model: CodeModel, env: Environment, namespace_path: Path
+    ) -> None:
         aio_general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=True)
 
         aio_path = namespace_path / Path("aio")
@@ -212,6 +266,7 @@ class JinjaSerializer:
         self._autorestapi.write_file(
             aio_path / Path("_configuration.py"), aio_general_serializer.serialize_config_file()
         )
+
 
     def _serialize_and_write_metadata(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         metadata_serializer = MetadataSerializer(code_model, env)

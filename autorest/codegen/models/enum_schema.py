@@ -131,6 +131,12 @@ class EnumSchema(BaseSchema):
             seen_enums.add(enum_name)
         return values
 
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return self.enum_type.get_json_template_representation(**kwargs)
+
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        return self.enum_type.get_files_template_representation(**kwargs)
+
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.

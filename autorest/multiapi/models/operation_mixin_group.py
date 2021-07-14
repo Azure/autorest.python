@@ -24,8 +24,10 @@ class OperationMixinGroup:
         for metadata_json in self.version_path_to_metadata.values():
             if not metadata_json.get('operation_mixins'):
                 continue
-            current_version_imports = FileImport(json.loads(metadata_json['operation_mixins'][imports_to_load]))
-            imports.merge(current_version_imports)
+            mixin_imports = metadata_json['operation_mixins'][imports_to_load]
+            if mixin_imports != "None":
+                current_version_imports = FileImport(json.loads(mixin_imports))
+                imports.merge(current_version_imports)
         return imports
 
     def _use_metadata_of_default_api_version(

@@ -23,10 +23,10 @@ jobs:
           OSName: 'Linux'
           OSVmImage: 'ubuntu-16.04'
           PythonVersion: '2.7'
-        Linux_Python35:
+        Linux_Python36:
           OSName: 'Linux'
           OSVmImage: 'ubuntu-16.04'
-          PythonVersion: '3.5'
+          PythonVersion: '3.6'
           CoverageArg: ''
         Linux_Python38:
           OSName: 'Linux'
@@ -85,28 +85,54 @@ jobs:
         displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
 
       - script: |
-          cd $(TestFolder)/azure
+          cd $(TestFolder)/azure/legacy
           tox -e ci
-        displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+        displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
       - task: PublishTestResults@2
         condition: always()
-        displayName: 'Publish "azure" Test Results'
+        displayName: 'Publish legacy "azure" Test Results'
         inputs:
           testResultsFiles: 'test-junit-azure-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - azure'
-          searchFolder: '$(TestFolder)/azure'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - legacy azure'
+          searchFolder: '$(TestFolder)/azure/legacy'
 
       - script: |
-          cd $(TestFolder)/vanilla
+          cd $(TestFolder)/azure/low-level
           tox -e ci
-        displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
+        displayName: 'Execute low-level "azure" Tests - Python $(PythonVersion)'
       - task: PublishTestResults@2
-        displayName: 'Publish "vanilla" Test Results'
+        condition: always()
+        displayName: 'Publish low-level "azure" Test Results'
+        inputs:
+          testResultsFiles: 'test-junit-azure-ci.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - low-level azure'
+          searchFolder: '$(TestFolder)/azure/low-level'
+
+      - script: |
+          cd $(TestFolder)/vanilla/legacy
+          tox -e ci
+        displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish legacy "vanilla" Test Results'
         condition: always()
         inputs:
           testResultsFiles: 'test-junit-vanilla-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
-          searchFolder: '$(TestFolder)/vanilla'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - legacy vanilla'
+          searchFolder: '$(TestFolder)/vanilla/legacy'
+
+      - script: |
+          cd $(TestFolder)/vanilla/low-level
+          tox -e ci
+          tox -e initial-ci
+          tox -e update-ci
+        displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish low level "vanilla" Test Results'
+        condition: always()
+        inputs:
+          testResultsFiles: 'test-junit-vanilla-ci.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - low level vanilla'
+          searchFolder: '$(TestFolder)/vanilla/low-level'
 
       - script: |
           cd $(TestFolder)/multiapi

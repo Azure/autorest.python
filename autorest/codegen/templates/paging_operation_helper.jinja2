@@ -1,57 +1,31 @@
-{% import 'operation_tools.jinja2' as op_tools %}
-{% macro paging_operation(code_model, operation, async_mode) %}
+{% import 'operation_tools.jinja2' as op_tools with context %}
+{% macro paging_operation() %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
+{% set request_builder = operation.request_builder %}
+cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(operation) }}
     {{ op_tools.error_map(operation, code_model)|indent }}
-{% if operation.parameters.grouped %}
-    {{ op_tools.grouped_parameters(operation)|indent }}
-{%- endif -%}
-{% if operation.parameters.is_flattened %}
-    {{ operation.parameters.build_flattened_object() }}
-{% endif %}
-{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
-    {% endfor %}
-{% endif %}
-
     def prepare_request(next_link=None):
-        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
         if not next_link:
-            # Construct URL
-            url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
-        {% if operation.parameters.path %}
-            {{ op_tools.path_format_arguments(operation.parameters.path)|indent(12) }}
-            {{ op_tools.format_path_format_arguments()|indent(12) }}
-        {% endif %}
-            {{ op_tools.query_parameters(operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation)|indent(12) }}
+            {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent(12) }}
         else:
-{% if operation.next_operation %}
-            url = '{{ operation.next_operation.url }}'
-        {% if operation.next_operation.parameters.path %}
-            {{ op_tools.path_format_arguments(operation.next_operation.parameters.path)|indent(12) }}
-            {{ op_tools.format_path_format_arguments()|indent(12) }}
-        {% endif %}
-            {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation.next_operation)|indent(12) }}
-{% else %}
-            url = next_link
-            query_parameters = {}  # type: Dict[str, Any]
-        {% if operation.parameters.path and not code_model.base_url%}
+            {% set url = keywords.escape_str(operation.next_request_builder.url) if operation.next_request_builder else None %}
+            {{ op_tools.serialize(operation_serializer.call_next_link_request_builder(operation)) | indent(12) }}
+            {% if not operation.next_request_builder %}
+                {% if operation.parameters.path %}
             {{ op_tools.path_format_arguments(operation.parameters.path)|indent(12) }}
-            {{ op_tools.format_path_format_arguments()|indent(12) }}
-        {% endif %}
-            {{ op_tools.body_parameters(operation, http_verb="get")|indent(12) }}
-{% endif %}
+                {% endif %}
+            request.method = "GET"
+            {% endif %}
         return request
 
     {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
-        list_of_elem = deserialized.{{ operation.item_name }}
+        {% set deserialized_str = "self._deserialize('" + response.serialization_type + "', pipeline_response)" %}
+        {% set list_of_elem_str = "deserialized." + operation.item_name %}
+        {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
+        deserialized = {{ deserialized_str }}
+        list_of_elem = {{ list_of_elem_str }}
         if cls:
             list_of_elem = cls(list_of_elem)
         {% if async_mode %}
@@ -66,12 +40,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in {{ operation.success_status_code|string() }}:
-            {% if operation.default_exception %}
-            error = self._deserialize.failsafe_deserialize({{ operation.default_exception }}, response)
-            {% endif %}
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
+        {{ op_tools.handle_error_response(code_model, operation) | indent(12) }}
 
         return pipeline_response
 {%- endmacro -%}

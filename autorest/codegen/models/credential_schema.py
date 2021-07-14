@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -23,6 +24,12 @@ class CredentialSchema(BaseSchema):
         # this property is added, because otherwise pylint says that
         # abstract serialization_type in BaseSchema is not overridden
         pass
+
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        raise TypeError("You should not try to get a JSON template representation of a CredentialSchema")
+
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        raise TypeError("You should not try to get a files template representation of a CredentialSchema")
 
 
 class AzureKeyCredentialSchema(CredentialSchema):

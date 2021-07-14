@@ -10,15 +10,10 @@
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
 from typing import TYPE_CHECKING
-import warnings
-
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
@@ -28,6 +23,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         id,  # type: int
         **kwargs  # type: Any
     ):
+        # type: (...) -> None
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.
 
