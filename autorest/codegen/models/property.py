@@ -125,6 +125,15 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return self.schema.type_annotation
         return f"Optional[{self.schema.type_annotation}]"
 
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        kwargs["optional"] = not self.required
+        kwargs["default_value_declaration"] = self.default_value_declaration
+        return self.schema.get_json_template_representation(**kwargs)
+
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        kwargs["optional"] = not self.required
+        return self.schema.get_files_template_representation(**kwargs)
+
     def model_file_imports(self) -> FileImport:
         file_import = self.schema.model_file_imports()
         if not self.required:

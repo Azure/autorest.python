@@ -1,1 +1,0 @@
-﻿autorest F:\azure_rest_api_specs_venv\azure-rest-api-specs\specification\compute\resource-manager\readme.md --python --use=F:\autorest.python --python=update --multiapi --python-sdks-folder=F:\azure_sdk_python_virtualenv\Scripts\azure-sdk-for-python

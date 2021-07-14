@@ -17,14 +17,15 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
-from .parameter_list import ParameterList
+from .parameter_list import GlobalParameterList
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
+from .request_builder import RequestBuilder
+from .rest import Rest
 
 
 _LOGGER = logging.getLogger(__name__)
-
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
@@ -52,7 +53,21 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
 
-    def __init__(self, options: Dict[str, Any]) -> None:
+    def __init__(
+        self,
+        options: Dict[str, Any],
+        *,
+        show_builders: Optional[bool] = False,
+        show_models: Optional[bool] = True,
+        show_operations: Optional[bool] = True,
+        show_send_request: Optional[bool] = False,
+        only_path_and_body_params_positional: Optional[bool] = False,
+    ) -> None:
+        self.rest_layer_name = "rest" if show_builders else "_rest"
+        self.send_request_name = "send_request" if show_send_request else "_send_request"
+        self.show_models = show_models
+        self.show_operations = show_operations
+        self.only_path_and_body_params_positional = only_path_and_body_params_positional
         self.options = options
         self.module_name: str = ""
         self.class_name: str = ""
@@ -64,10 +79,29 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
-        self.global_parameters: ParameterList = ParameterList()
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
-        self.service_client: Client = Client()
+        self.service_client: Client = Client(self, GlobalParameterList())
+        self._rest: Optional[Rest] = None
+        self.request_builder_ids: Dict[int, RequestBuilder] = {}
+
+    @property
+    def global_parameters(self) -> GlobalParameterList:
+        return self.service_client.parameters
+
+    @global_parameters.setter
+    def global_parameters(self, val: GlobalParameterList) -> None:
+        self.service_client.parameters = val
+
+    @property
+    def rest(self) -> Rest:
+        if not self._rest:
+            raise ValueError("rest is None. Can not call it, you first have to set it.")
+        return self._rest
+
+    @rest.setter
+    def rest(self, p: Rest) -> None:
+        self._rest = p
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
@@ -143,27 +177,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         )
         self.global_parameters.insert(0, credential_parameter)
 
-    @staticmethod
-    def _lro_initial_function(operation: LROOperation) -> Operation:
-        return Operation(
-            yaml_data={},
-            name="_" + operation.name + "_initial",
-            description="",
-            url=operation.url,
-            method=operation.method,
-            multipart=operation.multipart,
-            api_versions=operation.api_versions,
-            parameters=operation.parameters.parameters,
-            requests=operation.requests,
-            responses=operation.responses,
-            exceptions=operation.exceptions,
-            want_description_docstring=False,
-            want_tracing=False,
-        )
-
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
-
         If there are LRO functions in here, will add initial LRO function. Will also set the return
         type of the LRO operation
         """
@@ -172,8 +187,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             while i < len(operation_group.operations):
                 operation = operation_group.operations[i]
                 if isinstance(operation, LROOperation):
-                    operation.set_lro_response_type()
-                    operation_group.operations.insert(i, CodeModel._lro_initial_function(operation))
+                    operation_group.operations.insert(i, operation.initial_operation)
                     i += 1
                 i += 1
 
@@ -266,7 +280,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self._add_exceptions_from_inheritance()
 
     def _populate_target_property(self, parameter: Parameter) -> None:
-        for obj in self.sorted_schemas:
+        for obj in self.schemas.values():
             for prop in obj.properties:
                 if prop.id == parameter.target_property_name:
                     parameter.target_property_name = prop.name
@@ -306,31 +320,28 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
-                    chain.from_iterable(request.parameters for request in operation.requests)
                 ):
                     self._populate_schema(obj)
+
+    def add_schema_link_to_request_builder(self) -> None:
+        for request_builder in self.rest.request_builders:
+            for obj in chain(
+                request_builder.parameters,
+                chain.from_iterable(request.parameters for request in request_builder.schema_requests),
+                request_builder.responses,
+            ):
+                self._populate_schema(obj)
+
 
     def add_schema_link_to_global_parameters(self) -> None:
         for parameter in self.global_parameters:
             self._populate_schema(parameter)
 
-    def generate_single_parameter_from_multiple_media_types(self) -> None:
+    def generate_single_parameter_from_multiple_media_types_operation(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
-                    type_annot = ", ".join([
-                        param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
-                    ])
-                    docstring_type = " or ".join([
-                        param.schema.docstring_type for param in operation.multiple_media_type_parameters
-                    ])
-                    chosen_parameter = next(
-                        iter(filter(lambda x: x.has_multiple_media_types, operation.parameters)), None
-                    )
-                    if not chosen_parameter:
-                        raise ValueError("You are missing a parameter that has multiple media types")
-                    chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
-                    chosen_parameter.multiple_media_types_docstring_type = docstring_type
+                    operation.convert_multiple_media_type_parameters()
 
     @property
     def has_lro_operations(self) -> bool:
@@ -345,3 +356,24 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         if async_mode:
             return "base_url: Optional[str] = None,"
         return "base_url=None,  # type: Optional[str]"
+
+    def _lookup_request_builder(self, schema_id: int) -> RequestBuilder:
+        """Looks to see if the schema has already been created.
+
+        :param int schema_id: The yaml id of the schema
+        :return: If created, we return the created schema, otherwise, we throw.
+        :rtype: ~autorest.models.RequestBuilder
+        :raises: KeyError if schema is not found
+        """
+        for elt_key, elt_value in self.request_builder_ids.items():  # type: ignore
+            if schema_id == elt_key:
+                return elt_value
+        raise KeyError("Didn't find it!!!!!")
+
+    def link_operation_to_request_builder(self) -> None:
+        for operation_group in self.operation_groups:
+            for operation in operation_group.operations:
+                request_builder = self._lookup_request_builder(id(operation.yaml_data))
+                if isinstance(operation, LROOperation):
+                    request_builder.name = request_builder.name + "_initial"
+                operation.request_builder = request_builder

@@ -6,7 +6,7 @@
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema, ParameterList
-
+from .client_serializer import ClientSerializer
 
 def config_imports(code_model, global_parameters: ParameterList, async_mode: bool) -> FileImport:
     file_import = FileImport()
@@ -43,11 +43,6 @@ class GeneralSerializer:
         credential_param.schema = TokenCredentialSchema(async_mode=self.async_mode)
 
     def serialize_service_client_file(self) -> str:
-        def _service_client_imports() -> FileImport:
-            file_import = self.code_model.service_client.imports(self.code_model, self.async_mode)
-            for gp in self.code_model.global_parameters:
-                file_import.merge(gp.imports())
-            return file_import
 
         template = self.env.get_template("service_client.py.jinja2")
 
@@ -60,8 +55,9 @@ class GeneralSerializer:
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
+            serializer=ClientSerializer(self.code_model),
             imports=FileImportSerializer(
-                _service_client_imports(),
+                self.code_model.service_client.imports(self.async_mode),
                 is_python_3_file=self.async_mode
             ),
         )

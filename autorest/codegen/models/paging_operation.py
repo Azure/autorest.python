@@ -4,14 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Set, Union
+from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
-from .parameter import Parameter
 from .schema_response import SchemaResponse
-from .schema_request import SchemaRequest
+from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
+from .parameter_list import ParameterList
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -22,14 +22,10 @@ class PagingOperation(Operation):
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
-        url: str,
-        method: str,
-        multipart: bool,
         api_versions: Set[str],
-        requests: List[SchemaRequest],
+        parameters: ParameterList,
+        multiple_media_type_parameters: ParameterList,
         summary: Optional[str] = None,
-        parameters: Optional[List[Parameter]] = None,
-        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
@@ -41,14 +37,10 @@ class PagingOperation(Operation):
             yaml_data,
             name,
             description,
-            url,
-            method,
-            multipart,
             api_versions,
-            requests,
-            summary,
             parameters,
             multiple_media_type_parameters,
+            summary,
             responses,
             exceptions,
             want_description_docstring,
@@ -118,12 +110,23 @@ class PagingOperation(Operation):
         return self.get_pager_path(async_mode).split(".")[-1]
 
     @property
-    def success_status_code(self) -> List[Union[str, int]]:
-        """The list of all successfull status code.
-        """
-        if self.override_success_response_to_200:
-            return [200]
-        return super(PagingOperation, self).success_status_code
+    def next_request_builder(self) -> Optional[RequestBuilder]:
+        if not self.next_operation:
+            return None
+        next_request_builder = self.next_operation.request_builder
+        return next_request_builder
+
+    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
+        file_import = super().imports_for_multiapi(code_model, async_mode)
+        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
+        pager = self.get_pager(async_mode)
+
+        file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL)
+        if async_mode:
+            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        else:
+            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        return file_import
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

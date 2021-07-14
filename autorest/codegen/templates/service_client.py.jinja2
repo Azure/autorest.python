@@ -1,110 +1,38 @@
 {% import 'keywords.jinja2' as keywords with context %}
-{% set path_to_models = ".." if async_mode else "." %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{% macro method_signature() %}
-def __init__(
-    self,
-    {% for param_signature in code_model.global_parameters.method_signature(async_mode) %}
-    {{ param_signature }}
-    {% endfor %}
-    {% if code_model.base_url %}
-    {{ code_model.base_url_method_signature(async_mode) }}
-    {% endif %}
-    {{ "**kwargs: Any" if async_mode else "**kwargs  # type: Any" }}
-){{" -> None" if async_mode else "" }}:{% endmacro %}
-{% set config_signature = code_model.global_parameters.method|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters.method else "") %}
-{% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
-{% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}
-{% set base_class = mixin_operation_group_name() if has_mixin_operation_group else "object" %}
 {# actual template starts here #}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 
 {{ imports }}
 
-from ._configuration import {{ code_model.class_name }}Configuration
-{% for operation_group in code_model.operation_groups %}
-from .operations import {{ operation_group.class_name }}
-{% endfor %}
-{% if code_model.sorted_schemas %}
-from {{ path_to_models }} import models
-{% endif %}
-
-
-class {{ code_model.class_name }}({{ base_class }}):
+{{ serializer.class_definition(async_mode) }}
     """{{ code_model.description }}
 
-    {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
-    :ivar {{ operation_group.name  }}: {{ operation_group.class_name }} operations
-    {% if async_mode %}
-    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.aio.operations.{{ operation_group.class_name }}
-    {% else %}
-    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}
-    {% endif %}
-    {% endfor %}
-{% for parameter in code_model.global_parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
-    :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
-{% endfor %}
-    {% if not code_model.custom_base_url %}
-    :param str base_url: Service URL
-    {% endif %}
-    {% if code_model.has_lro_operations %}
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-    {% endif %}
-    """
-
-    {{ method_signature()|indent }}
-        {% if not async_mode %}
-        # type: (...) -> None
-        {% endif %}
-        {% if not code_model.base_url %}
-        base_url = {{ keywords.escape_str(code_model.custom_base_url) }}
+    {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n     ") | indent }}
+    {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
+        {% if not code_model.service_client.base_url %}
+        base_url = {{ keywords.escape_str(code_model.service_client.custom_base_url) }}
         {% else %}
         if not base_url:
-            base_url = {{ keywords.escape_str(code_model.base_url) }}
+            base_url = {{ keywords.escape_str(code_model.service_client.base_url) }}
         {% endif %}
-        self._config = {{ code_model.class_name }}Configuration({{ config_signature }}**kwargs)
-        self._client = {{ code_model.service_client.pipeline_class(code_model, async_mode) }}(base_url=base_url, config=self._config, **kwargs)
+        self._config = {{ code_model.class_name }}Configuration({{ code_model.service_client.config_initialization }})
+        self._client = {{ code_model.service_client.pipeline_class(async_mode) }}(base_url=base_url, config=self._config, **kwargs)
 
-        {% if code_model.sorted_schemas %}
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        {% else %}
-        client_models = {}  # type: Dict[str, Any]
-        {% endif %}
-        self._serialize = Serializer(client_models)
-        {% if not code_model.options['client_side_validation'] %}
-        self._serialize.client_side_validation = False
-        {% endif %}
-        self._deserialize = Deserializer(client_models)
+        {{ op_tools.serialize(serializer.serializers_and_operation_groups_properties()) | indent(8) }}
 
-        {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
-        self.{{ operation_group.name }} = {{ operation_group.class_name }}(
-            self._client, self._config, self._serialize, self._deserialize)
-        {% endfor %}
-
-    {% set http_response = "AsyncHttpResponse" if async_mode else "HttpResponse" %}
-    {{ keywords.def }} _send_request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ (" -> " + http_response) if async_mode else "" }}:
-        {% if not async_mode %}
-        # type: (HttpRequest, Any) -> {{ http_response }}
-        {% endif %}
-        """Runs the network request through the client's chained policies.
-
-        :param http_request: The network request you want to make. Required.
-        :type http_request: ~azure.core.pipeline.transport.HttpRequest
-        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
-        :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.{{ http_response }}
-        """
+    {% set http_response = keywords.async_class + "HttpResponse" %}
+    {{ serializer.send_request_signature_and_response_type_annotation(async_mode) | indent }}
+        {{ op_tools.serialize(serializer.send_request_description(async_mode)) | indent(8) }}
+        request_copy = deepcopy(request)
         {% if code_model.global_parameters.path %}
         {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
-        {{ op_tools.format_path_format_arguments(url_name="http_request.url")|indent(8) }}
+        {{ op_tools.format_path_format_arguments(url_name="request_copy.url")|indent(8) }}
         {% else %}
-        http_request.url = self._client.format_url(http_request.url)
+        request_copy.url = self._client.format_url(request_copy.url)
         {% endif %}
-        stream = kwargs.pop("stream", True)
-        pipeline_response = {{ keywords.await }}self._client._pipeline.run(http_request, stream=stream, **kwargs)
-        return pipeline_response.http_response
+        return self._client.send_request(request_copy, **kwargs)
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

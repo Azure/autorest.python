@@ -7,7 +7,6 @@ from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
-
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
 
@@ -62,6 +61,16 @@ class DictionarySchema(BaseSchema):
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         raise NotImplementedError("Dictionary schema does not support XML serialization.")
+
+    def get_json_template_representation(self, **kwargs: Any) -> Any:
+        return {
+            "str": self.element_type.get_json_template_representation(**kwargs)
+        }
+
+    def get_files_template_representation(self, **kwargs: Any) -> Any:
+        return {
+            "str": self.element_type.get_files_template_representation(**kwargs)
+        }
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":
