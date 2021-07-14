@@ -24,8 +24,8 @@ def build_head408_request(
     # type: (...) -> HttpRequest
     """Return 408 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -55,8 +55,8 @@ def build_put500_request(
     # type: (...) -> HttpRequest
     """Return 500 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -102,8 +102,8 @@ def build_patch500_request(
     # type: (...) -> HttpRequest
     """Return 500 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -149,8 +149,8 @@ def build_get502_request(
     # type: (...) -> HttpRequest
     """Return 502 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -180,8 +180,8 @@ def build_options502_request(
     # type: (...) -> HttpRequest
     """Return 502 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -211,8 +211,8 @@ def build_post503_request(
     # type: (...) -> HttpRequest
     """Return 503 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -258,8 +258,8 @@ def build_delete503_request(
     # type: (...) -> HttpRequest
     """Return 503 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -305,8 +305,8 @@ def build_put504_request(
     # type: (...) -> HttpRequest
     """Return 504 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -352,8 +352,8 @@ def build_patch504_request(
     # type: (...) -> HttpRequest
     """Return 504 status code, then 200 after retry.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.

@@ -29,8 +29,8 @@ def build_get_all_with_values_request(
     localStringPath='localStringPath', globalStringQuery='globalStringQuery',
     pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
     :type path_item_string_path: str
@@ -96,8 +96,8 @@ def build_get_global_query_null_request(
     localStringPath='localStringPath', globalStringQuery=null,
     pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
     :type path_item_string_path: str
@@ -163,8 +163,8 @@ def build_get_global_and_local_query_null_request(
     localStringPath='localStringPath', globalStringQuery=null,
     pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
     :type path_item_string_path: str
@@ -230,8 +230,8 @@ def build_get_local_path_item_query_null_request(
     localStringPath='localStringPath', globalStringQuery='globalStringQuery',
     pathItemStringQuery=null, localStringQuery=null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
     :type path_item_string_path: str

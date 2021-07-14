@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get null array value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -40,8 +40,8 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get invalid array [1, 2, 3.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -63,8 +63,8 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     """Get empty array value [].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -86,8 +86,8 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value empty [].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -119,8 +119,8 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     """Get boolean array value [true, false, false, true].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -142,8 +142,8 @@ def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
 def build_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value empty [true, false, false, true].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -175,8 +175,8 @@ def build_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **k
 def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get boolean array value [true, null, false].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -198,8 +198,8 @@ def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get boolean array value [true, 'boolean', false].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -221,8 +221,8 @@ def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
 def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     """Get integer array value [1, -1, 3, 300].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -244,8 +244,8 @@ def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_integer_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value empty [1, -1, 3, 300].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -277,8 +277,8 @@ def build_put_integer_valid_request(*, json: Any = None, content: Any = None, **
 def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get integer array value [1, null, 0].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -300,8 +300,8 @@ def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get integer array value [1, 'integer', 0].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -323,8 +323,8 @@ def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
 def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     """Get integer array value [1, -1, 3, 300].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -346,8 +346,8 @@ def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_long_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value empty [1, -1, 3, 300].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -379,8 +379,8 @@ def build_put_long_valid_request(*, json: Any = None, content: Any = None, **kwa
 def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get long array value [1, null, 0].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -402,8 +402,8 @@ def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get long array value [1, 'integer', 0].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -425,8 +425,8 @@ def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
 def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     """Get float array value [0, -0.01, 1.2e20].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -448,8 +448,8 @@ def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_float_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value [0, -0.01, 1.2e20].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -481,8 +481,8 @@ def build_put_float_valid_request(*, json: Any = None, content: Any = None, **kw
 def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get float array value [0.0, null, -1.2e20].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -504,8 +504,8 @@ def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get boolean array value [1.0, 'number', 0.0].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -527,8 +527,8 @@ def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
 def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     """Get float array value [0, -0.01, 1.2e20].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -550,8 +550,8 @@ def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_double_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value [0, -0.01, 1.2e20].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -583,8 +583,8 @@ def build_put_double_valid_request(*, json: Any = None, content: Any = None, **k
 def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get float array value [0.0, null, -1.2e20].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -606,8 +606,8 @@ def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
     """Get boolean array value [1.0, 'number', 0.0].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -629,8 +629,8 @@ def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
 def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     """Get string array value ['foo1', 'foo2', 'foo3'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -652,8 +652,8 @@ def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_string_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value ['foo1', 'foo2', 'foo3'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -685,8 +685,8 @@ def build_put_string_valid_request(*, json: Any = None, content: Any = None, **k
 def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
     """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -708,8 +708,8 @@ def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_enum_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value ['foo1', 'foo2', 'foo3'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -741,8 +741,8 @@ def build_put_enum_valid_request(*, json: Any = None, content: Any = None, **kwa
 def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
     """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -764,8 +764,8 @@ def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_string_enum_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value ['foo1', 'foo2', 'foo3'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -797,8 +797,8 @@ def build_put_string_enum_valid_request(*, json: Any = None, content: Any = None
 def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
     """Get string array value ['foo', null, 'foo2'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -820,8 +820,8 @@ def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get string array value ['foo', 123, 'foo2'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -844,8 +844,8 @@ def build_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
     'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -868,8 +868,8 @@ def build_put_uuid_valid_request(*, json: Any = None, content: Any = None, **kwa
     """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
     'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -901,8 +901,8 @@ def build_put_uuid_valid_request(*, json: Any = None, content: Any = None, **kwa
 def build_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -924,8 +924,8 @@ def build_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:
 def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -947,8 +947,8 @@ def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_date_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -980,8 +980,8 @@ def build_put_date_valid_request(*, json: Any = None, content: Any = None, **kwa
 def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get date array value ['2012-01-01', null, '1776-07-04'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1003,8 +1003,8 @@ def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     """Get date array value ['2011-03-22', 'date'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1027,8 +1027,8 @@ def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
     '1492-10-12T10:15:01-08:00'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1051,8 +1051,8 @@ def build_put_date_time_valid_request(*, json: Any = None, content: Any = None, 
     """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
     '1492-10-12T10:15:01-08:00'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -1084,8 +1084,8 @@ def build_put_date_time_valid_request(*, json: Any = None, content: Any = None, 
 def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get date array value ['2000-12-01t00:00:01z', null].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1107,8 +1107,8 @@ def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1131,8 +1131,8 @@ def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
     'Wed, 12 Oct 1492 10:15:01 GMT'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1155,8 +1155,8 @@ def build_put_date_time_rfc1123_valid_request(*, json: Any = None, content: Any 
     """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
     Oct 1492 10:15:01 GMT'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -1188,8 +1188,8 @@ def build_put_date_time_rfc1123_valid_request(*, json: Any = None, content: Any 
 def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1211,8 +1211,8 @@ def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_duration_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -1245,8 +1245,8 @@ def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
     in base64.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1269,8 +1269,8 @@ def build_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwa
     """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
     elementencoded in base 64.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -1302,8 +1302,8 @@ def build_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwa
 def build_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
     """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1326,8 +1326,8 @@ def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
     """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
     the items base64url encoded.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1349,8 +1349,8 @@ def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
 def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
     """Get array of complex type null value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1372,8 +1372,8 @@ def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
     """Get empty array of complex type [].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1396,8 +1396,8 @@ def build_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
     """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
     'string': '6'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1420,8 +1420,8 @@ def build_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
     """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
     'string': '6'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1444,8 +1444,8 @@ def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
     {'integer': 5, 'string': '6'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1468,8 +1468,8 @@ def build_put_complex_valid_request(*, json: Any = None, content: Any = None, **
     """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
     'string': '4'}, {'integer': 5, 'string': '6'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -1501,8 +1501,8 @@ def build_put_complex_valid_request(*, json: Any = None, content: Any = None, **
 def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
     """Get a null array.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1524,8 +1524,8 @@ def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an empty array [].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1547,8 +1547,8 @@ def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
 def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
     """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1570,8 +1570,8 @@ def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1593,8 +1593,8 @@ def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
 def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1616,8 +1616,8 @@ def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_array_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -1649,8 +1649,8 @@ def build_put_array_valid_request(*, json: Any = None, content: Any = None, **kw
 def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
     """Get an array of Dictionaries with value null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1672,8 +1672,8 @@ def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1696,8 +1696,8 @@ def build_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1720,8 +1720,8 @@ def build_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1744,8 +1744,8 @@ def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1768,8 +1768,8 @@ def build_put_dictionary_valid_request(*, json: Any = None, content: Any = None,
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.

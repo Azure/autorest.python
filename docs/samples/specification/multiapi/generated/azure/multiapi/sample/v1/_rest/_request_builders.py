@@ -24,8 +24,8 @@ def build_test_one_request(
     # type: (...) -> HttpRequest
     """TestOne should be in an FirstVersionOperationsMixin.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword id: An int parameter.
     :paramtype id: int
@@ -71,8 +71,8 @@ def build_test_lro_request_initial(
     # type: (...) -> HttpRequest
     """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -112,8 +112,8 @@ def build_test_lro_and_paging_request_initial(
     # type: (...) -> HttpRequest
     """A long-running paging operation that includes a nextLink that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword client_request_id:
     :paramtype client_request_id: str
@@ -160,8 +160,8 @@ def build_test_different_calls_request(
     # type: (...) -> HttpRequest
     """Has added parameters across the API versions.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword greeting_in_english: pass in 'hello' to pass test.
     :paramtype greeting_in_english: str

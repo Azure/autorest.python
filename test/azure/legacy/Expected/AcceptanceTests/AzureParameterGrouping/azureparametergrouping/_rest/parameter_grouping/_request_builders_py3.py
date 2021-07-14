@@ -25,8 +25,8 @@ def build_post_required_request(
 ) -> HttpRequest:
     """Post a bunch of required parameters grouped.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param path: Path parameter.
     :type path: str
@@ -79,8 +79,8 @@ def build_post_optional_request(
 ) -> HttpRequest:
     """Post a bunch of optional parameters grouped.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword custom_header:
     :paramtype custom_header: str
@@ -115,8 +115,8 @@ def build_post_reserved_words_request(
 ) -> HttpRequest:
     """Post a grouped parameters with reserved words.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass.
     :paramtype from_parameter: str
@@ -156,8 +156,8 @@ def build_post_multi_param_groups_request(
 ) -> HttpRequest:
     """Post parameters from multiple different parameter groups.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_one:
     :paramtype header_one: str
@@ -200,8 +200,8 @@ def build_post_shared_parameter_group_object_request(
 ) -> HttpRequest:
     """Post parameters with a shared parameter group object.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_one:
     :paramtype header_one: str

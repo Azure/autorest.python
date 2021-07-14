@@ -18,8 +18,8 @@ def build_upload_file_request(
 ) -> HttpRequest:
     """Upload file.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. File to upload.
@@ -59,8 +59,8 @@ def build_upload_file_request(
 def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Upload file.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). File to upload.
@@ -91,8 +91,8 @@ def build_upload_files_request(
 ) -> HttpRequest:
     """Upload multiple files.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. Files to upload.

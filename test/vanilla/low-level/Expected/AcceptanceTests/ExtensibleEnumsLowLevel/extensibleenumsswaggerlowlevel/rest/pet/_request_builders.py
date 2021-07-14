@@ -26,8 +26,8 @@ def build_get_by_pet_id_request(
     # type: (...) -> HttpRequest
     """get pet by id.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param pet_id: Pet id.
     :type pet_id: str
@@ -73,8 +73,8 @@ def build_add_pet_request(
     # type: (...) -> HttpRequest
     """add pet.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. pet param.

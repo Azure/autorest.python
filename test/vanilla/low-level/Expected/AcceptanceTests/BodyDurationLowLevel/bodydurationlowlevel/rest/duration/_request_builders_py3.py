@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get null duration value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -40,8 +40,8 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_put_positive_duration_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put a positive duration value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. duration body.
@@ -79,8 +79,8 @@ def build_put_positive_duration_request(*, json: Any = None, content: Any = None
 def build_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
     """Get a positive duration value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -102,8 +102,8 @@ def build_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get an invalid duration value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

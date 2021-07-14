@@ -18,8 +18,8 @@ def build_test_paging_request(
 ) -> HttpRequest:
     """Returns ModelThree with optionalProperty 'paged'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -52,8 +52,8 @@ def build_test_different_calls_request(
 ) -> HttpRequest:
     """Has added parameters across the API versions.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword greeting_in_english: pass in 'hello' to pass test.
     :paramtype greeting_in_english: str

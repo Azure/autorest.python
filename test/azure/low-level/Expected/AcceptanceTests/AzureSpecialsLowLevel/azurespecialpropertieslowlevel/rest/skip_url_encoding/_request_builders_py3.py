@@ -17,7 +17,7 @@ _SERIALIZER = Serializer()
 def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -46,7 +46,7 @@ def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any
 def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -75,7 +75,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
 def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -103,7 +103,7 @@ def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
 def build_get_method_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest:
     """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -132,7 +132,7 @@ def build_get_method_query_valid_request(*, q1: str, **kwargs: Any) -> HttpReque
 def build_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get method with unencoded query parameter with value null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword q1: Unencoded query parameter with value null.
@@ -162,7 +162,7 @@ def build_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: A
 def build_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest:
     """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -191,7 +191,7 @@ def build_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest
 def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's

@@ -24,8 +24,8 @@ def build_test_four_request(
     # type: (...) -> HttpRequest
     """TestFour should be in OperationGroupTwoOperations.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword parameter_one: A boolean parameter.
     :paramtype parameter_one: bool

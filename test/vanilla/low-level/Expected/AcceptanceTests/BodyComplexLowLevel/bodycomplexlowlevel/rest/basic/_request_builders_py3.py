@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -49,8 +49,8 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -99,8 +99,8 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get a basic complex type that is invalid for the local strong type.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -132,8 +132,8 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     """Get a basic complex type that is empty.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -165,8 +165,8 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get a basic complex type whose properties are null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -198,8 +198,8 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     """Get a basic complex type while the server doesn't provide a response payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

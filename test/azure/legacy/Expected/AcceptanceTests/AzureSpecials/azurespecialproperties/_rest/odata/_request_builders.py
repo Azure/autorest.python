@@ -25,8 +25,8 @@ def build_get_with_filter_request(
     # type: (...) -> HttpRequest
     """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
     :paramtype filter: str

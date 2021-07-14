@@ -24,8 +24,8 @@ def build_get_valid_request(
     # type: (...) -> HttpRequest
     """Get complex types that are polymorphic.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -68,8 +68,8 @@ def build_put_valid_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put a salmon that looks like this:
@@ -188,8 +188,8 @@ def build_get_dot_syntax_request(
     # type: (...) -> HttpRequest
     """Get complex types that are polymorphic, JSON key contains a dot.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -230,8 +230,8 @@ def build_get_composed_with_discriminator_request(
     element type, with discriminator specified. Deserialization must NOT fail and use the
     discriminator type specified on the wire.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -290,8 +290,8 @@ def build_get_composed_without_discriminator_request(
     element type, without discriminator specified on wire. Deserialization must NOT fail and use
     the explicit type of the property.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -349,8 +349,8 @@ def build_get_complicated_request(
     """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -390,8 +390,8 @@ def build_put_complicated_request(
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -442,8 +442,8 @@ def build_put_missing_discriminator_request(
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, omitting the discriminator.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -501,8 +501,8 @@ def build_put_valid_missing_required_request(
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please attempt put a sawshark that looks like this, the

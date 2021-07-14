@@ -24,8 +24,8 @@ def build_get_not_expandable_request(
     # type: (...) -> HttpRequest
     """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -55,8 +55,8 @@ def build_put_not_expandable_request(
     # type: (...) -> HttpRequest
     """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. string body.
@@ -102,8 +102,8 @@ def build_get_referenced_request(
     # type: (...) -> HttpRequest
     """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -133,8 +133,8 @@ def build_put_referenced_request(
     # type: (...) -> HttpRequest
     """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. enum string body.
@@ -180,8 +180,8 @@ def build_get_referenced_constant_request(
     # type: (...) -> HttpRequest
     """Get value 'green-color' from the constant.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -220,8 +220,8 @@ def build_put_referenced_constant_request(
     # type: (...) -> HttpRequest
     """Sends value 'green-color' from a constant.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. enum string body.

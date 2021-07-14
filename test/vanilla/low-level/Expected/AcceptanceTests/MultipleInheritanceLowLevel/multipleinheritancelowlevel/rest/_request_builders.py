@@ -24,8 +24,8 @@ def build_get_horse_request(
     # type: (...) -> HttpRequest
     """Get a horse with name 'Fred' and isAShowHorse true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -63,8 +63,8 @@ def build_put_horse_request(
     # type: (...) -> HttpRequest
     """Put a horse with name 'General' and isAShowHorse false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a horse with name 'General' and isAShowHorse false.
@@ -112,8 +112,8 @@ def build_get_pet_request(
     # type: (...) -> HttpRequest
     """Get a pet with name 'Peanut'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -151,8 +151,8 @@ def build_put_pet_request(
     # type: (...) -> HttpRequest
     """Put a pet with name 'Butter'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a pet with name 'Butter'.
@@ -200,8 +200,8 @@ def build_get_feline_request(
     # type: (...) -> HttpRequest
     """Get a feline where meows and hisses are true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -240,8 +240,8 @@ def build_put_feline_request(
     # type: (...) -> HttpRequest
     """Put a feline who hisses and doesn't meow.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a feline who hisses and doesn't meow.
@@ -290,8 +290,8 @@ def build_get_cat_request(
     # type: (...) -> HttpRequest
     """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -329,8 +329,8 @@ def build_put_cat_request(
     # type: (...) -> HttpRequest
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a cat with name 'Boots' where likesMilk and hisses is
@@ -381,8 +381,8 @@ def build_get_kitten_request(
     """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
     is false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -421,8 +421,8 @@ def build_put_kitten_request(
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a kitten with name 'Kitty' where likesMilk and hisses

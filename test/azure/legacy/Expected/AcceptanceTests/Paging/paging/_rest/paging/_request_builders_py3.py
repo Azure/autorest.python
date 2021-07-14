@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that must return result of the default 'value' node.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -40,8 +40,8 @@ def build_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:
 def build_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -63,8 +63,8 @@ def build_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:
 def build_get_single_pages_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that finishes on the first call without a nextlink.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -87,8 +87,8 @@ def build_first_response_empty_request(**kwargs: Any) -> HttpRequest:
     """A paging operation whose first response's items list is empty, but still returns a next link.
     Second (and final) call, will give you an items list of 1.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -116,8 +116,8 @@ def build_get_multiple_pages_request(
 ) -> HttpRequest:
     """A paging operation that includes a nextLink that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword client_request_id:
     :paramtype client_request_id: str
@@ -153,8 +153,8 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
     """A paging operation that includes a next operation. It has a different query parameter from it's
     next operation nextOperationWithQueryParams. Returns a ProductResult.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
      pass test.
@@ -187,8 +187,8 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
 def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest:
     """Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -221,8 +221,8 @@ def build_get_odata_multiple_pages_request(
 ) -> HttpRequest:
     """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword client_request_id:
     :paramtype client_request_id: str
@@ -264,8 +264,8 @@ def build_get_multiple_pages_with_offset_request(
 ) -> HttpRequest:
     """A paging operation that includes a nextLink that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param offset: Offset of return value.
     :type offset: int
@@ -307,8 +307,8 @@ def build_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that fails on the first call with 500 and then retries and then get a
     response including a nextLink that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -331,8 +331,8 @@ def build_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
     first with 500. The client should retry and finish all 10 pages eventually.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -354,8 +354,8 @@ def build_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpRequest:
 def build_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that receives a 400 on the first call.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -377,8 +377,8 @@ def build_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
 def build_get_multiple_pages_failure_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that receives a 400 on the second call.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -400,8 +400,8 @@ def build_get_multiple_pages_failure_request(**kwargs: Any) -> HttpRequest:
 def build_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that receives an invalid nextLink.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -423,8 +423,8 @@ def build_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:
 def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
@@ -460,8 +460,8 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 ) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
@@ -501,8 +501,8 @@ def build_get_multiple_pages_lro_request_initial(
 ) -> HttpRequest:
     """A long-running paging operation that includes a nextLink that has 10 pages.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword client_request_id:
     :paramtype client_request_id: str
@@ -537,8 +537,8 @@ def build_get_multiple_pages_lro_request_initial(
 def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
@@ -577,8 +577,8 @@ def build_next_fragment_with_grouping_request(
 ) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
@@ -616,8 +616,8 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(**kwargs:
     """A paging operation that returns a paging model whose item name is is overriden by
     x-ms-client-name 'indexes'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

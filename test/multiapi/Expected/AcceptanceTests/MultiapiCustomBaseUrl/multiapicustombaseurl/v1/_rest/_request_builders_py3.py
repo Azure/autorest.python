@@ -21,8 +21,8 @@ def build_test_request(
     """Should be a mixin operation. Put in 1 for the required parameter and have the correct api
     version of 1.0.0 to pass.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword id: An int parameter. Put in 1 to pass.
     :paramtype id: int

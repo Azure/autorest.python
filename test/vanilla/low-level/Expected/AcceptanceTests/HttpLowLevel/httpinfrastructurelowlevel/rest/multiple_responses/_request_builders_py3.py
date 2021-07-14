@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_get200_model204_no_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -47,8 +47,8 @@ def build_get200_model204_no_model_default_error200_valid_request(**kwargs: Any)
 def build_get200_model204_no_model_default_error204_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 204 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -78,8 +78,8 @@ def build_get200_model204_no_model_default_error204_valid_request(**kwargs: Any)
 def build_get200_model204_no_model_default_error201_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 201 response with valid payload: {'statusCode': '201'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -109,8 +109,8 @@ def build_get200_model204_no_model_default_error201_invalid_request(**kwargs: An
 def build_get200_model204_no_model_default_error202_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 202 response with no payload:.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -140,8 +140,8 @@ def build_get200_model204_no_model_default_error202_none_request(**kwargs: Any) 
 def build_get200_model204_no_model_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -171,8 +171,8 @@ def build_get200_model204_no_model_default_error400_valid_request(**kwargs: Any)
 def build_get200_model201_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -206,8 +206,8 @@ def build_get200_model201_model_default_error200_valid_request(**kwargs: Any) ->
 def build_get200_model201_model_default_error201_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -241,8 +241,8 @@ def build_get200_model201_model_default_error201_valid_request(**kwargs: Any) ->
 def build_get200_model201_model_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -276,8 +276,8 @@ def build_get200_model201_model_default_error400_valid_request(**kwargs: Any) ->
 def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -315,8 +315,8 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(**
 def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with valid payload: {'httpCode': '201'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -354,8 +354,8 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(**
 def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -393,8 +393,8 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(**
 def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -432,8 +432,8 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(**
 def build_get202_none204_none_default_error202_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 202 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -455,8 +455,8 @@ def build_get202_none204_none_default_error202_none_request(**kwargs: Any) -> Ht
 def build_get202_none204_none_default_error204_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 204 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -478,8 +478,8 @@ def build_get202_none204_none_default_error204_none_request(**kwargs: Any) -> Ht
 def build_get202_none204_none_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -501,8 +501,8 @@ def build_get202_none204_none_default_error400_valid_request(**kwargs: Any) -> H
 def build_get202_none204_none_default_none202_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 202 response with an unexpected payload {'property': 'value'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -519,8 +519,8 @@ def build_get202_none204_none_default_none202_invalid_request(**kwargs: Any) -> 
 def build_get202_none204_none_default_none204_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 204 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -537,8 +537,8 @@ def build_get202_none204_none_default_none204_none_request(**kwargs: Any) -> Htt
 def build_get202_none204_none_default_none400_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -555,8 +555,8 @@ def build_get202_none204_none_default_none400_none_request(**kwargs: Any) -> Htt
 def build_get202_none204_none_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with an unexpected payload {'property': 'value'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -573,8 +573,8 @@ def build_get202_none204_none_default_none400_invalid_request(**kwargs: Any) -> 
 def build_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -604,8 +604,8 @@ def build_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -635,8 +635,8 @@ def build_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with valid payload: {'statusCode': '400'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -658,8 +658,8 @@ def build_get_default_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_model_a400_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -681,8 +681,8 @@ def build_get_default_model_a400_none_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_none200_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -699,8 +699,8 @@ def build_get_default_none200_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_none200_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -717,8 +717,8 @@ def build_get_default_none200_none_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with valid payload: {'statusCode': '400'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -735,8 +735,8 @@ def build_get_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get_default_none400_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -754,8 +754,8 @@ def build_get200_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with no payload, when a payload is expected - client should return a null
     object of thde type for model A.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -785,8 +785,8 @@ def build_get200_model_a200_none_request(**kwargs: Any) -> HttpRequest:
 def build_get200_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with payload {'statusCode': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -816,8 +816,8 @@ def build_get200_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
 def build_get200_model_a200_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -847,8 +847,8 @@ def build_get200_model_a200_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get200_model_a400_none_request(**kwargs: Any) -> HttpRequest:
     """Send a 400 response with no payload client should treat as an http error with no error model.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -878,8 +878,8 @@ def build_get200_model_a400_none_request(**kwargs: Any) -> HttpRequest:
 def build_get200_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with payload {'statusCode': '400'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -909,8 +909,8 @@ def build_get200_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
 def build_get200_model_a400_invalid_request(**kwargs: Any) -> HttpRequest:
     """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -940,8 +940,8 @@ def build_get200_model_a400_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get200_model_a202_valid_request(**kwargs: Any) -> HttpRequest:
     """Send a 202 response with payload {'statusCode': '202'}.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

@@ -21,8 +21,8 @@ def build_test_two_request(
 ) -> HttpRequest:
     """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. A ModelThree parameter.

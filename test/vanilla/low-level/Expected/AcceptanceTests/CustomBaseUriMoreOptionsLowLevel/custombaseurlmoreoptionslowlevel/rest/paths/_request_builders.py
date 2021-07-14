@@ -27,8 +27,8 @@ def build_get_empty_request(
     # type: (...) -> HttpRequest
     """Get a 200 to test a valid base uri.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param key_name: The key name with value 'key1'.
     :type key_name: str

@@ -24,8 +24,8 @@ def build_test_one_request(
     # type: (...) -> HttpRequest
     """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword id: An int parameter.
     :paramtype id: int
@@ -71,8 +71,8 @@ def build_test_different_calls_request(
     # type: (...) -> HttpRequest
     """Has added parameters across the API versions.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword greeting_in_english: pass in 'hello' to pass test.
     :paramtype greeting_in_english: str

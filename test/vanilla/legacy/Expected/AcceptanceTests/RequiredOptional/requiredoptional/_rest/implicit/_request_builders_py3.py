@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpRequest:
     """Test implicitly required path parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param path_parameter:
     :type path_parameter: str
@@ -46,8 +46,8 @@ def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpR
 def build_put_optional_query_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional query parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword query_parameter:
     :paramtype query_parameter: str
@@ -76,8 +76,8 @@ def build_put_optional_query_request(*, query_parameter: Optional[str] = None, *
 def build_put_optional_header_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional header parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword query_parameter:
     :paramtype query_parameter: str
@@ -103,8 +103,8 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
 def build_put_optional_body_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional body parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -136,8 +136,8 @@ def build_put_optional_body_request(*, json: Any = None, content: Any = None, **
 def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test implicitly optional body parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
@@ -166,8 +166,8 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
 def build_get_required_global_path_request(required_global_path: str, **kwargs: Any) -> HttpRequest:
     """Test implicitly required path parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param required_global_path: number of items to skip.
     :type required_global_path: str
@@ -195,8 +195,8 @@ def build_get_required_global_path_request(required_global_path: str, **kwargs: 
 def build_get_required_global_query_request(*, required_global_query: str, **kwargs: Any) -> HttpRequest:
     """Test implicitly required query parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword required_global_query: number of items to skip.
     :paramtype required_global_query: str
@@ -226,8 +226,8 @@ def build_get_optional_global_query_request(
 ) -> HttpRequest:
     """Test implicitly optional query parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword optional_global_query: number of items to skip.
     :paramtype optional_global_query: int

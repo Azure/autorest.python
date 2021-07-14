@@ -26,7 +26,7 @@ def build_check_name_availability_request(
     # type: (...) -> HttpRequest
     """Checks that account name is valid and is not in use.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
@@ -106,7 +106,7 @@ def build_create_request(
     account is already created and subsequent PUT request is issued with exact same set of
     properties, then HTTP 200 would be returned.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -221,7 +221,7 @@ def build_delete_request(
     # type: (...) -> HttpRequest
     """Deletes a storage account in Microsoft Azure.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -272,7 +272,7 @@ def build_get_properties_request(
     account type, location, and account status. The ListKeys operation should be used to retrieve
     storage keys.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -376,7 +376,7 @@ def build_update_request(
     account. If you want to change storage account keys, use the RegenerateKey operation. The
     location and name of the storage account cannot be changed after creation.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -497,7 +497,7 @@ def build_list_keys_request(
     # type: (...) -> HttpRequest
     """Lists the access keys for the specified storage account.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -558,7 +558,7 @@ def build_list_request(
     """Lists all the storage accounts available under the subscription. Note that storage keys are not
     returned; use the ListKeys operation for this.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
@@ -653,7 +653,7 @@ def build_list_by_resource_group_request(
     """Lists all the storage accounts available under the given resource group. Note that storage keys
     are not returned; use the ListKeys operation for this.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -751,7 +751,7 @@ def build_regenerate_key_request(
     # type: (...) -> HttpRequest
     """Regenerates the access keys for the specified storage account.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.

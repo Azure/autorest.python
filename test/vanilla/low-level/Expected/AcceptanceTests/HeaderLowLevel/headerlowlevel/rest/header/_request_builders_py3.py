@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any) -> HttpRequest:
     """Send a post request with header value "User-Agent": "overwrite".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
     :paramtype user_agent_parameter: str
@@ -43,8 +43,8 @@ def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any
 def build_response_existing_key_request(**kwargs: Any) -> HttpRequest:
     """Get a response with header value "User-Agent": "overwrite".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -66,8 +66,8 @@ def build_response_existing_key_request(**kwargs: Any) -> HttpRequest:
 def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
     """Send a post request with header value "Content-Type": "text/html".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -92,8 +92,8 @@ def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
 def build_response_protected_key_request(**kwargs: Any) -> HttpRequest:
     """Get a response with header value "Content-Type": "text/html".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -116,8 +116,8 @@ def build_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> 
     """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
     "negative", "value": -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -145,8 +145,8 @@ def build_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> 
 def build_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header value "value": 1 or -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -172,8 +172,8 @@ def build_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> Htt
     """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
     "negative", "value": -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -201,8 +201,8 @@ def build_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> Htt
 def build_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header value "value": 105 or -2.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -228,8 +228,8 @@ def build_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> 
     """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
     "negative", "value": -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -257,8 +257,8 @@ def build_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> 
 def build_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header value "value": 0.07 or -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -284,8 +284,8 @@ def build_param_double_request(*, scenario: str, value: float, **kwargs: Any) ->
     """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
     "negative", "value": -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -313,8 +313,8 @@ def build_param_double_request(*, scenario: str, value: float, **kwargs: Any) ->
 def build_response_double_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header value "value": 7e120 or -3.0.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
     :paramtype scenario: str
@@ -340,8 +340,8 @@ def build_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> Ht
     """Send a post request with header values "scenario": "true", "value": true or "scenario":
     "false", "value": false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "true" or "false".
     :paramtype scenario: str
@@ -369,8 +369,8 @@ def build_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> Ht
 def build_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header value "value": true or false.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "true" or "false".
     :paramtype scenario: str
@@ -396,8 +396,8 @@ def build_param_string_request(*, scenario: str, value: Optional[str] = None, **
     """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
     over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
@@ -428,8 +428,8 @@ def build_param_string_request(*, scenario: str, value: Optional[str] = None, **
 def build_response_string_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
@@ -456,8 +456,8 @@ def build_param_date_request(*, scenario: str, value: datetime.date, **kwargs: A
     """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
     "scenario": "min", "value": "0001-01-01".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
@@ -485,8 +485,8 @@ def build_param_date_request(*, scenario: str, value: datetime.date, **kwargs: A
 def build_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header values "2010-01-01" or "0001-01-01".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
@@ -512,8 +512,8 @@ def build_param_datetime_request(*, scenario: str, value: datetime.datetime, **k
     """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
     "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
@@ -542,8 +542,8 @@ def build_param_datetime_request(*, scenario: str, value: datetime.datetime, **k
 def build_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
@@ -571,8 +571,8 @@ def build_param_datetime_rfc1123_request(
     """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
     GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
@@ -603,8 +603,8 @@ def build_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> 
     """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
     GMT".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
     :paramtype scenario: str
@@ -629,8 +629,8 @@ def build_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> 
 def build_param_duration_request(*, scenario: str, value: datetime.timedelta, **kwargs: Any) -> HttpRequest:
     """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
@@ -658,8 +658,8 @@ def build_param_duration_request(*, scenario: str, value: datetime.timedelta, **
 def build_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header values "P123DT22H14M12.011S".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
@@ -684,8 +684,8 @@ def build_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequ
 def build_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) -> HttpRequest:
     """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
@@ -713,8 +713,8 @@ def build_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) 
 def build_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid".
     :paramtype scenario: str
@@ -742,8 +742,8 @@ def build_param_enum_request(
     """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
     "null", "value": null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
@@ -773,8 +773,8 @@ def build_param_enum_request(
 def build_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     """Get a response with header values "GREY" or null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
@@ -801,8 +801,8 @@ def build_custom_request_id_request(**kwargs: Any) -> HttpRequest:
     """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
     request.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

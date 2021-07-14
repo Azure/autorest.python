@@ -17,8 +17,8 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """Basic get that returns an object. Returns object { 'message': 'An object was successfully
     returned' }.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -41,8 +41,8 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
     """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
     object error.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Pass in {'foo': 'bar'} for a 200, anything else for an

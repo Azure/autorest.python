@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_get_required_request(*, parameter1: str, parameter2: str, parameter3: str, **kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword parameter1: I am a required parameter.
     :paramtype parameter1: str

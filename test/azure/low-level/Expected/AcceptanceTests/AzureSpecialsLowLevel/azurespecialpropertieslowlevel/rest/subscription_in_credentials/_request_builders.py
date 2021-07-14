@@ -27,7 +27,7 @@ def build_post_method_global_valid_request(
     """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
     '1234-5678-9012-3456' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
@@ -67,7 +67,7 @@ def build_post_method_global_null_request(
     """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
     null, and client-side validation should prevent you from making this call.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
@@ -107,7 +107,7 @@ def build_post_method_global_not_provided_valid_request(
     """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
     '1234-5678-9012-3456' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
@@ -153,7 +153,7 @@ def build_post_path_global_valid_request(
     """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
     '1234-5678-9012-3456' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
@@ -193,7 +193,7 @@ def build_post_swagger_global_valid_request(
     """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
     '1234-5678-9012-3456' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in

@@ -20,8 +20,8 @@ def build_put201_creating_succeeded200_request_initial(
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -57,8 +57,8 @@ def build_put_async_relative_retry_succeeded_request_initial(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -92,8 +92,8 @@ def build_delete_provisioning202_accepted200_succeeded_request_initial(**kwargs:
     entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -116,8 +116,8 @@ def build_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
     return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -140,8 +140,8 @@ def build_delete_async_relative_retry_succeeded_request_initial(**kwargs: Any) -
     """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
     endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -164,8 +164,8 @@ def build_post202_retry200_request_initial(*, json: Any = None, content: Any = N
     """Long running post request, service returns a 500, then a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -201,8 +201,8 @@ def build_post_async_relative_retry_succeeded_request_initial(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.

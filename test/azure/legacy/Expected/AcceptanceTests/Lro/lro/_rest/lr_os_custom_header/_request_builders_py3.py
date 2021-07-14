@@ -21,8 +21,8 @@ def build_put_async_retry_succeeded_request_initial(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -59,8 +59,8 @@ def build_put201_creating_succeeded200_request_initial(
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -94,8 +94,8 @@ def build_post202_retry200_request_initial(*, json: Any = None, content: Any = N
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.
@@ -132,8 +132,8 @@ def build_post_async_retry_succeeded_request_initial(
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
     Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put.

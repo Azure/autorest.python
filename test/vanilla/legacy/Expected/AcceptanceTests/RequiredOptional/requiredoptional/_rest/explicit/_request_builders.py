@@ -25,8 +25,8 @@ def build_put_optional_binary_body_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional body parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
@@ -63,8 +63,8 @@ def build_put_required_binary_body_request(
     # type: (...) -> HttpRequest
     """Test explicitly required body parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
@@ -102,8 +102,8 @@ def build_post_required_integer_parameter_request(
     """Test explicitly required integer. Please put null and the client library should throw before
     the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -143,8 +143,8 @@ def build_post_optional_integer_parameter_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -185,8 +185,8 @@ def build_post_required_integer_property_request(
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -226,8 +226,8 @@ def build_post_optional_integer_property_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -268,8 +268,8 @@ def build_post_required_integer_header_request(
     """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: int
@@ -304,8 +304,8 @@ def build_post_optional_integer_header_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: int
@@ -342,8 +342,8 @@ def build_post_required_string_parameter_request(
     """Test explicitly required string. Please put null and the client library should throw before the
     request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -383,8 +383,8 @@ def build_post_optional_string_parameter_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional string. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -425,8 +425,8 @@ def build_post_required_string_property_request(
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -466,8 +466,8 @@ def build_post_optional_string_property_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -508,8 +508,8 @@ def build_post_required_string_header_request(
     """Test explicitly required string. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: str
@@ -544,8 +544,8 @@ def build_post_optional_string_header_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword body_parameter:
     :paramtype body_parameter: str
@@ -582,8 +582,8 @@ def build_post_required_class_parameter_request(
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -623,8 +623,8 @@ def build_post_optional_class_parameter_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional complex object. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -665,8 +665,8 @@ def build_post_required_class_property_request(
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -706,8 +706,8 @@ def build_post_optional_class_property_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -748,8 +748,8 @@ def build_post_required_array_parameter_request(
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -789,8 +789,8 @@ def build_post_optional_array_parameter_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional array. Please put null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -831,8 +831,8 @@ def build_post_required_array_property_request(
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -872,8 +872,8 @@ def build_post_optional_array_property_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
@@ -914,8 +914,8 @@ def build_post_required_array_header_request(
     """Test explicitly required array. Please put a header 'headerParameter' => null and the client
     library should throw before the request is sent.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: list[str]
@@ -950,8 +950,8 @@ def build_post_optional_array_header_request(
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword header_parameter:
     :paramtype header_parameter: list[str]

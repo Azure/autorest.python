@@ -19,8 +19,8 @@ def build_validation_of_method_parameters_request(
 ) -> HttpRequest:
     """Validates input parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
@@ -86,8 +86,8 @@ def build_validation_of_body_request(
 ) -> HttpRequest:
     """Validates body parameters on the method. See swagger for details.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
@@ -183,8 +183,8 @@ def build_validation_of_body_request(
 def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     """get_with_constant_in_path.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -206,8 +206,8 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
 def build_post_with_constant_in_body_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """post_with_constant_in_body.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.

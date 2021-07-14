@@ -25,8 +25,8 @@ def build_put_array_request(
     # type: (...) -> HttpRequest
     """Put External Resource as an Array.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put.
@@ -66,8 +66,8 @@ def build_get_array_request(
     # type: (...) -> HttpRequest
     """Get External Resource as an Array.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -98,8 +98,8 @@ def build_put_wrapped_array_request(
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put.
@@ -140,8 +140,8 @@ def build_get_wrapped_array_request(
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -171,8 +171,8 @@ def build_put_dictionary_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a Dictionary.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put.
@@ -212,8 +212,8 @@ def build_get_dictionary_request(
     # type: (...) -> HttpRequest
     """Get External Resource as a Dictionary.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -243,8 +243,8 @@ def build_put_resource_collection_request(
     # type: (...) -> HttpRequest
     """Put External Resource as a ResourceCollection.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a ResourceCollection to put.
@@ -284,8 +284,8 @@ def build_get_resource_collection_request(
     # type: (...) -> HttpRequest
     """Get External Resource as a ResourceCollection.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -315,8 +315,8 @@ def build_put_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put.
@@ -356,8 +356,8 @@ def build_post_flattened_simple_product_request(
     # type: (...) -> HttpRequest
     """Put Flattened Simple Product with client flattening true on the parameter.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to post.
@@ -398,8 +398,8 @@ def build_put_simple_product_with_grouping_request(
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param name: Product name with value 'groupproduct'.
     :type name: str

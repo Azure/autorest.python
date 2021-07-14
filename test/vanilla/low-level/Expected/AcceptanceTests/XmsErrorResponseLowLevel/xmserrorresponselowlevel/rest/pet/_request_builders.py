@@ -26,8 +26,8 @@ def build_get_pet_by_id_request(
     # type: (...) -> HttpRequest
     """Gets pets by id.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param pet_id: pet id.
     :type pet_id: str
@@ -72,8 +72,8 @@ def build_do_something_request(
     # type: (...) -> HttpRequest
     """Asks pet to do something.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param what_action: what action the pet should do.
     :type what_action: str
@@ -118,8 +118,8 @@ def build_has_models_param_request(
     """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
     conflict with the input param name 'models'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword models: Make sure model deserialization doesn't conflict with this param name, which
      has input name 'models'. Use client default value in call.

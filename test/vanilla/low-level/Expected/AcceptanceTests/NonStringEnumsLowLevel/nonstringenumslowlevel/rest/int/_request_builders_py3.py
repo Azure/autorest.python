@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put an int enum.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Input int enum.
@@ -55,8 +55,8 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
 def build_get_request(**kwargs: Any) -> HttpRequest:
     """Get an int enum.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

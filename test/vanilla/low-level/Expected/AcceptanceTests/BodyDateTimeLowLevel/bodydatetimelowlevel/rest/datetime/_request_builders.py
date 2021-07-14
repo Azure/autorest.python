@@ -25,8 +25,8 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     """Get null datetime value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -56,8 +56,8 @@ def build_get_invalid_request(
     # type: (...) -> HttpRequest
     """Get invalid datetime value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -87,8 +87,8 @@ def build_get_overflow_request(
     # type: (...) -> HttpRequest
     """Get overflow datetime value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -118,8 +118,8 @@ def build_get_underflow_request(
     # type: (...) -> HttpRequest
     """Get underflow datetime value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -149,8 +149,8 @@ def build_put_utc_max_date_time_request(
     # type: (...) -> HttpRequest
     """Put max datetime value 9999-12-31T23:59:59.999Z.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -199,8 +199,8 @@ def build_put_utc_max_date_time7_digits_request(
     This is against the recommendation that asks for 3 digits, but allow to test what happens in
     that scenario.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -246,8 +246,8 @@ def build_get_utc_lowercase_max_date_time_request(
     # type: (...) -> HttpRequest
     """Get max datetime value 9999-12-31t23:59:59.999z.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -277,8 +277,8 @@ def build_get_utc_uppercase_max_date_time_request(
     # type: (...) -> HttpRequest
     """Get max datetime value 9999-12-31T23:59:59.999Z.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -311,8 +311,8 @@ def build_get_utc_uppercase_max_date_time7_digits_request(
     This is against the recommendation that asks for 3 digits, but allow to test what happens in
     that scenario.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -342,8 +342,8 @@ def build_put_local_positive_offset_max_date_time_request(
     # type: (...) -> HttpRequest
     """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -389,8 +389,8 @@ def build_get_local_positive_offset_lowercase_max_date_time_request(
     # type: (...) -> HttpRequest
     """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -420,8 +420,8 @@ def build_get_local_positive_offset_uppercase_max_date_time_request(
     # type: (...) -> HttpRequest
     """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -451,8 +451,8 @@ def build_put_local_negative_offset_max_date_time_request(
     # type: (...) -> HttpRequest
     """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -498,8 +498,8 @@ def build_get_local_negative_offset_uppercase_max_date_time_request(
     # type: (...) -> HttpRequest
     """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -529,8 +529,8 @@ def build_get_local_negative_offset_lowercase_max_date_time_request(
     # type: (...) -> HttpRequest
     """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -560,8 +560,8 @@ def build_put_utc_min_date_time_request(
     # type: (...) -> HttpRequest
     """Put min datetime value 0001-01-01T00:00:00Z.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -607,8 +607,8 @@ def build_get_utc_min_date_time_request(
     # type: (...) -> HttpRequest
     """Get min datetime value 0001-01-01T00:00:00Z.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -638,8 +638,8 @@ def build_put_local_positive_offset_min_date_time_request(
     # type: (...) -> HttpRequest
     """Put min datetime value 0001-01-01T00:00:00+14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -685,8 +685,8 @@ def build_get_local_positive_offset_min_date_time_request(
     # type: (...) -> HttpRequest
     """Get min datetime value 0001-01-01T00:00:00+14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -716,8 +716,8 @@ def build_put_local_negative_offset_min_date_time_request(
     # type: (...) -> HttpRequest
     """Put min datetime value 0001-01-01T00:00:00-14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
@@ -763,8 +763,8 @@ def build_get_local_negative_offset_min_date_time_request(
     # type: (...) -> HttpRequest
     """Get min datetime value 0001-01-01T00:00:00-14:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -794,8 +794,8 @@ def build_get_local_no_offset_min_date_time_request(
     # type: (...) -> HttpRequest
     """Get min datetime value 0001-01-01T00:00:00.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

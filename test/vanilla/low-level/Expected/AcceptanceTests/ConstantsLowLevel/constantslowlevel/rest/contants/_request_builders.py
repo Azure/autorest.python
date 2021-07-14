@@ -26,8 +26,8 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or
@@ -64,8 +64,8 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or
@@ -102,8 +102,8 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str
@@ -139,8 +139,8 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str
@@ -176,8 +176,8 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or
@@ -213,8 +213,8 @@ def build_put_no_model_as_string_required_two_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
@@ -249,8 +249,8 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -282,8 +282,8 @@ def build_put_no_model_as_string_required_one_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -315,8 +315,8 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or
@@ -353,8 +353,8 @@ def build_put_model_as_string_no_required_two_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
@@ -390,8 +390,8 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or
@@ -428,8 +428,8 @@ def build_put_model_as_string_no_required_one_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
@@ -465,8 +465,8 @@ def build_put_model_as_string_required_two_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
@@ -501,8 +501,8 @@ def build_put_model_as_string_required_two_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredTwoValueDefaultOpEnum
@@ -537,8 +537,8 @@ def build_put_model_as_string_required_one_value_no_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
@@ -573,8 +573,8 @@ def build_put_model_as_string_required_one_value_default_request(
 
     Puts constants to the testserver.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword input:
     :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredOneValueDefaultOpEnum

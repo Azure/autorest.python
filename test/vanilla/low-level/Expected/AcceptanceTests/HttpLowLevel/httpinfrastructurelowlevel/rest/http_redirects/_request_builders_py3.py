@@ -16,8 +16,8 @@ _SERIALIZER = Serializer()
 def build_head300_request(**kwargs: Any) -> HttpRequest:
     """Return 300 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -39,8 +39,8 @@ def build_head300_request(**kwargs: Any) -> HttpRequest:
 def build_get300_request(**kwargs: Any) -> HttpRequest:
     """Return 300 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -70,8 +70,8 @@ def build_get300_request(**kwargs: Any) -> HttpRequest:
 def build_head301_request(**kwargs: Any) -> HttpRequest:
     """Return 301 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -93,8 +93,8 @@ def build_head301_request(**kwargs: Any) -> HttpRequest:
 def build_get301_request(**kwargs: Any) -> HttpRequest:
     """Return 301 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -117,8 +117,8 @@ def build_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any
     """Put true Boolean value in request returns 301.  This request should not be automatically
     redirected, but should return the received 301 to the caller for evaluation.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -156,8 +156,8 @@ def build_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any
 def build_head302_request(**kwargs: Any) -> HttpRequest:
     """Return 302 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -179,8 +179,8 @@ def build_head302_request(**kwargs: Any) -> HttpRequest:
 def build_get302_request(**kwargs: Any) -> HttpRequest:
     """Return 302 status code and redirect to /http/success/200.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -203,8 +203,8 @@ def build_patch302_request(*, json: Any = None, content: Any = None, **kwargs: A
     """Patch true Boolean value in request returns 302.  This request should not be automatically
     redirected, but should return the received 302 to the caller for evaluation.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -243,8 +243,8 @@ def build_post303_request(*, json: Any = None, content: Any = None, **kwargs: An
     """Post true Boolean value in request returns 303.  This request should be automatically
     redirected usign a get, ultimately returning a 200 status code.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -282,8 +282,8 @@ def build_post303_request(*, json: Any = None, content: Any = None, **kwargs: An
 def build_head307_request(**kwargs: Any) -> HttpRequest:
     """Redirect with 307, resulting in a 200 success.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -305,8 +305,8 @@ def build_head307_request(**kwargs: Any) -> HttpRequest:
 def build_get307_request(**kwargs: Any) -> HttpRequest:
     """Redirect get with 307, resulting in a 200 success.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -328,8 +328,8 @@ def build_get307_request(**kwargs: Any) -> HttpRequest:
 def build_options307_request(**kwargs: Any) -> HttpRequest:
     """options redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -351,8 +351,8 @@ def build_options307_request(**kwargs: Any) -> HttpRequest:
 def build_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -390,8 +390,8 @@ def build_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any
 def build_patch307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Patch redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -429,8 +429,8 @@ def build_patch307_request(*, json: Any = None, content: Any = None, **kwargs: A
 def build_post307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Post redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.
@@ -468,8 +468,8 @@ def build_post307_request(*, json: Any = None, content: Any = None, **kwargs: An
 def build_delete307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Delete redirected with 307, resulting in a 200 after redirect.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple boolean value true.

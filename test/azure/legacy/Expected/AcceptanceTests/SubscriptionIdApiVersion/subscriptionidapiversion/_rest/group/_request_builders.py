@@ -27,8 +27,8 @@ def build_get_sample_resource_group_request(
     # type: (...) -> HttpRequest
     """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param subscription_id: Subscription Id.
     :type subscription_id: str

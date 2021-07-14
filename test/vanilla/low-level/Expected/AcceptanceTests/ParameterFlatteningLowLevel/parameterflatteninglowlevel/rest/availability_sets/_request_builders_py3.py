@@ -19,8 +19,8 @@ def build_update_request(
 ) -> HttpRequest:
     """Updates the tags for an availability set.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param resource_group_name: The name of the resource group.
     :type resource_group_name: str

@@ -16,7 +16,7 @@ _SERIALIZER = Serializer()
 def build_put_non_retry400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 400 to the initial request.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -69,7 +69,7 @@ def build_put_non_retry201_creating400_request(*, json: Any = None, content: Any
     """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
     201 response code.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -124,7 +124,7 @@ def build_put_non_retry201_creating400_invalid_json_request(
     """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
     201 response code.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -177,7 +177,7 @@ def build_put_async_relative_retry400_request(*, json: Any = None, content: Any 
     """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
     endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -229,7 +229,7 @@ def build_put_async_relative_retry400_request(*, json: Any = None, content: Any 
 def build_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 400 with an error body.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -252,7 +252,7 @@ def build_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
 def build_delete202_non_retry400_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 with a location header.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -276,7 +276,7 @@ def build_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -299,7 +299,7 @@ def build_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
 def build_post_non_retry400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 400 with no error body.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -343,7 +343,7 @@ def build_post_non_retry400_request(*, json: Any = None, content: Any = None, **
 def build_post202_non_retry400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 with a location header.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -388,7 +388,7 @@ def build_post_async_relative_retry400_request(*, json: Any = None, content: Any
     """Long running post request, service returns a 202 to the initial request Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -434,7 +434,7 @@ def build_put_error201_no_provisioning_state_payload_request(
 ) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request with no payload.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -490,7 +490,7 @@ def build_put_async_relative_retry_no_status_request(
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -546,7 +546,7 @@ def build_put_async_relative_retry_no_status_payload_request(
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -598,7 +598,7 @@ def build_put_async_relative_retry_no_status_payload_request(
 def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 204 to the initial request, indicating success.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -622,7 +622,7 @@ def build_delete_async_relative_retry_no_status_request(**kwargs: Any) -> HttpRe
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -646,7 +646,7 @@ def build_post202_no_location_request(*, json: Any = None, content: Any = None, 
     """Long running post request, service returns a 202 to the initial request, without a location
     header.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -694,7 +694,7 @@ def build_post_async_relative_retry_no_payload_request(
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -739,7 +739,7 @@ def build_put200_invalid_json_request(*, json: Any = None, content: Any = None, 
     """Long running put request, service returns a 200 to the initial request, with an entity that is
     not a valid json.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -795,7 +795,7 @@ def build_put_async_relative_retry_invalid_header_request(
     contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
     header is invalid.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -851,7 +851,7 @@ def build_put_async_relative_retry_invalid_json_polling_request(
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -904,7 +904,7 @@ def build_delete202_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request receing a reponse
     with an invalid 'Location' and 'Retry-After' headers.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -928,7 +928,7 @@ def build_delete_async_relative_retry_invalid_header_request(**kwargs: Any) -> H
     """Long running delete request, service returns a 202 to the initial request. The endpoint
     indicated in the Azure-AsyncOperation header is invalid.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -952,7 +952,7 @@ def build_delete_async_relative_retry_invalid_json_polling_request(**kwargs: Any
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -976,7 +976,7 @@ def build_post202_retry_invalid_header_request(*, json: Any = None, content: Any
     """Long running post request, service returns a 202 to the initial request, with invalid
     'Location' and 'Retry-After' headers.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -1024,7 +1024,7 @@ def build_post_async_relative_retry_invalid_header_request(
     contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
     header is invalid.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
@@ -1072,7 +1072,7 @@ def build_post_async_relative_retry_invalid_json_polling_request(
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in

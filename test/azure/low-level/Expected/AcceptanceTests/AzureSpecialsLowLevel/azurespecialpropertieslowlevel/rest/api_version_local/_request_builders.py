@@ -25,7 +25,7 @@ def build_get_method_local_valid_request(
     # type: (...) -> HttpRequest
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -62,7 +62,7 @@ def build_get_method_local_null_request(
     # type: (...) -> HttpRequest
     """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword api_version: This should appear as a method parameter, use value null, this should
@@ -104,7 +104,7 @@ def build_get_path_local_valid_request(
     # type: (...) -> HttpRequest
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -141,7 +141,7 @@ def build_get_swagger_local_valid_request(
     # type: (...) -> HttpRequest
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's

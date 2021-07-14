@@ -330,28 +330,6 @@ def test(c, env=None):
     os.chdir(f"{base_dir}/test/azure/")
     c.run(cmd)
 
-
-@task
-def regenerate_services(c, swagger_name=None, debug=False):
-    # regenerate service from swagger
-    if swagger_name:
-        service_mapping = {k: v for k, v in _SERVICE_TO_README_PATH.items() if swagger_name.lower() in k.lower()}
-    else:
-        service_mapping = _SERVICE_TO_README_PATH
-
-    cmds = []
-    for service in service_mapping:
-        readme_path = _SERVICE_TO_README_PATH[service]
-        service = service.strip()
-        cmd_line = f'autorest {readme_path} --use=. --output-artifact=code-model-v4-no-tags'
-        if debug:
-            cmd_line += " --debug"
-        print(Fore.YELLOW + f'Queuing up: {cmd_line}')
-        cmds.append(cmd_line)
-
-    _run_autorest(cmds[0], debug)
-
-
 def _multiapi_command_line(location, debug):
     cwd = os.getcwd()
     cmd = (

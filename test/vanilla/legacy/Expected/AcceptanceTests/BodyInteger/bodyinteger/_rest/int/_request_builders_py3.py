@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_get_null_request(**kwargs: Any) -> HttpRequest:
     """Get null Int value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -40,8 +40,8 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     """Get invalid Int value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -63,8 +63,8 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
     """Get overflow Int32 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -86,8 +86,8 @@ def build_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
 def build_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
     """Get underflow Int32 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -109,8 +109,8 @@ def build_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
 def build_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
     """Get overflow Int64 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -132,8 +132,8 @@ def build_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
 def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
     """Get underflow Int64 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -155,8 +155,8 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
 def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max int32 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
@@ -188,8 +188,8 @@ def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max int64 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
@@ -221,8 +221,8 @@ def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min int32 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
@@ -254,8 +254,8 @@ def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min int64 value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
@@ -287,8 +287,8 @@ def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: 
 def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
     """Get datetime encoded as Unix time value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -310,8 +310,8 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
 def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put datetime encoded as Unix time.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
@@ -343,8 +343,8 @@ def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, *
 def build_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
     """Get invalid Unix time value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -366,8 +366,8 @@ def build_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
 def build_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
     """Get null Unix time value.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

@@ -25,7 +25,7 @@ def build_custom_named_request_id_request(
     # type: (...) -> HttpRequest
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword foo_client_request_id: The fooRequestId.
@@ -62,7 +62,7 @@ def build_custom_named_request_id_param_grouping_request(
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
     via a parameter group.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword foo_client_request_id: The fooRequestId.
@@ -98,7 +98,7 @@ def build_custom_named_request_id_head_request(
     # type: (...) -> HttpRequest
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-    See https://aka.ms/azsdk/python/llcwiki for how to incorporate this request builder into your
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
     code flow.
 
     :keyword foo_client_request_id: The fooRequestId.
