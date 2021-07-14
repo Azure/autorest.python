@@ -109,14 +109,12 @@ def test_post_required_parameters_null_optional_parameters(send_request_paramete
     send_request_parameter_grouping(request)
 
 def test_post_required_parameters_with_null_required_property(path_parameter):
-    # with pytest.raises(TypeError):
-    #     parameter_grouping.build_post_required_request(
-    #         path=path_parameter,
-    #         json=None,
-    #         content=None,
-    #     )
     with pytest.raises(TypeError):
         parameter_grouping.build_post_required_request()
+
+def test_post_reserved_words(send_request_parameter_grouping):
+    request = parameter_grouping.build_post_reserved_words_request(from_parameter="bob", accept_parameter="yes")
+    send_request_parameter_grouping(request)
 
 def test_post_all_optional(send_request_parameter_grouping, header_parameter, query_parameter):
     request = parameter_grouping.build_post_optional_request(

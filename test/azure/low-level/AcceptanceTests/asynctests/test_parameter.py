@@ -160,6 +160,11 @@ async def test_post_shared_parameter_group_object(send_request_parameter_groupin
     await send_request_parameter_grouping(request)
 
 @pytest.mark.asyncio
+async def test_post_reserved_words(send_request_parameter_grouping):
+    request = parameter_grouping.build_post_reserved_words_request(from_parameter="bob", accept_parameter="yes")
+    await send_request_parameter_grouping(request)
+
+@pytest.mark.asyncio
 async def test_subscription_in_credentials(send_request, valid_subscription):
     # valid_api_version = '2.0'
     request = subscription_in_credentials.build_post_method_global_not_provided_valid_request(subscription_id=valid_subscription)
