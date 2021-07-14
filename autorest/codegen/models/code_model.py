@@ -202,7 +202,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             ]
 
     @property
-    def challenge_authentication_policy(self) -> CredentialSchemaPolicy:
+    def default_authentication_policy(self) -> CredentialSchemaPolicy:
         return BearerTokenCredentialPolicy()
 
     @property

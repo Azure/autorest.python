@@ -176,7 +176,7 @@ class CodeGenerator(Plugin):
                 raise ValueError(
                     "You have passed in credential scopes with default credential policy type "
                     "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    f"{code_model.challenge_authentication_policy.name}. Instead, with this policy you must pass in "
+                    f"{code_model.default_authentication_policy.name}. Instead, with this policy you must pass in "
                     "--credential-key-header-name."
                 )
             if not credential_key_header_name:
@@ -192,7 +192,7 @@ class CodeGenerator(Plugin):
     def _handle_default_authentication_policy(self, code_model: CodeModel):
         credential_schema_policy_name = (
             self._autorestapi.get_value("credential-default-policy-type") or
-            code_model.challenge_authentication_policy.name
+            code_model.default_authentication_policy.name
         )
         credential_schema_policy = get_credential_schema_policy(credential_schema_policy_name)
         self._initialize_credential_schema_policy(code_model, credential_schema_policy)
