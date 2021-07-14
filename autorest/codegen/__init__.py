@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, Union, List
+from typing import Dict, Any, Set, Union, List, Type
 import yaml
 
 from .. import Plugin
@@ -16,16 +16,8 @@ from .models.parameter import Parameter
 from .models.parameter_list import GlobalParameterList
 from .models.rest import Rest
 from .serializers import JinjaSerializer
-from .models.credential_schema_policy import CredentialSchemaPolicy, get_credential_schema_policy
+from .models.credential_schema_policy import CredentialSchemaPolicy, get_credential_schema_policy_type
 from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-
-
-def _get_credential_default_policy_type_has_async_version(credential_default_policy_type: str) -> bool:
-    mapping = {
-        "BearerTokenCredentialPolicy": True,
-        "AzureKeyCredentialPolicy": False
-    }
-    return mapping[credential_default_policy_type]
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -181,8 +173,8 @@ class CodeGenerator(Plugin):
         return credential_scopes
 
     def _initialize_credential_schema_policy(
-        self, code_model: CodeModel, credential_schema_policy: CredentialSchemaPolicy
-    ):
+        self, code_model: CodeModel, credential_schema_policy: Type[CredentialSchemaPolicy]
+    ) -> CredentialSchemaPolicy:
         credential_scopes = self._get_credential_scopes(code_model.options['credential'])
         credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
         azure_arm = code_model.options['azure_arm']
@@ -200,47 +192,48 @@ class CodeGenerator(Plugin):
                         "but not the --credential-scopes flag set while generating non-management plane code. "
                         "This is not recommend because it forces the customer to pass credential scopes "
                         "through kwargs if they want to authenticate.",
-                        credential_schema_policy.name
+                        credential_schema_policy.name()
                     )
                     credential_scopes = []
 
             if credential_key_header_name:
                 raise ValueError(
                     "You have passed in a credential key header name with default credential policy type "
-                    f"{credential_schema_policy.name}. This is not allowed, since credential key header "
+                    f"{credential_schema_policy.name()}. This is not allowed, since credential key header "
                     "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
                     "pass in --credential-scopes."
                 )
-            credential_schema_policy.initialize(
+            return credential_schema_policy(
                 credential=TokenCredentialSchema(async_mode=False),
                 credential_scopes=credential_scopes,
             )
-        else:
-            # currently the only other credential policy is AzureKeyCredentialPolicy
-            if credential_scopes:
-                raise ValueError(
-                    "You have passed in credential scopes with default credential policy type "
-                    "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    f"{code_model.default_authentication_policy.name}. Instead, with this policy you must pass in "
-                    "--credential-key-header-name."
-                )
-            if not credential_key_header_name:
-                credential_key_header_name = "api-key"
-                _LOGGER.info(
-                    "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
-                )
-            credential_schema_policy.initialize(
-                credential=AzureKeyCredentialSchema(),
-                credential_key_header_name=credential_key_header_name,
+        # currently the only other credential policy is AzureKeyCredentialPolicy
+        if credential_scopes:
+            raise ValueError(
+                "You have passed in credential scopes with default credential policy type "
+                "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
+                f"{code_model.default_authentication_policy.name()}. Instead, with this policy you must pass in "
+                "--credential-key-header-name."
             )
+        if not credential_key_header_name:
+            credential_key_header_name = "api-key"
+            _LOGGER.info(
+                "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
+            )
+        return credential_schema_policy(
+            credential=AzureKeyCredentialSchema(),
+            credential_key_header_name=credential_key_header_name,
+        )
 
     def _handle_default_authentication_policy(self, code_model: CodeModel):
         credential_schema_policy_name = (
             self._autorestapi.get_value("credential-default-policy-type") or
-            code_model.default_authentication_policy.name
+            code_model.default_authentication_policy.name()
         )
-        credential_schema_policy = get_credential_schema_policy(credential_schema_policy_name)
-        self._initialize_credential_schema_policy(code_model, credential_schema_policy)
+        credential_schema_policy_type = get_credential_schema_policy_type(credential_schema_policy_name)
+        credential_schema_policy = self._initialize_credential_schema_policy(
+            code_model, credential_schema_policy_type
+        )
         code_model.credential_schema_policy = credential_schema_policy
 
 

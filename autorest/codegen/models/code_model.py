@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, List, Dict, Optional, Any, Set
+from typing import cast, List, Dict, Optional, Any, Set, Type
 
 from .base_schema import BaseSchema
 from .credential_schema_policy import (
@@ -216,8 +216,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             ]
 
     @property
-    def default_authentication_policy(self) -> CredentialSchemaPolicy:
-        return BearerTokenCredentialPolicy()
+    def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
+        return BearerTokenCredentialPolicy
 
     @property
     def credential_schema_policy(self) -> CredentialSchemaPolicy:
