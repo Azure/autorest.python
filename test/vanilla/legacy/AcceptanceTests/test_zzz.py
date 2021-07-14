@@ -45,8 +45,10 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
-            "LLCRequiredToOptional": 1,  # adding in LLC PR
         }
+        for name in report:
+            if name[:3].lower() == 'llc':
+                missing_features_or_bugs[name] = 1  # no LLC tests for legacy
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)
