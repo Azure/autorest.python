@@ -142,7 +142,7 @@ def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
         for grouped_parameter in grouped_parameters:
             retval.append(
                 f"    {grouped_parameter.serialized_name} = "
-                f"{grouper_name}.{grouped_parameter.serialized_name.lstrip('_')}"
+                f"{ grouper_name }.{ grouped_parameter.corresponding_grouped_property.name }"
             )
     return retval
 

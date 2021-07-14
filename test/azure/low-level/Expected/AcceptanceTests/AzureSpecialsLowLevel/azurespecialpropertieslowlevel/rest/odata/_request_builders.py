@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_with_filter_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
@@ -39,25 +40,31 @@ def build_get_with_filter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    filter = kwargs.pop("filter", None)  # type: Optional[str]
-    top = kwargs.pop("top", None)  # type: Optional[int]
-    orderby = kwargs.pop("orderby", None)  # type: Optional[str]
+    filter = kwargs.pop('filter', None)  # type: Optional[str]
+    top = kwargs.pop('top', None)  # type: Optional[int]
+    orderby = kwargs.pop('orderby', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/azurespecials/odata/filter")
+    url = kwargs.pop("template_url", '/azurespecials/odata/filter')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+        query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
     if top is not None:
-        query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
+        query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
     if orderby is not None:
-        query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+        query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

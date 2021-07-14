@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_empty_request(
     key_name,  # type: str
@@ -41,24 +42,30 @@ def build_get_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
+    key_version = kwargs.pop('key_version', "v1")  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
+    url = kwargs.pop("template_url", '/customuri/{subscriptionId}/{keyName}')
     path_format_arguments = {
-        "keyName": _SERIALIZER.url("key_name", key_name, "str"),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        'keyName': _SERIALIZER.url("key_name", key_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if key_version is not None:
-        query_parameters["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
+        query_parameters['keyVersion'] = _SERIALIZER.query("key_version", key_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

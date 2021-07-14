@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_array_string_multi_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get a null array of string using the multi-array format.
@@ -34,28 +35,32 @@ def build_array_string_multi_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/multi/string/null")
+    url = kwargs.pop("template_url", '/queries/array/multi/string/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = [
-            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
-        ]
+        query_parameters['arrayQuery'] = [_SERIALIZER.query("array_query", q, 'str') if q is not None else '' for q in array_query]
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_multi_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get an empty array [] of string using the multi-array format.
@@ -71,28 +76,32 @@ def build_array_string_multi_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/multi/string/empty")
+    url = kwargs.pop("template_url", '/queries/array/multi/string/empty')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = [
-            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
-        ]
+        query_parameters['arrayQuery'] = [_SERIALIZER.query("array_query", q, 'str') if q is not None else '' for q in array_query]
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_multi_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
@@ -110,21 +119,25 @@ def build_array_string_multi_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/multi/string/valid")
+    url = kwargs.pop("template_url", '/queries/array/multi/string/valid')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = [
-            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
-        ]
+        query_parameters['arrayQuery'] = [_SERIALIZER.query("array_query", q, 'str') if q is not None else '' for q in array_query]
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

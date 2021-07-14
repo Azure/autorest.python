@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_head200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 200 status code if successful.
@@ -33,13 +34,17 @@ def build_head200_request(
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
 
 
 def build_head204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 204 status code if successful.
@@ -54,13 +59,17 @@ def build_head204_request(
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
 
 
 def build_head404_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Return 404 status code if successful.
@@ -75,6 +84,10 @@ def build_head404_request(
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/404")
+    url = kwargs.pop("template_url", '/http/success/404')
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )

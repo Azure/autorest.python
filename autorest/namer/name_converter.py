@@ -312,9 +312,16 @@ class NameConverter:
         try:
             # check to see if name is reserved for the type of name we are converting
             pad_string = cast(PadType, pad_string)
+            # there are some private variables, such as grouped parameters
+            # that are private. We still want to escape them for LLC
+            name_prefix = ""
+            if name[0] == "_":
+                # i am private
+                name_prefix = "_"
+                name = name[1:]
             if pad_string and name.lower() in reserved_words[pad_string]:
                 name += pad_string.value
-            return name
+            return name_prefix + name
         except AttributeError:
             raise ValueError(f"The name {name} is a reserved word and you have not specified a pad string for it.")
 

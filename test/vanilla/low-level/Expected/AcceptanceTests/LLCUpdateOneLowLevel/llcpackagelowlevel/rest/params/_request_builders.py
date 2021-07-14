@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_required_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get true Boolean value on path.
@@ -38,23 +39,29 @@ def build_get_required_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    parameter3 = kwargs.pop("parameter3")  # type: str
-    parameter1 = kwargs.pop("parameter1", "DefaultValue")  # type: str
-    parameter2 = kwargs.pop("parameter2", None)  # type: Optional[str]
+    parameter3 = kwargs.pop('parameter3')  # type: str
+    parameter1 = kwargs.pop('parameter1', "DefaultValue")  # type: str
+    parameter2 = kwargs.pop('parameter2', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/llc/parameters")
+    url = kwargs.pop("template_url", '/llc/parameters')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["parameter1"] = _SERIALIZER.query("parameter1", parameter1, "str")
+    query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
     if parameter2 is not None:
-        query_parameters["parameter2"] = _SERIALIZER.query("parameter2", parameter2, "str")
-    query_parameters["parameter3"] = _SERIALIZER.query("parameter3", parameter3, "str")
+        query_parameters['parameter2'] = _SERIALIZER.query("parameter2", parameter2, 'str')
+    query_parameters['parameter3'] = _SERIALIZER.query("parameter3", parameter3, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )

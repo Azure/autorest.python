@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_empty_error_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get empty error form server.
@@ -34,17 +35,22 @@ def build_get_empty_error_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/emptybody/error")
+    url = kwargs.pop("template_url", '/http/failure/emptybody/error')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_no_model_error_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get empty error form server.
@@ -60,17 +66,22 @@ def build_get_no_model_error_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/nomodel/error")
+    url = kwargs.pop("template_url", '/http/failure/nomodel/error')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_no_model_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get empty response from server.
@@ -86,10 +97,15 @@ def build_get_no_model_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/nomodel/empty")
+    url = kwargs.pop("template_url", '/http/failure/nomodel/empty')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

@@ -17,9 +17,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get null datetime value.
@@ -35,17 +36,22 @@ def build_get_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/null")
+    url = kwargs.pop("template_url", '/datetimerfc1123/null')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_invalid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get invalid datetime value.
@@ -61,17 +67,22 @@ def build_get_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/invalid")
+    url = kwargs.pop("template_url", '/datetimerfc1123/invalid')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_overflow_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get overflow datetime value.
@@ -87,17 +98,22 @@ def build_get_overflow_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/overflow")
+    url = kwargs.pop("template_url", '/datetimerfc1123/overflow')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_underflow_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get underflow datetime value.
@@ -113,17 +129,22 @@ def build_get_underflow_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/underflow")
+    url = kwargs.pop("template_url", '/datetimerfc1123/underflow')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_utc_max_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
@@ -149,23 +170,28 @@ def build_put_utc_max_date_time_request(
             json = "datetime (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/max")
+    url = kwargs.pop("template_url", '/datetimerfc1123/max')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_utc_lowercase_max_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
@@ -181,17 +207,22 @@ def build_get_utc_lowercase_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/max/lowercase")
+    url = kwargs.pop("template_url", '/datetimerfc1123/max/lowercase')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_utc_uppercase_max_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
@@ -207,17 +238,22 @@ def build_get_utc_uppercase_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/max/uppercase")
+    url = kwargs.pop("template_url", '/datetimerfc1123/max/uppercase')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_put_utc_min_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
@@ -243,23 +279,28 @@ def build_put_utc_min_date_time_request(
             json = "datetime (optional)"
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/min")
+    url = kwargs.pop("template_url", '/datetimerfc1123/min')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_utc_min_date_time_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
@@ -275,10 +316,15 @@ def build_get_utc_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetimerfc1123/min")
+    url = kwargs.pop("template_url", '/datetimerfc1123/min')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

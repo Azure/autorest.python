@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_no_item_name_pages_request(
     **kwargs  # type: Any

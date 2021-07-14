@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_get_by_pet_id_request(
     pet_id,  # type: str
@@ -48,21 +49,26 @@ def build_get_by_pet_id_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
+    url = kwargs.pop("template_url", '/extensibleenums/pet/{petId}')
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
+        'petId': _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_add_pet_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """add pet.
@@ -99,16 +105,21 @@ def build_add_pet_request(
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/extensibleenums/pet/addPet")
+    url = kwargs.pop("template_url", '/extensibleenums/pet/addPet')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )

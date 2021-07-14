@@ -16,9 +16,10 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+# fmt: off
 
 def build_put_no_model_as_string_no_required_two_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -37,23 +38,26 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop(
-        "input", None
-    )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+    input = kwargs.pop('input', None)  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_no_required_two_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -72,23 +76,26 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop(
-        "input", "value1"
-    )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+    input = kwargs.pop('input', "value1")  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_no_required_one_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -106,21 +113,26 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input", "value1")  # type: Optional[str]
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_no_required_one_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -138,21 +150,26 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input", "value1")  # type: Optional[str]
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_required_two_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -171,20 +188,25 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+    input = kwargs.pop('input')  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_required_two_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -202,20 +224,25 @@ def build_put_no_model_as_string_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input", "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
+    input = kwargs.pop('input', "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_required_one_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -233,17 +260,22 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
 
     input = "value1"
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_no_model_as_string_required_one_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -261,17 +293,22 @@ def build_put_no_model_as_string_required_one_value_default_request(
 
     input = "value1"
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_two_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -290,23 +327,26 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop(
-        "input", None
-    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+    input = kwargs.pop('input', None)  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_two_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -324,23 +364,26 @@ def build_put_model_as_string_no_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop(
-        "input", "value1"
-    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+    input = kwargs.pop('input', "value1")  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_one_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -359,23 +402,26 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop(
-        "input", None
-    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
+    input = kwargs.pop('input', None)  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_no_required_one_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -393,23 +439,26 @@ def build_put_model_as_string_no_required_one_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop(
-        "input", "value1"
-    )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
+    input = kwargs.pop('input', "value1")  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_required_two_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -427,20 +476,25 @@ def build_put_model_as_string_required_two_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+    input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_required_two_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -458,20 +512,25 @@ def build_put_model_as_string_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
+    input = kwargs.pop('input', "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_required_one_value_no_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -489,20 +548,25 @@ def build_put_model_as_string_required_one_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
+    input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueNoDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
 
 
 def build_put_model_as_string_required_one_value_default_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Puts constants to the testserver.
@@ -520,13 +584,18 @@ def build_put_model_as_string_required_one_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
+    input = kwargs.pop('input', "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueDefault")
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueDefault')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
