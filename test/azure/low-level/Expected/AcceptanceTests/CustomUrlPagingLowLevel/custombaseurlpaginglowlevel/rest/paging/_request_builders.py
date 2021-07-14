@@ -26,8 +26,8 @@ def build_get_pages_partial_url_request(
     """A paging operation that combines custom url, paging and partial URL and expect to concat after
     host.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -73,8 +73,8 @@ def build_get_pages_partial_url_operation_request(
     # type: (...) -> HttpRequest
     """A paging operation that combines custom url, paging and partial URL with next operation.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -121,8 +121,8 @@ def build_get_pages_partial_url_operation_next_request(
     # type: (...) -> HttpRequest
     """A paging operation that combines custom url, paging and partial URL.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :param next_link: Next link for the list operation.
     :type next_link: str

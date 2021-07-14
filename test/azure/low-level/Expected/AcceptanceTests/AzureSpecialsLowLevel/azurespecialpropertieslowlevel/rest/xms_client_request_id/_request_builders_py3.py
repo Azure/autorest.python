@@ -18,8 +18,8 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """Get method that overwrites x-ms-client-request header with value
     9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -37,8 +37,8 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
     """Get method that overwrites x-ms-client-request header with value
     9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :keyword x_ms_client_request_id: This should appear as a method parameter, use value
      '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.

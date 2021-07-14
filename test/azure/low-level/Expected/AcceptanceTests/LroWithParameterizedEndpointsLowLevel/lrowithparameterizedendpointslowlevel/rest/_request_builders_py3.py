@@ -17,8 +17,8 @@ _SERIALIZER = Serializer()
 def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     """Poll with method and client level parameters in endpoint.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -40,8 +40,8 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
 def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     """Poll with method and client level parameters in endpoint, with a constant value.
 
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder into your
-    code flow.
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
 
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
