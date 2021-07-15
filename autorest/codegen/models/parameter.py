@@ -296,7 +296,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_kwarg(self) -> bool:
         # this means "am I in **kwargs?"
-        return self.serialized_name == "content_type"
+        return self.rest_api_name == "Content-Type"
 
     @property
     def is_keyword_only(self) -> bool:
@@ -304,8 +304,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return False
 
     @property
-    def is_documented(self) -> bool:
-        return self.serialized_name not in _HIDDEN_KWARGS
+    def is_hidden(self) -> bool:
+        return self.serialized_name in _HIDDEN_KWARGS
 
     @property
     def is_positional(self) -> bool:

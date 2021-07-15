@@ -194,25 +194,20 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """
-        signature_parameters_no_default_value = []
-        signature_parameters_default_value = []
-
         # Client level should not be on Method, etc.
         parameters_of_this_implementation = self.get_from_predicate(
             lambda parameter: parameter.implementation == self.implementation
         )
-        for parameter in parameters_of_this_implementation:
-            # we don't want content_type in operation level
-            if parameter.serialized_name == "content_type":
-                continue
-            if parameter.in_method_signature:
-                if not parameter.default_value and parameter.required:
-                    signature_parameters_no_default_value.append(parameter)
-                else:
-                    signature_parameters_default_value.append(parameter)
-
-        signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
+        positional = [p for p in parameters_of_this_implementation if p.is_positional]
+        keyword_only = [p for p in parameters_of_this_implementation if p.is_keyword_only]
+        kwargs = [p for p in parameters_of_this_implementation if p.is_kwarg]
+        def _sort(params):
+            return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
+        signature_parameters = (
+            _sort(positional) + _sort(keyword_only) + _sort(kwargs)
+        )
         return signature_parameters
+
 
     def method_signature(self, async_mode: bool) -> List[str]:
         positional = self.method_signature_positional(async_mode)
