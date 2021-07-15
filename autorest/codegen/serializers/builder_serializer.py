@@ -289,7 +289,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
 
     def param_description(self, builder: Union[RequestBuilder, Operation]) -> List[str]:  # pylint: disable=no-self-use
         description_list: List[str] = []
-        for parameter in [m for m in builder.parameters.method if m.is_documented]:
+        for parameter in [m for m in builder.parameters.method if not m.is_hidden]:
             description_list.extend(
                 f":{parameter.description_keyword} { parameter.serialized_name }: { parameter.description }".replace(
                     "\n", "\n "

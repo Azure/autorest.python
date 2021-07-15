@@ -14,10 +14,11 @@
 {{ trace_decorator }}
 {% endif %}
 {{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
-    {{ op_tools.description(operation, operation_serializer) | indent }}{{ helper.lro_operation() }}
+    {{ op_tools.description(operation, operation_serializer) | indent -}}
     {% if operation.parameters.kwargs_to_pop(async_mode) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
-    {% endif %}
+    {%- endif %}
+    {{ helper.lro_operation() | indent }}
     def get_long_running_output(pipeline_response):
         {% if operation.lro_response.has_headers %}
         response_headers = {}

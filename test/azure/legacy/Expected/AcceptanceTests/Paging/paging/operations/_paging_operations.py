@@ -1095,6 +1095,7 @@ class PagingOperations(object):
          ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~paging.models.ProductResult]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -1165,7 +1166,6 @@ class PagingOperations(object):
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             def internal_get_next(next_link=None):

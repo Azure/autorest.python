@@ -1097,6 +1097,7 @@ class PagingOperations:
          ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -1171,7 +1172,7 @@ class PagingOperations:
             )
 
         kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
+
         def get_long_running_output(pipeline_response):
             async def internal_get_next(next_link=None):
                 if next_link is None:

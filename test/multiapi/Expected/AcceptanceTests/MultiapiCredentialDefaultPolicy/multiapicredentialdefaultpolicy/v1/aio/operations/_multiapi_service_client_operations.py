@@ -134,6 +134,7 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
@@ -144,13 +145,12 @@ class MultiapiServiceClientOperationsMixin:
         if cont_token is None:
             raw_result = await self._test_lro_initial(
                 product=product,
+                content_type=content_type,
                 cls=lambda x,y,z: x,
                 **kwargs
             )
 
         kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -244,6 +244,7 @@ class MultiapiServiceClientOperationsMixin:
          ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v1.models.PagingResult]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -318,7 +319,7 @@ class MultiapiServiceClientOperationsMixin:
             )
 
         kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
+
         def get_long_running_output(pipeline_response):
             async def internal_get_next(next_link=None):
                 if next_link is None:

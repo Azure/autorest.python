@@ -185,6 +185,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -194,13 +195,12 @@ class StorageAccountsOperations(object):
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
+                content_type=content_type,
                 cls=lambda x, y, z: x,
                 **kwargs
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
