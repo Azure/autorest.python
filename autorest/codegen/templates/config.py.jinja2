@@ -49,8 +49,8 @@ class {{ code_model.class_name }}Configuration(Configuration):
         self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endfor %}
 {% endif %}
-{% if code_model.options['credential_scopes'] is not none %}
-        self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.options['credential_scopes'] }})
+{% if code_model.options['credential'] and code_model.credential_schema_policy.credential_scopes is defined %}
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.credential_schema_policy.credential_scopes }})
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ sdk_moniker }}/{}'.format(VERSION))
         self._configure(**kwargs)
@@ -73,12 +73,10 @@ class {{ code_model.class_name }}Configuration(Configuration):
         self.authentication_policy = kwargs.get('authentication_policy')
         {% if code_model.options['credential'] %}
         {# only adding this if credential_scopes is not passed during code generation #}
-        {% if code_model.options["credential_scopes"] is not none and code_model.options["credential_scopes"]|length == 0 %}
+        {% if code_model.credential_schema_policy.credential_scopes is defined and code_model.credential_schema_policy.credential_scopes|length == 0 %}
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         {% endif %}
         if self.credential and not self.authentication_policy:
-        {% set credential_default_policy_type = ("Async" if (async_mode and code_model.options['credential_default_policy_type_has_async_version']) else "") + code_model.options['credential_default_policy_type'] %}
-        {% set credential_param_type = ("'" + code_model.options['credential_key_header_name'] + "', ") if code_model.options['credential_key_header_name'] else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
-            self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
+            self.authentication_policy = {{ code_model.credential_schema_policy.call(async_mode) }}
         {% endif %}

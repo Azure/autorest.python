@@ -59,4 +59,4 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
         self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, 'Ocp-Apim-Subscription-Key', **kwargs)
+            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, "Ocp-Apim-Subscription-Key", **kwargs)
