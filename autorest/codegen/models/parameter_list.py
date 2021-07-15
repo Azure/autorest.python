@@ -241,23 +241,10 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return [p for p in self.method if p.is_kwarg]
 
     def kwargs_to_pop(self, async_mode: bool) -> List[Parameter]:
-        seen_kwargs = set()
-        # we want to default to constant schemas for the kwargs if there are multiple
-        # case example: when looking at multiple content type params, we want the one with the constant schema
-        # so we can default to that value when popping
-        kwargs = [p for p in self.parameters if p.is_kwarg]
-        retval = []
-        def _iterate_kwargs(kwargs_to_iterate):
-            for kwarg in kwargs_to_iterate:
-                if kwarg.rest_api_name in seen_kwargs:
-                    continue
-                seen_kwargs.add(kwarg.rest_api_name)
-                retval.append(kwarg)
-        _iterate_kwargs([k for k in kwargs if isinstance(k.schema, ConstantSchema)])
-        _iterate_kwargs([k for k in kwargs if not isinstance(k.schema, ConstantSchema)])
+        kwargs_to_pop = self.kwargs
         if not async_mode:
-            _iterate_kwargs([k for k in self.method if k.is_kwarg])
-        return retval
+            kwargs_to_pop += self.keyword_only
+        return kwargs_to_pop
 
     @property
     def call(self) -> List[str]:

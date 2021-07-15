@@ -89,6 +89,7 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
@@ -99,13 +100,12 @@ class PollingPagingExampleOperationsMixin:
         if cont_token is None:
             raw_result = await self._basic_polling_initial(
                 product=product,
+                content_type=content_type,
                 cls=lambda x,y,z: x,
                 **kwargs
             )
 
         kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response

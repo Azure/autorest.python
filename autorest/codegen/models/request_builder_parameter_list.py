@@ -118,10 +118,10 @@ class RequestBuilderParameterList(ParameterList):
 
     def kwargs_to_pop(self, async_mode: bool) -> List[Parameter]:
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
-        kwargs = super().kwargs_to_pop(async_mode=async_mode)
+        kwargs_to_pop = self.kwargs
         if not async_mode:
-            kwargs.extend([k for k in self.keyword_only if k.serialized_name not in self.body_kwarg_names.keys()])
-        return kwargs
+            kwargs_to_pop += [k for k in self.keyword_only if not k.is_body]
+        return kwargs_to_pop
 
     @property
     def method(self) -> List[Parameter]:

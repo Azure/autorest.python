@@ -16,7 +16,7 @@
     {% if operation.parameters.kwargs_to_pop(async_mode) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
-    {{ helper.paging_operation() }}
+    {{ helper.paging_operation() | indent }}
 
     return {{ operation.get_pager(async_mode) }}(
         get_next, extract_data

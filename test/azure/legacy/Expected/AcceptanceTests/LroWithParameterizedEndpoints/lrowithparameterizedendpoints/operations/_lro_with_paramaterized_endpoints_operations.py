@@ -108,7 +108,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
@@ -220,7 +219,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
             )
 
         kwargs.pop("error_map", None)
-        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
