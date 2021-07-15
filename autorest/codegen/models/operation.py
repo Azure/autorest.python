@@ -7,10 +7,10 @@ from itertools import chain
 import logging
 from typing import Callable, cast, Dict, List, Any, Optional, Union, Set
 
-from .base_builder import BaseBuilder, get_converted_parameters
+from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter
+from .parameter import get_parameter
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -250,16 +250,13 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         chosen_parameter.multiple_media_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
 
-    @staticmethod
-    def get_parameter_converter() -> Callable:
-        return Parameter.from_yaml
-
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, cls.get_parameter_converter())
+        parameter_creator = get_parameter(code_model).from_yaml
+        parameters, multiple_media_type_parameters = create_parameters(yaml_data, parameter_creator)
 
         return cls(
             yaml_data=yaml_data,

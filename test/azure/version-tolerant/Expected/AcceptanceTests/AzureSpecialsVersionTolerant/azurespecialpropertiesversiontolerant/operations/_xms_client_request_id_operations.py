@@ -91,17 +91,15 @@ class XMsClientRequestIdOperations(object):
 
     @distributed_trace
     def param_get(
-        self,
-        x_ms_client_request_id,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :param x_ms_client_request_id: This should appear as a method parameter, use value
+        :keyword x_ms_client_request_id: This should appear as a method parameter, use value
          '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
-        :type x_ms_client_request_id: str
+        :paramtype x_ms_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -110,6 +108,7 @@ class XMsClientRequestIdOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        x_ms_client_request_id = kwargs.pop("x_ms_client_request_id")  # type: str
 
         request = rest_xms_client_request_id.build_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,

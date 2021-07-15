@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import formdata as rest_formdata
+from ..rest import formdata as rest_formdata
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class FormdataOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodyformdataversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -68,8 +63,7 @@ class FormdataOperations(object):
         :type file_content: IO
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
         :type file_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -91,7 +85,7 @@ class FormdataOperations(object):
             files=files,
             data=data,
             template_url=self.upload_file.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -99,10 +93,9 @@ class FormdataOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = response.stream_download(self._client._pipeline)
+        deserialized = response
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -122,8 +115,7 @@ class FormdataOperations(object):
 
         :param file_content: File to upload.
         :type file_content: IO
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -138,7 +130,7 @@ class FormdataOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -146,10 +138,9 @@ class FormdataOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = response.stream_download(self._client._pipeline)
+        deserialized = response
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -169,10 +160,17 @@ class FormdataOperations(object):
 
         :param file_content: Files to upload.
         :type file_content: list[IO]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                file_content = [
+                    "IO (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -191,7 +189,7 @@ class FormdataOperations(object):
             files=files,
             data=data,
             template_url=self.upload_files.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=True, _return_pipeline_response=True, **kwargs)
@@ -199,10 +197,9 @@ class FormdataOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = response.stream_download(self._client._pipeline)
+        deserialized = response
 
         if cls:
             return cls(pipeline_response, deserialized, {})

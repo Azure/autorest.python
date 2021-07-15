@@ -91,16 +91,14 @@ class ApiVersionLocalOperations(object):
 
     @distributed_trace
     def get_method_local_null(
-        self,
-        api_version=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
-        :param api_version: This should appear as a method parameter, use value null, this should
+        :keyword api_version: This should appear as a method parameter, use value null, this should
          result in no serialized parameter.
-        :type api_version: str
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -109,6 +107,7 @@ class ApiVersionLocalOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        api_version = kwargs.pop("api_version", None)  # type: Optional[str]
 
         request = rest_api_version_local.build_get_method_local_null_request(
             api_version=api_version,

@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import http_redirects as rest_http_redirects
+from ..rest import http_redirects as rest_http_redirects
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class HttpRedirectsOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructureversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -61,8 +56,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 300 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -72,7 +66,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_head300_request(
             template_url=self.head300.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -80,8 +74,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 300:
@@ -99,10 +92,17 @@ class HttpRedirectsOperations(object):
         # type: (...) -> Optional[List[str]]
         """Return 300 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 300
+                response.json() == [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -110,7 +110,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_get300_request(
             template_url=self.get300.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -118,15 +118,17 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         deserialized = None
         response_headers = {}
         if response.status_code == 300:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = self._deserialize("[str]", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -142,8 +144,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 301 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -153,7 +154,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_head301_request(
             template_url=self.head301.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -161,8 +162,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 301:
@@ -180,8 +180,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 301 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -191,7 +190,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_get301_request(
             template_url=self.get301.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -199,8 +198,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 301:
@@ -223,8 +221,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -234,7 +231,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -242,7 +239,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put301.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -250,8 +247,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -268,8 +264,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 302 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -279,7 +274,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_head302_request(
             template_url=self.head302.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -287,8 +282,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 302:
@@ -306,8 +300,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 302 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -317,7 +310,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_get302_request(
             template_url=self.get302.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -325,8 +318,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 302:
@@ -349,8 +341,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -360,7 +351,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -368,7 +359,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch302.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -376,8 +367,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -399,8 +389,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -410,7 +399,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -418,7 +407,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post303.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -426,8 +415,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 303]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 303:
@@ -445,8 +433,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Redirect with 307, resulting in a 200 success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -456,7 +443,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_head307_request(
             template_url=self.head307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -464,8 +451,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -483,8 +469,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Redirect get with 307, resulting in a 200 success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -494,7 +479,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_get307_request(
             template_url=self.get307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -502,8 +487,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -521,8 +505,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """options redirected with 307, resulting in a 200 after redirect.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -532,7 +515,7 @@ class HttpRedirectsOperations(object):
 
         request = rest_http_redirects.build_options307_request(
             template_url=self.options307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -540,8 +523,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -563,8 +545,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -574,7 +555,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -582,7 +563,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -590,8 +571,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -613,8 +593,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -624,7 +603,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -632,7 +611,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -640,8 +619,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -663,8 +641,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -674,7 +651,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -682,7 +659,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -690,8 +667,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -713,8 +689,7 @@ class HttpRedirectsOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -724,7 +699,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -732,7 +707,7 @@ class HttpRedirectsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -740,8 +715,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:

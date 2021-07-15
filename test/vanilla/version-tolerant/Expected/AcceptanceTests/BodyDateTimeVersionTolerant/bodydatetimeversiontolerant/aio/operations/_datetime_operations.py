@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import datetime as rest_datetime
+from ...rest import datetime as rest_datetime
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -35,15 +34,11 @@ class DatetimeOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodydatetimeversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -55,8 +50,7 @@ class DatetimeOperations:
     async def get_null(self, **kwargs: Any) -> Optional[datetime.datetime]:
         """Get null datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or None, or the result of cls(response)
+        :return: datetime or None
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -66,7 +60,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -76,10 +70,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -92,8 +88,7 @@ class DatetimeOperations:
     async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -103,7 +98,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -113,10 +108,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -129,8 +126,7 @@ class DatetimeOperations:
     async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
         """Get overflow datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -140,7 +136,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_overflow_request(
             template_url=self.get_overflow.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -150,10 +146,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -166,8 +164,7 @@ class DatetimeOperations:
     async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
         """Get underflow datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -177,7 +174,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_underflow_request(
             template_url=self.get_underflow.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -187,10 +184,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -205,8 +204,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -215,13 +213,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_utc_max_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_utc_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -231,8 +229,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -248,8 +245,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -258,13 +254,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_utc_max_date_time7_digits_request(
             content_type=content_type,
             json=json,
             template_url=self.put_utc_max_date_time7_digits.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -274,8 +270,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -286,8 +281,7 @@ class DatetimeOperations:
     async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -297,7 +291,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_utc_lowercase_max_date_time_request(
             template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -307,10 +301,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -323,8 +319,7 @@ class DatetimeOperations:
     async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value 9999-12-31T23:59:59.999Z.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -334,7 +329,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_utc_uppercase_max_date_time_request(
             template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -344,10 +339,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -363,8 +360,7 @@ class DatetimeOperations:
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -374,7 +370,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_utc_uppercase_max_date_time7_digits_request(
             template_url=self.get_utc_uppercase_max_date_time7_digits.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -384,10 +380,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -402,8 +400,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -412,13 +409,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -428,8 +425,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -440,8 +436,7 @@ class DatetimeOperations:
     async def get_local_positive_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -451,7 +446,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_positive_offset_lowercase_max_date_time_request(
             template_url=self.get_local_positive_offset_lowercase_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -461,10 +456,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -477,8 +474,7 @@ class DatetimeOperations:
     async def get_local_positive_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -488,7 +484,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_positive_offset_uppercase_max_date_time_request(
             template_url=self.get_local_positive_offset_uppercase_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -498,10 +494,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -516,8 +514,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -526,13 +523,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -542,8 +539,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -554,8 +550,7 @@ class DatetimeOperations:
     async def get_local_negative_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -565,7 +560,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_negative_offset_uppercase_max_date_time_request(
             template_url=self.get_local_negative_offset_uppercase_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -575,10 +570,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -591,8 +588,7 @@ class DatetimeOperations:
     async def get_local_negative_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -602,7 +598,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_negative_offset_lowercase_max_date_time_request(
             template_url=self.get_local_negative_offset_lowercase_max_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -612,10 +608,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -630,8 +628,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -640,13 +637,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_utc_min_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_utc_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -656,8 +653,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -668,8 +664,7 @@ class DatetimeOperations:
     async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00Z.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -679,7 +674,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_utc_min_date_time_request(
             template_url=self.get_utc_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -689,10 +684,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -707,8 +704,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -717,13 +713,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -733,8 +729,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -745,8 +740,7 @@ class DatetimeOperations:
     async def get_local_positive_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -756,7 +750,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_positive_offset_min_date_time_request(
             template_url=self.get_local_positive_offset_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -766,10 +760,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -784,8 +780,7 @@ class DatetimeOperations:
 
         :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -794,13 +789,13 @@ class DatetimeOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        json = datetime_body
 
         request = rest_datetime.build_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -810,8 +805,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -822,8 +816,7 @@ class DatetimeOperations:
     async def get_local_negative_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -833,7 +826,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_negative_offset_min_date_time_request(
             template_url=self.get_local_negative_offset_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -843,10 +836,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -859,8 +854,7 @@ class DatetimeOperations:
     async def get_local_no_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -870,7 +864,7 @@ class DatetimeOperations:
 
         request = rest_datetime.build_get_local_no_offset_min_date_time_request(
             template_url=self.get_local_no_offset_min_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -880,10 +874,12 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("iso-8601", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

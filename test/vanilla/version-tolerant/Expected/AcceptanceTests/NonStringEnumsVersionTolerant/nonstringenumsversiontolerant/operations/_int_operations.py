@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import int as rest_int
+from ..rest import int as rest_int
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -61,8 +60,7 @@ class IntOperations(object):
 
         :param input: Input int enum.
         :type input: str or ~nonstringenumsversiontolerant.models.IntEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -72,7 +70,7 @@ class IntOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
-            json = self._serialize.body(input, "int")
+            json = input
         else:
             json = None
 
@@ -80,7 +78,7 @@ class IntOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -90,7 +88,10 @@ class IntOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -106,8 +107,7 @@ class IntOperations(object):
         # type: (...) -> Union[int, "_models.IntEnum"]
         """Get an int enum.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntEnum, or the result of cls(response)
+        :return: IntEnum
         :rtype: str or ~nonstringenumsversiontolerant.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -117,7 +117,7 @@ class IntOperations(object):
 
         request = rest_int.build_get_request(
             template_url=self.get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -127,7 +127,10 @@ class IntOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("int", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

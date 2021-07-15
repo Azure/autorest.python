@@ -20,22 +20,17 @@ from .models.credential_schema_policy import CredentialSchemaPolicy, get_credent
 from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
-    # Create operations
+    if code_model.show_models and yaml_data.get("schemas"):
+        code_model.add_inheritance_to_models()
+        code_model.sort_schemas()
+
     if code_model.show_operations and yaml_data.get("operationGroups"):
         code_model.operation_groups = [
             OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
         ]
-    if code_model.show_models and yaml_data.get("schemas"):
-        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-
-        code_model.add_inheritance_to_models()
-        code_model.sort_schemas()
         code_model.link_operation_to_request_builder()
         code_model.add_schema_link_to_operation()
         code_model.generate_single_parameter_from_multiple_media_types_operation()
-
-    if code_model.show_operations:
-        # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
 
@@ -77,13 +72,15 @@ class CodeGenerator(Plugin):
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+        version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
+
         show_models = self._autorestapi.get_boolean_value(
             "show-models",
-            not low_level_client
+            not (low_level_client or version_tolerant)
         )
         show_builders = self._autorestapi.get_boolean_value(
             "show-builders",
-            low_level_client
+            low_level_client or version_tolerant
         )
         show_operations = self._autorestapi.get_boolean_value(
             "show-operations",
@@ -91,11 +88,11 @@ class CodeGenerator(Plugin):
         )
         show_send_request = self._autorestapi.get_boolean_value(
             "show-send-request",
-            low_level_client
+            low_level_client or version_tolerant
         )
         only_path_and_body_params_positional = self._autorestapi.get_boolean_value(
             "only-path-and-body-params-positional",
-            low_level_client
+            low_level_client or version_tolerant
         )
         code_model = CodeModel(
             show_builders=show_builders,
@@ -103,6 +100,7 @@ class CodeGenerator(Plugin):
             show_operations=show_operations,
             show_send_request=show_send_request,
             only_path_and_body_params_positional=only_path_and_body_params_positional,
+            version_tolerant=version_tolerant,
             options=options,
         )
         if code_model.options['credential']:

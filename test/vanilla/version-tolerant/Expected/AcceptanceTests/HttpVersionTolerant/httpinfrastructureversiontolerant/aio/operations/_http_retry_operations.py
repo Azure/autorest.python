@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import http_retry as rest_http_retry
+from ...rest import http_retry as rest_http_retry
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class HttpRetryOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructureversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -54,8 +49,7 @@ class HttpRetryOperations:
     async def head408(self, **kwargs: Any) -> None:
         """Return 408 status code, then 200 after retry.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +59,7 @@ class HttpRetryOperations:
 
         request = rest_http_retry.build_head408_request(
             template_url=self.head408.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -75,8 +69,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -89,8 +82,7 @@ class HttpRetryOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -100,7 +92,7 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -108,7 +100,7 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.put500.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -118,8 +110,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -132,8 +123,7 @@ class HttpRetryOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -143,7 +133,7 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -151,7 +141,7 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch500.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -161,8 +151,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -173,8 +162,7 @@ class HttpRetryOperations:
     async def get502(self, **kwargs: Any) -> None:
         """Return 502 status code, then 200 after retry.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -184,7 +172,7 @@ class HttpRetryOperations:
 
         request = rest_http_retry.build_get502_request(
             template_url=self.get502.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -194,8 +182,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -206,8 +193,7 @@ class HttpRetryOperations:
     async def options502(self, **kwargs: Any) -> bool:
         """Return 502 status code, then 200 after retry.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -217,7 +203,7 @@ class HttpRetryOperations:
 
         request = rest_http_retry.build_options502_request(
             template_url=self.options502.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -227,10 +213,12 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("bool", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -245,8 +233,7 @@ class HttpRetryOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -256,7 +243,7 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -264,7 +251,7 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.post503.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -274,8 +261,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -288,8 +274,7 @@ class HttpRetryOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -299,7 +284,7 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -307,7 +292,7 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete503.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -317,8 +302,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -331,8 +315,7 @@ class HttpRetryOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -342,7 +325,7 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -350,7 +333,7 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.put504.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -360,8 +343,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -374,8 +356,7 @@ class HttpRetryOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -385,7 +366,7 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -393,7 +374,7 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch504.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -403,8 +384,7 @@ class HttpRetryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

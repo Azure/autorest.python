@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import paths as rest_paths
+from ...rest import paths as rest_paths
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class PathsOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~custombaseurlmoreoptionsversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -52,7 +47,7 @@ class PathsOperations:
 
     @distributed_trace_async
     async def get_empty(
-        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, *, key_version: Optional[str] = "v1", **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 
@@ -62,10 +57,9 @@ class PathsOperations:
         :type secret: str
         :param key_name: The key name with value 'key1'.
         :type key_name: str
-        :param key_version: The key version. Default value 'v1'.
-        :type key_version: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword key_version: The key version. Default value 'v1'.
+        :paramtype key_version: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -78,7 +72,7 @@ class PathsOperations:
             subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
@@ -95,8 +89,7 @@ class PathsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

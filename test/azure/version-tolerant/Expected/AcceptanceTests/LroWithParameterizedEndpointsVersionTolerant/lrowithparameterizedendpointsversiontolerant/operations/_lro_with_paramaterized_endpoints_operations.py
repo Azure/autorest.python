@@ -35,14 +35,13 @@ if TYPE_CHECKING:
 
 class LROWithParamaterizedEndpointsOperationsMixin(object):
     def _poll_with_parameterized_endpoints_initial(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        account_name = kwargs.pop("account_name")  # type: str
 
         request = rest.build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
@@ -77,15 +76,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
     @distributed_trace
     def begin_poll_with_parameterized_endpoints(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[str]
         """Poll with method and client level parameters in endpoint.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
-        :type account_name: str
+        :keyword account_name: Account Name. Pass in 'local' to pass test.
+        :paramtype account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
@@ -98,6 +95,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        account_name = kwargs.pop("account_name")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -146,14 +144,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     def _poll_with_constant_parameterized_endpoints_initial(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        account_name = kwargs.pop("account_name")  # type: str
 
         request = rest.build_poll_with_constant_parameterized_endpoints_request_initial(
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
@@ -188,15 +185,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
     @distributed_trace
     def begin_poll_with_constant_parameterized_endpoints(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[str]
         """Poll with method and client level parameters in endpoint, with a constant value.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
-        :type account_name: str
+        :keyword account_name: Account Name. Pass in 'local' to pass test.
+        :paramtype account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
@@ -209,6 +204,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        account_name = kwargs.pop("account_name")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

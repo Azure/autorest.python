@@ -52,7 +52,7 @@ class AutoRestHeadExceptionTestService(object):
         self._serialize.client_side_validation = False
         self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -66,7 +66,7 @@ class AutoRestHeadExceptionTestService(object):
         >>> from headexceptionsversiontolerant._rest import head_exception
         >>> request = head_exception.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

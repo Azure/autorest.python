@@ -13,7 +13,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from .. import models
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations import (
     ApiVersionDefaultOperations,
@@ -28,6 +27,8 @@ from .operations import (
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
+
     from azure.core.credentials_async import AsyncTokenCredential
 
 
@@ -73,7 +74,7 @@ class AutoRestAzureSpecialParametersTestClient:
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
@@ -98,7 +99,7 @@ class AutoRestAzureSpecialParametersTestClient:
         self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azurespecialpropertiesversiontolerant.rest`.
@@ -107,7 +108,7 @@ class AutoRestAzureSpecialParametersTestClient:
         >>> from azurespecialpropertiesversiontolerant._rest import xms_client_request_id
         >>> request = xms_client_request_id.build_get_request(**kwargs)
         <HttpRequest [GET], url: '/azurespecials/overwrite/x-ms-client-request-id/method/'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

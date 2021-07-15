@@ -57,21 +57,17 @@ class OdataOperations(object):
 
     @distributed_trace
     def get_with_filter(
-        self,
-        filter=None,  # type: Optional[str]
-        top=None,  # type: Optional[int]
-        orderby=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
-        :type filter: str
-        :param top: The top parameter with value 10.
-        :type top: int
-        :param orderby: The orderby parameter with value id.
-        :type orderby: str
+        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
+        :paramtype filter: str
+        :keyword top: The top parameter with value 10.
+        :paramtype top: int
+        :keyword orderby: The orderby parameter with value id.
+        :paramtype orderby: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -80,6 +76,9 @@ class OdataOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        filter = kwargs.pop("filter", None)  # type: Optional[str]
+        top = kwargs.pop("top", None)  # type: Optional[int]
+        orderby = kwargs.pop("orderby", None)  # type: Optional[str]
 
         request = rest_odata.build_get_with_filter_request(
             filter=filter,

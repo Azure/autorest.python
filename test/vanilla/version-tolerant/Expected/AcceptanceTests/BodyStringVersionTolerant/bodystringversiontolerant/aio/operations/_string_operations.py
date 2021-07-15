@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import string as rest_string
+from ...rest import string as rest_string
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class StringOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodystringversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -54,8 +49,7 @@ class StringOperations:
     async def get_null(self, **kwargs: Any) -> Optional[str]:
         """Get null string value value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or None, or the result of cls(response)
+        :return: str or None
         :rtype: str or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +59,7 @@ class StringOperations:
 
         request = rest_string.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -75,10 +69,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -93,8 +89,7 @@ class StringOperations:
 
         :param string_body: string body.
         :type string_body: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -104,7 +99,7 @@ class StringOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if string_body is not None:
-            json = self._serialize.body(string_body, "str")
+            json = string_body
         else:
             json = None
 
@@ -112,7 +107,7 @@ class StringOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -122,8 +117,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -134,8 +128,7 @@ class StringOperations:
     async def get_empty(self, **kwargs: Any) -> str:
         """Get empty string value value ''.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -145,7 +138,7 @@ class StringOperations:
 
         request = rest_string.build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -155,10 +148,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -171,8 +166,7 @@ class StringOperations:
     async def put_empty(self, **kwargs: Any) -> None:
         """Set string value empty ''.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -182,13 +176,13 @@ class StringOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         string_body = ""
-        json = self._serialize.body(string_body, "str")
+        json = string_body
 
         request = rest_string.build_put_empty_request(
             content_type=content_type,
             json=json,
             template_url=self.put_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -198,8 +192,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -210,8 +203,7 @@ class StringOperations:
     async def get_mbcs(self, **kwargs: Any) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -221,7 +213,7 @@ class StringOperations:
 
         request = rest_string.build_get_mbcs_request(
             template_url=self.get_mbcs.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -231,10 +223,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -247,8 +241,7 @@ class StringOperations:
     async def put_mbcs(self, **kwargs: Any) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -258,13 +251,13 @@ class StringOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-        json = self._serialize.body(string_body, "str")
+        json = string_body
 
         request = rest_string.build_put_mbcs_request(
             content_type=content_type,
             json=json,
             template_url=self.put_mbcs.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -274,8 +267,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -288,8 +280,7 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -299,7 +290,7 @@ class StringOperations:
 
         request = rest_string.build_get_whitespace_request(
             template_url=self.get_whitespace.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -309,10 +300,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -327,8 +320,7 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -338,13 +330,13 @@ class StringOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         string_body = "    Now is the time for all good men to come to the aid of their country    "
-        json = self._serialize.body(string_body, "str")
+        json = string_body
 
         request = rest_string.build_put_whitespace_request(
             content_type=content_type,
             json=json,
             template_url=self.put_whitespace.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -354,8 +346,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -366,8 +357,7 @@ class StringOperations:
     async def get_not_provided(self, **kwargs: Any) -> str:
         """Get String value when no string value is sent in response payload.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -377,7 +367,7 @@ class StringOperations:
 
         request = rest_string.build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -387,10 +377,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -403,8 +395,7 @@ class StringOperations:
     async def get_base64_encoded(self, **kwargs: Any) -> bytearray:
         """Get value that is base64 encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
+        :return: bytearray
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -414,7 +405,7 @@ class StringOperations:
 
         request = rest_string.build_get_base64_encoded_request(
             template_url=self.get_base64_encoded.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -424,10 +415,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("bytearray", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -440,8 +433,7 @@ class StringOperations:
     async def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64url encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes, or the result of cls(response)
+        :return: bytes
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -451,7 +443,7 @@ class StringOperations:
 
         request = rest_string.build_get_base64_url_encoded_request(
             template_url=self.get_base64_url_encoded.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -461,10 +453,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("base64", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -479,8 +473,7 @@ class StringOperations:
 
         :param string_body: string body.
         :type string_body: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -489,13 +482,13 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(string_body, "base64")
+        json = string_body
 
         request = rest_string.build_put_base64_url_encoded_request(
             content_type=content_type,
             json=json,
             template_url=self.put_base64_url_encoded.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -505,8 +498,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -517,8 +509,7 @@ class StringOperations:
     async def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes or None, or the result of cls(response)
+        :return: bytes or None
         :rtype: bytes or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -528,7 +519,7 @@ class StringOperations:
 
         request = rest_string.build_get_null_base64_url_encoded_request(
             template_url=self.get_null_base64_url_encoded.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -538,10 +529,12 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("base64", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

@@ -51,11 +51,11 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty(self, account_name: str, **kwargs: Any) -> None:
+    async def get_empty(self, *, account_name: str, **kwargs: Any) -> None:
         """Get a 200 to test a valid base uri.
 
-        :param account_name: Account Name.
-        :type account_name: str
+        :keyword account_name: Account Name.
+        :paramtype account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

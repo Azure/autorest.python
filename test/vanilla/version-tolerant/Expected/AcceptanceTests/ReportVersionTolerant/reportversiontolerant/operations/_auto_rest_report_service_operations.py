@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest as rest, models as _models
+from .. import rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -34,30 +34,36 @@ if TYPE_CHECKING:
 class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_report(
-        self,
-        qualifier=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get test coverage report.
 
-        :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
-         for Python). The only effect is, that generators that run all tests several times, can
+        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
+         in for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
-        :type qualifier: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :paramtype qualifier: str
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
 
         request = rest.build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -65,10 +71,12 @@ class AutoRestReportServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -79,30 +87,36 @@ class AutoRestReportServiceOperationsMixin(object):
 
     @distributed_trace
     def get_optional_report(
-        self,
-        qualifier=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get optional test coverage report.
 
-        :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
-         for Python). The only effect is, that generators that run all tests several times, can
+        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
+         in for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
-        :type qualifier: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :paramtype qualifier: str
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
 
         request = rest.build_get_optional_report_request(
             qualifier=qualifier,
             template_url=self.get_optional_report.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -110,10 +124,12 @@ class AutoRestReportServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

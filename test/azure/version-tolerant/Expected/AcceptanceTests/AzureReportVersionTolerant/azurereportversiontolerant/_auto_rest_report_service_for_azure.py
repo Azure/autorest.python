@@ -12,13 +12,12 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from . import models
 from ._configuration import AutoRestReportServiceForAzureConfiguration
 from .operations import AutoRestReportServiceForAzureOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -41,12 +40,12 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         self._config = AutoRestReportServiceForAzureConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -60,7 +59,7 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         >>> from azurereportversiontolerant._rest import build_get_report_request
         >>> request = build_get_report_request(qualifier=qualifier, **kwargs)
         <HttpRequest [GET], url: '/report/azure'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

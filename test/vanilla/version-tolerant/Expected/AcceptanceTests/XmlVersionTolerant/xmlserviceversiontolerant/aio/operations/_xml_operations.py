@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import xml as rest_xml
+from ...rest import xml as rest_xml
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class XmlOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~xmlserviceversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -51,21 +46,31 @@ class XmlOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> "_models.RootWithRefAndNoMeta":
+    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> Any:
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndNoMeta, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.RootWithRefAndNoMeta
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "RefToModel": {
+                        "ID": "str (optional)"
+                    },
+                    "Something": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RootWithRefAndNoMeta"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_complex_type_ref_no_meta_request(
             template_url=self.get_complex_type_ref_no_meta.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -77,7 +82,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("RootWithRefAndNoMeta", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -87,28 +95,38 @@ class XmlOperations:
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_no_meta(self, model: "_models.RootWithRefAndNoMeta", **kwargs: Any) -> None:
+    async def put_complex_type_ref_no_meta(self, model: Any, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
-        :type model: ~xmlserviceversiontolerant.models.RootWithRefAndNoMeta
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type model: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                model = {
+                    "RefToModel": {
+                        "ID": "str (optional)"
+                    },
+                    "Something": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
+        content = model
 
         request = rest_xml.build_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -126,21 +144,31 @@ class XmlOperations:
     put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> "_models.RootWithRefAndMeta":
+    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> Any:
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndMeta, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.RootWithRefAndMeta
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "RefToModel": {
+                        "ID": "str (optional)"
+                    },
+                    "Something": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RootWithRefAndMeta"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_complex_type_ref_with_meta_request(
             template_url=self.get_complex_type_ref_with_meta.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -152,7 +180,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("RootWithRefAndMeta", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -162,28 +193,38 @@ class XmlOperations:
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_with_meta(self, model: "_models.RootWithRefAndMeta", **kwargs: Any) -> None:
+    async def put_complex_type_ref_with_meta(self, model: Any, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
-        :type model: ~xmlserviceversiontolerant.models.RootWithRefAndMeta
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type model: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                model = {
+                    "RefToModel": {
+                        "ID": "str (optional)"
+                    },
+                    "Something": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
+        content = model
 
         request = rest_xml.build_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -201,98 +242,39 @@ class XmlOperations:
     put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def get_simple(self, **kwargs: Any) -> "_models.Slideshow":
+    async def get_simple(self, **kwargs: Any) -> Any:
         """Get a simple XML document.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.Slideshow
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "author": "str (optional)",
+                    "date": "str (optional)",
+                    "slides": [
+                        {
+                            "items": [
+                                "str (optional)"
+                            ],
+                            "title": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    ],
+                    "title": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Slideshow"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_simple_request(
             template_url=self.get_simple.metadata["url"],
-        )._to_pipeline_transport_request()
-        request.url = self._client.format_url(request.url)
-
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
         )
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize("Slideshow", pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
-
-    @distributed_trace_async
-    async def put_simple(self, slideshow: "_models.Slideshow", **kwargs: Any) -> None:
-        """Put a simple XML document.
-
-        :param slideshow:
-        :type slideshow: ~xmlserviceversiontolerant.models.Slideshow
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
-
-        content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
-
-        request = rest_xml.build_put_simple_request(
-            content_type=content_type,
-            content=content,
-            template_url=self.put_simple.metadata["url"],
-        )._to_pipeline_transport_request()
-        request.url = self._client.format_url(request.url)
-
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
-        response = pipeline_response.http_response
-
-        if response.status_code not in [201]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-    put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
-
-    @distributed_trace_async
-    async def get_wrapped_lists(self, **kwargs: Any) -> "_models.AppleBarrel":
-        """Get an XML document with multiple wrapped lists.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.AppleBarrel
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.AppleBarrel"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        request = rest_xml.build_get_wrapped_lists_request(
-            template_url=self.get_wrapped_lists.metadata["url"],
-        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -304,38 +286,59 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("AppleBarrel", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
+    get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
-    async def put_wrapped_lists(self, wrapped_lists: "_models.AppleBarrel", **kwargs: Any) -> None:
-        """Put an XML document with multiple wrapped lists.
+    async def put_simple(self, slideshow: Any, **kwargs: Any) -> None:
+        """Put a simple XML document.
 
-        :param wrapped_lists:
-        :type wrapped_lists: ~xmlserviceversiontolerant.models.AppleBarrel
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :param slideshow:
+        :type slideshow: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                slideshow = {
+                    "author": "str (optional)",
+                    "date": "str (optional)",
+                    "slides": [
+                        {
+                            "items": [
+                                "str (optional)"
+                            ],
+                            "title": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    ],
+                    "title": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
+        content = slideshow
 
-        request = rest_xml.build_put_wrapped_lists_request(
+        request = rest_xml.build_put_simple_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_wrapped_lists.metadata["url"],
-        )._to_pipeline_transport_request()
+            template_url=self.put_simple.metadata["url"],
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -345,8 +348,109 @@ class XmlOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
+
+    @distributed_trace_async
+    async def get_wrapped_lists(self, **kwargs: Any) -> Any:
+        """Get an XML document with multiple wrapped lists.
+
+        :return: JSON object
+        :rtype: Any
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "BadApples": [
+                        "str (optional)"
+                    ],
+                    "GoodApples": [
+                        "str (optional)"
+                    ]
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = rest_xml.build_get_wrapped_lists_request(
+            template_url=self.get_wrapped_lists.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
+
+    @distributed_trace_async
+    async def put_wrapped_lists(self, wrapped_lists: Any, **kwargs: Any) -> None:
+        """Put an XML document with multiple wrapped lists.
+
+        :param wrapped_lists:
+        :type wrapped_lists: Any
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                wrapped_lists = {
+                    "BadApples": [
+                        "str (optional)"
+                    ],
+                    "GoodApples": [
+                        "str (optional)"
+                    ]
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+
+        content = wrapped_lists
+
+        request = rest_xml.build_put_wrapped_lists_request(
+            content_type=content_type,
+            content=content,
+            template_url=self.put_wrapped_lists.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -357,8 +461,7 @@ class XmlOperations:
     async def get_headers(self, **kwargs: Any) -> None:
         """Get strongly-typed response headers.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -368,7 +471,7 @@ class XmlOperations:
 
         request = rest_xml.build_get_headers_request(
             template_url=self.get_headers.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -389,21 +492,39 @@ class XmlOperations:
     get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_list(self, **kwargs: Any) -> "_models.Slideshow":
+    async def get_empty_list(self, **kwargs: Any) -> Any:
         """Get an empty list.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.Slideshow
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "author": "str (optional)",
+                    "date": "str (optional)",
+                    "slides": [
+                        {
+                            "items": [
+                                "str (optional)"
+                            ],
+                            "title": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    ],
+                    "title": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Slideshow"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_list_request(
             template_url=self.get_empty_list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -415,7 +536,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Slideshow", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -425,28 +549,46 @@ class XmlOperations:
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_list(self, slideshow: "_models.Slideshow", **kwargs: Any) -> None:
+    async def put_empty_list(self, slideshow: Any, **kwargs: Any) -> None:
         """Puts an empty list.
 
         :param slideshow:
-        :type slideshow: ~xmlserviceversiontolerant.models.Slideshow
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type slideshow: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                slideshow = {
+                    "author": "str (optional)",
+                    "date": "str (optional)",
+                    "slides": [
+                        {
+                            "items": [
+                                "str (optional)"
+                            ],
+                            "title": "str (optional)",
+                            "type": "str (optional)"
+                        }
+                    ],
+                    "title": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
+        content = slideshow
 
         request = rest_xml.build_put_empty_list_request(
             content_type=content_type,
             content=content,
             template_url=self.put_empty_list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -464,21 +606,33 @@ class XmlOperations:
     put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_wrapped_lists(self, **kwargs: Any) -> "_models.AppleBarrel":
+    async def get_empty_wrapped_lists(self, **kwargs: Any) -> Any:
         """Gets some empty wrapped lists.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.AppleBarrel
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "BadApples": [
+                        "str (optional)"
+                    ],
+                    "GoodApples": [
+                        "str (optional)"
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.AppleBarrel"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_wrapped_lists_request(
             template_url=self.get_empty_wrapped_lists.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -490,7 +644,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("AppleBarrel", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -500,28 +657,40 @@ class XmlOperations:
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_wrapped_lists(self, apple_barrel: "_models.AppleBarrel", **kwargs: Any) -> None:
+    async def put_empty_wrapped_lists(self, apple_barrel: Any, **kwargs: Any) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
-        :type apple_barrel: ~xmlserviceversiontolerant.models.AppleBarrel
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type apple_barrel: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                apple_barrel = {
+                    "BadApples": [
+                        "str (optional)"
+                    ],
+                    "GoodApples": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
+        content = apple_barrel
 
         request = rest_xml.build_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -539,21 +708,32 @@ class XmlOperations:
     put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def get_root_list(self, **kwargs: Any) -> List["_models.Banana"]:
+    async def get_root_list(self, **kwargs: Any) -> List[Any]:
         """Gets a list as the root element.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Banana, or the result of cls(response)
-        :rtype: list[~xmlserviceversiontolerant.models.Banana]
+        :return: list of JSON object
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "expiration": "datetime (optional)",
+                        "flavor": "str (optional)",
+                        "name": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_root_list_request(
             template_url=self.get_root_list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -565,7 +745,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("[Banana]", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -575,15 +758,26 @@ class XmlOperations:
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
+    async def put_root_list(self, bananas: List[Any], **kwargs: Any) -> None:
         """Puts a list as the root element.
 
         :param bananas:
-        :type bananas: list[~xmlserviceversiontolerant.models.Banana]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type bananas: list[Any]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                bananas = [
+                    {
+                        "expiration": "datetime (optional)",
+                        "flavor": "str (optional)",
+                        "name": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -591,13 +785,13 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        content = bananas
 
         request = rest_xml.build_put_root_list_request(
             content_type=content_type,
             content=content,
             template_url=self.put_root_list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -615,21 +809,32 @@ class XmlOperations:
     put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def get_root_list_single_item(self, **kwargs: Any) -> List["_models.Banana"]:
+    async def get_root_list_single_item(self, **kwargs: Any) -> List[Any]:
         """Gets a list with a single item.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Banana, or the result of cls(response)
-        :rtype: list[~xmlserviceversiontolerant.models.Banana]
+        :return: list of JSON object
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "expiration": "datetime (optional)",
+                        "flavor": "str (optional)",
+                        "name": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_root_list_single_item_request(
             template_url=self.get_root_list_single_item.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -641,7 +846,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("[Banana]", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -651,15 +859,26 @@ class XmlOperations:
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list_single_item(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
+    async def put_root_list_single_item(self, bananas: List[Any], **kwargs: Any) -> None:
         """Puts a list with a single item.
 
         :param bananas:
-        :type bananas: list[~xmlserviceversiontolerant.models.Banana]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type bananas: list[Any]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                bananas = [
+                    {
+                        "expiration": "datetime (optional)",
+                        "flavor": "str (optional)",
+                        "name": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -667,13 +886,13 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        content = bananas
 
         request = rest_xml.build_put_root_list_single_item_request(
             content_type=content_type,
             content=content,
             template_url=self.put_root_list_single_item.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -691,21 +910,32 @@ class XmlOperations:
     put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_root_list(self, **kwargs: Any) -> List["_models.Banana"]:
+    async def get_empty_root_list(self, **kwargs: Any) -> List[Any]:
         """Gets an empty list as the root element.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Banana, or the result of cls(response)
-        :rtype: list[~xmlserviceversiontolerant.models.Banana]
+        :return: list of JSON object
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "expiration": "datetime (optional)",
+                        "flavor": "str (optional)",
+                        "name": "str (optional)"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_root_list_request(
             template_url=self.get_empty_root_list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -717,7 +947,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("[Banana]", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -727,15 +960,26 @@ class XmlOperations:
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_root_list(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
+    async def put_empty_root_list(self, bananas: List[Any], **kwargs: Any) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
-        :type bananas: list[~xmlserviceversiontolerant.models.Banana]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type bananas: list[Any]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                bananas = [
+                    {
+                        "expiration": "datetime (optional)",
+                        "flavor": "str (optional)",
+                        "name": "str (optional)"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -743,13 +987,13 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        content = bananas
 
         request = rest_xml.build_put_empty_root_list_request(
             content_type=content_type,
             content=content,
             template_url=self.put_empty_root_list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -767,21 +1011,30 @@ class XmlOperations:
     put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_child_element(self, **kwargs: Any) -> "_models.Banana":
+    async def get_empty_child_element(self, **kwargs: Any) -> Any:
         """Gets an XML document with an empty child element.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Banana, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.Banana
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "expiration": "datetime (optional)",
+                    "flavor": "str (optional)",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Banana"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_empty_child_element_request(
             template_url=self.get_empty_child_element.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -793,7 +1046,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Banana", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -803,28 +1059,37 @@ class XmlOperations:
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_child_element(self, banana: "_models.Banana", **kwargs: Any) -> None:
+    async def put_empty_child_element(self, banana: Any, **kwargs: Any) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
-        :type banana: ~xmlserviceversiontolerant.models.Banana
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type banana: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                banana = {
+                    "expiration": "datetime (optional)",
+                    "flavor": "str (optional)",
+                    "name": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(banana, "Banana", is_xml=True)
+        content = banana
 
         request = rest_xml.build_put_empty_child_element_request(
             content_type=content_type,
             content=content,
             template_url=self.put_empty_child_element.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -842,21 +1107,48 @@ class XmlOperations:
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def list_containers(self, **kwargs: Any) -> "_models.ListContainersResponse":
+    async def list_containers(self, **kwargs: Any) -> Any:
         """Lists containers in a storage account.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListContainersResponse, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.ListContainersResponse
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "Containers": [
+                        {
+                            "Metadata": {
+                                "str": "str (optional)"
+                            },
+                            "Name": "str",
+                            "Properties": {
+                                "Etag": "str",
+                                "Last-Modified": "datetime",
+                                "LeaseDuration": "str (optional)",
+                                "LeaseState": "str (optional)",
+                                "LeaseStatus": "str (optional)",
+                                "PublicAccess": "str (optional)"
+                            }
+                        }
+                    ],
+                    "Marker": "str (optional)",
+                    "MaxResults": "int",
+                    "NextMarker": "str",
+                    "Prefix": "str",
+                    "ServiceEndpoint": "str"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListContainersResponse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_list_containers_request(
             template_url=self.list_containers.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -868,7 +1160,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ListContainersResponse", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -878,21 +1173,69 @@ class XmlOperations:
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_service_properties(self, **kwargs: Any) -> "_models.StorageServiceProperties":
+    async def get_service_properties(self, **kwargs: Any) -> Any:
         """Gets storage service properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageServiceProperties, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.StorageServiceProperties
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "Cors": [
+                        {
+                            "AllowedHeaders": "str",
+                            "AllowedMethods": "str",
+                            "AllowedOrigins": "str",
+                            "ExposedHeaders": "str",
+                            "MaxAgeInSeconds": "int"
+                        }
+                    ],
+                    "DefaultServiceVersion": "str (optional)",
+                    "DeleteRetentionPolicy": {
+                        "Days": "int (optional)",
+                        "Enabled": "bool"
+                    },
+                    "HourMetrics": {
+                        "Enabled": "bool",
+                        "IncludeAPIs": "bool (optional)",
+                        "RetentionPolicy": {
+                            "Days": "int (optional)",
+                            "Enabled": "bool"
+                        },
+                        "Version": "str (optional)"
+                    },
+                    "Logging": {
+                        "Delete": "bool",
+                        "Read": "bool",
+                        "RetentionPolicy": {
+                            "Days": "int (optional)",
+                            "Enabled": "bool"
+                        },
+                        "Version": "str",
+                        "Write": "bool"
+                    },
+                    "MinuteMetrics": {
+                        "Enabled": "bool",
+                        "IncludeAPIs": "bool (optional)",
+                        "RetentionPolicy": {
+                            "Days": "int (optional)",
+                            "Enabled": "bool"
+                        },
+                        "Version": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageServiceProperties"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_service_properties_request(
             template_url=self.get_service_properties.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -904,7 +1247,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("StorageServiceProperties", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -914,28 +1260,76 @@ class XmlOperations:
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(self, properties: "_models.StorageServiceProperties", **kwargs: Any) -> None:
+    async def put_service_properties(self, properties: Any, **kwargs: Any) -> None:
         """Puts storage service properties.
 
         :param properties:
-        :type properties: ~xmlserviceversiontolerant.models.StorageServiceProperties
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type properties: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "Cors": [
+                        {
+                            "AllowedHeaders": "str",
+                            "AllowedMethods": "str",
+                            "AllowedOrigins": "str",
+                            "ExposedHeaders": "str",
+                            "MaxAgeInSeconds": "int"
+                        }
+                    ],
+                    "DefaultServiceVersion": "str (optional)",
+                    "DeleteRetentionPolicy": {
+                        "Days": "int (optional)",
+                        "Enabled": "bool"
+                    },
+                    "HourMetrics": {
+                        "Enabled": "bool",
+                        "IncludeAPIs": "bool (optional)",
+                        "RetentionPolicy": {
+                            "Days": "int (optional)",
+                            "Enabled": "bool"
+                        },
+                        "Version": "str (optional)"
+                    },
+                    "Logging": {
+                        "Delete": "bool",
+                        "Read": "bool",
+                        "RetentionPolicy": {
+                            "Days": "int (optional)",
+                            "Enabled": "bool"
+                        },
+                        "Version": "str",
+                        "Write": "bool"
+                    },
+                    "MinuteMetrics": {
+                        "Enabled": "bool",
+                        "IncludeAPIs": "bool (optional)",
+                        "RetentionPolicy": {
+                            "Days": "int (optional)",
+                            "Enabled": "bool"
+                        },
+                        "Version": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
+        content = properties
 
         request = rest_xml.build_put_service_properties_request(
             content_type=content_type,
             content=content,
             template_url=self.put_service_properties.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -953,21 +1347,35 @@ class XmlOperations:
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_acls(self, **kwargs: Any) -> List["_models.SignedIdentifier"]:
+    async def get_acls(self, **kwargs: Any) -> List[Any]:
         """Gets storage ACLs for a container.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of SignedIdentifier, or the result of cls(response)
-        :rtype: list[~xmlserviceversiontolerant.models.SignedIdentifier]
+        :return: list of JSON object
+        :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == [
+                    {
+                        "AccessPolicy": {
+                            "Expiry": "datetime",
+                            "Permission": "str",
+                            "Start": "datetime"
+                        },
+                        "Id": "str"
+                    }
+                ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.SignedIdentifier"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_acls_request(
             template_url=self.get_acls.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -979,7 +1387,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("[SignedIdentifier]", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -989,15 +1400,29 @@ class XmlOperations:
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(self, properties: List["_models.SignedIdentifier"], **kwargs: Any) -> None:
+    async def put_acls(self, properties: List[Any], **kwargs: Any) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
-        :type properties: list[~xmlserviceversiontolerant.models.SignedIdentifier]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type properties: list[Any]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = [
+                    {
+                        "AccessPolicy": {
+                            "Expiry": "datetime",
+                            "Permission": "str",
+                            "Start": "datetime"
+                        },
+                        "Id": "str"
+                    }
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1005,15 +1430,13 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
-        content = self._serialize.body(
-            properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
-        )
+        content = properties
 
         request = rest_xml.build_put_acls_request(
             content_type=content_type,
             content=content,
             template_url=self.put_acls.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1031,21 +1454,81 @@ class XmlOperations:
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def list_blobs(self, **kwargs: Any) -> "_models.ListBlobsResponse":
+    async def list_blobs(self, **kwargs: Any) -> Any:
         """Lists blobs in a storage container.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListBlobsResponse, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.ListBlobsResponse
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "Blobs": {
+                        "Blob": [
+                            {
+                                "Deleted": "bool",
+                                "Metadata": {
+                                    "str": "str (optional)"
+                                },
+                                "Name": "str",
+                                "Properties": {
+                                    "AccessTier": "str (optional)",
+                                    "AccessTierInferred": "bool (optional)",
+                                    "ArchiveStatus": "str (optional)",
+                                    "BlobType": "str (optional)",
+                                    "Cache-Control": "str (optional)",
+                                    "Content-Disposition": "str (optional)",
+                                    "Content-Encoding": "str (optional)",
+                                    "Content-Language": "str (optional)",
+                                    "Content-Length": "long (optional)",
+                                    "Content-MD5": "str (optional)",
+                                    "Content-Type": "str (optional)",
+                                    "CopyCompletionTime": "datetime (optional)",
+                                    "CopyId": "str (optional)",
+                                    "CopyProgress": "str (optional)",
+                                    "CopySource": "str (optional)",
+                                    "CopyStatus": "str (optional)",
+                                    "CopyStatusDescription": "str (optional)",
+                                    "DeletedTime": "datetime (optional)",
+                                    "DestinationSnapshot": "str (optional)",
+                                    "Etag": "str",
+                                    "IncrementalCopy": "bool (optional)",
+                                    "Last-Modified": "datetime",
+                                    "LeaseDuration": "str (optional)",
+                                    "LeaseState": "str (optional)",
+                                    "LeaseStatus": "str (optional)",
+                                    "RemainingRetentionDays": "int (optional)",
+                                    "ServerEncrypted": "bool (optional)",
+                                    "x-ms-blob-sequence-number": "int (optional)"
+                                },
+                                "Snapshot": "str"
+                            }
+                        ],
+                        "BlobPrefix": [
+                            {
+                                "Name": "str"
+                            }
+                        ]
+                    },
+                    "ContainerName": "str",
+                    "Delimiter": "str",
+                    "Marker": "str",
+                    "MaxResults": "int",
+                    "NextMarker": "str",
+                    "Prefix": "str",
+                    "ServiceEndpoint": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListBlobsResponse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_list_blobs_request(
             template_url=self.list_blobs.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1057,7 +1540,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ListBlobsResponse", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1067,29 +1553,36 @@ class XmlOperations:
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def json_input(self, properties: "_models.JSONInput", **kwargs: Any) -> None:
+    async def json_input(self, properties: Any, **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties:
-        :type properties: ~xmlserviceversiontolerant.models.JSONInput
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type properties: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "id": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(properties, "JSONInput")
+        json = properties
 
         request = rest_xml.build_json_input_request(
             content_type=content_type,
             json=json,
             template_url=self.json_input.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1107,21 +1600,28 @@ class XmlOperations:
     json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
     @distributed_trace_async
-    async def json_output(self, **kwargs: Any) -> "_models.JSONOutput":
+    async def json_output(self, **kwargs: Any) -> Any:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSONOutput, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.JSONOutput
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "int (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.JSONOutput"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_json_output_request(
             template_url=self.json_output.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1133,7 +1633,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("JSONOutput", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1143,22 +1646,30 @@ class XmlOperations:
     json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
     @distributed_trace_async
-    async def get_xms_text(self, **kwargs: Any) -> "_models.ObjectWithXMsTextProperty":
+    async def get_xms_text(self, **kwargs: Any) -> Any:
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ObjectWithXMsTextProperty, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.ObjectWithXMsTextProperty
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "content": "str (optional)",
+                    "language": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ObjectWithXMsTextProperty"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_xms_text_request(
             template_url=self.get_xms_text.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1170,7 +1681,10 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ObjectWithXMsTextProperty", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1180,21 +1694,28 @@ class XmlOperations:
     get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
     @distributed_trace_async
-    async def get_bytes(self, **kwargs: Any) -> "_models.ModelWithByteProperty":
+    async def get_bytes(self, **kwargs: Any) -> Any:
         """Get an XML document with binary property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelWithByteProperty, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.ModelWithByteProperty
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "Bytes": "bytearray (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ModelWithByteProperty"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_bytes_request(
             template_url=self.get_bytes.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1204,10 +1725,12 @@ class XmlOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ModelWithByteProperty", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1217,28 +1740,35 @@ class XmlOperations:
     get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
-    async def put_binary(self, slideshow: "_models.ModelWithByteProperty", **kwargs: Any) -> None:
+    async def put_binary(self, slideshow: Any, **kwargs: Any) -> None:
         """Put an XML document with binary property.
 
         :param slideshow:
-        :type slideshow: ~xmlserviceversiontolerant.models.ModelWithByteProperty
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type slideshow: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                slideshow = {
+                    "Bytes": "bytearray (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(slideshow, "ModelWithByteProperty", is_xml=True)
+        content = slideshow
 
         request = rest_xml.build_put_binary_request(
             content_type=content_type,
             content=content,
             template_url=self.put_binary.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1248,8 +1778,7 @@ class XmlOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1257,21 +1786,28 @@ class XmlOperations:
     put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
-    async def get_uri(self, **kwargs: Any) -> "_models.ModelWithUrlProperty":
+    async def get_uri(self, **kwargs: Any) -> Any:
         """Get an XML document with uri property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelWithUrlProperty, or the result of cls(response)
-        :rtype: ~xmlserviceversiontolerant.models.ModelWithUrlProperty
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "Url": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ModelWithUrlProperty"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_xml.build_get_uri_request(
             template_url=self.get_uri.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1281,10 +1817,12 @@ class XmlOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ModelWithUrlProperty", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1294,28 +1832,35 @@ class XmlOperations:
     get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace_async
-    async def put_uri(self, model: "_models.ModelWithUrlProperty", **kwargs: Any) -> None:
+    async def put_uri(self, model: Any, **kwargs: Any) -> None:
         """Put an XML document with uri property.
 
         :param model:
-        :type model: ~xmlserviceversiontolerant.models.ModelWithUrlProperty
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type model: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                model = {
+                    "Url": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(model, "ModelWithUrlProperty", is_xml=True)
+        content = model
 
         request = rest_xml.build_put_uri_request(
             content_type=content_type,
             content=content,
             template_url=self.put_uri.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1325,8 +1870,7 @@ class XmlOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

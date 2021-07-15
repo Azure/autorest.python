@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import http_success as rest_http_success
+from ...rest import http_success as rest_http_success
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class HttpSuccessOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructureversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -54,8 +49,7 @@ class HttpSuccessOperations:
     async def head200(self, **kwargs: Any) -> None:
         """Return 200 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +59,7 @@ class HttpSuccessOperations:
 
         request = rest_http_success.build_head200_request(
             template_url=self.head200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -75,8 +69,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -87,8 +80,7 @@ class HttpSuccessOperations:
     async def get200(self, **kwargs: Any) -> bool:
         """Get 200 success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -98,7 +90,7 @@ class HttpSuccessOperations:
 
         request = rest_http_success.build_get200_request(
             template_url=self.get200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,10 +100,12 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("bool", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -124,8 +118,7 @@ class HttpSuccessOperations:
     async def options200(self, **kwargs: Any) -> bool:
         """Options 200 success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -135,7 +128,7 @@ class HttpSuccessOperations:
 
         request = rest_http_success.build_options200_request(
             template_url=self.options200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -145,10 +138,12 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("bool", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -163,8 +158,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -174,7 +168,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -182,7 +176,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.put200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -192,8 +186,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -206,8 +199,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -217,7 +209,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -225,7 +217,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -235,8 +227,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -249,8 +240,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -260,7 +250,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -268,7 +258,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.post200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -278,8 +268,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -292,8 +281,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -303,7 +291,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -311,7 +299,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -321,8 +309,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -335,8 +322,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -346,7 +332,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -354,7 +340,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.put201.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -364,8 +350,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -378,8 +363,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -389,7 +373,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -397,7 +381,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.post201.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -407,8 +391,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -421,8 +404,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -432,7 +414,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -440,7 +422,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.put202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -450,8 +432,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -464,8 +445,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -475,7 +455,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -483,7 +463,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -493,8 +473,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -507,8 +486,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -518,7 +496,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -526,7 +504,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.post202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -536,8 +514,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -550,8 +527,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -561,7 +537,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -569,7 +545,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -579,8 +555,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -591,8 +566,7 @@ class HttpSuccessOperations:
     async def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -602,7 +576,7 @@ class HttpSuccessOperations:
 
         request = rest_http_success.build_head204_request(
             template_url=self.head204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -612,8 +586,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -626,8 +599,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -637,7 +609,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -645,7 +617,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.put204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -655,8 +627,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -669,8 +640,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -680,7 +650,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -688,7 +658,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -698,8 +668,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -712,8 +681,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -723,7 +691,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -731,7 +699,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.post204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -741,8 +709,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -755,8 +722,7 @@ class HttpSuccessOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -766,7 +732,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -774,7 +740,7 @@ class HttpSuccessOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -784,8 +750,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -796,8 +761,7 @@ class HttpSuccessOperations:
     async def head404(self, **kwargs: Any) -> None:
         """Return 404 status code.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -807,7 +771,7 @@ class HttpSuccessOperations:
 
         request = rest_http_success.build_head404_request(
             template_url=self.head404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -817,8 +781,7 @@ class HttpSuccessOperations:
 
         if response.status_code not in [204, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

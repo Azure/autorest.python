@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import explicit as rest_explicit
+from ..rest import explicit as rest_explicit
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class ExplicitOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~requiredoptionalversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -65,8 +60,7 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: IO
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -81,7 +75,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -89,8 +83,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -108,8 +101,7 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: IO
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -124,7 +116,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_required_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -132,8 +124,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -152,8 +143,7 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -162,13 +152,13 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "int")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_integer_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -176,8 +166,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -195,8 +184,7 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -206,7 +194,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "int")
+            json = body_parameter
         else:
             json = None
 
@@ -214,7 +202,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -222,8 +210,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -233,7 +220,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_property(
         self,
-        body_parameter,  # type: "_models.IntWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -241,24 +228,31 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.IntWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "int"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "IntWrapper")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_integer_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -266,8 +260,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -277,18 +270,25 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_property(
         self,
-        body_parameter=None,  # type: Optional["_models.IntOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.IntOptionalWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -296,7 +296,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "IntOptionalWrapper")
+            json = body_parameter
         else:
             json = None
 
@@ -304,7 +304,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -312,8 +312,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -322,29 +321,27 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_header(
-        self,
-        header_parameter,  # type: int
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
-        :param header_parameter:
-        :type header_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_parameter:
+        :paramtype header_parameter: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        header_parameter = kwargs.pop("header_parameter")  # type: int
 
         request = rest_explicit.build_post_required_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_integer_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -352,8 +349,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -362,28 +358,26 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_header(
-        self,
-        header_parameter=None,  # type: Optional[int]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :param header_parameter:
-        :type header_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_parameter:
+        :paramtype header_parameter: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[int]
 
         request = rest_explicit.build_post_optional_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_integer_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -391,8 +385,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -411,8 +404,7 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -421,13 +413,13 @@ class ExplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "str")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_string_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -435,8 +427,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -454,8 +445,7 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -465,7 +455,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "str")
+            json = body_parameter
         else:
             json = None
 
@@ -473,7 +463,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -481,8 +471,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -492,7 +481,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_property(
         self,
-        body_parameter,  # type: "_models.StringWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -500,24 +489,31 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.StringWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "str"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "StringWrapper")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_string_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -525,8 +521,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -536,18 +531,25 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_property(
         self,
-        body_parameter=None,  # type: Optional["_models.StringOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.StringOptionalWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -555,7 +557,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "StringOptionalWrapper")
+            json = body_parameter
         else:
             json = None
 
@@ -563,7 +565,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -571,8 +573,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -581,29 +582,27 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_header(
-        self,
-        header_parameter,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
-        :param header_parameter:
-        :type header_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_parameter:
+        :paramtype header_parameter: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        header_parameter = kwargs.pop("header_parameter")  # type: str
 
         request = rest_explicit.build_post_required_string_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_string_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -611,8 +610,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -621,28 +619,26 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_header(
-        self,
-        body_parameter=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-        :param body_parameter:
-        :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword body_parameter:
+        :paramtype body_parameter: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        body_parameter = kwargs.pop("body_parameter", None)  # type: Optional[str]
 
         request = rest_explicit.build_post_optional_string_header_request(
             body_parameter=body_parameter,
             template_url=self.post_optional_string_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -650,8 +646,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -661,7 +656,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: "_models.Product"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -669,24 +664,32 @@ class ExplicitOperations(object):
         before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "id": "int",
+                    "name": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "Product")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_class_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -694,8 +697,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -705,18 +707,26 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Optional["_models.Product"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "id": "int",
+                    "name": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -724,7 +734,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "Product")
+            json = body_parameter
         else:
             json = None
 
@@ -732,7 +742,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -740,8 +750,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -751,7 +760,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        body_parameter,  # type: "_models.ClassWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -759,24 +768,34 @@ class ExplicitOperations(object):
         and the client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ClassWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": {
+                        "id": "int",
+                        "name": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "ClassWrapper")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_class_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -784,8 +803,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -795,18 +813,28 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        body_parameter=None,  # type: Optional["_models.ClassOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ClassOptionalWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": {
+                        "id": "int",
+                        "name": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -814,7 +842,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "ClassOptionalWrapper")
+            json = body_parameter
         else:
             json = None
 
@@ -822,7 +850,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -830,8 +858,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -850,23 +877,30 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "[str]")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_array_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -874,8 +908,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -893,10 +926,17 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = [
+                    "str (optional)"
+                ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -904,7 +944,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "[str]")
+            json = body_parameter
         else:
             json = None
 
@@ -912,7 +952,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -920,8 +960,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -931,7 +970,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_property(
         self,
-        body_parameter,  # type: "_models.ArrayWrapper"
+        body_parameter,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -939,24 +978,33 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ArrayWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": [
+                        "str"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(body_parameter, "ArrayWrapper")
+        json = body_parameter
 
         request = rest_explicit.build_post_required_array_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -964,8 +1012,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -975,18 +1022,27 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_property(
         self,
-        body_parameter=None,  # type: Optional["_models.ArrayOptionalWrapper"]
+        body_parameter=None,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: ~requiredoptionalversiontolerant.models.ArrayOptionalWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type body_parameter: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -994,7 +1050,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "ArrayOptionalWrapper")
+            json = body_parameter
         else:
             json = None
 
@@ -1002,7 +1058,7 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1010,8 +1066,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1020,29 +1075,27 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_header(
-        self,
-        header_parameter,  # type: List[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
-        :param header_parameter:
-        :type header_parameter: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_parameter:
+        :paramtype header_parameter: list[str]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        header_parameter = kwargs.pop("header_parameter")  # type: List[str]
 
         request = rest_explicit.build_post_required_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_array_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1050,8 +1103,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1060,28 +1112,26 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_header(
-        self,
-        header_parameter=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :param header_parameter:
-        :type header_parameter: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_parameter:
+        :paramtype header_parameter: list[str]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[List[str]]
 
         request = rest_explicit.build_post_optional_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_array_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1089,8 +1139,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

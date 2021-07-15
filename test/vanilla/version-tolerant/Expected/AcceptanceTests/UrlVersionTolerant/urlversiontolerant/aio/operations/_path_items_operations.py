@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import path_items as rest_path_items
+from ...rest import path_items as rest_path_items
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class PathItemsOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~urlversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -55,6 +50,7 @@ class PathItemsOperations:
         self,
         path_item_string_path: str,
         local_string_path: str,
+        *,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
         **kwargs: Any
@@ -67,13 +63,12 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+        :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter.
-        :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype path_item_string_query: str
+        :keyword local_string_query: should contain value 'localStringQuery'.
+        :paramtype local_string_query: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -89,7 +84,7 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_all_with_values.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -99,8 +94,7 @@ class PathItemsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -112,6 +106,7 @@ class PathItemsOperations:
         self,
         path_item_string_path: str,
         local_string_path: str,
+        *,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
         **kwargs: Any
@@ -124,13 +119,12 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+        :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter.
-        :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype path_item_string_query: str
+        :keyword local_string_query: should contain value 'localStringQuery'.
+        :paramtype local_string_query: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -146,7 +140,7 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_global_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -156,8 +150,7 @@ class PathItemsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -169,6 +162,7 @@ class PathItemsOperations:
         self,
         path_item_string_path: str,
         local_string_path: str,
+        *,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
         **kwargs: Any
@@ -181,13 +175,12 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+        :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter.
-        :type path_item_string_query: str
-        :param local_string_query: should contain null value.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype path_item_string_query: str
+        :keyword local_string_query: should contain null value.
+        :paramtype local_string_query: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -203,7 +196,7 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -213,8 +206,7 @@ class PathItemsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -226,6 +218,7 @@ class PathItemsOperations:
         self,
         path_item_string_path: str,
         local_string_path: str,
+        *,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
         **kwargs: Any
@@ -238,12 +231,11 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: should contain value null.
-        :type path_item_string_query: str
-        :param local_string_query: should contain value null.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword path_item_string_query: should contain value null.
+        :paramtype path_item_string_query: str
+        :keyword local_string_query: should contain value null.
+        :paramtype local_string_query: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -259,7 +251,7 @@ class PathItemsOperations:
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -269,8 +261,7 @@ class PathItemsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

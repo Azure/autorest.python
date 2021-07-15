@@ -16,6 +16,20 @@ from .imports import FileImport, ImportType
 
 _LOGGER = logging.getLogger(__name__)
 
+def _get_operation(code_model, yaml_data: Dict[str, Any]) -> Operation:
+    lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
+    paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+    if lro_operation and paging_operation:
+        operation_schema = LROPagingOperation
+    elif lro_operation:
+        operation_schema = LROOperation
+    elif paging_operation:
+        operation_schema = PagingOperation
+    else:
+        operation_schema = Operation
+    operation = operation_schema.from_yaml(yaml_data, code_model=code_model)
+    return operation
+
 
 class OperationGroup(BaseModel):
     """Represent an operation group.
@@ -60,7 +74,7 @@ class OperationGroup(BaseModel):
                     "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
                 )
         local_path = "..." if async_mode else ".."
-        if has_schemas:
+        if has_schemas and self.code_model.show_models:
             file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
 
         # import request builders
@@ -91,16 +105,7 @@ class OperationGroup(BaseModel):
         operations = []
         api_versions: Set[str] = set()
         for operation_yaml in yaml_data["operations"]:
-            lro_operation = operation_yaml.get("extensions", {}).get("x-ms-long-running-operation")
-            paging_operation = operation_yaml.get("extensions", {}).get("x-ms-pageable")
-            if lro_operation and paging_operation:
-                operation = LROPagingOperation.from_yaml(operation_yaml)
-            elif lro_operation:
-                operation = LROOperation.from_yaml(operation_yaml)
-            elif paging_operation:
-                operation = PagingOperation.from_yaml(operation_yaml)
-            else:
-                operation = Operation.from_yaml(operation_yaml)
+            operation = _get_operation(code_model, operation_yaml)
             operations.append(operation)
             api_versions.update(operation.api_versions)
 

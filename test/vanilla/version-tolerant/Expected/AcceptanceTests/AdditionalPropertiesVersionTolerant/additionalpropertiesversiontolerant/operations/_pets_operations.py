@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import pets as rest_pets
+from ..rest import pets as rest_pets
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class PetsOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~additionalpropertiesversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -57,31 +52,53 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_true(
         self,
-        create_parameters,  # type: "_models.PetAPTrue"
+        create_parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPTrue"
+        # type: (...) -> Any
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalpropertiesversiontolerant.models.PetAPTrue
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPTrue, or the result of cls(response)
-        :rtype: ~additionalpropertiesversiontolerant.models.PetAPTrue
+        :type create_parameters: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "": {
+                        "str": "any (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "": {
+                        "str": "any (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPTrue")
+        json = create_parameters
 
         request = rest_pets.build_create_ap_true_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -89,10 +106,12 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("PetAPTrue", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -104,31 +123,43 @@ class PetsOperations(object):
     @distributed_trace
     def create_cat_ap_true(
         self,
-        create_parameters,  # type: "_models.CatAPTrue"
+        create_parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.CatAPTrue"
+        # type: (...) -> Any
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalpropertiesversiontolerant.models.CatAPTrue
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CatAPTrue, or the result of cls(response)
-        :rtype: ~additionalpropertiesversiontolerant.models.CatAPTrue
+        :type create_parameters: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "friendly": "bool (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "friendly": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "CatAPTrue")
+        json = create_parameters
 
         request = rest_pets.build_create_cat_ap_true_request(
             content_type=content_type,
             json=json,
             template_url=self.create_cat_ap_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -136,10 +167,12 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("CatAPTrue", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -151,31 +184,53 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_object(
         self,
-        create_parameters,  # type: "_models.PetAPObject"
+        create_parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPObject"
+        # type: (...) -> Any
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalpropertiesversiontolerant.models.PetAPObject
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPObject, or the result of cls(response)
-        :rtype: ~additionalpropertiesversiontolerant.models.PetAPObject
+        :type create_parameters: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "": {
+                        "str": "any (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "": {
+                        "str": "any (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPObject")
+        json = create_parameters
 
         request = rest_pets.build_create_ap_object_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_object.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -183,10 +238,12 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("PetAPObject", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -198,31 +255,53 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_string(
         self,
-        create_parameters,  # type: "_models.PetAPString"
+        create_parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPString"
+        # type: (...) -> Any
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalpropertiesversiontolerant.models.PetAPString
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPString, or the result of cls(response)
-        :rtype: ~additionalpropertiesversiontolerant.models.PetAPString
+        :type create_parameters: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "": {
+                        "str": "str (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "": {
+                        "str": "str (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPString")
+        json = create_parameters
 
         request = rest_pets.build_create_ap_string_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -230,10 +309,12 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("PetAPString", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -245,31 +326,53 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties(
         self,
-        create_parameters,  # type: "_models.PetAPInProperties"
+        create_parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPInProperties"
+        # type: (...) -> Any
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalpropertiesversiontolerant.models.PetAPInProperties
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInProperties, or the result of cls(response)
-        :rtype: ~additionalpropertiesversiontolerant.models.PetAPInProperties
+        :type create_parameters: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "additionalProperties": {
+                        "str": "float (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "additionalProperties": {
+                        "str": "float (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPInProperties")
+        json = create_parameters
 
         request = rest_pets.build_create_ap_in_properties_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -277,10 +380,12 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("PetAPInProperties", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -292,32 +397,61 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters,  # type: "_models.PetAPInPropertiesWithAPString"
+        create_parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPInPropertiesWithAPString"
+        # type: (...) -> Any
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters:
-         ~additionalpropertiesversiontolerant.models.PetAPInPropertiesWithAPString
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInPropertiesWithAPString, or the result of cls(response)
-        :rtype: ~additionalpropertiesversiontolerant.models.PetAPInPropertiesWithAPString
+        :type create_parameters: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "": {
+                        "str": "str (optional)"
+                    },
+                    "@odata.location": "str",
+                    "additionalProperties": {
+                        "str": "float (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "": {
+                        "str": "str (optional)"
+                    },
+                    "@odata.location": "str",
+                    "additionalProperties": {
+                        "str": "float (optional)"
+                    },
+                    "id": "int",
+                    "name": "str (optional)",
+                    "status": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
+        json = create_parameters
 
         request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -325,10 +459,12 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("PetAPInPropertiesWithAPString", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

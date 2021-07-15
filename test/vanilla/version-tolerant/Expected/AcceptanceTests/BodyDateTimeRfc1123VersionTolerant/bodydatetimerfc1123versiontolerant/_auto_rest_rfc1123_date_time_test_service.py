@@ -12,13 +12,12 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from . import models
 from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from .operations import Datetimerfc1123Operations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -44,13 +43,12 @@ class AutoRestRFC1123DateTimeTestService(object):
         self._config = AutoRestRFC1123DateTimeTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.datetimerfc1123 = Datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -61,10 +59,10 @@ class AutoRestRFC1123DateTimeTestService(object):
         We have helper methods to create requests specific to this service in `bodydatetimerfc1123versiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydatetimerfc1123versiontolerant._rest import datetimerfc1123
+        >>> from bodydatetimerfc1123versiontolerant.rest import datetimerfc1123
         >>> request = datetimerfc1123.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/datetimerfc1123/null'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

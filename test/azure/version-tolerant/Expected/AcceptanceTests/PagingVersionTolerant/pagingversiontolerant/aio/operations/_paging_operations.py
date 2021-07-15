@@ -55,16 +55,31 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.ProductResultValue"]:
+    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResultValue]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "value": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResultValue"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -87,7 +102,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResultValue", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -110,15 +125,31 @@ class PagingOperations:
     get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}  # type: ignore
 
     @distributed_trace
-    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -141,7 +172,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -164,15 +195,31 @@ class PagingOperations:
     get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_single_pages(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -195,7 +242,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -218,17 +265,32 @@ class PagingOperations:
     get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
-    def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.ProductResultValue"]:
+    def first_response_empty(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResultValue]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "value": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResultValue"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -251,7 +313,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResultValue", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -275,24 +337,36 @@ class PagingOperations:
 
     @distributed_trace
     def get_multiple_pages(
-        self,
-        client_request_id: Optional[str] = None,
-        paging_get_multiple_pages_options: Optional["_models.PagingGetMultiplePagesOptions"] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResult"]:
+        self, *, client_request_id: Optional[str] = None, paging_get_multiple_pages_options: Any = None, **kwargs: Any
+    ) -> AsyncIterable[Any]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
-        :type client_request_id: str
-        :param paging_get_multiple_pages_options: Parameter group.
-        :type paging_get_multiple_pages_options:
-         ~pagingversiontolerant.models.PagingGetMultiplePagesOptions
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword paging_get_multiple_pages_options: Parameter group.
+        :paramtype paging_get_multiple_pages_options: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -331,7 +405,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -354,21 +428,35 @@ class PagingOperations:
     get_multiple_pages.metadata = {"url": "/paging/multiple"}  # type: ignore
 
     @distributed_trace
-    def get_with_query_params(
-        self, required_query_parameter: int, **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_with_query_params(self, *, required_query_parameter: int, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
-        :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
-         test.
-        :type required_query_parameter: int
+        :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
+         pass test.
+        :paramtype required_query_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -391,7 +479,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -416,24 +504,39 @@ class PagingOperations:
     @distributed_trace
     def get_odata_multiple_pages(
         self,
+        *,
         client_request_id: Optional[str] = None,
-        paging_get_odata_multiple_pages_options: Optional["_models.PagingGetOdataMultiplePagesOptions"] = None,
+        paging_get_odata_multiple_pages_options: Any = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.OdataProductResult"]:
+    ) -> AsyncIterable[Any]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id:
-        :type client_request_id: str
-        :param paging_get_odata_multiple_pages_options: Parameter group.
-        :type paging_get_odata_multiple_pages_options:
-         ~pagingversiontolerant.models.PagingGetOdataMultiplePagesOptions
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword paging_get_odata_multiple_pages_options: Parameter group.
+        :paramtype paging_get_odata_multiple_pages_options: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.OdataProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "odata.nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.OdataProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -472,7 +575,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("OdataProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -497,23 +600,39 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
-        paging_get_multiple_pages_with_offset_options: "_models.PagingGetMultiplePagesWithOffsetOptions",
+        *,
+        paging_get_multiple_pages_with_offset_options: Any,
         client_request_id: Optional[str] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResult"]:
+    ) -> AsyncIterable[Any]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param paging_get_multiple_pages_with_offset_options: Parameter group.
-        :type paging_get_multiple_pages_with_offset_options:
-         ~pagingversiontolerant.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id:
-        :type client_request_id: str
+        :keyword paging_get_multiple_pages_with_offset_options: Parameter group.
+        :paramtype paging_get_multiple_pages_with_offset_options: Any
+        :keyword client_request_id:
+        :paramtype client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -558,7 +677,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -581,16 +700,32 @@ class PagingOperations:
     get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -613,7 +748,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -636,16 +771,32 @@ class PagingOperations:
     get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -668,7 +819,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -691,15 +842,31 @@ class PagingOperations:
     get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -722,7 +889,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -745,15 +912,31 @@ class PagingOperations:
     get_single_pages_failure.metadata = {"url": "/paging/single/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -776,7 +959,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -799,15 +982,31 @@ class PagingOperations:
     get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -830,7 +1029,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -854,21 +1053,36 @@ class PagingOperations:
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
-        self, api_version: str, tenant: str, **kwargs: Any
-    ) -> AsyncIterable["_models.OdataProductResult"]:
+        self, tenant: str, *, api_version: str, **kwargs: Any
+    ) -> AsyncIterable[Any]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :param api_version: Sets the api version to use.
-        :type api_version: str
         :param tenant: Sets the tenant to use.
         :type tenant: str
+        :keyword api_version: Sets the api version to use.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.OdataProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "odata.nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.OdataProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -895,7 +1109,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("OdataProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -919,19 +1133,34 @@ class PagingOperations:
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
-        self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs: Any
-    ) -> AsyncIterable["_models.OdataProductResult"]:
+        self, *, custom_parameter_group: Any, **kwargs: Any
+    ) -> AsyncIterable[Any]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-        :param custom_parameter_group: Parameter group.
-        :type custom_parameter_group: ~pagingversiontolerant.models.CustomParameterGroup
+        :keyword custom_parameter_group: Parameter group.
+        :paramtype custom_parameter_group: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.OdataProductResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "odata.nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.OdataProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -968,7 +1197,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("OdataProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -992,11 +1221,12 @@ class PagingOperations:
 
     async def _get_multiple_pages_lro_initial(
         self,
+        *,
         client_request_id: Optional[str] = None,
-        paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
+        paging_get_multiple_pages_lro_options: Any = None,
         **kwargs: Any
-    ) -> "_models.ProductResult":
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+    ) -> Any:
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         _maxresults = None
@@ -1022,7 +1252,7 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ProductResult", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1034,17 +1264,17 @@ class PagingOperations:
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
         self,
+        *,
         client_request_id: Optional[str] = None,
-        paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
+        paging_get_multiple_pages_lro_options: Any = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged["_models.ProductResult"]]:
+    ) -> AsyncLROPoller[AsyncItemPaged[Any]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
-        :type client_request_id: str
-        :param paging_get_multiple_pages_lro_options: Parameter group.
-        :type paging_get_multiple_pages_lro_options:
-         ~pagingversiontolerant.models.PagingGetMultiplePagesLroOptions
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword paging_get_multiple_pages_lro_options: Parameter group.
+        :paramtype paging_get_multiple_pages_lro_options: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -1053,14 +1283,13 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of either
-         ProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResult]]
+        :return: An instance of AsyncLROPoller that returns an iterator like instance of either JSON
+         object or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[Any]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1099,7 +1328,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1118,7 +1347,7 @@ class PagingOperations:
             return pipeline_response
 
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
@@ -1159,20 +1388,32 @@ class PagingOperations:
     begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 
     @distributed_trace
-    def get_paging_model_with_item_name_with_xms_client_name(
-        self, **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResultValueWithXMSClientName"]:
+    def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result
-         of cls(response)
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~pagingversiontolerant.models.ProductResultValueWithXMSClientName]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1195,7 +1436,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResultValueWithXMSClientName", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.indexes
             if cls:
                 list_of_elem = cls(list_of_elem)

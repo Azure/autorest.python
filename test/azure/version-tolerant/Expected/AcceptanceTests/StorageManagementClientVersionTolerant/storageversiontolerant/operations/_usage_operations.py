@@ -59,15 +59,33 @@ class UsageOperations(object):
     def list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.UsageListResult"
+        # type: (...) -> Any
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: UsageListResult, or the result of cls(response)
-        :rtype: ~storageversiontolerant.models.UsageListResult
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "value": [
+                        {
+                            "currentValue": "int (optional)",
+                            "limit": "int (optional)",
+                            "name": {
+                                "localizedValue": "str (optional)",
+                                "value": "str (optional)"
+                            },
+                            "unit": "str (optional)"
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.UsageListResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -84,7 +102,7 @@ class UsageOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("UsageListResult", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

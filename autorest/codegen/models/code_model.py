@@ -64,6 +64,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         show_operations: Optional[bool] = True,
         show_send_request: Optional[bool] = False,
         only_path_and_body_params_positional: Optional[bool] = False,
+        version_tolerant: Optional[bool] = False,
     ) -> None:
         self.rest_layer_name = "rest" if show_builders else "_rest"
         self.send_request_name = "send_request" if show_send_request else "_send_request"
@@ -87,6 +88,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self._rest: Optional[Rest] = None
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
         self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
+        self.version_tolerant = version_tolerant
 
     @property
     def global_parameters(self) -> GlobalParameterList:

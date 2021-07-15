@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import date as rest_date
+from ..rest import date as rest_date
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,15 +38,11 @@ class DateOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodydateversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -62,8 +57,7 @@ class DateOperations(object):
         # type: (...) -> Optional[datetime.date]
         """Get null date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or None, or the result of cls(response)
+        :return: date or None
         :rtype: ~datetime.date or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -73,7 +67,7 @@ class DateOperations(object):
 
         request = rest_date.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -81,10 +75,12 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("date", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -100,8 +96,7 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get invalid date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -111,7 +106,7 @@ class DateOperations(object):
 
         request = rest_date.build_get_invalid_date_request(
             template_url=self.get_invalid_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -119,10 +114,12 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("date", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -138,8 +135,7 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get overflow date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -149,7 +145,7 @@ class DateOperations(object):
 
         request = rest_date.build_get_overflow_date_request(
             template_url=self.get_overflow_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -157,10 +153,12 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("date", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -176,8 +174,7 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get underflow date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -187,7 +184,7 @@ class DateOperations(object):
 
         request = rest_date.build_get_underflow_date_request(
             template_url=self.get_underflow_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -195,10 +192,12 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("date", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -218,8 +217,7 @@ class DateOperations(object):
 
         :param date_body: date body.
         :type date_body: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -228,13 +226,13 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(date_body, "date")
+        json = date_body
 
         request = rest_date.build_put_max_date_request(
             content_type=content_type,
             json=json,
             template_url=self.put_max_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -242,8 +240,7 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -257,8 +254,7 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get max date value 9999-12-31.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -268,7 +264,7 @@ class DateOperations(object):
 
         request = rest_date.build_get_max_date_request(
             template_url=self.get_max_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -276,10 +272,12 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("date", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -299,8 +297,7 @@ class DateOperations(object):
 
         :param date_body: date body.
         :type date_body: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -309,13 +306,13 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(date_body, "date")
+        json = date_body
 
         request = rest_date.build_put_min_date_request(
             content_type=content_type,
             json=json,
             template_url=self.put_min_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -323,8 +320,7 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -338,8 +334,7 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get min date value 0000-01-01.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date, or the result of cls(response)
+        :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -349,7 +344,7 @@ class DateOperations(object):
 
         request = rest_date.build_get_min_date_request(
             template_url=self.get_min_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -357,10 +352,12 @@ class DateOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("date", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

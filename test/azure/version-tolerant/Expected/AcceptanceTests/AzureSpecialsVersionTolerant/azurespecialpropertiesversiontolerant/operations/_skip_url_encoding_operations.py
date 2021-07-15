@@ -169,15 +169,13 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_method_query_valid(
-        self,
-        q1,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
-        :type q1: str
+        :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :paramtype q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -186,6 +184,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        q1 = kwargs.pop("q1")  # type: str
 
         request = rest_skip_url_encoding.build_get_method_query_valid_request(
             q1=q1,
@@ -208,15 +207,13 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_method_query_null(
-        self,
-        q1=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with unencoded query parameter with value null.
 
-        :param q1: Unencoded query parameter with value null.
-        :type q1: str
+        :keyword q1: Unencoded query parameter with value null.
+        :paramtype q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -225,6 +222,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        q1 = kwargs.pop("q1", None)  # type: Optional[str]
 
         request = rest_skip_url_encoding.build_get_method_query_null_request(
             q1=q1,
@@ -247,15 +245,13 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_path_query_valid(
-        self,
-        q1,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
-        :type q1: str
+        :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :paramtype q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -264,6 +260,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        q1 = kwargs.pop("q1")  # type: str
 
         request = rest_skip_url_encoding.build_get_path_query_valid_request(
             q1=q1,

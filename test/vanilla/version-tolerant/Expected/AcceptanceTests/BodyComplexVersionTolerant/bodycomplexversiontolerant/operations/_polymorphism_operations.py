@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import polymorphism as rest_polymorphism
+from ..rest import polymorphism as rest_polymorphism
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class PolymorphismOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodycomplexversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -58,21 +53,33 @@ class PolymorphismOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Fish"
+        # type: (...) -> Any
         """Get complex types that are polymorphic.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Fish, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Fish
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "fishtype": "fishtype",
+                    "length": "float",
+                    "siblings": [
+                        "..."
+                    ],
+                    "species": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Fish"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphism.build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -80,10 +87,12 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Fish", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -95,7 +104,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "_models.Fish"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -134,24 +143,38 @@ class PolymorphismOperations(object):
                    }
                  ]
                };.
-        :type complex_body: ~bodycomplexversiontolerant.models.Fish
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                fishtype = 'Salmon' or 'Shark'
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "fishtype": "fishtype",
+                    "length": "float",
+                    "siblings": [
+                        "..."
+                    ],
+                    "species": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        json = complex_body
 
         request = rest_polymorphism.build_put_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -159,8 +182,7 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -171,21 +193,29 @@ class PolymorphismOperations(object):
     def get_dot_syntax(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DotFish"
+        # type: (...) -> Any
         """Get complex types that are polymorphic, JSON key contains a dot.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFish, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DotFish
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "fish.type": "fish.type",
+                    "species": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DotFish"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphism.build_get_dot_syntax_request(
             template_url=self.get_dot_syntax.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -193,10 +223,12 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DotFish", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -209,23 +241,49 @@ class PolymorphismOperations(object):
     def get_composed_with_discriminator(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DotFishMarket"
+        # type: (...) -> Any
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, with discriminator specified. Deserialization must NOT fail and use the
         discriminator type specified on the wire.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFishMarket, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DotFishMarket
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "fishes": [
+                        {
+                            "fish.type": "fish.type",
+                            "species": "str (optional)"
+                        }
+                    ],
+                    "salmons": [
+                        {
+                            "iswild": "bool (optional)",
+                            "location": "str (optional)"
+                        }
+                    ],
+                    "sampleFish": {
+                        "fish.type": "fish.type",
+                        "species": "str (optional)"
+                    },
+                    "sampleSalmon": {
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DotFishMarket"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphism.build_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -233,10 +291,12 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DotFishMarket", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -249,23 +309,49 @@ class PolymorphismOperations(object):
     def get_composed_without_discriminator(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DotFishMarket"
+        # type: (...) -> Any
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, without discriminator specified on wire. Deserialization must NOT fail and use
         the explicit type of the property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFishMarket, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DotFishMarket
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "fishes": [
+                        {
+                            "fish.type": "fish.type",
+                            "species": "str (optional)"
+                        }
+                    ],
+                    "salmons": [
+                        {
+                            "iswild": "bool (optional)",
+                            "location": "str (optional)"
+                        }
+                    ],
+                    "sampleFish": {
+                        "fish.type": "fish.type",
+                        "species": "str (optional)"
+                    },
+                    "sampleSalmon": {
+                        "iswild": "bool (optional)",
+                        "location": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DotFishMarket"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphism.build_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -273,10 +359,12 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DotFishMarket", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -289,22 +377,30 @@ class PolymorphismOperations(object):
     def get_complicated(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Salmon"
+        # type: (...) -> Any
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Salmon
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "iswild": "bool (optional)",
+                    "location": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Salmon"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_polymorphism.build_get_complicated_request(
             template_url=self.get_complicated.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -312,10 +408,12 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Salmon", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -327,7 +425,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_complicated(
         self,
-        complex_body,  # type: "_models.Salmon"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -335,24 +433,34 @@ class PolymorphismOperations(object):
         additional properties.
 
         :param complex_body:
-        :type complex_body: ~bodycomplexversiontolerant.models.Salmon
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                fishtype = 'SmartSalmon'
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "iswild": "bool (optional)",
+                    "location": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Salmon")
+        json = complex_body
 
         request = rest_polymorphism.build_put_complicated_request(
             content_type=content_type,
             json=json,
             template_url=self.put_complicated.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -360,8 +468,7 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -371,31 +478,47 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_missing_discriminator(
         self,
-        complex_body,  # type: "_models.Salmon"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Salmon"
+        # type: (...) -> Any
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
-        :type complex_body: ~bodycomplexversiontolerant.models.Salmon
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Salmon
+        :type complex_body: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                fishtype = 'SmartSalmon'
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "iswild": "bool (optional)",
+                    "location": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "iswild": "bool (optional)",
+                    "location": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Salmon"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Salmon")
+        json = complex_body
 
         request = rest_polymorphism.build_put_missing_discriminator_request(
             content_type=content_type,
             json=json,
             template_url=self.put_missing_discriminator.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -403,10 +526,12 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Salmon", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -418,7 +543,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_valid_missing_required(
         self,
-        complex_body,  # type: "_models.Fish"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -452,24 +577,38 @@ class PolymorphismOperations(object):
                  }
              ]
          }.
-        :type complex_body: ~bodycomplexversiontolerant.models.Fish
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                fishtype = 'Salmon' or 'Shark'
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "fishtype": "fishtype",
+                    "length": "float",
+                    "siblings": [
+                        "..."
+                    ],
+                    "species": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        json = complex_body
 
         request = rest_polymorphism.build_put_valid_missing_required_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid_missing_required.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -477,8 +616,7 @@ class PolymorphismOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

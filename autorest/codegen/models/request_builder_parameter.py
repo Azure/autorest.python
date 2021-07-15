@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
-from .parameter import ParameterOnlyPathsPositional, ParameterLocation, ParameterStyle
+from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle
 from .constant_schema import ConstantSchema
 
 def _make_public(name):
@@ -12,7 +12,7 @@ def _make_public(name):
         return name[1:]
     return name
 
-class RequestBuilderParameter(ParameterOnlyPathsPositional):
+class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @staticmethod
     def serialize_line(function_name: str, parameters_line: str):

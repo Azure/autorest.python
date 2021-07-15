@@ -46,7 +46,7 @@ class AutoRestHeadTestService:
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `headversiontolerant.rest`.
@@ -55,7 +55,7 @@ class AutoRestHeadTestService:
         >>> from headversiontolerant._rest import http_success
         >>> request = http_success.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

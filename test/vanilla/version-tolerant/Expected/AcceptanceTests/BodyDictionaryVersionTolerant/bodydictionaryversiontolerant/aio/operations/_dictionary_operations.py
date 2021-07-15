@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import dictionary as rest_dictionary
+from ...rest import dictionary as rest_dictionary
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -35,15 +34,11 @@ class DictionaryOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodydictionaryversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -55,10 +50,17 @@ class DictionaryOperations:
     async def get_null(self, **kwargs: Any) -> Dict[str, int]:
         """Get null dictionary value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -66,7 +68,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -76,10 +78,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -92,10 +96,17 @@ class DictionaryOperations:
     async def get_empty(self, **kwargs: Any) -> Dict[str, int]:
         """Get empty dictionary value {}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -103,7 +114,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -113,10 +124,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -131,23 +144,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{str}")
+        json = array_body
 
         request = rest_dictionary.build_put_empty_request(
             content_type=content_type,
             json=json,
             template_url=self.put_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -157,8 +177,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -169,10 +188,17 @@ class DictionaryOperations:
     async def get_null_value(self, **kwargs: Any) -> Dict[str, str]:
         """Get Dictionary with null value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -180,7 +206,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_null_value_request(
             template_url=self.get_null_value.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -190,10 +216,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -206,10 +234,17 @@ class DictionaryOperations:
     async def get_null_key(self, **kwargs: Any) -> Dict[str, str]:
         """Get Dictionary with null key.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -217,7 +252,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_null_key_request(
             template_url=self.get_null_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -227,10 +262,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -243,10 +280,17 @@ class DictionaryOperations:
     async def get_empty_string_key(self, **kwargs: Any) -> Dict[str, str]:
         """Get Dictionary with key as empty string.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -254,7 +298,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_empty_string_key_request(
             template_url=self.get_empty_string_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -264,10 +308,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -280,10 +326,17 @@ class DictionaryOperations:
     async def get_invalid(self, **kwargs: Any) -> Dict[str, str]:
         """Get invalid Dictionary value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -291,7 +344,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -301,10 +354,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -317,10 +372,17 @@ class DictionaryOperations:
     async def get_boolean_tfft(self, **kwargs: Any) -> Dict[str, bool]:
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bool, or the result of cls(response)
+        :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -328,7 +390,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_boolean_tfft_request(
             template_url=self.get_boolean_tfft.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -338,10 +400,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{bool}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -356,23 +420,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, bool]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{bool}")
+        json = array_body
 
         request = rest_dictionary.build_put_boolean_tfft_request(
             content_type=content_type,
             json=json,
             template_url=self.put_boolean_tfft.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -382,8 +453,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -394,10 +464,17 @@ class DictionaryOperations:
     async def get_boolean_invalid_null(self, **kwargs: Any) -> Dict[str, bool]:
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bool, or the result of cls(response)
+        :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -405,7 +482,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_boolean_invalid_null_request(
             template_url=self.get_boolean_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -415,10 +492,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{bool}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -431,10 +510,17 @@ class DictionaryOperations:
     async def get_boolean_invalid_string(self, **kwargs: Any) -> Dict[str, bool]:
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bool, or the result of cls(response)
+        :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -442,7 +528,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_boolean_invalid_string_request(
             template_url=self.get_boolean_invalid_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -452,10 +538,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{bool}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -468,10 +556,17 @@ class DictionaryOperations:
     async def get_integer_valid(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -479,7 +574,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_integer_valid_request(
             template_url=self.get_integer_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -489,10 +584,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -507,23 +604,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, int]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{int}")
+        json = array_body
 
         request = rest_dictionary.build_put_integer_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_integer_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -533,8 +637,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -545,10 +648,17 @@ class DictionaryOperations:
     async def get_int_invalid_null(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -556,7 +666,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_int_invalid_null_request(
             template_url=self.get_int_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -566,10 +676,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -582,10 +694,17 @@ class DictionaryOperations:
     async def get_int_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -593,7 +712,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_int_invalid_string_request(
             template_url=self.get_int_invalid_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -603,10 +722,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -619,10 +740,17 @@ class DictionaryOperations:
     async def get_long_valid(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to long, or the result of cls(response)
+        :return: dict mapping str to long
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "long (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -630,7 +758,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_long_valid_request(
             template_url=self.get_long_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -640,10 +768,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -658,23 +788,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, long]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "long (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{long}")
+        json = array_body
 
         request = rest_dictionary.build_put_long_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_long_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -684,8 +821,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -696,10 +832,17 @@ class DictionaryOperations:
     async def get_long_invalid_null(self, **kwargs: Any) -> Dict[str, int]:
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to long, or the result of cls(response)
+        :return: dict mapping str to long
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "long (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -707,7 +850,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_long_invalid_null_request(
             template_url=self.get_long_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -717,10 +860,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -733,10 +878,17 @@ class DictionaryOperations:
     async def get_long_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to long, or the result of cls(response)
+        :return: dict mapping str to long
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "long (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -744,7 +896,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_long_invalid_string_request(
             template_url=self.get_long_invalid_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -754,10 +906,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -770,10 +924,17 @@ class DictionaryOperations:
     async def get_float_valid(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -781,7 +942,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_float_valid_request(
             template_url=self.get_float_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -791,10 +952,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -809,23 +972,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, float]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{float}")
+        json = array_body
 
         request = rest_dictionary.build_put_float_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_float_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -835,8 +1005,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -847,10 +1016,17 @@ class DictionaryOperations:
     async def get_float_invalid_null(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -858,7 +1034,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_float_invalid_null_request(
             template_url=self.get_float_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -868,10 +1044,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -884,10 +1062,17 @@ class DictionaryOperations:
     async def get_float_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -895,7 +1080,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_float_invalid_string_request(
             template_url=self.get_float_invalid_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -905,10 +1090,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -921,10 +1108,17 @@ class DictionaryOperations:
     async def get_double_valid(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -932,7 +1126,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_double_valid_request(
             template_url=self.get_double_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -942,10 +1136,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -960,23 +1156,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, float]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{float}")
+        json = array_body
 
         request = rest_dictionary.build_put_double_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_double_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -986,8 +1189,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -998,10 +1200,17 @@ class DictionaryOperations:
     async def get_double_invalid_null(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1009,7 +1218,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_double_invalid_null_request(
             template_url=self.get_double_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1019,10 +1228,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1035,10 +1246,17 @@ class DictionaryOperations:
     async def get_double_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to float, or the result of cls(response)
+        :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1046,7 +1264,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_double_invalid_string_request(
             template_url=self.get_double_invalid_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1056,10 +1274,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1072,10 +1292,17 @@ class DictionaryOperations:
     async def get_string_valid(self, **kwargs: Any) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1083,7 +1310,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_string_valid_request(
             template_url=self.get_string_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1093,10 +1320,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1111,23 +1340,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{str}")
+        json = array_body
 
         request = rest_dictionary.build_put_string_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_string_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1137,8 +1373,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1149,10 +1384,17 @@ class DictionaryOperations:
     async def get_string_with_null(self, **kwargs: Any) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1160,7 +1402,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_string_with_null_request(
             template_url=self.get_string_with_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1170,10 +1412,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1186,10 +1430,17 @@ class DictionaryOperations:
     async def get_string_with_invalid(self, **kwargs: Any) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1197,7 +1448,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_string_with_invalid_request(
             template_url=self.get_string_with_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1207,10 +1458,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1223,10 +1476,17 @@ class DictionaryOperations:
     async def get_date_valid(self, **kwargs: Any) -> Dict[str, datetime.date]:
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to date, or the result of cls(response)
+        :return: dict mapping str to date
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "date (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1234,7 +1494,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_valid_request(
             template_url=self.get_date_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1244,10 +1504,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{date}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1262,23 +1524,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, ~datetime.date]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "date (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{date}")
+        json = array_body
 
         request = rest_dictionary.build_put_date_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_date_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1288,8 +1557,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1300,10 +1568,17 @@ class DictionaryOperations:
     async def get_date_invalid_null(self, **kwargs: Any) -> Dict[str, datetime.date]:
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to date, or the result of cls(response)
+        :return: dict mapping str to date
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "date (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1311,7 +1586,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_invalid_null_request(
             template_url=self.get_date_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1321,10 +1596,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{date}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1337,10 +1614,17 @@ class DictionaryOperations:
     async def get_date_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.date]:
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to date, or the result of cls(response)
+        :return: dict mapping str to date
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "date (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1348,7 +1632,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_invalid_chars_request(
             template_url=self.get_date_invalid_chars.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1358,10 +1642,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{date}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1375,10 +1661,17 @@ class DictionaryOperations:
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
         "2": "1492-10-12T10:15:01-08:00"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1386,7 +1679,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_time_valid_request(
             template_url=self.get_date_time_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1396,10 +1689,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{iso-8601}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1415,23 +1710,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, ~datetime.datetime]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{iso-8601}")
+        json = array_body
 
         request = rest_dictionary.build_put_date_time_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_date_time_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1441,8 +1743,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1453,10 +1754,17 @@ class DictionaryOperations:
     async def get_date_time_invalid_null(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1464,7 +1772,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_time_invalid_null_request(
             template_url=self.get_date_time_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1474,10 +1782,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{iso-8601}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1490,10 +1800,17 @@ class DictionaryOperations:
     async def get_date_time_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1501,7 +1818,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_time_invalid_chars_request(
             template_url=self.get_date_time_invalid_chars.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1511,10 +1828,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{iso-8601}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1528,10 +1847,17 @@ class DictionaryOperations:
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
         1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to datetime, or the result of cls(response)
+        :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1539,7 +1865,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_date_time_rfc1123_valid_request(
             template_url=self.get_date_time_rfc1123_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1549,10 +1875,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{rfc-1123}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1568,23 +1896,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, ~datetime.datetime]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{rfc-1123}")
+        json = array_body
 
         request = rest_dictionary.build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_date_time_rfc1123_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1594,8 +1929,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1606,10 +1940,17 @@ class DictionaryOperations:
     async def get_duration_valid(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to timedelta, or the result of cls(response)
+        :return: dict mapping str to timedelta
         :rtype: dict[str, ~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "timedelta (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1617,7 +1958,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_duration_valid_request(
             template_url=self.get_duration_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1627,10 +1968,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{duration}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1645,23 +1988,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, ~datetime.timedelta]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "timedelta (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{duration}")
+        json = array_body
 
         request = rest_dictionary.build_put_duration_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_duration_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1671,8 +2021,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1684,10 +2033,17 @@ class DictionaryOperations:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each item encoded in base64.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bytearray, or the result of cls(response)
+        :return: dict mapping str to bytearray
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "bytearray (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1695,7 +2051,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_byte_valid_request(
             template_url=self.get_byte_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1705,10 +2061,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{bytearray}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1724,23 +2082,30 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, bytearray]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": "bytearray (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{bytearray}")
+        json = array_body
 
         request = rest_dictionary.build_put_byte_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_byte_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1750,8 +2115,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1763,10 +2127,17 @@ class DictionaryOperations:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
         encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bytearray, or the result of cls(response)
+        :return: dict mapping str to bytearray
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "bytearray (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1774,7 +2145,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_byte_invalid_null_request(
             template_url=self.get_byte_invalid_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1784,10 +2155,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{bytearray}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1801,10 +2174,17 @@ class DictionaryOperations:
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
         string", "2": "Lorem ipsum"}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to bytes, or the result of cls(response)
+        :return: dict mapping str to bytes
         :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "bytes (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1812,7 +2192,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_base64_url_request(
             template_url=self.get_base64_url.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1822,10 +2202,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{base64}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1835,21 +2217,31 @@ class DictionaryOperations:
     get_base64_url.metadata = {"url": "/dictionary/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, "_models.Widget"]]:
+    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, Any]]:
         """Get dictionary of complex type null value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget or None, or the result of cls(response)
-        :rtype: dict[str, ~bodydictionaryversiontolerant.models.Widget] or None
+        :return: dict mapping str to JSON object or None
+        :rtype: dict[str, Any] or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, "_models.Widget"]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, Any]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_null_request(
             template_url=self.get_complex_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1859,10 +2251,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1872,21 +2266,31 @@ class DictionaryOperations:
     get_complex_null.metadata = {"url": "/dictionary/complex/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, Any]:
         """Get empty dictionary of complex type {}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
-        :rtype: dict[str, ~bodydictionaryversiontolerant.models.Widget]
+        :return: dict mapping str to JSON object
+        :rtype: dict[str, Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_empty_request(
             template_url=self.get_complex_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1896,10 +2300,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1909,22 +2315,32 @@ class DictionaryOperations:
     get_complex_empty.metadata = {"url": "/dictionary/complex/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, Any]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
-        :rtype: dict[str, ~bodydictionaryversiontolerant.models.Widget]
+        :return: dict mapping str to JSON object
+        :rtype: dict[str, Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_item_null_request(
             template_url=self.get_complex_item_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1934,10 +2350,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1947,22 +2365,32 @@ class DictionaryOperations:
     get_complex_item_null.metadata = {"url": "/dictionary/complex/itemnull"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, Any]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
-        :rtype: dict[str, ~bodydictionaryversiontolerant.models.Widget]
+        :return: dict mapping str to JSON object
+        :rtype: dict[str, Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_item_empty_request(
             template_url=self.get_complex_item_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1972,10 +2400,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1985,22 +2415,32 @@ class DictionaryOperations:
     get_complex_item_empty.metadata = {"url": "/dictionary/complex/itemempty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, Any]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
-        :rtype: dict[str, ~bodydictionaryversiontolerant.models.Widget]
+        :return: dict mapping str to JSON object
+        :rtype: dict[str, Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_dictionary.build_get_complex_valid_request(
             template_url=self.get_complex_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2010,10 +2450,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2023,29 +2465,39 @@ class DictionaryOperations:
     get_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: Dict[str, "_models.Widget"], **kwargs: Any) -> None:
+    async def put_complex_valid(self, array_body: Dict[str, Any], **kwargs: Any) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body:
-        :type array_body: dict[str, ~bodydictionaryversiontolerant.models.Widget]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type array_body: dict[str, Any]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": {
+                        "integer": "int (optional)",
+                        "string": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{Widget}")
+        json = array_body
 
         request = rest_dictionary.build_put_complex_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_complex_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2055,8 +2507,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -2067,10 +2518,19 @@ class DictionaryOperations:
     async def get_array_null(self, **kwargs: Any) -> Optional[Dict[str, List[str]]]:
         """Get a null array.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str or None, or the result of cls(response)
+        :return: dict mapping str to list of str or None
         :rtype: dict[str, list[str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, List[str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2078,7 +2538,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_array_null_request(
             template_url=self.get_array_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2088,10 +2548,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2104,10 +2566,19 @@ class DictionaryOperations:
     async def get_array_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an empty dictionary {}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2115,7 +2586,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_array_empty_request(
             template_url=self.get_array_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2125,10 +2596,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2141,10 +2614,19 @@ class DictionaryOperations:
     async def get_array_item_null(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2152,7 +2634,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_array_item_null_request(
             template_url=self.get_array_item_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2162,10 +2644,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2178,10 +2662,19 @@ class DictionaryOperations:
     async def get_array_item_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2189,7 +2682,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_array_item_empty_request(
             template_url=self.get_array_item_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2199,10 +2692,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2216,10 +2711,19 @@ class DictionaryOperations:
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
+        :return: dict mapping str to list of str
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2227,7 +2731,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_array_valid_request(
             template_url=self.get_array_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2237,10 +2741,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2256,23 +2762,32 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, list[str]]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": [
+                        "str (optional)"
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{[str]}")
+        json = array_body
 
         request = rest_dictionary.build_put_array_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_array_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2282,8 +2797,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -2294,10 +2808,19 @@ class DictionaryOperations:
     async def get_dictionary_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries with value null.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2305,7 +2828,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_dictionary_null_request(
             template_url=self.get_dictionary_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2315,10 +2838,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2331,10 +2856,19 @@ class DictionaryOperations:
     async def get_dictionary_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2342,7 +2876,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_dictionary_empty_request(
             template_url=self.get_dictionary_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2352,10 +2886,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2369,10 +2905,19 @@ class DictionaryOperations:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2380,7 +2925,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_dictionary_item_null_request(
             template_url=self.get_dictionary_item_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2390,10 +2935,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2407,10 +2954,19 @@ class DictionaryOperations:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2418,7 +2974,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_dictionary_item_empty_request(
             template_url=self.get_dictionary_item_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2428,10 +2984,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2446,10 +3004,19 @@ class DictionaryOperations:
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :return: dict mapping str to dict mapping str to str
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2457,7 +3024,7 @@ class DictionaryOperations:
 
         request = rest_dictionary.build_get_dictionary_valid_request(
             template_url=self.get_dictionary_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2467,10 +3034,12 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2487,23 +3056,32 @@ class DictionaryOperations:
 
         :param array_body:
         :type array_body: dict[str, dict[str, str]]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                array_body = {
+                    "str": {
+                        "str": "str (optional)"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "{{str}}")
+        json = array_body
 
         request = rest_dictionary.build_put_dictionary_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_dictionary_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2513,8 +3091,7 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

@@ -12,7 +12,6 @@ from typing import TYPE_CHECKING
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from . import models
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations import (
     ApiVersionDefaultOperations,
@@ -27,7 +26,7 @@ from .operations import (
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
@@ -80,7 +79,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
@@ -105,7 +104,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -119,7 +118,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         >>> from azurespecialpropertiesversiontolerant._rest import xms_client_request_id
         >>> request = xms_client_request_id.build_get_request(**kwargs)
         <HttpRequest [GET], url: '/azurespecials/overwrite/x-ms-client-request-id/method/'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

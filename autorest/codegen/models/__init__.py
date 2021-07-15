@@ -7,7 +7,7 @@ from typing import Any, Dict, TypeVar, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .object_schema import ObjectSchema
+from .object_schema import ObjectSchema, get_object_schema, NoModelObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
 from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema
@@ -59,6 +59,7 @@ __all__ = [
     "BaseBuilder",
     "SchemaRequest",
     "RequestBuilderParameter",
+    "NoModelObjectSchema",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
@@ -104,7 +105,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         if _generate_as_object_schema(yaml_data):
             # To avoid infinite loop, create the right instance in memory,
             # put it in the index, and then parse the object.
-            schema = ObjectSchema(namespace, yaml_data, "_", "")
+            schema = get_object_schema(code_model)(namespace, yaml_data, "_", "")
             code_model.schemas[yaml_id] = schema
             schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         else:

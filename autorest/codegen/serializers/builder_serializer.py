@@ -24,6 +24,7 @@ from ..models import (
     Parameter,
     RequestBuilder,
     RequestBuilderParameter,
+    NoModelObjectSchema,
 )
 from . import utils
 
@@ -70,66 +71,7 @@ def _serialize_files_parameter(builder: BuilderType) -> List[str]:
     retval.append("}")
     return retval
 
-def _serialize_body_call(
-    builder: BuilderType, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
-) -> str:
-    body_param = builder.parameters.body[0]
-    body_is_xml = ", is_xml=True" if send_xml else ""
-    pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
-    return (
-        f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, "
-        f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
-    )
 
-def _serialize_body(builder: BuilderType) -> List[str]:
-    retval = []
-    send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.parameters.content_types]))
-    ser_ctxt_name = "serialization_ctxt"
-    ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
-    if ser_ctxt:
-        retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
-    body_param = builder.parameters.body[0]
-    serialize_body_call = _serialize_body_call(
-        builder,
-        send_xml,
-        ser_ctxt,
-        ser_ctxt_name,
-    )
-    if body_param.required:
-        retval.append(serialize_body_call)
-    else:
-        retval.append(f"if {body_param.serialized_name} is not None:")
-        retval.append("    " + serialize_body_call)
-        if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
-            retval.append("else:")
-            retval.append(f"    {builder.serialized_body_kwarg} = None")
-    return retval
-
-def _set_body_content_kwarg(builder: BuilderType, schema_request: SchemaRequest):
-    retval = []
-    if schema_request.is_stream_request:
-        retval.append(f"content = {builder.parameters.body[0].serialized_name}")
-    elif schema_request.body_parameter_has_schema and not builder.request_builder.multipart:
-        retval.extend(_serialize_body(builder))
-    return retval
-
-
-def _serialize_body_parameters(
-    builder: BuilderType,
-) -> List[str]:
-    retval = []
-    if len(builder.request_builder.schema_requests) == 1:
-        retval.extend(_set_body_content_kwarg(builder, builder.request_builder.schema_requests[0]))
-    else:
-        for idx, schema_request in enumerate(builder.request_builder.schema_requests):
-            if_statement = "if" if idx == 0 else "elif"
-            retval.append(
-                f'{if_statement} content_type.split(";")[0] in {schema_request.pre_semicolon_media_types}:'
-            )
-            retval.extend(["    " + line for line in _set_body_content_kwarg(builder, schema_request)])
-        retval.extend(_content_type_error_check(builder))
-
-    return retval
 
 def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
     retval = []
@@ -260,6 +202,10 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
     def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
 
+    @property
+    def _cls_docstring_rtype(self) -> str:
+        return "" if self.code_model.version_tolerant else " or the result of cls(response)"
+
     def _method_signature(self, builder: BuilderType) -> str:
         return utils.serialize_method(
             function_def=self._function_definition,
@@ -316,7 +262,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
             response
             for response in builder.responses
             if any(code in builder.success_status_code for code in response.status_codes)
-            and isinstance(response.schema, (DictionarySchema, ListSchema, ObjectSchema))
+            and isinstance(response.schema, (DictionarySchema, ListSchema, ObjectSchema, NoModelObjectSchema))
         ]
         retval = defaultdict(list)
         for response in responses:
@@ -372,7 +318,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
                 if i != num_schemas - 1:
                     template.append("# OR")
             template.append("")
-        template.append("# JSON input template you can fill out and use as your `json` input.")
+        template.append("# JSON input template you can fill out and use as your body input.")
         json_template = _serialize_json_dict(
             builder.parameters.json_body.get_json_template_representation(),
         )
@@ -524,9 +470,10 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
 
     def param_description(self, builder: BuilderType) -> List[str]:  # pylint: disable=no-self-use
         description_list = super().param_description(builder)
-        description_list.append(
-            ":keyword callable cls: A custom type or function that will be passed the direct response"
-        )
+        if not self.code_model.version_tolerant:
+            description_list.append(
+                ":keyword callable cls: A custom type or function that will be passed the direct response"
+            )
         return description_list
 
     def _response_docstring_type_template(self, builder: BuilderType) -> str:
@@ -556,7 +503,8 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use, unused-argument
-        return "{}, or the result of cls(response)"
+        cls_str = f",{self._cls_docstring_rtype}" if self._cls_docstring_rtype else ""
+        return "{}" + cls_str
 
     def response_docstring(self, builder: BuilderType) -> List[str]:
         responses_with_body = [r for r in builder.responses if r.has_body]
@@ -598,6 +546,69 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return False
 
+    def _serialize_body_call(
+        self, builder: BuilderType, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
+    ) -> str:
+        body_param = builder.parameters.body[0]
+        body_is_xml = ", is_xml=True" if send_xml else ""
+        pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
+        if self.code_model.show_models:
+            return (
+                f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, "
+                f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
+            )
+        return f"{builder.serialized_body_kwarg} = {body_param.serialized_name}"
+
+    def _serialize_body(self, builder: BuilderType) -> List[str]:
+        retval = []
+        send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.parameters.content_types]))
+        ser_ctxt_name = "serialization_ctxt"
+        ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
+        if ser_ctxt:
+            retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
+        body_param = builder.parameters.body[0]
+        serialize_body_call = self._serialize_body_call(
+            builder,
+            send_xml,
+            ser_ctxt,
+            ser_ctxt_name,
+        )
+        if body_param.required:
+            retval.append(serialize_body_call)
+        else:
+            retval.append(f"if {body_param.serialized_name} is not None:")
+            retval.append("    " + serialize_body_call)
+            if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
+                retval.append("else:")
+                retval.append(f"    {builder.serialized_body_kwarg} = None")
+        return retval
+
+    def _set_body_content_kwarg(self, builder: BuilderType, schema_request: SchemaRequest):
+        retval = []
+        if schema_request.is_stream_request:
+            retval.append(f"content = {builder.parameters.body[0].serialized_name}")
+        elif schema_request.body_parameter_has_schema and not builder.request_builder.multipart:
+            retval.extend(self._serialize_body(builder))
+        return retval
+
+
+    def _serialize_body_parameters(
+        self, builder: BuilderType,
+    ) -> List[str]:
+        retval = []
+        if len(builder.request_builder.schema_requests) == 1:
+            retval.extend(self._set_body_content_kwarg(builder, builder.request_builder.schema_requests[0]))
+        else:
+            for idx, schema_request in enumerate(builder.request_builder.schema_requests):
+                if_statement = "if" if idx == 0 else "elif"
+                retval.append(
+                    f'{if_statement} content_type.split(";")[0] in {schema_request.pre_semicolon_media_types}:'
+                )
+                retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, schema_request)])
+            retval.extend(_content_type_error_check(builder))
+
+        return retval
+
     def _call_request_builder_helper(
         self,
         builder: BuilderType,
@@ -622,7 +633,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
         for constant_body in builder.parameters.constant_bodies:
             retval.append(f"{constant_body.serialized_name} = {constant_body.constant_declaration}")
         if builder.parameters.has_body:
-            retval.extend(_serialize_body_parameters(builder))
+            retval.extend(self._serialize_body_parameters(builder))
         operation_group_name = request_builder.operation_group_name
         request_path_name = "rest{}.{}".format(
             ("_" + operation_group_name) if operation_group_name else "", request_builder.name
@@ -639,7 +650,9 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
                 retval.append(f"    {kwarg}={kwarg},")
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
-        retval.append(")._to_pipeline_transport_request()")
+
+        convert_to_legacy = "" if self.code_model.version_tolerant else "._to_pipeline_transport_request()"
+        retval.append(f"){convert_to_legacy}")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))
         retval.append(
@@ -696,7 +709,7 @@ class AsyncOperationSerializer(OperationBaseSerializer):
 
 class PagingOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=abstract-method
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use, unused-argument
-        return "An iterator like instance of either {} or the result of cls(response)"
+        return "An iterator like instance of {}" + self._cls_docstring_rtype
 
     def cls_type_annotation(self, builder: BuilderType) -> str:
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
@@ -772,7 +785,9 @@ class LROOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=ab
 class SyncLROOperationSerializer(LROOperationBaseSerializer, SyncOperationSerializer):
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
         lro_section = f"An instance of {builder.get_poller(async_mode=False)} "
-        return lro_section + "that returns either {} or the result of cls(response)"
+        if self._cls_docstring_rtype:
+            return lro_section + "that returns either {}" + self._cls_docstring_rtype
+        return lro_section + "that returns {}"
 
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_poller_path(async_mode=False)}"]
@@ -792,7 +807,9 @@ class AsyncLROOperationSerializer(LROOperationBaseSerializer, AsyncOperationSeri
 
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
         lro_section = f"An instance of {builder.get_poller(async_mode=True)} "
-        return lro_section + "that returns either {} or the result of cls(response)"
+        if self._cls_docstring_rtype:
+            return lro_section + "that returns either {}" + self._cls_docstring_rtype
+        return lro_section + "that returns {}"
 
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_poller_path(async_mode=True)}"]
@@ -827,7 +844,7 @@ class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOpe
         lro_doc = SyncLROOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = SyncPagingOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
-        return lro_doc.format(paging_doc).replace(" or the result of cls(response)", "", 1).replace("either ", "", 1)
+        return lro_doc.format(paging_doc).replace(f" {self._cls_docstring_rtype}", "", 1).replace("either ", "", 1)
 
     def cls_type_annotation(self, builder: BuilderType) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
@@ -852,7 +869,7 @@ class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPaging
         lro_doc = AsyncLROOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = AsyncPagingOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
-        return lro_doc.format(paging_doc).replace(" or the result of cls(response)", "", 1).replace("either ", "", 1)
+        return lro_doc.format(paging_doc).replace(f" {self._cls_docstring_rtype}", "", 1).replace("either ", "", 1)
 
 
 def get_operation_serializer(builder: BuilderType, code_model, async_mode: bool) -> OperationBaseSerializer:

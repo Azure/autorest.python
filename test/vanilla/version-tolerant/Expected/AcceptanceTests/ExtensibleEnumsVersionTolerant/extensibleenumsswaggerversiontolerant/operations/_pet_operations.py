@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import pet as rest_pet
+from ..rest import pet as rest_pet
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class PetOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~extensibleenumsswaggerversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -60,24 +55,33 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
+        # type: (...) -> Any
         """get pet by id.
 
         :param pet_id: Pet id.
         :type pet_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~extensibleenumsswaggerversiontolerant.models.Pet
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                    "IntEnum": "str",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_pet.build_get_by_pet_id_request(
             pet_id=pet_id,
             template_url=self.get_by_pet_id.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -87,7 +91,10 @@ class PetOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -99,26 +106,42 @@ class PetOperations(object):
     @distributed_trace
     def add_pet(
         self,
-        pet_param=None,  # type: Optional["_models.Pet"]
+        pet_param=None,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
+        # type: (...) -> Any
         """add pet.
 
         :param pet_param: pet param.
-        :type pet_param: ~extensibleenumsswaggerversiontolerant.models.Pet
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~extensibleenumsswaggerversiontolerant.models.Pet
+        :type pet_param: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                pet_param = {
+                    "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                    "IntEnum": "str",
+                    "name": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "DaysOfWeek": "str (optional). Default value is \"Friday\"",
+                    "IntEnum": "str",
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if pet_param is not None:
-            json = self._serialize.body(pet_param, "Pet")
+            json = pet_param
         else:
             json = None
 
@@ -126,7 +149,7 @@ class PetOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.add_pet.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -136,7 +159,10 @@ class PetOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Pet", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

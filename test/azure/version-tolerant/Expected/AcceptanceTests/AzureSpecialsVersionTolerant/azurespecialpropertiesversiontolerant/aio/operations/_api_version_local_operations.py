@@ -85,12 +85,12 @@ class ApiVersionLocalOperations:
     get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_local_null(self, api_version: Optional[str] = None, **kwargs: Any) -> None:
+    async def get_method_local_null(self, *, api_version: Optional[str] = None, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
-        :param api_version: This should appear as a method parameter, use value null, this should
+        :keyword api_version: This should appear as a method parameter, use value null, this should
          result in no serialized parameter.
-        :type api_version: str
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

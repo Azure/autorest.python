@@ -7,15 +7,18 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
 from ._configuration import XMSErrorResponseExtensionsConfiguration
 from .operations import PetOperations
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
 
 
 class XMSErrorResponseExtensions:
@@ -33,22 +36,21 @@ class XMSErrorResponseExtensions:
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.pet = PetOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `xmserrorresponseversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from xmserrorresponseversiontolerant._rest import pet
+        >>> from xmserrorresponseversiontolerant.rest import pet
         >>> request = pet.build_get_pet_by_id_request(pet_id, **kwargs)
         <HttpRequest [GET], url: '/errorStatusCodes/Pets/{petId}/GetPet'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest as rest, models as _models
+from .. import rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,19 +39,41 @@ class AutoRestValidationTestOperationsMixin(object):
         id,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Product"
+        # type: (...) -> Any
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validationversiontolerant.models.Product
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -60,7 +82,7 @@ class AutoRestValidationTestOperationsMixin(object):
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -68,10 +90,12 @@ class AutoRestValidationTestOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -85,10 +109,10 @@ class AutoRestValidationTestOperationsMixin(object):
         self,
         resource_group_name,  # type: str
         id,  # type: int
-        body=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Product"
+        # type: (...) -> Any
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -96,19 +120,61 @@ class AutoRestValidationTestOperationsMixin(object):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :param body:
-        :type body: ~validationversiontolerant.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validationversiontolerant.models.Product
+        :type body: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
-            json = self._serialize.body(body, "Product")
+            json = body
         else:
             json = None
 
@@ -119,7 +185,7 @@ class AutoRestValidationTestOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.validation_of_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -127,10 +193,12 @@ class AutoRestValidationTestOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -146,8 +214,7 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> None
         """get_with_constant_in_path.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,7 +224,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         request = rest.build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -175,26 +242,68 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def post_with_constant_in_body(
         self,
-        body=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Product"
+        # type: (...) -> Any
         """post_with_constant_in_body.
 
         :param body:
-        :type body: ~validationversiontolerant.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validationversiontolerant.models.Product
+        :type body: Any
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": "int (optional)",
+                    "child": {
+                        "constProperty": "str",
+                        "count": "int (optional)"
+                    },
+                    "constChild": {
+                        "constProperty": "str",
+                        "constProperty2": "str"
+                    },
+                    "constInt": "int",
+                    "constString": "str",
+                    "constStringAsEnum": "str (optional)",
+                    "display_names": [
+                        "str (optional)"
+                    ],
+                    "image": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
-            json = self._serialize.body(body, "Product")
+            json = body
         else:
             json = None
 
@@ -202,7 +311,7 @@ class AutoRestValidationTestOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -212,7 +321,10 @@ class AutoRestValidationTestOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

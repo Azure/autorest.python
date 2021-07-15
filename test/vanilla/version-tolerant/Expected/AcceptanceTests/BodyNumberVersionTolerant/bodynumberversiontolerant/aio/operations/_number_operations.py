@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import number as rest_number
+from ...rest import number as rest_number
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class NumberOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodynumberversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -54,8 +49,7 @@ class NumberOperations:
     async def get_null(self, **kwargs: Any) -> Optional[float]:
         """Get null Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or None, or the result of cls(response)
+        :return: float or None
         :rtype: float or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +59,7 @@ class NumberOperations:
 
         request = rest_number.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -75,10 +69,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -91,8 +87,7 @@ class NumberOperations:
     async def get_invalid_float(self, **kwargs: Any) -> float:
         """Get invalid float Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -102,7 +97,7 @@ class NumberOperations:
 
         request = rest_number.build_get_invalid_float_request(
             template_url=self.get_invalid_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -112,10 +107,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -128,8 +125,7 @@ class NumberOperations:
     async def get_invalid_double(self, **kwargs: Any) -> float:
         """Get invalid double Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -139,7 +135,7 @@ class NumberOperations:
 
         request = rest_number.build_get_invalid_double_request(
             template_url=self.get_invalid_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -149,10 +145,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -165,8 +163,7 @@ class NumberOperations:
     async def get_invalid_decimal(self, **kwargs: Any) -> float:
         """Get invalid decimal Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -176,7 +173,7 @@ class NumberOperations:
 
         request = rest_number.build_get_invalid_decimal_request(
             template_url=self.get_invalid_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -186,10 +183,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -204,8 +203,7 @@ class NumberOperations:
 
         :param number_body: number body.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -214,13 +212,13 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_float_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -230,8 +228,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -242,8 +239,7 @@ class NumberOperations:
     async def get_big_float(self, **kwargs: Any) -> float:
         """Get big float value 3.402823e+20.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -253,7 +249,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_float_request(
             template_url=self.get_big_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -263,10 +259,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -281,8 +279,7 @@ class NumberOperations:
 
         :param number_body: number body.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -291,13 +288,13 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_double_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -307,8 +304,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -319,8 +315,7 @@ class NumberOperations:
     async def get_big_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e+101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -330,7 +325,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_double_request(
             template_url=self.get_big_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -340,10 +335,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -356,8 +353,7 @@ class NumberOperations:
     async def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
         """Put big double value 99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -367,13 +363,13 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         number_body = 99999999.99
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -383,8 +379,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -395,8 +390,7 @@ class NumberOperations:
     async def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
         """Get big double value 99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -406,7 +400,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_double_positive_decimal_request(
             template_url=self.get_big_double_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -416,10 +410,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -432,8 +428,7 @@ class NumberOperations:
     async def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
         """Put big double value -99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -443,13 +438,13 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         number_body = -99999999.99
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -459,8 +454,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -471,8 +465,7 @@ class NumberOperations:
     async def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
         """Get big double value -99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -482,7 +475,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_double_negative_decimal_request(
             template_url=self.get_big_double_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -492,10 +485,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -510,8 +505,7 @@ class NumberOperations:
 
         :param number_body: number body.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -520,13 +514,13 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -536,8 +530,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -548,8 +541,7 @@ class NumberOperations:
     async def get_big_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 2.5976931e+101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -559,7 +551,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_decimal_request(
             template_url=self.get_big_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -569,10 +561,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -585,8 +579,7 @@ class NumberOperations:
     async def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value 99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -596,13 +589,13 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         number_body = 99999999.99
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -612,8 +605,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -624,8 +616,7 @@ class NumberOperations:
     async def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -635,7 +626,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_decimal_positive_decimal_request(
             template_url=self.get_big_decimal_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -645,10 +636,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -661,8 +654,7 @@ class NumberOperations:
     async def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value -99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -672,13 +664,13 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         number_body = -99999999.99
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -688,8 +680,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -700,8 +691,7 @@ class NumberOperations:
     async def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value -99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -711,7 +701,7 @@ class NumberOperations:
 
         request = rest_number.build_get_big_decimal_negative_decimal_request(
             template_url=self.get_big_decimal_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -721,10 +711,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -739,8 +731,7 @@ class NumberOperations:
 
         :param number_body: number body.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -749,13 +740,13 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_small_float_request(
             content_type=content_type,
             json=json,
             template_url=self.put_small_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -765,8 +756,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -777,8 +767,7 @@ class NumberOperations:
     async def get_small_float(self, **kwargs: Any) -> float:
         """Get big double value 3.402823e-20.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -788,7 +777,7 @@ class NumberOperations:
 
         request = rest_number.build_get_small_float_request(
             template_url=self.get_small_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -798,10 +787,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -816,8 +807,7 @@ class NumberOperations:
 
         :param number_body: number body.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -826,13 +816,13 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_small_double_request(
             content_type=content_type,
             json=json,
             template_url=self.put_small_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -842,8 +832,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -854,8 +843,7 @@ class NumberOperations:
     async def get_small_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e-101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -865,7 +853,7 @@ class NumberOperations:
 
         request = rest_number.build_get_small_double_request(
             template_url=self.get_small_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -875,10 +863,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -893,8 +883,7 @@ class NumberOperations:
 
         :param number_body: number body.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -903,13 +892,13 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(number_body, "float")
+        json = number_body
 
         request = rest_number.build_put_small_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_small_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -919,8 +908,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -931,8 +919,7 @@ class NumberOperations:
     async def get_small_decimal(self, **kwargs: Any) -> float:
         """Get small decimal value 2.5976931e-101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -942,7 +929,7 @@ class NumberOperations:
 
         request = rest_number.build_get_small_decimal_request(
             template_url=self.get_small_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -952,10 +939,12 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

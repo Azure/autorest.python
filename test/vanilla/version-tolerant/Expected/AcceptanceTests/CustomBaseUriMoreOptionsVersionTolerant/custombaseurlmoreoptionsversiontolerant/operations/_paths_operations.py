@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import paths as rest_paths
+from ..rest import paths as rest_paths
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class PathsOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~custombaseurlmoreoptionsversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -60,7 +55,6 @@ class PathsOperations(object):
         vault,  # type: str
         secret,  # type: str
         key_name,  # type: str
-        key_version="v1",  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -72,23 +66,23 @@ class PathsOperations(object):
         :type secret: str
         :param key_name: The key name with value 'key1'.
         :type key_name: str
-        :param key_version: The key version. Default value 'v1'.
-        :type key_version: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword key_version: The key version. Default value 'v1'.
+        :paramtype key_version: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
 
         request = rest_paths.build_get_empty_request(
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
@@ -103,8 +97,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

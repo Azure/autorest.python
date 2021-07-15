@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import pet as rest_pet
+from ..rest import pet as rest_pet
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class PetOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~xmserrorresponseversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -60,24 +55,29 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.Pet"]
+        # type: (...) -> Optional[Any]
         """Gets pets by id.
 
         :param pet_id: pet id.
         :type pet_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~xmserrorresponseversiontolerant.models.Pet or None
+        :return: JSON object
+        :rtype: Any or None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "name": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Pet"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(
-                response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
-            ),
+            404: lambda response: ResourceNotFoundError(response=response),
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
@@ -85,7 +85,7 @@ class PetOperations(object):
         request = rest_pet.build_get_pet_by_id_request(
             pet_id=pet_id,
             template_url=self.get_pet_by_id.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -97,7 +97,10 @@ class PetOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("Pet", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -112,31 +115,36 @@ class PetOperations(object):
         what_action,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAction"
+        # type: (...) -> Any
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
         :type what_action: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAction, or the result of cls(response)
-        :rtype: ~xmserrorresponseversiontolerant.models.PetAction
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "actionResponse": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAction"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
-            500: lambda response: HttpResponseError(
-                response=response, model=self._deserialize(_models.PetActionError, response)
-            ),
+            500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_pet.build_do_something_request(
             what_action=what_action,
             template_url=self.do_something.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -144,10 +152,12 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.PetActionError, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("PetAction", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -158,19 +168,16 @@ class PetOperations(object):
 
     @distributed_trace
     def has_models_param(
-        self,
-        models="value1",  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 
-        :param models: Make sure model deserialization doesn't conflict with this param name, which has
-         input name 'models'. Use client default value in call.
-        :type models: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword models: Make sure model deserialization doesn't conflict with this param name, which
+         has input name 'models'. Use client default value in call.
+        :paramtype models: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -179,16 +186,15 @@ class PetOperations(object):
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
-            500: lambda response: HttpResponseError(
-                response=response, model=self._deserialize(_models.PetActionError, response)
-            ),
+            500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
+        models = kwargs.pop("models", "value1")  # type: Optional[str]
 
         request = rest_pet.build_has_models_param_request(
             models=models,
             template_url=self.has_models_param.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -196,8 +202,7 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.PetActionError, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

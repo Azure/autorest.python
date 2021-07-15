@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest as rest, models as _models
+from .. import rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -35,21 +35,28 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, Any]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or ~mediatypesversiontolerant.models.SourcePath
+        :type input: IO or Any
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "source": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -64,7 +71,7 @@ class MediaTypesClientOperationsMixin(object):
             content = input
         elif content_type.split(";")[0] in ["application/json"]:
             if input is not None:
-                json = self._serialize.body(input, "SourcePath")
+                json = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -76,7 +83,7 @@ class MediaTypesClientOperationsMixin(object):
             json=json,
             content=content,
             template_url=self.analyze_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -86,7 +93,10 @@ class MediaTypesClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -106,8 +116,7 @@ class MediaTypesClientOperationsMixin(object):
 
         :param input: Input parameter.
         :type input: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -117,7 +126,7 @@ class MediaTypesClientOperationsMixin(object):
         content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
 
         if input is not None:
-            content = self._serialize.body(input, "str")
+            content = input
         else:
             content = None
 
@@ -125,7 +134,7 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -135,7 +144,10 @@ class MediaTypesClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

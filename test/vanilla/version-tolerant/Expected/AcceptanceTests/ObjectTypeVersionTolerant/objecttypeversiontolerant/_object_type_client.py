@@ -40,12 +40,11 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._config = ObjectTypeClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -56,10 +55,10 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         We have helper methods to create requests specific to this service in `objecttypeversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from objecttypeversiontolerant._rest import build_get_request
+        >>> from objecttypeversiontolerant.rest import build_get_request
         >>> request = build_get_request(**kwargs)
         <HttpRequest [GET], url: '/objectType/get'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

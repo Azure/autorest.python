@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import http_server_failure as rest_http_server_failure
+from ...rest import http_server_failure as rest_http_server_failure
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class HttpServerFailureOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructureversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -54,8 +49,7 @@ class HttpServerFailureOperations:
     async def head501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +59,7 @@ class HttpServerFailureOperations:
 
         request = rest_http_server_failure.build_head501_request(
             template_url=self.head501.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -75,8 +69,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -87,8 +80,7 @@ class HttpServerFailureOperations:
     async def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -98,7 +90,7 @@ class HttpServerFailureOperations:
 
         request = rest_http_server_failure.build_get501_request(
             template_url=self.get501.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,8 +100,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -122,8 +113,7 @@ class HttpServerFailureOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -133,7 +123,7 @@ class HttpServerFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -141,7 +131,7 @@ class HttpServerFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.post505.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -151,8 +141,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -165,8 +154,7 @@ class HttpServerFailureOperations:
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -176,7 +164,7 @@ class HttpServerFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -184,7 +172,7 @@ class HttpServerFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete505.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -194,8 +182,7 @@ class HttpServerFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

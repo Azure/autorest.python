@@ -12,13 +12,12 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from . import models
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -42,13 +41,13 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -62,7 +61,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
         >>> from custombaseurlpagingversiontolerant._rest import paging
         >>> request = paging.build_get_pages_partial_url_request(**kwargs)
         <HttpRequest [GET], url: '/paging/customurl/partialnextlink'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

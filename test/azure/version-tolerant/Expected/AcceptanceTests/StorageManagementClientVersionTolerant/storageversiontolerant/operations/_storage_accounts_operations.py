@@ -61,28 +61,43 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def check_name_availability(
         self,
-        account_name,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
+        account_name,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.CheckNameAvailabilityResult"
+        # type: (...) -> Any
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
-        :type account_name:
-         ~storageversiontolerant.models.StorageAccountCheckNameAvailabilityParameters
+        :type account_name: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CheckNameAvailabilityResult, or the result of cls(response)
-        :rtype: ~storageversiontolerant.models.CheckNameAvailabilityResult
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                account_name = {
+                    "name": "str",
+                    "type": "str (optional). Default value is \"Microsoft.Storage/storageAccounts\""
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "message": "str (optional)",
+                    "nameAvailable": "bool (optional)",
+                    "reason": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.CheckNameAvailabilityResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
+        json = self._serialize.body(account_name, "object")
 
         request = rest_storage_accounts.build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
@@ -99,7 +114,7 @@ class StorageAccountsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("CheckNameAvailabilityResult", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -112,16 +127,16 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "_models.StorageAccountCreateParameters"
+        parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.StorageAccount"]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
+        # type: (...) -> Optional[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(parameters, "StorageAccountCreateParameters")
+        json = self._serialize.body(parameters, "object")
 
         request = rest_storage_accounts.build_create_request_initial(
             resource_group_name=resource_group_name,
@@ -142,7 +157,7 @@ class StorageAccountsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("StorageAccount", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -156,10 +171,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "_models.StorageAccountCreateParameters"
+        parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["_models.StorageAccount"]
+        # type: (...) -> LROPoller[Any]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -172,7 +187,7 @@ class StorageAccountsOperations(object):
          lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
-        :type parameters: ~storageversiontolerant.models.StorageAccountCreateParameters
+        :type parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -181,14 +196,60 @@ class StorageAccountsOperations(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns either StorageAccount or the result of
+        :return: An instance of LROPoller that returns either JSON object or the result of
          cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~storageversiontolerant.models.StorageAccount]
+        :rtype: ~azure.core.polling.LROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                parameters = {
+                    "accountType": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
+                    },
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
@@ -205,7 +266,7 @@ class StorageAccountsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("StorageAccount", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -281,7 +342,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StorageAccount"
+        # type: (...) -> Any
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -293,11 +354,52 @@ class StorageAccountsOperations(object):
          lower-case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount, or the result of cls(response)
-        :rtype: ~storageversiontolerant.models.StorageAccount
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
+                    },
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -316,7 +418,7 @@ class StorageAccountsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("StorageAccount", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -330,10 +432,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "_models.StorageAccountUpdateParameters"
+        parameters,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StorageAccount"
+        # type: (...) -> Any
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -350,18 +452,68 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
-        :type parameters: ~storageversiontolerant.models.StorageAccountUpdateParameters
+        :type parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount, or the result of cls(response)
-        :rtype: ~storageversiontolerant.models.StorageAccount
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                parameters = {
+                    "accountType": "str (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
+                    }
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "accountType": "str (optional)",
+                    "creationTime": "datetime (optional)",
+                    "customDomain": {
+                        "name": "str (optional)",
+                        "useSubDomain": "bool (optional)"
+                    },
+                    "lastGeoFailoverTime": "datetime (optional)",
+                    "primaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "primaryLocation": "str (optional)",
+                    "provisioningState": "str (optional)",
+                    "secondaryEndpoints": {
+                        "FooPoint": {
+                            "Bar.Point": {
+                                "RecursivePoint": "..."
+                            }
+                        },
+                        "blob": "str (optional)",
+                        "dummyEndPoint": "...",
+                        "queue": "str (optional)",
+                        "table": "str (optional)"
+                    },
+                    "secondaryLocation": "str (optional)",
+                    "statusOfPrimary": "str (optional)",
+                    "statusOfSecondary": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
+        json = self._serialize.body(parameters, "object")
 
         request = rest_storage_accounts.build_update_request(
             resource_group_name=resource_group_name,
@@ -380,7 +532,7 @@ class StorageAccountsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("StorageAccount", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -396,7 +548,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StorageAccountKeys"
+        # type: (...) -> Any
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -404,11 +556,20 @@ class StorageAccountsOperations(object):
         :param account_name: The name of the storage account.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccountKeys, or the result of cls(response)
-        :rtype: ~storageversiontolerant.models.StorageAccountKeys
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "key1": "str (optional)",
+                    "key2": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -427,7 +588,7 @@ class StorageAccountsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("StorageAccountKeys", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -440,17 +601,62 @@ class StorageAccountsOperations(object):
     def list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.StorageAccountListResult"]
+        # type: (...) -> Iterable[Any]
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either StorageAccountListResult or the result of
-         cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~storageversiontolerant.models.StorageAccountListResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "value": [
+                        {
+                            "accountType": "str (optional)",
+                            "creationTime": "datetime (optional)",
+                            "customDomain": {
+                                "name": "str (optional)",
+                                "useSubDomain": "bool (optional)"
+                            },
+                            "lastGeoFailoverTime": "datetime (optional)",
+                            "primaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "primaryLocation": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "secondaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "secondaryLocation": "str (optional)",
+                            "statusOfPrimary": "str (optional)",
+                            "statusOfSecondary": "str (optional)"
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -475,7 +681,7 @@ class StorageAccountsOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("StorageAccountListResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -503,19 +709,64 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.StorageAccountListResult"]
+        # type: (...) -> Iterable[Any]
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either StorageAccountListResult or the result of
-         cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~storageversiontolerant.models.StorageAccountListResult]
+        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "value": [
+                        {
+                            "accountType": "str (optional)",
+                            "creationTime": "datetime (optional)",
+                            "customDomain": {
+                                "name": "str (optional)",
+                                "useSubDomain": "bool (optional)"
+                            },
+                            "lastGeoFailoverTime": "datetime (optional)",
+                            "primaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "primaryLocation": "str (optional)",
+                            "provisioningState": "str (optional)",
+                            "secondaryEndpoints": {
+                                "FooPoint": {
+                                    "Bar.Point": {
+                                        "RecursivePoint": "..."
+                                    }
+                                },
+                                "blob": "str (optional)",
+                                "dummyEndPoint": "...",
+                                "queue": "str (optional)",
+                                "table": "str (optional)"
+                            },
+                            "secondaryLocation": "str (optional)",
+                            "statusOfPrimary": "str (optional)",
+                            "statusOfSecondary": "str (optional)"
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -542,7 +793,7 @@ class StorageAccountsOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("StorageAccountListResult", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -569,10 +820,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        regenerate_key,  # type: "_models.StorageAccountRegenerateKeyParameters"
+        regenerate_key,  # type: Any
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StorageAccountKeys"
+        # type: (...) -> Any
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -582,18 +833,32 @@ class StorageAccountsOperations(object):
          lower-case letters only.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
-        :type regenerate_key: ~storageversiontolerant.models.StorageAccountRegenerateKeyParameters
+        :type regenerate_key: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccountKeys, or the result of cls(response)
-        :rtype: ~storageversiontolerant.models.StorageAccountKeys
+        :return: JSON object, or the result of cls(response)
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your `json` input.
+                regenerate_key = {
+                    "keyName": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "key1": "str (optional)",
+                    "key2": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(regenerate_key, "StorageAccountRegenerateKeyParameters")
+        json = self._serialize.body(regenerate_key, "object")
 
         request = rest_storage_accounts.build_regenerate_key_request(
             resource_group_name=resource_group_name,
@@ -612,7 +877,7 @@ class StorageAccountsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("StorageAccountKeys", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

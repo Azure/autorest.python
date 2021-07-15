@@ -57,15 +57,13 @@ class HeaderOperations(object):
 
     @distributed_trace
     def custom_named_request_id(
-        self,
-        foo_client_request_id,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :param foo_client_request_id: The fooRequestId.
-        :type foo_client_request_id: str
+        :keyword foo_client_request_id: The fooRequestId.
+        :paramtype foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -74,6 +72,7 @@ class HeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
         request = rest_header.build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
@@ -99,17 +98,14 @@ class HeaderOperations(object):
 
     @distributed_trace
     def custom_named_request_id_param_grouping(
-        self,
-        header_custom_named_request_id_param_grouping_parameters,  # type: "_models.HeaderCustomNamedRequestIdParamGroupingParameters"
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
 
-        :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
-        :type header_custom_named_request_id_param_grouping_parameters:
-         ~azurespecialpropertiesversiontolerant.models.HeaderCustomNamedRequestIdParamGroupingParameters
+        :keyword header_custom_named_request_id_param_grouping_parameters: Parameter group.
+        :paramtype header_custom_named_request_id_param_grouping_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -118,6 +114,10 @@ class HeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        header_custom_named_request_id_param_grouping_parameters = kwargs.pop(
+            "header_custom_named_request_id_param_grouping_parameters"
+        )  # type: Any
+
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
@@ -146,15 +146,13 @@ class HeaderOperations(object):
 
     @distributed_trace
     def custom_named_request_id_head(
-        self,
-        foo_client_request_id,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :param foo_client_request_id: The fooRequestId.
-        :type foo_client_request_id: str
+        :keyword foo_client_request_id: The fooRequestId.
+        :paramtype foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -163,6 +161,7 @@ class HeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
         request = rest_header.build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,

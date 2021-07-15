@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import primitive as rest_primitive
+from ..rest import primitive as rest_primitive
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class PrimitiveOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodycomplexversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -58,21 +53,29 @@ class PrimitiveOperations(object):
     def get_int(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.IntWrapper"
+        # type: (...) -> Any
         """Get complex types with integer properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.IntWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field1": "int (optional)",
+                    "field2": "int (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.IntWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_int_request(
             template_url=self.get_int.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -80,10 +83,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("IntWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -95,31 +100,39 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_int(
         self,
-        complex_body,  # type: "_models.IntWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
-        :type complex_body: ~bodycomplexversiontolerant.models.IntWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": "int (optional)",
+                    "field2": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "IntWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_int_request(
             content_type=content_type,
             json=json,
             template_url=self.put_int.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -127,8 +140,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -139,21 +151,29 @@ class PrimitiveOperations(object):
     def get_long(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.LongWrapper"
+        # type: (...) -> Any
         """Get complex types with long properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: LongWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.LongWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field1": "long (optional)",
+                    "field2": "long (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LongWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_long_request(
             template_url=self.get_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -161,10 +181,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("LongWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -176,31 +198,39 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_long(
         self,
-        complex_body,  # type: "_models.LongWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
-        :type complex_body: ~bodycomplexversiontolerant.models.LongWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": "long (optional)",
+                    "field2": "long (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "LongWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_long_request(
             content_type=content_type,
             json=json,
             template_url=self.put_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -208,8 +238,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -220,21 +249,29 @@ class PrimitiveOperations(object):
     def get_float(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.FloatWrapper"
+        # type: (...) -> Any
         """Get complex types with float properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.FloatWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field1": "float (optional)",
+                    "field2": "float (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.FloatWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_float_request(
             template_url=self.get_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -242,10 +279,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("FloatWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -257,31 +296,39 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_float(
         self,
-        complex_body,  # type: "_models.FloatWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
-        :type complex_body: ~bodycomplexversiontolerant.models.FloatWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": "float (optional)",
+                    "field2": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "FloatWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_float_request(
             content_type=content_type,
             json=json,
             template_url=self.put_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -289,8 +336,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -301,21 +347,29 @@ class PrimitiveOperations(object):
     def get_double(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DoubleWrapper"
+        # type: (...) -> Any
         """Get complex types with double properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DoubleWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DoubleWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field1": "float (optional)",
+                    "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DoubleWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_double_request(
             template_url=self.get_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -323,10 +377,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DoubleWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -338,7 +394,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_double(
         self,
-        complex_body,  # type: "_models.DoubleWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -346,24 +402,32 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005.
-        :type complex_body: ~bodycomplexversiontolerant.models.DoubleWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": "float (optional)",
+                    "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DoubleWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_double_request(
             content_type=content_type,
             json=json,
             template_url=self.put_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -371,8 +435,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -383,21 +446,29 @@ class PrimitiveOperations(object):
     def get_bool(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.BooleanWrapper"
+        # type: (...) -> Any
         """Get complex types with bool properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: BooleanWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.BooleanWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field_false": "bool (optional)",
+                    "field_true": "bool (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.BooleanWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_bool_request(
             template_url=self.get_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -405,10 +476,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("BooleanWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -420,31 +493,39 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_bool(
         self,
-        complex_body,  # type: "_models.BooleanWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
-        :type complex_body: ~bodycomplexversiontolerant.models.BooleanWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field_false": "bool (optional)",
+                    "field_true": "bool (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "BooleanWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_bool_request(
             content_type=content_type,
             json=json,
             template_url=self.put_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -452,8 +533,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -464,21 +544,30 @@ class PrimitiveOperations(object):
     def get_string(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StringWrapper"
+        # type: (...) -> Any
         """Get complex types with string properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StringWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.StringWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "empty": "str (optional)",
+                    "field": "str (optional)",
+                    "null": "str (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StringWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_string_request(
             template_url=self.get_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -486,10 +575,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("StringWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -501,31 +592,40 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_string(
         self,
-        complex_body,  # type: "_models.StringWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
-        :type complex_body: ~bodycomplexversiontolerant.models.StringWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "empty": "str (optional)",
+                    "field": "str (optional)",
+                    "null": "str (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "StringWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_string_request(
             content_type=content_type,
             json=json,
             template_url=self.put_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -533,8 +633,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -545,21 +644,29 @@ class PrimitiveOperations(object):
     def get_date(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DateWrapper"
+        # type: (...) -> Any
         """Get complex types with date properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DateWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DateWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field": "date (optional)",
+                    "leap": "date (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DateWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_date_request(
             template_url=self.get_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -567,10 +674,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DateWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -582,31 +691,39 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date(
         self,
-        complex_body,  # type: "_models.DateWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
-        :type complex_body: ~bodycomplexversiontolerant.models.DateWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "date (optional)",
+                    "leap": "date (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DateWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_date_request(
             content_type=content_type,
             json=json,
             template_url=self.put_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -614,8 +731,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -626,21 +742,29 @@ class PrimitiveOperations(object):
     def get_date_time(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DatetimeWrapper"
+        # type: (...) -> Any
         """Get complex types with datetime properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DatetimeWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DatetimeWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field": "datetime (optional)",
+                    "now": "datetime (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DatetimeWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_date_time_request(
             template_url=self.get_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -648,10 +772,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DatetimeWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -663,31 +789,39 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time(
         self,
-        complex_body,  # type: "_models.DatetimeWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
-        :type complex_body: ~bodycomplexversiontolerant.models.DatetimeWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "datetime (optional)",
+                    "now": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DatetimeWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_date_time_request(
             content_type=content_type,
             json=json,
             template_url=self.put_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -695,8 +829,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -707,21 +840,29 @@ class PrimitiveOperations(object):
     def get_date_time_rfc1123(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Datetimerfc1123Wrapper"
+        # type: (...) -> Any
         """Get complex types with datetimeRfc1123 properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Datetimerfc1123Wrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.Datetimerfc1123Wrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field": "datetime (optional)",
+                    "now": "datetime (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Datetimerfc1123Wrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_date_time_rfc1123_request(
             template_url=self.get_date_time_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -729,10 +870,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Datetimerfc1123Wrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -744,7 +887,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time_rfc1123(
         self,
-        complex_body,  # type: "_models.Datetimerfc1123Wrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -752,24 +895,32 @@ class PrimitiveOperations(object):
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'.
-        :type complex_body: ~bodycomplexversiontolerant.models.Datetimerfc1123Wrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "datetime (optional)",
+                    "now": "datetime (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_date_time_rfc1123_request(
             content_type=content_type,
             json=json,
             template_url=self.put_date_time_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -777,8 +928,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -789,21 +939,28 @@ class PrimitiveOperations(object):
     def get_duration(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.DurationWrapper"
+        # type: (...) -> Any
         """Get complex types with duration properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DurationWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.DurationWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field": "timedelta (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DurationWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_duration_request(
             template_url=self.get_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -811,10 +968,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("DurationWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -826,31 +985,38 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_duration(
         self,
-        complex_body,  # type: "_models.DurationWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'.
-        :type complex_body: ~bodycomplexversiontolerant.models.DurationWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "timedelta (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DurationWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_duration_request(
             content_type=content_type,
             json=json,
             template_url=self.put_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -858,8 +1024,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -870,21 +1035,28 @@ class PrimitiveOperations(object):
     def get_byte(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ByteWrapper"
+        # type: (...) -> Any
         """Get complex types with byte properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ByteWrapper, or the result of cls(response)
-        :rtype: ~bodycomplexversiontolerant.models.ByteWrapper
+        :return: JSON object
+        :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "field": "bytearray (optional)"
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ByteWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         request = rest_primitive.build_get_byte_request(
             template_url=self.get_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -892,10 +1064,12 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ByteWrapper", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -907,31 +1081,38 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_byte(
         self,
-        complex_body,  # type: "_models.ByteWrapper"
+        complex_body,  # type: Any
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
-        :type complex_body: ~bodycomplexversiontolerant.models.ByteWrapper
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type complex_body: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "bytearray (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "ByteWrapper")
+        json = complex_body
 
         request = rest_primitive.build_put_byte_request(
             content_type=content_type,
             json=json,
             template_url=self.put_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -939,8 +1120,7 @@ class PrimitiveOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

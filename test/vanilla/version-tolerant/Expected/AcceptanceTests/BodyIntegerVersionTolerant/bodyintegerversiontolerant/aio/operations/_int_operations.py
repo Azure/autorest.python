@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import int as rest_int
+from ...rest import int as rest_int
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -35,15 +34,11 @@ class IntOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodyintegerversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -55,8 +50,7 @@ class IntOperations:
     async def get_null(self, **kwargs: Any) -> Optional[int]:
         """Get null Int value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or None, or the result of cls(response)
+        :return: int or None
         :rtype: int or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -66,7 +60,7 @@ class IntOperations:
 
         request = rest_int.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -76,10 +70,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("int", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -92,8 +88,7 @@ class IntOperations:
     async def get_invalid(self, **kwargs: Any) -> int:
         """Get invalid Int value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -103,7 +98,7 @@ class IntOperations:
 
         request = rest_int.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -113,10 +108,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("int", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -129,8 +126,7 @@ class IntOperations:
     async def get_overflow_int32(self, **kwargs: Any) -> int:
         """Get overflow Int32 value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -140,7 +136,7 @@ class IntOperations:
 
         request = rest_int.build_get_overflow_int32_request(
             template_url=self.get_overflow_int32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -150,10 +146,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("int", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -166,8 +164,7 @@ class IntOperations:
     async def get_underflow_int32(self, **kwargs: Any) -> int:
         """Get underflow Int32 value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -177,7 +174,7 @@ class IntOperations:
 
         request = rest_int.build_get_underflow_int32_request(
             template_url=self.get_underflow_int32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -187,10 +184,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("int", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -203,8 +202,7 @@ class IntOperations:
     async def get_overflow_int64(self, **kwargs: Any) -> int:
         """Get overflow Int64 value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long, or the result of cls(response)
+        :return: long
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -214,7 +212,7 @@ class IntOperations:
 
         request = rest_int.build_get_overflow_int64_request(
             template_url=self.get_overflow_int64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -224,10 +222,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("long", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -240,8 +240,7 @@ class IntOperations:
     async def get_underflow_int64(self, **kwargs: Any) -> int:
         """Get underflow Int64 value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long, or the result of cls(response)
+        :return: long
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -251,7 +250,7 @@ class IntOperations:
 
         request = rest_int.build_get_underflow_int64_request(
             template_url=self.get_underflow_int64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -261,10 +260,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("long", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -279,8 +280,7 @@ class IntOperations:
 
         :param int_body: int body.
         :type int_body: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -289,13 +289,13 @@ class IntOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "int")
+        json = int_body
 
         request = rest_int.build_put_max32_request(
             content_type=content_type,
             json=json,
             template_url=self.put_max32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -305,8 +305,7 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -319,8 +318,7 @@ class IntOperations:
 
         :param int_body: int body.
         :type int_body: long
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -329,13 +327,13 @@ class IntOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "long")
+        json = int_body
 
         request = rest_int.build_put_max64_request(
             content_type=content_type,
             json=json,
             template_url=self.put_max64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -345,8 +343,7 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -359,8 +356,7 @@ class IntOperations:
 
         :param int_body: int body.
         :type int_body: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -369,13 +365,13 @@ class IntOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "int")
+        json = int_body
 
         request = rest_int.build_put_min32_request(
             content_type=content_type,
             json=json,
             template_url=self.put_min32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -385,8 +381,7 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -399,8 +394,7 @@ class IntOperations:
 
         :param int_body: int body.
         :type int_body: long
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -409,13 +403,13 @@ class IntOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "long")
+        json = int_body
 
         request = rest_int.build_put_min64_request(
             content_type=content_type,
             json=json,
             template_url=self.put_min64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -425,8 +419,7 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -437,8 +430,7 @@ class IntOperations:
     async def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -448,7 +440,7 @@ class IntOperations:
 
         request = rest_int.build_get_unix_time_request(
             template_url=self.get_unix_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -458,10 +450,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("unix-time", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -476,8 +470,7 @@ class IntOperations:
 
         :param int_body: int body.
         :type int_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -486,13 +479,13 @@ class IntOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "unix-time")
+        json = int_body
 
         request = rest_int.build_put_unix_time_date_request(
             content_type=content_type,
             json=json,
             template_url=self.put_unix_time_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -502,8 +495,7 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -514,8 +506,7 @@ class IntOperations:
     async def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid Unix time value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -525,7 +516,7 @@ class IntOperations:
 
         request = rest_int.build_get_invalid_unix_time_request(
             template_url=self.get_invalid_unix_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -535,10 +526,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("unix-time", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -551,8 +544,7 @@ class IntOperations:
     async def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
         """Get null Unix time value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or None, or the result of cls(response)
+        :return: datetime or None
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -562,7 +554,7 @@ class IntOperations:
 
         request = rest_int.build_get_null_unix_time_request(
             template_url=self.get_null_unix_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -572,10 +564,12 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("unix-time", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

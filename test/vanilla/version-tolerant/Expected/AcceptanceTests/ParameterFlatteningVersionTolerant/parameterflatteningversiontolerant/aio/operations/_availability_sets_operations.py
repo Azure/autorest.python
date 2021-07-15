@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import availability_sets as rest_availability_sets
+from ...rest import availability_sets as rest_availability_sets
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class AvailabilitySetsOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~parameterflatteningversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -51,9 +46,7 @@ class AvailabilitySetsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def update(
-        self, resource_group_name: str, avset: str, tags: "_models.AvailabilitySetUpdateParameters", **kwargs: Any
-    ) -> None:
+    async def update(self, resource_group_name: str, avset: str, tags: Any, **kwargs: Any) -> None:
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -61,18 +54,27 @@ class AvailabilitySetsOperations:
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: The tags.
-        :type tags: ~parameterflatteningversiontolerant.models.AvailabilitySetUpdateParameters
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :type tags: Any
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                tags = {
+                    "tags": {
+                        "str": "str"
+                    }
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(tags, "AvailabilitySetUpdateParameters")
+        json = tags
 
         request = rest_availability_sets.build_update_request(
             resource_group_name=resource_group_name,
@@ -80,7 +82,7 @@ class AvailabilitySetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

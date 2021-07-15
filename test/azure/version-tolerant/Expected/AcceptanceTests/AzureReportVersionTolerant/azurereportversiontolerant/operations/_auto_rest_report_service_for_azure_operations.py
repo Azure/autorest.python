@@ -34,25 +34,32 @@ if TYPE_CHECKING:
 class AutoRestReportServiceForAzureOperationsMixin(object):
     @distributed_trace
     def get_report(
-        self,
-        qualifier=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get test coverage report.
 
-        :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
-         for Python). The only effect is, that generators that run all tests several times, can
+        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
+         in for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
-        :type qualifier: str
+        :paramtype qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": "int (optional)"
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
 
         request = rest.build_get_report_request(
             qualifier=qualifier,

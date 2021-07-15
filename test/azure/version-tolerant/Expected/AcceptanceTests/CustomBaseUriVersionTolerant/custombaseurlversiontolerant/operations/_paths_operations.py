@@ -56,15 +56,13 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_empty(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
-        :param account_name: Account Name.
-        :type account_name: str
+        :keyword account_name: Account Name.
+        :paramtype account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -73,6 +71,7 @@ class PathsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        account_name = kwargs.pop("account_name")  # type: str
 
         request = rest_paths.build_get_empty_request(
             template_url=self.get_empty.metadata["url"],

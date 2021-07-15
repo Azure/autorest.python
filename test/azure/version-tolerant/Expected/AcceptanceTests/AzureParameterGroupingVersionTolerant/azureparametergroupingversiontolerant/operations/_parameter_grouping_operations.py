@@ -56,16 +56,13 @@ class ParameterGroupingOperations(object):
 
     @distributed_trace
     def post_required(
-        self,
-        parameter_grouping_post_required_parameters,  # type: "_models.ParameterGroupingPostRequiredParameters"
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post a bunch of required parameters grouped.
 
-        :param parameter_grouping_post_required_parameters: Parameter group.
-        :type parameter_grouping_post_required_parameters:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostRequiredParameters
+        :keyword parameter_grouping_post_required_parameters: Parameter group.
+        :paramtype parameter_grouping_post_required_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -75,6 +72,9 @@ class ParameterGroupingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        parameter_grouping_post_required_parameters = kwargs.pop(
+            "parameter_grouping_post_required_parameters"
+        )  # type: Any
 
         _custom_header = None
         _query = None
@@ -112,16 +112,13 @@ class ParameterGroupingOperations(object):
 
     @distributed_trace
     def post_optional(
-        self,
-        parameter_grouping_post_optional_parameters=None,  # type: Optional["_models.ParameterGroupingPostOptionalParameters"]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post a bunch of optional parameters grouped.
 
-        :param parameter_grouping_post_optional_parameters: Parameter group.
-        :type parameter_grouping_post_optional_parameters:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostOptionalParameters
+        :keyword parameter_grouping_post_optional_parameters: Parameter group.
+        :paramtype parameter_grouping_post_optional_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -130,6 +127,10 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        parameter_grouping_post_optional_parameters = kwargs.pop(
+            "parameter_grouping_post_optional_parameters", None
+        )  # type: Any
+
         _custom_header = None
         _query = None
         if parameter_grouping_post_optional_parameters is not None:
@@ -158,16 +159,13 @@ class ParameterGroupingOperations(object):
 
     @distributed_trace
     def post_reserved_words(
-        self,
-        parameter_grouping_post_reserved_words_parameters=None,  # type: Optional["_models.ParameterGroupingPostReservedWordsParameters"]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post a grouped parameters with reserved words.
 
-        :param parameter_grouping_post_reserved_words_parameters: Parameter group.
-        :type parameter_grouping_post_reserved_words_parameters:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostReservedWordsParameters
+        :keyword parameter_grouping_post_reserved_words_parameters: Parameter group.
+        :paramtype parameter_grouping_post_reserved_words_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -176,6 +174,10 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        parameter_grouping_post_reserved_words_parameters = kwargs.pop(
+            "parameter_grouping_post_reserved_words_parameters", None
+        )  # type: Any
+
         _from_parameter = None
         _accept_parameter = None
         if parameter_grouping_post_reserved_words_parameters is not None:
@@ -204,19 +206,15 @@ class ParameterGroupingOperations(object):
 
     @distributed_trace
     def post_multi_param_groups(
-        self,
-        first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
-        parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post parameters from multiple different parameter groups.
 
-        :param first_parameter_group: Parameter group.
-        :type first_parameter_group: ~azureparametergroupingversiontolerant.models.FirstParameterGroup
-        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
-        :type parameter_grouping_post_multi_param_groups_second_param_group:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
+        :keyword first_parameter_group: Parameter group.
+        :paramtype first_parameter_group: Any
+        :keyword parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
+        :paramtype parameter_grouping_post_multi_param_groups_second_param_group: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -225,6 +223,11 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        first_parameter_group = kwargs.pop("first_parameter_group", None)  # type: Any
+        parameter_grouping_post_multi_param_groups_second_param_group = kwargs.pop(
+            "parameter_grouping_post_multi_param_groups_second_param_group", None
+        )  # type: Any
+
         _header_one = None
         _query_one = None
         _header_two = None
@@ -260,15 +263,13 @@ class ParameterGroupingOperations(object):
 
     @distributed_trace
     def post_shared_parameter_group_object(
-        self,
-        first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post parameters with a shared parameter group object.
 
-        :param first_parameter_group: Parameter group.
-        :type first_parameter_group: ~azureparametergroupingversiontolerant.models.FirstParameterGroup
+        :keyword first_parameter_group: Parameter group.
+        :paramtype first_parameter_group: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -277,6 +278,8 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+        first_parameter_group = kwargs.pop("first_parameter_group", None)  # type: Any
+
         _header_one = None
         _query_one = None
         if first_parameter_group is not None:

@@ -12,13 +12,12 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from . import models
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 from .operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -41,12 +40,11 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         self._config = AutoRestResourceFlatteningTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def _send_request(
+    def send_request(
         self,
         request,  # type: HttpRequest
         **kwargs  # type: Any
@@ -57,10 +55,10 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         We have helper methods to create requests specific to this service in `modelflatteningversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from modelflatteningversiontolerant._rest import build_put_array_request
+        >>> from modelflatteningversiontolerant.rest import build_put_array_request
         >>> request = build_put_array_request(json=json, content=content, **kwargs)
         <HttpRequest [PUT], url: '/model-flatten/array'>
-        >>> response = client._send_request(request)
+        >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

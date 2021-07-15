@@ -13,12 +13,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from .. import models
 from ._configuration import MicrosoftAzureTestUrlConfiguration
 from .operations import GroupOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
+
     from azure.core.credentials_async import AsyncTokenCredential
 
 
@@ -43,13 +44,13 @@ class MicrosoftAzureTestUrl:
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.group = GroupOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `subscriptionidapiversionversiontolerant.rest`.
@@ -58,7 +59,7 @@ class MicrosoftAzureTestUrl:
         >>> from subscriptionidapiversionversiontolerant._rest import group
         >>> request = group.build_get_sample_resource_group_request(subscription_id, resource_group_name, **kwargs)
         <HttpRequest [GET], url: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

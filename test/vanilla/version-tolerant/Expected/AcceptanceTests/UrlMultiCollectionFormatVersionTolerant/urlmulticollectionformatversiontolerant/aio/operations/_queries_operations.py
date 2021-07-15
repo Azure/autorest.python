@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import queries as rest_queries
+from ...rest import queries as rest_queries
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class QueriesOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~urlmulticollectionformatversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -51,13 +46,12 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def array_string_multi_null(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_null(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get a null array of string using the multi-array format.
 
-        :param array_query: a null array of string using the multi-array format.
-        :type array_query: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword array_query: a null array of string using the multi-array format.
+        :paramtype array_query: list[str]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -68,7 +62,7 @@ class QueriesOperations:
         request = rest_queries.build_array_string_multi_null_request(
             array_query=array_query,
             template_url=self.array_string_multi_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -78,8 +72,7 @@ class QueriesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -87,13 +80,12 @@ class QueriesOperations:
     array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_multi_empty(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an empty array [] of string using the multi-array format.
 
-        :param array_query: an empty array [] of string using the multi-array format.
-        :type array_query: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword array_query: an empty array [] of string using the multi-array format.
+        :paramtype array_query: list[str]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -104,7 +96,7 @@ class QueriesOperations:
         request = rest_queries.build_array_string_multi_empty_request(
             array_query=array_query,
             template_url=self.array_string_multi_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -114,8 +106,7 @@ class QueriesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -123,15 +114,14 @@ class QueriesOperations:
     array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_multi_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+        :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the mult-array format.
-        :type array_query: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype array_query: list[str]
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -142,7 +132,7 @@ class QueriesOperations:
         request = rest_queries.build_array_string_multi_valid_request(
             array_query=array_query,
             template_url=self.array_string_multi_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -152,8 +142,7 @@ class QueriesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

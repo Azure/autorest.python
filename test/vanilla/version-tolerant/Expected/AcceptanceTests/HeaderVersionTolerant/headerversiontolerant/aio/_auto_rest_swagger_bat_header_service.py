@@ -7,15 +7,18 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
 from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
 from .operations import HeaderOperations
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
 
 
 class AutoRestSwaggerBATHeaderService:
@@ -33,22 +36,21 @@ class AutoRestSwaggerBATHeaderService:
         self._config = AutoRestSwaggerBATHeaderServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `headerversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headerversiontolerant._rest import header
+        >>> from headerversiontolerant.rest import header
         >>> request = header.build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
         <HttpRequest [POST], url: '/header/param/existingkey'>
-        >>> response = await client._send_request(request)
+        >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart

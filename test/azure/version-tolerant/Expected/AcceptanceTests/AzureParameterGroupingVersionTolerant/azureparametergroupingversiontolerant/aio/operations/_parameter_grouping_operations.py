@@ -51,16 +51,11 @@ class ParameterGroupingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_required(
-        self,
-        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
-        **kwargs: Any
-    ) -> None:
+    async def post_required(self, *, parameter_grouping_post_required_parameters: Any, **kwargs: Any) -> None:
         """Post a bunch of required parameters grouped.
 
-        :param parameter_grouping_post_required_parameters: Parameter group.
-        :type parameter_grouping_post_required_parameters:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostRequiredParameters
+        :keyword parameter_grouping_post_required_parameters: Parameter group.
+        :paramtype parameter_grouping_post_required_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -108,16 +103,11 @@ class ParameterGroupingOperations:
     post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional(
-        self,
-        parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
-        **kwargs: Any
-    ) -> None:
+    async def post_optional(self, *, parameter_grouping_post_optional_parameters: Any = None, **kwargs: Any) -> None:
         """Post a bunch of optional parameters grouped.
 
-        :param parameter_grouping_post_optional_parameters: Parameter group.
-        :type parameter_grouping_post_optional_parameters:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostOptionalParameters
+        :keyword parameter_grouping_post_optional_parameters: Parameter group.
+        :paramtype parameter_grouping_post_optional_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -156,17 +146,12 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_reserved_words(
-        self,
-        parameter_grouping_post_reserved_words_parameters: Optional[
-            "_models.ParameterGroupingPostReservedWordsParameters"
-        ] = None,
-        **kwargs: Any
+        self, *, parameter_grouping_post_reserved_words_parameters: Any = None, **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
 
-        :param parameter_grouping_post_reserved_words_parameters: Parameter group.
-        :type parameter_grouping_post_reserved_words_parameters:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostReservedWordsParameters
+        :keyword parameter_grouping_post_reserved_words_parameters: Parameter group.
+        :paramtype parameter_grouping_post_reserved_words_parameters: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -206,19 +191,17 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_multi_param_groups(
         self,
-        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
-        parameter_grouping_post_multi_param_groups_second_param_group: Optional[
-            "_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"
-        ] = None,
+        *,
+        first_parameter_group: Any = None,
+        parameter_grouping_post_multi_param_groups_second_param_group: Any = None,
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        :param first_parameter_group: Parameter group.
-        :type first_parameter_group: ~azureparametergroupingversiontolerant.models.FirstParameterGroup
-        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
-        :type parameter_grouping_post_multi_param_groups_second_param_group:
-         ~azureparametergroupingversiontolerant.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
+        :keyword first_parameter_group: Parameter group.
+        :paramtype first_parameter_group: Any
+        :keyword parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
+        :paramtype parameter_grouping_post_multi_param_groups_second_param_group: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -263,13 +246,11 @@ class ParameterGroupingOperations:
     post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     @distributed_trace_async
-    async def post_shared_parameter_group_object(
-        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs: Any
-    ) -> None:
+    async def post_shared_parameter_group_object(self, *, first_parameter_group: Any = None, **kwargs: Any) -> None:
         """Post parameters with a shared parameter group object.
 
-        :param first_parameter_group: Parameter group.
-        :type first_parameter_group: ~azureparametergroupingversiontolerant.models.FirstParameterGroup
+        :keyword first_parameter_group: Parameter group.
+        :paramtype first_parameter_group: Any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

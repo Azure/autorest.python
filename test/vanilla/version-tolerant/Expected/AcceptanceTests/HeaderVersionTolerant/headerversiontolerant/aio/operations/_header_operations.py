@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import header as rest_header
+from ...rest import header as rest_header
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -35,15 +34,11 @@ class HeaderOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~headerversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -52,13 +47,12 @@ class HeaderOperations:
         self._config = config
 
     @distributed_trace_async
-    async def param_existing_key(self, user_agent_parameter: str, **kwargs: Any) -> None:
+    async def param_existing_key(self, *, user_agent_parameter: str, **kwargs: Any) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
-        :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
-        :type user_agent_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
+        :paramtype user_agent_parameter: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -69,7 +63,7 @@ class HeaderOperations:
         request = rest_header.build_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
             template_url=self.param_existing_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -79,8 +73,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -91,8 +84,7 @@ class HeaderOperations:
     async def response_existing_key(self, **kwargs: Any) -> None:
         """Get a response with header value "User-Agent": "overwrite".
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -102,7 +94,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_existing_key_request(
             template_url=self.response_existing_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -112,8 +104,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["User-Agent"] = self._deserialize("str", response.headers.get("User-Agent"))
@@ -127,8 +118,7 @@ class HeaderOperations:
     async def param_protected_key(self, **kwargs: Any) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -140,7 +130,7 @@ class HeaderOperations:
         request = rest_header.build_param_protected_key_request(
             content_type=content_type,
             template_url=self.param_protected_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -150,8 +140,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -162,8 +151,7 @@ class HeaderOperations:
     async def response_protected_key(self, **kwargs: Any) -> None:
         """Get a response with header value "Content-Type": "text/html".
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -173,7 +161,7 @@ class HeaderOperations:
 
         request = rest_header.build_response_protected_key_request(
             template_url=self.response_protected_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -183,8 +171,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Content-Type"] = self._deserialize("str", response.headers.get("Content-Type"))
@@ -195,16 +182,15 @@ class HeaderOperations:
     response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
 
     @distributed_trace_async
-    async def param_integer(self, scenario: str, value: int, **kwargs: Any) -> None:
+    async def param_integer(self, *, scenario: str, value: int, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 1 or -2.
-        :type value: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values 1 or -2.
+        :paramtype value: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -216,7 +202,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_integer.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -226,8 +212,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -235,13 +220,12 @@ class HeaderOperations:
     param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
     @distributed_trace_async
-    async def response_integer(self, scenario: str, **kwargs: Any) -> None:
+    async def response_integer(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 1 or -2.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -252,7 +236,7 @@ class HeaderOperations:
         request = rest_header.build_response_integer_request(
             scenario=scenario,
             template_url=self.response_integer.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -262,8 +246,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("int", response.headers.get("value"))
@@ -274,16 +257,15 @@ class HeaderOperations:
     response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
 
     @distributed_trace_async
-    async def param_long(self, scenario: str, value: int, **kwargs: Any) -> None:
+    async def param_long(self, *, scenario: str, value: int, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 105 or -2.
-        :type value: long
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values 105 or -2.
+        :paramtype value: long
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -295,7 +277,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -305,8 +287,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -314,13 +295,12 @@ class HeaderOperations:
     param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
     @distributed_trace_async
-    async def response_long(self, scenario: str, **kwargs: Any) -> None:
+    async def response_long(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 105 or -2.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -331,7 +311,7 @@ class HeaderOperations:
         request = rest_header.build_response_long_request(
             scenario=scenario,
             template_url=self.response_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -341,8 +321,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("long", response.headers.get("value"))
@@ -353,16 +332,15 @@ class HeaderOperations:
     response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
 
     @distributed_trace_async
-    async def param_float(self, scenario: str, value: float, **kwargs: Any) -> None:
+    async def param_float(self, *, scenario: str, value: float, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 0.07 or -3.0.
-        :type value: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values 0.07 or -3.0.
+        :paramtype value: float
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -374,7 +352,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -384,8 +362,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -393,13 +370,12 @@ class HeaderOperations:
     param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
     @distributed_trace_async
-    async def response_float(self, scenario: str, **kwargs: Any) -> None:
+    async def response_float(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -410,7 +386,7 @@ class HeaderOperations:
         request = rest_header.build_response_float_request(
             scenario=scenario,
             template_url=self.response_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -420,8 +396,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("float", response.headers.get("value"))
@@ -432,16 +407,15 @@ class HeaderOperations:
     response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
 
     @distributed_trace_async
-    async def param_double(self, scenario: str, value: float, **kwargs: Any) -> None:
+    async def param_double(self, *, scenario: str, value: float, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 7e120 or -3.0.
-        :type value: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values 7e120 or -3.0.
+        :paramtype value: float
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -453,7 +427,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -463,8 +437,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -472,13 +445,12 @@ class HeaderOperations:
     param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
     @distributed_trace_async
-    async def response_double(self, scenario: str, **kwargs: Any) -> None:
+    async def response_double(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -489,7 +461,7 @@ class HeaderOperations:
         request = rest_header.build_response_double_request(
             scenario=scenario,
             template_url=self.response_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -499,8 +471,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("float", response.headers.get("value"))
@@ -511,16 +482,15 @@ class HeaderOperations:
     response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
 
     @distributed_trace_async
-    async def param_bool(self, scenario: str, value: bool, **kwargs: Any) -> None:
+    async def param_bool(self, *, scenario: str, value: bool, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
 
-        :param scenario: Send a post request with header values "scenario": "true" or "false".
-        :type scenario: str
-        :param value: Send a post request with header values true or false.
-        :type value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "true" or "false".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values true or false.
+        :paramtype value: bool
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -532,7 +502,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -542,8 +512,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -551,13 +520,12 @@ class HeaderOperations:
     param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
     @distributed_trace_async
-    async def response_bool(self, scenario: str, **kwargs: Any) -> None:
+    async def response_bool(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": true or false.
 
-        :param scenario: Send a post request with header values "scenario": "true" or "false".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "true" or "false".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -568,7 +536,7 @@ class HeaderOperations:
         request = rest_header.build_response_bool_request(
             scenario=scenario,
             template_url=self.response_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -578,8 +546,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("bool", response.headers.get("value"))
@@ -590,18 +557,17 @@ class HeaderOperations:
     response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
 
     @distributed_trace_async
-    async def param_string(self, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
+    async def param_string(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
-        :type scenario: str
-        :param value: Send a post request with header values "The quick brown fox jumps over the lazy
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
          dog" or null or "".
-        :type value: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype value: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -613,7 +579,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -623,8 +589,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -632,14 +597,13 @@ class HeaderOperations:
     param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
     @distributed_trace_async
-    async def response_string(self, scenario: str, **kwargs: Any) -> None:
+    async def response_string(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -650,7 +614,7 @@ class HeaderOperations:
         request = rest_header.build_response_string_request(
             scenario=scenario,
             template_url=self.response_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -660,8 +624,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("str", response.headers.get("value"))
@@ -672,16 +635,15 @@ class HeaderOperations:
     response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
     @distributed_trace_async
-    async def param_date(self, scenario: str, value: datetime.date, **kwargs: Any) -> None:
+    async def param_date(self, *, scenario: str, value: datetime.date, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
-        :type scenario: str
-        :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
-        :type value: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values "2010-01-01" or "0001-01-01".
+        :paramtype value: ~datetime.date
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -693,7 +655,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -703,8 +665,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -712,13 +673,12 @@ class HeaderOperations:
     param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
     @distributed_trace_async
-    async def response_date(self, scenario: str, **kwargs: Any) -> None:
+    async def response_date(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -729,7 +689,7 @@ class HeaderOperations:
         request = rest_header.build_response_date_request(
             scenario=scenario,
             template_url=self.response_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -739,8 +699,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("date", response.headers.get("value"))
@@ -751,17 +710,16 @@ class HeaderOperations:
     response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
 
     @distributed_trace_async
-    async def param_datetime(self, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
+    async def param_datetime(self, *, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
-        :type scenario: str
-        :param value: Send a post request with header values "2010-01-01T12:34:56Z" or
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values "2010-01-01T12:34:56Z" or
          "0001-01-01T00:00:00Z".
-        :type value: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype value: ~datetime.datetime
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -773,7 +731,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_datetime.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -783,8 +741,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -792,13 +749,12 @@ class HeaderOperations:
     param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
-    async def response_datetime(self, scenario: str, **kwargs: Any) -> None:
+    async def response_datetime(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -809,7 +765,7 @@ class HeaderOperations:
         request = rest_header.build_response_datetime_request(
             scenario=scenario,
             template_url=self.response_datetime.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -819,8 +775,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
@@ -832,18 +787,17 @@ class HeaderOperations:
 
     @distributed_trace_async
     async def param_datetime_rfc1123(
-        self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
+        self, *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
-        :type scenario: str
-        :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
          01 Jan 0001 00:00:00 GMT".
-        :type value: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype value: ~datetime.datetime
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -855,7 +809,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_datetime_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -865,8 +819,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -874,14 +827,13 @@ class HeaderOperations:
     param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
-    async def response_datetime_rfc1123(self, scenario: str, **kwargs: Any) -> None:
+    async def response_datetime_rfc1123(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -892,7 +844,7 @@ class HeaderOperations:
         request = rest_header.build_response_datetime_rfc1123_request(
             scenario=scenario,
             template_url=self.response_datetime_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -902,8 +854,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
@@ -914,15 +865,14 @@ class HeaderOperations:
     response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
-    async def param_duration(self, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
+    async def param_duration(self, *, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
-        :type scenario: str
-        :param value: Send a post request with header values "P123DT22H14M12.011S".
-        :type value: ~datetime.timedelta
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values "P123DT22H14M12.011S".
+        :paramtype value: ~datetime.timedelta
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -934,7 +884,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -944,8 +894,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -953,13 +902,12 @@ class HeaderOperations:
     param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
 
     @distributed_trace_async
-    async def response_duration(self, scenario: str, **kwargs: Any) -> None:
+    async def response_duration(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -970,7 +918,7 @@ class HeaderOperations:
         request = rest_header.build_response_duration_request(
             scenario=scenario,
             template_url=self.response_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -980,8 +928,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("duration", response.headers.get("value"))
@@ -992,15 +939,14 @@ class HeaderOperations:
     response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
     @distributed_trace_async
-    async def param_byte(self, scenario: str, value: bytearray, **kwargs: Any) -> None:
+    async def param_byte(self, *, scenario: str, value: bytearray, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
-        :type scenario: str
-        :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
-        :type value: bytearray
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
+        :paramtype value: bytearray
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1012,7 +958,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1022,8 +968,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1031,13 +976,12 @@ class HeaderOperations:
     param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
 
     @distributed_trace_async
-    async def response_byte(self, scenario: str, **kwargs: Any) -> None:
+    async def response_byte(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1048,7 +992,7 @@ class HeaderOperations:
         request = rest_header.build_response_byte_request(
             scenario=scenario,
             template_url=self.response_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1058,8 +1002,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("bytearray", response.headers.get("value"))
@@ -1071,18 +1014,17 @@ class HeaderOperations:
 
     @distributed_trace_async
     async def param_enum(
-        self, scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs: Any
+        self, *, scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
-        :type scenario: str
-        :param value: Send a post request with header values 'GREY'.
-        :type value: str or ~headerversiontolerant.models.GreyscaleColors
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype scenario: str
+        :keyword value: Send a post request with header values 'GREY'.
+        :paramtype value: str or ~headerversiontolerant.models.GreyscaleColors
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1094,7 +1036,7 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_enum.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1104,8 +1046,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1113,14 +1054,13 @@ class HeaderOperations:
     param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
     @distributed_trace_async
-    async def response_enum(self, scenario: str, **kwargs: Any) -> None:
+    async def response_enum(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "GREY" or null.
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+        :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :paramtype scenario: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1131,7 +1071,7 @@ class HeaderOperations:
         request = rest_header.build_response_enum_request(
             scenario=scenario,
             template_url=self.response_enum.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1141,8 +1081,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["value"] = self._deserialize("str", response.headers.get("value"))
@@ -1157,8 +1096,7 @@ class HeaderOperations:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1168,7 +1106,7 @@ class HeaderOperations:
 
         request = rest_header.build_custom_request_id_request(
             template_url=self.custom_request_id.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1178,8 +1116,7 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

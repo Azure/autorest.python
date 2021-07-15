@@ -76,12 +76,8 @@ class LROOperation(Operation):
         return response
 
     @property
-    def schema_of_initial_operation(self) -> Callable:
-        return Operation
-
-    @property
     def initial_operation(self) -> Operation:
-        operation = self.schema_of_initial_operation(
+        operation = Operation(
             yaml_data={},
             name=self.name[5:] + "_initial",
             description="",

@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest as rest, models as _models
+from .. import rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -40,8 +40,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         """Get an error response from the server that is not as described in our Error object. Want to
         swallow the deserialization error and still return an HttpResponseError to the users.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -51,7 +50,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
 
         request = rest.build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

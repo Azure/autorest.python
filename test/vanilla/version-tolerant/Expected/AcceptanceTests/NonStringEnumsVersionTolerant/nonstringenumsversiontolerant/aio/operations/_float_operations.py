@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import float as rest_float
+from ...rest import float as rest_float
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -52,8 +51,7 @@ class FloatOperations:
 
         :param input: Input float enum.
         :type input: str or ~nonstringenumsversiontolerant.models.FloatEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -63,7 +61,7 @@ class FloatOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
-            json = self._serialize.body(input, "float")
+            json = input
         else:
             json = None
 
@@ -71,7 +69,7 @@ class FloatOperations:
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -83,7 +81,10 @@ class FloatOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("str", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -96,8 +97,7 @@ class FloatOperations:
     async def get(self, **kwargs: Any) -> Union[float, "_models.FloatEnum"]:
         """Get a float enum.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatEnum, or the result of cls(response)
+        :return: FloatEnum
         :rtype: str or ~nonstringenumsversiontolerant.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -107,7 +107,7 @@ class FloatOperations:
 
         request = rest_float.build_get_request(
             template_url=self.get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -119,7 +119,10 @@ class FloatOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("float", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

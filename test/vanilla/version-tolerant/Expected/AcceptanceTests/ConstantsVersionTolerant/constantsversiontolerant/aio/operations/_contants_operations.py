@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import contants as rest_contants
+from ...rest import contants as rest_contants
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -34,15 +33,11 @@ class ContantsOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~constantsversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -53,6 +48,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(
         self,
+        *,
         input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
         **kwargs: Any
     ) -> None:
@@ -60,11 +56,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -75,7 +70,7 @@ class ContantsOperations:
         request = rest_contants.build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -95,6 +90,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
         self,
+        *,
         input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
         **kwargs: Any
     ) -> None:
@@ -102,11 +98,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -117,7 +112,7 @@ class ContantsOperations:
         request = rest_contants.build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -136,16 +131,15 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(
-        self, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword input:
+        :paramtype input: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -156,7 +150,7 @@ class ContantsOperations:
         request = rest_contants.build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -175,16 +169,15 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(
-        self, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword input:
+        :paramtype input: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -195,7 +188,7 @@ class ContantsOperations:
         request = rest_contants.build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -214,17 +207,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(
-        self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
+        self, *, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -235,7 +227,7 @@ class ContantsOperations:
         request = rest_contants.build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -254,17 +246,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(
-        self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
+        self, *, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -275,7 +266,7 @@ class ContantsOperations:
         request = rest_contants.build_put_no_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -298,8 +289,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -309,7 +299,7 @@ class ContantsOperations:
 
         request = rest_contants.build_put_no_model_as_string_required_one_value_no_default_request(
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -332,8 +322,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -343,7 +332,7 @@ class ContantsOperations:
 
         request = rest_contants.build_put_no_model_as_string_required_one_value_default_request(
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -363,6 +352,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
         self,
+        *,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
         **kwargs: Any
     ) -> None:
@@ -370,11 +360,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -385,7 +374,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -405,6 +394,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
         self,
+        *,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
         **kwargs: Any
     ) -> None:
@@ -412,11 +402,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -427,7 +416,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -447,6 +436,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
         self,
+        *,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None,
         **kwargs: Any
     ) -> None:
@@ -454,11 +444,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -469,7 +458,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -489,6 +478,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
         self,
+        *,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
         **kwargs: Any
     ) -> None:
@@ -496,11 +486,10 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -511,7 +500,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -530,17 +519,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(
-        self, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
+        self, *, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -551,7 +539,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -570,16 +558,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(
-        self, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
+        self, *, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword input:
+        :paramtype input: str or
+         ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueDefaultOpEnum
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -590,7 +578,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -609,17 +597,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(
-        self, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs: Any
+        self, *, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or
+        :keyword input:
+        :paramtype input: str or
          ~constantsversiontolerant.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -630,7 +617,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -649,16 +636,16 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(
-        self, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs: Any
+        self, *, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :param input:
-        :type input: str or ~constantsversiontolerant.models.ModelAsStringRequiredOneValueDefaultOpEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword input:
+        :paramtype input: str or
+         ~constantsversiontolerant.models.ModelAsStringRequiredOneValueDefaultOpEnum
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -669,7 +656,7 @@ class ContantsOperations:
         request = rest_contants.build_put_model_as_string_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

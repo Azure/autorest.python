@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import http_client_failure as rest_http_client_failure
+from ..rest import http_client_failure as rest_http_client_failure
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class HttpClientFailureOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructureversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -61,8 +56,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -72,7 +66,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_head400_request(
             template_url=self.head400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -80,8 +74,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -95,8 +88,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -106,7 +98,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_get400_request(
             template_url=self.get400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -114,8 +106,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -129,8 +120,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -140,7 +130,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_options400_request(
             template_url=self.options400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -148,8 +138,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -167,8 +156,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -178,7 +166,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -186,7 +174,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -194,8 +182,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -213,8 +200,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -224,7 +210,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -232,7 +218,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -240,8 +226,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -259,8 +244,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -270,7 +254,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -278,7 +262,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -286,8 +270,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -305,8 +288,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -316,7 +298,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -324,7 +306,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -332,8 +314,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -347,8 +328,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 401 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -358,7 +338,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_head401_request(
             template_url=self.head401.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -366,8 +346,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -381,8 +360,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 402 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -392,7 +370,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_get402_request(
             template_url=self.get402.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -400,8 +378,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -415,8 +392,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 403 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -426,7 +402,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_options403_request(
             template_url=self.options403.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -434,8 +410,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -449,8 +424,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 403 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -460,7 +434,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_get403_request(
             template_url=self.get403.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -468,8 +442,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -487,8 +460,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -498,7 +470,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -506,7 +478,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -514,8 +486,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -533,8 +504,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -544,7 +514,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -552,7 +522,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch405.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -560,8 +530,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -579,8 +548,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -590,7 +558,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -598,7 +566,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post406.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -606,8 +574,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -625,8 +592,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -636,7 +602,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -644,7 +610,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete407.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -652,8 +618,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -671,8 +636,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -682,7 +646,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -690,7 +654,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put409.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -698,8 +662,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -713,8 +676,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 410 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -724,7 +686,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_head410_request(
             template_url=self.head410.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -732,8 +694,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -747,8 +708,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 411 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -758,7 +718,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_get411_request(
             template_url=self.get411.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -766,8 +726,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -781,8 +740,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 412 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -792,7 +750,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_options412_request(
             template_url=self.options412.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -800,8 +758,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -815,8 +772,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 412 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -826,7 +782,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_get412_request(
             template_url=self.get412.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -834,8 +790,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -853,8 +808,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -864,7 +818,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -872,7 +826,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put413.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -880,8 +834,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -899,8 +852,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -910,7 +862,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -918,7 +870,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch414.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -926,8 +878,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -945,8 +896,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -956,7 +906,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -964,7 +914,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post415.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -972,8 +922,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -987,8 +936,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 416 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -998,7 +946,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_get416_request(
             template_url=self.get416.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1006,8 +954,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1025,8 +972,7 @@ class HttpClientFailureOperations(object):
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1036,7 +982,7 @@ class HttpClientFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            json = boolean_value
         else:
             json = None
 
@@ -1044,7 +990,7 @@ class HttpClientFailureOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete417.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1052,8 +998,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -1067,8 +1012,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 429 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1078,7 +1022,7 @@ class HttpClientFailureOperations(object):
 
         request = rest_http_client_failure.build_head429_request(
             template_url=self.head429.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1086,8 +1030,7 @@ class HttpClientFailureOperations(object):
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
