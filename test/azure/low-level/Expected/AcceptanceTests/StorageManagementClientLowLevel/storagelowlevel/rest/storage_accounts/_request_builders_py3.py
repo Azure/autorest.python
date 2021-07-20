@@ -43,7 +43,7 @@ def build_check_name_availability_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "name": "str",
                 "type": "str (optional). Default value is \"Microsoft.Storage/storageAccounts\""
@@ -125,7 +125,7 @@ def build_create_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "accountType": "str (optional)"
@@ -385,7 +385,7 @@ def build_update_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "accountType": "str (optional)",
@@ -740,7 +740,7 @@ def build_regenerate_key_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "keyName": "str (optional)"
             }

@@ -103,6 +103,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         return ItemPaged(
@@ -161,6 +162,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -221,6 +223,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         return CustomPager(
@@ -280,6 +283,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -363,6 +367,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         return ItemPaged(
@@ -426,6 +431,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -508,6 +514,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -597,6 +604,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         return ItemPaged(
@@ -656,6 +664,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -717,6 +726,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         return ItemPaged(
@@ -775,6 +785,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -835,6 +846,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         return ItemPaged(
@@ -893,6 +905,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -962,6 +975,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -1038,6 +1052,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 
@@ -1174,6 +1189,7 @@ class PagingOperations(object):
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
@@ -1272,6 +1288,7 @@ class PagingOperations(object):
             if response.status_code not in [200]:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
 
             return pipeline_response
 

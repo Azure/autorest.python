@@ -71,33 +71,6 @@ error_map = {
 {% endif %}
 error_map.update(kwargs.pop('error_map', {})){%- endmacro -%}
 
-{% macro response_headers(response) %}
-{% for response_header in response.headers %}
-response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.serialization_type }}', response.headers.get('{{ response_header.name }}'))
-{% endfor %}{% endmacro %}
-
-{% macro response_headers_and_deserialization(response, code_model) %}
-{% if response.headers %}
-{{ response_headers(response) }}
-    {% endif %}
-    {% if response.is_stream_response %}
-        {% if code_model.version_tolerant %}
-deserialized = response
-        {% else %}
-deserialized = response.stream_download(self._client._pipeline)
-        {% endif %}
-    {% elif response.has_body %}
-        {% if code_model.show_models %}
-deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
-        {% else %}
-if response.content:
-    deserialized = response.json()
-else:
-    deserialized = None
-        {% endif %}
-    {% endif %}
-{% endmacro %}
-
 {# write queryparameters #}
 {% macro query_parameters(request_builder, async_mode) %}
 # Construct parameters
@@ -170,77 +143,6 @@ content = input
     {{ set_body_content_kwarg(operation, schema_request)|indent }}
         {% endfor %}
 {% endif %}{% endif %}{% endmacro %}
-
-{# create HTTPRequest #}
-{% macro create_http_request(request_builder, is_python_3_file) %}
-return HttpRequest(
-    method="{{ request_builder.method }}",
-    url=url,
-    {% if request_builder.parameters.query %}
-    params=query_parameters,
-    {% endif %}
-    {% if request_builder.parameters.headers %}
-    headers=header_parameters,
-    {% endif %}
-    {% if request_builder.parameters.has_body %}
-        {% if is_python_3_file %}
-            {% for body_kwarg in request_builder.parameters.body_kwarg_names.keys() | list %}
-    {{ body_kwarg }}={{ body_kwarg }},
-            {% endfor %}
-        {% endif %}
-    {% endif %}
-    **kwargs
-)
-{% endmacro %}
-
-
-{% macro handle_error_response(code_model, operation) %}
-if response.status_code not in {{ operation.success_status_code|string() }}:
-    map_error(status_code=response.status_code, response=response, error_map=error_map)
-    {% set error_model = "" %}
-	{% if operation.default_exception and code_model.show_models %}
-    error = self._deserialize.failsafe_deserialize({{ operation.default_exception }}, response)
-    {% set error_model = ", model=error" %}
-	{% endif %}
-    raise HttpResponseError(response=response{{ error_model }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }}){% endmacro %}
-
-{# deal with response #}
-{% macro handle_response(code_model, operation) %}
-response = pipeline_response.http_response
-
-{{ handle_error_response(code_model, operation) }}
-
-{# now we only initialize deserialized to None if we know there is both > 1 response with body and > 1 response of None #}
-{# otherwise, we know that deserialized will be set to a value then returned #}
-{% if operation.has_optional_return_type %}
-deserialized = None
-{% endif %}
-{% if operation.any_response_has_headers %}
-response_headers = {}
-{% endif %}
-{% if operation.has_response_body or operation.any_response_has_headers %}
-  {% if operation.responses|count > 1 %}
-    {% for status_code in operation.success_status_code %}
-      {% set response =  operation.get_response_from_status(status_code) %}
-      {% if response.headers or response.has_body %}
-if response.status_code == {{ status_code }}:
-    {{ response_headers_and_deserialization(response, code_model)|indent }}
-      {% endif %}
-    {% endfor %}
-  {% else %}
-    {% set response = operation.responses[0] %}
-{{ response_headers_and_deserialization(response, code_model) }}
-  {% endif %}
-{% endif %}
-if cls:
-    return cls(pipeline_response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
-{% if operation.has_response_body %}
-
-return deserialized
-{% endif %}
-{% if operation.request_builder.method == 'HEAD' and code_model.options['head_as_boolean'] %}
-return 200 <= response.status_code <= 299
-{% endif %}{% endmacro %}
 
 {% macro serialize(lines) %}
 {% for line in lines %}

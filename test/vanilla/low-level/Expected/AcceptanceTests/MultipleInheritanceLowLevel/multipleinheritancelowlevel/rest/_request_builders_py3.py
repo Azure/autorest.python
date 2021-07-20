@@ -64,7 +64,7 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "isAShowHorse": "bool (optional)"
             }
@@ -136,7 +136,7 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "name": "str"
             }
@@ -209,7 +209,7 @@ def build_put_feline_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "hisses": "bool (optional)",
                 "meows": "bool (optional)"
@@ -284,7 +284,7 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "likesMilk": "bool (optional)"
             }
@@ -360,7 +360,7 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "eatsMiceYet": "bool (optional)"
             }

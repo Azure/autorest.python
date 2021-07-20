@@ -300,6 +300,7 @@ class MultiapiServiceClientOperationsMixin:
                     map_error(status_code=response.status_code, response=response, error_map=error_map)
                     raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+
             return pipeline_response
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]

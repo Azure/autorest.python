@@ -40,7 +40,7 @@ def prepare_request(next_link=None):
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     response = pipeline_response.http_response
 
-    {{ op_tools.handle_error_response(code_model, operation) | indent(8) }}
+    {{ op_tools.serialize(operation_serializer.handle_error_response(operation)) | indent(8) }}
 
     return pipeline_response
 {%- endmacro -%}

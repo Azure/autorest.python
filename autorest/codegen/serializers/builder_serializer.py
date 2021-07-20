@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from autorest.codegen.models.schema_response import SchemaResponse
+from autorest.codegen.models import code_model
 from functools import partial
 from itertools import groupby
 import json
@@ -371,7 +373,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
 ############################## REQUEST BUILDERS ##############################
 
 
-class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstract-method
+class RequestBuilderBaseSerializer(BuilderBaseSerializer):
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
@@ -418,6 +420,27 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=ab
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return "files" in builder.parameters.body_kwarg_names
 
+    @abstractmethod
+    def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+        ...
+
+    def create_http_request(self, builder: BuilderType) -> List[str]:
+        retval = ["return HttpRequest("]
+        retval.append(f'    method="{builder.method}",')
+        retval.append("    url=url,")
+        if builder.parameters.query:
+            retval.append("    params=query_parameters,")
+        if builder.parameters.headers:
+            retval.append("    headers=header_parameters,")
+        if builder.parameters.has_body:
+            retval.extend([
+                f"    {body_kwarg}={body_kwarg},"
+                for body_kwarg in self._body_params_to_pass_to_request_creation(builder)
+            ])
+        retval.append("    **kwargs")
+        retval.append(")")
+        return retval
+
 
 class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
     @property
@@ -433,6 +456,9 @@ class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
     def _get_kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(async_mode=False)
 
+    def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+        return []
+
 
 class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
     @property
@@ -447,6 +473,9 @@ class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(async_mode=True)
+
+    def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+        return list(builder.parameters.body_kwarg_names.keys())
 
 
 ############################## NORMAL OPERATIONS ##############################
@@ -665,6 +694,81 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
     def call_request_builder(self, builder: BuilderType) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder)
 
+    def response_headers_and_deserialization(self, response: SchemaResponse) -> List[str]:
+        retval: List[str] = [
+            f"response_headers['{response_header.name}']=self._deserialize('{response_header.serialization_type}', response.headers.get('{response_header.name}'))"
+            for response_header in response.headers
+        ]
+        if response.headers:
+            retval.append("")
+        if response.is_stream_response:
+            retval.append(
+                "deserialized = {}".format(
+                    "response" if self.code_model.version_tolerant else "response.stream_download(self._client._pipeline)"
+                )
+            )
+        elif response.has_body:
+            if self.code_model.show_models:
+                retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
+            else:
+                retval.append("if response.content:")
+                retval.append("    deserialized = response.json()")
+                retval.append("else:")
+                retval.append("    deserialized = None")
+        return retval
+
+    def handle_error_response(self, builder: BuilderType) -> List[str]:
+        retval = [f"if response.status_code not in {str(builder.success_status_code)}:"]
+        retval.append("    map_error(status_code=response.status_code, response=response, error_map=error_map)")
+        error_model = ""
+        if builder.default_exception and self.code_model.show_models:
+            retval.append(f"    error = self._deserialize.failsafe_deserialize({builder.default_exception}, response)")
+            error_model = ", model=error"
+        retval.append("    raise HttpResponseError(response=response{}{})".format(
+            error_model,
+            ", error_format=ARMErrorFormat" if self.code_model.options['azure_arm'] else ""
+        ))
+        return retval
+
+    def handle_response(self, builder: BuilderType) -> List[str]:
+        retval: List[str] = ["response = pipeline_response.http_response"]
+        retval.append("")
+        retval.extend(self.handle_error_response(builder))
+        retval.append("")
+        if builder.has_optional_return_type:
+            retval.append("deserialized = None")
+        if builder.any_response_has_headers:
+            retval.append("response_headers = {}")
+        if builder.has_response_body or builder.any_response_has_headers:
+            if len(builder.responses) > 1:
+                for status_code in builder.success_status_code:
+                    response = builder.get_response_from_status(status_code)
+                    if response.headers or response.has_body:
+                        retval.append(f"if response.status_code == {status_code}:")
+                        retval.extend([
+                            f"    {line}"
+                            for line in self.response_headers_and_deserialization(response)
+                        ])
+                        retval.append("")
+            else:
+                retval.extend(self.response_headers_and_deserialization(
+                    builder.responses[0]
+                ))
+                retval.append("")
+        retval.append("if cls:")
+        retval.append("    return cls(pipeline_response, {}, {})".format(
+            "deserialized" if builder.has_response_body else "None",
+            "response_headers" if builder.any_response_has_headers else '{}'
+        ))
+        if builder.has_response_body:
+            retval.append("")
+            retval.append("return deserialized")
+        if builder.request_builder.method == 'HEAD' and self.code_model.options['head_as_boolean']:
+            retval.append("return 200 <= response.status_code <= 299")
+        return retval
+
+
+
 
 class SyncOperationSerializer(OperationBaseSerializer):
     @property
@@ -709,7 +813,9 @@ class AsyncOperationSerializer(OperationBaseSerializer):
 
 class PagingOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=abstract-method
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use, unused-argument
-        return "An iterator like instance of {}" + self._cls_docstring_rtype
+        if self._cls_docstring_rtype:
+            return "An iterator like instance of either {}" + self._cls_docstring_rtype
+        return "An iterator like instance of {}"
 
     def cls_type_annotation(self, builder: BuilderType) -> str:
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
@@ -844,7 +950,7 @@ class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOpe
         lro_doc = SyncLROOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = SyncPagingOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
-        return lro_doc.format(paging_doc).replace(f" {self._cls_docstring_rtype}", "", 1).replace("either ", "", 1)
+        return lro_doc.format(paging_doc).replace(self._cls_docstring_rtype, "", 1).replace("either ", "", 1)
 
     def cls_type_annotation(self, builder: BuilderType) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
@@ -869,7 +975,7 @@ class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPaging
         lro_doc = AsyncLROOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = AsyncPagingOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
-        return lro_doc.format(paging_doc).replace(f" {self._cls_docstring_rtype}", "", 1).replace("either ", "", 1)
+        return lro_doc.format(paging_doc).replace(self._cls_docstring_rtype, "", 1).replace("either ", "", 1)
 
 
 def get_operation_serializer(builder: BuilderType, code_model, async_mode: bool) -> OperationBaseSerializer:

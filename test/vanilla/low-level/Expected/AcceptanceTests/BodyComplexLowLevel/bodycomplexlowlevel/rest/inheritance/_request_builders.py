@@ -84,7 +84,7 @@ def build_put_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "breed": "str (optional)"
             }

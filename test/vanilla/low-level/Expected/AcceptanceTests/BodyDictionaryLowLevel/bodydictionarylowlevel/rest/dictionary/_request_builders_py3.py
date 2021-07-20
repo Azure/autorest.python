@@ -96,7 +96,7 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "str (optional)"
             }
@@ -292,7 +292,7 @@ def build_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **k
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "bool (optional)"
             }
@@ -426,7 +426,7 @@ def build_put_integer_valid_request(*, json: Any = None, content: Any = None, **
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "int (optional)"
             }
@@ -560,7 +560,7 @@ def build_put_long_valid_request(*, json: Any = None, content: Any = None, **kwa
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "long (optional)"
             }
@@ -694,7 +694,7 @@ def build_put_float_valid_request(*, json: Any = None, content: Any = None, **kw
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "float (optional)"
             }
@@ -828,7 +828,7 @@ def build_put_double_valid_request(*, json: Any = None, content: Any = None, **k
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "float (optional)"
             }
@@ -962,7 +962,7 @@ def build_put_string_valid_request(*, json: Any = None, content: Any = None, **k
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "str (optional)"
             }
@@ -1096,7 +1096,7 @@ def build_put_date_valid_request(*, json: Any = None, content: Any = None, **kwa
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "date (optional)"
             }
@@ -1232,7 +1232,7 @@ def build_put_date_time_valid_request(*, json: Any = None, content: Any = None, 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "datetime (optional)"
             }
@@ -1368,7 +1368,7 @@ def build_put_date_time_rfc1123_valid_request(*, json: Any = None, content: Any 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "datetime (optional)"
             }
@@ -1440,7 +1440,7 @@ def build_put_duration_valid_request(*, json: Any = None, content: Any = None, *
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "timedelta (optional)"
             }
@@ -1514,7 +1514,7 @@ def build_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwa
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": "bytearray (optional)"
             }
@@ -1793,7 +1793,7 @@ def build_put_complex_valid_request(*, json: Any = None, content: Any = None, **
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": {
                     "integer": "int (optional)",
@@ -2004,7 +2004,7 @@ def build_put_array_valid_request(*, json: Any = None, content: Any = None, **kw
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": [
                     "str (optional)"
@@ -2218,7 +2218,7 @@ def build_put_dictionary_valid_request(*, json: Any = None, content: Any = None,
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": {
                     "str": "str (optional)"

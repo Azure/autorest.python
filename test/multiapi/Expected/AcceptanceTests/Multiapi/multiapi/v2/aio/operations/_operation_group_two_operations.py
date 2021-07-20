@@ -77,6 +77,7 @@ class OperationGroupTwoOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
+
         if cls:
             return cls(pipeline_response, None, {})
 

@@ -25,7 +25,7 @@
         {% endif %}
         {% if operation.lro_response %}
         response = pipeline_response.http_response
-        {{ op_tools.response_headers_and_deserialization(operation.lro_response, code_model)|indent(8) }}
+        {{ op_tools.serialize(operation_serializer.response_headers_and_deserialization(operation.lro_response)) | indent(8) }}
         {% endif %}
         if cls:
             return cls(pipeline_response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})

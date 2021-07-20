@@ -60,7 +60,7 @@ def build_put_object_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "any (optional)"
     """
 
@@ -123,7 +123,7 @@ def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "any (optional)"
     """
 
@@ -186,7 +186,7 @@ def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "any (optional)"
     """
 

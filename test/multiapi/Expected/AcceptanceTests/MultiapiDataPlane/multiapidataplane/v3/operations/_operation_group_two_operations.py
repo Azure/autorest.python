@@ -100,6 +100,7 @@ class OperationGroupTwoOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+
         if cls:
             return cls(pipeline_response, None, {})
 
@@ -136,6 +137,7 @@ class OperationGroupTwoOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
+
 
         if cls:
             return cls(pipeline_response, None, {})

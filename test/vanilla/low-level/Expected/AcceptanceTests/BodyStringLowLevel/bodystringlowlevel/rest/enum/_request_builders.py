@@ -72,7 +72,7 @@ def build_put_not_expandable_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -150,7 +150,7 @@ def build_put_referenced_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -237,7 +237,7 @@ def build_put_referenced_constant_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "ColorConstant": "str",
                 "field1": "str (optional)"

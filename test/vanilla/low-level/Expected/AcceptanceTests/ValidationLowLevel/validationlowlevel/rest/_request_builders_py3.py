@@ -109,7 +109,7 @@ def build_validation_of_body_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "capacity": "int (optional)",
                 "child": {
@@ -223,7 +223,7 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "capacity": "int (optional)",
                 "child": {

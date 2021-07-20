@@ -159,7 +159,7 @@ def build_put_empty_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -247,7 +247,7 @@ def build_put_boolean_tfft_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "bool (optional)"
             ]
@@ -413,7 +413,7 @@ def build_put_integer_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "int (optional)"
             ]
@@ -579,7 +579,7 @@ def build_put_long_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "long (optional)"
             ]
@@ -745,7 +745,7 @@ def build_put_float_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "float (optional)"
             ]
@@ -911,7 +911,7 @@ def build_put_double_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "float (optional)"
             ]
@@ -1077,7 +1077,7 @@ def build_put_string_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -1165,7 +1165,7 @@ def build_put_enum_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -1253,7 +1253,7 @@ def build_put_string_enum_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -1421,7 +1421,7 @@ def build_put_uuid_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -1548,7 +1548,7 @@ def build_put_date_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "date (optional)"
             ]
@@ -1716,7 +1716,7 @@ def build_put_date_time_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "datetime (optional)"
             ]
@@ -1884,7 +1884,7 @@ def build_put_date_time_rfc1123_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "datetime (optional)"
             ]
@@ -1972,7 +1972,7 @@ def build_put_duration_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "timedelta (optional)"
             ]
@@ -2062,7 +2062,7 @@ def build_put_byte_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "bytearray (optional)"
             ]
@@ -2404,7 +2404,7 @@ def build_put_complex_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 {
                     "integer": "int (optional)",
@@ -2661,7 +2661,7 @@ def build_put_array_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 [
                     "str (optional)"
@@ -2921,7 +2921,7 @@ def build_put_dictionary_valid_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 {
                     "str": "str (optional)"

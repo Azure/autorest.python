@@ -125,7 +125,7 @@ def build_put_big_float_request(*, json: Any = None, content: Any = None, **kwar
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -187,7 +187,7 @@ def build_put_big_double_request(*, json: Any = None, content: Any = None, **kwa
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -251,7 +251,7 @@ def build_put_big_double_positive_decimal_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -315,7 +315,7 @@ def build_put_big_double_negative_decimal_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -377,7 +377,7 @@ def build_put_big_decimal_request(*, json: Any = None, content: Any = None, **kw
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -441,7 +441,7 @@ def build_put_big_decimal_positive_decimal_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -505,7 +505,7 @@ def build_put_big_decimal_negative_decimal_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -567,7 +567,7 @@ def build_put_small_float_request(*, json: Any = None, content: Any = None, **kw
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -629,7 +629,7 @@ def build_put_small_double_request(*, json: Any = None, content: Any = None, **k
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 
@@ -691,7 +691,7 @@ def build_put_small_decimal_request(*, json: Any = None, content: Any = None, **
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "float (optional)"
     """
 

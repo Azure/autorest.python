@@ -126,7 +126,7 @@ def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 
@@ -168,7 +168,7 @@ def build_put_utc_max_date_time7_digits_request(*, json: Any = None, content: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 
@@ -281,7 +281,7 @@ def build_put_local_positive_offset_max_date_time_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 
@@ -368,7 +368,7 @@ def build_put_local_negative_offset_max_date_time_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 
@@ -453,7 +453,7 @@ def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 
@@ -517,7 +517,7 @@ def build_put_local_positive_offset_min_date_time_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 
@@ -581,7 +581,7 @@ def build_put_local_negative_offset_min_date_time_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 

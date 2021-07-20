@@ -23,4 +23,4 @@
 {% if request_builder.parameters.headers %}
     {{ op_tools.header_parameters(code_model, request_builder, is_python_3_file)|indent }}
 {% endif %}
-    {{ op_tools.create_http_request(request_builder, is_python_3_file)|indent }}
+    {{ op_tools.serialize(request_builder_serializer.create_http_request(request_builder)) | indent }}

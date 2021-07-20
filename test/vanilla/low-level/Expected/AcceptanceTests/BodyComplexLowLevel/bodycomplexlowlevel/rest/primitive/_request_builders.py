@@ -81,7 +81,7 @@ def build_put_int_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field1": "int (optional)",
                 "field2": "int (optional)"
@@ -171,7 +171,7 @@ def build_put_long_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field1": "long (optional)",
                 "field2": "long (optional)"
@@ -261,7 +261,7 @@ def build_put_float_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field1": "float (optional)",
                 "field2": "float (optional)"
@@ -353,7 +353,7 @@ def build_put_double_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field1": "float (optional)",
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
@@ -443,7 +443,7 @@ def build_put_bool_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field_false": "bool (optional)",
                 "field_true": "bool (optional)"
@@ -534,7 +534,7 @@ def build_put_string_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "empty": "str (optional)",
                 "field": "str (optional)",
@@ -625,7 +625,7 @@ def build_put_date_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field": "date (optional)",
                 "leap": "date (optional)"
@@ -717,7 +717,7 @@ def build_put_date_time_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field": "datetime (optional)",
                 "now": "datetime (optional)"
@@ -809,7 +809,7 @@ def build_put_date_time_rfc1123_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field": "datetime (optional)",
                 "now": "datetime (optional)"
@@ -898,7 +898,7 @@ def build_put_duration_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field": "timedelta (optional)"
             }
@@ -988,7 +988,7 @@ def build_put_byte_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "field": "bytearray (optional)"
             }

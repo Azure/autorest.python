@@ -72,7 +72,7 @@ def build_put_null_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -150,7 +150,7 @@ def build_put_empty_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -228,7 +228,7 @@ def build_put_mbcs_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -310,7 +310,7 @@ def build_put_whitespace_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -450,7 +450,7 @@ def build_put_base64_url_encoded_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bytes (optional)"
     """
 
