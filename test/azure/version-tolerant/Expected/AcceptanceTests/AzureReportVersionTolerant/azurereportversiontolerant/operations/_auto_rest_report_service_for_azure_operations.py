@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import _rest as rest, models as _models
+from .. import rest as rest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,8 +43,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
          in for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
         :paramtype qualifier: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -64,7 +63,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         request = rest.build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -72,10 +71,12 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

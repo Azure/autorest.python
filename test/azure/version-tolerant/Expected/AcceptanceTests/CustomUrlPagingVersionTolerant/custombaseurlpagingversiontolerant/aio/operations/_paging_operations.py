@@ -23,8 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
-from ..._rest import paging as rest_paging
+from ...rest import paging as rest_paging
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -36,15 +35,11 @@ class PagingOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~custombaseurlpagingversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -53,14 +48,13 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_pages_partial_url(self, *, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
-        :keyword account_name: Account Name.
-        :paramtype account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :param account_name: Account Name.
+        :type account_name: str
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -89,7 +83,7 @@ class PagingOperations:
 
                 request = rest_paging.build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -100,7 +94,7 @@ class PagingOperations:
 
                 request = rest_paging.build_get_pages_partial_url_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -138,13 +132,12 @@ class PagingOperations:
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, *, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
-        :keyword account_name: Account Name.
-        :paramtype account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :param account_name: Account Name.
+        :type account_name: str
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -173,7 +166,7 @@ class PagingOperations:
 
                 request = rest_paging.build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -185,7 +178,7 @@ class PagingOperations:
                 request = rest_paging.build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

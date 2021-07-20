@@ -36,9 +36,8 @@ class AutoRestDurationTestService:
         self._config = AutoRestDurationTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
 
@@ -48,7 +47,7 @@ class AutoRestDurationTestService:
         We have helper methods to create requests specific to this service in `bodydurationversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydurationversiontolerant._rest import duration
+        >>> from bodydurationversiontolerant.rest import duration
         >>> request = duration.build_get_null_request(**kwargs)
         <HttpRequest [GET], url: '/duration/null'>
         >>> response = await client.send_request(request)

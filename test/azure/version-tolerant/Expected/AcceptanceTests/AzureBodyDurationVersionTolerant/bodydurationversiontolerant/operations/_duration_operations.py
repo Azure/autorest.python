@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import duration as rest_duration
+from ..rest import duration as rest_duration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,15 +38,11 @@ class DurationOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodydurationversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -62,8 +57,7 @@ class DurationOperations(object):
         # type: (...) -> Optional[datetime.timedelta]
         """Get null duration value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or None, or the result of cls(response)
+        :return: timedelta or None
         :rtype: ~datetime.timedelta or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -73,7 +67,7 @@ class DurationOperations(object):
 
         request = rest_duration.build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -81,10 +75,12 @@ class DurationOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("duration", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -104,8 +100,7 @@ class DurationOperations(object):
 
         :param duration_body: duration body.
         :type duration_body: ~datetime.timedelta
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -114,13 +109,13 @@ class DurationOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(duration_body, "duration")
+        json = duration_body
 
         request = rest_duration.build_put_positive_duration_request(
             content_type=content_type,
             json=json,
             template_url=self.put_positive_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -128,8 +123,7 @@ class DurationOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -143,8 +137,7 @@ class DurationOperations(object):
         # type: (...) -> datetime.timedelta
         """Get a positive duration value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
+        :return: timedelta
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -154,7 +147,7 @@ class DurationOperations(object):
 
         request = rest_duration.build_get_positive_duration_request(
             template_url=self.get_positive_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -162,10 +155,12 @@ class DurationOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("duration", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -181,8 +176,7 @@ class DurationOperations(object):
         # type: (...) -> datetime.timedelta
         """Get an invalid duration value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
+        :return: timedelta
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -192,7 +186,7 @@ class DurationOperations(object):
 
         request = rest_duration.build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -200,10 +194,12 @@ class DurationOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("duration", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

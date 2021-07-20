@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .._rest import http_success as rest_http_success
+from ..rest import http_success as rest_http_success
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -57,8 +57,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Return 200 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -68,7 +67,7 @@ class HttpSuccessOperations(object):
 
         request = rest_http_success.build_head200_request(
             template_url=self.head200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -91,8 +90,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Return 204 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -102,7 +100,7 @@ class HttpSuccessOperations(object):
 
         request = rest_http_success.build_head204_request(
             template_url=self.head204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -125,8 +123,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Return 404 status code if successful.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -136,7 +133,7 @@ class HttpSuccessOperations(object):
 
         request = rest_http_success.build_head404_request(
             template_url=self.head404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -38,9 +38,8 @@ class AutoRestPagingTestService:
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
@@ -50,7 +49,7 @@ class AutoRestPagingTestService:
         We have helper methods to create requests specific to this service in `pagingversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from pagingversiontolerant._rest import paging
+        >>> from pagingversiontolerant.rest import paging
         >>> request = paging.build_get_no_item_name_pages_request(**kwargs)
         <HttpRequest [GET], url: '/paging/noitemname'>
         >>> response = await client.send_request(request)

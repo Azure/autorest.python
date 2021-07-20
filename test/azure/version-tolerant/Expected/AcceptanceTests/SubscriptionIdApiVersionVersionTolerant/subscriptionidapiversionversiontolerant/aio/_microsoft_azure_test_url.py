@@ -44,9 +44,8 @@ class MicrosoftAzureTestUrl:
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.group = GroupOperations(self._client, self._config, self._serialize, self._deserialize)
 
@@ -56,7 +55,7 @@ class MicrosoftAzureTestUrl:
         We have helper methods to create requests specific to this service in `subscriptionidapiversionversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from subscriptionidapiversionversiontolerant._rest import group
+        >>> from subscriptionidapiversionversiontolerant.rest import group
         >>> request = group.build_get_sample_resource_group_request(subscription_id, resource_group_name, **kwargs)
         <HttpRequest [GET], url: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'>
         >>> response = await client.send_request(request)

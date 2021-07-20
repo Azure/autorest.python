@@ -26,8 +26,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ... import models as _models
-from ..._rest import storage_accounts as rest_storage_accounts
+from ...rest import storage_accounts as rest_storage_accounts
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -39,15 +38,11 @@ class StorageAccountsOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~storageversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -63,15 +58,14 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON object, or the result of cls(response)
+        :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 account_name = {
                     "name": "str",
                     "type": "str (optional). Default value is \"Microsoft.Storage/storageAccounts\""
@@ -89,14 +83,14 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(account_name, "object")
+        json = account_name
 
         request = rest_storage_accounts.build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
             template_url=self.check_name_availability.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,7 +102,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -125,7 +122,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(parameters, "object")
+        json = parameters
 
         request = rest_storage_accounts.build_create_request_initial(
             resource_group_name=resource_group_name,
@@ -134,7 +131,7 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -148,7 +145,10 @@ class StorageAccountsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -174,7 +174,6 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -182,55 +181,58 @@ class StorageAccountsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "accountType": "str (optional)"
+                    "properties": {
+                        "accountType": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "accountType": "str (optional)",
-                    "creationTime": "datetime (optional)",
-                    "customDomain": {
-                        "name": "str (optional)",
-                        "useSubDomain": "bool (optional)"
-                    },
-                    "lastGeoFailoverTime": "datetime (optional)",
-                    "primaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": "..."
-                            }
+                    "properties": {
+                        "accountType": "str (optional)",
+                        "creationTime": "datetime (optional)",
+                        "customDomain": {
+                            "name": "str (optional)",
+                            "useSubDomain": "bool (optional)"
                         },
-                        "blob": "str (optional)",
-                        "dummyEndPoint": "...",
-                        "queue": "str (optional)",
-                        "table": "str (optional)"
-                    },
-                    "primaryLocation": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "secondaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": "..."
-                            }
+                        "lastGeoFailoverTime": "datetime (optional)",
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": "..."
+                                }
+                            },
+                            "blob": "str (optional)",
+                            "dummyEndPoint": "...",
+                            "queue": "str (optional)",
+                            "table": "str (optional)"
                         },
-                        "blob": "str (optional)",
-                        "dummyEndPoint": "...",
-                        "queue": "str (optional)",
-                        "table": "str (optional)"
-                    },
-                    "secondaryLocation": "str (optional)",
-                    "statusOfPrimary": "str (optional)",
-                    "statusOfSecondary": "str (optional)"
+                        "primaryLocation": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": "..."
+                                }
+                            },
+                            "blob": "str (optional)",
+                            "dummyEndPoint": "...",
+                            "queue": "str (optional)",
+                            "table": "str (optional)"
+                        },
+                        "secondaryLocation": "str (optional)",
+                        "statusOfPrimary": "str (optional)",
+                        "statusOfSecondary": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -252,7 +254,10 @@ class StorageAccountsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -286,8 +291,7 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -300,7 +304,7 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.delete.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -329,8 +333,7 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON object, or the result of cls(response)
+        :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -339,40 +342,42 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "accountType": "str (optional)",
-                    "creationTime": "datetime (optional)",
-                    "customDomain": {
-                        "name": "str (optional)",
-                        "useSubDomain": "bool (optional)"
-                    },
-                    "lastGeoFailoverTime": "datetime (optional)",
-                    "primaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": "..."
-                            }
+                    "properties": {
+                        "accountType": "str (optional)",
+                        "creationTime": "datetime (optional)",
+                        "customDomain": {
+                            "name": "str (optional)",
+                            "useSubDomain": "bool (optional)"
                         },
-                        "blob": "str (optional)",
-                        "dummyEndPoint": "...",
-                        "queue": "str (optional)",
-                        "table": "str (optional)"
-                    },
-                    "primaryLocation": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "secondaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": "..."
-                            }
+                        "lastGeoFailoverTime": "datetime (optional)",
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": "..."
+                                }
+                            },
+                            "blob": "str (optional)",
+                            "dummyEndPoint": "...",
+                            "queue": "str (optional)",
+                            "table": "str (optional)"
                         },
-                        "blob": "str (optional)",
-                        "dummyEndPoint": "...",
-                        "queue": "str (optional)",
-                        "table": "str (optional)"
-                    },
-                    "secondaryLocation": "str (optional)",
-                    "statusOfPrimary": "str (optional)",
-                    "statusOfSecondary": "str (optional)"
+                        "primaryLocation": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": "..."
+                                }
+                            },
+                            "blob": "str (optional)",
+                            "dummyEndPoint": "...",
+                            "queue": "str (optional)",
+                            "table": "str (optional)"
+                        },
+                        "secondaryLocation": "str (optional)",
+                        "statusOfPrimary": "str (optional)",
+                        "statusOfSecondary": "str (optional)"
+                    }
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -384,7 +389,7 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.get_properties.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -396,7 +401,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -424,59 +432,62 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON object, or the result of cls(response)
+        :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "accountType": "str (optional)",
-                    "customDomain": {
-                        "name": "str (optional)",
-                        "useSubDomain": "bool (optional)"
+                    "properties": {
+                        "accountType": "str (optional)",
+                        "customDomain": {
+                            "name": "str (optional)",
+                            "useSubDomain": "bool (optional)"
+                        }
                     }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "accountType": "str (optional)",
-                    "creationTime": "datetime (optional)",
-                    "customDomain": {
-                        "name": "str (optional)",
-                        "useSubDomain": "bool (optional)"
-                    },
-                    "lastGeoFailoverTime": "datetime (optional)",
-                    "primaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": "..."
-                            }
+                    "properties": {
+                        "accountType": "str (optional)",
+                        "creationTime": "datetime (optional)",
+                        "customDomain": {
+                            "name": "str (optional)",
+                            "useSubDomain": "bool (optional)"
                         },
-                        "blob": "str (optional)",
-                        "dummyEndPoint": "...",
-                        "queue": "str (optional)",
-                        "table": "str (optional)"
-                    },
-                    "primaryLocation": "str (optional)",
-                    "provisioningState": "str (optional)",
-                    "secondaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": "..."
-                            }
+                        "lastGeoFailoverTime": "datetime (optional)",
+                        "primaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": "..."
+                                }
+                            },
+                            "blob": "str (optional)",
+                            "dummyEndPoint": "...",
+                            "queue": "str (optional)",
+                            "table": "str (optional)"
                         },
-                        "blob": "str (optional)",
-                        "dummyEndPoint": "...",
-                        "queue": "str (optional)",
-                        "table": "str (optional)"
-                    },
-                    "secondaryLocation": "str (optional)",
-                    "statusOfPrimary": "str (optional)",
-                    "statusOfSecondary": "str (optional)"
+                        "primaryLocation": "str (optional)",
+                        "provisioningState": "str (optional)",
+                        "secondaryEndpoints": {
+                            "FooPoint": {
+                                "Bar.Point": {
+                                    "RecursivePoint": "..."
+                                }
+                            },
+                            "blob": "str (optional)",
+                            "dummyEndPoint": "...",
+                            "queue": "str (optional)",
+                            "table": "str (optional)"
+                        },
+                        "secondaryLocation": "str (optional)",
+                        "statusOfPrimary": "str (optional)",
+                        "statusOfSecondary": "str (optional)"
+                    }
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -484,7 +495,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(parameters, "object")
+        json = parameters
 
         request = rest_storage_accounts.build_update_request(
             resource_group_name=resource_group_name,
@@ -493,7 +504,7 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -505,7 +516,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -522,8 +536,7 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON object, or the result of cls(response)
+        :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -545,7 +558,7 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.list_keys.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -557,7 +570,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -571,8 +587,7 @@ class StorageAccountsOperations:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -584,40 +599,42 @@ class StorageAccountsOperations:
                     "nextLink": "str (optional)",
                     "value": [
                         {
-                            "accountType": "str (optional)",
-                            "creationTime": "datetime (optional)",
-                            "customDomain": {
-                                "name": "str (optional)",
-                                "useSubDomain": "bool (optional)"
-                            },
-                            "lastGeoFailoverTime": "datetime (optional)",
-                            "primaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": "..."
-                                    }
+                            "properties": {
+                                "accountType": "str (optional)",
+                                "creationTime": "datetime (optional)",
+                                "customDomain": {
+                                    "name": "str (optional)",
+                                    "useSubDomain": "bool (optional)"
                                 },
-                                "blob": "str (optional)",
-                                "dummyEndPoint": "...",
-                                "queue": "str (optional)",
-                                "table": "str (optional)"
-                            },
-                            "primaryLocation": "str (optional)",
-                            "provisioningState": "str (optional)",
-                            "secondaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": "..."
-                                    }
+                                "lastGeoFailoverTime": "datetime (optional)",
+                                "primaryEndpoints": {
+                                    "FooPoint": {
+                                        "Bar.Point": {
+                                            "RecursivePoint": "..."
+                                        }
+                                    },
+                                    "blob": "str (optional)",
+                                    "dummyEndPoint": "...",
+                                    "queue": "str (optional)",
+                                    "table": "str (optional)"
                                 },
-                                "blob": "str (optional)",
-                                "dummyEndPoint": "...",
-                                "queue": "str (optional)",
-                                "table": "str (optional)"
-                            },
-                            "secondaryLocation": "str (optional)",
-                            "statusOfPrimary": "str (optional)",
-                            "statusOfSecondary": "str (optional)"
+                                "primaryLocation": "str (optional)",
+                                "provisioningState": "str (optional)",
+                                "secondaryEndpoints": {
+                                    "FooPoint": {
+                                        "Bar.Point": {
+                                            "RecursivePoint": "..."
+                                        }
+                                    },
+                                    "blob": "str (optional)",
+                                    "dummyEndPoint": "...",
+                                    "queue": "str (optional)",
+                                    "table": "str (optional)"
+                                },
+                                "secondaryLocation": "str (optional)",
+                                "statusOfPrimary": "str (optional)",
+                                "statusOfSecondary": "str (optional)"
+                            }
                         }
                     ]
                 }
@@ -632,7 +649,7 @@ class StorageAccountsOperations:
                 request = rest_storage_accounts.build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -640,7 +657,7 @@ class StorageAccountsOperations:
                 request = rest_storage_accounts.build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -676,8 +693,7 @@ class StorageAccountsOperations:
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -689,40 +705,42 @@ class StorageAccountsOperations:
                     "nextLink": "str (optional)",
                     "value": [
                         {
-                            "accountType": "str (optional)",
-                            "creationTime": "datetime (optional)",
-                            "customDomain": {
-                                "name": "str (optional)",
-                                "useSubDomain": "bool (optional)"
-                            },
-                            "lastGeoFailoverTime": "datetime (optional)",
-                            "primaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": "..."
-                                    }
+                            "properties": {
+                                "accountType": "str (optional)",
+                                "creationTime": "datetime (optional)",
+                                "customDomain": {
+                                    "name": "str (optional)",
+                                    "useSubDomain": "bool (optional)"
                                 },
-                                "blob": "str (optional)",
-                                "dummyEndPoint": "...",
-                                "queue": "str (optional)",
-                                "table": "str (optional)"
-                            },
-                            "primaryLocation": "str (optional)",
-                            "provisioningState": "str (optional)",
-                            "secondaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": "..."
-                                    }
+                                "lastGeoFailoverTime": "datetime (optional)",
+                                "primaryEndpoints": {
+                                    "FooPoint": {
+                                        "Bar.Point": {
+                                            "RecursivePoint": "..."
+                                        }
+                                    },
+                                    "blob": "str (optional)",
+                                    "dummyEndPoint": "...",
+                                    "queue": "str (optional)",
+                                    "table": "str (optional)"
                                 },
-                                "blob": "str (optional)",
-                                "dummyEndPoint": "...",
-                                "queue": "str (optional)",
-                                "table": "str (optional)"
-                            },
-                            "secondaryLocation": "str (optional)",
-                            "statusOfPrimary": "str (optional)",
-                            "statusOfSecondary": "str (optional)"
+                                "primaryLocation": "str (optional)",
+                                "provisioningState": "str (optional)",
+                                "secondaryEndpoints": {
+                                    "FooPoint": {
+                                        "Bar.Point": {
+                                            "RecursivePoint": "..."
+                                        }
+                                    },
+                                    "blob": "str (optional)",
+                                    "dummyEndPoint": "...",
+                                    "queue": "str (optional)",
+                                    "table": "str (optional)"
+                                },
+                                "secondaryLocation": "str (optional)",
+                                "statusOfPrimary": "str (optional)",
+                                "statusOfSecondary": "str (optional)"
+                            }
                         }
                     ]
                 }
@@ -738,7 +756,7 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -747,7 +765,7 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -790,15 +808,14 @@ class StorageAccountsOperations:
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
         :type regenerate_key: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON object, or the result of cls(response)
+        :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
                     "keyName": "str (optional)"
                 }
@@ -814,7 +831,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(regenerate_key, "object")
+        json = regenerate_key
 
         request = rest_storage_accounts.build_regenerate_key_request(
             resource_group_name=resource_group_name,
@@ -823,7 +840,7 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=json,
             template_url=self.regenerate_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -835,7 +852,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

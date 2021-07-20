@@ -22,8 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models as _models
-from ..._rest import group as rest_group
+from ...rest import group as rest_group
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -35,15 +34,11 @@ class GroupOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~subscriptionidapiversionversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -57,8 +52,7 @@ class GroupOperations:
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON object, or the result of cls(response)
+        :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -79,7 +73,7 @@ class GroupOperations:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             template_url=self.get_sample_resource_group.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -89,10 +83,12 @@ class GroupOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

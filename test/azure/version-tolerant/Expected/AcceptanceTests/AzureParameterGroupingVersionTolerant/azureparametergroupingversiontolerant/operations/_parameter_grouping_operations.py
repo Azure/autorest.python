@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import parameter_grouping as rest_parameter_grouping
+from ..rest import parameter_grouping as rest_parameter_grouping
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -38,15 +37,11 @@ class ParameterGroupingOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azureparametergroupingversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -56,15 +51,23 @@ class ParameterGroupingOperations(object):
 
     @distributed_trace
     def post_required(
-        self, **kwargs  # type: Any
+        self,
+        path,  # type: str
+        body,  # type: int
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post a bunch of required parameters grouped.
 
-        :keyword parameter_grouping_post_required_parameters: Parameter group.
-        :paramtype parameter_grouping_post_required_parameters: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :param path: Path parameter.
+        :type path: str
+        :param body:
+        :type body: int
+        :keyword custom_header:
+        :paramtype custom_header: str
+        :keyword query: Query parameter with default.
+        :paramtype query: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -72,29 +75,19 @@ class ParameterGroupingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        parameter_grouping_post_required_parameters = kwargs.pop(
-            "parameter_grouping_post_required_parameters"
-        )  # type: Any
+        custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]
+        query = kwargs.pop("query", 30)  # type: Optional[int]
 
-        _custom_header = None
-        _query = None
-        _path = None
-        _body = None
-        if parameter_grouping_post_required_parameters is not None:
-            _custom_header = parameter_grouping_post_required_parameters.custom_header
-            _query = parameter_grouping_post_required_parameters.query
-            _path = parameter_grouping_post_required_parameters.path
-            _body = parameter_grouping_post_required_parameters.body
-        json = self._serialize.body(_body, "int")
+        json = body
 
         request = rest_parameter_grouping.build_post_required_request(
-            path=_path,
+            path=path,
             content_type=content_type,
-            custom_header=_custom_header,
-            query=_query,
+            custom_header=custom_header,
+            query=query,
             json=json,
             template_url=self.post_required.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -102,8 +95,7 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -117,31 +109,25 @@ class ParameterGroupingOperations(object):
         # type: (...) -> None
         """Post a bunch of optional parameters grouped.
 
-        :keyword parameter_grouping_post_optional_parameters: Parameter group.
-        :paramtype parameter_grouping_post_optional_parameters: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword custom_header:
+        :paramtype custom_header: str
+        :keyword query: Query parameter with default.
+        :paramtype query: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        parameter_grouping_post_optional_parameters = kwargs.pop(
-            "parameter_grouping_post_optional_parameters", None
-        )  # type: Any
-
-        _custom_header = None
-        _query = None
-        if parameter_grouping_post_optional_parameters is not None:
-            _custom_header = parameter_grouping_post_optional_parameters.custom_header
-            _query = parameter_grouping_post_optional_parameters.query
+        custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]
+        query = kwargs.pop("query", 30)  # type: Optional[int]
 
         request = rest_parameter_grouping.build_post_optional_request(
-            custom_header=_custom_header,
-            query=_query,
+            custom_header=custom_header,
+            query=query,
             template_url=self.post_optional.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -149,8 +135,7 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -164,31 +149,25 @@ class ParameterGroupingOperations(object):
         # type: (...) -> None
         """Post a grouped parameters with reserved words.
 
-        :keyword parameter_grouping_post_reserved_words_parameters: Parameter group.
-        :paramtype parameter_grouping_post_reserved_words_parameters: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass.
+        :paramtype from_parameter: str
+        :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass.
+        :paramtype accept_parameter: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        parameter_grouping_post_reserved_words_parameters = kwargs.pop(
-            "parameter_grouping_post_reserved_words_parameters", None
-        )  # type: Any
-
-        _from_parameter = None
-        _accept_parameter = None
-        if parameter_grouping_post_reserved_words_parameters is not None:
-            _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
-            _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
+        from_parameter = kwargs.pop("from_parameter", None)  # type: Optional[str]
+        accept_parameter = kwargs.pop("accept_parameter", None)  # type: Optional[str]
 
         request = rest_parameter_grouping.build_post_reserved_words_request(
-            from_parameter=_from_parameter,
-            accept_parameter=_accept_parameter,
+            from_parameter=from_parameter,
+            accept_parameter=accept_parameter,
             template_url=self.post_reserved_words.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -196,8 +175,7 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -211,41 +189,33 @@ class ParameterGroupingOperations(object):
         # type: (...) -> None
         """Post parameters from multiple different parameter groups.
 
-        :keyword first_parameter_group: Parameter group.
-        :paramtype first_parameter_group: Any
-        :keyword parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
-        :paramtype parameter_grouping_post_multi_param_groups_second_param_group: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_one:
+        :paramtype header_one: str
+        :keyword query_one: Query parameter with default.
+        :paramtype query_one: int
+        :keyword header_two:
+        :paramtype header_two: str
+        :keyword query_two: Query parameter with default.
+        :paramtype query_two: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        first_parameter_group = kwargs.pop("first_parameter_group", None)  # type: Any
-        parameter_grouping_post_multi_param_groups_second_param_group = kwargs.pop(
-            "parameter_grouping_post_multi_param_groups_second_param_group", None
-        )  # type: Any
-
-        _header_one = None
-        _query_one = None
-        _header_two = None
-        _query_two = None
-        if first_parameter_group is not None:
-            _header_one = first_parameter_group.header_one
-            _query_one = first_parameter_group.query_one
-        if parameter_grouping_post_multi_param_groups_second_param_group is not None:
-            _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
-            _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
+        header_one = kwargs.pop("header_one", None)  # type: Optional[str]
+        query_one = kwargs.pop("query_one", 30)  # type: Optional[int]
+        header_two = kwargs.pop("header_two", None)  # type: Optional[str]
+        query_two = kwargs.pop("query_two", 30)  # type: Optional[int]
 
         request = rest_parameter_grouping.build_post_multi_param_groups_request(
-            header_one=_header_one,
-            query_one=_query_one,
-            header_two=_header_two,
-            query_two=_query_two,
+            header_one=header_one,
+            query_one=query_one,
+            header_two=header_two,
+            query_two=query_two,
             template_url=self.post_multi_param_groups.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -253,8 +223,7 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -268,29 +237,25 @@ class ParameterGroupingOperations(object):
         # type: (...) -> None
         """Post parameters with a shared parameter group object.
 
-        :keyword first_parameter_group: Parameter group.
-        :paramtype first_parameter_group: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword header_one:
+        :paramtype header_one: str
+        :keyword query_one: Query parameter with default.
+        :paramtype query_one: int
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        first_parameter_group = kwargs.pop("first_parameter_group", None)  # type: Any
-
-        _header_one = None
-        _query_one = None
-        if first_parameter_group is not None:
-            _header_one = first_parameter_group.header_one
-            _query_one = first_parameter_group.query_one
+        header_one = kwargs.pop("header_one", None)  # type: Optional[str]
+        query_one = kwargs.pop("query_one", 30)  # type: Optional[int]
 
         request = rest_parameter_grouping.build_post_shared_parameter_group_object_request(
-            header_one=_header_one,
-            query_one=_query_one,
+            header_one=header_one,
+            query_one=query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -298,8 +263,7 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})

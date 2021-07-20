@@ -54,9 +54,8 @@ class StorageManagementClient(object):
         self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.storage_accounts = StorageAccountsOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -74,7 +73,7 @@ class StorageManagementClient(object):
         We have helper methods to create requests specific to this service in `storageversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from storageversiontolerant._rest import storage_accounts
+        >>> from storageversiontolerant.rest import storage_accounts
         >>> request = storage_accounts.build_check_name_availability_request(subscription_id, json=json, content=content, **kwargs)
         <HttpRequest [POST], url: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'>
         >>> response = client.send_request(request)

@@ -79,9 +79,8 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.xms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -115,7 +114,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         We have helper methods to create requests specific to this service in `azurespecialpropertiesversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azurespecialpropertiesversiontolerant._rest import xms_client_request_id
+        >>> from azurespecialpropertiesversiontolerant.rest import xms_client_request_id
         >>> request = xms_client_request_id.build_get_request(**kwargs)
         <HttpRequest [GET], url: '/azurespecials/overwrite/x-ms-client-request-id/method/'>
         >>> response = client.send_request(request)

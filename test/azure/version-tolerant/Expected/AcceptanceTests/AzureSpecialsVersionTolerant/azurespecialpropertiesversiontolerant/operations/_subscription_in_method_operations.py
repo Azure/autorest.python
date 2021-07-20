@@ -22,8 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import models as _models
-from .._rest import subscription_in_method as rest_subscription_in_method
+from ..rest import subscription_in_method as rest_subscription_in_method
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,15 +38,11 @@ class SubscriptionInMethodOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azurespecialpropertiesversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -68,8 +63,7 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'.
         :type subscription_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -80,7 +74,7 @@ class SubscriptionInMethodOperations(object):
         request = rest_subscription_in_method.build_post_method_local_valid_request(
             subscription_id=subscription_id,
             template_url=self.post_method_local_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -88,8 +82,7 @@ class SubscriptionInMethodOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -109,8 +102,7 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use value null, client-side
          validation should prvenet the call.
         :type subscription_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -121,7 +113,7 @@ class SubscriptionInMethodOperations(object):
         request = rest_subscription_in_method.build_post_method_local_null_request(
             subscription_id=subscription_id,
             template_url=self.post_method_local_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -129,8 +121,7 @@ class SubscriptionInMethodOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -149,8 +140,7 @@ class SubscriptionInMethodOperations(object):
 
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
         :type subscription_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -161,7 +151,7 @@ class SubscriptionInMethodOperations(object):
         request = rest_subscription_in_method.build_post_path_local_valid_request(
             subscription_id=subscription_id,
             template_url=self.post_path_local_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -169,8 +159,7 @@ class SubscriptionInMethodOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -190,8 +179,7 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: The subscriptionId, which appears in the path, the value is always
          '1234-5678-9012-3456'.
         :type subscription_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -202,7 +190,7 @@ class SubscriptionInMethodOperations(object):
         request = rest_subscription_in_method.build_post_swagger_local_valid_request(
             subscription_id=subscription_id,
             template_url=self.post_swagger_local_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -210,8 +198,7 @@ class SubscriptionInMethodOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})

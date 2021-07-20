@@ -40,9 +40,8 @@ class AutoRestHeadTestService:
         self._config = AutoRestHeadTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
@@ -52,7 +51,7 @@ class AutoRestHeadTestService:
         We have helper methods to create requests specific to this service in `headversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headversiontolerant._rest import http_success
+        >>> from headversiontolerant.rest import http_success
         >>> request = http_success.build_head200_request(**kwargs)
         <HttpRequest [HEAD], url: '/http/success/200'>
         >>> response = await client.send_request(request)

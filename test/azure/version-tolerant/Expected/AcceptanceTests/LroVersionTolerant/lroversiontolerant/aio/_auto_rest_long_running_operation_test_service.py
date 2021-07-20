@@ -48,9 +48,8 @@ class AutoRestLongRunningOperationTestService:
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
@@ -65,7 +64,7 @@ class AutoRestLongRunningOperationTestService:
         We have helper methods to create requests specific to this service in `lroversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from lroversiontolerant._rest import lros
+        >>> from lroversiontolerant.rest import lros
         >>> request = lros.build_put200_succeeded_request_initial(json=json, content=content, **kwargs)
         <HttpRequest [PUT], url: '/lro/put/200/succeeded'>
         >>> response = await client.send_request(request)

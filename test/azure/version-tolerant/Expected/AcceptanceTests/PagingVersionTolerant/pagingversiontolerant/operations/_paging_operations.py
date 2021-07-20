@@ -24,8 +24,7 @@ from azure.core.polling.base_polling import LROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import paging as rest_paging
+from ..rest import paging as rest_paging
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -41,15 +40,11 @@ class PagingOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~pagingversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -64,8 +59,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[Any]
         """A paging operation that must return result of the default 'value' node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -94,14 +88,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_no_item_name_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -137,8 +131,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[Any]
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -167,14 +160,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_null_next_link_name_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -210,8 +203,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[Any]
         """A paging operation that finishes on the first call without a nextlink.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -240,14 +232,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_single_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -284,8 +276,7 @@ class PagingOperations(object):
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -314,14 +305,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_first_response_empty_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -359,10 +350,12 @@ class PagingOperations(object):
 
         :keyword client_request_id:
         :paramtype client_request_id: str
-        :keyword paging_get_multiple_pages_options: Parameter group.
-        :paramtype paging_get_multiple_pages_options: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -383,7 +376,8 @@ class PagingOperations(object):
                 }
         """
         client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-        paging_get_multiple_pages_options = kwargs.pop("paging_get_multiple_pages_options", None)  # type: Any
+        maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
+        timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -391,33 +385,23 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_options is not None:
-                    _maxresults = paging_get_multiple_pages_options.maxresults
-                    _timeout = paging_get_multiple_pages_options.timeout
 
                 request = rest_paging.build_get_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.get_multiple_pages.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_options is not None:
-                    _maxresults = paging_get_multiple_pages_options.maxresults
-                    _timeout = paging_get_multiple_pages_options.timeout
 
                 request = rest_paging.build_get_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -457,8 +441,7 @@ class PagingOperations(object):
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
          pass test.
         :paramtype required_query_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -490,14 +473,14 @@ class PagingOperations(object):
                 request = rest_paging.build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_next_operation_with_query_params_request(
                     template_url="/paging/multiple/nextOperationWithQueryParams",
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             return request
@@ -534,10 +517,12 @@ class PagingOperations(object):
 
         :keyword client_request_id:
         :paramtype client_request_id: str
-        :keyword paging_get_odata_multiple_pages_options: Parameter group.
-        :paramtype paging_get_odata_multiple_pages_options: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -558,9 +543,8 @@ class PagingOperations(object):
                 }
         """
         client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-        paging_get_odata_multiple_pages_options = kwargs.pop(
-            "paging_get_odata_multiple_pages_options", None
-        )  # type: Any
+        maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
+        timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -568,33 +552,23 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _timeout = None
-                if paging_get_odata_multiple_pages_options is not None:
-                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
-                    _timeout = paging_get_odata_multiple_pages_options.timeout
 
                 request = rest_paging.build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.get_odata_multiple_pages.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _timeout = None
-                if paging_get_odata_multiple_pages_options is not None:
-                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
-                    _timeout = paging_get_odata_multiple_pages_options.timeout
 
                 request = rest_paging.build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -625,17 +599,23 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_multiple_pages_with_offset(
-        self, **kwargs  # type: Any
+        self,
+        offset,  # type: int
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterable[Any]
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword paging_get_multiple_pages_with_offset_options: Parameter group.
-        :paramtype paging_get_multiple_pages_with_offset_options: Any
+        :param offset: Offset of return value.
+        :type offset: int
         :keyword client_request_id:
         :paramtype client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -655,10 +635,9 @@ class PagingOperations(object):
                     ]
                 }
         """
-        paging_get_multiple_pages_with_offset_options = kwargs.pop(
-            "paging_get_multiple_pages_with_offset_options"
-        )  # type: Any
         client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
+        maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
+        timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -666,39 +645,25 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _offset = None
-                _timeout = None
-                if paging_get_multiple_pages_with_offset_options is not None:
-                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-                    _offset = paging_get_multiple_pages_with_offset_options.offset
-                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
                 request = rest_paging.build_get_multiple_pages_with_offset_request(
-                    offset=_offset,
+                    offset=offset,
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _offset = None
-                _timeout = None
-                if paging_get_multiple_pages_with_offset_options is not None:
-                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-                    _offset = paging_get_multiple_pages_with_offset_options.offset
-                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
                 request = rest_paging.build_get_multiple_pages_with_offset_request(
-                    offset=_offset,
+                    offset=offset,
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -735,8 +700,7 @@ class PagingOperations(object):
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -765,14 +729,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_multiple_pages_retry_first_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -809,8 +773,7 @@ class PagingOperations(object):
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -839,14 +802,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_multiple_pages_retry_second_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -882,8 +845,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[Any]
         """A paging operation that receives a 400 on the first call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -912,14 +874,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_single_pages_failure_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -955,8 +917,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[Any]
         """A paging operation that receives a 400 on the second call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -985,14 +946,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_multiple_pages_failure_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -1028,8 +989,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[Any]
         """A paging operation that receives an invalid nextLink.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1058,14 +1018,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -1107,8 +1067,7 @@ class PagingOperations(object):
         :type tenant: str
         :keyword api_version: Sets the api version to use.
         :paramtype api_version: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1141,7 +1100,7 @@ class PagingOperations(object):
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1151,7 +1110,7 @@ class PagingOperations(object):
                     next_link=next_link,
                     api_version=api_version,
                     template_url="/paging/multiple/fragment/{tenant}/{nextLink}",
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             return request
@@ -1181,15 +1140,18 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
-        self, **kwargs  # type: Any
+        self,
+        tenant,  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterable[Any]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-        :keyword custom_parameter_group: Parameter group.
-        :paramtype custom_parameter_group: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :param tenant: Sets the tenant to use.
+        :type tenant: str
+        :keyword api_version: Sets the api version to use.
+        :paramtype api_version: str
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1209,7 +1171,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        custom_parameter_group = kwargs.pop("custom_parameter_group")  # type: Any
+        api_version = kwargs.pop("api_version")  # type: str
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1217,32 +1179,22 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _api_version = None
-                _tenant = None
-                if custom_parameter_group is not None:
-                    _api_version = custom_parameter_group.api_version
-                    _tenant = custom_parameter_group.tenant
 
                 request = rest_paging.build_get_multiple_pages_fragment_with_grouping_next_link_request(
-                    tenant=_tenant,
-                    api_version=_api_version,
+                    tenant=tenant,
+                    api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
-                _api_version = None
-                _tenant = None
-                if custom_parameter_group is not None:
-                    _api_version = custom_parameter_group.api_version
-                    _tenant = custom_parameter_group.tenant
 
                 request = rest_paging.build_next_fragment_with_grouping_request(
-                    tenant=_tenant,
+                    tenant=tenant,
                     next_link=next_link,
-                    api_version=_api_version,
+                    api_version=api_version,
                     template_url="/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             return request
@@ -1278,20 +1230,15 @@ class PagingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-        paging_get_multiple_pages_lro_options = kwargs.pop("paging_get_multiple_pages_lro_options", None)  # type: Any
-
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_lro_options is not None:
-            _maxresults = paging_get_multiple_pages_lro_options.maxresults
-            _timeout = paging_get_multiple_pages_lro_options.timeout
+        maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
+        timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
 
         request = rest_paging.build_get_multiple_pages_lro_request_initial(
             client_request_id=client_request_id,
-            maxresults=_maxresults,
-            timeout=_timeout,
+            maxresults=maxresults,
+            timeout=timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1301,7 +1248,10 @@ class PagingOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1319,9 +1269,11 @@ class PagingOperations(object):
 
         :keyword client_request_id:
         :paramtype client_request_id: str
-        :keyword paging_get_multiple_pages_lro_options: Parameter group.
-        :paramtype paging_get_multiple_pages_lro_options: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1329,8 +1281,7 @@ class PagingOperations(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns an iterator like instance of either JSON object
-         or the result of cls(response)
+        :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[Any]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1341,33 +1292,23 @@ class PagingOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_lro_options is not None:
-                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
-                    _timeout = paging_get_multiple_pages_lro_options.timeout
 
                 request = rest_paging.build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_lro_options is not None:
-                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
-                    _timeout = paging_get_multiple_pages_lro_options.timeout
 
                 request = rest_paging.build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"
@@ -1399,7 +1340,8 @@ class PagingOperations(object):
         if cont_token is None:
             raw_result = self._get_multiple_pages_lro_initial(
                 client_request_id=client_request_id,
-                paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+                maxresults=maxresults,
+                timeout=timeout,
                 cls=lambda x, y, z: x,
                 **kwargs
             )
@@ -1441,8 +1383,7 @@ class PagingOperations(object):
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1471,14 +1412,14 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
                 request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
                 request.method = "GET"

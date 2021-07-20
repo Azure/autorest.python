@@ -335,7 +335,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_multiapi(c, debug)
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
-        regenerate_custom_poller_pager(c, debug)
+        regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_samples(c, debug)
 
 
@@ -356,6 +356,7 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
     regenerate_vanilla_version_tolerant(c, swagger_name, debug)
     regenerate_azure_version_tolerant(c, swagger_name, debug)
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
+    regenerate_custom_poller_pager_version_tolerant(c, debug)
 
 @task
 def test(c, env=None):
@@ -400,10 +401,18 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
     _run_autorest(cmds, debug)
 
 @task
-def regenerate_custom_poller_pager(c, debug=False):
+def regenerate_custom_poller_pager_legacy(c, debug=False):
     cwd = os.getcwd()
     cmd = (
         f'autorest test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+    )
+    _run_autorest([cmd], debug=debug)
+
+@task
+def regenerate_custom_poller_pager_version_tolerant(c, debug=False):
+    cwd = os.getcwd()
+    cmd = (
+        f'autorest test/azure/version-tolerant/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 

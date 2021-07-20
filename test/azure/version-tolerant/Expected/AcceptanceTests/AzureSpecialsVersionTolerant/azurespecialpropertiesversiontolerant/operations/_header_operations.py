@@ -22,8 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import models as _models
-from .._rest import header as rest_header
+from ..rest import header as rest_header
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,15 +38,11 @@ class HeaderOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azurespecialpropertiesversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -64,8 +59,7 @@ class HeaderOperations(object):
 
         :keyword foo_client_request_id: The fooRequestId.
         :paramtype foo_client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -77,7 +71,7 @@ class HeaderOperations(object):
         request = rest_header.build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -85,8 +79,7 @@ class HeaderOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
@@ -104,28 +97,21 @@ class HeaderOperations(object):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
 
-        :keyword header_custom_named_request_id_param_grouping_parameters: Parameter group.
-        :paramtype header_custom_named_request_id_param_grouping_parameters: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :keyword foo_client_request_id: The fooRequestId.
+        :paramtype foo_client_request_id: str
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        header_custom_named_request_id_param_grouping_parameters = kwargs.pop(
-            "header_custom_named_request_id_param_grouping_parameters"
-        )  # type: Any
-
-        _foo_client_request_id = None
-        if header_custom_named_request_id_param_grouping_parameters is not None:
-            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+        foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
         request = rest_header.build_custom_named_request_id_param_grouping_request(
-            foo_client_request_id=_foo_client_request_id,
+            foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -133,8 +119,7 @@ class HeaderOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
@@ -153,8 +138,7 @@ class HeaderOperations(object):
 
         :keyword foo_client_request_id: The fooRequestId.
         :paramtype foo_client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -166,7 +150,7 @@ class HeaderOperations(object):
         request = rest_header.build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -174,8 +158,7 @@ class HeaderOperations(object):
 
         if response.status_code not in [200, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:

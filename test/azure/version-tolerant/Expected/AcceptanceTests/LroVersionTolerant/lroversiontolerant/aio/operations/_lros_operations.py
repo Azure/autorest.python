@@ -24,8 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ... import models as _models
-from ..._rest import lros as rest_lros
+from ...rest import lros as rest_lros
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -37,15 +36,11 @@ class LROsOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~lroversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -60,7 +55,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -68,7 +63,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -82,7 +77,10 @@ class LROsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -98,7 +96,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -106,24 +103,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -140,7 +140,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -171,7 +174,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -179,7 +182,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put201_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -191,7 +194,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -207,7 +213,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -215,24 +220,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 201
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -249,7 +257,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -280,7 +291,7 @@ class LROsOperations:
 
         request = rest_lros.build_post202_list_request_initial(
             template_url=self._post202_list_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -295,7 +306,10 @@ class LROsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("[object]", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -315,7 +329,6 @@ class LROsOperations:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
         with body [{ 'id': '100', 'name': 'foo' }].
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -323,8 +336,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either list of JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns list of JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[list[Any]]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -334,8 +346,10 @@ class LROsOperations:
                 # response body for status code(s): 200
                 response.json() == [
                     {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "properties": {
+                            "provisioningState": "str (optional)",
+                            "provisioningStateValues": "str (optional)"
+                        }
                     }
                 ]
         """
@@ -350,7 +364,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("[object]", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -381,7 +398,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -389,7 +406,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_no_state_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -401,7 +418,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -417,7 +437,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -425,24 +444,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -459,7 +481,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -490,7 +515,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -498,7 +523,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -510,7 +535,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -527,7 +555,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -535,24 +562,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -569,7 +599,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -600,7 +633,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -608,7 +641,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -621,10 +654,16 @@ class LROsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -641,7 +680,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -649,24 +687,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -683,7 +724,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -714,7 +758,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -722,7 +766,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put200_updating_succeeded204_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -734,7 +778,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -751,7 +798,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -759,24 +805,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -793,7 +842,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -824,7 +876,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -832,7 +884,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_failed200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -845,10 +897,16 @@ class LROsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -865,7 +923,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -873,24 +930,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -907,7 +967,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -938,7 +1001,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -946,7 +1009,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -958,7 +1021,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -975,7 +1041,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -983,24 +1048,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1017,7 +1085,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1048,7 +1119,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1056,7 +1127,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1071,7 +1142,10 @@ class LROsOperations:
         response_headers = {}
         response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1087,7 +1161,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1095,24 +1168,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1132,7 +1208,10 @@ class LROsOperations:
             response = pipeline_response.http_response
             response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -1163,7 +1242,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1171,7 +1250,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1190,7 +1269,10 @@ class LROsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1207,7 +1289,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1215,24 +1296,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1256,7 +1340,10 @@ class LROsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -1287,7 +1374,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1295,7 +1382,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1313,7 +1400,10 @@ class LROsOperations:
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1330,7 +1420,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1338,24 +1427,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1378,7 +1470,10 @@ class LROsOperations:
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -1409,7 +1504,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1417,7 +1512,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_failed_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1436,7 +1531,10 @@ class LROsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1453,7 +1551,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1461,24 +1558,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1502,7 +1602,10 @@ class LROsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -1533,7 +1636,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1541,7 +1644,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1559,7 +1662,10 @@ class LROsOperations:
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1576,7 +1682,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1584,24 +1689,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1624,7 +1732,10 @@ class LROsOperations:
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -1655,7 +1766,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1663,7 +1774,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1680,7 +1791,10 @@ class LROsOperations:
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1697,7 +1811,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1705,24 +1818,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 201
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1744,7 +1860,10 @@ class LROsOperations:
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -1775,7 +1894,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
-            json = self._serialize.body(sku, "object")
+            json = sku
         else:
             json = None
 
@@ -1783,7 +1902,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_non_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1795,7 +1914,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1810,7 +1932,6 @@ class LROsOperations:
 
         :param sku: sku to put.
         :type sku: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1818,15 +1939,14 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 sku = {
                     "id": "str (optional)",
                     "name": "str (optional)"
@@ -1852,7 +1972,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1883,7 +2006,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
-            json = self._serialize.body(sku, "object")
+            json = sku
         else:
             json = None
 
@@ -1891,7 +2014,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_non_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1903,7 +2026,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1918,7 +2044,6 @@ class LROsOperations:
 
         :param sku: Sku to put.
         :type sku: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1926,15 +2051,14 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 sku = {
                     "id": "str (optional)",
                     "name": "str (optional)"
@@ -1960,7 +2084,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1991,7 +2118,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -1999,7 +2126,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_sub_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2011,7 +2138,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2026,7 +2156,6 @@ class LROsOperations:
 
         :param product: Sub Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2034,24 +2163,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2068,7 +2200,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2099,7 +2234,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -2107,7 +2242,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_sub_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2119,7 +2254,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2134,7 +2272,6 @@ class LROsOperations:
 
         :param product: Sub Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2142,24 +2279,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2176,7 +2316,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2207,7 +2350,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2221,13 +2364,19 @@ class LROsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2242,7 +2391,6 @@ class LROsOperations:
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2250,8 +2398,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -2260,8 +2407,10 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -2277,7 +2426,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2308,7 +2460,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_provisioning202_deleting_failed200_request_initial(
             template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2322,13 +2474,19 @@ class LROsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2343,7 +2501,6 @@ class LROsOperations:
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2351,8 +2508,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -2361,8 +2517,10 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -2376,7 +2534,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2407,7 +2568,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_provisioning202_deletingcanceled200_request_initial(
             template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2421,13 +2582,19 @@ class LROsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -2442,7 +2609,6 @@ class LROsOperations:
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2450,8 +2616,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -2460,8 +2625,10 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -2475,7 +2642,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2506,7 +2676,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete204_succeeded_request_initial(
             template_url=self._delete204_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2527,7 +2697,6 @@ class LROsOperations:
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete succeeds and returns right away.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2535,7 +2704,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2577,7 +2746,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2592,7 +2761,10 @@ class LROsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -2610,7 +2782,6 @@ class LROsOperations:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2618,8 +2789,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -2628,8 +2798,10 @@ class LROsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -2643,7 +2815,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2674,7 +2849,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete202_no_retry204_request_initial(
             template_url=self._delete202_no_retry204_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2689,7 +2864,10 @@ class LROsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -2707,7 +2885,6 @@ class LROsOperations:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2715,8 +2892,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -2725,8 +2901,10 @@ class LROsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -2740,7 +2918,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2771,7 +2952,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_no_header_in_retry_request_initial(
             template_url=self._delete_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2797,7 +2978,6 @@ class LROsOperations:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2805,7 +2985,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2847,7 +3027,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_async_no_header_in_retry_request_initial(
             template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2873,7 +3053,6 @@ class LROsOperations:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2881,7 +3060,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2923,7 +3102,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_async_retry_succeeded_request_initial(
             template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2952,7 +3131,6 @@ class LROsOperations:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2960,7 +3138,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3002,7 +3180,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_async_no_retry_succeeded_request_initial(
             template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3031,7 +3209,6 @@ class LROsOperations:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3039,7 +3216,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3081,7 +3258,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_async_retry_failed_request_initial(
             template_url=self._delete_async_retry_failed_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3110,7 +3287,6 @@ class LROsOperations:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3118,7 +3294,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3160,7 +3336,7 @@ class LROsOperations:
 
         request = rest_lros.build_delete_async_retrycanceled_request_initial(
             template_url=self._delete_async_retrycanceled_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3189,7 +3365,6 @@ class LROsOperations:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3197,7 +3372,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3239,7 +3414,7 @@ class LROsOperations:
 
         request = rest_lros.build_post200_with_payload_request_initial(
             template_url=self._post200_with_payload_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3252,10 +3427,16 @@ class LROsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3269,7 +3450,6 @@ class LROsOperations:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header. Poll returns a 200 with a response body after success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3277,8 +3457,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3302,7 +3481,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3333,7 +3515,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -3341,7 +3523,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3369,7 +3551,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3377,17 +3558,19 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -3431,7 +3614,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -3439,7 +3622,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_no_retry204_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3455,7 +3638,10 @@ class LROsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3471,7 +3657,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3479,24 +3664,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -3517,7 +3705,10 @@ class LROsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
@@ -3548,7 +3739,7 @@ class LROsOperations:
 
         request = rest_lros.build_post_double_headers_final_location_get_request_initial(
             template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3560,7 +3751,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3575,7 +3769,6 @@ class LROsOperations:
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3583,8 +3776,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3593,8 +3785,10 @@ class LROsOperations:
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -3608,7 +3802,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3639,7 +3836,7 @@ class LROsOperations:
 
         request = rest_lros.build_post_double_headers_final_azure_header_get_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3651,7 +3848,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3666,7 +3866,6 @@ class LROsOperations:
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3674,8 +3873,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3684,8 +3882,10 @@ class LROsOperations:
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -3699,7 +3899,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3732,7 +3935,7 @@ class LROsOperations:
 
         request = rest_lros.build_post_double_headers_final_azure_header_get_default_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3744,7 +3947,10 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3759,7 +3965,6 @@ class LROsOperations:
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3767,8 +3972,7 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3777,8 +3981,10 @@ class LROsOperations:
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -3794,7 +4000,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3825,7 +4034,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -3833,7 +4042,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3848,7 +4057,10 @@ class LROsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -3872,7 +4084,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3880,24 +4091,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -3914,7 +4128,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3945,7 +4162,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -3953,7 +4170,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3968,7 +4185,10 @@ class LROsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -3992,7 +4212,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -4000,24 +4219,27 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either JSON object or the result of
-         cls(response)
+        :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4034,7 +4256,10 @@ class LROsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("object", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -4065,7 +4290,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -4073,7 +4298,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_failed_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -4105,7 +4330,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -4113,17 +4337,19 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4167,7 +4393,7 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "object")
+            json = product
         else:
             json = None
 
@@ -4175,7 +4401,7 @@ class LROsOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_retrycanceled_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -4207,7 +4433,6 @@ class LROsOperations:
 
         :param product: Product to put.
         :type product: Any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -4215,17 +4440,19 @@ class LROsOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your `json` input.
+                # JSON input template you can fill out and use as your body input.
                 product = {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    }
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]

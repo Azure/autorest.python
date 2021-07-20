@@ -40,9 +40,8 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         self._config = AutoRestReportServiceForAzureConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
     def send_request(
@@ -56,7 +55,7 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         We have helper methods to create requests specific to this service in `azurereportversiontolerant.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azurereportversiontolerant._rest import build_get_report_request
+        >>> from azurereportversiontolerant.rest import build_get_report_request
         >>> request = build_get_report_request(qualifier=qualifier, **kwargs)
         <HttpRequest [GET], url: '/report/azure'>
         >>> response = client.send_request(request)

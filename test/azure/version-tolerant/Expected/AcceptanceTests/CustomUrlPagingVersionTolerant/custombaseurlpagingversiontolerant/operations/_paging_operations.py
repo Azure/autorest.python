@@ -22,8 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models as _models
-from .._rest import paging as rest_paging
+from ..rest import paging as rest_paging
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,15 +38,11 @@ class PagingOperations(object):
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~custombaseurlpagingversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -57,16 +52,17 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_pages_partial_url(
-        self, **kwargs  # type: Any
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterable[Any]
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
-        :keyword account_name: Account Name.
-        :paramtype account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :param account_name: Account Name.
+        :type account_name: str
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -86,8 +82,6 @@ class PagingOperations(object):
                     ]
                 }
         """
-        account_name = kwargs.pop("account_name")  # type: str
-
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -97,7 +91,7 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -108,7 +102,7 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_pages_partial_url_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -147,15 +141,16 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_pages_partial_url_operation(
-        self, **kwargs  # type: Any
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> Iterable[Any]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
-        :keyword account_name: Account Name.
-        :paramtype account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either JSON object or the result of cls(response)
+        :param account_name: Account Name.
+        :type account_name: str
+        :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -175,8 +170,6 @@ class PagingOperations(object):
                     ]
                 }
         """
-        account_name = kwargs.pop("account_name")  # type: str
-
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -186,7 +179,7 @@ class PagingOperations(object):
 
                 request = rest_paging.build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -198,7 +191,7 @@ class PagingOperations(object):
                 request = rest_paging.build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
-                )._to_pipeline_transport_request()
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
