@@ -227,8 +227,8 @@ class TestUrl(object):
 
     @pytest.mark.asyncio
     async def test_array_string_miscellaneous(self, client, test_array_query):
-        # await client.queries.array_string_pipes_valid(test_array_query)
-        # await client.queries.array_string_ssv_valid(test_array_query)
+        await client.queries.array_string_pipes_valid(test_array_query)
+        await client.queries.array_string_ssv_valid(test_array_query)
         await client.queries.array_string_tsv_valid(test_array_query)
 
     @pytest.mark.asyncio
