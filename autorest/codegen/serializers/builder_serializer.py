@@ -31,9 +31,13 @@ T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
 
+def _improve_template(template):
+    return template.replace(' (optional)",', '", # optional').replace(' (optional)"', '" # optional')
+
+
 def _serialize_json_dict(template_representation: str, indent: int = 4) -> Any:
     # only for template use, since it wraps everything in strings
-    return json.dumps(template_representation, sort_keys=True, indent=indent)
+    return _improve_template(json.dumps(template_representation, sort_keys=True, indent=indent))
 
 
 def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
