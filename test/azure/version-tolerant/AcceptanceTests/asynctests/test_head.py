@@ -23,42 +23,27 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
 from headversiontolerant.aio import AutoRestHeadTestService
 from headexceptionsversiontolerant.aio import AutoRestHeadExceptionTestService
 
 from azure.core.exceptions import HttpResponseError
 
 import pytest
+@pytest.mark.asyncio
+async def test_head(credential, authentication_policy):
 
-class TestHead(object):
+    async with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
-    @pytest.mark.asyncio
-    async def test_head(self, credential, authentication_policy):
+        assert await client.http_success.head200()
+        assert await client.http_success.head204()
+        assert not await client.http_success.head404()
 
-        async with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+@pytest.mark.asyncio
+async def test_head_exception(credential, authentication_policy):
 
-            assert await client.http_success.head200()
-            assert await client.http_success.head204()
-            assert not await client.http_success.head404()
+    async with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
-    @pytest.mark.asyncio
-    async def test_head_exception(self, credential, authentication_policy):
-
-        async with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
-
-            await client.head_exception.head200()
-            await client.head_exception.head204()
-            with pytest.raises(HttpResponseError):
-                await client.head_exception.head404()
+        await client.head_exception.head200()
+        await client.head_exception.head204()
+        with pytest.raises(HttpResponseError):
+            await client.head_exception.head404()

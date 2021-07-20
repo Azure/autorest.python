@@ -23,18 +23,6 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
 from headversiontolerant import AutoRestHeadTestService
 from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
 
@@ -42,21 +30,19 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
-class TestHead(object):
+def test_head(credential, authentication_policy):
 
-    def test_head(self, credential, authentication_policy):
+    with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
-        with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        assert client.http_success.head200()
+        assert client.http_success.head204()
+        assert not client.http_success.head404()
 
-            assert client.http_success.head200()
-            assert client.http_success.head204()
-            assert not client.http_success.head404()
+def test_head_exception(credential, authentication_policy):
 
-    def test_head_exception(self, credential, authentication_policy):
+    with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
 
-        with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
-
-            client.head_exception.head200()
-            client.head_exception.head204()
-            with pytest.raises(HttpResponseError):
-                client.head_exception.head404()
+        client.head_exception.head200()
+        client.head_exception.head204()
+        with pytest.raises(HttpResponseError):
+            client.head_exception.head404()
