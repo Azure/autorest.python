@@ -8,6 +8,7 @@ from typing import Dict, Optional, List, Union, Any, cast
 from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
+from .imports import FileImport, ImportType
 
 
 class HeaderResponse:
@@ -90,6 +91,16 @@ class SchemaResponse(BaseModel):
         if self.schema:
             return cast(ObjectSchema, self.schema).is_exception
         return False
+
+    @property
+    def is_xml(self) -> bool:
+        return any(["xml" in ct for ct in self.media_types])
+
+    def imports(self, code_model) -> FileImport:
+        file_import = FileImport()
+        if not code_model.show_models and self.is_xml:
+            file_import.add_from_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
+        return file_import
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":

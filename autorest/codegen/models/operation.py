@@ -224,6 +224,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 import_type=ImportType.LOCAL,
                 alias="rest"
             )
+        for response in self.responses:
+            file_import.merge(response.imports(code_model))
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:

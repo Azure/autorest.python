@@ -711,8 +711,10 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
             if self.code_model.show_models:
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
             else:
+                is_xml = any(["xml" in ct for ct in response.media_types])
+                deserialized_value = "ET.fromstring(response.text)" if is_xml else "response.json()"
                 retval.append("if response.content:")
-                retval.append("    deserialized = response.json()")
+                retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
                 retval.append("    deserialized = None")
         return retval
