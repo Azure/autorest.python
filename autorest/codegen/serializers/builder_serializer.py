@@ -107,7 +107,13 @@ class BuilderSerializerProtocol(ABC):
     @property
     @abstractmethod
     def _function_definition(self) -> str:
-        """The def keyword for the function, i.e. 'def' or 'async def'"""
+        """The def keyword for the builder we're serializing, i.e. 'def' or 'async def'"""
+        ...
+
+    @property
+    @abstractmethod
+    def _def(self) -> str:
+        """The general definition of a function, i.e. def or async def"""
         ...
 
     @property
@@ -197,6 +203,10 @@ class BuilderSerializerProtocol(ABC):
 
     @abstractmethod
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
+        ...
+
+    @abstractmethod
+    def path_format_arguments(self, builder: BuilderType) -> List[str]:
         ...
 
 
@@ -369,6 +379,22 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
                 )
         return retval
 
+    def path_format_arguments(self, builder: BuilderType) -> List[str]:
+        retval = ["path_format_arguments = {"]
+        retval.extend([
+            "    '{}': {},".format(
+                path_parameter.rest_api_name,
+                path_parameter.build_serialize_data_call("url")
+            )
+            for path_parameter in builder.parameters.path
+        ])
+        retval.append("}")
+        return retval
+
+    @property
+    def _function_definition(self) -> str:
+        return self._def
+
 
 ############################## REQUEST BUILDERS ##############################
 
@@ -392,7 +418,7 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):
         return bool(self._get_json_response_template_to_status_codes(builder))
 
     @property
-    def _function_definition(self) -> str:
+    def _def(self) -> str:
         return "def"
 
     @property
@@ -481,7 +507,7 @@ class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
 ############################## NORMAL OPERATIONS ##############################
 
 
-class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstract-method
+class OperationBaseSerializer(BuilderBaseSerializer):
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         if builder.deprecated:
@@ -719,6 +745,11 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
                 retval.append("    deserialized = None")
         return retval
 
+    @property
+    @abstractmethod
+    def _call_method(self) -> str:
+        ...
+
     def handle_error_response(self, builder: BuilderType) -> List[str]:
         retval = [f"if response.status_code not in {str(builder.success_status_code)}:"]
         retval.append("    map_error(status_code=response.status_code, response=response, error_map=error_map)")
@@ -769,8 +800,37 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
             retval.append("return 200 <= response.status_code <= 299")
         return retval
 
+    def error_map(self, builder: BuilderType) -> List[str]:
+        retval = ["error_map = {"]
+        if builder.status_code_exceptions:
+            if not 401 in builder.status_code_exceptions_status_codes:
+                retval.append("    401: ClientAuthenticationError,")
+            if not 404 in builder.status_code_exceptions_status_codes:
+                retval.append("    404: ResourceNotFoundError,")
+            if not 409 in builder.status_code_exceptions_status_codes:
+                retval.append("    409: ResourceExistsError,")
+            for excep in builder.status_code_exceptions:
+                error_model_str = f", model=self._deserialize(_models.{excep.serialization_type}, response)" if excep.is_exception and self.code_model.show_models else ""
+                error_format_str = ", error_format=ARMErrorFormat" if self.code_model.options['azure_arm'] else ""
+                for status_code in excep.status_codes:
+                    if status_code == 401:
+                        retval.append(f"    401: lambda response: ClientAuthenticationError(response=response{error_model_str}{error_format_str}),")
+                    elif status_code == 404:
+                        retval.append(f"    404: lambda response: ResourceNotFoundError(response=response{error_model_str}{error_format_str}),")
+                    elif status_code == 409:
+                        retval.append(f"    409: lambda response: ResourceExistsError(response=response{error_model_str}{error_format_str}),")
+                    elif not error_model_str and not error_format_str:
+                        retval.append(f"    {status_code}: HttpResponseError,")
+                    else:
+                        retval.append(f"{status_code}: lambda response: HttpResponseError(response=response{error_model_str}{error_format_str}),")
+        else:
+            retval.append("401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError")
+        retval.append("}")
+        retval.append("error_map.update(kwargs.pop('error_map', {}))")
+        return retval
 
-
+    def get_metadata_url(self, builder: BuilderType) -> str:
+        return f"{builder.python_name}.metadata = {{'url': '{ builder.request_builder.url }'}}  # type: ignore"
 
 class SyncOperationSerializer(OperationBaseSerializer):
     @property
@@ -778,7 +838,7 @@ class SyncOperationSerializer(OperationBaseSerializer):
         return False
 
     @property
-    def _function_definition(self) -> str:
+    def _def(self) -> str:
         return "def"
 
     @staticmethod
@@ -790,6 +850,9 @@ class SyncOperationSerializer(OperationBaseSerializer):
     def _get_kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(async_mode=False)
 
+    @property
+    def _call_method(self) -> str:
+        return ""
 
 class AsyncOperationSerializer(OperationBaseSerializer):
     @property
@@ -797,7 +860,7 @@ class AsyncOperationSerializer(OperationBaseSerializer):
         return True
 
     @property
-    def _function_definition(self) -> str:
+    def _def(self) -> str:
         return "async def"
 
     @staticmethod
@@ -808,6 +871,10 @@ class AsyncOperationSerializer(OperationBaseSerializer):
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(async_mode=True)
+
+    @property
+    def _call_method(self) -> str:
+        return "await "
 
 
 ############################## PAGING OPERATIONS ##############################
@@ -837,6 +904,81 @@ class PagingOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable
             template_url=template_url,
         )
 
+    @property
+    @abstractmethod
+    def _list_type_returned_to_users(self) -> str:
+        ...
+
+    def _prepare_request_callback(self, builder: BuilderType) -> List[str]:
+        retval = ["def prepare_request(next_link=None):"]
+        retval.append("    if not next_link:")
+        retval.extend([
+            f"        {line}"
+            for line in self.call_request_builder(builder)
+        ])
+        retval.append("")
+        retval.append("    else:")
+        retval.extend([
+            f"        {line}"
+            for line in self.call_next_link_request_builder(builder)
+        ])
+        if not builder.next_request_builder and builder.parameters.path:
+            retval.append("")
+            retval.extend([
+                f"        {line}"
+                for line in self.path_format_arguments(builder)
+            ])
+        if not builder.next_request_builder:
+            retval.append('        request.method = "GET"')
+        else:
+            retval.append('')
+        retval.append("    return request")
+        return retval
+
+    def _extract_data_callback(self, builder: BuilderType) -> List[str]:
+        retval = [f"{self._def} extract_data(pipeline_response):"]
+        response = builder.responses[0]
+        retval.append("    deserialized = {}".format(
+            f'self._deserialize("{response.serialization_type}", pipeline_response)'
+        ))
+        retval.append(f"    list_of_elem = deserialized.{builder.item_name}")
+        retval.append("    if cls:")
+        retval.append("        list_of_elem = cls(list_of_elem)")
+        retval.append("    return {}, {}(list_of_elem)".format(
+            f"deserialized.{builder.next_link_name} or None" if builder.next_link_name else "None",
+            self._list_type_returned_to_users
+        ))
+        return retval
+
+    def _get_next_callback(self, builder: BuilderType) -> List[str]:
+        retval = [f"{self._def} get_next(next_link=None):"]
+        retval.append("    request = prepare_request(next_link)")
+        retval.append("")
+        retval.append(f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, stream={builder.is_stream_response}, **kwargs)")
+        retval.append("    response = pipeline_response.http_response")
+        retval.append("")
+        retval.extend([
+            f"    {line}"
+            for line in self.handle_error_response(builder)
+        ])
+        retval.append("")
+        retval.append("    return pipeline_response")
+        return retval
+
+    def set_up_params_for_pager(self, builder: BuilderType) -> List[str]:
+        retval = [f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"]
+        retval.extend(self.error_map(builder))
+        retval.extend(self._prepare_request_callback(builder))
+        retval.append("")
+        retval.extend(self._extract_data_callback(builder))
+        retval.append("")
+        retval.extend(self._get_next_callback(builder))
+        return retval
+
+    @abstractmethod
+    def _pager(self, builder: BuilderType) -> str:
+        ...
+
 
 class SyncPagingOperationSerializer(PagingOperationBaseSerializer, SyncOperationSerializer):
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
@@ -844,6 +986,13 @@ class SyncPagingOperationSerializer(PagingOperationBaseSerializer, SyncOperation
 
     def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
         return ["Iterable"]
+
+    @property
+    def _list_type_returned_to_users(self) -> str:
+        return "iter"
+
+    def _pager(self, builder: BuilderType) -> str:
+        return builder.get_pager(async_mode=False)
 
 
 class AsyncPagingOperationSerializer(PagingOperationBaseSerializer, AsyncOperationSerializer):
@@ -857,6 +1006,13 @@ class AsyncPagingOperationSerializer(PagingOperationBaseSerializer, AsyncOperati
     def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
         return ["AsyncIterable"]
 
+    @property
+    def _list_type_returned_to_users(self) -> str:
+        return "AsyncList"
+
+    def _pager(self, builder: BuilderType) -> str:
+        return builder.get_pager(async_mode=True)
+
 
 ############################## LRO OPERATIONS ##############################
 
@@ -867,6 +1023,14 @@ class LROOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=ab
 
     @abstractmethod
     def _default_polling_method(self, builder: BuilderType) -> str:
+        ...
+
+    @abstractmethod
+    def _default_no_polling_method(self, builder: BuilderType) -> str:
+        ...
+
+    @abstractmethod
+    def _poller(self, builder: BuilderType) -> str:
         ...
 
     @property
@@ -889,6 +1053,78 @@ class LROOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=ab
         )
         return retval
 
+    def initial_call(self, builder: BuilderType) -> List[str]:
+        retval = [f"polling = kwargs.pop('polling', True)  # type: Union[bool, {self._polling_method_type}]"]
+        retval.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
+        retval.append("lro_delay = kwargs.pop(")
+        retval.append("    'polling_interval',")
+        retval.append("    self._config.polling_interval")
+        retval.append(")")
+        retval.append("cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]")
+        retval.append("if cont_token is None:")
+        retval.append(f"    raw_result = {self._call_method}self.{builder.initial_operation.name}(")
+        retval.extend([
+            f"        {parameter.serialized_name}={parameter.serialized_name},"
+            for parameter in builder.parameters.method
+        ])
+        retval.append("        cls=lambda x,y,z: x,")
+        retval.append("        **kwargs")
+        retval.append("    )")
+        retval.append("kwargs.pop('error_map', None)")
+        return retval
+
+    def return_lro_poller(self, builder: BuilderType) -> List[str]:
+        lro_options_str = (
+            ", lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'}"
+            if builder.lro_options else ""
+        )
+        retval = [
+            f"{p.serialized_name} = {p.constant_declaration}"
+            for p in builder.parameters.path if p.constant
+        ]
+        path_format_arguments_str = ""
+        if builder.parameters.path:
+            path_format_arguments_str = ", path_format_arguments=path_format_arguments"
+            retval.extend(self.path_format_arguments(builder))
+            retval.append("")
+        retval.append(
+            f"if polling is True: polling_method = {self._default_polling_method(builder)}" +
+            f"(lro_delay{lro_options_str}{path_format_arguments_str}, **kwargs)"
+        )
+        retval.append(
+            f"elif polling is False: polling_method = {self._default_no_polling_method(builder)}()"
+        )
+        retval.append("else: polling_method = polling")
+        retval.append("if cont_token:")
+        retval.append(f"    return {self._poller(builder)}.from_continuation_token(")
+        retval.append("        polling_method=polling_method,")
+        retval.append("        continuation_token=cont_token,")
+        retval.append("        client=self._client,")
+        retval.append("        deserialization_callback=get_long_running_output")
+        retval.append("    )")
+        retval.append("else:")
+        retval.append(f"    return {self._poller(builder)}(self._client, raw_result, get_long_running_output, polling_method)")
+        return retval
+
+    def get_long_running_output(self, builder: BuilderType) -> List[str]:
+        retval = ["def get_long_running_output(pipeline_response):"]
+        if builder.lro_response.has_headers:
+            retval.append("    response_headers = {}")
+        if builder.lro_response:
+            retval.append("    response = pipeline_response.http_response")
+            retval.extend([
+                f"    {line}"
+                for line in self.response_headers_and_deserialization(builder.lro_response)
+            ])
+        retval.append("    if cls:")
+        retval.append("        return cls(pipeline_response, {}, {}".format(
+            'deserialized' if builder.lro_response.has_body else 'None',
+            'response_headers' if builder.lro_response.has_headers else '{}'
+        ))
+        if builder.lro_response.has_body:
+            retval.append("    return deserialized")
+        return retval
+
 
 class SyncLROOperationSerializer(LROOperationBaseSerializer, SyncOperationSerializer):
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
@@ -906,9 +1142,15 @@ class SyncLROOperationSerializer(LROOperationBaseSerializer, SyncOperationSerial
     def _default_polling_method(self, builder: BuilderType) -> str:
         return builder.get_default_polling_method(async_mode=False, azure_arm=self.code_model.options["azure_arm"])
 
+    def _default_no_polling_method(self, builder: BuilderType) -> str:
+        return builder.get_default_no_polling_method(async_mode=False)
+
     @property
     def _polling_method_type(self):
         return "azure.core.polling.PollingMethod"
+
+    def _poller(self, builder: BuilderType) -> str:
+        return builder.get_poller(async_mode=False)
 
 
 class AsyncLROOperationSerializer(LROOperationBaseSerializer, AsyncOperationSerializer):
@@ -928,15 +1170,37 @@ class AsyncLROOperationSerializer(LROOperationBaseSerializer, AsyncOperationSeri
     def _default_polling_method(self, builder: BuilderType) -> str:
         return builder.get_default_polling_method(async_mode=True, azure_arm=self.code_model.options["azure_arm"])
 
+    def _default_no_polling_method(self, builder: BuilderType) -> str:
+        return builder.get_default_no_polling_method(async_mode=True)
+
     @property
     def _polling_method_type(self):
         return "azure.core.polling.AsyncPollingMethod"
 
+    def _poller(self, builder: BuilderType) -> str:
+        return builder.get_poller(async_mode=True)
+
 
 ############################## LRO PAGING OPERATIONS ##############################
 
+class LROPagingOperationBaseSerializer(LROOperationBaseSerializer, PagingOperationBaseSerializer):
+    def get_long_running_output(self, builder: BuilderType) -> List[str]:
+        retval = ["def get_long_running_output(pipeline_response):"]
+        retval.append(f"    {self._def} internal_get_next(next_link=None):")
+        retval.append("        if next_link is None:")
+        retval.append("            return pipeline_response")
+        retval.append("        else:")
+        retval.append(f"            return {self._call_method}get_next(next_link)")
+        retval.append("")
+        retval.append(f"    return {self._pager(builder)}(")
+        retval.append("        internal_get_next, extract_data")
+        retval.append("    )")
+        return retval
 
-class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOperationSerializer):
+
+class SyncLROPagingOperationSerializer(
+    LROPagingOperationBaseSerializer, SyncLROOperationSerializer, SyncPagingOperationSerializer
+):
 
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:
         return SyncLROOperationSerializer._response_docstring_type_wrapper(
@@ -957,8 +1221,9 @@ class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOpe
     def cls_type_annotation(self, builder: BuilderType) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
-
-class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
+class AsyncLROPagingOperationSerializer(
+    LROPagingOperationBaseSerializer, AsyncLROOperationSerializer, AsyncPagingOperationSerializer
+):
     @property
     def _function_definition(self) -> str:
         return "async def"

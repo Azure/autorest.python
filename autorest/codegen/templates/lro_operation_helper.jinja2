@@ -1,24 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% macro lro_operation() %}
-polling = kwargs.pop('polling', True)  # type: Union[bool, {{ keywords.async_class }}PollingMethod]
-cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(operation) }}
-lro_delay = kwargs.pop(
-    'polling_interval',
-    self._config.polling_interval
-)
-cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
-if cont_token is None:
-    raw_result = {{ keywords.await }}self.{{ operation.initial_operation.name }}(
-        {% for parameter in operation.parameters.method %}
-        {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-        {% endfor %}
-        cls=lambda x,y,z: x,
-        **kwargs
-    )
-
-kwargs.pop('error_map', None)
-{% endmacro %}
 
     {% macro lro_operation_return() %}
     {% import 'keywords.jinja2' as keywords with context %}
