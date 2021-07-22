@@ -31,6 +31,7 @@ T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
 
+# "str (optional)" => "str" # (optional)
 def _improve_template(template):
     return template.replace(' (optional)",', '", # optional').replace(' (optional)"', '" # optional')
 

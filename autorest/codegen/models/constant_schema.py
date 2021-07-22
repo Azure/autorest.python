@@ -84,6 +84,9 @@ class ConstantSchema(BaseSchema):
         )
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
+        # for better display effect, use constant value instead of var type
+        if kwargs.get('default_value_declaration') in ('None', None):
+            kwargs['default_value_declaration'] = self.value
         return self.schema.get_json_template_representation(**kwargs)
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
