@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
-
-from .._rest import head_exception as rest_head_exception
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,6 +29,38 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_head200_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/success/200")
+
+    return HttpRequest(method="HEAD", url=url, **kwargs)
+
+
+def build_head204_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/success/204")
+
+    return HttpRequest(method="HEAD", url=url, **kwargs)
+
+
+def build_head404_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/success/404")
+
+    return HttpRequest(method="HEAD", url=url, **kwargs)
 
 
 class HeadExceptionOperations(object):
@@ -66,7 +97,7 @@ class HeadExceptionOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_head_exception.build_head200_request(
+        request = build_head200_request(
             template_url=self.head200.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -100,7 +131,7 @@ class HeadExceptionOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_head_exception.build_head204_request(
+        request = build_head204_request(
             template_url=self.head204.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -134,7 +165,7 @@ class HeadExceptionOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_head_exception.build_head404_request(
+        request = build_head404_request(
             template_url=self.head404.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

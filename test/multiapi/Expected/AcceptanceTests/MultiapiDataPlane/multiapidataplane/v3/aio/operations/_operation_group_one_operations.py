@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 
 from ... import models as _models
-from ..._rest import operation_group_one as rest_operation_group_one
+from ...operations._operation_group_one_operations import build_test_two_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +68,7 @@ class OperationGroupOneOperations:
         else:
             json = None
 
-        request = rest_operation_group_one.build_test_two_request(
+        request = build_test_two_request(
             content_type=content_type,
             json=json,
             template_url=self.test_two.metadata['url'],

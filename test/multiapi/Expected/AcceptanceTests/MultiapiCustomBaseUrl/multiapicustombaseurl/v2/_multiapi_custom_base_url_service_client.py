@@ -60,11 +60,6 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         We have helper methods to create requests specific to this service in `multiapicustombaseurl.v2.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapicustombaseurl.v2._rest import build_test_request
-        >>> request = build_test_request(id=id, **kwargs)
-        <HttpRequest [PUT], url: '/test'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

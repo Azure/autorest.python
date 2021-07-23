@@ -60,11 +60,6 @@ class AutoRestUrlTestService:
         We have helper methods to create requests specific to this service in `url.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from url._rest import paths
-        >>> request = paths.build_get_boolean_true_request(**kwargs)
-        <HttpRequest [GET], url: '/paths/bool/true/{boolPath}'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

@@ -23,7 +23,11 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._rest import header as rest_header
+from ...operations._header_operations import (
+    build_custom_named_request_id_head_request,
+    build_custom_named_request_id_param_grouping_request,
+    build_custom_named_request_id_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -66,7 +70,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_header.build_custom_named_request_id_request(
+        request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
         )._to_pipeline_transport_request()
@@ -114,7 +118,7 @@ class HeaderOperations:
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
-        request = rest_header.build_custom_named_request_id_param_grouping_request(
+        request = build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
         )._to_pipeline_transport_request()
@@ -153,7 +157,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_header.build_custom_named_request_id_head_request(
+        request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
         )._to_pipeline_transport_request()

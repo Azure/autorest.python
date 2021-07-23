@@ -21,9 +21,9 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import odata as rest_odata
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,6 +31,36 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_with_filter_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    filter = kwargs.pop("filter", None)  # type: Optional[str]
+    top = kwargs.pop("top", None)  # type: Optional[int]
+    orderby = kwargs.pop("orderby", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/azurespecials/odata/filter")
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if filter is not None:
+        query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
+    if orderby is not None:
+        query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
 class OdataOperations(object):
@@ -81,7 +111,7 @@ class OdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_odata.build_get_with_filter_request(
+        request = build_get_with_filter_request(
             filter=filter,
             top=top,
             orderby=orderby,

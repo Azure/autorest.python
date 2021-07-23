@@ -23,7 +23,12 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._rest import api_version_default as rest_api_version_default
+from ...operations._api_version_default_operations import (
+    build_get_method_global_not_provided_valid_request,
+    build_get_method_global_valid_request,
+    build_get_path_global_valid_request,
+    build_get_swagger_global_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -64,7 +69,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_method_global_valid_request(
+        request = build_get_method_global_valid_request(
             template_url=self.get_method_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -97,7 +102,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_method_global_not_provided_valid_request(
+        request = build_get_method_global_not_provided_valid_request(
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -130,7 +135,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_path_global_valid_request(
+        request = build_get_path_global_valid_request(
             template_url=self.get_path_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -163,7 +168,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_swagger_global_valid_request(
+        request = build_get_swagger_global_valid_request(
             template_url=self.get_swagger_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

@@ -45,11 +45,6 @@ class AutoRestRFC1123DateTimeTestService:
         We have helper methods to create requests specific to this service in `bodydatetimerfc1123.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodydatetimerfc1123._rest import datetimerfc1123
-        >>> request = datetimerfc1123.build_get_null_request(**kwargs)
-        <HttpRequest [GET], url: '/datetimerfc1123/null'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

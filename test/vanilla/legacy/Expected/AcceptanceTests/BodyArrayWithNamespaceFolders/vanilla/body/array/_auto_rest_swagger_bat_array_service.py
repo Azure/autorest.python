@@ -60,11 +60,6 @@ class AutoRestSwaggerBATArrayService(object):
         We have helper methods to create requests specific to this service in `vanilla.body.array.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from vanilla.body.array._rest import array
-        >>> request = array.build_get_null_request(**kwargs)
-        <HttpRequest [GET], url: '/array/null'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

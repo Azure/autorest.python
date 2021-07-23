@@ -21,11 +21,11 @@ from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialS
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
-    if code_model.show_operations and yaml_data.get("operationGroups"):
+    if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
         code_model.operation_groups = [
             OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
         ]
-    if code_model.show_models and yaml_data.get("schemas"):
+    if code_model.options["show_models"] and yaml_data.get("schemas"):
         # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
 
         code_model.add_inheritance_to_models()
@@ -34,7 +34,7 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         code_model.add_schema_link_to_operation()
         code_model.generate_single_parameter_from_multiple_media_types_operation()
 
-    if code_model.show_operations:
+    if code_model.options["show_operations"]:
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
@@ -76,35 +76,8 @@ class CodeGenerator(Plugin):
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
-        low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
-        show_models = self._autorestapi.get_boolean_value(
-            "show-models",
-            not low_level_client
-        )
-        show_builders = self._autorestapi.get_boolean_value(
-            "show-builders",
-            low_level_client
-        )
-        show_operations = self._autorestapi.get_boolean_value(
-            "show-operations",
-            not low_level_client
-        )
-        show_send_request = self._autorestapi.get_boolean_value(
-            "show-send-request",
-            low_level_client
-        )
-        only_path_and_body_params_positional = self._autorestapi.get_boolean_value(
-            "only-path-and-body-params-positional",
-            low_level_client
-        )
-        code_model = CodeModel(
-            show_builders=show_builders,
-            show_models=show_models,
-            show_operations=show_operations,
-            show_send_request=show_send_request,
-            only_path_and_body_params_positional=only_path_and_body_params_positional,
-            options=options,
-        )
+
+        code_model = CodeModel(options=options)
         if code_model.options['credential']:
             self._handle_default_authentication_policy(code_model)
         code_model.module_name = yaml_data["info"]["python_title"]
@@ -254,6 +227,8 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
+        low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "credential": credential,
@@ -269,10 +244,25 @@ class CodeGenerator(Plugin):
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
+            "show_models": self._autorestapi.get_boolean_value("show-models", not low_level_client),
+            "show_builders": self._autorestapi.get_boolean_value("show-builders", low_level_client),
+            "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
+            "show_send_request": self._autorestapi.get_boolean_value("show-send-request", low_level_client),
+            "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
+                "only-path-and-body-params-positional", low_level_client
+            ),
+            "embed_builders": self._autorestapi.get_boolean_value("embed-builders", not low_level_client),
         }
 
         if options["basic_setup_py"] and not options["package_version"]:
             raise ValueError("--basic-setup-py must be used with --package-version")
+
+        if options["show_builders"] and options["embed_builders"]:
+            raise ValueError(
+                "Can not specify both --show-builders and --embed-builders at the same time. "
+                "Call --show-builders if you want builders in the rest layer, and for them to be public. "
+                "OR: call --embed-builders to embed the request builders inside the operation group files"
+            )
 
         # Force some options in ARM MODE:
         if azure_arm:

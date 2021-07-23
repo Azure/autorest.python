@@ -20,8 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
-from .. import _rest as rest, models as _models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -29,6 +30,18 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_incorrect_error_from_server_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", "/incorrectError")
+
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
 class IncorrectReturnedErrorModelOperationsMixin(object):
@@ -49,7 +62,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_incorrect_error_from_server_request(
+        request = build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

@@ -20,9 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import http_redirects as rest_http_redirects
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,6 +30,276 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_head300_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/300")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get300_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/300")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_head301_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/301")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get301_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/301")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put301_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/301")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_head302_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/302")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get302_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/302")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_patch302_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/302")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+
+
+def build_post303_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/303")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+
+
+def build_head307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_options307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_patch307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, **kwargs)
+
+
+def build_post307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+
+
+def build_delete307_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/redirect/307")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
 class HttpRedirectsOperations(object):
@@ -70,7 +340,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head300_request(
+        request = build_head300_request(
             template_url=self.head300.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -108,7 +378,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get300_request(
+        request = build_get300_request(
             template_url=self.get300.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -151,7 +421,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head301_request(
+        request = build_head301_request(
             template_url=self.head301.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -189,7 +459,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get301_request(
+        request = build_get301_request(
             template_url=self.get301.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -238,7 +508,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_put301_request(
+        request = build_put301_request(
             content_type=content_type,
             json=json,
             template_url=self.put301.metadata["url"],
@@ -277,7 +547,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head302_request(
+        request = build_head302_request(
             template_url=self.head302.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -315,7 +585,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get302_request(
+        request = build_get302_request(
             template_url=self.get302.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -364,7 +634,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_patch302_request(
+        request = build_patch302_request(
             content_type=content_type,
             json=json,
             template_url=self.patch302.metadata["url"],
@@ -414,7 +684,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_post303_request(
+        request = build_post303_request(
             content_type=content_type,
             json=json,
             template_url=self.post303.metadata["url"],
@@ -454,7 +724,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head307_request(
+        request = build_head307_request(
             template_url=self.head307.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -492,7 +762,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get307_request(
+        request = build_get307_request(
             template_url=self.get307.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -530,7 +800,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_options307_request(
+        request = build_options307_request(
             template_url=self.options307.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -578,7 +848,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_put307_request(
+        request = build_put307_request(
             content_type=content_type,
             json=json,
             template_url=self.put307.metadata["url"],
@@ -628,7 +898,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_patch307_request(
+        request = build_patch307_request(
             content_type=content_type,
             json=json,
             template_url=self.patch307.metadata["url"],
@@ -678,7 +948,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_post307_request(
+        request = build_post307_request(
             content_type=content_type,
             json=json,
             template_url=self.post307.metadata["url"],
@@ -728,7 +998,7 @@ class HttpRedirectsOperations(object):
         else:
             json = None
 
-        request = rest_http_redirects.build_delete307_request(
+        request = build_delete307_request(
             content_type=content_type,
             json=json,
             template_url=self.delete307.metadata["url"],

@@ -21,7 +21,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest as rest, models as _models
+from ... import models as _models
+from ...operations._incorrect_returned_error_model_operations import build_get_incorrect_error_from_server_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -42,7 +43,7 @@ class IncorrectReturnedErrorModelOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_incorrect_error_from_server_request(
+        request = build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

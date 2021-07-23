@@ -20,9 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import byte as rest_byte
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,6 +30,87 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_null_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/byte/null")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_empty_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/byte/empty")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_non_ascii_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/byte/nonAscii")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_non_ascii_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/byte/nonAscii")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_invalid_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/byte/invalid")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 class ByteOperations(object):
@@ -70,7 +151,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_null_request(
+        request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -108,7 +189,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_empty_request(
+        request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -146,7 +227,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_non_ascii_request(
+        request = build_get_non_ascii_request(
             template_url=self.get_non_ascii.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -191,7 +272,7 @@ class ByteOperations(object):
 
         json = self._serialize.body(byte_body, "bytearray")
 
-        request = rest_byte.build_put_non_ascii_request(
+        request = build_put_non_ascii_request(
             content_type=content_type,
             json=json,
             template_url=self.put_non_ascii.metadata["url"],
@@ -227,7 +308,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_invalid_request(
+        request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

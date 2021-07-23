@@ -60,11 +60,6 @@ class MultiapiServiceClient:
         We have helper methods to create requests specific to this service in `multiapi.v0.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapi.v0._rest import operation_group_one
-        >>> request = operation_group_one.build_test_two_request(**kwargs)
-        <HttpRequest [GET], url: '/multiapi/one/testTwoEndpoint'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

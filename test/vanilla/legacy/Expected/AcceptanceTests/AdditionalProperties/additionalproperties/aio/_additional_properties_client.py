@@ -45,11 +45,6 @@ class AdditionalPropertiesClient:
         We have helper methods to create requests specific to this service in `additionalproperties.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from additionalproperties._rest import pets
-        >>> request = pets.build_create_ap_true_request(json=json, content=content, **kwargs)
-        <HttpRequest [PUT], url: '/additionalProperties/true'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

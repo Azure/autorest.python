@@ -67,11 +67,6 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         We have helper methods to create requests specific to this service in `multiapinoasync.v3.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from multiapinoasync.v3._rest import build_test_paging_request
-        >>> request = build_test_paging_request(**kwargs)
-        <HttpRequest [GET], url: '/multiapi/paging'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

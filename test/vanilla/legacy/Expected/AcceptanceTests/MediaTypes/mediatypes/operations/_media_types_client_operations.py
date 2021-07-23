@@ -20,8 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
-from .. import _rest as rest, models as _models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -29,6 +30,46 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_analyze_body_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[Union[str, "_models.ContentType"]]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/mediatypes/analyze")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+
+
+def build_content_type_with_encoding_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/mediatypes/contentTypeWithEncoding")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
 class MediaTypesClientOperationsMixin(object):
@@ -71,7 +112,7 @@ class MediaTypesClientOperationsMixin(object):
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        request = rest.build_analyze_body_request(
+        request = build_analyze_body_request(
             content_type=content_type,
             json=json,
             content=content,
@@ -121,7 +162,7 @@ class MediaTypesClientOperationsMixin(object):
         else:
             content = None
 
-        request = rest.build_content_type_with_encoding_request(
+        request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],

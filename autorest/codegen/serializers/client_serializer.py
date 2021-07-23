@@ -105,13 +105,14 @@ class ClientSerializer:
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name
-        retval.append(f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}")
-        retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
-        retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
-        retval.append(
-            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
-        )
-        retval.append(f"<{http_response}: 200 OK>")
+        if not self.code_model.options["embed_builders"]:
+            retval.append(f">>> from {self.code_model.namespace}.rest import {rest_imported}")
+            retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
+            retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
+            retval.append(
+                f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
+            )
+            retval.append(f"<{http_response}: 200 OK>")
         return retval
 
     def send_request_description(self, async_mode: bool) -> List[str]:

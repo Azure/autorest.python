@@ -64,11 +64,6 @@ class AutoRestLongRunningOperationTestService:
         We have helper methods to create requests specific to this service in `lro.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from lro._rest import lros
-        >>> request = lros.build_put200_succeeded_request_initial(json=json, content=content, **kwargs)
-        <HttpRequest [PUT], url: '/lro/put/200/succeeded'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

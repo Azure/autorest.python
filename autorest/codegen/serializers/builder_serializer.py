@@ -436,7 +436,7 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=ab
         return retval
 
     def want_example_template(self, builder: BuilderType) -> bool:
-        if self.code_model.rest_layer_name == "_rest":
+        if not self.code_model.options["show_builders"]:
             return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
             body_kwargs = set(builder.parameters.body_kwarg_names.keys())
@@ -582,7 +582,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder: BuilderType) -> bool:
-        if self.code_model.show_models:
+        if self.code_model.options['show_models']:
             return False
         if builder.parameters.has_body:
             body_params = builder.parameters.body
@@ -623,10 +623,13 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
             retval.append(f"{constant_body.serialized_name} = {constant_body.constant_declaration}")
         if builder.parameters.has_body:
             retval.extend(_serialize_body_parameters(builder))
-        operation_group_name = request_builder.operation_group_name
-        request_path_name = "rest{}.{}".format(
-            ("_" + operation_group_name) if operation_group_name else "", request_builder.name
-        )
+        if self.code_model.options["embed_builders"]:
+            request_path_name = request_builder.name
+        else:
+            operation_group_name = request_builder.operation_group_name
+            request_path_name = "rest{}.{}".format(
+                ("_" + operation_group_name) if operation_group_name else "", request_builder.name
+            )
         retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:

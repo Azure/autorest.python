@@ -52,11 +52,6 @@ class AutoRestHeadExceptionTestService:
         We have helper methods to create requests specific to this service in `headexceptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headexceptions._rest import head_exception
-        >>> request = head_exception.build_head200_request(**kwargs)
-        <HttpRequest [HEAD], url: '/http/success/200'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

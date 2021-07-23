@@ -22,7 +22,14 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import pets as rest_pets
+from ...operations._pets_operations import (
+    build_create_ap_in_properties_request,
+    build_create_ap_in_properties_with_ap_string_request,
+    build_create_ap_object_request,
+    build_create_ap_string_request,
+    build_create_ap_true_request,
+    build_create_cat_ap_true_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +75,7 @@ class PetsOperations:
 
         json = self._serialize.body(create_parameters, "PetAPTrue")
 
-        request = rest_pets.build_create_ap_true_request(
+        request = build_create_ap_true_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_true.metadata["url"],
@@ -112,7 +119,7 @@ class PetsOperations:
 
         json = self._serialize.body(create_parameters, "CatAPTrue")
 
-        request = rest_pets.build_create_cat_ap_true_request(
+        request = build_create_cat_ap_true_request(
             content_type=content_type,
             json=json,
             template_url=self.create_cat_ap_true.metadata["url"],
@@ -156,7 +163,7 @@ class PetsOperations:
 
         json = self._serialize.body(create_parameters, "PetAPObject")
 
-        request = rest_pets.build_create_ap_object_request(
+        request = build_create_ap_object_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_object.metadata["url"],
@@ -200,7 +207,7 @@ class PetsOperations:
 
         json = self._serialize.body(create_parameters, "PetAPString")
 
-        request = rest_pets.build_create_ap_string_request(
+        request = build_create_ap_string_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_string.metadata["url"],
@@ -246,7 +253,7 @@ class PetsOperations:
 
         json = self._serialize.body(create_parameters, "PetAPInProperties")
 
-        request = rest_pets.build_create_ap_in_properties_request(
+        request = build_create_ap_in_properties_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties.metadata["url"],
@@ -292,7 +299,7 @@ class PetsOperations:
 
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
-        request = rest_pets.build_create_ap_in_properties_with_ap_string_request(
+        request = build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],

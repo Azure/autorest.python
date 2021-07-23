@@ -45,11 +45,6 @@ class ClassName:
         We have helper methods to create requests specific to this service in `bodybytewithpackagename.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodybytewithpackagename._rest import byte
-        >>> request = byte.build_get_null_request(**kwargs)
-        <HttpRequest [GET], url: '/byte/null'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

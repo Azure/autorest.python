@@ -21,7 +21,11 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _rest as rest, models as _models
+from ... import models as _models
+from ...operations._media_types_client_operations import (
+    build_analyze_body_request,
+    build_content_type_with_encoding_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +66,7 @@ class MediaTypesClientOperationsMixin:
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        request = rest.build_analyze_body_request(
+        request = build_analyze_body_request(
             content_type=content_type,
             json=json,
             content=content,
@@ -109,7 +113,7 @@ class MediaTypesClientOperationsMixin:
         else:
             content = None
 
-        request = rest.build_content_type_with_encoding_request(
+        request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],

@@ -20,8 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
-from .. import _rest as rest, models as _models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -29,6 +30,178 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_horse_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/horse")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_horse_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/horse")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_pet_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/pet")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_pet_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/pet")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_feline_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/feline")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_feline_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/feline")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_cat_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/cat")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_cat_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/cat")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_kitten_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/kitten")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_kitten_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/multipleInheritance/kitten")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
 
 class MultipleInheritanceServiceClientOperationsMixin(object):
@@ -48,7 +221,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_horse_request(
+        request = build_get_horse_request(
             template_url=self.get_horse.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -93,7 +266,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         json = self._serialize.body(horse, "Horse")
 
-        request = rest.build_put_horse_request(
+        request = build_put_horse_request(
             content_type=content_type,
             json=json,
             template_url=self.put_horse.metadata["url"],
@@ -132,7 +305,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_pet_request(
+        request = build_get_pet_request(
             template_url=self.get_pet.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -178,7 +351,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _pet = _models.Pet(name=name)
         json = self._serialize.body(_pet, "Pet")
 
-        request = rest.build_put_pet_request(
+        request = build_put_pet_request(
             content_type=content_type,
             json=json,
             template_url=self.put_pet.metadata["url"],
@@ -217,7 +390,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_feline_request(
+        request = build_get_feline_request(
             template_url=self.get_feline.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -262,7 +435,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         json = self._serialize.body(feline, "Feline")
 
-        request = rest.build_put_feline_request(
+        request = build_put_feline_request(
             content_type=content_type,
             json=json,
             template_url=self.put_feline.metadata["url"],
@@ -301,7 +474,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_cat_request(
+        request = build_get_cat_request(
             template_url=self.get_cat.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -346,7 +519,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         json = self._serialize.body(cat, "Cat")
 
-        request = rest.build_put_cat_request(
+        request = build_put_cat_request(
             content_type=content_type,
             json=json,
             template_url=self.put_cat.metadata["url"],
@@ -386,7 +559,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_kitten_request(
+        request = build_get_kitten_request(
             template_url=self.get_kitten.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -433,7 +606,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         json = self._serialize.body(kitten, "Kitten")
 
-        request = rest.build_put_kitten_request(
+        request = build_put_kitten_request(
             content_type=content_type,
             json=json,
             template_url=self.put_kitten.metadata["url"],

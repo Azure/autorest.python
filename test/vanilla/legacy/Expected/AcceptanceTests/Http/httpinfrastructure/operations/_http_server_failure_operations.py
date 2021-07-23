@@ -20,9 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import http_server_failure as rest_http_server_failure
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,6 +30,76 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_head501_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/failure/server/501")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get501_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/failure/server/501")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_post505_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/failure/server/505")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+
+
+def build_delete505_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/http/failure/server/505")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
 class HttpServerFailureOperations(object):
@@ -70,7 +140,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_server_failure.build_head501_request(
+        request = build_head501_request(
             template_url=self.head501.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -104,7 +174,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_server_failure.build_get501_request(
+        request = build_get501_request(
             template_url=self.get501.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -148,7 +218,7 @@ class HttpServerFailureOperations(object):
         else:
             json = None
 
-        request = rest_http_server_failure.build_post505_request(
+        request = build_post505_request(
             content_type=content_type,
             json=json,
             template_url=self.post505.metadata["url"],
@@ -194,7 +264,7 @@ class HttpServerFailureOperations(object):
         else:
             json = None
 
-        request = rest_http_server_failure.build_delete505_request(
+        request = build_delete505_request(
             content_type=content_type,
             json=json,
             template_url=self.delete505.metadata["url"],

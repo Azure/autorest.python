@@ -23,7 +23,16 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import date as rest_date
+from ...operations._date_operations import (
+    build_get_invalid_date_request,
+    build_get_max_date_request,
+    build_get_min_date_request,
+    build_get_null_request,
+    build_get_overflow_date_request,
+    build_get_underflow_date_request,
+    build_put_max_date_request,
+    build_put_min_date_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -64,7 +73,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_null_request(
+        request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -101,7 +110,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_invalid_date_request(
+        request = build_get_invalid_date_request(
             template_url=self.get_invalid_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -138,7 +147,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_overflow_date_request(
+        request = build_get_overflow_date_request(
             template_url=self.get_overflow_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -175,7 +184,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_underflow_date_request(
+        request = build_get_underflow_date_request(
             template_url=self.get_underflow_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -217,7 +226,7 @@ class DateOperations:
 
         json = self._serialize.body(date_body, "date")
 
-        request = rest_date.build_put_max_date_request(
+        request = build_put_max_date_request(
             content_type=content_type,
             json=json,
             template_url=self.put_max_date.metadata["url"],
@@ -252,7 +261,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_max_date_request(
+        request = build_get_max_date_request(
             template_url=self.get_max_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -294,7 +303,7 @@ class DateOperations:
 
         json = self._serialize.body(date_body, "date")
 
-        request = rest_date.build_put_min_date_request(
+        request = build_put_min_date_request(
             content_type=content_type,
             json=json,
             template_url=self.put_min_date.metadata["url"],
@@ -329,7 +338,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_date.build_get_min_date_request(
+        request = build_get_min_date_request(
             template_url=self.get_min_date.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

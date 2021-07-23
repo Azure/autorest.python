@@ -20,9 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import enum as rest_enum
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,6 +30,110 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_not_expandable_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/string/enum/notExpandable")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_not_expandable_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/string/enum/notExpandable")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_referenced_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/string/enum/Referenced")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_referenced_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/string/enum/Referenced")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_get_referenced_constant_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put_referenced_constant_request(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
 
 
 class EnumOperations(object):
@@ -70,7 +174,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_not_expandable_request(
+        request = build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -115,7 +219,7 @@ class EnumOperations(object):
 
         json = self._serialize.body(string_body, "str")
 
-        request = rest_enum.build_put_not_expandable_request(
+        request = build_put_not_expandable_request(
             content_type=content_type,
             json=json,
             template_url=self.put_not_expandable.metadata["url"],
@@ -151,7 +255,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_referenced_request(
+        request = build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -196,7 +300,7 @@ class EnumOperations(object):
 
         json = self._serialize.body(enum_string_body, "str")
 
-        request = rest_enum.build_put_referenced_request(
+        request = build_put_referenced_request(
             content_type=content_type,
             json=json,
             template_url=self.put_referenced.metadata["url"],
@@ -232,7 +336,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_referenced_constant_request(
+        request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -278,7 +382,7 @@ class EnumOperations(object):
         _enum_string_body = _models.RefColorConstant(field1=field1)
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
-        request = rest_enum.build_put_referenced_constant_request(
+        request = build_put_referenced_constant_request(
             content_type=content_type,
             json=json,
             template_url=self.put_referenced_constant.metadata["url"],

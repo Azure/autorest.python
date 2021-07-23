@@ -22,7 +22,11 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import formdata as rest_formdata
+from ...operations._formdata_operations import (
+    build_upload_file_request,
+    build_upload_file_via_body_request,
+    build_upload_files_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -76,7 +80,7 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        request = rest_formdata.build_upload_file_request(
+        request = build_upload_file_request(
             content_type=content_type,
             files=files,
             data=data,
@@ -121,7 +125,7 @@ class FormdataOperations:
 
         content = file_content
 
-        request = rest_formdata.build_upload_file_via_body_request(
+        request = build_upload_file_via_body_request(
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
@@ -170,7 +174,7 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        request = rest_formdata.build_upload_files_request(
+        request = build_upload_files_request(
             content_type=content_type,
             files=files,
             data=data,

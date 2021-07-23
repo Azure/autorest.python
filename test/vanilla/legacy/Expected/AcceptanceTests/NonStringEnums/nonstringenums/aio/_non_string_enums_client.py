@@ -51,11 +51,6 @@ class NonStringEnumsClient:
         We have helper methods to create requests specific to this service in `nonstringenums.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from nonstringenums._rest import int
-        >>> request = int.build_put_request(json=json, content=content, **kwargs)
-        <HttpRequest [PUT], url: '/nonStringEnums/int/put'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

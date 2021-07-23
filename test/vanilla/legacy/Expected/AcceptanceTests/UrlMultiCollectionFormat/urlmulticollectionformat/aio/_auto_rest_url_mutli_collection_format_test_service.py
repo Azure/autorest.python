@@ -45,11 +45,6 @@ class AutoRestUrlMutliCollectionFormatTestService:
         We have helper methods to create requests specific to this service in `urlmulticollectionformat.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from urlmulticollectionformat._rest import queries
-        >>> request = queries.build_array_string_multi_null_request(array_query=array_query, **kwargs)
-        <HttpRequest [GET], url: '/queries/array/multi/string/null'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

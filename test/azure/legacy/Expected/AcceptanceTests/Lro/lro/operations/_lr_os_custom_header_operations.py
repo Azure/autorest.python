@@ -23,9 +23,9 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import lr_os_custom_header as rest_lr_os_custom_header
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -33,6 +33,84 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_put_async_retry_succeeded_request_initial(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/lro/customheader/putasync/retry/succeeded")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_put201_creating_succeeded200_request_initial(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/lro/customheader/put/201/creating/succeeded/200")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+
+
+def build_post202_retry200_request_initial(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/lro/customheader/post/202/retry/200")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+
+
+def build_post_async_retry_succeeded_request_initial(
+    **kwargs,  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/lro/customheader/postasync/retry/succeeded")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
 class LROsCustomHeaderOperations(object):
@@ -73,7 +151,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_put_async_retry_succeeded_request_initial(
+        request = build_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
@@ -190,7 +268,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -297,7 +375,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_post202_retry200_request_initial(
+        request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -395,7 +473,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_post_async_retry_succeeded_request_initial(
+        request = build_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],

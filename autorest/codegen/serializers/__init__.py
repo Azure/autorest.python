@@ -52,13 +52,10 @@ class JinjaSerializer:
 
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
         if code_model.rest.request_builders:
-            self._serialize_and_write_rest_layer(code_model=code_model, env=env, namespace_path=namespace_path)
-            if not code_model.options["no_async"]:
-                self._serialize_and_write_aio_top_level_folder(
-                    code_model=code_model, env=env, namespace_path=namespace_path,
-                )
+            if not code_model.options["embed_builders"]:
+                self._serialize_and_write_rest_layer(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        if code_model.show_operations and code_model.operation_groups:
+        if code_model.options["show_operations"] and code_model.operation_groups:
             self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
             if code_model.options["multiapi"]:
@@ -66,7 +63,12 @@ class JinjaSerializer:
                     code_model, env=env, namespace_path=namespace_path
                 )
 
-        if code_model.show_models and (code_model.schemas or code_model.enums):
+            if not code_model.options["no_async"]:
+                self._serialize_and_write_aio_top_level_folder(
+                    code_model=code_model, env=env, namespace_path=namespace_path,
+                )
+
+        if code_model.options["show_models"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
 

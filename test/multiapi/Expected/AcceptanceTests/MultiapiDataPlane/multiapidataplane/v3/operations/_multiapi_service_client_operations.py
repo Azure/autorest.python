@@ -14,8 +14,9 @@ from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
+from msrest import Serializer
 
-from .. import _rest as rest, models as _models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -23,6 +24,62 @@ if TYPE_CHECKING:
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+def build_test_paging_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/paging')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_test_different_calls_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
+    greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
+
+    api_version = "3.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    if greeting_in_chinese is not None:
+        header_parameters['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
+    if greeting_in_french is not None:
+        header_parameters['greetingInFrench'] = _SERIALIZER.header("greeting_in_french", greeting_in_french, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 class MultiapiServiceClientOperationsMixin(object):
 
@@ -46,14 +103,14 @@ class MultiapiServiceClientOperationsMixin(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest.build_test_paging_request(
+                request = build_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest.build_test_paging_request(
+                request = build_test_paging_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -112,7 +169,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_different_calls_request(
+        request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,

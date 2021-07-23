@@ -59,11 +59,6 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         We have helper methods to create requests specific to this service in `azure.directives.sample.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from azure.directives.sample._rest import build_basic_polling_request_initial
-        >>> request = build_basic_polling_request_initial(json=json, content=content, **kwargs)
-        <HttpRequest [PUT], url: '/basic/polling'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

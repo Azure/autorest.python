@@ -1,7 +1,9 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools with context %}
 {{ request_builder_serializer.method_signature_and_response_type_annotation(request_builder) }}
+{% if code_model.options["show_builders"] %}
     {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
+{% endif %}
 {% if request_builder.parameters.kwargs_to_pop(is_python_3_file) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}
 {% endif %}
