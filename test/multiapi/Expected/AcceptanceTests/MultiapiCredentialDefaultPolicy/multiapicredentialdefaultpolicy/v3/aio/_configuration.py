@@ -13,8 +13,7 @@ from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 
-from .._version import VERSION
-
+VERSION = "unknown"
 
 class MultiapiServiceClientConfiguration(Configuration):
     """Configuration for MultiapiServiceClient.
