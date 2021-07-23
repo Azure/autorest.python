@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+# fmt: off
 
 def build_get_no_item_name_pages_request(
     **kwargs  # type: Any
@@ -543,6 +544,7 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
         **kwargs
     )
 
+# fmt: on
 class PagingOperations(object):
     """PagingOperations operations.
 

@@ -23,6 +23,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+# fmt: off
 
 def build_head200_request(
     **kwargs  # type: Any
@@ -65,6 +66,7 @@ def build_head404_request(
         **kwargs
     )
 
+# fmt: on
 class HttpSuccessOperations(object):
     """HttpSuccessOperations operations.
 

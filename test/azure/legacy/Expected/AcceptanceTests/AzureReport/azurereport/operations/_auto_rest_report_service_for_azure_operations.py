@@ -32,30 +32,36 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-
+# fmt: off
 
 def build_get_report_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/report/azure")
+    url = kwargs.pop("template_url", '/report/azure')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
-
+# fmt: on
 class AutoRestReportServiceForAzureOperationsMixin(object):
     @distributed_trace
     def get_report(

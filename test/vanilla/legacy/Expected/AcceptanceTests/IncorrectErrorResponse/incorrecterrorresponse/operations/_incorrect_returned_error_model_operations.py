@@ -32,18 +32,22 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-
+# fmt: off
 
 def build_get_incorrect_error_from_server_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", "/incorrectError")
+    url = kwargs.pop("template_url", '/incorrectError')
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        **kwargs
+    )
 
-
+# fmt: on
 class IncorrectReturnedErrorModelOperationsMixin(object):
     @distributed_trace
     def get_incorrect_error_from_server(

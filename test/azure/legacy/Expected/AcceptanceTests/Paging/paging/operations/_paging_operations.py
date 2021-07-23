@@ -36,161 +36,201 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-
+# fmt: off
 
 def build_get_no_item_name_pages_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/noitemname")
+    url = kwargs.pop("template_url", '/paging/noitemname')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_null_next_link_name_pages_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/nullnextlink")
+    url = kwargs.pop("template_url", '/paging/nullnextlink')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_single_pages_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/single")
+    url = kwargs.pop("template_url", '/paging/single')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_first_response_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/firstResponseEmpty/1")
+    url = kwargs.pop("template_url", '/paging/firstResponseEmpty/1')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-    maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
-    timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple")
+    url = kwargs.pop("template_url", '/paging/multiple')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_with_query_params_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    required_query_parameter = kwargs.pop("required_query_parameter")  # type: int
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
 
     query_constant = True
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/getWithQueryParams")
+    url = kwargs.pop("template_url", '/paging/multiple/getWithQueryParams')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["requiredQueryParameter"] = _SERIALIZER.query(
-        "required_query_parameter", required_query_parameter, "int"
-    )
-    query_parameters["queryConstant"] = _SERIALIZER.query("query_constant", query_constant, "bool")
+    query_parameters['requiredQueryParameter'] = _SERIALIZER.query("required_query_parameter", required_query_parameter, 'int')
+    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_next_operation_with_query_params_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     query_constant = True
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/nextOperationWithQueryParams")
+    url = kwargs.pop("template_url", '/paging/multiple/nextOperationWithQueryParams')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["queryConstant"] = _SERIALIZER.query("query_constant", query_constant, "bool")
+    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_odata_multiple_pages_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-    maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
-    timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/odata")
+    url = kwargs.pop("template_url", '/paging/multiple/odata')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_with_offset_request(
@@ -198,104 +238,134 @@ def build_get_multiple_pages_with_offset_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-    maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
-    timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/withpath/{offset}")
+    url = kwargs.pop("template_url", '/paging/multiple/withpath/{offset}')
     path_format_arguments = {
-        "offset": _SERIALIZER.url("offset", offset, "int"),
+        'offset': _SERIALIZER.url("offset", offset, 'int'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_retry_first_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/retryfirst")
+    url = kwargs.pop("template_url", '/paging/multiple/retryfirst')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_retry_second_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/retrysecond")
+    url = kwargs.pop("template_url", '/paging/multiple/retrysecond')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_single_pages_failure_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/single/failure")
+    url = kwargs.pop("template_url", '/paging/single/failure')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_failure_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/failure")
+    url = kwargs.pop("template_url", '/paging/multiple/failure')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_failure_uri_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/failureuri")
+    url = kwargs.pop("template_url", '/paging/multiple/failureuri')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_fragment_next_link_request(
@@ -303,25 +373,31 @@ def build_get_multiple_pages_fragment_next_link_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop("api_version")  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}")
+    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}')
     path_format_arguments = {
-        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_fragment_with_grouping_next_link_request(
@@ -329,50 +405,61 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop("api_version")  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}")
+    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}')
     path_format_arguments = {
-        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_multiple_pages_lro_request_initial(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop("client_request_id", None)  # type: Optional[str]
-    maxresults = kwargs.pop("maxresults", None)  # type: Optional[int]
-    timeout = kwargs.pop("timeout", 30)  # type: Optional[int]
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/lro")
+    url = kwargs.pop("template_url", '/paging/multiple/lro')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_next_fragment_request(
@@ -381,26 +468,32 @@ def build_next_fragment_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop("api_version")  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}/{nextLink}")
+    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}/{nextLink}')
     path_format_arguments = {
-        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
-        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_next_fragment_with_grouping_request(
@@ -409,43 +502,54 @@ def build_next_fragment_with_grouping_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop("api_version")  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}")
+    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}')
     path_format_arguments = {
-        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
-        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_paging_model_with_item_name_with_xms_client_name_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/itemNameWithXMSClientName")
+    url = kwargs.pop("template_url", '/paging/itemNameWithXMSClientName')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
-
+# fmt: on
 class PagingOperations(object):
     """PagingOperations operations.
 

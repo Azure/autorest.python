@@ -33,748 +33,956 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-
+# fmt: off
 
 def build_get_boolean_true_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     bool_query = True
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/bool/true")
+    url = kwargs.pop("template_url", '/queries/bool/true')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_boolean_false_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     bool_query = False
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/bool/false")
+    url = kwargs.pop("template_url", '/queries/bool/false')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_boolean_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    bool_query = kwargs.pop("bool_query", None)  # type: Optional[bool]
+    bool_query = kwargs.pop('bool_query', None)  # type: Optional[bool]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/bool/null")
+    url = kwargs.pop("template_url", '/queries/bool/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if bool_query is not None:
-        query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+        query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_int_one_million_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     int_query = 1000000
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/int/1000000")
+    url = kwargs.pop("template_url", '/queries/int/1000000')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_int_negative_one_million_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     int_query = -1000000
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/int/-1000000")
+    url = kwargs.pop("template_url", '/queries/int/-1000000')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_int_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    int_query = kwargs.pop("int_query", None)  # type: Optional[int]
+    int_query = kwargs.pop('int_query', None)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/int/null")
+    url = kwargs.pop("template_url", '/queries/int/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if int_query is not None:
-        query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+        query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_ten_billion_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     long_query = 10000000000
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/long/10000000000")
+    url = kwargs.pop("template_url", '/queries/long/10000000000')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_negative_ten_billion_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     long_query = -10000000000
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/long/-10000000000")
+    url = kwargs.pop("template_url", '/queries/long/-10000000000')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_get_long_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    long_query = kwargs.pop("long_query", None)  # type: Optional[int]
+    long_query = kwargs.pop('long_query', None)  # type: Optional[int]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/long/null")
+    url = kwargs.pop("template_url", '/queries/long/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if long_query is not None:
-        query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+        query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_float_scientific_positive_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     float_query = 103400000000000000000
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/float/1.034E+20")
+    url = kwargs.pop("template_url", '/queries/float/1.034E+20')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_float_scientific_negative_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     float_query = -1.034e-20
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/float/-1.034E-20")
+    url = kwargs.pop("template_url", '/queries/float/-1.034E-20')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_float_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    float_query = kwargs.pop("float_query", None)  # type: Optional[float]
+    float_query = kwargs.pop('float_query', None)  # type: Optional[float]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/float/null")
+    url = kwargs.pop("template_url", '/queries/float/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if float_query is not None:
-        query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+        query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_double_decimal_positive_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     double_query = 9999999.999
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/double/9999999.999")
+    url = kwargs.pop("template_url", '/queries/double/9999999.999')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_double_decimal_negative_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     double_query = -9999999.999
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/double/-9999999.999")
+    url = kwargs.pop("template_url", '/queries/double/-9999999.999')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_double_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    double_query = kwargs.pop("double_query", None)  # type: Optional[float]
+    double_query = kwargs.pop('double_query', None)  # type: Optional[float]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/double/null")
+    url = kwargs.pop("template_url", '/queries/double/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if double_query is not None:
-        query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+        query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_string_unicode_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/string/unicode/")
+    url = kwargs.pop("template_url", '/queries/string/unicode/')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_string_url_encoded_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_query = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url", "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
-    )
+    url = kwargs.pop("template_url", '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_string_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_query = ""
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/string/empty")
+    url = kwargs.pop("template_url", '/queries/string/empty')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_string_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_query = kwargs.pop("string_query", None)  # type: Optional[str]
+    string_query = kwargs.pop('string_query', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/string/null")
+    url = kwargs.pop("template_url", '/queries/string/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if string_query is not None:
-        query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+        query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_enum_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    enum_query = kwargs.pop("enum_query", None)  # type: Optional[Union[str, "_models.UriColor"]]
+    enum_query = kwargs.pop('enum_query', None)  # type: Optional[Union[str, "_models.UriColor"]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/enum/green%20color")
+    url = kwargs.pop("template_url", '/queries/enum/green%20color')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        query_parameters['enumQuery'] = _SERIALIZER.query("enum_query", enum_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_enum_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    enum_query = kwargs.pop("enum_query", None)  # type: Optional[Union[str, "_models.UriColor"]]
+    enum_query = kwargs.pop('enum_query', None)  # type: Optional[Union[str, "_models.UriColor"]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/enum/null")
+    url = kwargs.pop("template_url", '/queries/enum/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        query_parameters['enumQuery'] = _SERIALIZER.query("enum_query", enum_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_byte_multi_byte_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    byte_query = kwargs.pop("byte_query", None)  # type: Optional[bytearray]
+    byte_query = kwargs.pop('byte_query', None)  # type: Optional[bytearray]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/byte/multibyte")
+    url = kwargs.pop("template_url", '/queries/byte/multibyte')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_byte_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     byte_query = bytearray("", encoding="utf-8")
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/byte/empty")
+    url = kwargs.pop("template_url", '/queries/byte/empty')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+    query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_byte_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    byte_query = kwargs.pop("byte_query", None)  # type: Optional[bytearray]
+    byte_query = kwargs.pop('byte_query', None)  # type: Optional[bytearray]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/byte/null")
+    url = kwargs.pop("template_url", '/queries/byte/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_date_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     date_query = "2012-01-01"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/date/2012-01-01")
+    url = kwargs.pop("template_url", '/queries/date/2012-01-01')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+    query_parameters['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_date_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    date_query = kwargs.pop("date_query", None)  # type: Optional[datetime.date]
+    date_query = kwargs.pop('date_query', None)  # type: Optional[datetime.date]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/date/null")
+    url = kwargs.pop("template_url", '/queries/date/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_query is not None:
-        query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+        query_parameters['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_date_time_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     date_time_query = "2012-01-01T01:01:01Z"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/datetime/2012-01-01T01%3A01%3A01Z")
+    url = kwargs.pop("template_url", '/queries/datetime/2012-01-01T01%3A01%3A01Z')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+    query_parameters['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_date_time_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    date_time_query = kwargs.pop("date_time_query", None)  # type: Optional[datetime.datetime]
+    date_time_query = kwargs.pop('date_time_query', None)  # type: Optional[datetime.datetime]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/datetime/null")
+    url = kwargs.pop("template_url", '/queries/datetime/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_time_query is not None:
-        query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+        query_parameters['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_csv_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/csv/string/valid")
+    url = kwargs.pop("template_url", '/queries/array/csv/string/valid')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_csv_null_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/csv/string/null")
+    url = kwargs.pop("template_url", '/queries/array/csv/string/null')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_csv_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/csv/string/empty")
+    url = kwargs.pop("template_url", '/queries/array/csv/string/empty')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_no_collection_format_empty_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/none/string/empty")
+    url = kwargs.pop("template_url", '/queries/array/none/string/empty')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_ssv_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/ssv/string/valid")
+    url = kwargs.pop("template_url", '/queries/array/ssv/string/valid')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=' ')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_tsv_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/tsv/string/valid")
+    url = kwargs.pop("template_url", '/queries/array/tsv/string/valid')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div='	')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_pipes_valid_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/pipes/string/valid")
+    url = kwargs.pop("template_url", '/queries/array/pipes/string/valid')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div='|')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
-
+# fmt: on
 class QueriesOperations(object):
     """QueriesOperations operations.
 

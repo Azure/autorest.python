@@ -31,38 +31,50 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-
+# fmt: off
 
 def build_head200_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/200")
+    url = kwargs.pop("template_url", '/http/success/200')
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
 
 
 def build_head204_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/204")
+    url = kwargs.pop("template_url", '/http/success/204')
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
 
 
 def build_head404_request(
-    **kwargs,  # type: Any
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", "/http/success/404")
+    url = kwargs.pop("template_url", '/http/success/404')
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
 
-
+# fmt: on
 class HttpSuccessOperations(object):
     """HttpSuccessOperations operations.
 

@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+# fmt: off
 
 def build_basic_polling_request_initial(
     **kwargs  # type: Any
@@ -71,6 +72,7 @@ def build_basic_paging_request(
         **kwargs
     )
 
+# fmt: on
 class PollingPagingExampleOperationsMixin(object):
 
     def _basic_polling_initial(

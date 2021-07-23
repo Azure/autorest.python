@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+# fmt: off
 
 def build_test_two_request(
     **kwargs  # type: Any
@@ -51,6 +52,7 @@ def build_test_two_request(
         **kwargs
     )
 
+# fmt: on
 class OperationGroupOneOperations(object):
     """OperationGroupOneOperations operations.
 
