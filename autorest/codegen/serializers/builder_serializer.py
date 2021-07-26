@@ -154,7 +154,7 @@ def _content_type_docstring(builder: BuilderType) -> str:
     )
     return content_type_str
 
-class BuilderSerializerProtocol(ABC):
+class _BuilderSerializerProtocol(ABC):
     @property
     @abstractmethod
     def _is_in_class(self) -> bool:
@@ -256,7 +256,7 @@ class BuilderSerializerProtocol(ABC):
         ...
 
 
-class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstract-method
+class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel) -> None:
         self.code_model = code_model
 
@@ -425,7 +425,7 @@ class BuilderBaseSerializer(BuilderSerializerProtocol):  # pylint: disable=abstr
 ############################## REQUEST BUILDERS ##############################
 
 
-class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstract-method
+class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-method
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
@@ -473,7 +473,7 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=ab
         return "files" in builder.parameters.body_kwarg_names
 
 
-class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
+class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @property
     def _want_inline_type_hints(self) -> bool:
         return False
@@ -481,14 +481,14 @@ class RequestBuilderGenericSerializer(RequestBuilderBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=False, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python_3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(async_mode=False)
+        return builder.parameters.kwargs_to_pop(is_python_3_file=False)
 
 
-class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
+class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
     @property
     def _want_inline_type_hints(self) -> bool:
         return True
@@ -496,17 +496,17 @@ class RequestBuilderPython3Serializer(RequestBuilderBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=True, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python_3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(async_mode=True)
+        return builder.parameters.kwargs_to_pop(is_python_3_file=True)
 
 
 ############################## NORMAL OPERATIONS ##############################
 
 
-class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstract-method
+class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-method
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         if builder.deprecated:
@@ -655,49 +655,52 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
     def call_request_builder(self, builder: BuilderType) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder)
 
-
-class SyncOperationSerializer(OperationBaseSerializer):
-    @property
-    def _want_inline_type_hints(self) -> bool:
-        return False
+class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
 
     @property
     def _function_definition(self) -> str:
         return "def"
 
+class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
+    @property
+    def _want_inline_type_hints(self) -> bool:
+        return False
+
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=False, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python_3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(async_mode=False)
+        return builder.parameters.kwargs_to_pop(is_python_3_file=False)
 
-
-class AsyncOperationSerializer(OperationBaseSerializer):
+class SyncOperationPython3Serializer(_SyncOperationBaseSerializer):
     @property
     def _want_inline_type_hints(self) -> bool:
         return True
+
+    @staticmethod
+    def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
+        return utils.method_signature_and_response_type_annotation_template(
+            is_python_3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
+        )
+
+    def _get_kwargs_to_pop(self, builder: BuilderType):
+        return builder.parameters.kwargs_to_pop(is_python_3_file=True)
+
+
+class AsyncOperationSerializer(SyncOperationPython3Serializer):
 
     @property
     def _function_definition(self) -> str:
         return "async def"
 
-    @staticmethod
-    def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
-        return utils.method_signature_and_response_type_annotation_template(
-            async_mode=True, method_signature=method_signature, response_type_annotation=response_type_annotation
-        )
-
-    def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(async_mode=True)
-
 
 ############################## PAGING OPERATIONS ##############################
 
 
-class PagingOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=abstract-method
+class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use, unused-argument
         return "An iterator like instance of either {} or the result of cls(response)"
 
@@ -719,16 +722,20 @@ class PagingOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable
             template_url=template_url,
         )
 
-
-class SyncPagingOperationSerializer(PagingOperationBaseSerializer, SyncOperationSerializer):
+class _SyncPagingOperationBaseSerializer(_PagingOperationBaseSerializer, _SyncOperationBaseSerializer):  # pylint: disable=abstract-method
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_pager_path(async_mode=False)}"]
 
     def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
         return ["Iterable"]
 
+class SyncPagingOperationGenericSerializer(_SyncPagingOperationBaseSerializer, SyncOperationGenericSerializer):
+    pass
 
-class AsyncPagingOperationSerializer(PagingOperationBaseSerializer, AsyncOperationSerializer):
+class SyncPagingOperationPython3Serializer(_SyncPagingOperationBaseSerializer, SyncOperationPython3Serializer):
+    pass
+
+class AsyncPagingOperationSerializer(_PagingOperationBaseSerializer, AsyncOperationSerializer):
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_pager_path(async_mode=True)}"]
 
@@ -743,7 +750,7 @@ class AsyncPagingOperationSerializer(PagingOperationBaseSerializer, AsyncOperati
 ############################## LRO OPERATIONS ##############################
 
 
-class LROOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=abstract-method
+class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     def cls_type_annotation(self, builder: BuilderType) -> str:
         return f"# type: ClsType[{super()._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
@@ -771,8 +778,7 @@ class LROOperationBaseSerializer(OperationBaseSerializer):  # pylint: disable=ab
         )
         return retval
 
-
-class SyncLROOperationSerializer(LROOperationBaseSerializer, SyncOperationSerializer):
+class _SyncLROOperationBaseSerializer(_LROOperationBaseSerializer, _SyncOperationBaseSerializer):  # pylint: disable=abstract-method
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
         lro_section = f"An instance of {builder.get_poller(async_mode=False)} "
         return lro_section + "that returns either {} or the result of cls(response)"
@@ -790,8 +796,13 @@ class SyncLROOperationSerializer(LROOperationBaseSerializer, SyncOperationSerial
     def _polling_method_type(self):
         return "azure.core.polling.PollingMethod"
 
+class SyncLROOperationGenericSerializer(_SyncLROOperationBaseSerializer, SyncOperationGenericSerializer):
+    pass
 
-class AsyncLROOperationSerializer(LROOperationBaseSerializer, AsyncOperationSerializer):
+class SyncLROOperationPython3Serializer(_SyncLROOperationBaseSerializer, SyncOperationPython3Serializer):
+    pass
+
+class AsyncLROOperationSerializer(_LROOperationBaseSerializer, AsyncOperationSerializer):
 
     def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
         lro_section = f"An instance of {builder.get_poller(async_mode=True)} "
@@ -814,27 +825,32 @@ class AsyncLROOperationSerializer(LROOperationBaseSerializer, AsyncOperationSeri
 ############################## LRO PAGING OPERATIONS ##############################
 
 
-class SyncLROPagingOperationSerializer(SyncLROOperationSerializer, SyncPagingOperationSerializer):
+class _SyncLROPagingOperationBaseSerializer(_SyncLROOperationBaseSerializer, _SyncPagingOperationBaseSerializer):  # pylint: disable=abstract-method
 
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:
-        return SyncLROOperationSerializer._response_docstring_type_wrapper(
+        return _SyncLROOperationBaseSerializer._response_docstring_type_wrapper(
             self, builder
-        ) + SyncPagingOperationSerializer._response_docstring_type_wrapper(self, builder)
+        ) + _SyncPagingOperationBaseSerializer._response_docstring_type_wrapper(self, builder)
 
     def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
-        return SyncLROOperationSerializer._response_type_annotation_wrapper(self, builder) + [
+        return _SyncLROOperationBaseSerializer._response_type_annotation_wrapper(self, builder) + [
             builder.get_pager(async_mode=False)
         ]
 
     def _response_docstring_text_template(self, builder: BuilderType) -> str:
-        lro_doc = SyncLROOperationSerializer._response_docstring_text_template(self, builder)
-        paging_doc = SyncPagingOperationSerializer._response_docstring_text_template(self, builder)
+        lro_doc = _SyncLROOperationBaseSerializer._response_docstring_text_template(self, builder)
+        paging_doc = _SyncPagingOperationBaseSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
         return lro_doc.format(paging_doc).replace(" or the result of cls(response)", "", 1).replace("either ", "", 1)
 
     def cls_type_annotation(self, builder: BuilderType) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
+class SyncLROPagingOperationGenericSerializer(_SyncLROPagingOperationBaseSerializer, SyncOperationGenericSerializer):
+    pass
+
+class SyncLROPagingOperationPython3Serializer(_SyncLROPagingOperationBaseSerializer, SyncOperationPython3Serializer):
+    pass
 
 class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
     @property
@@ -858,17 +874,41 @@ class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPaging
         return lro_doc.format(paging_doc).replace(" or the result of cls(response)", "", 1).replace("either ", "", 1)
 
 
-def get_operation_serializer(builder: BuilderType, code_model, async_mode: bool) -> OperationBaseSerializer:
-    retcls = AsyncOperationSerializer if async_mode else SyncOperationSerializer
+def get_operation_serializer(
+    builder: BuilderType,
+    code_model,
+    async_mode: bool,
+    is_python_3_file: bool,
+) -> _OperationBaseSerializer:
+    retcls = _OperationBaseSerializer
     if isinstance(builder, LROPagingOperation):
-        retcls = AsyncLROPagingOperationSerializer if async_mode else SyncLROPagingOperationSerializer
-    elif isinstance(builder, LROOperation):
-        retcls = AsyncLROOperationSerializer if async_mode else SyncLROOperationSerializer
-    elif isinstance(builder, PagingOperation):
-        retcls = AsyncPagingOperationSerializer if async_mode else SyncPagingOperationSerializer
+        retcls = (
+            AsyncLROPagingOperationSerializer if async_mode
+            else (
+                SyncLROPagingOperationPython3Serializer if is_python_3_file
+                else SyncLROPagingOperationGenericSerializer
+            )
+        )
+        return retcls(code_model)
+    if isinstance(builder, LROOperation):
+        retcls = (
+            AsyncLROOperationSerializer if async_mode
+            else (SyncLROOperationPython3Serializer if is_python_3_file else SyncLROOperationGenericSerializer)
+        )
+        return retcls(code_model)
+    if isinstance(builder, PagingOperation):
+        retcls = (
+            AsyncPagingOperationSerializer if async_mode
+            else (SyncPagingOperationPython3Serializer if is_python_3_file else SyncPagingOperationGenericSerializer)
+        )
+        return retcls(code_model)
+    retcls = (
+        AsyncOperationSerializer if async_mode
+        else (SyncOperationPython3Serializer if is_python_3_file else SyncOperationGenericSerializer)
+    )
     return retcls(code_model)
 
 
-def get_request_builder_serializer(code_model, is_python_3_file: bool) -> RequestBuilderBaseSerializer:
+def get_request_builder_serializer(code_model, is_python_3_file: bool) -> _RequestBuilderBaseSerializer:
     retcls = RequestBuilderPython3Serializer if is_python_3_file else RequestBuilderGenericSerializer
     return retcls(code_model)

@@ -26,10 +26,10 @@ def serialize_method(
 
 def method_signature_and_response_type_annotation_template(
     *,
-    async_mode: bool,
+    is_python_3_file: bool,
     method_signature: str,
     response_type_annotation: str,
 ) -> str:
-    if async_mode:
+    if is_python_3_file:
         return f"{method_signature} -> {response_type_annotation}:"
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, Union, List, Type
+from typing import Dict, Any, Set, Union, List, Type, Optional
 import yaml
 
 from .. import Plugin
@@ -38,6 +38,31 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
+
+def _validate_code_model_options(options: Dict[str, Any], low_level_client: Optional[bool]) -> None:
+
+    if not options["show_operations"] and options["add_typed_sync_operation_files"]:
+        raise ValueError(
+            "Can not add typed sync operation files if you are not showing operations. "
+            "If you want typed synced operation files, you have to add flag "
+            "--show-operations"
+        )
+
+    if options["basic_setup_py"] and not options["package_version"]:
+        raise ValueError("--basic-setup-py must be used with --package-version")
+
+    if options["show_builders"] and options["embed_builders"]:
+        raise ValueError(
+            "Can not specify both --show-builders and --embed-builders at the same time. "
+            "Call --show-builders if you want builders in the rest layer, and for them to be public. "
+            "OR: call --embed-builders to embed the request builders inside the operation group files"
+        )
+
+    if low_level_client and options["embed_builders"]:
+        raise ValueError(
+            "Can not embed builders with low level client. "
+            "Either remove --low-level-client flag or the --embed-builders flag."
+        )
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -209,7 +234,6 @@ class CodeGenerator(Plugin):
         )
         code_model.credential_schema_policy = credential_schema_policy
 
-
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest.
         """
@@ -257,30 +281,10 @@ class CodeGenerator(Plugin):
             )
         }
 
-        if not options["show_operations"] and options["add_typed_sync_operation_files"]:
-            raise ValueError(
-                "Can not add typed sync operation files if you are not showing operations. "
-                "If you want typed synced operation files, you have to add flag "
-                "--show-operations"
-            )
+        _validate_code_model_options(options, low_level_client)
 
         if options["add_typed_sync_operation_files"] is None and not azure_arm:
             options["add_typed_sync_operation_files"] = True
-
-        if options["basic_setup_py"] and not options["package_version"]:
-            raise ValueError("--basic-setup-py must be used with --package-version")
-
-        if options["show_builders"] and options["embed_builders"]:
-            raise ValueError(
-                "Can not specify both --show-builders and --embed-builders at the same time. "
-                "Call --show-builders if you want builders in the rest layer, and for them to be public. "
-                "OR: call --embed-builders to embed the request builders inside the operation group files"
-            )
-        if low_level_client and options["embed_builders"]:
-            raise ValueError(
-                "Can not embed builders with low level client. "
-                "Either remove --low-level-client flag or the --embed-builders flag."
-            )
 
         # Force some options in ARM MODE:
         if azure_arm:
