@@ -188,3 +188,20 @@ class TestPaging(object):
         else:
             from paging.models._models import OperationResult as OperationResultPy2
             assert OperationResult == OperationResultPy2
+
+    def test_operation_groups(self):
+        from paging.operations import PagingOperations
+        from custombaseurlpaging.operations import PagingOperations as CustomBaseUrlPagingOperations
+
+        if sys.version_info >= (3,5):
+            from paging.operations._paging_operations_py3 import PagingOperations as PagingOperationsPy3
+            assert PagingOperations == PagingOperationsPy3
+
+            from custombaseurlpaging.operations._paging_operations_py3 import PagingOperations as PagingOperationsPy3
+            assert CustomBaseUrlPagingOperations == PagingOperationsPy3
+        else:
+            from paging.operations._paging_operations import PagingOperations as PagingOperationsPy2
+            assert PagingOperations == PagingOperationsPy2
+
+            from custombaseurlpaging.operations._paging_operations import PagingOperations as PagingOperationsPy2
+            assert CustomBaseUrlPagingOperations == PagingOperationsPy2

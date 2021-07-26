@@ -113,3 +113,13 @@ class TestNumber(object):
         else:
             from bodynumber.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodynumber.operations import NumberOperations
+
+        if sys.version_info >= (3, 5):
+            from bodynumber.operations._number_operations_py3 import NumberOperations as NumberOperationsPy3
+            assert NumberOperations == NumberOperationsPy3
+        else:
+            from bodynumber.operations._number_operations import NumberOperations as NumberOperationsPy2
+            assert NumberOperations == NumberOperationsPy2

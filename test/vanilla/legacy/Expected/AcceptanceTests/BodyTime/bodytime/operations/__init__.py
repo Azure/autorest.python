@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._time_operations import TimeOperations
+try:
+    from ._time_operations_py3 import TimeOperations
+
+except (SyntaxError, ImportError):
+    from ._time_operations import TimeOperations
 
 __all__ = [
     "TimeOperations",

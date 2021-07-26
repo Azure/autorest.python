@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._paths_operations import PathsOperations
+try:
+    from ._paths_operations_py3 import PathsOperations
+
+except (SyntaxError, ImportError):
+    from ._paths_operations import PathsOperations
 
 __all__ = [
     "PathsOperations",

@@ -204,3 +204,13 @@ class TestXml(object):
 
     def test_put_url(self, client):
         client.xml.put_uri('https://myaccount.blob.core.windows.net/')
+
+    def test_operation_groups(self):
+        from xmlservice.operations import XmlOperations
+
+        if sys.version_info >= (3, 5):
+            from xmlservice.operations._xml_operations_py3 import XmlOperations as XmlOperationsPy3
+            assert XmlOperations == XmlOperationsPy3
+        else:
+            from xmlservice.operations._xml_operations import XmlOperations as XmlOperationsPy2
+            assert XmlOperations == XmlOperationsPy2

@@ -147,3 +147,13 @@ class TestFile(object):
         else:
             from bodyfile.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodyfile.operations import FilesOperations
+
+        if sys.version_info >= (3, 5):
+            from bodyfile.operations._files_operations_py3 import FilesOperations as FilesOperationsPy3
+            assert FilesOperations == FilesOperationsPy3
+        else:
+            from bodyfile.operations._files_operations import FilesOperations as FilesOperationsPy2
+            assert FilesOperations == FilesOperationsPy2

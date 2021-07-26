@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_custom_base_url_service_client_operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
+try:
+    from ._multiapi_custom_base_url_service_client_operations_py3 import MultiapiCustomBaseUrlServiceClientOperationsMixin
+
+except (SyntaxError, ImportError):
+    from ._multiapi_custom_base_url_service_client_operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 __all__ = [
     'MultiapiCustomBaseUrlServiceClientOperationsMixin',

@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import sys
 import pytest
 from anything import AnythingClient
 
@@ -48,3 +49,13 @@ def test_get_array(client):
 
 def test_put_array(client):
     client.put_array(['foo', 'bar'])
+
+def test_operation_groups():
+    from anything.operations import AnythingClientOperationsMixin
+
+    if sys.version_info >= (3, 5):
+        from anything.operations._anything_client_operations_py3 import AnythingClientOperationsMixin as AnythingClientOperationsMixinPy3
+        assert AnythingClientOperationsMixin == AnythingClientOperationsMixinPy3
+    else:
+        from anything.operations._anything_client_operations import AnythingClientOperationsMixin as AnythingClientOperationsMixinPy2
+        assert AnythingClientOperationsMixin == AnythingClientOperationsMixinPy2

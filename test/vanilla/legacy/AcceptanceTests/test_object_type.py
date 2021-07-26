@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+import sys
 from objecttype import ObjectTypeClient
 from azure.core.exceptions import HttpResponseError
 
@@ -48,3 +48,13 @@ class TestObjectType(object):
         with pytest.raises(HttpResponseError) as ex:
             response = client.put({"should": "fail"})
         assert ex.value.model == {"message": "The object you passed was incorrect"}
+
+    def test_operation_groups(self):
+        from objecttype.operations import ObjectTypeClientOperationsMixin
+
+        if sys.version_info >= (3, 5):
+            from objecttype.operations._object_type_client_operations_py3 import ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy3
+            assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy3
+        else:
+            from objecttype.operations._object_type_client_operations import ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy2
+            assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy2

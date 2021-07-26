@@ -158,3 +158,13 @@ class TestValidation(object):
         else:
             from validation.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from validation.operations import AutoRestValidationTestOperationsMixin
+
+        if sys.version_info >= (3, 5):
+            from validation.operations._auto_rest_validation_test_operations_py3 import AutoRestValidationTestOperationsMixin as AutoRestValidationTestOperationsMixinPy3
+            assert AutoRestValidationTestOperationsMixin == AutoRestValidationTestOperationsMixinPy3
+        else:
+            from validation.operations._auto_rest_validation_test_operations import AutoRestValidationTestOperationsMixin as AutoRestValidationTestOperationsMixinPy2
+            assert AutoRestValidationTestOperationsMixin == AutoRestValidationTestOperationsMixinPy2

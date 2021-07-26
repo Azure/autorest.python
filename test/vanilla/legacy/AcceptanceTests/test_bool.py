@@ -75,3 +75,13 @@ class TestBool(object):
         else:
             from bodyboolean.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodyboolean.operations import BoolOperations
+
+        if sys.version_info >= (3, 5):
+            from bodyboolean.operations._bool_operations_py3 import BoolOperations as BoolOperationsPy3
+            assert BoolOperations == BoolOperationsPy3
+        else:
+            from bodyboolean.operations._bool_operations import BoolOperations as BoolOperationsPy2
+            assert BoolOperations == BoolOperationsPy2

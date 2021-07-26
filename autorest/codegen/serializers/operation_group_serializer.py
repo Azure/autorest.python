@@ -49,13 +49,14 @@ class OperationGroupSerializer:
                 ), is_python_3_file=self.is_python_3_file
             ),
             async_mode=self.async_mode,
+            is_python_3_file=self.is_python_3_file,
             is_lro=_is_lro,
             is_paging=_is_paging,
             get_operation_serializer=functools.partial(
                 get_operation_serializer,
                 code_model=self.code_model,
                 async_mode=self.async_mode,
-                is_python_3_file=self.async_mode,
+                is_python_3_file=self.is_python_3_file,
             ),
             request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
         )

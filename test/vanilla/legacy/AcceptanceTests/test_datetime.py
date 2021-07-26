@@ -130,3 +130,13 @@ class TestDatetime(object):
         else:
             from bodydatetime.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodydatetime.operations import DatetimeOperations
+
+        if sys.version_info >= (3, 5):
+            from bodydatetime.operations._datetime_operations_py3 import DatetimeOperations as DatetimeOperationsPy3
+            assert DatetimeOperations == DatetimeOperationsPy3
+        else:
+            from bodydatetime.operations._datetime_operations import DatetimeOperations as DatetimeOperationsPy2
+            assert DatetimeOperations == DatetimeOperationsPy2

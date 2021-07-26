@@ -54,3 +54,13 @@ class TestTime(object):
         else:
             from bodytime.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodytime.operations import TimeOperations
+
+        if sys.version_info >= (3, 5):
+            from bodytime.operations._time_operations_py3 import TimeOperations as TimeOperationsPy3
+            assert TimeOperations == TimeOperationsPy3
+        else:
+            from bodytime.operations._time_operations import TimeOperations as TimeOperationsPy2
+            assert TimeOperations == TimeOperationsPy2

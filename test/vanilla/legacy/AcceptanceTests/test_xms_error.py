@@ -107,3 +107,13 @@ class TestXmsErrorResponse(object):
         else:
             from xmserrorresponse.models._models import Animal as AnimalPy2
             assert Animal == AnimalPy2
+
+    def test_operation_groups(self):
+        from xmserrorresponse.operations import PetOperations
+
+        if sys.version_info >= (3, 5):
+            from xmserrorresponse.operations._pet_operations_py3 import PetOperations as PetOperationsPy3
+            assert PetOperations == PetOperationsPy3
+        else:
+            from xmserrorresponse.operations._pet_operations import PetOperations as PetOperationsPy2
+            assert PetOperations == PetOperationsPy2

@@ -157,3 +157,13 @@ class TestAdditionalProperties(object):
         else:
             from additionalproperties.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from additionalproperties.operations import PetsOperations
+
+        if sys.version_info >= (3, 5):
+            from additionalproperties.operations._pets_operations_py3 import PetsOperations as PetsOperationsPy3
+            assert PetsOperations == PetsOperationsPy3
+        else:
+            from additionalproperties.operations._pets_operations import PetsOperations as PetsOperationsPy2
+            assert PetsOperations == PetsOperationsPy2
