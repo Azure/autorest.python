@@ -263,6 +263,11 @@ class CodeGenerator(Plugin):
                 "Call --show-builders if you want builders in the rest layer, and for them to be public. "
                 "OR: call --embed-builders to embed the request builders inside the operation group files"
             )
+        if low_level_client and options["embed_builders"]:
+            raise ValueError(
+                "Can not embed builders with low level client. "
+                "Either remove --low-level-client flag or the --embed-builders flag."
+            )
 
         # Force some options in ARM MODE:
         if azure_arm:
