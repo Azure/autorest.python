@@ -20,12 +20,48 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from ._auto_rest_report_service_operations import build_get_optional_report_request, build_get_report_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/report")
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if qualifier is not None:
+        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+
+
+def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/report/optional")
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if qualifier is not None:
+        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
 class AutoRestReportServiceOperationsMixin(object):

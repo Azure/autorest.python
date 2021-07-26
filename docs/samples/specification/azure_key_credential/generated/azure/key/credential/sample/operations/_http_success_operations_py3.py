@@ -13,11 +13,50 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
-
-from ._http_success_operations import build_head200_request, build_head204_request, build_head404_request
+from msrest import Serializer
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+def build_head200_request(
+    **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    url = kwargs.pop("template_url", '/http/success/200')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
+
+
+def build_head204_request(
+    **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    url = kwargs.pop("template_url", '/http/success/204')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
+
+
+def build_head404_request(
+    **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    url = kwargs.pop("template_url", '/http/success/404')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
 
 class HttpSuccessOperations(object):
     """HttpSuccessOperations operations.

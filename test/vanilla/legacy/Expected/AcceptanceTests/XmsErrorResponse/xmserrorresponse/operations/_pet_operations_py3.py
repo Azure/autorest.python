@@ -18,14 +18,66 @@ from azure.core.exceptions import (
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from ._pet_operations import build_do_something_request, build_get_pet_by_id_request, build_has_models_param_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
+    path_format_arguments = {
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+
+
+def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
+    path_format_arguments = {
+        "whatAction": _SERIALIZER.url("what_action", what_action, "str"),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+
+
+def build_has_models_param_request(*, models: Optional[str] = "value1", **kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if models is not None:
+        query_parameters["models"] = _SERIALIZER.query("models", models, "str")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
 class PetOperations(object):

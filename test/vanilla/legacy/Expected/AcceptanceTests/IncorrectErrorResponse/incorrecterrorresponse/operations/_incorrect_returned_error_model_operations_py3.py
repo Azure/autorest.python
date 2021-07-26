@@ -20,12 +20,21 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from ._incorrect_returned_error_model_operations import build_get_incorrect_error_from_server_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+
+
+def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
+    # Construct URL
+    url = kwargs.pop("template_url", "/incorrectError")
+
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
 class IncorrectReturnedErrorModelOperationsMixin(object):

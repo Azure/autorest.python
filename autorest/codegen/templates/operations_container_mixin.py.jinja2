@@ -6,14 +6,18 @@
 {{ "    " if not is_python_3_file }}T = TypeVar('T')
 {{ "    " if not is_python_3_file }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
 
-{% if code_model.options["builders_visibility"] == "embedded" and not is_python_3_file %}
+{% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
 _SERIALIZER = Serializer()
+{% if not is_python_3_file %}
 # fmt: off
+{% endif %}
     {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", "") %}
 
     {% include "request_builder.py.jinja2" %}
     {% endfor %}
+{% if not is_python_3_file %}
 # fmt: on
+{% endif %}
 {% endif %}
 class {{ operation_group.class_name }}{{ object_base_class }}:
 {% for operation in operation_group.operations %}

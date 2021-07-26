@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, Union, List, Type, Optional
+from typing import Dict, Any, Set, Union, List, Type
 import yaml
 
 from .. import Plugin
@@ -282,7 +282,8 @@ class CodeGenerator(Plugin):
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
-        options["builders_visibility"] = options["builders_visibility"].lower()
+        else:
+            options["builders_visibility"] = options["builders_visibility"].lower()
         if (
             options["add_typed_sync_operation_files"] is None
             and not azure_arm

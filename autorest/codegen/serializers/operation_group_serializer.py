@@ -8,7 +8,7 @@ from jinja2 import Environment
 
 from .import_serializer import FileImportSerializer
 from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
-from .builder_serializer import get_operation_serializer, RequestBuilderGenericSerializer
+from .builder_serializer import get_operation_serializer, get_request_builder_serializer
 
 
 class OperationGroupSerializer:
@@ -38,13 +38,13 @@ class OperationGroupSerializer:
             operation_group_template = self.env.get_template("operations_container_mixin.py.jinja2")
 
         has_schemas = self.code_model.schemas or self.code_model.enums
+
         return operation_group_template.render(
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(
                 self.operation_group.imports(
                     async_mode=self.async_mode,
-                    is_python_3_file=self.is_python_3_file,
                     has_schemas=bool(has_schemas)
                 ), is_python_3_file=self.is_python_3_file
             ),
@@ -58,5 +58,7 @@ class OperationGroupSerializer:
                 async_mode=self.async_mode,
                 is_python_3_file=self.is_python_3_file,
             ),
-            request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
+            request_builder_serializer=get_request_builder_serializer(
+                self.code_model, self.is_python_3_file,
+            ),
         )
