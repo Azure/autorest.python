@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._xml_operations_py3 import XmlOperations
-
-except (SyntaxError, ImportError):
-    from ._xml_operations import XmlOperations
+from ._xml_operations import XmlOperations
 
 __all__ = [
     "XmlOperations",

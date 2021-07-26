@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._formdata_operations_py3 import FormdataOperations
-
-except (SyntaxError, ImportError):
-    from ._formdata_operations import FormdataOperations
+from ._formdata_operations import FormdataOperations
 
 __all__ = [
     "FormdataOperations",

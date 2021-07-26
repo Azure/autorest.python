@@ -276,7 +276,7 @@ class CodeGenerator(Plugin):
                 "only-path-and-body-params-positional", low_level_client
             ),
             "add_python_3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files"
+                "add-python3-operation-files", False
             ),
         }
 
@@ -284,13 +284,7 @@ class CodeGenerator(Plugin):
             options["builders_visibility"] = "public" if low_level_client else "embedded"
         else:
             options["builders_visibility"] = options["builders_visibility"].lower()
-        if (
-            options["add_python_3_operation_files"] is None
-            and not azure_arm
-            and options["show_operations"]
-        ):
-            options["add_python_3_operation_files"] = True
-
+            
         _validate_code_model_options(options)
 
         # Force some options in ARM MODE:

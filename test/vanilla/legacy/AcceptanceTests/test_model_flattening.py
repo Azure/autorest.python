@@ -277,9 +277,8 @@ class TestModelFlatteningTests(object):
     def test_operation_groups(self):
         from modelflattening.operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
-        if sys.version_info >= (3, 5):
-            from modelflattening.operations._auto_rest_resource_flattening_test_service_operations_py3 import AutoRestResourceFlatteningTestServiceOperationsMixin as AutoRestResourceFlatteningTestServiceOperationsMixinPy3
-            assert AutoRestResourceFlatteningTestServiceOperationsMixin == AutoRestResourceFlatteningTestServiceOperationsMixinPy3
-        else:
-            from modelflattening.operations._auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin as AutoRestResourceFlatteningTestServiceOperationsMixinPy2
-            assert AutoRestResourceFlatteningTestServiceOperationsMixin == AutoRestResourceFlatteningTestServiceOperationsMixinPy2
+        with pytest.raises(ImportError):
+            from modelflattening.operations import _auto_rest_resource_flattening_test_service_operations_py3
+
+        from modelflattening.operations._auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin as AutoRestResourceFlatteningTestServiceOperationsMixinPy2
+        assert AutoRestResourceFlatteningTestServiceOperationsMixin == AutoRestResourceFlatteningTestServiceOperationsMixinPy2

@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._queries_operations_py3 import QueriesOperations
-
-except (SyntaxError, ImportError):
-    from ._queries_operations import QueriesOperations
+from ._queries_operations import QueriesOperations
 
 __all__ = [
     "QueriesOperations",

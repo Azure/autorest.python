@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._incorrect_returned_error_model_operations_py3 import IncorrectReturnedErrorModelOperationsMixin
-
-except (SyntaxError, ImportError):
-    from ._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin
+from ._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin
 
 __all__ = [
     "IncorrectReturnedErrorModelOperationsMixin",

@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._http_success_operations_py3 import HttpSuccessOperations
-
-except (SyntaxError, ImportError):
-    from ._http_success_operations import HttpSuccessOperations
+from ._http_success_operations import HttpSuccessOperations
 
 __all__ = [
     'HttpSuccessOperations',

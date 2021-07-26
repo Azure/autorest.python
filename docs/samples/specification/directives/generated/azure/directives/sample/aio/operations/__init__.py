@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._polling_paging_example_operations_py3 import PollingPagingExampleOperationsMixin
-
-except (SyntaxError, ImportError):
-    from ._polling_paging_example_operations import PollingPagingExampleOperationsMixin
+from ._polling_paging_example_operations import PollingPagingExampleOperationsMixin
 
 __all__ = [
     'PollingPagingExampleOperationsMixin',

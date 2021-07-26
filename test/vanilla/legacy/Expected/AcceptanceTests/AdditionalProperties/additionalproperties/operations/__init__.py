@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._pets_operations_py3 import PetsOperations
-
-except (SyntaxError, ImportError):
-    from ._pets_operations import PetsOperations
+from ._pets_operations import PetsOperations
 
 __all__ = [
     "PetsOperations",

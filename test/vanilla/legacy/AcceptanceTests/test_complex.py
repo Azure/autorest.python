@@ -474,9 +474,8 @@ class TestComplex(object):
     def test_operation_groups(self):
         from bodycomplex.operations import PolymorphicrecursiveOperations
 
-        if sys.version_info >= (3, 5):
-            from bodycomplex.operations._polymorphicrecursive_operations_py3 import PolymorphicrecursiveOperations as PolymorphicrecursiveOperationsPy3
-            assert PolymorphicrecursiveOperations == PolymorphicrecursiveOperationsPy3
-        else:
-            from bodycomplex.operations._polymorphicrecursive_operations import PolymorphicrecursiveOperations as PolymorphicrecursiveOperationsPy2
-            assert PolymorphicrecursiveOperations == PolymorphicrecursiveOperationsPy2
+        with pytest.raises(ImportError):
+            from bodycomplex.operations import _polymorphicrecursive_operations_py3
+
+        from bodycomplex.operations._polymorphicrecursive_operations import PolymorphicrecursiveOperations as PolymorphicrecursiveOperationsPy2
+        assert PolymorphicrecursiveOperations == PolymorphicrecursiveOperationsPy2

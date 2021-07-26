@@ -86,9 +86,8 @@ class TestExtensibleEnums(object):
     def test_operation_groups(self):
         from extensibleenumsswagger.operations import PetOperations
 
-        if sys.version_info >= (3, 5):
-            from extensibleenumsswagger.operations._pet_operations_py3 import PetOperations as PetOperationsPy3
-            assert PetOperations == PetOperationsPy3
-        else:
-            from extensibleenumsswagger.operations._pet_operations import PetOperations as PetOperationsPy2
-            assert PetOperations == PetOperationsPy2
+        with pytest.raises(ImportError):
+            from extensibleenumsswagger.operations import _pet_operations_py3
+
+        from extensibleenumsswagger.operations._pet_operations import PetOperations as PetOperationsPy2
+        assert PetOperations == PetOperationsPy2

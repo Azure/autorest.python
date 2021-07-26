@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._lro_with_paramaterized_endpoints_operations_py3 import LROWithParamaterizedEndpointsOperationsMixin
-
-except (SyntaxError, ImportError):
-    from ._lro_with_paramaterized_endpoints_operations import LROWithParamaterizedEndpointsOperationsMixin
+from ._lro_with_paramaterized_endpoints_operations import LROWithParamaterizedEndpointsOperationsMixin
 
 __all__ = [
     "LROWithParamaterizedEndpointsOperationsMixin",

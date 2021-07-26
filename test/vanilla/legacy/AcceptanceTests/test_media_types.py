@@ -68,9 +68,8 @@ class TestMediaTypes(object):
     def test_operation_groups(self):
         from mediatypes.operations import MediaTypesClientOperationsMixin
 
-        if sys.version_info >= (3, 5):
-            from mediatypes.operations._media_types_client_operations_py3 import MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinPy3
-            assert MediaTypesClientOperationsMixin == MediaTypesClientOperationsMixinPy3
-        else:
-            from mediatypes.operations._media_types_client_operations import MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinPy2
-            assert MediaTypesClientOperationsMixin == MediaTypesClientOperationsMixinPy2
+        with pytest.raises(ImportError):
+            from mediatypes.operations import _media_types_client_operations_py3
+
+        from mediatypes.operations._media_types_client_operations import MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinPy2
+        assert MediaTypesClientOperationsMixin == MediaTypesClientOperationsMixinPy2

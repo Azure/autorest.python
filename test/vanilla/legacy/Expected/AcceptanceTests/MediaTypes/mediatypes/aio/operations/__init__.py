@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._media_types_client_operations_py3 import MediaTypesClientOperationsMixin
-
-except (SyntaxError, ImportError):
-    from ._media_types_client_operations import MediaTypesClientOperationsMixin
+from ._media_types_client_operations import MediaTypesClientOperationsMixin
 
 __all__ = [
     "MediaTypesClientOperationsMixin",

@@ -164,9 +164,8 @@ class TestFormData(object):
     def test_operation_groups(self):
         from bodyformdata.operations import FormdataOperations
 
-        if sys.version_info >= (3, 5):
-            from bodyformdata.operations._formdata_operations_py3 import FormdataOperations as FormdataOperationsPy3
-            assert FormdataOperations == FormdataOperationsPy3
-        else:
-            from bodyformdata.operations._formdata_operations import FormdataOperations as FormdataOperationsPy2
-            assert FormdataOperations == FormdataOperationsPy2
+        with pytest.raises(ImportError):
+            from bodyformdata.operations import _formdata_operations_py3
+
+        from bodyformdata.operations._formdata_operations import FormdataOperations as FormdataOperationsPy2
+        assert FormdataOperations == FormdataOperationsPy2

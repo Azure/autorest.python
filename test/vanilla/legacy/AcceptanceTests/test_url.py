@@ -253,15 +253,14 @@ class TestUrl(object):
         from url.operations import QueriesOperations
         from urlmulticollectionformat.operations import QueriesOperations as MultiCollectionFormatQueriesOperations
 
-        if sys.version_info >= (3, 5):
-            from url.operations._queries_operations_py3 import QueriesOperations as QueriesOperationsPy3
-            assert QueriesOperations == QueriesOperationsPy3
+        with pytest.raises(ImportError):
+            from url.operations import _queries_operations_py3
 
-            from urlmulticollectionformat.operations._queries_operations_py3 import QueriesOperations as QueriesOperationsPy3
-            assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy3
-        else:
-            from url.operations._queries_operations import QueriesOperations as QueriesOperationsPy2
-            assert QueriesOperations == QueriesOperationsPy2
+        with pytest.raises(ImportError):
+            from urlmulticollectionformat.operations import _queries_operations_py3
 
-            from urlmulticollectionformat.operations._queries_operations import QueriesOperations as QueriesOperationsPy2
-            assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2
+        from url.operations._queries_operations import QueriesOperations as QueriesOperationsPy2
+        assert QueriesOperations == QueriesOperationsPy2
+
+        from urlmulticollectionformat.operations._queries_operations import QueriesOperations as QueriesOperationsPy2
+        assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2

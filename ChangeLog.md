@@ -14,7 +14,6 @@
 
 - We have added a **provisional** `rest` layer to our generated code. We have also added the following **provisional** flags listed [here](https://github.com/Azure/autorest.python/wiki/Generating-Low-Level-Client#generate-a-low-level-client). #875
 - With this new release, we are also dropping support for Python 3.5 + async.  #875
-- Added flag `--add-python3-operation-files`. With this flag, we generate a separate sync operation file with Python3 typings, so 3.6+ users have better sync typehints, while 2.7 users are not broken.  #986
 
 ### 2021-07-13 - 5.8.4
 

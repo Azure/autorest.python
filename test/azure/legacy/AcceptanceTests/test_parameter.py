@@ -207,12 +207,8 @@ class TestParameter(object):
 
         from azureparametergrouping.operations import ParameterGroupingOperations
 
-        if sys.version_info >= (3,5):
-            from azureparametergrouping.operations._parameter_grouping_operations_py3 import ParameterGroupingOperations as ParameterGroupingOperationsPy3
-            assert ParameterGroupingOperations == ParameterGroupingOperationsPy3
-        else:
-            from azureparametergrouping.operations._parameter_grouping_operations import ParameterGroupingOperations as ParameterGroupingOperationsPy2
-            assert ParameterGroupingOperations == ParameterGroupingOperationsPy2
+        with pytest.raises(ImportError):
+            from azureparametergrouping.operations import _parameter_grouping_operations_py3
 
-
-
+        from azureparametergrouping.operations._parameter_grouping_operations import ParameterGroupingOperations as ParameterGroupingOperationsPy2
+        assert ParameterGroupingOperations == ParameterGroupingOperationsPy2

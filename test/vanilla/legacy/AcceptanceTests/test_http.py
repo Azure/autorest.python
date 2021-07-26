@@ -433,9 +433,8 @@ class TestHttp(object):
     def test_operation_groups(self):
         from httpinfrastructure.operations import MultipleResponsesOperations
 
-        if sys.version_info >= (3, 5):
-            from httpinfrastructure.operations._multiple_responses_operations_py3 import MultipleResponsesOperations as MultipleResponsesOperationsPy3
-            assert MultipleResponsesOperations == MultipleResponsesOperationsPy3
-        else:
-            from httpinfrastructure.operations._multiple_responses_operations import MultipleResponsesOperations as MultipleResponsesOperationsPy2
-            assert MultipleResponsesOperations == MultipleResponsesOperationsPy2
+        with pytest.raises(ImportError):
+            from httpinfrastructure.operations import _multiple_responses_operations_py3
+
+        from httpinfrastructure.operations._multiple_responses_operations import MultipleResponsesOperations as MultipleResponsesOperationsPy2
+        assert MultipleResponsesOperations == MultipleResponsesOperationsPy2

@@ -153,9 +153,8 @@ class TestString(object):
     def test_operation_groups(self):
         from bodystring.operations import EnumOperations
 
-        if sys.version_info >= (3, 5):
-            from bodystring.operations._enum_operations_py3 import EnumOperations as EnumOperationsPy3
-            assert EnumOperations == EnumOperationsPy3
-        else:
-            from bodystring.operations._enum_operations import EnumOperations as EnumOperationsPy2
-            assert EnumOperations == EnumOperationsPy2
+        with pytest.raises(ImportError):
+            from bodystring.operations import _enum_operations_py3
+
+        from bodystring.operations._enum_operations import EnumOperations as EnumOperationsPy2
+        assert EnumOperations == EnumOperationsPy2

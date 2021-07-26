@@ -191,17 +191,17 @@ class TestPaging(object):
 
     def test_operation_groups(self):
         from paging.operations import PagingOperations
-        from custombaseurlpaging.operations import PagingOperations as CustomBaseUrlPagingOperations
 
-        if sys.version_info >= (3,5):
-            from paging.operations._paging_operations_py3 import PagingOperations as PagingOperationsPy3
-            assert PagingOperations == PagingOperationsPy3
+        with pytest.raises(ImportError):
+            from paging.operations import _paging_operations_py3
 
-            from custombaseurlpaging.operations._paging_operations_py3 import PagingOperations as PagingOperationsPy3
-            assert CustomBaseUrlPagingOperations == PagingOperationsPy3
-        else:
-            from paging.operations._paging_operations import PagingOperations as PagingOperationsPy2
-            assert PagingOperations == PagingOperationsPy2
+        from paging.operations._paging_operations import PagingOperations as PagingOperationsPy2
+        assert PagingOperations == PagingOperationsPy2
 
-            from custombaseurlpaging.operations._paging_operations import PagingOperations as PagingOperationsPy2
-            assert CustomBaseUrlPagingOperations == PagingOperationsPy2
+        from custombaseurlpaging.operations import PagingOperations
+
+        with pytest.raises(ImportError):
+            from custombaseurlpaging.operations import _paging_operations_py3
+
+        from custombaseurlpaging.operations._paging_operations import PagingOperations as PagingOperationsPy2
+        assert PagingOperations == PagingOperationsPy2

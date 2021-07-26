@@ -6,15 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._paths_operations_py3 import PathsOperations
-    from ._queries_operations_py3 import QueriesOperations
-    from ._path_items_operations_py3 import PathItemsOperations
-
-except (SyntaxError, ImportError):
-    from ._paths_operations import PathsOperations
-    from ._queries_operations import QueriesOperations
-    from ._path_items_operations import PathItemsOperations
+from ._paths_operations import PathsOperations
+from ._queries_operations import QueriesOperations
+from ._path_items_operations import PathItemsOperations
 
 __all__ = [
     "PathsOperations",

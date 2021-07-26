@@ -52,9 +52,8 @@ class TestObjectType(object):
     def test_operation_groups(self):
         from objecttype.operations import ObjectTypeClientOperationsMixin
 
-        if sys.version_info >= (3, 5):
-            from objecttype.operations._object_type_client_operations_py3 import ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy3
-            assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy3
-        else:
-            from objecttype.operations._object_type_client_operations import ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy2
-            assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy2
+        with pytest.raises(ImportError):
+            from objecttype.operations import _object_type_client_operations_py3
+
+        from objecttype.operations._object_type_client_operations import ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy2
+        assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy2

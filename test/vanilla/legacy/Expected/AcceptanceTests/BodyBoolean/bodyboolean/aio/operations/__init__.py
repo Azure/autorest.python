@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._bool_operations_py3 import BoolOperations
-
-except (SyntaxError, ImportError):
-    from ._bool_operations import BoolOperations
+from ._bool_operations import BoolOperations
 
 __all__ = [
     "BoolOperations",

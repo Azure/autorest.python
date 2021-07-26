@@ -61,9 +61,8 @@ class TestNonStringEnums(object):
     def test_operation_groups(self):
         from nonstringenums.operations import FloatOperations
 
-        if sys.version_info >= (3, 5):
-            from nonstringenums.operations._float_operations_py3 import FloatOperations as FloatOperationsPy3
-            assert FloatOperations == FloatOperationsPy3
-        else:
-            from nonstringenums.operations._float_operations import FloatOperations as FloatOperationsPy2
-            assert FloatOperations == FloatOperationsPy2
+        with pytest.raises(ImportError):
+            from nonstringenums.operations import _float_operations_py3
+
+        from nonstringenums.operations._float_operations import FloatOperations as FloatOperationsPy2
+        assert FloatOperations == FloatOperationsPy2

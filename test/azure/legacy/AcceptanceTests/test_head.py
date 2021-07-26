@@ -70,7 +70,7 @@ class TestHead(object):
         from head.operations._http_success_operations import HttpSuccessOperations as HttpSuccessOperationsPy2
         assert HttpSuccessOperations == HttpSuccessOperationsPy2
 
-        from headexceptions.operations._head_exception_operations import HeadExceptionOperations
+        from headexceptions.operations import HeadExceptionOperations
 
         with pytest.raises(ImportError):
             from headexceptions.operations import _head_exception_operations_py3

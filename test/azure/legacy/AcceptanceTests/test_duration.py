@@ -72,9 +72,8 @@ class TestDuration(object):
     def test_operation_groups(self):
         from bodyduration.operations import DurationOperations
 
-        if sys.version_info >= (3,5):
-            from bodyduration.operations._duration_operations_py3 import DurationOperations as DurationOperationsPy3
-            assert DurationOperations == DurationOperationsPy3
-        else:
-            from bodyduration.operations._duration_operations import DurationOperations as DurationOperationsPy2
-            assert DurationOperations == DurationOperationsPy2
+        with pytest.raises(ImportError):
+            from bodyduration.operations import _duration_operations_py3
+
+        from bodyduration.operations._duration_operations import DurationOperations as DurationOperationsPy2
+        assert DurationOperations == DurationOperationsPy2

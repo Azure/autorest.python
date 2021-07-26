@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._duration_operations_py3 import DurationOperations
-
-except (SyntaxError, ImportError):
-    from ._duration_operations import DurationOperations
+from ._duration_operations import DurationOperations
 
 __all__ = [
     "DurationOperations",

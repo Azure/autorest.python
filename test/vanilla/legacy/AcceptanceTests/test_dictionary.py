@@ -318,9 +318,8 @@ class TestDictionary(object):
     def test_operation_groups(self):
         from bodydictionary.operations import DictionaryOperations
 
-        if sys.version_info >= (3, 5):
-            from bodydictionary.operations._dictionary_operations_py3 import DictionaryOperations as DictionaryOperationsPy3
-            assert DictionaryOperations == DictionaryOperationsPy3
-        else:
-            from bodydictionary.operations._dictionary_operations import DictionaryOperations as DictionaryOperationsPy2
-            assert DictionaryOperations == DictionaryOperationsPy2
+        with pytest.raises(ImportError):
+            from bodydictionary.operations import _dictionary_operations_py3
+
+        from bodydictionary.operations._dictionary_operations import DictionaryOperations as DictionaryOperationsPy2
+        assert DictionaryOperations == DictionaryOperationsPy2

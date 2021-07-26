@@ -134,9 +134,8 @@ class TestDatetime(object):
     def test_operation_groups(self):
         from bodydatetime.operations import DatetimeOperations
 
-        if sys.version_info >= (3, 5):
+        with pytest.raises(ImportError):
             from bodydatetime.operations._datetime_operations_py3 import DatetimeOperations as DatetimeOperationsPy3
-            assert DatetimeOperations == DatetimeOperationsPy3
-        else:
-            from bodydatetime.operations._datetime_operations import DatetimeOperations as DatetimeOperationsPy2
-            assert DatetimeOperations == DatetimeOperationsPy2
+
+        from bodydatetime.operations._datetime_operations import DatetimeOperations as DatetimeOperationsPy2
+        assert DatetimeOperations == DatetimeOperationsPy2

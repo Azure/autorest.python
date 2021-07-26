@@ -6,15 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._multiapi_service_client_operations_py3 import MultiapiServiceClientOperationsMixin
-    from ._operation_group_one_operations_py3 import OperationGroupOneOperations
-    from ._operation_group_two_operations_py3 import OperationGroupTwoOperations
-
-except (SyntaxError, ImportError):
-    from ._multiapi_service_client_operations import MultiapiServiceClientOperationsMixin
-    from ._operation_group_one_operations import OperationGroupOneOperations
-    from ._operation_group_two_operations import OperationGroupTwoOperations
+from ._multiapi_service_client_operations import MultiapiServiceClientOperationsMixin
+from ._operation_group_one_operations import OperationGroupOneOperations
+from ._operation_group_two_operations import OperationGroupTwoOperations
 
 __all__ = [
     'MultiapiServiceClientOperationsMixin',

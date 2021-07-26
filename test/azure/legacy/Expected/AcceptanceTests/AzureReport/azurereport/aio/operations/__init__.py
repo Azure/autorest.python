@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._auto_rest_report_service_for_azure_operations_py3 import AutoRestReportServiceForAzureOperationsMixin
-
-except (SyntaxError, ImportError):
-    from ._auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin
+from ._auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin
 
 __all__ = [
     "AutoRestReportServiceForAzureOperationsMixin",

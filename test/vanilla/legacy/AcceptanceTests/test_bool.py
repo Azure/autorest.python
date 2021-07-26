@@ -79,9 +79,8 @@ class TestBool(object):
     def test_operation_groups(self):
         from bodyboolean.operations import BoolOperations
 
-        if sys.version_info >= (3, 5):
-            from bodyboolean.operations._bool_operations_py3 import BoolOperations as BoolOperationsPy3
-            assert BoolOperations == BoolOperationsPy3
-        else:
-            from bodyboolean.operations._bool_operations import BoolOperations as BoolOperationsPy2
-            assert BoolOperations == BoolOperationsPy2
+        with pytest.raises(ImportError):
+            from bodyboolean.operations import _bool_operations_py3
+
+        from bodyboolean.operations._bool_operations import BoolOperations as BoolOperationsPy2
+        assert BoolOperations == BoolOperationsPy2

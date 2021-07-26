@@ -6,13 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._int_operations_py3 import IntOperations
-    from ._float_operations_py3 import FloatOperations
-
-except (SyntaxError, ImportError):
-    from ._int_operations import IntOperations
-    from ._float_operations import FloatOperations
+from ._int_operations import IntOperations
+from ._float_operations import FloatOperations
 
 __all__ = [
     "IntOperations",

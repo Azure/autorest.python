@@ -152,9 +152,8 @@ class TestRequiredOptional(object):
     def test_operation_groups(self):
         from requiredoptional.operations import ExplicitOperations
 
-        if sys.version_info >= (3, 5):
-            from requiredoptional.operations._explicit_operations_py3 import ExplicitOperations as ExplicitOperationsPy3
-            assert ExplicitOperations == ExplicitOperationsPy3
-        else:
-            from requiredoptional.operations._explicit_operations import ExplicitOperations as ExplicitOperationsPy2
-            assert ExplicitOperations == ExplicitOperationsPy2
+        with pytest.raises(ImportError):
+            from requiredoptional.operations import _explicit_operations_py3
+
+        from requiredoptional.operations._explicit_operations import ExplicitOperations as ExplicitOperationsPy2
+        assert ExplicitOperations == ExplicitOperationsPy2

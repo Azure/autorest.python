@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._header_operations_py3 import HeaderOperations
-
-except (SyntaxError, ImportError):
-    from ._header_operations import HeaderOperations
+from ._header_operations import HeaderOperations
 
 __all__ = [
     "HeaderOperations",

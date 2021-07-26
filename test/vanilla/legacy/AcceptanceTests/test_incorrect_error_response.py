@@ -36,9 +36,8 @@ def test_swallow_deserialization_error_for_error_model():
 def test_operation_groups():
     from incorrecterrorresponse.operations import IncorrectReturnedErrorModelOperationsMixin
 
-    if sys.version_info >= (3, 5):
-        from incorrecterrorresponse.operations._incorrect_returned_error_model_operations_py3 import IncorrectReturnedErrorModelOperationsMixin as IncorrectReturnedErrorModelOperationsMixinPy3
-        assert IncorrectReturnedErrorModelOperationsMixin == IncorrectReturnedErrorModelOperationsMixinPy3
-    else:
-        from incorrecterrorresponse.operations._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin as IncorrectReturnedErrorModelOperationsMixinPy2
-        assert IncorrectReturnedErrorModelOperationsMixin == IncorrectReturnedErrorModelOperationsMixinPy2
+    with pytest.raises(ImportError):
+        from incorrecterrorresponse.operations import _incorrect_returned_error_model_operations_py3
+
+    from incorrecterrorresponse.operations._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin as IncorrectReturnedErrorModelOperationsMixinPy2
+    assert IncorrectReturnedErrorModelOperationsMixin == IncorrectReturnedErrorModelOperationsMixinPy2

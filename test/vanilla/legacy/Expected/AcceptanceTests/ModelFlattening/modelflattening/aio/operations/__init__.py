@@ -6,15 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._auto_rest_resource_flattening_test_service_operations_py3 import (
-        AutoRestResourceFlatteningTestServiceOperationsMixin,
-    )
-
-except (SyntaxError, ImportError):
-    from ._auto_rest_resource_flattening_test_service_operations import (
-        AutoRestResourceFlatteningTestServiceOperationsMixin,
-    )
+from ._auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 __all__ = [
     "AutoRestResourceFlatteningTestServiceOperationsMixin",
