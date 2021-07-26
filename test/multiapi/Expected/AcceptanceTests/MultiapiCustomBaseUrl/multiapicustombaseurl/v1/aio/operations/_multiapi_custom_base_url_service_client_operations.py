@@ -14,7 +14,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 
-from ... import _rest as rest, models as _models
+from ... import models as _models
+from ...operations._multiapi_custom_base_url_service_client_operations import build_test_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -42,7 +43,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_request(
+        request = build_test_request(
             id=id,
             template_url=self.test.metadata['url'],
         )._to_pipeline_transport_request()

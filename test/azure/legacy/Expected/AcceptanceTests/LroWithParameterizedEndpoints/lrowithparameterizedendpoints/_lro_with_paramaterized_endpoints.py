@@ -59,11 +59,6 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         We have helper methods to create requests specific to this service in `lrowithparameterizedendpoints.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from lrowithparameterizedendpoints._rest import build_poll_with_parameterized_endpoints_request_initial
-        >>> request = build_poll_with_parameterized_endpoints_request_initial(**kwargs)
-        <HttpRequest [POST], url: '/lroParameterizedEndpoints'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

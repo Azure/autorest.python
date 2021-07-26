@@ -57,11 +57,6 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         We have helper methods to create requests specific to this service in `mediatypes.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from mediatypes._rest import build_analyze_body_request
-        >>> request = build_analyze_body_request(json=json, content=content, **kwargs)
-        <HttpRequest [POST], url: '/mediatypes/analyze'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

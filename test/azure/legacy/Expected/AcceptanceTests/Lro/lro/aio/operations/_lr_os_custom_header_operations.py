@@ -25,7 +25,12 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._rest import lr_os_custom_header as rest_lr_os_custom_header
+from ...operations._lr_os_custom_header_operations import (
+    build_post202_retry200_request_initial,
+    build_post_async_retry_succeeded_request_initial,
+    build_put201_creating_succeeded200_request_initial,
+    build_put_async_retry_succeeded_request_initial,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -66,7 +71,7 @@ class LROsCustomHeaderOperations:
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_put_async_retry_succeeded_request_initial(
+        request = build_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
@@ -180,7 +185,7 @@ class LROsCustomHeaderOperations:
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -282,7 +287,7 @@ class LROsCustomHeaderOperations:
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_post202_retry200_request_initial(
+        request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -376,7 +381,7 @@ class LROsCustomHeaderOperations:
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_post_async_retry_succeeded_request_initial(
+        request = build_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],

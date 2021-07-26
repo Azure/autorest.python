@@ -60,11 +60,6 @@ class AutoRestTimeTestService(object):
         We have helper methods to create requests specific to this service in `bodytime.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodytime._rest import time
-        >>> request = time.build_get_request(**kwargs)
-        <HttpRequest [GET], url: '/time/get'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

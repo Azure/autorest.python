@@ -42,11 +42,6 @@ class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
         We have helper methods to create requests specific to this service in `incorrecterrorresponse.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from incorrecterrorresponse._rest import build_get_incorrect_error_from_server_request
-        >>> request = build_get_incorrect_error_from_server_request(**kwargs)
-        <HttpRequest [GET], url: '/incorrectError'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

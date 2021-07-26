@@ -60,11 +60,6 @@ class AutoRestSwaggerBATFileService(object):
         We have helper methods to create requests specific to this service in `bodyfile.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from bodyfile._rest import files
-        >>> request = files.build_get_file_request(**kwargs)
-        <HttpRequest [GET], url: '/files/stream/nonempty'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

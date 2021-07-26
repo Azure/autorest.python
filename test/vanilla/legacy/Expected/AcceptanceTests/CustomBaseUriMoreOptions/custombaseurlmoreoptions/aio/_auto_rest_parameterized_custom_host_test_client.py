@@ -47,11 +47,6 @@ class AutoRestParameterizedCustomHostTestClient:
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptions.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from custombaseurlmoreoptions._rest import paths
-        >>> request = paths.build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
-        <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

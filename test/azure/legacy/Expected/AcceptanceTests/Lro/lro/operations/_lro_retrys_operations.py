@@ -23,9 +23,9 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import lro_retrys as rest_lro_retrys
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -34,7 +34,165 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_put201_creating_succeeded200_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/put/201/creating/succeeded/200')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_async_relative_retry_succeeded_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/putasync/retry/succeeded')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_delete_provisioning202_accepted200_succeeded_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_delete202_retry200_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/delete/202/retry/200')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_delete_async_relative_retry_succeeded_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/deleteasync/retry/succeeded')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_post202_retry200_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/post/202/retry/200')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_post_async_relative_retry_succeeded_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/retryerror/postasync/retry/succeeded')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class LRORetrysOperations(object):
     """LRORetrysOperations operations.
 
@@ -73,7 +231,7 @@ class LRORetrysOperations(object):
         else:
             json = None
 
-        request = rest_lro_retrys.build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -179,7 +337,7 @@ class LRORetrysOperations(object):
         else:
             json = None
 
-        request = rest_lro_retrys.build_put_async_relative_retry_succeeded_request_initial(
+        request = build_put_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
@@ -287,7 +445,7 @@ class LRORetrysOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lro_retrys.build_delete_provisioning202_accepted200_succeeded_request_initial(
+        request = build_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -380,7 +538,7 @@ class LRORetrysOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lro_retrys.build_delete202_retry200_request_initial(
+        request = build_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -460,7 +618,7 @@ class LRORetrysOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lro_retrys.build_delete_async_relative_retry_succeeded_request_initial(
+        request = build_delete_async_relative_retry_succeeded_request_initial(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -551,7 +709,7 @@ class LRORetrysOperations(object):
         else:
             json = None
 
-        request = rest_lro_retrys.build_post202_retry200_request_initial(
+        request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -648,7 +806,7 @@ class LRORetrysOperations(object):
         else:
             json = None
 
-        request = rest_lro_retrys.build_post_async_relative_retry_succeeded_request_initial(
+        request = build_post_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],

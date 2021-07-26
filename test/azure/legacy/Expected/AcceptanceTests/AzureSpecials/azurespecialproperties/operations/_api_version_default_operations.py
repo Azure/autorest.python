@@ -21,9 +21,9 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import api_version_default as rest_api_version_default
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,7 +32,113 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_method_global_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-07-01-preview"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_method_global_not_provided_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-07-01-preview"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_path_global_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-07-01-preview"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_swagger_global_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-07-01-preview"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class ApiVersionDefaultOperations(object):
     """ApiVersionDefaultOperations operations.
 
@@ -71,7 +177,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_method_global_valid_request(
+        request = build_get_method_global_valid_request(
             template_url=self.get_method_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -105,7 +211,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_method_global_not_provided_valid_request(
+        request = build_get_method_global_not_provided_valid_request(
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -139,7 +245,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_path_global_valid_request(
+        request = build_get_path_global_valid_request(
             template_url=self.get_path_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -173,7 +279,7 @@ class ApiVersionDefaultOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_default.build_get_swagger_global_valid_request(
+        request = build_get_swagger_global_valid_request(
             template_url=self.get_swagger_global_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

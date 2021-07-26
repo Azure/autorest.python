@@ -51,11 +51,6 @@ class AutoRestHeadTestService:
         We have helper methods to create requests specific to this service in `headwithazurekeycredentialpolicy.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from headwithazurekeycredentialpolicy._rest import http_success
-        >>> request = http_success.build_head200_request(**kwargs)
-        <HttpRequest [HEAD], url: '/http/success/200'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

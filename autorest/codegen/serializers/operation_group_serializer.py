@@ -8,7 +8,7 @@ from jinja2 import Environment
 
 from .import_serializer import FileImportSerializer
 from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
-from .builder_serializer import get_operation_serializer
+from .builder_serializer import get_operation_serializer, RequestBuilderGenericSerializer
 
 
 class OperationGroupSerializer:
@@ -44,4 +44,5 @@ class OperationGroupSerializer:
             get_operation_serializer=functools.partial(
                 get_operation_serializer, code_model=self.code_model, async_mode=self.async_mode
             ),
+            request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
         )

@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 
 from ... import models as _models
-from ..._rest import operation_group_two as rest_operation_group_two
+from ...operations._operation_group_two_operations import build_test_four_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -62,7 +62,7 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_operation_group_two.build_test_four_request(
+        request = build_test_four_request(
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],
         )._to_pipeline_transport_request()

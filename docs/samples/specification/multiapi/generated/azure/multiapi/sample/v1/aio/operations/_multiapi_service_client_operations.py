@@ -18,7 +18,8 @@ from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ... import _rest as rest, models as _models
+from ... import models as _models
+from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_lro_and_paging_request_initial, build_test_lro_request_initial, build_test_one_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,7 +49,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_one_request(
+        request = build_test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -86,7 +87,7 @@ class MultiapiServiceClientOperationsMixin:
         else:
             json = None
 
-        request = rest.build_test_lro_request_initial(
+        request = build_test_lro_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._test_lro_initial.metadata['url'],
@@ -192,7 +193,7 @@ class MultiapiServiceClientOperationsMixin:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
 
-        request = rest.build_test_lro_and_paging_request_initial(
+        request = build_test_lro_and_paging_request_initial(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -257,7 +258,7 @@ class MultiapiServiceClientOperationsMixin:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
 
-                request = rest.build_test_lro_and_paging_request_initial(
+                request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -272,7 +273,7 @@ class MultiapiServiceClientOperationsMixin:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
 
-                request = rest.build_test_lro_and_paging_request_initial(
+                request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -364,7 +365,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_different_calls_request(
+        request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
         )._to_pipeline_transport_request()
