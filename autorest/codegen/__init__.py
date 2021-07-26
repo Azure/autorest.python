@@ -251,6 +251,9 @@ class CodeGenerator(Plugin):
             "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
                 "only-path-and-body-params-positional", low_level_client
             ),
+            "add_typed_sync_operation_files": self._autorestapi.get_boolean_value(
+                "add-typed-sync-operations-files"
+            ),
         }
 
         if options["builders_visibility"] is None:
@@ -262,6 +265,16 @@ class CodeGenerator(Plugin):
                     "The value of --builders-visibility must be either 'public', 'hidden', "
                     "or 'embedded'"
                 )
+
+        if not options["show_operations"] and options["add_typed_sync_operation_files"]:
+            raise ValueError(
+                "Can not add typed sync operation files if you are not showing operations. "
+                "If you want typed synced operation files, you have to add flag "
+                "--show-operations"
+            )
+
+        if options["add_typed_sync_operation_files"] is None and not azure_arm:
+            options["add_typed_sync_operation_files"] = True
 
         if options["basic_setup_py"] and not options["package_version"]:
             raise ValueError("--basic-setup-py must be used with --package-version")
