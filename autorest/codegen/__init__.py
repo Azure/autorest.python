@@ -283,18 +283,14 @@ class CodeGenerator(Plugin):
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
         options["builders_visibility"] = options["builders_visibility"].lower()
-
-
-        if not options["show_operations"] and options["add_typed_sync_operation_files"]:
-            raise ValueError(
-                "Can not add typed sync operation files if you are not showing operations. "
-                "If you want typed synced operation files, you have to add flag "
-                "--show-operations"
-            )
-        _validate_code_model_options(options)
-
-        if options["add_typed_sync_operation_files"] is None and not azure_arm:
+        if (
+            options["add_typed_sync_operation_files"] is None
+            and not azure_arm
+            and options["show_operations"]
+        ):
             options["add_typed_sync_operation_files"] = True
+
+        _validate_code_model_options(options)
 
         # Force some options in ARM MODE:
         if azure_arm:
