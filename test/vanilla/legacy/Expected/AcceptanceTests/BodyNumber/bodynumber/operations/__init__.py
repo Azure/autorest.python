@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._number_operations import NumberOperations
+try:
+    from ._number_operations_py3 import NumberOperations
+
+except (SyntaxError, ImportError):
+    from ._number_operations import NumberOperations
 
 __all__ = [
     "NumberOperations",

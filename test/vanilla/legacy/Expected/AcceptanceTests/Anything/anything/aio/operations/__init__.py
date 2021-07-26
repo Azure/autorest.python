@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._anything_client_operations import AnythingClientOperationsMixin
+try:
+    from ._anything_client_operations_py3 import AnythingClientOperationsMixin
+
+except (SyntaxError, ImportError):
+    from ._anything_client_operations import AnythingClientOperationsMixin
 
 __all__ = [
     "AnythingClientOperationsMixin",

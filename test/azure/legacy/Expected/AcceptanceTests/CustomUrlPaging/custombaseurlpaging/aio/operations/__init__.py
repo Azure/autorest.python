@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._paging_operations import PagingOperations
+try:
+    from ._paging_operations_py3 import PagingOperations
+
+except (SyntaxError, ImportError):
+    from ._paging_operations import PagingOperations
 
 __all__ = [
     "PagingOperations",

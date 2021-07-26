@@ -83,3 +83,13 @@ class TestDateTimeRfc(object):
         else:
             from bodydatetimerfc1123.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodydatetimerfc1123.operations import Datetimerfc1123Operations
+
+        if sys.version_info >= (3, 5):
+            from bodydatetimerfc1123.operations._datetimerfc1123_operations_py3 import Datetimerfc1123Operations as Datetimerfc1123OperationsPy3
+            assert Datetimerfc1123Operations == Datetimerfc1123OperationsPy3
+        else:
+            from bodydatetimerfc1123.operations._datetimerfc1123_operations import Datetimerfc1123Operations as Datetimerfc1123OperationsPy2
+            assert Datetimerfc1123Operations == Datetimerfc1123OperationsPy2

@@ -314,3 +314,13 @@ class TestDictionary(object):
         else:
             from bodydictionary.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodydictionary.operations import DictionaryOperations
+
+        if sys.version_info >= (3, 5):
+            from bodydictionary.operations._dictionary_operations_py3 import DictionaryOperations as DictionaryOperationsPy3
+            assert DictionaryOperations == DictionaryOperationsPy3
+        else:
+            from bodydictionary.operations._dictionary_operations import DictionaryOperations as DictionaryOperationsPy2
+            assert DictionaryOperations == DictionaryOperationsPy2

@@ -191,6 +191,20 @@ class JinjaSerializer:
                     operation_group_async_serializer.serialize(),
                 )
 
+            if code_model.options["add_typed_sync_operation_files"]:
+                # write typed sync operation files
+                operation_group_serializer = OperationGroupSerializer(
+                    code_model=code_model,
+                    env=env,
+                    operation_group=operation_group,
+                    async_mode=False,
+                    is_python_3_file=True,
+                )
+                self._autorestapi.write_file(
+                    namespace_path / Path(f"operations") / Path(f"{operation_group.filename}_py3.py"),
+                    operation_group_serializer.serialize(),
+                )
+
 
     def _serialize_and_write_version_file(
         self, code_model: CodeModel, namespace_path: Path, general_serializer: GeneralSerializer

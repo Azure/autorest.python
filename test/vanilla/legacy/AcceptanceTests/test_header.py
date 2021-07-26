@@ -205,3 +205,13 @@ class TestHeader(object):
         else:
             from header.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from header.operations import HeaderOperations
+
+        if sys.version_info >= (3, 5):
+            from header.operations._header_operations_py3 import HeaderOperations as HeaderOperationsPy3
+            assert HeaderOperations == HeaderOperationsPy3
+        else:
+            from header.operations._header_operations import HeaderOperations as HeaderOperationsPy2
+            assert HeaderOperations == HeaderOperationsPy2

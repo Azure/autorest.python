@@ -6,13 +6,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._http_failure_operations import HttpFailureOperations
-from ._http_success_operations import HttpSuccessOperations
-from ._http_redirects_operations import HttpRedirectsOperations
-from ._http_client_failure_operations import HttpClientFailureOperations
-from ._http_server_failure_operations import HttpServerFailureOperations
-from ._http_retry_operations import HttpRetryOperations
-from ._multiple_responses_operations import MultipleResponsesOperations
+try:
+    from ._http_failure_operations_py3 import HttpFailureOperations
+    from ._http_success_operations_py3 import HttpSuccessOperations
+    from ._http_redirects_operations_py3 import HttpRedirectsOperations
+    from ._http_client_failure_operations_py3 import HttpClientFailureOperations
+    from ._http_server_failure_operations_py3 import HttpServerFailureOperations
+    from ._http_retry_operations_py3 import HttpRetryOperations
+    from ._multiple_responses_operations_py3 import MultipleResponsesOperations
+
+except (SyntaxError, ImportError):
+    from ._http_failure_operations import HttpFailureOperations
+    from ._http_success_operations import HttpSuccessOperations
+    from ._http_redirects_operations import HttpRedirectsOperations
+    from ._http_client_failure_operations import HttpClientFailureOperations
+    from ._http_server_failure_operations import HttpServerFailureOperations
+    from ._http_retry_operations import HttpRetryOperations
+    from ._multiple_responses_operations import MultipleResponsesOperations
 
 __all__ = [
     "HttpFailureOperations",

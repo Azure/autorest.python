@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._dictionary_operations import DictionaryOperations
+try:
+    from ._dictionary_operations_py3 import DictionaryOperations
+
+except (SyntaxError, ImportError):
+    from ._dictionary_operations import DictionaryOperations
 
 __all__ = [
     "DictionaryOperations",

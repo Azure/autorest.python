@@ -3,10 +3,10 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-{{ "    " if not async_mode }}T = TypeVar('T')
-{{ "    " if not async_mode }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
+{{ "    " if not is_python_3_file }}T = TypeVar('T')
+{{ "    " if not is_python_3_file }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
 
-{% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
+{% if code_model.options["builders_visibility"] == "embedded" and not is_python_3_file %}
 _SERIALIZER = Serializer()
 # fmt: off
     {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", "") %}

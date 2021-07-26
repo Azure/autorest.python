@@ -80,3 +80,13 @@ class TestCustomBaseUri(object):
         else:
             from custombaseurl.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from custombaseurl.operations import PathsOperations
+
+        if sys.version_info >= (3,5):
+            from custombaseurl.operations._paths_operations_py3 import PathsOperations as PathsOperationsPy3
+            assert PathsOperations == PathsOperationsPy3
+        else:
+            from custombaseurl.operations._paths_operations import PathsOperations as PathsOperationsPy2
+            assert PathsOperations == PathsOperationsPy2
