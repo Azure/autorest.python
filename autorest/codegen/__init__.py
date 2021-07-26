@@ -54,7 +54,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "to 'public' or 'hidden'."
         )
 
-    if not options["show_operations"] and options["add_typed_sync_operation_files"]:
+    if not options["show_operations"] and options["add_python_3_operation_files"]:
         raise ValueError(
             "Can not add typed sync operation files if you are not showing operations. "
             "If you want typed synced operation files, you have to add flag "
@@ -275,8 +275,8 @@ class CodeGenerator(Plugin):
             "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
                 "only-path-and-body-params-positional", low_level_client
             ),
-            "add_typed_sync_operation_files": self._autorestapi.get_boolean_value(
-                "add-typed-sync-operations-files"
+            "add_python_3_operation_files": self._autorestapi.get_boolean_value(
+                "add-python3-operation-files"
             ),
         }
 
@@ -285,11 +285,11 @@ class CodeGenerator(Plugin):
         else:
             options["builders_visibility"] = options["builders_visibility"].lower()
         if (
-            options["add_typed_sync_operation_files"] is None
+            options["add_python_3_operation_files"] is None
             and not azure_arm
             and options["show_operations"]
         ):
-            options["add_typed_sync_operation_files"] = True
+            options["add_python_3_operation_files"] = True
 
         _validate_code_model_options(options)
 

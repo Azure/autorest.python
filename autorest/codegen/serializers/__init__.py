@@ -191,7 +191,7 @@ class JinjaSerializer:
                     operation_group_async_serializer.serialize(),
                 )
 
-            if code_model.options["add_typed_sync_operation_files"]:
+            if code_model.options["add_python_3_operation_files"]:
                 # write typed sync operation files
                 operation_group_serializer = OperationGroupSerializer(
                     code_model=code_model,

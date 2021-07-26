@@ -6,7 +6,7 @@ from .{{ operation_group.filename + filename_suffix}} import {{ operation_group.
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 
-{% if code_model.options["add_typed_sync_operation_files"] %}
+{% if code_model.options["add_python_3_operation_files"] %}
 try:
     {{ operation_group_imports("_py3") | indent }}
 except (SyntaxError, ImportError):
