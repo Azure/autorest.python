@@ -245,28 +245,32 @@ class CodeGenerator(Plugin):
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
             "show_models": self._autorestapi.get_boolean_value("show-models", not low_level_client),
-            "show_builders": self._autorestapi.get_boolean_value("show-builders", low_level_client),
+            "builders_visibility": self._autorestapi.get_value("builders-visibility"),
             "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
             "show_send_request": self._autorestapi.get_boolean_value("show-send-request", low_level_client),
             "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
                 "only-path-and-body-params-positional", low_level_client
             ),
-            "embed_builders": self._autorestapi.get_boolean_value("embed-builders", not low_level_client),
         }
+
+        if options["builders_visibility"] is None:
+            options["builders_visibility"] = "public" if low_level_client else "embedded"
+        else:
+            options["builders_visibility"] = options["builders_visibility"].lower()
+            if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
+                raise ValueError(
+                    "The value of --builders-visibility must be either 'public', 'hidden', "
+                    "or 'embedded'"
+                )
 
         if options["basic_setup_py"] and not options["package_version"]:
             raise ValueError("--basic-setup-py must be used with --package-version")
 
-        if options["show_builders"] and options["embed_builders"]:
+        if not options["show_operations"] and options["builders_visibility"] == "embedded":
             raise ValueError(
-                "Can not specify both --show-builders and --embed-builders at the same time. "
-                "Call --show-builders if you want builders in the rest layer, and for them to be public. "
-                "OR: call --embed-builders to embed the request builders inside the operation group files"
-            )
-        if low_level_client and options["embed_builders"]:
-            raise ValueError(
-                "Can not embed builders with low level client. "
-                "Either remove --low-level-client flag or the --embed-builders flag."
+                "Can not embed builders without operations. "
+                "Either set --show-operations to True, or change the value of --builders-visibility "
+                "to 'public' or 'hidden'."
             )
 
         # Force some options in ARM MODE:

@@ -208,7 +208,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if True:  # pylint: disable=using-constant-test
             file_import.add_import("warnings", ImportType.STDLIB)
 
-        if not code_model.options["embed_builders"]:
+        if code_model.options["builders_visibility"] != "embedded":
             operation_group_name = self.request_builder.operation_group_name
             rest_import_path = "..." if async_mode else ".."
             if operation_group_name:
@@ -225,7 +225,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                     import_type=ImportType.LOCAL,
                     alias="rest"
                 )
-        if code_model.options["embed_builders"] and not async_mode:
+        if code_model.options["builders_visibility"] == "embedded" and not async_mode:
             file_import.merge(self.request_builder.imports())
         return file_import
 

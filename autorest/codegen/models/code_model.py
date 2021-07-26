@@ -60,7 +60,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         options: Dict[str, Any],
     ) -> None:
         self.send_request_name = "send_request" if options['show_send_request'] else "_send_request"
-        self.rest_layer_name = "rest" if options["show_builders"] else "_rest"
+        self.rest_layer_name = "rest" if options["builders_visibility"] == "public" else "_rest"
         self.options = options
         self.module_name: str = ""
         self.class_name: str = ""

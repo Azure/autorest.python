@@ -6,7 +6,7 @@
 {{ "    " if not async_mode }}T = TypeVar('T')
 {{ "    " if not async_mode }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
 
-{% if code_model.options["embed_builders"] and not async_mode %}
+{% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
 _SERIALIZER = Serializer()
 # fmt: off
     {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", "") %}

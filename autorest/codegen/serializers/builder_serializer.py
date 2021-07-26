@@ -436,7 +436,7 @@ class RequestBuilderBaseSerializer(BuilderBaseSerializer):  # pylint: disable=ab
         return retval
 
     def want_example_template(self, builder: BuilderType) -> bool:
-        if not self.code_model.options["show_builders"]:
+        if self.code_model.options["builders_visibility"] != "public":
             return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
             body_kwargs = set(builder.parameters.body_kwarg_names.keys())
@@ -623,7 +623,7 @@ class OperationBaseSerializer(BuilderBaseSerializer):  # pylint: disable=abstrac
             retval.append(f"{constant_body.serialized_name} = {constant_body.constant_declaration}")
         if builder.parameters.has_body:
             retval.extend(_serialize_body_parameters(builder))
-        if self.code_model.options["embed_builders"]:
+        if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:
             operation_group_name = request_builder.operation_group_name

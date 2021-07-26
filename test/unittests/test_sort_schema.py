@@ -12,7 +12,7 @@ def code_model():
     return CodeModel(
         options={
             "show_send_request": True,
-            "show_builders": True
+            "builders_visibility": "public"
         },
     )
 

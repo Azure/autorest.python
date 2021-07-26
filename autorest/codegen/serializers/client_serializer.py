@@ -105,7 +105,7 @@ class ClientSerializer:
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name
-        if not self.code_model.options["embed_builders"]:
+        if self.code_model.options["builders_visibility"] != "embedded":
             retval.append(f">>> from {self.code_model.namespace}.rest import {rest_imported}")
             retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
             retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
