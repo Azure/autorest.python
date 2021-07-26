@@ -135,8 +135,10 @@ class PagingOperation(Operation):
 
         return file_import
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super(PagingOperation, self).imports(code_model, async_mode)
+    def imports(self, code_model, async_mode: bool, is_python_3_file: bool) -> FileImport:
+        file_import = super(PagingOperation, self).imports(
+            code_model, async_mode, is_python_3_file
+        )
 
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)

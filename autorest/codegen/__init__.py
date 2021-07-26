@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, Union, List, Type
+from typing import Dict, Any, Set, Union, List, Type, Optional
 import yaml
 
 from .. import Plugin
@@ -38,6 +38,31 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
+
+def _validate_code_model_options(options: Dict[str, Any]) -> None:
+
+    if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
+        raise ValueError(
+            "The value of --builders-visibility must be either 'public', 'hidden', "
+            "or 'embedded'"
+        )
+
+    if not options["show_operations"] and options["builders_visibility"] == "embedded":
+        raise ValueError(
+            "Can not embed builders without operations. "
+            "Either set --show-operations to True, or change the value of --builders-visibility "
+            "to 'public' or 'hidden'."
+        )
+
+    if not options["show_operations"] and options["add_typed_sync_operation_files"]:
+        raise ValueError(
+            "Can not add typed sync operation files if you are not showing operations. "
+            "If you want typed synced operation files, you have to add flag "
+            "--show-operations"
+        )
+
+    if options["basic_setup_py"] and not options["package_version"]:
+        raise ValueError("--basic-setup-py must be used with --package-version")
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -209,7 +234,6 @@ class CodeGenerator(Plugin):
         )
         code_model.credential_schema_policy = credential_schema_policy
 
-
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest.
         """
@@ -258,13 +282,8 @@ class CodeGenerator(Plugin):
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
-        else:
-            options["builders_visibility"] = options["builders_visibility"].lower()
-            if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
-                raise ValueError(
-                    "The value of --builders-visibility must be either 'public', 'hidden', "
-                    "or 'embedded'"
-                )
+        options["builders_visibility"] = options["builders_visibility"].lower()
+
 
         if not options["show_operations"] and options["add_typed_sync_operation_files"]:
             raise ValueError(
@@ -272,19 +291,10 @@ class CodeGenerator(Plugin):
                 "If you want typed synced operation files, you have to add flag "
                 "--show-operations"
             )
+        _validate_code_model_options(options)
 
         if options["add_typed_sync_operation_files"] is None and not azure_arm:
             options["add_typed_sync_operation_files"] = True
-
-        if options["basic_setup_py"] and not options["package_version"]:
-            raise ValueError("--basic-setup-py must be used with --package-version")
-
-        if not options["show_operations"] and options["builders_visibility"] == "embedded":
-            raise ValueError(
-                "Can not embed builders without operations. "
-                "Either set --show-operations to True, or change the value of --builders-visibility "
-                "to 'public' or 'hidden'."
-            )
 
         # Force some options in ARM MODE:
         if azure_arm:

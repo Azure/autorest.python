@@ -161,7 +161,11 @@ class JinjaSerializer:
         for operation_group in code_model.operation_groups:
             # write sync operation group and operation files
             operation_group_serializer = OperationGroupSerializer(
-                code_model=code_model, env=env, operation_group=operation_group, async_mode=False
+                code_model=code_model,
+                env=env,
+                operation_group=operation_group,
+                async_mode=False,
+                is_python_3_file=False,
             )
             self._autorestapi.write_file(
                 namespace_path / Path(f"operations") / Path(f"{operation_group.filename}.py"),
@@ -171,7 +175,11 @@ class JinjaSerializer:
             if not code_model.options["no_async"]:
                 # write async operation group and operation files
                 operation_group_async_serializer = OperationGroupSerializer(
-                    code_model=code_model, env=env, operation_group=operation_group, async_mode=True
+                    code_model=code_model,
+                    env=env,
+                    operation_group=operation_group,
+                    async_mode=True,
+                    is_python_3_file=True,
                 )
                 self._autorestapi.write_file(
                     (

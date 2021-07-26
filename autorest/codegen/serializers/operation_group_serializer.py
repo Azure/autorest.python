@@ -13,12 +13,18 @@ from .builder_serializer import get_operation_serializer, RequestBuilderGenericS
 
 class OperationGroupSerializer:
     def __init__(
-        self, code_model: CodeModel, env: Environment, operation_group: OperationGroup, async_mode: bool
+        self,
+        code_model: CodeModel,
+        env: Environment,
+        operation_group: OperationGroup,
+        async_mode: bool,
+        is_python_3_file: bool,
     ) -> None:
         self.code_model = code_model
         self.env = env
         self.operation_group = operation_group
         self.async_mode = async_mode
+        self.is_python_3_file = is_python_3_file
 
     def serialize(self) -> str:
         def _is_lro(operation):
@@ -36,13 +42,20 @@ class OperationGroupSerializer:
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(
-                self.operation_group.imports(self.async_mode, bool(has_schemas)), is_python_3_file=self.async_mode
+                self.operation_group.imports(
+                    async_mode=self.async_mode,
+                    is_python_3_file=self.is_python_3_file,
+                    has_schemas=bool(has_schemas)
+                ), is_python_3_file=self.is_python_3_file
             ),
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,
             get_operation_serializer=functools.partial(
-                get_operation_serializer, code_model=self.code_model, async_mode=self.async_mode
+                get_operation_serializer,
+                code_model=self.code_model,
+                async_mode=self.async_mode,
+                is_python_3_file=self.async_mode,
             ),
             request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
         )

@@ -180,7 +180,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
     def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
         return self._imports_shared(async_mode)
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
+    def imports(self, code_model, async_mode: bool, is_python_3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
 
         # Exceptions
@@ -225,7 +225,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                     import_type=ImportType.LOCAL,
                     alias="rest"
                 )
-        if code_model.options["builders_visibility"] == "embedded" and not async_mode:
+        if code_model.options["builders_visibility"] == "embedded" and not is_python_3_file:
             file_import.merge(self.request_builder.imports())
         return file_import
 

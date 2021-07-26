@@ -9,9 +9,9 @@ from .paging_operation import PagingOperation
 
 class LROPagingOperation(PagingOperation, LROOperation):
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
-        lro_imports = LROOperation.imports(self, code_model, async_mode)
-        paging_imports = PagingOperation.imports(self, code_model, async_mode)
+    def imports(self, code_model, async_mode: bool, is_python_3_file: bool) -> FileImport:
+        lro_imports = LROOperation.imports(self, code_model, async_mode, is_python_3_file)
+        paging_imports = PagingOperation.imports(self, code_model, async_mode, is_python_3_file)
 
         file_import = lro_imports
         file_import.merge(paging_imports)
