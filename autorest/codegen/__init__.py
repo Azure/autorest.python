@@ -284,7 +284,7 @@ class CodeGenerator(Plugin):
             options["builders_visibility"] = "public" if low_level_client else "embedded"
         else:
             options["builders_visibility"] = options["builders_visibility"].lower()
-            
+
         _validate_code_model_options(options)
 
         # Force some options in ARM MODE:
