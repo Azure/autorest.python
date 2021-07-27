@@ -212,9 +212,18 @@ class HiddenModelEnumSchema(EnumSchema):
     @property
     def extra_description_information(self):
         possible_values = [self.get_declaration(v.value) for v in self.values]
-        return "Possible values are: {}.".format(
-            ", ".join(possible_values[: len(possible_values) - 1]) + f", and {possible_values[-1]}"
-        )
+        if not possible_values:
+            return ""
+        if len(possible_values) == 1:
+            return possible_values[0]
+        if len(possible_values) == 2:
+            possible_values_str = " or ".join(possible_values)
+        else:
+            possible_values_str = ", ".join(
+                possible_values[: len(possible_values) - 1]
+            ) + f", and {possible_values[-1]}"
+
+        return "Possible values are: {}.".format(possible_values_str)
 
     @property
     def docstring_type(self) -> str:
