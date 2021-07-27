@@ -6,158 +6,142 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum, EnumMeta
+from enum import Enum
 from six import with_metaclass
+from azure.core import CaseInsensitiveEnumMeta
 
 
-class _CaseInsensitiveEnumMeta(EnumMeta):
-    def __getitem__(self, name):
-        return super().__getitem__(name.upper())
-
-    def __getattr__(cls, name):
-        """Return the enum member matching `name`
-        We use __getattr__ instead of descriptors or inserting into the enum
-        class' __dict__ in order to support `name` and `value` being both
-        properties for enum members (which live in the class' __dict__) and
-        enum members themselves.
-        """
-        try:
-            return cls._member_map_[name.upper()]
-        except KeyError:
-            raise AttributeError(name)
-
-
-class ModelAsStringNoRequiredOneValueDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredOneValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredOneValueDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredOneValueDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredOneValueNoDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredOneValueNoDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredOneValueNoDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredOneValueNoDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredTwoValueDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredTwoValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringNoRequiredTwoValueDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredTwoValueDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringNoRequiredTwoValueNoDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredTwoValueNoDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringNoRequiredTwoValueNoDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringNoRequiredTwoValueNoDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringRequiredOneValueDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredOneValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredOneValueDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredOneValueDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredOneValueNoDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredOneValueNoDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredOneValueNoDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredOneValueNoDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredTwoValueDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-
-    VALUE1 = "value1"
-    VALUE2 = "value2"
-
-
-class ModelAsStringRequiredTwoValueDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredTwoValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringRequiredTwoValueNoDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredTwoValueDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringRequiredTwoValueNoDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredTwoValueNoDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ModelAsStringRequiredTwoValueNoDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringNoRequiredTwoValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringNoRequiredTwoValueDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringNoRequiredTwoValueNoDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringRequiredTwoValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueNoDefaultEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringRequiredTwoValueDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueNoDefaultOpEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class NoModelAsStringRequiredTwoValueNoDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+
+    VALUE1 = "value1"
+    VALUE2 = "value2"
+
+
+class NoModelAsStringRequiredTwoValueNoDefaultOpEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"
     VALUE2 = "value2"
