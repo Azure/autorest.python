@@ -53,7 +53,7 @@ class AutoRestSwaggerBATFormDataService(object):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodyformdatalowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from bodyformdatalowlevel.rest import formdata
         >>> request = formdata.build_upload_file_request(files=files, data=data, content=content, **kwargs)

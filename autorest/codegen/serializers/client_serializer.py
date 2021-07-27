@@ -121,7 +121,7 @@ class ClientSerializer:
         retval.append(
             f"We have helper methods to create requests specific to this service in `{self.code_model.namespace}.rest`."
         )
-        retval.append("Use these helper methods to create the request you pass to this method. See our example below:")
+        retval.append("Use these helper methods to create the request you pass to this method.")
         retval.append("")
         retval.extend(self._request_builder_example(async_mode))
         retval.append("")
