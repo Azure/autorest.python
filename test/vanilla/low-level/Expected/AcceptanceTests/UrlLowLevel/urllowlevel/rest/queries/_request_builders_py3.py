@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, List, Optional, Union
+from typing import Any, List, Optional
 
 from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
@@ -561,16 +561,14 @@ def build_string_null_request(*, string_query: Optional[str] = None, **kwargs: A
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_enum_valid_request(
-    *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
-) -> HttpRequest:
+def build_enum_valid_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get using uri with query parameter 'green color'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
     :keyword enum_query: 'green color' enum value.
-    :paramtype enum_query: str or ~urllowlevel.models.UriColor
+    :paramtype enum_query: str. Possible values are: "red color", "green color", and "blue color".
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -593,16 +591,14 @@ def build_enum_valid_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_enum_null_request(
-    *, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs: Any
-) -> HttpRequest:
+def build_enum_null_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get null (no query parameter in url).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
     :keyword enum_query: null string value.
-    :paramtype enum_query: str or ~urllowlevel.models.UriColor
+    :paramtype enum_query: str. Possible values are: "red color", "green color", and "blue color".
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

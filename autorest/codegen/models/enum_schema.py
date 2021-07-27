@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Type
 from .base_schema import BaseSchema
 from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
 from .imports import FileImport, ImportType, TypingSection
@@ -179,3 +179,46 @@ class EnumSchema(BaseSchema):
         # if we import my name
         imports.add_from_import("." + self.enum_file_name, "*", ImportType.LOCAL)
         return imports
+
+class HiddenModelEnumSchema(EnumSchema):
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.enum_type.imports())
+        return file_import
+
+    @property
+    def type_annotation(self) -> str:
+        """The python type used for type annotation
+
+        :return: The type annotation for this schema
+        :rtype: str
+        """
+        return self.enum_type.type_annotation
+
+    @property
+    def operation_type_annotation(self) -> str:
+        """The python type used for type annotation
+
+        :return: The type annotation for this schema
+        :rtype: str
+        """
+        return self.enum_type.type_annotation
+
+    @property
+    def docstring_text(self) -> str:
+        return "str"
+
+    @property
+    def docstring_type(self) -> str:
+        """The python type used for RST syntax input and type annotation.
+        """
+        possible_values = [self.get_declaration(v.value) for v in self.values]
+        return "str. Possible values are: {}".format(
+            ", ".join(possible_values[: len(possible_values) - 1]) + f", and {possible_values[-1]}."
+        )
+
+def get_enum_schema(code_model) -> Type[EnumSchema]:
+    if code_model.options["show_models"]:
+        return EnumSchema
+    return HiddenModelEnumSchema

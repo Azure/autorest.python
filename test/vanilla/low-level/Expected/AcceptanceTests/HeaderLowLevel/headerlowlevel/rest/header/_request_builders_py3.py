@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Optional, Union
+from typing import Any, Optional
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
@@ -736,9 +736,7 @@ def build_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_param_enum_request(
-    *, scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs: Any
-) -> HttpRequest:
+def build_param_enum_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
     "null", "value": null.
 
@@ -749,7 +747,7 @@ def build_param_enum_request(
      "empty".
     :paramtype scenario: str
     :keyword value: Send a post request with header values 'GREY'.
-    :paramtype value: str or ~headerlowlevel.models.GreyscaleColors
+    :paramtype value: str. Possible values are: "White", "black", and "GREY".
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
