@@ -109,7 +109,7 @@ class EnumSchema(BaseSchema):
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        return f"str or ~{self.namespace}.models.{self.name}"
+        return f"{self.enum_type.type_annotation} or ~{self.namespace}.models.{self.name}"
 
     @staticmethod
     def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
@@ -207,16 +207,20 @@ class HiddenModelEnumSchema(EnumSchema):
 
     @property
     def docstring_text(self) -> str:
-        return "str"
+        return f"{self.enum_type.type_annotation}. {self.extra_description_information}"
+
+    @property
+    def extra_description_information(self):
+        possible_values = [self.get_declaration(v.value) for v in self.values]
+        return "Possible values are: {}.".format(
+            ", ".join(possible_values[: len(possible_values) - 1]) + f", and {possible_values[-1]}"
+        )
 
     @property
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        possible_values = [self.get_declaration(v.value) for v in self.values]
-        return "str. Possible values are: {}".format(
-            ", ".join(possible_values[: len(possible_values) - 1]) + f", and {possible_values[-1]}."
-        )
+        return self.enum_type.type_annotation
 
 def get_enum_schema(code_model) -> Type[EnumSchema]:
     if code_model.options["show_models"]:
