@@ -244,7 +244,7 @@ class CodeGenerator(Plugin):
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
-            "show_models": self._autorestapi.get_boolean_value("show-models", not low_level_client),
+            "show_models": self._autorestapi.get_value("show-models"),
             "builders_visibility": self._autorestapi.get_value("builders-visibility"),
             "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
             "show_send_request": self._autorestapi.get_boolean_value("show-send-request", low_level_client),
@@ -252,6 +252,15 @@ class CodeGenerator(Plugin):
                 "only-path-and-body-params-positional", low_level_client
             ),
         }
+        if options["show_models"] is None:
+            if low_level_client:
+                options["show_models"] = False
+            else:
+                options["show_models"] = "msrest"
+        else:
+            options["show_models"] = options["show_models"].lower()
+            if options["show_models"] == "false":
+                options["show_models"] = False
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
