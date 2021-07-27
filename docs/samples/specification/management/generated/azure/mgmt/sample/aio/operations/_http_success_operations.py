@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ..._rest import http_success as rest_http_success
+from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -55,7 +55,7 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_http_success.build_head200_request(
+        request = build_head200_request(
             template_url=self.head200.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -91,7 +91,7 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_http_success.build_head204_request(
+        request = build_head204_request(
             template_url=self.head204.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -127,7 +127,7 @@ class HttpSuccessOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_http_success.build_head404_request(
+        request = build_head404_request(
             template_url=self.head404.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

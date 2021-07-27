@@ -20,8 +20,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
-from .. import _rest as rest, models as _models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +31,65 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_report_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/report')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if qualifier is not None:
+        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_optional_report_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/report/optional')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if qualifier is not None:
+        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_report(
@@ -54,7 +113,7 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_report_request(
+        request = build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
         )._to_pipeline_transport_request()
@@ -99,7 +158,7 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_optional_report_request(
+        request = build_get_optional_report_request(
             qualifier=qualifier,
             template_url=self.get_optional_report.metadata["url"],
         )._to_pipeline_transport_request()

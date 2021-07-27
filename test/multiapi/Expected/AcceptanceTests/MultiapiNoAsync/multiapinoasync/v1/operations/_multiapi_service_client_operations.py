@@ -17,8 +17,9 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
+from msrest import Serializer
 
-from .. import _rest as rest, models as _models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -27,6 +28,124 @@ if TYPE_CHECKING:
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
+
+def build_test_one_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    id = kwargs.pop('id')  # type: int
+    message = kwargs.pop('message', None)  # type: Optional[str]
+
+    api_version = "1.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['id'] = _SERIALIZER.query("id", id, 'int')
+    if message is not None:
+        query_parameters['message'] = _SERIALIZER.query("message", message, 'str')
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_test_lro_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/lro')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_test_lro_and_paging_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/lroAndPaging')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_test_different_calls_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+
+    api_version = "1.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class MultiapiServiceClientOperationsMixin(object):
 
     def test_one(
@@ -53,7 +172,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_one_request(
+        request = build_test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -92,7 +211,7 @@ class MultiapiServiceClientOperationsMixin(object):
         else:
             json = None
 
-        request = rest.build_test_lro_request_initial(
+        request = build_test_lro_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._test_lro_initial.metadata['url'],
@@ -199,7 +318,7 @@ class MultiapiServiceClientOperationsMixin(object):
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
 
-        request = rest.build_test_lro_and_paging_request_initial(
+        request = build_test_lro_and_paging_request_initial(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -265,7 +384,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
 
-                request = rest.build_test_lro_and_paging_request_initial(
+                request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -280,7 +399,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
 
-                request = rest.build_test_lro_and_paging_request_initial(
+                request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -373,7 +492,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_different_calls_request(
+        request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
         )._to_pipeline_transport_request()

@@ -18,11 +18,12 @@ from azure.core.exceptions import (
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import implicit as rest_implicit
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,7 +32,214 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_required_path_request(
+    path_parameter,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/implicit/required/path/{pathParameter}')
+    path_format_arguments = {
+        'pathParameter': _SERIALIZER.url("path_parameter", path_parameter, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_optional_query_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    query_parameter = kwargs.pop('query_parameter', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/query')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if query_parameter is not None:
+        query_parameters['queryParameter'] = _SERIALIZER.query("query_parameter", query_parameter, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_optional_header_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    query_parameter = kwargs.pop('query_parameter', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/header')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if query_parameter is not None:
+        header_parameters['queryParameter'] = _SERIALIZER.header("query_parameter", query_parameter, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_optional_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/body')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_optional_binary_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/implicit/optional/binary-body')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_required_global_path_request(
+    required_global_path,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/global/required/path/{required-global-path}')
+    path_format_arguments = {
+        'required-global-path': _SERIALIZER.url("required_global_path", required_global_path, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_required_global_query_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    required_global_query = kwargs.pop('required_global_query')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/global/required/query')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['required-global-query'] = _SERIALIZER.query("required_global_query", required_global_query, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_optional_global_query_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    optional_global_query = kwargs.pop('optional_global_query', None)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reqopt/global/optional/query')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if optional_global_query is not None:
+        query_parameters['optional-global-query'] = _SERIALIZER.query("optional_global_query", optional_global_query, 'int')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class ImplicitOperations(object):
     """ImplicitOperations operations.
 
@@ -74,7 +282,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_implicit.build_get_required_path_request(
+        request = build_get_required_path_request(
             path_parameter=path_parameter,
             template_url=self.get_required_path.metadata["url"],
         )._to_pipeline_transport_request()
@@ -113,7 +321,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_implicit.build_put_optional_query_request(
+        request = build_put_optional_query_request(
             query_parameter=query_parameter,
             template_url=self.put_optional_query.metadata["url"],
         )._to_pipeline_transport_request()
@@ -152,7 +360,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_implicit.build_put_optional_header_request(
+        request = build_put_optional_header_request(
             query_parameter=query_parameter,
             template_url=self.put_optional_header.metadata["url"],
         )._to_pipeline_transport_request()
@@ -197,7 +405,7 @@ class ImplicitOperations(object):
         else:
             json = None
 
-        request = rest_implicit.build_put_optional_body_request(
+        request = build_put_optional_body_request(
             content_type=content_type,
             json=json,
             template_url=self.put_optional_body.metadata["url"],
@@ -240,7 +448,7 @@ class ImplicitOperations(object):
 
         content = body_parameter
 
-        request = rest_implicit.build_put_optional_binary_body_request(
+        request = build_put_optional_binary_body_request(
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
@@ -276,7 +484,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_implicit.build_get_required_global_path_request(
+        request = build_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
             template_url=self.get_required_global_path.metadata["url"],
         )._to_pipeline_transport_request()
@@ -311,7 +519,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_implicit.build_get_required_global_query_request(
+        request = build_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
             template_url=self.get_required_global_query.metadata["url"],
         )._to_pipeline_transport_request()
@@ -346,7 +554,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_implicit.build_get_optional_global_query_request(
+        request = build_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
             template_url=self.get_optional_global_query.metadata["url"],
         )._to_pipeline_transport_request()

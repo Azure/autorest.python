@@ -22,7 +22,13 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import parameter_grouping as rest_parameter_grouping
+from ...operations._parameter_grouping_operations import (
+    build_post_multi_param_groups_request,
+    build_post_optional_request,
+    build_post_required_request,
+    build_post_reserved_words_request,
+    build_post_shared_parameter_group_object_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -82,7 +88,7 @@ class ParameterGroupingOperations:
             _body = parameter_grouping_post_required_parameters.body
         json = self._serialize.body(_body, "int")
 
-        request = rest_parameter_grouping.build_post_required_request(
+        request = build_post_required_request(
             path=_path,
             content_type=content_type,
             custom_header=_custom_header,
@@ -132,7 +138,7 @@ class ParameterGroupingOperations:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
 
-        request = rest_parameter_grouping.build_post_optional_request(
+        request = build_post_optional_request(
             custom_header=_custom_header,
             query=_query,
             template_url=self.post_optional.metadata["url"],
@@ -153,6 +159,55 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})
 
     post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
+
+    @distributed_trace_async
+    async def post_reserved_words(
+        self,
+        parameter_grouping_post_reserved_words_parameters: Optional[
+            "_models.ParameterGroupingPostReservedWordsParameters"
+        ] = None,
+        **kwargs: Any
+    ) -> None:
+        """Post a grouped parameters with reserved words.
+
+        :param parameter_grouping_post_reserved_words_parameters: Parameter group.
+        :type parameter_grouping_post_reserved_words_parameters:
+         ~azureparametergrouping.models.ParameterGroupingPostReservedWordsParameters
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        _from_parameter = None
+        _accept_parameter = None
+        if parameter_grouping_post_reserved_words_parameters is not None:
+            _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
+            _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
+
+        request = build_post_reserved_words_request(
+            from_parameter=_from_parameter,
+            accept_parameter=_accept_parameter,
+            template_url=self.post_reserved_words.metadata["url"],
+        )._to_pipeline_transport_request()
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}  # type: ignore
 
     @distributed_trace_async
     async def post_multi_param_groups(
@@ -189,7 +244,7 @@ class ParameterGroupingOperations:
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
-        request = rest_parameter_grouping.build_post_multi_param_groups_request(
+        request = build_post_multi_param_groups_request(
             header_one=_header_one,
             query_one=_query_one,
             header_two=_header_two,
@@ -235,7 +290,7 @@ class ParameterGroupingOperations:
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
 
-        request = rest_parameter_grouping.build_post_shared_parameter_group_object_request(
+        request = build_post_shared_parameter_group_object_request(
             header_one=_header_one,
             query_one=_query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],

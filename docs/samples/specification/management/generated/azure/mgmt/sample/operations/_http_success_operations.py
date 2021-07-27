@@ -14,8 +14,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
-
-from .._rest import http_success as rest_http_success
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -24,6 +23,51 @@ if TYPE_CHECKING:
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
+
+def build_head200_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", '/http/success/200')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
+
+
+def build_head204_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", '/http/success/204')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
+
+
+def build_head404_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", '/http/success/404')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        **kwargs
+    )
+
+# fmt: on
 class HttpSuccessOperations(object):
     """HttpSuccessOperations operations.
 
@@ -60,7 +104,7 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_http_success.build_head200_request(
+        request = build_head200_request(
             template_url=self.head200.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -97,7 +141,7 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_http_success.build_head204_request(
+        request = build_head204_request(
             template_url=self.head204.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -134,7 +178,7 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_http_success.build_head404_request(
+        request = build_head404_request(
             template_url=self.head404.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

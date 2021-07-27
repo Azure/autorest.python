@@ -22,7 +22,32 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import explicit as rest_explicit
+from ...operations._explicit_operations import (
+    build_post_optional_array_header_request,
+    build_post_optional_array_parameter_request,
+    build_post_optional_array_property_request,
+    build_post_optional_class_parameter_request,
+    build_post_optional_class_property_request,
+    build_post_optional_integer_header_request,
+    build_post_optional_integer_parameter_request,
+    build_post_optional_integer_property_request,
+    build_post_optional_string_header_request,
+    build_post_optional_string_parameter_request,
+    build_post_optional_string_property_request,
+    build_post_required_array_header_request,
+    build_post_required_array_parameter_request,
+    build_post_required_array_property_request,
+    build_post_required_class_parameter_request,
+    build_post_required_class_property_request,
+    build_post_required_integer_header_request,
+    build_post_required_integer_parameter_request,
+    build_post_required_integer_property_request,
+    build_post_required_string_header_request,
+    build_post_required_string_parameter_request,
+    build_post_required_string_property_request,
+    build_put_optional_binary_body_request,
+    build_put_required_binary_body_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +93,7 @@ class ExplicitOperations:
 
         content = body_parameter
 
-        request = rest_explicit.build_put_optional_binary_body_request(
+        request = build_put_optional_binary_body_request(
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
@@ -108,7 +133,7 @@ class ExplicitOperations:
 
         content = body_parameter
 
-        request = rest_explicit.build_put_required_binary_body_request(
+        request = build_put_required_binary_body_request(
             content_type=content_type,
             content=content,
             template_url=self.put_required_binary_body.metadata["url"],
@@ -149,7 +174,7 @@ class ExplicitOperations:
 
         json = self._serialize.body(body_parameter, "int")
 
-        request = rest_explicit.build_post_required_integer_parameter_request(
+        request = build_post_required_integer_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
@@ -192,7 +217,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_integer_parameter_request(
+        request = build_post_optional_integer_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
@@ -234,7 +259,7 @@ class ExplicitOperations:
         _body_parameter = _models.IntWrapper(value=value)
         json = self._serialize.body(_body_parameter, "IntWrapper")
 
-        request = rest_explicit.build_post_required_integer_property_request(
+        request = build_post_required_integer_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_property.metadata["url"],
@@ -278,7 +303,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_integer_property_request(
+        request = build_post_optional_integer_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
@@ -316,7 +341,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_explicit.build_post_required_integer_header_request(
+        request = build_post_required_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_integer_header.metadata["url"],
         )._to_pipeline_transport_request()
@@ -352,7 +377,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_explicit.build_post_optional_integer_header_request(
+        request = build_post_optional_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_integer_header.metadata["url"],
         )._to_pipeline_transport_request()
@@ -392,7 +417,7 @@ class ExplicitOperations:
 
         json = self._serialize.body(body_parameter, "str")
 
-        request = rest_explicit.build_post_required_string_parameter_request(
+        request = build_post_required_string_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
@@ -435,7 +460,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_string_parameter_request(
+        request = build_post_optional_string_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
@@ -477,7 +502,7 @@ class ExplicitOperations:
         _body_parameter = _models.StringWrapper(value=value)
         json = self._serialize.body(_body_parameter, "StringWrapper")
 
-        request = rest_explicit.build_post_required_string_property_request(
+        request = build_post_required_string_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_property.metadata["url"],
@@ -521,7 +546,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_string_property_request(
+        request = build_post_optional_string_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_property.metadata["url"],
@@ -559,7 +584,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_explicit.build_post_required_string_header_request(
+        request = build_post_required_string_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_string_header.metadata["url"],
         )._to_pipeline_transport_request()
@@ -595,7 +620,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_explicit.build_post_optional_string_header_request(
+        request = build_post_optional_string_header_request(
             body_parameter=body_parameter,
             template_url=self.post_optional_string_header.metadata["url"],
         )._to_pipeline_transport_request()
@@ -635,7 +660,7 @@ class ExplicitOperations:
 
         json = self._serialize.body(body_parameter, "Product")
 
-        request = rest_explicit.build_post_required_class_parameter_request(
+        request = build_post_required_class_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
@@ -680,7 +705,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_class_parameter_request(
+        request = build_post_optional_class_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
@@ -722,7 +747,7 @@ class ExplicitOperations:
         _body_parameter = _models.ClassWrapper(value=value)
         json = self._serialize.body(_body_parameter, "ClassWrapper")
 
-        request = rest_explicit.build_post_required_class_property_request(
+        request = build_post_required_class_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_property.metadata["url"],
@@ -766,7 +791,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_class_property_request(
+        request = build_post_optional_class_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_property.metadata["url"],
@@ -807,7 +832,7 @@ class ExplicitOperations:
 
         json = self._serialize.body(body_parameter, "[str]")
 
-        request = rest_explicit.build_post_required_array_parameter_request(
+        request = build_post_required_array_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
@@ -850,7 +875,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_array_parameter_request(
+        request = build_post_optional_array_parameter_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
@@ -892,7 +917,7 @@ class ExplicitOperations:
         _body_parameter = _models.ArrayWrapper(value=value)
         json = self._serialize.body(_body_parameter, "ArrayWrapper")
 
-        request = rest_explicit.build_post_required_array_property_request(
+        request = build_post_required_array_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_property.metadata["url"],
@@ -936,7 +961,7 @@ class ExplicitOperations:
         else:
             json = None
 
-        request = rest_explicit.build_post_optional_array_property_request(
+        request = build_post_optional_array_property_request(
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_property.metadata["url"],
@@ -974,7 +999,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_explicit.build_post_required_array_header_request(
+        request = build_post_required_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_array_header.metadata["url"],
         )._to_pipeline_transport_request()
@@ -1010,7 +1035,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_explicit.build_post_optional_array_header_request(
+        request = build_post_optional_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_array_header.metadata["url"],
         )._to_pipeline_transport_request()

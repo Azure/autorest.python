@@ -62,11 +62,6 @@ class AutoRestRequiredOptionalTestService:
         We have helper methods to create requests specific to this service in `requiredoptional.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from requiredoptional._rest import implicit
-        >>> request = implicit.build_get_required_path_request(path_parameter, **kwargs)
-        <HttpRequest [GET], url: '/reqopt/implicit/required/path/{pathParameter}'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

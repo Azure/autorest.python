@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import polymorphicrecursive as rest_polymorphicrecursive
+from ...operations._polymorphicrecursive_operations import build_get_valid_request, build_put_valid_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -63,7 +63,7 @@ class PolymorphicrecursiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_polymorphicrecursive.build_get_valid_request(
+        request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -157,7 +157,7 @@ class PolymorphicrecursiveOperations:
 
         json = self._serialize.body(complex_body, "Fish")
 
-        request = rest_polymorphicrecursive.build_put_valid_request(
+        request = build_put_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],

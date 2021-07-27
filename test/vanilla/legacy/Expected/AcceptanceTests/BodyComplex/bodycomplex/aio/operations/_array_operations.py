@@ -22,7 +22,13 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import array as rest_array
+from ...operations._array_operations import (
+    build_get_empty_request,
+    build_get_not_provided_request,
+    build_get_valid_request,
+    build_put_empty_request,
+    build_put_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -63,7 +69,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_array.build_get_valid_request(
+        request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -106,7 +112,7 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         json = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = rest_array.build_put_valid_request(
+        request = build_put_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],
@@ -141,7 +147,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_array.build_get_empty_request(
+        request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -184,7 +190,7 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         json = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = rest_array.build_put_empty_request(
+        request = build_put_empty_request(
             content_type=content_type,
             json=json,
             template_url=self.put_empty.metadata["url"],
@@ -219,7 +225,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_array.build_get_not_provided_request(
+        request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

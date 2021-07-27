@@ -62,11 +62,6 @@ class AutoRestPagingTestService(object):
         We have helper methods to create requests specific to this service in `paging.rest`.
         Use these helper methods to create the request you pass to this method. See our example below:
 
-        >>> from paging._rest import paging
-        >>> request = paging.build_get_no_item_name_pages_request(**kwargs)
-        <HttpRequest [GET], url: '/paging/noitemname'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

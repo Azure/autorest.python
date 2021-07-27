@@ -8,6 +8,15 @@
 {{ "    " if not async_mode }}T = TypeVar('T')
 {{ "    " if not async_mode }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
 
+{% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
+_SERIALIZER = Serializer()
+# fmt: off
+    {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", operation_group.name) %}
+
+    {% include "request_builder.py.jinja2" %}
+    {% endfor %}
+# fmt: on
+{% endif %}
 class {{ operation_group.class_name }}{{ object_base_class }}:
     """{{ operation_group.class_name }} {{ operations_description }}.
 
