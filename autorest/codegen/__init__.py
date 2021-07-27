@@ -259,8 +259,8 @@ class CodeGenerator(Plugin):
                 options["show_models"] = "msrest"
         else:
             options["show_models"] = options["show_models"].lower()
-        if options["show_models"] == "false":
-            options["show_models"] = False
+            if options["show_models"] == "false":
+                options["show_models"] = False
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
