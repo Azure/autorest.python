@@ -42,7 +42,7 @@ class AutoRestRFC1123DateTimeTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodydatetimerfc1123lowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from bodydatetimerfc1123lowlevel.rest import datetimerfc1123
         >>> request = datetimerfc1123.build_get_null_request(**kwargs)

@@ -31,6 +31,10 @@ class BaseSchema(BaseModel, ABC):
         return cls(namespace=namespace, yaml_data=yaml_data)
 
     @property
+    def extra_description_information(self) -> str:
+        return ""
+
+    @property
     def has_xml_serialization_ctxt(self) -> bool:
         return bool(self.xml_metadata)
 

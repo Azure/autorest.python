@@ -14,7 +14,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List, Optional, Union
+    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
 

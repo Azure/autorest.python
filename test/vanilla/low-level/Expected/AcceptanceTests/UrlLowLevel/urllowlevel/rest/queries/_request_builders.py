@@ -14,7 +14,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List, Optional, Union
+    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
 
@@ -756,15 +756,16 @@ def build_enum_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword enum_query: 'green color' enum value.
-    :paramtype enum_query: str or ~urllowlevel.models.UriColor
+    :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
+     and "blue color".
+    :paramtype enum_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    enum_query = kwargs.pop('enum_query', None)  # type: Optional[Union[str, "_models.UriColor"]]
+    enum_query = kwargs.pop('enum_query', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
@@ -797,15 +798,16 @@ def build_enum_null_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword enum_query: null string value.
-    :paramtype enum_query: str or ~urllowlevel.models.UriColor
+    :keyword enum_query: null string value. Possible values are: "red color", "green color", and
+     "blue color".
+    :paramtype enum_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    enum_query = kwargs.pop('enum_query', None)  # type: Optional[Union[str, "_models.UriColor"]]
+    enum_query = kwargs.pop('enum_query', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL

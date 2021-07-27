@@ -3,11 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, Type
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
@@ -212,3 +212,35 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         if self.is_exception:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
+
+class HiddenModelObjectSchema(ObjectSchema):
+
+    @property
+    def serialization_type(self) -> str:
+        return "object"
+
+    @property
+    def type_annotation(self) -> str:
+        return "Any"
+
+    @property
+    def operation_type_annotation(self) -> str:
+        return "Any"
+
+    @property
+    def docstring_type(self) -> str:
+        return "Any"
+
+    @property
+    def docstring_text(self) -> str:
+        return "JSON object"
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        return file_import
+
+def get_object_schema(code_model) -> Type[ObjectSchema]:
+    if code_model.options["show_models"]:
+        return ObjectSchema
+    return HiddenModelObjectSchema

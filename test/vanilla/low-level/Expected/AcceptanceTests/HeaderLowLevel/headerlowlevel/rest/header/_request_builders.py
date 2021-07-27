@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, Union
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -1017,8 +1017,9 @@ def build_param_enum_request(
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
     :paramtype scenario: str
-    :keyword value: Send a post request with header values 'GREY'.
-    :paramtype value: str or ~headerlowlevel.models.GreyscaleColors
+    :keyword value: Send a post request with header values 'GREY'. Possible values are: "White",
+     "black", and "GREY".
+    :paramtype value: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1026,7 +1027,7 @@ def build_param_enum_request(
     """
 
     scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value', None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
+    value = kwargs.pop('value', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
