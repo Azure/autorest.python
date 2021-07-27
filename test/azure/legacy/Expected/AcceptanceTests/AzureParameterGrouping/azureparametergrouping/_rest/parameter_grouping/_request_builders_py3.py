@@ -110,42 +110,6 @@ def build_post_optional_request(
     return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_post_reserved_words_request(
-    *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    """Post a grouped parameters with reserved words.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass.
-    :paramtype from_parameter: str
-    :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass.
-    :paramtype accept_parameter: str
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    accept = "application/json"
-    # Construct URL
-    url = kwargs.pop("template_url", "/parameterGrouping/postReservedWords")
-
-    # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    if from_parameter is not None:
-        query_parameters["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
-    if accept_parameter is not None:
-        query_parameters["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
-
-    # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
-
-
 def build_post_multi_param_groups_request(
     *,
     header_one: Optional[str] = None,

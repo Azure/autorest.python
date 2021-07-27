@@ -6,28 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum, EnumMeta
+from enum import Enum
 from six import with_metaclass
+from azure.core import CaseInsensitiveEnumMeta
 
 
-class _CaseInsensitiveEnumMeta(EnumMeta):
-    def __getitem__(self, name):
-        return super().__getitem__(name.upper())
-
-    def __getattr__(cls, name):
-        """Return the enum member matching `name`
-        We use __getattr__ instead of descriptors or inserting into the enum
-        class' __dict__ in order to support `name` and `value` being both
-        properties for enum members (which live in the class' __dict__) and
-        enum members themselves.
-        """
-        try:
-            return cls._member_map_[name.upper()]
-        except KeyError:
-            raise AttributeError(name)
-
-
-class AccountStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class AccountStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the status indicating whether the primary location of the storage account is available or
     unavailable.
     """
@@ -36,7 +20,7 @@ class AccountStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     UNAVAILABLE = "Unavailable"
 
 
-class AccountType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class AccountType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     """Gets or sets the account type."""
 
     STANDARD_LRS = "Standard_LRS"
@@ -46,13 +30,13 @@ class AccountType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     PREMIUM_LRS = "Premium_LRS"
 
 
-class KeyName(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class KeyName(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     KEY1 = "key1"
     KEY2 = "key2"
 
 
-class ProvisioningState(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ProvisioningState(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the status of the storage account at the time the operation was called."""
 
     CREATING = "Creating"
@@ -60,7 +44,7 @@ class ProvisioningState(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     SUCCEEDED = "Succeeded"
 
 
-class Reason(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class Reason(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the reason that a storage account name could not be used. The Reason element is only
     returned if NameAvailable is false.
     """
@@ -69,7 +53,7 @@ class Reason(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     ALREADY_EXISTS = "AlreadyExists"
 
 
-class UsageUnit(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class UsageUnit(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the unit of measurement."""
 
     COUNT = "Count"

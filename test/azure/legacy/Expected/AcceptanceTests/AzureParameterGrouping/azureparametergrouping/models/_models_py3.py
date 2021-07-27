@@ -127,23 +127,3 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         self.query = query
         self.path = path
         self.body = body
-
-
-class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
-    """Parameter group.
-
-    :param from_property: 'from' is a reserved word. Pass in 'bob' to pass.
-    :type from_property: str
-    :param accept: 'accept' is a reserved word. Pass in 'yes' to pass.
-    :type accept: str
-    """
-
-    _attribute_map = {
-        "from_property": {"key": "from", "type": "str"},
-        "accept": {"key": "accept", "type": "str"},
-    }
-
-    def __init__(self, *, from_property: Optional[str] = None, accept: Optional[str] = None, **kwargs):
-        super(ParameterGroupingPostReservedWordsParameters, self).__init__(**kwargs)
-        self.from_property = from_property
-        self.accept = accept
