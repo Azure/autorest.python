@@ -67,8 +67,6 @@ class JinjaSerializer:
                     code_model, env=env, namespace_path=namespace_path
                 )
 
-
-
         if code_model.options["show_models"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
