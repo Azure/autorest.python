@@ -81,8 +81,8 @@
         "credential_scopes": null,
         "credential_call_sync": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
         "credential_call_async": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
-        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
-        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",
