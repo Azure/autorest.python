@@ -18,8 +18,9 @@ def config_imports(code_model, global_parameters: ParameterList, async_mode: boo
     for gp in global_parameters:
         file_import.merge(gp.imports())
     if code_model.options["azure_arm"]:
+        policy = "AsyncARMChallengeAuthenticationPolicy" if async_mode else "ARMChallengeAuthenticationPolicy"
         file_import.add_from_import("azure.mgmt.core.policies",
-        "ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy", ImportType.AZURECORE)
+        f"ARMHttpLoggingPolicy, {policy}", ImportType.AZURECORE)
     return file_import
 
 
