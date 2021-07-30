@@ -160,3 +160,12 @@ class TestFormData(object):
             for data in response:
                 result.write(data)
             assert result.getvalue().decode() == "Test file"
+
+    def test_operation_groups(self):
+        from bodyformdata.operations import FormdataOperations
+
+        with pytest.raises(ImportError):
+            from bodyformdata.operations import _formdata_operations_py3
+
+        from bodyformdata.operations._formdata_operations import FormdataOperations as FormdataOperationsPy2
+        assert FormdataOperations == FormdataOperationsPy2

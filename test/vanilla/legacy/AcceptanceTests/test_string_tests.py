@@ -149,3 +149,12 @@ class TestString(object):
         else:
             from bodystring.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodystring.operations import EnumOperations
+
+        with pytest.raises(ImportError):
+            from bodystring.operations import _enum_operations_py3
+
+        from bodystring.operations._enum_operations import EnumOperations as EnumOperationsPy2
+        assert EnumOperations == EnumOperationsPy2

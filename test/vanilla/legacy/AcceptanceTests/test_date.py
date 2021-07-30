@@ -81,3 +81,12 @@ class TestDate(object):
         else:
             from bodydate.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodydate.operations import DateOperations
+
+        with pytest.raises(ImportError):
+            from bodydate.operations import _date_operations_py3
+
+        from bodydate.operations._date_operations import DateOperations as DateOperationsPy2
+        assert DateOperations == DateOperationsPy2

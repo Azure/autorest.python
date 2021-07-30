@@ -290,3 +290,12 @@ class TestArray(object):
         else:
             from bodyarray.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodyarray.operations import ArrayOperations
+
+        with pytest.raises(ImportError):
+            from bodyarray.operations import _array_operations_py3
+            
+        from bodyarray.operations._array_operations import ArrayOperations as ArrayOperationsPy2
+        assert ArrayOperations == ArrayOperationsPy2

@@ -478,3 +478,12 @@ class TestLro:
         else:
             from lro.models._models import OperationResult as OperationResultPy2
             assert OperationResult == OperationResultPy2
+
+    def test_operation_groups(self):
+        from lro.operations import LRORetrysOperations
+
+        with pytest.raises(ImportError):
+            from lro.operations import _lro_retrys_operations_py3
+
+        from lro.operations._lro_retrys_operations import LRORetrysOperations as LRORetrysOperationsPy2
+        assert LRORetrysOperations == LRORetrysOperationsPy2

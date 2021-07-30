@@ -82,3 +82,12 @@ class TestMultipleInheritance(object):
         else:
             from multipleinheritance.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from multipleinheritance.operations import MultipleInheritanceServiceClientOperationsMixin
+
+        with pytest.raises(ImportError):
+            from multipleinheritance.operations import _multiple_inheritance_service_client_operations_py3
+
+        from multipleinheritance.operations._multiple_inheritance_service_client_operations import MultipleInheritanceServiceClientOperationsMixin as MultipleInheritanceServiceClientOperationsMixinPy2
+        assert MultipleInheritanceServiceClientOperationsMixin == MultipleInheritanceServiceClientOperationsMixinPy2

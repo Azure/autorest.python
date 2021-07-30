@@ -90,3 +90,12 @@ class TestInteger(object):
         else:
             from bodyinteger.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodyinteger.operations import IntOperations
+
+        with pytest.raises(ImportError):
+            from bodyinteger.operations import _int_operations_py3
+
+        from bodyinteger.operations._int_operations import IntOperations as IntOperationsPy2
+        assert IntOperations == IntOperationsPy2
