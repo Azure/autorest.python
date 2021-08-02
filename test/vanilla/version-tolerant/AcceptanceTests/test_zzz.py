@@ -42,6 +42,7 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+            "verifyIncorrectErrorParsing": 1,  # not deserializing errors yet in version tolerant
         }
 
         print("Coverage:")

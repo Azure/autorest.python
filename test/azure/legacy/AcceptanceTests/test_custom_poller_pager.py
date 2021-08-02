@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import sys
 from custompollerpager import AutoRestPagingTestService
 from custompollerpagerdefinitions import CustomPager, CustomPoller
 
@@ -47,3 +48,12 @@ class TestPaging(object):
     def test_custom_poller(self, client):
         poller = client.paging.begin_get_multiple_pages_lro()
         assert isinstance(poller, CustomPoller)
+
+    def test_operation_groups(self):
+        from custompollerpager.operations import PagingOperations
+
+        with pytest.raises(ImportError):
+            from custompollerpager.operations import _paging_operations_py3
+
+        from custompollerpager.operations._paging_operations import PagingOperations as PagingOperationsPy2
+        assert PagingOperations == PagingOperationsPy2

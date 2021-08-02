@@ -54,13 +54,8 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `objecttype.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from objecttype._rest import build_get_request
-        >>> request = build_get_request(**kwargs)
-        <HttpRequest [GET], url: '/objectType/get'>
-        >>> response = client._send_request(request)
-        <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

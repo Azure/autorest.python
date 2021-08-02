@@ -21,7 +21,24 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import http_redirects as rest_http_redirects
+from ...operations._http_redirects_operations import (
+    build_delete307_request,
+    build_get300_request,
+    build_get301_request,
+    build_get302_request,
+    build_get307_request,
+    build_head300_request,
+    build_head301_request,
+    build_head302_request,
+    build_head307_request,
+    build_options307_request,
+    build_patch302_request,
+    build_patch307_request,
+    build_post303_request,
+    build_post307_request,
+    build_put301_request,
+    build_put307_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +74,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head300_request(
+        request = build_head300_request(
             template_url=self.head300.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -100,7 +117,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get300_request(
+        request = build_get300_request(
             template_url=self.get300.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -143,7 +160,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head301_request(
+        request = build_head301_request(
             template_url=self.head301.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -178,7 +195,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get301_request(
+        request = build_get301_request(
             template_url=self.get301.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -215,6 +232,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -222,7 +240,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_put301_request(
+        request = build_put301_request(
             content_type=content_type,
             json=json,
             template_url=self.put301.metadata["url"],
@@ -258,7 +276,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head302_request(
+        request = build_head302_request(
             template_url=self.head302.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -293,7 +311,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get302_request(
+        request = build_get302_request(
             template_url=self.get302.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -330,6 +348,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -337,7 +356,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_patch302_request(
+        request = build_patch302_request(
             content_type=content_type,
             json=json,
             template_url=self.patch302.metadata["url"],
@@ -375,6 +394,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -382,7 +402,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_post303_request(
+        request = build_post303_request(
             content_type=content_type,
             json=json,
             template_url=self.post303.metadata["url"],
@@ -419,7 +439,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_head307_request(
+        request = build_head307_request(
             template_url=self.head307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -454,7 +474,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_get307_request(
+        request = build_get307_request(
             template_url=self.get307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -489,7 +509,7 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_redirects.build_options307_request(
+        request = build_options307_request(
             template_url=self.options307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -525,6 +545,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -532,7 +553,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_put307_request(
+        request = build_put307_request(
             content_type=content_type,
             json=json,
             template_url=self.put307.metadata["url"],
@@ -570,6 +591,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -577,7 +599,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_patch307_request(
+        request = build_patch307_request(
             content_type=content_type,
             json=json,
             template_url=self.patch307.metadata["url"],
@@ -615,6 +637,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -622,7 +645,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_post307_request(
+        request = build_post307_request(
             content_type=content_type,
             json=json,
             template_url=self.post307.metadata["url"],
@@ -660,6 +683,7 @@ class HttpRedirectsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -667,7 +691,7 @@ class HttpRedirectsOperations:
         else:
             json = None
 
-        request = rest_http_redirects.build_delete307_request(
+        request = build_delete307_request(
             content_type=content_type,
             json=json,
             template_url=self.delete307.metadata["url"],

@@ -23,7 +23,7 @@ class ClientSerializer:
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         init_signature = self._init_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=async_mode,
+            is_python_3_file=async_mode,
             method_signature=init_signature,
             response_type_annotation="None",
         )
@@ -63,9 +63,9 @@ class ClientSerializer:
             client_models_value = "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
-        if self.code_model.show_models:
+        if self.code_model.options["show_models"]:
             retval.append(f"client_models = {client_models_value}")
-        client_models_str = "client_models" if self.code_model.show_models else ""
+        client_models_str = "client_models" if self.code_model.options["show_models"] else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
         retval.append(f"self._deserialize = Deserializer({client_models_str})")
         if not self.code_model.options["client_side_validation"]:
@@ -91,7 +91,7 @@ class ClientSerializer:
     def send_request_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         send_request_signature = self._send_request_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=async_mode,
+            is_python_3_file=async_mode,
             method_signature=send_request_signature,
             response_type_annotation="Awaitable[AsyncHttpResponse]" if async_mode else "HttpResponse",
         )
@@ -107,13 +107,14 @@ class ClientSerializer:
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name
-        retval.append(f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}")
-        retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
-        retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
-        retval.append(
-            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
-        )
-        retval.append(f"<{http_response}: 200 OK>")
+        if self.code_model.options["builders_visibility"] != "embedded":
+            retval.append(f">>> from {self.code_model.namespace}.rest import {rest_imported}")
+            retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
+            retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
+            retval.append(
+                f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
+            )
+            retval.append(f"<{http_response}: 200 OK>")
         return retval
 
     def send_request_description(self, async_mode: bool) -> List[str]:
@@ -122,7 +123,7 @@ class ClientSerializer:
         retval.append(
             f"We have helper methods to create requests specific to this service in `{self.code_model.namespace}.rest`."
         )
-        retval.append("Use these helper methods to create the request you pass to this method. See our example below:")
+        retval.append("Use these helper methods to create the request you pass to this method.")
         retval.append("")
         retval.extend(self._request_builder_example(async_mode))
         retval.append("")

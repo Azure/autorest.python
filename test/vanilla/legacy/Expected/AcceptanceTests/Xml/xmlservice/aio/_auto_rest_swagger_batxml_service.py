@@ -43,13 +43,8 @@ class AutoRestSwaggerBATXMLService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `xmlservice.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from xmlservice._rest import xml
-        >>> request = xml.build_get_complex_type_ref_no_meta_request(**kwargs)
-        <HttpRequest [GET], url: '/xml/complex-type-ref-no-meta'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

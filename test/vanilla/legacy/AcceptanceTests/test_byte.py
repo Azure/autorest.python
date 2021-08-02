@@ -71,3 +71,12 @@ class TestByte(object):
         else:
             from bodybyte.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodybyte.operations import ByteOperations
+
+        with pytest.raises(ImportError):
+            from bodybyte.operations import _byte_operations_py3
+            
+        from bodybyte.operations._byte_operations import ByteOperations as ByteOperationsPy2
+        assert ByteOperations == ByteOperationsPy2

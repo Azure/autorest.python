@@ -21,7 +21,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import byte as rest_byte
+from ...operations._byte_operations import (
+    build_get_empty_request,
+    build_get_invalid_request,
+    build_get_non_ascii_request,
+    build_get_null_request,
+    build_put_non_ascii_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +63,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_null_request(
+        request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -95,7 +101,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_empty_request(
+        request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -133,7 +139,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_non_ascii_request(
+        request = build_get_non_ascii_request(
             template_url=self.get_non_ascii.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -172,11 +178,12 @@ class ByteOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = byte_body
 
-        request = rest_byte.build_put_non_ascii_request(
+        request = build_put_non_ascii_request(
             content_type=content_type,
             json=json,
             template_url=self.put_non_ascii.metadata["url"],
@@ -209,7 +216,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_byte.build_get_invalid_request(
+        request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

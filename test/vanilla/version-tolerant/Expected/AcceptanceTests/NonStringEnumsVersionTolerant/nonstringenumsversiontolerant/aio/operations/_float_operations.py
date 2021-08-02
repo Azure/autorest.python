@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import float as rest_float
+from ...operations._float_operations import build_get_request, build_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -46,11 +46,12 @@ class FloatOperations:
         self._config = config
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> str:
+    async def put(self, input: Optional[float] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
-        :param input: Input float enum.
-        :type input: str or ~nonstringenumsversiontolerant.models.FloatEnum
+        :param input: Input float enum. Possible values are: "200.4", "403.4", "405.3", "406.2", and
+         "429.1".
+        :type input: float
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -58,6 +59,7 @@ class FloatOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
@@ -65,7 +67,7 @@ class FloatOperations:
         else:
             json = None
 
-        request = rest_float.build_put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -94,18 +96,24 @@ class FloatOperations:
     put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Union[float, "_models.FloatEnum"]:
+    async def get(self, **kwargs: Any) -> float:
         """Get a float enum.
 
-        :return: FloatEnum
-        :rtype: str or ~nonstringenumsversiontolerant.models.FloatEnum
+        :return: float. Possible values are: "200.4", "403.4", "405.3", "406.2", and "429.1".
+        :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "float (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_float.build_get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

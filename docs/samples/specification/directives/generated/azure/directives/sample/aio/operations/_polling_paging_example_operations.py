@@ -17,7 +17,8 @@ from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
-from ... import _rest as rest, models as _models
+from ... import models as _models
+from ...operations._polling_paging_example_operations import build_basic_paging_request, build_basic_polling_request_initial
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -41,7 +42,7 @@ class PollingPagingExampleOperationsMixin:
         else:
             json = None
 
-        request = rest.build_basic_polling_request_initial(
+        request = build_basic_polling_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._basic_polling_initial.metadata['url'],
@@ -149,14 +150,14 @@ class PollingPagingExampleOperationsMixin:
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest.build_basic_paging_request(
+                request = build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest.build_basic_paging_request(
+                request = build_basic_paging_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)

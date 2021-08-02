@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import float as rest_float
+from ...operations._float_operations import build_get_request, build_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -51,7 +51,7 @@ class FloatOperations:
         """Put a float enum.
 
         :param input: Input float enum.
-        :type input: str or ~nonstringenums.models.FloatEnum
+        :type input: float or ~nonstringenums.models.FloatEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -67,7 +67,7 @@ class FloatOperations:
         else:
             json = None
 
-        request = rest_float.build_put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -98,14 +98,14 @@ class FloatOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatEnum, or the result of cls(response)
-        :rtype: str or ~nonstringenums.models.FloatEnum
+        :rtype: float or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_float.build_get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

@@ -14,4 +14,4 @@
     {{ op_tools.serialize(operation_serializer.initial_call(operation)) | indent }}
     {{ op_tools.serialize(operation_serializer.get_long_running_output(operation)) | indent }}
     {{ op_tools.serialize(operation_serializer.return_lro_poller(operation)) | indent }}
-{{ op_tools.serialize(operation_serializer.get_metadata_url(operation)) }}
+{{ operation_serializer.get_metadata_url(operation) }}

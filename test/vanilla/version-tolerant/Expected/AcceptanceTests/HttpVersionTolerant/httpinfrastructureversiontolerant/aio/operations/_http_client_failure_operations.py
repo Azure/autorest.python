@@ -21,7 +21,34 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import http_client_failure as rest_http_client_failure
+from ...operations._http_client_failure_operations import (
+    build_delete400_request,
+    build_delete407_request,
+    build_delete417_request,
+    build_get400_request,
+    build_get402_request,
+    build_get403_request,
+    build_get411_request,
+    build_get412_request,
+    build_get416_request,
+    build_head400_request,
+    build_head401_request,
+    build_head410_request,
+    build_head429_request,
+    build_options400_request,
+    build_options403_request,
+    build_options412_request,
+    build_patch400_request,
+    build_patch405_request,
+    build_patch414_request,
+    build_post400_request,
+    build_post406_request,
+    build_post415_request,
+    build_put400_request,
+    build_put404_request,
+    build_put409_request,
+    build_put413_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +84,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_head400_request(
+        request = build_head400_request(
             template_url=self.head400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -88,7 +115,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_get400_request(
+        request = build_get400_request(
             template_url=self.get400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -119,7 +146,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_options400_request(
+        request = build_options400_request(
             template_url=self.options400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -151,6 +178,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -158,7 +186,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_put400_request(
+        request = build_put400_request(
             content_type=content_type,
             json=json,
             template_url=self.put400.metadata["url"],
@@ -192,6 +220,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -199,7 +228,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_patch400_request(
+        request = build_patch400_request(
             content_type=content_type,
             json=json,
             template_url=self.patch400.metadata["url"],
@@ -233,6 +262,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -240,7 +270,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_post400_request(
+        request = build_post400_request(
             content_type=content_type,
             json=json,
             template_url=self.post400.metadata["url"],
@@ -274,6 +304,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -281,7 +312,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_delete400_request(
+        request = build_delete400_request(
             content_type=content_type,
             json=json,
             template_url=self.delete400.metadata["url"],
@@ -314,7 +345,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_head401_request(
+        request = build_head401_request(
             template_url=self.head401.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -345,7 +376,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_get402_request(
+        request = build_get402_request(
             template_url=self.get402.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -376,7 +407,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_options403_request(
+        request = build_options403_request(
             template_url=self.options403.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -407,7 +438,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_get403_request(
+        request = build_get403_request(
             template_url=self.get403.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -439,6 +470,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -446,7 +478,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_put404_request(
+        request = build_put404_request(
             content_type=content_type,
             json=json,
             template_url=self.put404.metadata["url"],
@@ -480,6 +512,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -487,7 +520,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_patch405_request(
+        request = build_patch405_request(
             content_type=content_type,
             json=json,
             template_url=self.patch405.metadata["url"],
@@ -521,6 +554,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -528,7 +562,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_post406_request(
+        request = build_post406_request(
             content_type=content_type,
             json=json,
             template_url=self.post406.metadata["url"],
@@ -562,6 +596,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -569,7 +604,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_delete407_request(
+        request = build_delete407_request(
             content_type=content_type,
             json=json,
             template_url=self.delete407.metadata["url"],
@@ -603,6 +638,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -610,7 +646,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_put409_request(
+        request = build_put409_request(
             content_type=content_type,
             json=json,
             template_url=self.put409.metadata["url"],
@@ -643,7 +679,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_head410_request(
+        request = build_head410_request(
             template_url=self.head410.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -674,7 +710,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_get411_request(
+        request = build_get411_request(
             template_url=self.get411.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -705,7 +741,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_options412_request(
+        request = build_options412_request(
             template_url=self.options412.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -736,7 +772,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_get412_request(
+        request = build_get412_request(
             template_url=self.get412.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -768,6 +804,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -775,7 +812,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_put413_request(
+        request = build_put413_request(
             content_type=content_type,
             json=json,
             template_url=self.put413.metadata["url"],
@@ -809,6 +846,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -816,7 +854,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_patch414_request(
+        request = build_patch414_request(
             content_type=content_type,
             json=json,
             template_url=self.patch414.metadata["url"],
@@ -850,6 +888,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -857,7 +896,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_post415_request(
+        request = build_post415_request(
             content_type=content_type,
             json=json,
             template_url=self.post415.metadata["url"],
@@ -890,7 +929,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_get416_request(
+        request = build_get416_request(
             template_url=self.get416.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -922,6 +961,7 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -929,7 +969,7 @@ class HttpClientFailureOperations:
         else:
             json = None
 
-        request = rest_http_client_failure.build_delete417_request(
+        request = build_delete417_request(
             content_type=content_type,
             json=json,
             template_url=self.delete417.metadata["url"],
@@ -962,7 +1002,7 @@ class HttpClientFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_client_failure.build_head429_request(
+        request = build_head429_request(
             template_url=self.head429.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

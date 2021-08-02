@@ -42,13 +42,8 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `lrowithparameterizedendpoints.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from lrowithparameterizedendpoints._rest import build_poll_with_parameterized_endpoints_request_initial
-        >>> request = build_poll_with_parameterized_endpoints_request_initial(**kwargs)
-        <HttpRequest [POST], url: '/lroParameterizedEndpoints'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

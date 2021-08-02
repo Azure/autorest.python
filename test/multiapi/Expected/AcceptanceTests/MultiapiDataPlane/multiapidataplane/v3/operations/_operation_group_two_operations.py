@@ -13,9 +13,9 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import operation_group_two as rest_operation_group_two
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -24,6 +24,65 @@ if TYPE_CHECKING:
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
+
+def build_test_four_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[Union[str, "_models.ContentType"]]
+
+    api_version = "3.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_test_five_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "3.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/two/testFiveEndpoint')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class OperationGroupTwoOperations(object):
     """OperationGroupTwoOperations operations.
 
@@ -84,7 +143,7 @@ class OperationGroupTwoOperations(object):
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        request = rest_operation_group_two.build_test_four_request(
+        request = build_test_four_request(
             content_type=content_type,
             json=json,
             content=content,
@@ -125,7 +184,7 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_operation_group_two.build_test_five_request(
+        request = build_test_five_request(
             template_url=self.test_five.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

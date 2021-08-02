@@ -52,7 +52,7 @@ class LROWithParamaterizedEndpoints(object):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `lrowithparameterizedendpointslowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from lrowithparameterizedendpointslowlevel.rest import build_poll_with_parameterized_endpoints_request
         >>> request = build_poll_with_parameterized_endpoints_request(**kwargs)

@@ -19,14 +19,15 @@ from azure.core.exceptions import (
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import storage_accounts as rest_storage_accounts
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -35,7 +36,324 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_check_name_availability_request(
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability')
+    path_format_arguments = {
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_create_request_initial(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_delete_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-05-01-preview"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_get_properties_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_update_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_list_keys_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_list_request(
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts')
+    path_format_arguments = {
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_list_by_resource_group_request(
+    resource_group_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_regenerate_key_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    api_version = "2015-05-01-preview"
+    accept = "application/json, text/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class StorageAccountsOperations(object):
     """StorageAccountsOperations operations.
 
@@ -83,7 +401,7 @@ class StorageAccountsOperations(object):
 
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
-        request = rest_storage_accounts.build_check_name_availability_request(
+        request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
@@ -122,7 +440,7 @@ class StorageAccountsOperations(object):
 
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
-        request = rest_storage_accounts.build_create_request_initial(
+        request = build_create_request_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -253,7 +571,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_storage_accounts.build_delete_request(
+        request = build_delete_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -300,7 +618,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_storage_accounts.build_get_properties_request(
+        request = build_get_properties_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -362,7 +680,7 @@ class StorageAccountsOperations(object):
 
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
-        request = rest_storage_accounts.build_update_request(
+        request = build_update_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -411,7 +729,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_storage_accounts.build_list_keys_request(
+        request = build_list_keys_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -456,7 +774,7 @@ class StorageAccountsOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = rest_storage_accounts.build_list_request(
+                request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
                 )._to_pipeline_transport_request()
@@ -464,7 +782,7 @@ class StorageAccountsOperations(object):
 
             else:
 
-                request = rest_storage_accounts.build_list_request(
+                request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
                 )._to_pipeline_transport_request()
@@ -521,7 +839,7 @@ class StorageAccountsOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = rest_storage_accounts.build_list_by_resource_group_request(
+                request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
@@ -530,7 +848,7 @@ class StorageAccountsOperations(object):
 
             else:
 
-                request = rest_storage_accounts.build_list_by_resource_group_request(
+                request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
@@ -595,7 +913,7 @@ class StorageAccountsOperations(object):
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
 
-        request = rest_storage_accounts.build_regenerate_key_request(
+        request = build_regenerate_key_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

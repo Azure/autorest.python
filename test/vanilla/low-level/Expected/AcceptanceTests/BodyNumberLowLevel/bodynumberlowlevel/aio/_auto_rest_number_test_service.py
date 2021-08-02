@@ -41,7 +41,7 @@ class AutoRestNumberTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodynumberlowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from bodynumberlowlevel.rest import number
         >>> request = number.build_get_null_request(**kwargs)

@@ -22,7 +22,12 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ...rest import api_version_local as rest_api_version_local
+from ...operations._api_version_local_operations import (
+    build_get_method_local_null_request,
+    build_get_method_local_valid_request,
+    build_get_path_local_valid_request,
+    build_get_swagger_local_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -58,7 +63,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_local.build_get_method_local_valid_request(
+        request = build_get_method_local_valid_request(
             template_url=self.get_method_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -92,7 +97,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_local.build_get_method_local_null_request(
+        request = build_get_method_local_null_request(
             api_version=api_version,
             template_url=self.get_method_local_null.metadata["url"],
         )
@@ -124,7 +129,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_local.build_get_path_local_valid_request(
+        request = build_get_path_local_valid_request(
             template_url=self.get_path_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -155,7 +160,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_api_version_local.build_get_swagger_local_valid_request(
+        request = build_get_swagger_local_valid_request(
             template_url=self.get_swagger_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -42,13 +42,8 @@ class AnythingClient(AnythingClientOperationsMixin):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `anythingversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from anythingversiontolerant.rest import build_get_object_request
-        >>> request = build_get_object_request(**kwargs)
-        <HttpRequest [GET], url: '/anything/object'>
-        >>> response = await client.send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

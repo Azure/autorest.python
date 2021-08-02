@@ -45,13 +45,8 @@ class AutoRestSwaggerBATHeaderService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `headerversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from headerversiontolerant.rest import header
-        >>> request = header.build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
-        <HttpRequest [POST], url: '/header/param/existingkey'>
-        >>> response = await client.send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

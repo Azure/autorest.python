@@ -23,8 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-
-from ..rest import lr_os_custom_header as rest_lr_os_custom_header
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -33,7 +32,105 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_put_async_retry_succeeded_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/customheader/putasync/retry/succeeded')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put201_creating_succeeded200_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/customheader/put/201/creating/succeeded/200')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_post202_retry200_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/customheader/post/202/retry/200')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_post_async_retry_succeeded_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/lro/customheader/postasync/retry/succeeded')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class LROsCustomHeaderOperations(object):
     """LROsCustomHeaderOperations operations.
 
@@ -61,6 +158,7 @@ class LROsCustomHeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -68,7 +166,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_put_async_retry_succeeded_request_initial(
+        request = build_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
@@ -146,7 +244,7 @@ class LROsCustomHeaderOperations(object):
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -154,7 +252,6 @@ class LROsCustomHeaderOperations(object):
             raw_result = self._put_async_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -170,7 +267,6 @@ class LROsCustomHeaderOperations(object):
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -202,6 +298,7 @@ class LROsCustomHeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -209,7 +306,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -287,7 +384,7 @@ class LROsCustomHeaderOperations(object):
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -295,7 +392,6 @@ class LROsCustomHeaderOperations(object):
             raw_result = self._put201_creating_succeeded200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -304,7 +400,6 @@ class LROsCustomHeaderOperations(object):
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -336,6 +431,7 @@ class LROsCustomHeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -343,7 +439,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_post202_retry200_request_initial(
+        request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -402,7 +498,7 @@ class LROsCustomHeaderOperations(object):
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -410,7 +506,6 @@ class LROsCustomHeaderOperations(object):
             raw_result = self._post202_retry200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -444,6 +539,7 @@ class LROsCustomHeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -451,7 +547,7 @@ class LROsCustomHeaderOperations(object):
         else:
             json = None
 
-        request = rest_lr_os_custom_header.build_post_async_retry_succeeded_request_initial(
+        request = build_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
@@ -514,7 +610,7 @@ class LROsCustomHeaderOperations(object):
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -522,7 +618,6 @@ class LROsCustomHeaderOperations(object):
             raw_result = self._post_async_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

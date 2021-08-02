@@ -21,7 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import dictionary as rest_dictionary
+from ...operations._dictionary_operations import (
+    build_get_empty_request,
+    build_get_not_provided_request,
+    build_get_null_request,
+    build_get_valid_request,
+    build_put_empty_request,
+    build_put_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +74,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_dictionary.build_get_valid_request(
+        request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -117,11 +124,12 @@ class DictionaryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_dictionary.build_put_valid_request(
+        request = build_put_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],
@@ -164,7 +172,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_dictionary.build_get_empty_request(
+        request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -213,11 +221,12 @@ class DictionaryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_dictionary.build_put_empty_request(
+        request = build_put_empty_request(
             content_type=content_type,
             json=json,
             template_url=self.put_empty.metadata["url"],
@@ -260,7 +269,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_dictionary.build_get_null_request(
+        request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -308,7 +317,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_dictionary.build_get_not_provided_request(
+        request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

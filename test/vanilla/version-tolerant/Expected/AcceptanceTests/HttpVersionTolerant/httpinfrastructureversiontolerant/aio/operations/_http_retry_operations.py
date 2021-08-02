@@ -21,7 +21,17 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import http_retry as rest_http_retry
+from ...operations._http_retry_operations import (
+    build_delete503_request,
+    build_get502_request,
+    build_head408_request,
+    build_options502_request,
+    build_patch500_request,
+    build_patch504_request,
+    build_post503_request,
+    build_put500_request,
+    build_put504_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +67,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_retry.build_head408_request(
+        request = build_head408_request(
             template_url=self.head408.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -89,6 +99,7 @@ class HttpRetryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -96,7 +107,7 @@ class HttpRetryOperations:
         else:
             json = None
 
-        request = rest_http_retry.build_put500_request(
+        request = build_put500_request(
             content_type=content_type,
             json=json,
             template_url=self.put500.metadata["url"],
@@ -130,6 +141,7 @@ class HttpRetryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -137,7 +149,7 @@ class HttpRetryOperations:
         else:
             json = None
 
-        request = rest_http_retry.build_patch500_request(
+        request = build_patch500_request(
             content_type=content_type,
             json=json,
             template_url=self.patch500.metadata["url"],
@@ -170,7 +182,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_retry.build_get502_request(
+        request = build_get502_request(
             template_url=self.get502.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -201,7 +213,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_retry.build_options502_request(
+        request = build_options502_request(
             template_url=self.options502.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -240,6 +252,7 @@ class HttpRetryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -247,7 +260,7 @@ class HttpRetryOperations:
         else:
             json = None
 
-        request = rest_http_retry.build_post503_request(
+        request = build_post503_request(
             content_type=content_type,
             json=json,
             template_url=self.post503.metadata["url"],
@@ -281,6 +294,7 @@ class HttpRetryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -288,7 +302,7 @@ class HttpRetryOperations:
         else:
             json = None
 
-        request = rest_http_retry.build_delete503_request(
+        request = build_delete503_request(
             content_type=content_type,
             json=json,
             template_url=self.delete503.metadata["url"],
@@ -322,6 +336,7 @@ class HttpRetryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -329,7 +344,7 @@ class HttpRetryOperations:
         else:
             json = None
 
-        request = rest_http_retry.build_put504_request(
+        request = build_put504_request(
             content_type=content_type,
             json=json,
             template_url=self.put504.metadata["url"],
@@ -363,6 +378,7 @@ class HttpRetryOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -370,7 +386,7 @@ class HttpRetryOperations:
         else:
             json = None
 
-        request = rest_http_retry.build_patch504_request(
+        request = build_patch504_request(
             content_type=content_type,
             json=json,
             template_url=self.patch504.metadata["url"],

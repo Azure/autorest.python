@@ -14,9 +14,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import operation_group_one as rest_operation_group_one
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -25,6 +25,35 @@ if TYPE_CHECKING:
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
+
+def build_test_two_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "1.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class OperationGroupOneOperations(object):
     """OperationGroupOneOperations operations.
 
@@ -65,7 +94,7 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_operation_group_one.build_test_two_request(
+        request = build_test_two_request(
             template_url=self.test_two.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

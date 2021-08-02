@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import availability_sets as rest_availability_sets
+from ...operations._availability_sets_operations import build_update_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -73,7 +73,7 @@ class AvailabilitySetsOperations:
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = rest_availability_sets.build_update_request(
+        request = build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,

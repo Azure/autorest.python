@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._rest import operation_group_two as rest_operation_group_two
+from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -80,7 +80,7 @@ class OperationGroupTwoOperations:
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        request = rest_operation_group_two.build_test_four_request(
+        request = build_test_four_request(
             content_type=content_type,
             json=json,
             content=content,
@@ -119,7 +119,7 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest_operation_group_two.build_test_five_request(
+        request = build_test_five_request(
             template_url=self.test_five.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

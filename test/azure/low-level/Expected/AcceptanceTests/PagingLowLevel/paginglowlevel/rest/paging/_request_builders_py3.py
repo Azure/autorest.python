@@ -432,6 +432,7 @@ def build_get_multiple_pages_with_offset_request(
     path_format_arguments = {
         "offset": _SERIALIZER.url("offset", offset, "int"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -682,6 +683,7 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -735,6 +737,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -847,6 +850,7 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -903,6 +907,7 @@ def build_next_fragment_with_grouping_request(
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters

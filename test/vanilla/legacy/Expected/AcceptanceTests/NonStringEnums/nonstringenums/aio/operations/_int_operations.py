@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._rest import int as rest_int
+from ...operations._int_operations import build_get_request, build_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -51,7 +51,7 @@ class IntOperations:
         """Put an int enum.
 
         :param input: Input int enum.
-        :type input: str or ~nonstringenums.models.IntEnum
+        :type input: int or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -67,7 +67,7 @@ class IntOperations:
         else:
             json = None
 
-        request = rest_int.build_put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -98,14 +98,14 @@ class IntOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntEnum, or the result of cls(response)
-        :rtype: str or ~nonstringenums.models.IntEnum
+        :rtype: int or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, "_models.IntEnum"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_int.build_get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

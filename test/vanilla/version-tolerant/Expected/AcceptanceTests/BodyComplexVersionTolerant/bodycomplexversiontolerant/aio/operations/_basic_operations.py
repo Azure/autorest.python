@@ -21,7 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import basic as rest_basic
+from ...operations._basic_operations import (
+    build_get_empty_request,
+    build_get_invalid_request,
+    build_get_not_provided_request,
+    build_get_null_request,
+    build_get_valid_request,
+    build_put_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +74,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_basic.build_get_valid_request(
+        request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -116,11 +123,12 @@ class BasicOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_basic.build_put_valid_request(
+        request = build_put_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],
@@ -163,7 +171,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_basic.build_get_invalid_request(
+        request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -211,7 +219,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_basic.build_get_empty_request(
+        request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -259,7 +267,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_basic.build_get_null_request(
+        request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -307,7 +315,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_basic.build_get_not_provided_request(
+        request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

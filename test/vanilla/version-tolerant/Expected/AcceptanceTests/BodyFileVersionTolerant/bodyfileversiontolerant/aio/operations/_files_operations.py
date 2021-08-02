@@ -21,7 +21,11 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import files as rest_files
+from ...operations._files_operations import (
+    build_get_empty_file_request,
+    build_get_file_large_request,
+    build_get_file_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +61,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_files.build_get_file_request(
+        request = build_get_file_request(
             template_url=self.get_file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -92,7 +96,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_files.build_get_file_large_request(
+        request = build_get_file_large_request(
             template_url=self.get_file_large.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -127,7 +131,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_files.build_get_empty_file_request(
+        request = build_get_empty_file_request(
             template_url=self.get_empty_file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

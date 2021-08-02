@@ -21,7 +21,13 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import parameter_grouping as rest_parameter_grouping
+from ...operations._parameter_grouping_operations import (
+    build_post_multi_param_groups_request,
+    build_post_optional_request,
+    build_post_required_request,
+    build_post_reserved_words_request,
+    build_post_shared_parameter_group_object_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -66,11 +72,12 @@ class ParameterGroupingOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = body
 
-        request = rest_parameter_grouping.build_post_required_request(
+        request = build_post_required_request(
             path=path,
             content_type=content_type,
             custom_header=custom_header,
@@ -112,7 +119,7 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_parameter_grouping.build_post_optional_request(
+        request = build_post_optional_request(
             custom_header=custom_header,
             query=query,
             template_url=self.post_optional.metadata["url"],
@@ -151,7 +158,7 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_parameter_grouping.build_post_reserved_words_request(
+        request = build_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
             template_url=self.post_reserved_words.metadata["url"],
@@ -200,7 +207,7 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_parameter_grouping.build_post_multi_param_groups_request(
+        request = build_post_multi_param_groups_request(
             header_one=header_one,
             query_one=query_one,
             header_two=header_two,
@@ -241,7 +248,7 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_parameter_grouping.build_post_shared_parameter_group_object_request(
+        request = build_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],

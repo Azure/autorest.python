@@ -429,3 +429,12 @@ class TestHttp(object):
         else:
             from httpinfrastructure.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from httpinfrastructure.operations import MultipleResponsesOperations
+
+        with pytest.raises(ImportError):
+            from httpinfrastructure.operations import _multiple_responses_operations_py3
+
+        from httpinfrastructure.operations._multiple_responses_operations import MultipleResponsesOperations as MultipleResponsesOperationsPy2
+        assert MultipleResponsesOperations == MultipleResponsesOperationsPy2

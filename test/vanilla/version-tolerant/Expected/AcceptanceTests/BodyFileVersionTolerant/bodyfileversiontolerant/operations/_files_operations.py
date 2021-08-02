@@ -20,8 +20,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import files as rest_files
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +29,69 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_file_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "image/png, application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/files/stream/nonempty')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_file_large_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "image/png, application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/files/stream/verylarge')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_empty_file_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "image/png, application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/files/stream/empty')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class FilesOperations(object):
     """FilesOperations operations.
 
@@ -64,7 +125,7 @@ class FilesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_files.build_get_file_request(
+        request = build_get_file_request(
             template_url=self.get_file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -100,7 +161,7 @@ class FilesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_files.build_get_file_large_request(
+        request = build_get_file_large_request(
             template_url=self.get_file_large.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -136,7 +197,7 @@ class FilesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_files.build_get_empty_file_request(
+        request = build_get_empty_file_request(
             template_url=self.get_empty_file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

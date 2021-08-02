@@ -20,17 +20,62 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import int as rest_int
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_put_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/nonStringEnums/int/put')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/nonStringEnums/int/get')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class IntOperations(object):
     """IntOperations operations.
 
@@ -52,14 +97,14 @@ class IntOperations(object):
     @distributed_trace
     def put(
         self,
-        input=None,  # type: Optional[Union[int, "_models.IntEnum"]]
+        input=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put an int enum.
 
-        :param input: Input int enum.
-        :type input: str or ~nonstringenumsversiontolerant.models.IntEnum
+        :param input: Input int enum. Possible values are: "200", "403", "405", "406", and "429".
+        :type input: int
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -67,6 +112,7 @@ class IntOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
@@ -74,7 +120,7 @@ class IntOperations(object):
         else:
             json = None
 
-        request = rest_int.build_put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -104,18 +150,24 @@ class IntOperations(object):
     def get(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union[int, "_models.IntEnum"]
+        # type: (...) -> int
         """Get an int enum.
 
-        :return: IntEnum
-        :rtype: str or ~nonstringenumsversiontolerant.models.IntEnum
+        :return: int. Possible values are: "200", "403", "405", "406", and "429".
+        :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "int (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, "_models.IntEnum"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[int]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_int.build_get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

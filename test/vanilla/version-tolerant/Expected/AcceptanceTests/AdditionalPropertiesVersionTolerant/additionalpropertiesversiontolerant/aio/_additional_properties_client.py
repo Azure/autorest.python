@@ -45,13 +45,8 @@ class AdditionalPropertiesClient:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `additionalpropertiesversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from additionalpropertiesversiontolerant.rest import pets
-        >>> request = pets.build_create_ap_true_request(json=json, content=content, **kwargs)
-        <HttpRequest [PUT], url: '/additionalProperties/true'>
-        >>> response = await client.send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

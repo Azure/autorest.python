@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
-
-from ..rest import xms_client_request_id as rest_xms_client_request_id
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,7 +30,46 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/overwrite/x-ms-client-request-id/method/')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        **kwargs
+    )
+
+
+def build_param_get_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    x_ms_client_request_id = kwargs.pop('x_ms_client_request_id')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['x-ms-client-request-id'] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class XMsClientRequestIdOperations(object):
     """XMsClientRequestIdOperations operations.
 
@@ -66,7 +104,7 @@ class XMsClientRequestIdOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_xms_client_request_id.build_get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -101,9 +139,10 @@ class XMsClientRequestIdOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         x_ms_client_request_id = kwargs.pop("x_ms_client_request_id")  # type: str
 
-        request = rest_xms_client_request_id.build_param_get_request(
+        request = build_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
             template_url=self.param_get.metadata["url"],
         )

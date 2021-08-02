@@ -20,17 +20,150 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import enum as rest_enum
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_not_expandable_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_not_expandable_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_referenced_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/string/enum/Referenced')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_referenced_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/string/enum/Referenced')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_referenced_constant_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_referenced_constant_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class EnumOperations(object):
     """EnumOperations operations.
 
@@ -53,18 +186,24 @@ class EnumOperations(object):
     def get_not_expandable(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "_models.Colors"]
+        # type: (...) -> str
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: Colors
-        :rtype: str or ~bodystringversiontolerant.models.Colors
+        :return: str. Possible values are: "red color", "green-color", and "blue_color".
+        :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "str (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_not_expandable_request(
+        request = build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -91,14 +230,15 @@ class EnumOperations(object):
     @distributed_trace
     def put_not_expandable(
         self,
-        string_body,  # type: Union[str, "_models.Colors"]
+        string_body,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param string_body: string body.
-        :type string_body: str or ~bodystringversiontolerant.models.Colors
+        :param string_body: string body. Possible values are: "red color", "green-color", and
+         "blue_color".
+        :type string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -106,11 +246,12 @@ class EnumOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = string_body
 
-        request = rest_enum.build_put_not_expandable_request(
+        request = build_put_not_expandable_request(
             content_type=content_type,
             json=json,
             template_url=self.put_not_expandable.metadata["url"],
@@ -133,18 +274,24 @@ class EnumOperations(object):
     def get_referenced(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "_models.Colors"]
+        # type: (...) -> str
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: Colors
-        :rtype: str or ~bodystringversiontolerant.models.Colors
+        :return: str. Possible values are: "red color", "green-color", and "blue_color".
+        :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "str (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_referenced_request(
+        request = build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -171,14 +318,15 @@ class EnumOperations(object):
     @distributed_trace
     def put_referenced(
         self,
-        enum_string_body,  # type: Union[str, "_models.Colors"]
+        enum_string_body,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param enum_string_body: enum string body.
-        :type enum_string_body: str or ~bodystringversiontolerant.models.Colors
+        :param enum_string_body: enum string body. Possible values are: "red color", "green-color", and
+         "blue_color".
+        :type enum_string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -186,11 +334,12 @@ class EnumOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = enum_string_body
 
-        request = rest_enum.build_put_referenced_request(
+        request = build_put_referenced_request(
             content_type=content_type,
             json=json,
             template_url=self.put_referenced.metadata["url"],
@@ -233,7 +382,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_referenced_constant_request(
+        request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -284,11 +433,12 @@ class EnumOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = enum_string_body
 
-        request = rest_enum.build_put_referenced_constant_request(
+        request = build_put_referenced_constant_request(
             content_type=content_type,
             json=json,
             template_url=self.put_referenced_constant.metadata["url"],

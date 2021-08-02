@@ -24,7 +24,49 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ...rest import lros as rest_lros
+from ...operations._lros_operations import (
+    build_delete202_no_retry204_request_initial,
+    build_delete202_retry200_request_initial,
+    build_delete204_succeeded_request_initial,
+    build_delete_async_no_header_in_retry_request_initial,
+    build_delete_async_no_retry_succeeded_request_initial,
+    build_delete_async_retry_failed_request_initial,
+    build_delete_async_retry_succeeded_request_initial,
+    build_delete_async_retrycanceled_request_initial,
+    build_delete_no_header_in_retry_request_initial,
+    build_delete_provisioning202_accepted200_succeeded_request_initial,
+    build_delete_provisioning202_deleting_failed200_request_initial,
+    build_delete_provisioning202_deletingcanceled200_request_initial,
+    build_post200_with_payload_request_initial,
+    build_post202_list_request_initial,
+    build_post202_no_retry204_request_initial,
+    build_post202_retry200_request_initial,
+    build_post_async_no_retry_succeeded_request_initial,
+    build_post_async_retry_failed_request_initial,
+    build_post_async_retry_succeeded_request_initial,
+    build_post_async_retrycanceled_request_initial,
+    build_post_double_headers_final_azure_header_get_default_request_initial,
+    build_post_double_headers_final_azure_header_get_request_initial,
+    build_post_double_headers_final_location_get_request_initial,
+    build_put200_acceptedcanceled200_request_initial,
+    build_put200_succeeded_no_state_request_initial,
+    build_put200_succeeded_request_initial,
+    build_put200_updating_succeeded204_request_initial,
+    build_put201_creating_failed200_request_initial,
+    build_put201_creating_succeeded200_request_initial,
+    build_put201_succeeded_request_initial,
+    build_put202_retry200_request_initial,
+    build_put_async_no_header_in_retry_request_initial,
+    build_put_async_no_retry_succeeded_request_initial,
+    build_put_async_no_retrycanceled_request_initial,
+    build_put_async_non_resource_request_initial,
+    build_put_async_retry_failed_request_initial,
+    build_put_async_retry_succeeded_request_initial,
+    build_put_async_sub_resource_request_initial,
+    build_put_no_header_in_retry_request_initial,
+    build_put_non_resource_request_initial,
+    build_put_sub_resource_request_initial,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -52,6 +94,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -59,7 +102,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put200_succeeded_request_initial(
+        request = build_put200_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_initial.metadata["url"],
@@ -127,7 +170,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -135,7 +178,6 @@ class LROsOperations:
             raw_result = await self._put200_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -144,7 +186,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -171,6 +212,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -178,7 +220,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put201_succeeded_request_initial(
+        request = build_put201_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_succeeded_initial.metadata["url"],
@@ -244,7 +286,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -252,7 +294,6 @@ class LROsOperations:
             raw_result = await self._put201_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -261,7 +302,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -289,7 +329,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_post202_list_request_initial(
+        request = build_post202_list_request_initial(
             template_url=self._post202_list_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -353,13 +393,12 @@ class LROsOperations:
                     }
                 ]
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post202_list_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -368,7 +407,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -395,6 +433,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -402,7 +441,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put200_succeeded_no_state_request_initial(
+        request = build_put200_succeeded_no_state_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_no_state_initial.metadata["url"],
@@ -468,7 +507,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -476,7 +515,6 @@ class LROsOperations:
             raw_result = await self._put200_succeeded_no_state_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -485,7 +523,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -512,6 +549,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -519,7 +557,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put202_retry200_request_initial(
+        request = build_put202_retry200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put202_retry200_initial.metadata["url"],
@@ -586,7 +624,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -594,7 +632,6 @@ class LROsOperations:
             raw_result = await self._put202_retry200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -603,7 +640,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -630,6 +666,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -637,7 +674,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -711,7 +748,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -719,7 +756,6 @@ class LROsOperations:
             raw_result = await self._put201_creating_succeeded200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -728,7 +764,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -755,6 +790,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -762,7 +798,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put200_updating_succeeded204_request_initial(
+        request = build_put200_updating_succeeded204_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put200_updating_succeeded204_initial.metadata["url"],
@@ -829,7 +865,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -837,7 +873,6 @@ class LROsOperations:
             raw_result = await self._put200_updating_succeeded204_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -846,7 +881,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -873,6 +907,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -880,7 +915,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put201_creating_failed200_request_initial(
+        request = build_put201_creating_failed200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_failed200_initial.metadata["url"],
@@ -954,7 +989,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -962,7 +997,6 @@ class LROsOperations:
             raw_result = await self._put201_creating_failed200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -971,7 +1005,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -998,6 +1031,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1005,7 +1039,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put200_acceptedcanceled200_request_initial(
+        request = build_put200_acceptedcanceled200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
@@ -1072,7 +1106,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1080,7 +1114,6 @@ class LROsOperations:
             raw_result = await self._put200_acceptedcanceled200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1089,7 +1122,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1116,6 +1148,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1123,7 +1156,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_no_header_in_retry_request_initial(
+        request = build_put_no_header_in_retry_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_no_header_in_retry_initial.metadata["url"],
@@ -1192,7 +1225,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1200,7 +1233,6 @@ class LROsOperations:
             raw_result = await self._put_no_header_in_retry_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1212,7 +1244,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1239,6 +1270,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1246,7 +1278,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_retry_succeeded_request_initial(
+        request = build_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
@@ -1320,7 +1352,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1328,7 +1360,6 @@ class LROsOperations:
             raw_result = await self._put_async_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1344,7 +1375,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1371,6 +1401,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1378,7 +1409,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_no_retry_succeeded_request_initial(
+        request = build_put_async_no_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
@@ -1451,7 +1482,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1459,7 +1490,6 @@ class LROsOperations:
             raw_result = await self._put_async_no_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1474,7 +1504,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1501,6 +1530,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1508,7 +1538,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_retry_failed_request_initial(
+        request = build_put_async_retry_failed_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_failed_initial.metadata["url"],
@@ -1582,7 +1612,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1590,7 +1620,6 @@ class LROsOperations:
             raw_result = await self._put_async_retry_failed_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1606,7 +1635,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1633,6 +1661,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1640,7 +1669,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_no_retrycanceled_request_initial(
+        request = build_put_async_no_retrycanceled_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
@@ -1713,7 +1742,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1721,7 +1750,6 @@ class LROsOperations:
             raw_result = await self._put_async_no_retrycanceled_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1736,7 +1764,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1763,6 +1790,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -1770,7 +1798,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_no_header_in_retry_request_initial(
+        request = build_put_async_no_header_in_retry_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
@@ -1842,7 +1870,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1850,7 +1878,6 @@ class LROsOperations:
             raw_result = await self._put_async_no_header_in_retry_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1864,7 +1891,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1891,6 +1917,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
@@ -1898,7 +1925,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_non_resource_request_initial(
+        request = build_put_non_resource_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_non_resource_initial.metadata["url"],
@@ -1959,7 +1986,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1967,7 +1994,6 @@ class LROsOperations:
             raw_result = await self._put_non_resource_initial(
                 sku=sku, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1976,7 +2002,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2003,6 +2028,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
@@ -2010,7 +2036,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_non_resource_request_initial(
+        request = build_put_async_non_resource_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_non_resource_initial.metadata["url"],
@@ -2071,7 +2097,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2079,7 +2105,6 @@ class LROsOperations:
             raw_result = await self._put_async_non_resource_initial(
                 sku=sku, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2088,7 +2113,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2115,6 +2139,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -2122,7 +2147,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_sub_resource_request_initial(
+        request = build_put_sub_resource_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_sub_resource_initial.metadata["url"],
@@ -2187,7 +2212,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2195,7 +2220,6 @@ class LROsOperations:
             raw_result = await self._put_sub_resource_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2204,7 +2228,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2231,6 +2254,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -2238,7 +2262,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_put_async_sub_resource_request_initial(
+        request = build_put_async_sub_resource_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._put_async_sub_resource_initial.metadata["url"],
@@ -2303,7 +2327,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2311,7 +2335,6 @@ class LROsOperations:
             raw_result = await self._put_async_sub_resource_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2320,7 +2343,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2348,7 +2370,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_provisioning202_accepted200_succeeded_request_initial(
+        request = build_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2413,7 +2435,7 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2421,7 +2443,6 @@ class LROsOperations:
             raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
                 cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2430,7 +2451,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2458,7 +2478,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_provisioning202_deleting_failed200_request_initial(
+        request = build_delete_provisioning202_deleting_failed200_request_initial(
             template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2523,13 +2543,12 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_provisioning202_deleting_failed200_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2538,7 +2557,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2566,7 +2584,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_provisioning202_deletingcanceled200_request_initial(
+        request = build_delete_provisioning202_deletingcanceled200_request_initial(
             template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2631,13 +2649,12 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_provisioning202_deletingcanceled200_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2646,7 +2663,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2674,7 +2690,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete204_succeeded_request_initial(
+        request = build_delete204_succeeded_request_initial(
             template_url=self._delete204_succeeded_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2708,13 +2724,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete204_succeeded_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2744,7 +2759,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete202_retry200_request_initial(
+        request = build_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2804,13 +2819,12 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete202_retry200_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2819,7 +2833,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2847,7 +2860,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete202_no_retry204_request_initial(
+        request = build_delete202_no_retry204_request_initial(
             template_url=self._delete202_no_retry204_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2907,13 +2920,12 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete202_no_retry204_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2922,7 +2934,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2950,7 +2961,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_no_header_in_retry_request_initial(
+        request = build_delete_no_header_in_retry_request_initial(
             template_url=self._delete_no_header_in_retry_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2989,13 +3000,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_no_header_in_retry_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3025,7 +3035,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_async_no_header_in_retry_request_initial(
+        request = build_delete_async_no_header_in_retry_request_initial(
             template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3064,13 +3074,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_no_header_in_retry_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3100,7 +3109,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_async_retry_succeeded_request_initial(
+        request = build_delete_async_retry_succeeded_request_initial(
             template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3142,13 +3151,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_retry_succeeded_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3178,7 +3186,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_async_no_retry_succeeded_request_initial(
+        request = build_delete_async_no_retry_succeeded_request_initial(
             template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3220,13 +3228,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_no_retry_succeeded_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3256,7 +3263,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_async_retry_failed_request_initial(
+        request = build_delete_async_retry_failed_request_initial(
             template_url=self._delete_async_retry_failed_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3298,13 +3305,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_retry_failed_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3334,7 +3340,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_delete_async_retrycanceled_request_initial(
+        request = build_delete_async_retrycanceled_request_initial(
             template_url=self._delete_async_retrycanceled_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3376,13 +3382,12 @@ class LROsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_retrycanceled_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3412,7 +3417,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_post200_with_payload_request_initial(
+        request = build_post200_with_payload_request_initial(
             template_url=self._post200_with_payload_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3470,13 +3475,12 @@ class LROsOperations:
                     "name": "str (optional)"
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post200_with_payload_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3485,7 +3489,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3512,6 +3515,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -3519,7 +3523,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_post202_retry200_request_initial(
+        request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -3574,7 +3578,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3582,7 +3586,6 @@ class LROsOperations:
             raw_result = await self._post202_retry200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3611,6 +3614,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -3618,7 +3622,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_post202_no_retry204_request_initial(
+        request = build_post202_no_retry204_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post202_no_retry204_initial.metadata["url"],
@@ -3688,7 +3692,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3696,7 +3700,6 @@ class LROsOperations:
             raw_result = await self._post202_no_retry204_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3709,7 +3712,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3737,7 +3739,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_post_double_headers_final_location_get_request_initial(
+        request = build_post_double_headers_final_location_get_request_initial(
             template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3791,13 +3793,12 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_double_headers_final_location_get_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3806,7 +3807,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3834,7 +3834,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_post_double_headers_final_azure_header_get_request_initial(
+        request = build_post_double_headers_final_azure_header_get_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3888,13 +3888,12 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_double_headers_final_azure_header_get_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3903,7 +3902,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3933,7 +3931,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_lros.build_post_double_headers_final_azure_header_get_default_request_initial(
+        request = build_post_double_headers_final_azure_header_get_default_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3987,7 +3985,7 @@ class LROsOperations:
                     }
                 }
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3995,7 +3993,6 @@ class LROsOperations:
             raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
                 cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4004,7 +4001,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4031,6 +4027,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -4038,7 +4035,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_post_async_retry_succeeded_request_initial(
+        request = build_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
@@ -4115,7 +4112,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4123,7 +4120,6 @@ class LROsOperations:
             raw_result = await self._post_async_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4132,7 +4128,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4159,6 +4154,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -4166,7 +4162,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_post_async_no_retry_succeeded_request_initial(
+        request = build_post_async_no_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
@@ -4243,7 +4239,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4251,7 +4247,6 @@ class LROsOperations:
             raw_result = await self._post_async_no_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4260,7 +4255,6 @@ class LROsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4287,6 +4281,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -4294,7 +4289,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_post_async_retry_failed_request_initial(
+        request = build_post_async_retry_failed_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_failed_initial.metadata["url"],
@@ -4353,7 +4348,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4361,7 +4356,6 @@ class LROsOperations:
             raw_result = await self._post_async_retry_failed_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4390,6 +4384,7 @@ class LROsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -4397,7 +4392,7 @@ class LROsOperations:
         else:
             json = None
 
-        request = rest_lros.build_post_async_retrycanceled_request_initial(
+        request = build_post_async_retrycanceled_request_initial(
             content_type=content_type,
             json=json,
             template_url=self._post_async_retrycanceled_initial.metadata["url"],
@@ -4456,7 +4451,7 @@ class LROsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4464,7 +4459,6 @@ class LROsOperations:
             raw_result = await self._post_async_retrycanceled_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

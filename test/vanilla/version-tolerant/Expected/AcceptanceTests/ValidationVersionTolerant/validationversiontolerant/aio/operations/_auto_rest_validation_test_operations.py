@@ -21,7 +21,12 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import rest as rest
+from ...operations._auto_rest_validation_test_operations import (
+    build_get_with_constant_in_path_request,
+    build_post_with_constant_in_body_request,
+    build_validation_of_body_request,
+    build_validation_of_method_parameters_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +72,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_validation_of_method_parameters_request(
+        request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -156,6 +161,7 @@ class AutoRestValidationTestOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -163,7 +169,7 @@ class AutoRestValidationTestOperationsMixin:
         else:
             json = None
 
-        request = rest.build_validation_of_body_request(
+        request = build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -206,7 +212,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_with_constant_in_path_request(
+        request = build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -281,6 +287,7 @@ class AutoRestValidationTestOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -288,7 +295,7 @@ class AutoRestValidationTestOperationsMixin:
         else:
             json = None
 
-        request = rest.build_post_with_constant_in_body_request(
+        request = build_post_with_constant_in_body_request(
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

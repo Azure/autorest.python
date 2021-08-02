@@ -25,6 +25,7 @@
 #
 # --------------------------------------------------------------------------
 import sys
+import pytest
 
 class TestNoOperations:
     def test_models(self):
@@ -36,4 +37,8 @@ class TestNoOperations:
         else:
             from nooperations.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        with pytest.raises(ImportError):
+            from nooperations import operations
 

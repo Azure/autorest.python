@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, Type
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
@@ -213,7 +213,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
 
-class NoModelObjectSchema(ObjectSchema):
+class HiddenModelObjectSchema(ObjectSchema):
 
     @property
     def serialization_type(self) -> str:
@@ -240,7 +240,7 @@ class NoModelObjectSchema(ObjectSchema):
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
-def get_object_schema(code_model):
-    if code_model.show_models:
+def get_object_schema(code_model) -> Type[ObjectSchema]:
+    if code_model.options["show_models"]:
         return ObjectSchema
-    return NoModelObjectSchema
+    return HiddenModelObjectSchema

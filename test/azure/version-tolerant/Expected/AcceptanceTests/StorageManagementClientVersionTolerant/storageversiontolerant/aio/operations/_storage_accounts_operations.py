@@ -26,7 +26,17 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ...rest import storage_accounts as rest_storage_accounts
+from ...operations._storage_accounts_operations import (
+    build_check_name_availability_request,
+    build_create_request_initial,
+    build_delete_request,
+    build_get_properties_request,
+    build_list_by_resource_group_request,
+    build_list_keys_request,
+    build_list_request,
+    build_regenerate_key_request,
+    build_update_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -81,11 +91,12 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = account_name
 
-        request = rest_storage_accounts.build_check_name_availability_request(
+        request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
@@ -120,11 +131,12 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = parameters
 
-        request = rest_storage_accounts.build_create_request_initial(
+        request = build_create_request_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -236,7 +248,7 @@ class StorageAccountsOperations:
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -249,7 +261,6 @@ class StorageAccountsOperations:
                 cls=lambda x, y, z: x,
                 **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -258,7 +269,6 @@ class StorageAccountsOperations:
                 deserialized = response.json()
             else:
                 deserialized = None
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -299,7 +309,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_storage_accounts.build_delete_request(
+        request = build_delete_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -384,7 +394,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_storage_accounts.build_get_properties_request(
+        request = build_get_properties_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -493,11 +503,12 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = parameters
 
-        request = rest_storage_accounts.build_update_request(
+        request = build_update_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -553,7 +564,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_storage_accounts.build_list_keys_request(
+        request = build_list_keys_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -646,7 +657,7 @@ class StorageAccountsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = rest_storage_accounts.build_list_request(
+                request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
                 )
@@ -654,12 +665,11 @@ class StorageAccountsOperations:
 
             else:
 
-                request = rest_storage_accounts.build_list_request(
+                request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
                 )
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -752,7 +762,7 @@ class StorageAccountsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = rest_storage_accounts.build_list_by_resource_group_request(
+                request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
@@ -761,13 +771,12 @@ class StorageAccountsOperations:
 
             else:
 
-                request = rest_storage_accounts.build_list_by_resource_group_request(
+                request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
                 )
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -829,11 +838,12 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = regenerate_key
 
-        request = rest_storage_accounts.build_regenerate_key_request(
+        request = build_regenerate_key_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

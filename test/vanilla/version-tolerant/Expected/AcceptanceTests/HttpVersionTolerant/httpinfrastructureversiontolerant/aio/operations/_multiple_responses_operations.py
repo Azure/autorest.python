@@ -21,7 +21,42 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import multiple_responses as rest_multiple_responses
+from ...operations._multiple_responses_operations import (
+    build_get200_model201_model_default_error200_valid_request,
+    build_get200_model201_model_default_error201_valid_request,
+    build_get200_model201_model_default_error400_valid_request,
+    build_get200_model204_no_model_default_error200_valid_request,
+    build_get200_model204_no_model_default_error201_invalid_request,
+    build_get200_model204_no_model_default_error202_none_request,
+    build_get200_model204_no_model_default_error204_valid_request,
+    build_get200_model204_no_model_default_error400_valid_request,
+    build_get200_model_a200_invalid_request,
+    build_get200_model_a200_none_request,
+    build_get200_model_a200_valid_request,
+    build_get200_model_a201_model_c404_model_d_default_error200_valid_request,
+    build_get200_model_a201_model_c404_model_d_default_error201_valid_request,
+    build_get200_model_a201_model_c404_model_d_default_error400_valid_request,
+    build_get200_model_a201_model_c404_model_d_default_error404_valid_request,
+    build_get200_model_a202_valid_request,
+    build_get200_model_a400_invalid_request,
+    build_get200_model_a400_none_request,
+    build_get200_model_a400_valid_request,
+    build_get202_none204_none_default_error202_none_request,
+    build_get202_none204_none_default_error204_none_request,
+    build_get202_none204_none_default_error400_valid_request,
+    build_get202_none204_none_default_none202_invalid_request,
+    build_get202_none204_none_default_none204_none_request,
+    build_get202_none204_none_default_none400_invalid_request,
+    build_get202_none204_none_default_none400_none_request,
+    build_get_default_model_a200_none_request,
+    build_get_default_model_a200_valid_request,
+    build_get_default_model_a400_none_request,
+    build_get_default_model_a400_valid_request,
+    build_get_default_none200_invalid_request,
+    build_get_default_none200_none_request,
+    build_get_default_none400_invalid_request,
+    build_get_default_none400_none_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +100,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model204_no_model_default_error200_valid_request(
+        request = build_get200_model204_no_model_default_error200_valid_request(
             template_url=self.get200_model204_no_model_default_error200_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -113,7 +148,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model204_no_model_default_error204_valid_request(
+        request = build_get200_model204_no_model_default_error204_valid_request(
             template_url=self.get200_model204_no_model_default_error204_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -161,7 +196,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model204_no_model_default_error201_invalid_request(
+        request = build_get200_model204_no_model_default_error201_invalid_request(
             template_url=self.get200_model204_no_model_default_error201_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -209,7 +244,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model204_no_model_default_error202_none_request(
+        request = build_get200_model204_no_model_default_error202_none_request(
             template_url=self.get200_model204_no_model_default_error202_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -257,7 +292,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model204_no_model_default_error400_valid_request(
+        request = build_get200_model204_no_model_default_error400_valid_request(
             template_url=self.get200_model204_no_model_default_error400_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -309,7 +344,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model201_model_default_error200_valid_request(
+        request = build_get200_model201_model_default_error200_valid_request(
             template_url=self.get200_model201_model_default_error200_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -366,7 +401,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model201_model_default_error201_valid_request(
+        request = build_get200_model201_model_default_error201_valid_request(
             template_url=self.get200_model201_model_default_error201_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -423,7 +458,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model201_model_default_error400_valid_request(
+        request = build_get200_model201_model_default_error400_valid_request(
             template_url=self.get200_model201_model_default_error400_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -484,7 +519,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
+        request = build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -551,7 +586,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
+        request = build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -618,7 +653,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
+        request = build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -685,7 +720,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
+        request = build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
             template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -736,7 +771,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_error202_none_request(
+        request = build_get202_none204_none_default_error202_none_request(
             template_url=self.get202_none204_none_default_error202_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -767,7 +802,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_error204_none_request(
+        request = build_get202_none204_none_default_error204_none_request(
             template_url=self.get202_none204_none_default_error204_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -798,7 +833,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_error400_valid_request(
+        request = build_get202_none204_none_default_error400_valid_request(
             template_url=self.get202_none204_none_default_error400_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -829,7 +864,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_none202_invalid_request(
+        request = build_get202_none204_none_default_none202_invalid_request(
             template_url=self.get202_none204_none_default_none202_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -860,7 +895,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_none204_none_request(
+        request = build_get202_none204_none_default_none204_none_request(
             template_url=self.get202_none204_none_default_none204_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -891,7 +926,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_none400_none_request(
+        request = build_get202_none204_none_default_none400_none_request(
             template_url=self.get202_none204_none_default_none400_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -922,7 +957,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get202_none204_none_default_none400_invalid_request(
+        request = build_get202_none204_none_default_none400_invalid_request(
             template_url=self.get202_none204_none_default_none400_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -961,7 +996,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_model_a200_valid_request(
+        request = build_get_default_model_a200_valid_request(
             template_url=self.get_default_model_a200_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1007,7 +1042,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_model_a200_none_request(
+        request = build_get_default_model_a200_none_request(
             template_url=self.get_default_model_a200_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1045,7 +1080,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_model_a400_valid_request(
+        request = build_get_default_model_a400_valid_request(
             template_url=self.get_default_model_a400_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1076,7 +1111,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_model_a400_none_request(
+        request = build_get_default_model_a400_none_request(
             template_url=self.get_default_model_a400_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1107,7 +1142,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_none200_invalid_request(
+        request = build_get_default_none200_invalid_request(
             template_url=self.get_default_none200_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1138,7 +1173,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_none200_none_request(
+        request = build_get_default_none200_none_request(
             template_url=self.get_default_none200_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1169,7 +1204,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_none400_invalid_request(
+        request = build_get_default_none400_invalid_request(
             template_url=self.get_default_none400_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1200,7 +1235,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get_default_none400_none_request(
+        request = build_get_default_none400_none_request(
             template_url=self.get_default_none400_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1240,7 +1275,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a200_none_request(
+        request = build_get200_model_a200_none_request(
             template_url=self.get200_model_a200_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1286,7 +1321,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a200_valid_request(
+        request = build_get200_model_a200_valid_request(
             template_url=self.get200_model_a200_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1332,7 +1367,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a200_invalid_request(
+        request = build_get200_model_a200_invalid_request(
             template_url=self.get200_model_a200_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1378,7 +1413,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a400_none_request(
+        request = build_get200_model_a400_none_request(
             template_url=self.get200_model_a400_none.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1424,7 +1459,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a400_valid_request(
+        request = build_get200_model_a400_valid_request(
             template_url=self.get200_model_a400_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1470,7 +1505,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a400_invalid_request(
+        request = build_get200_model_a400_invalid_request(
             template_url=self.get200_model_a400_invalid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1516,7 +1551,7 @@ class MultipleResponsesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_multiple_responses.build_get200_model_a202_valid_request(
+        request = build_get200_model_a202_valid_request(
             template_url=self.get200_model_a202_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -80,13 +80,8 @@ class AutoRestComplexTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodycomplex.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from bodycomplex._rest import basic
-        >>> request = basic.build_get_valid_request(**kwargs)
-        <HttpRequest [GET], url: '/complex/basic/valid'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

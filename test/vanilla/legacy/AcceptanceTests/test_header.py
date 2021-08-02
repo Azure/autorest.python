@@ -205,3 +205,12 @@ class TestHeader(object):
         else:
             from header.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from header.operations import HeaderOperations
+
+        with pytest.raises(ImportError):
+            from header.operations import _header_operations_py3
+
+        from header.operations._header_operations import HeaderOperations as HeaderOperationsPy2
+        assert HeaderOperations == HeaderOperationsPy2

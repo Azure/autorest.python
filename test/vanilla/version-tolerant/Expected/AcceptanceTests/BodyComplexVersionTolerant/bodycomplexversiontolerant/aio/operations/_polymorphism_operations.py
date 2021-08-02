@@ -21,7 +21,17 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import polymorphism as rest_polymorphism
+from ...operations._polymorphism_operations import (
+    build_get_complicated_request,
+    build_get_composed_with_discriminator_request,
+    build_get_composed_without_discriminator_request,
+    build_get_dot_syntax_request,
+    build_get_valid_request,
+    build_put_complicated_request,
+    build_put_missing_discriminator_request,
+    build_put_valid_missing_required_request,
+    build_put_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -70,7 +80,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_polymorphism.build_get_valid_request(
+        request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -156,11 +166,12 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_polymorphism.build_put_valid_request(
+        request = build_put_valid_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],
@@ -202,7 +213,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_polymorphism.build_get_dot_syntax_request(
+        request = build_get_dot_syntax_request(
             template_url=self.get_dot_syntax.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -269,7 +280,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_polymorphism.build_get_composed_with_discriminator_request(
+        request = build_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -336,7 +347,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_polymorphism.build_get_composed_without_discriminator_request(
+        request = build_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -384,7 +395,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_polymorphism.build_get_complicated_request(
+        request = build_get_complicated_request(
             template_url=self.get_complicated.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -435,11 +446,12 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_polymorphism.build_put_complicated_request(
+        request = build_put_complicated_request(
             content_type=content_type,
             json=json,
             template_url=self.put_complicated.metadata["url"],
@@ -490,11 +502,12 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_polymorphism.build_put_missing_discriminator_request(
+        request = build_put_missing_discriminator_request(
             content_type=content_type,
             json=json,
             template_url=self.put_missing_discriminator.metadata["url"],
@@ -577,11 +590,12 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
-        request = rest_polymorphism.build_put_valid_missing_required_request(
+        request = build_put_valid_missing_required_request(
             content_type=content_type,
             json=json,
             template_url=self.put_valid_missing_required.metadata["url"],

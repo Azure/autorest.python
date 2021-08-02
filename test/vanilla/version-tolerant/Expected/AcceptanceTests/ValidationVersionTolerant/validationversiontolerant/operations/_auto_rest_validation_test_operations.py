@@ -18,10 +18,10 @@ from azure.core.exceptions import (
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from .. import rest as rest
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +30,135 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_validation_of_method_parameters_request(
+    subscription_id,  # type: str
+    resource_group_name,  # type: str
+    id,  # type: int
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = "1.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/fakepath/{subscriptionId}/{resourceGroupName}/{id}')
+    path_format_arguments = {
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9\']+'),
+        'id': _SERIALIZER.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_validation_of_body_request(
+    subscription_id,  # type: str
+    resource_group_name,  # type: str
+    id,  # type: int
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    api_version = "1.0.0"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/fakepath/{subscriptionId}/{resourceGroupName}/{id}')
+    path_format_arguments = {
+        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
+        'id': _SERIALIZER.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_with_constant_in_path_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    constant_param = "constant"
+    # Construct URL
+    url = kwargs.pop("template_url", '/validation/constantsInPath/{constantParam}/value')
+    path_format_arguments = {
+        'constantParam': _SERIALIZER.url("constant_param", constant_param, 'str'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        **kwargs
+    )
+
+
+def build_post_with_constant_in_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    constant_param = "constant"
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/validation/constantsInPath/{constantParam}/value')
+    path_format_arguments = {
+        'constantParam': _SERIALIZER.url("constant_param", constant_param, 'str'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def validation_of_method_parameters(
@@ -77,7 +205,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_validation_of_method_parameters_request(
+        request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -171,6 +299,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -178,7 +307,7 @@ class AutoRestValidationTestOperationsMixin(object):
         else:
             json = None
 
-        request = rest.build_validation_of_body_request(
+        request = build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -222,7 +351,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest.build_get_with_constant_in_path_request(
+        request = build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -300,6 +429,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -307,7 +437,7 @@ class AutoRestValidationTestOperationsMixin(object):
         else:
             json = None
 
-        request = rest.build_post_with_constant_in_body_request(
+        request = build_post_with_constant_in_body_request(
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

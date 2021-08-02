@@ -16,7 +16,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import _rest as rest, models as _models
+from ... import models as _models
+from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_paging_request
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -42,14 +43,14 @@ class MultiapiServiceClientOperationsMixin:
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest.build_test_paging_request(
+                request = build_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest.build_test_paging_request(
+                request = build_test_paging_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -108,7 +109,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
         
-        request = rest.build_test_different_calls_request(
+        request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,

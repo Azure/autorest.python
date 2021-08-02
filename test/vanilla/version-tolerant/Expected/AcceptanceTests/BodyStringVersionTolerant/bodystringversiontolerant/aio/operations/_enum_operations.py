@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -21,7 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import enum as rest_enum
+from ...operations._enum_operations import (
+    build_get_not_expandable_request,
+    build_get_referenced_constant_request,
+    build_get_referenced_request,
+    build_put_not_expandable_request,
+    build_put_referenced_constant_request,
+    build_put_referenced_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -46,18 +53,24 @@ class EnumOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_not_expandable(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_not_expandable(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: Colors
-        :rtype: str or ~bodystringversiontolerant.models.Colors
+        :return: str. Possible values are: "red color", "green-color", and "blue_color".
+        :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "str (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_not_expandable_request(
+        request = build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -84,11 +97,12 @@ class EnumOperations:
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
+    async def put_not_expandable(self, string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param string_body: string body.
-        :type string_body: str or ~bodystringversiontolerant.models.Colors
+        :param string_body: string body. Possible values are: "red color", "green-color", and
+         "blue_color".
+        :type string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -96,11 +110,12 @@ class EnumOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = string_body
 
-        request = rest_enum.build_put_not_expandable_request(
+        request = build_put_not_expandable_request(
             content_type=content_type,
             json=json,
             template_url=self.put_not_expandable.metadata["url"],
@@ -122,18 +137,24 @@ class EnumOperations:
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_referenced(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: Colors
-        :rtype: str or ~bodystringversiontolerant.models.Colors
+        :return: str. Possible values are: "red color", "green-color", and "blue_color".
+        :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "str (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[str, "_models.Colors"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_referenced_request(
+        request = build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -160,11 +181,12 @@ class EnumOperations:
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
+    async def put_referenced(self, enum_string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param enum_string_body: enum string body.
-        :type enum_string_body: str or ~bodystringversiontolerant.models.Colors
+        :param enum_string_body: enum string body. Possible values are: "red color", "green-color", and
+         "blue_color".
+        :type enum_string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -172,11 +194,12 @@ class EnumOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = enum_string_body
 
-        request = rest_enum.build_put_referenced_request(
+        request = build_put_referenced_request(
             content_type=content_type,
             json=json,
             template_url=self.put_referenced.metadata["url"],
@@ -218,7 +241,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_enum.build_get_referenced_constant_request(
+        request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -266,11 +289,12 @@ class EnumOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = enum_string_body
 
-        request = rest_enum.build_put_referenced_constant_request(
+        request = build_put_referenced_constant_request(
             content_type=content_type,
             json=json,
             template_url=self.put_referenced_constant.metadata["url"],

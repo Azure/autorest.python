@@ -27,6 +27,7 @@
 import unittest
 import subprocess
 import sys
+import custombaseurl
 import isodate
 import tempfile
 import json
@@ -80,3 +81,12 @@ class TestCustomBaseUri(object):
         else:
             from custombaseurl.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from custombaseurl.operations import PathsOperations
+
+        with pytest.raises(ImportError):
+            from custombaseurl.operations import _paths_operations_py3
+
+        from custombaseurl.operations._paths_operations import PathsOperations as PathsOperationsPy2
+        assert PathsOperations == PathsOperationsPy2

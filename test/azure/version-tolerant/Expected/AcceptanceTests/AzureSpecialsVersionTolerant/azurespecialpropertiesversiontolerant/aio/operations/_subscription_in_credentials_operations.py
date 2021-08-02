@@ -22,7 +22,13 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ...rest import subscription_in_credentials as rest_subscription_in_credentials
+from ...operations._subscription_in_credentials_operations import (
+    build_post_method_global_not_provided_valid_request,
+    build_post_method_global_null_request,
+    build_post_method_global_valid_request,
+    build_post_path_global_valid_request,
+    build_post_swagger_global_valid_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -59,7 +65,7 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_subscription_in_credentials.build_post_method_global_valid_request(
+        request = build_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_valid.metadata["url"],
         )
@@ -92,7 +98,7 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_subscription_in_credentials.build_post_method_global_null_request(
+        request = build_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_null.metadata["url"],
         )
@@ -125,7 +131,7 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_subscription_in_credentials.build_post_method_global_not_provided_valid_request(
+        request = build_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
         )
@@ -158,7 +164,7 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_subscription_in_credentials.build_post_path_global_valid_request(
+        request = build_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_path_global_valid.metadata["url"],
         )
@@ -191,7 +197,7 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_subscription_in_credentials.build_post_swagger_global_valid_request(
+        request = build_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
             template_url=self.post_swagger_global_valid.metadata["url"],
         )

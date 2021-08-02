@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -21,7 +21,24 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import contants as rest_contants
+from ...operations._contants_operations import (
+    build_put_model_as_string_no_required_one_value_default_request,
+    build_put_model_as_string_no_required_one_value_no_default_request,
+    build_put_model_as_string_no_required_two_value_default_request,
+    build_put_model_as_string_no_required_two_value_no_default_request,
+    build_put_model_as_string_required_one_value_default_request,
+    build_put_model_as_string_required_one_value_no_default_request,
+    build_put_model_as_string_required_two_value_default_request,
+    build_put_model_as_string_required_two_value_no_default_request,
+    build_put_no_model_as_string_no_required_one_value_default_request,
+    build_put_no_model_as_string_no_required_one_value_no_default_request,
+    build_put_no_model_as_string_no_required_two_value_default_request,
+    build_put_no_model_as_string_no_required_two_value_no_default_request,
+    build_put_no_model_as_string_required_one_value_default_request,
+    build_put_no_model_as_string_required_one_value_no_default_request,
+    build_put_no_model_as_string_required_two_value_default_request,
+    build_put_no_model_as_string_required_two_value_no_default_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,18 +64,14 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(
-        self,
-        *,
-        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
-        **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -67,7 +80,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_no_required_two_value_no_default_request(
+        request = build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
         )
@@ -89,18 +102,14 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
-        self,
-        *,
-        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -109,7 +118,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_no_required_two_value_default_request(
+        request = build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
         )
@@ -147,7 +156,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_no_required_one_value_no_default_request(
+        request = build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
         )
@@ -185,7 +194,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_no_required_one_value_default_request(
+        request = build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
         )
@@ -206,16 +215,13 @@ class ContantsOperations:
     put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_two_value_no_default(
-        self, *, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
-    ) -> None:
+    async def put_no_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -224,7 +230,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_required_two_value_no_default_request(
+        request = build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
         )
@@ -245,16 +251,13 @@ class ContantsOperations:
     put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_two_value_default(
-        self, *, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
-    ) -> None:
+    async def put_no_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -263,7 +266,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_required_two_value_default_request(
+        request = build_put_no_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
         )
@@ -297,7 +300,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_required_one_value_no_default_request(
+        request = build_put_no_model_as_string_required_one_value_no_default_request(
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -330,7 +333,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_required_one_value_default_request(
+        request = build_put_no_model_as_string_required_one_value_default_request(
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -351,18 +354,14 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
-        self,
-        *,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
-        **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -371,7 +370,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_no_required_two_value_no_default_request(
+        request = build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
         )
@@ -393,18 +392,14 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
-        self,
-        *,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -413,7 +408,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_no_required_two_value_default_request(
+        request = build_put_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
         )
@@ -435,18 +430,14 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
-        self,
-        *,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None,
-        **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -455,7 +446,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_no_required_one_value_no_default_request(
+        request = build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
         )
@@ -477,18 +468,14 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
-        self,
-        *,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -497,7 +484,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_no_required_one_value_default_request(
+        request = build_put_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
         )
@@ -518,16 +505,13 @@ class ContantsOperations:
     put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_two_value_no_default(
-        self, *, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
-    ) -> None:
+    async def put_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -536,7 +520,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_required_two_value_no_default_request(
+        request = build_put_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
         )
@@ -557,16 +541,13 @@ class ContantsOperations:
     put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_two_value_default(
-        self, *, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
-    ) -> None:
+    async def put_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -575,7 +556,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_required_two_value_default_request(
+        request = build_put_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
         )
@@ -596,16 +577,13 @@ class ContantsOperations:
     put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_one_value_no_default(
-        self, *, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs: Any
-    ) -> None:
+    async def put_model_as_string_required_one_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -614,7 +592,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_required_one_value_no_default_request(
+        request = build_put_model_as_string_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
         )
@@ -635,16 +613,13 @@ class ContantsOperations:
     put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_one_value_default(
-        self, *, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs: Any
-    ) -> None:
+    async def put_model_as_string_required_one_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredOneValueDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -653,7 +628,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_model_as_string_required_one_value_default_request(
+        request = build_put_model_as_string_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
         )

@@ -18,10 +18,10 @@ from azure.core.exceptions import (
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import availability_sets as rest_availability_sets
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +30,39 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_update_request(
+    resource_group_name,  # type: str
+    avset,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/parameterFlattening/{resourceGroupName}/{availabilitySetName}')
+    path_format_arguments = {
+        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        'availabilitySetName': _SERIALIZER.url("avset", avset, 'str', max_length=80, min_length=0),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class AvailabilitySetsOperations(object):
     """AvailabilitySetsOperations operations.
 
@@ -83,11 +115,12 @@ class AvailabilitySetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = tags
 
-        request = rest_availability_sets.build_update_request(
+        request = build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,

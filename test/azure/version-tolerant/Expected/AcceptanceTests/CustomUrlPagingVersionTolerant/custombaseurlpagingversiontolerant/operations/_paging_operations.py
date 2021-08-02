@@ -19,10 +19,10 @@ from azure.core.exceptions import (
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import paging as rest_paging
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,7 +31,75 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_pages_partial_url_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/customurl/partialnextlink')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_pages_partial_url_operation_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/customurl/partialnextlinkop')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_pages_partial_url_operation_next_request(
+    next_link,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
+    path_format_arguments = {
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class PagingOperations(object):
     """PagingOperations operations.
 
@@ -89,7 +157,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = rest_paging.build_get_pages_partial_url_request(
+                request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
                 )
                 path_format_arguments = {
@@ -100,7 +168,7 @@ class PagingOperations(object):
 
             else:
 
-                request = rest_paging.build_get_pages_partial_url_request(
+                request = build_get_pages_partial_url_request(
                     template_url=next_link,
                 )
                 path_format_arguments = {
@@ -177,7 +245,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = rest_paging.build_get_pages_partial_url_operation_request(
+                request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                 )
                 path_format_arguments = {
@@ -188,7 +256,7 @@ class PagingOperations(object):
 
             else:
 
-                request = rest_paging.build_get_pages_partial_url_operation_next_request(
+                request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
                 )

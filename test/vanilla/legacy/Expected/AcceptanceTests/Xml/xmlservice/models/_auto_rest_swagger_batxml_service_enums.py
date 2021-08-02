@@ -6,28 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum, EnumMeta
+from enum import Enum
 from six import with_metaclass
+from azure.core import CaseInsensitiveEnumMeta
 
 
-class _CaseInsensitiveEnumMeta(EnumMeta):
-    def __getitem__(self, name):
-        return super().__getitem__(name.upper())
-
-    def __getattr__(cls, name):
-        """Return the enum member matching `name`
-        We use __getattr__ instead of descriptors or inserting into the enum
-        class' __dict__ in order to support `name` and `value` being both
-        properties for enum members (which live in the class' __dict__) and
-        enum members themselves.
-        """
-        try:
-            return cls._member_map_[name.upper()]
-        except KeyError:
-            raise AttributeError(name)
-
-
-class AccessTier(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class AccessTier(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     P4 = "P4"
     P6 = "P6"
@@ -41,20 +25,20 @@ class AccessTier(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     ARCHIVE = "Archive"
 
 
-class ArchiveStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class ArchiveStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
     REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
 
 
-class BlobType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class BlobType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     BLOCK_BLOB = "BlockBlob"
     PAGE_BLOB = "PageBlob"
     APPEND_BLOB = "AppendBlob"
 
 
-class CopyStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class CopyStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     PENDING = "pending"
     SUCCESS = "success"
@@ -62,13 +46,13 @@ class CopyStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     FAILED = "failed"
 
 
-class LeaseDurationType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class LeaseDurationType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     INFINITE = "infinite"
     FIXED = "fixed"
 
 
-class LeaseStateType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class LeaseStateType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     AVAILABLE = "available"
     LEASED = "leased"
@@ -77,13 +61,13 @@ class LeaseStateType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     BROKEN = "broken"
 
 
-class LeaseStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class LeaseStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     LOCKED = "locked"
     UNLOCKED = "unlocked"
 
 
-class PublicAccessType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class PublicAccessType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     CONTAINER = "container"
     BLOB = "blob"

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import int as rest_int
+from ...operations._int_operations import build_get_request, build_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -46,11 +46,11 @@ class IntOperations:
         self._config = config
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> str:
+    async def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum.
-        :type input: str or ~nonstringenumsversiontolerant.models.IntEnum
+        :param input: Input int enum. Possible values are: "200", "403", "405", "406", and "429".
+        :type input: int
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -58,6 +58,7 @@ class IntOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
@@ -65,7 +66,7 @@ class IntOperations:
         else:
             json = None
 
-        request = rest_int.build_put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -94,18 +95,24 @@ class IntOperations:
     put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Union[int, "_models.IntEnum"]:
+    async def get(self, **kwargs: Any) -> int:
         """Get an int enum.
 
-        :return: IntEnum
-        :rtype: str or ~nonstringenumsversiontolerant.models.IntEnum
+        :return: int. Possible values are: "200", "403", "405", "406", and "429".
+        :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == "int (optional)"
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, "_models.IntEnum"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[int]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_int.build_get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

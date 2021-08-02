@@ -20,8 +20,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import params as rest_params
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +29,41 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_get_required_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    parameter3 = kwargs.pop('parameter3')  # type: str
+    parameter1 = kwargs.pop('parameter1', "DefaultValue")  # type: str
+    parameter2 = kwargs.pop('parameter2', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/llc/parameters')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    if parameter2 is not None:
+        query_parameters['parameter2'] = _SERIALIZER.query("parameter2", parameter2, 'str')
+    query_parameters['parameter3'] = _SERIALIZER.query("parameter3", parameter3, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class ParamsOperations(object):
     """ParamsOperations operations.
 
@@ -69,11 +102,12 @@ class ParamsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         parameter3 = kwargs.pop("parameter3")  # type: str
         parameter1 = kwargs.pop("parameter1", "DefaultValue")  # type: str
         parameter2 = kwargs.pop("parameter2", None)  # type: Optional[str]
 
-        request = rest_params.build_get_required_request(
+        request = build_get_required_request(
             parameter3=parameter3,
             parameter1=parameter1,
             parameter2=parameter2,

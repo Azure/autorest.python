@@ -185,9 +185,9 @@ class MetadataSerializer:
                 config_imports(self.code_model, async_global_parameters, async_mode=True).imports
             ),
             get_async_operation_serializer=functools.partial(
-                get_operation_serializer, code_model=self.code_model, async_mode=True
+                get_operation_serializer, code_model=self.code_model, async_mode=True, is_python_3_file=True
             ),
             get_sync_operation_serializer=functools.partial(
-                get_operation_serializer, code_model=self.code_model, async_mode=False
+                get_operation_serializer, code_model=self.code_model, async_mode=False, is_python_3_file=False
             ),
         )

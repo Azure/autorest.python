@@ -43,13 +43,8 @@ class AutoRestTimeTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodytime.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from bodytime._rest import time
-        >>> request = time.build_get_request(**kwargs)
-        <HttpRequest [GET], url: '/time/get'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

@@ -60,7 +60,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azurespecialpropertieslowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from azurespecialpropertieslowlevel.rest import xms_client_request_id
         >>> request = xms_client_request_id.build_get_request(**kwargs)

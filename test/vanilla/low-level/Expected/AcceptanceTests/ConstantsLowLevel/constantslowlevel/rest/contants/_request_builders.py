@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, Union
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -29,16 +29,15 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or
-     ~constantslowlevel.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', None)  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+    input = kwargs.pop('input', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault')
@@ -67,16 +66,15 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or
-     ~constantslowlevel.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueDefault')
@@ -179,16 +177,15 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or
-     ~constantslowlevel.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input')  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+    input = kwargs.pop('input')  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueNoDefault')
@@ -216,15 +213,15 @@ def build_put_no_model_as_string_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
+    input = kwargs.pop('input', "value1")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueDefault')
@@ -318,16 +315,15 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or
-     ~constantslowlevel.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', None)  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+    input = kwargs.pop('input', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueNoDefault')
@@ -356,15 +352,15 @@ def build_put_model_as_string_no_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueDefault')
@@ -393,16 +389,15 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or
-     ~constantslowlevel.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
+    :keyword input: "value1"
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', None)  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
+    input = kwargs.pop('input', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueNoDefault')
@@ -431,15 +426,15 @@ def build_put_model_as_string_no_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
+    :keyword input: "value1"
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueDefault')
@@ -468,15 +463,15 @@ def build_put_model_as_string_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+    input = kwargs.pop('input')  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueNoDefault')
@@ -504,15 +499,15 @@ def build_put_model_as_string_required_two_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredTwoValueDefaultOpEnum
+    :keyword input: Possible values are: "value1" or "value2".
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
+    input = kwargs.pop('input', "value1")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueDefault')
@@ -540,15 +535,15 @@ def build_put_model_as_string_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
+    :keyword input: "value1"
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
+    input = kwargs.pop('input')  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueNoDefault')
@@ -576,15 +571,15 @@ def build_put_model_as_string_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
-    :paramtype input: str or ~constantslowlevel.models.ModelAsStringRequiredOneValueDefaultOpEnum
+    :keyword input: "value1"
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
+    input = kwargs.pop('input', "value1")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueDefault')

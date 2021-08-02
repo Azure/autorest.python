@@ -50,13 +50,8 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azure.directives.sample.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from azure.directives.sample._rest import build_basic_polling_request_initial
-        >>> request = build_basic_polling_request_initial(json=json, content=content, **kwargs)
-        <HttpRequest [PUT], url: '/basic/polling'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

@@ -13,14 +13,15 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
+from msrest import Serializer
 
 from .. import models as _models
-from .._rest import paging as rest_paging
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -29,6 +30,521 @@ if TYPE_CHECKING:
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
+
+def build_get_no_item_name_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/noitemname')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_null_next_link_name_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/nullnextlink')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_single_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/single')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_first_response_empty_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/firstResponseEmpty/1')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_with_query_params_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
+
+    query_constant = True
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/getWithQueryParams')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['requiredQueryParameter'] = _SERIALIZER.query("required_query_parameter", required_query_parameter, 'int')
+    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_next_operation_with_query_params_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    query_constant = True
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/nextOperationWithQueryParams')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_odata_multiple_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/odata')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_with_offset_request(
+    offset,  # type: int
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/withpath/{offset}')
+    path_format_arguments = {
+        'offset': _SERIALIZER.url("offset", offset, 'int'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_retry_first_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/retryfirst')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_retry_second_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/retrysecond')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_single_pages_failure_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/single/failure')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_failure_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/failure')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_failure_uri_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/failureuri')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_fragment_next_link_request(
+    tenant,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_fragment_with_grouping_next_link_request(
+    tenant,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_lro_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/lro')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_next_fragment_request(
+    tenant,  # type: str
+    next_link,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}/{nextLink}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_next_fragment_with_grouping_request(
+    tenant,  # type: str
+    next_link,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+    }
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_paging_model_with_item_name_with_xms_client_name_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/itemNameWithXMSClientName')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class PagingOperations(object):
     """PagingOperations operations.
 
@@ -71,14 +587,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_no_item_name_pages_request(
+                request = build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_no_item_name_pages_request(
+                request = build_get_no_item_name_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -131,14 +647,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_null_next_link_name_pages_request(
+                request = build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_null_next_link_name_pages_request(
+                request = build_get_null_next_link_name_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -191,14 +707,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_single_pages_request(
+                request = build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_single_pages_request(
+                request = build_get_single_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -252,14 +768,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_first_response_empty_request(
+                request = build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_first_response_empty_request(
+                request = build_first_response_empty_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -324,7 +840,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
 
-                request = rest_paging.build_get_multiple_pages_request(
+                request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -339,7 +855,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
 
-                request = rest_paging.build_get_multiple_pages_request(
+                request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -400,7 +916,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_with_query_params_request(
+                request = build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -408,7 +924,7 @@ class PagingOperations(object):
 
             else:
                 
-                request = rest_paging.build_next_operation_with_query_params_request(
+                request = build_next_operation_with_query_params_request(
                     template_url='/paging/multiple/nextOperationWithQueryParams',
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -472,7 +988,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
 
-                request = rest_paging.build_get_odata_multiple_pages_request(
+                request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -487,7 +1003,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
 
-                request = rest_paging.build_get_odata_multiple_pages_request(
+                request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -557,7 +1073,7 @@ class PagingOperations(object):
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
-                request = rest_paging.build_get_multiple_pages_with_offset_request(
+                request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -575,7 +1091,7 @@ class PagingOperations(object):
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
-                request = rest_paging.build_get_multiple_pages_with_offset_request(
+                request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -633,14 +1149,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_retry_first_request(
+                request = build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_retry_first_request(
+                request = build_get_multiple_pages_retry_first_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -694,14 +1210,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_retry_second_request(
+                request = build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_retry_second_request(
+                request = build_get_multiple_pages_retry_second_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -754,14 +1270,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_single_pages_failure_request(
+                request = build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_single_pages_failure_request(
+                request = build_get_single_pages_failure_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -814,14 +1330,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_failure_request(
+                request = build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_failure_request(
+                request = build_get_multiple_pages_failure_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -874,14 +1390,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_failure_uri_request(
+                request = build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_failure_uri_request(
+                request = build_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -940,7 +1456,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_fragment_next_link_request(
+                request = build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
@@ -949,7 +1465,7 @@ class PagingOperations(object):
 
             else:
                 
-                request = rest_paging.build_next_fragment_request(
+                request = build_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
@@ -1012,7 +1528,7 @@ class PagingOperations(object):
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
 
-                request = rest_paging.build_get_multiple_pages_fragment_with_grouping_next_link_request(
+                request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
                     api_version=_api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
@@ -1026,7 +1542,7 @@ class PagingOperations(object):
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
 
-                request = rest_paging.build_next_fragment_with_grouping_request(
+                request = build_next_fragment_with_grouping_request(
                     tenant=_tenant,
                     next_link=next_link,
                     api_version=_api_version,
@@ -1079,7 +1595,7 @@ class PagingOperations(object):
             _maxresults = paging_get_multiple_pages_lro_options.maxresults
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
-        request = rest_paging.build_get_multiple_pages_lro_request_initial(
+        request = build_get_multiple_pages_lro_request_initial(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -1146,7 +1662,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
-                request = rest_paging.build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -1161,7 +1677,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
-                request = rest_paging.build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -1257,14 +1773,14 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
+                request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
+                request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)

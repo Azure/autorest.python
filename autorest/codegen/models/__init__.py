@@ -7,11 +7,11 @@ from typing import Any, Dict, TypeVar, Union
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .object_schema import ObjectSchema, get_object_schema, NoModelObjectSchema
+from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
 from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema
-from .enum_schema import EnumSchema
+from .enum_schema import EnumSchema, HiddenModelEnumSchema, get_enum_schema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .imports import FileImport, ImportType, TypingSection
@@ -41,6 +41,7 @@ __all__ = [
     "DictionarySchema",
     "ListSchema",
     "EnumSchema",
+    "HiddenModelEnumSchema",
     "FileImport",
     "ImportType",
     "TypingSection",
@@ -59,7 +60,7 @@ __all__ = [
     "BaseBuilder",
     "SchemaRequest",
     "RequestBuilderParameter",
-    "NoModelObjectSchema",
+    "HiddenModelObjectSchema",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
@@ -90,7 +91,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ["choice", "sealed-choice"]:
-        schema = EnumSchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
+        schema = get_enum_schema(code_model).from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.enums[yaml_id] = schema
 
     elif schema_type == "array":

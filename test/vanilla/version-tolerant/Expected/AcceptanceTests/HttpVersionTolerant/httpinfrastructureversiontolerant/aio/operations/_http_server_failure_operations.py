@@ -21,7 +21,12 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import http_server_failure as rest_http_server_failure
+from ...operations._http_server_failure_operations import (
+    build_delete505_request,
+    build_get501_request,
+    build_head501_request,
+    build_post505_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +62,7 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_server_failure.build_head501_request(
+        request = build_head501_request(
             template_url=self.head501.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -88,7 +93,7 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_http_server_failure.build_get501_request(
+        request = build_get501_request(
             template_url=self.get501.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -120,6 +125,7 @@ class HttpServerFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -127,7 +133,7 @@ class HttpServerFailureOperations:
         else:
             json = None
 
-        request = rest_http_server_failure.build_post505_request(
+        request = build_post505_request(
             content_type=content_type,
             json=json,
             template_url=self.post505.metadata["url"],
@@ -161,6 +167,7 @@ class HttpServerFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -168,7 +175,7 @@ class HttpServerFailureOperations:
         else:
             json = None
 
-        request = rest_http_server_failure.build_delete505_request(
+        request = build_delete505_request(
             content_type=content_type,
             json=json,
             template_url=self.delete505.metadata["url"],

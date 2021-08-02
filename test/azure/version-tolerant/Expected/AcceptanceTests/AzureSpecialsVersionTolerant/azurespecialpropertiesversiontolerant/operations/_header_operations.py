@@ -21,8 +21,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
-
-from ..rest import header as rest_header
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,7 +30,78 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_custom_named_request_id_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestId')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_custom_named_request_id_param_grouping_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdParamGrouping')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_custom_named_request_id_head_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdHead')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class HeaderOperations(object):
     """HeaderOperations operations.
 
@@ -66,9 +136,10 @@ class HeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
-        request = rest_header.build_custom_named_request_id_request(
+        request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
         )
@@ -106,9 +177,10 @@ class HeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
-        request = rest_header.build_custom_named_request_id_param_grouping_request(
+        request = build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
         )
@@ -145,9 +217,10 @@ class HeaderOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         foo_client_request_id = kwargs.pop("foo_client_request_id")  # type: str
 
-        request = rest_header.build_custom_named_request_id_head_request(
+        request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
         )

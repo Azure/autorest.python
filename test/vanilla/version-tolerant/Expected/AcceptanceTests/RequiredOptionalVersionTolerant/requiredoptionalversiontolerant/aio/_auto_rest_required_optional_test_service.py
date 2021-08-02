@@ -63,13 +63,8 @@ class AutoRestRequiredOptionalTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `requiredoptionalversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from requiredoptionalversiontolerant.rest import implicit
-        >>> request = implicit.build_get_required_path_request(path_parameter, **kwargs)
-        <HttpRequest [GET], url: '/reqopt/implicit/required/path/{pathParameter}'>
-        >>> response = await client.send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

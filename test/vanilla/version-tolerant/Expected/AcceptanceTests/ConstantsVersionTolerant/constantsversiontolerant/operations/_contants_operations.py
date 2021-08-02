@@ -20,17 +20,360 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import contants as rest_contants
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_put_no_model_as_string_no_required_two_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', None)  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_no_required_two_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_no_required_one_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_no_required_one_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_required_two_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input')  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_required_two_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_required_one_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = "value1"
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_no_model_as_string_required_one_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = "value1"
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_no_required_two_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', None)  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_no_required_two_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_no_required_one_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', None)  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_no_required_one_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if input is not None:
+        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_required_two_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input')  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_required_two_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_required_one_value_no_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input')  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueNoDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_model_as_string_required_one_value_default_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    input = kwargs.pop('input', "value1")  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueDefault')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class ContantsOperations(object):
     """ContantsOperations operations.
 
@@ -58,9 +401,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -68,11 +410,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", None
-        )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
 
-        request = rest_contants.build_put_no_model_as_string_no_required_two_value_no_default_request(
+        input = kwargs.pop("input", None)  # type: Optional[str]
+
+        request = build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
         )
@@ -99,9 +440,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -109,11 +449,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", "value1"
-        )  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
 
-        request = rest_contants.build_put_no_model_as_string_no_required_two_value_default_request(
+        input = kwargs.pop("input", "value1")  # type: Optional[str]
+
+        request = build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
         )
@@ -149,9 +488,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
-        request = rest_contants.build_put_no_model_as_string_no_required_one_value_no_default_request(
+        request = build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
         )
@@ -187,9 +527,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
-        request = rest_contants.build_put_no_model_as_string_no_required_one_value_default_request(
+        request = build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
         )
@@ -216,9 +557,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -226,9 +566,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop("input")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
-        request = rest_contants.build_put_no_model_as_string_required_two_value_no_default_request(
+        input = kwargs.pop("input")  # type: str
+
+        request = build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
         )
@@ -255,9 +596,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -265,11 +605,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", "value1"
-        )  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
 
-        request = rest_contants.build_put_no_model_as_string_required_two_value_default_request(
+        input = kwargs.pop("input", "value1")  # type: str
+
+        request = build_put_no_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
         )
@@ -304,7 +643,7 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_required_one_value_no_default_request(
+        request = build_put_no_model_as_string_required_one_value_no_default_request(
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -338,7 +677,7 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_contants.build_put_no_model_as_string_required_one_value_default_request(
+        request = build_put_no_model_as_string_required_one_value_default_request(
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -364,9 +703,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -374,11 +712,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", None
-        )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
 
-        request = rest_contants.build_put_model_as_string_no_required_two_value_no_default_request(
+        input = kwargs.pop("input", None)  # type: Optional[str]
+
+        request = build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
         )
@@ -405,9 +742,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -415,11 +751,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", "value1"
-        )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
 
-        request = rest_contants.build_put_model_as_string_no_required_two_value_default_request(
+        input = kwargs.pop("input", "value1")  # type: Optional[str]
+
+        request = build_put_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
         )
@@ -446,9 +781,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -456,11 +790,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", None
-        )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
 
-        request = rest_contants.build_put_model_as_string_no_required_one_value_no_default_request(
+        input = kwargs.pop("input", None)  # type: Optional[str]
+
+        request = build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
         )
@@ -487,9 +820,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -497,11 +829,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop(
-            "input", "value1"
-        )  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
 
-        request = rest_contants.build_put_model_as_string_no_required_one_value_default_request(
+        input = kwargs.pop("input", "value1")  # type: Optional[str]
+
+        request = build_put_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
         )
@@ -528,9 +859,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -538,9 +868,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
 
-        request = rest_contants.build_put_model_as_string_required_two_value_no_default_request(
+        input = kwargs.pop("input")  # type: str
+
+        request = build_put_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
         )
@@ -567,9 +898,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredTwoValueDefaultOpEnum
+        :keyword input: Possible values are: "value1" or "value2".
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -577,9 +907,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
 
-        request = rest_contants.build_put_model_as_string_required_two_value_default_request(
+        input = kwargs.pop("input", "value1")  # type: str
+
+        request = build_put_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
         )
@@ -606,9 +937,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -616,9 +946,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop("input")  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
 
-        request = rest_contants.build_put_model_as_string_required_one_value_no_default_request(
+        input = kwargs.pop("input")  # type: str
+
+        request = build_put_model_as_string_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
         )
@@ -645,9 +976,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
-        :paramtype input: str or
-         ~constantsversiontolerant.models.ModelAsStringRequiredOneValueDefaultOpEnum
+        :keyword input: "value1"
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -655,9 +985,10 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        input = kwargs.pop("input", "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
 
-        request = rest_contants.build_put_model_as_string_required_one_value_default_request(
+        input = kwargs.pop("input", "value1")  # type: str
+
+        request = build_put_model_as_string_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
         )

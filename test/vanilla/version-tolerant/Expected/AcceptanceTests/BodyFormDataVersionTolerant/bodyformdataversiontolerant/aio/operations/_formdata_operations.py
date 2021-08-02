@@ -21,7 +21,11 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import formdata as rest_formdata
+from ...operations._formdata_operations import (
+    build_upload_file_request,
+    build_upload_file_via_body_request,
+    build_upload_files_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,6 +64,7 @@ class FormdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         files = None
@@ -70,7 +75,7 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        request = rest_formdata.build_upload_file_request(
+        request = build_upload_file_request(
             content_type=content_type,
             files=files,
             data=data,
@@ -109,11 +114,12 @@ class FormdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = file_content
 
-        request = rest_formdata.build_upload_file_via_body_request(
+        request = build_upload_file_via_body_request(
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
@@ -159,6 +165,7 @@ class FormdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         files = None
@@ -168,7 +175,7 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        request = rest_formdata.build_upload_files_request(
+        request = build_upload_files_request(
             content_type=content_type,
             files=files,
             data=data,

@@ -45,13 +45,8 @@ class AutoRestSwaggerBATArrayService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `bodyarrayversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from bodyarrayversiontolerant.rest import array
-        >>> request = array.build_get_null_request(**kwargs)
-        <HttpRequest [GET], url: '/array/null'>
-        >>> response = await client.send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 

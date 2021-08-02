@@ -116,20 +116,29 @@ class PagingOperation(Operation):
         next_request_builder = self.next_operation.request_builder
         return next_request_builder
 
+    def _imports_shared(self, code_model, async_mode: bool) -> FileImport:
+        file_import = super()._imports_shared(code_model, async_mode)
+        if async_mode:
+            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        else:
+            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.next_request_builder:
+            file_import.merge(self.next_request_builder.imports())
+        return file_import
+
     def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports_for_multiapi(code_model, async_mode)
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
         file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL)
-        if async_mode:
-            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        else:
-            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
         return file_import
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super(PagingOperation, self).imports(code_model, async_mode)
+        file_import = super(PagingOperation, self).imports(
+            code_model, async_mode
+        )
 
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
@@ -138,9 +147,6 @@ class PagingOperation(Operation):
 
         if async_mode:
             file_import.add_from_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
-            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        else:
-            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if code_model.options["tracing"]:
             file_import.add_from_import(

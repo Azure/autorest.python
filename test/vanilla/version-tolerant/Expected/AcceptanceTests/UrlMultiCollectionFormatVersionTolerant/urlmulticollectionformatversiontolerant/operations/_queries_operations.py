@@ -20,8 +20,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-
-from ..rest import queries as rest_queries
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -30,7 +29,93 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
 
+def build_array_string_multi_null_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/queries/array/multi/string/null')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if array_query is not None:
+        query_parameters['arrayQuery'] = [_SERIALIZER.query("array_query", q, 'str') if q is not None else '' for q in array_query]
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_array_string_multi_empty_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/queries/array/multi/string/empty')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if array_query is not None:
+        query_parameters['arrayQuery'] = [_SERIALIZER.query("array_query", q, 'str') if q is not None else '' for q in array_query]
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_array_string_multi_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    array_query = kwargs.pop('array_query', None)  # type: Optional[List[str]]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/queries/array/multi/string/valid')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if array_query is not None:
+        query_parameters['arrayQuery'] = [_SERIALIZER.query("array_query", q, 'str') if q is not None else '' for q in array_query]
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class QueriesOperations(object):
     """QueriesOperations operations.
 
@@ -65,9 +150,10 @@ class QueriesOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
 
-        request = rest_queries.build_array_string_multi_null_request(
+        request = build_array_string_multi_null_request(
             array_query=array_query,
             template_url=self.array_string_multi_null.metadata["url"],
         )
@@ -101,9 +187,10 @@ class QueriesOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
 
-        request = rest_queries.build_array_string_multi_empty_request(
+        request = build_array_string_multi_empty_request(
             array_query=array_query,
             template_url=self.array_string_multi_empty.metadata["url"],
         )
@@ -139,9 +226,10 @@ class QueriesOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
 
-        request = rest_queries.build_array_string_multi_valid_request(
+        request = build_array_string_multi_valid_request(
             array_query=array_query,
             template_url=self.array_string_multi_valid.metadata["url"],
         )

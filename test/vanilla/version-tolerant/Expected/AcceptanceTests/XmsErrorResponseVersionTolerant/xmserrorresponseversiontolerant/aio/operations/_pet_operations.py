@@ -21,7 +21,11 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...rest import pet as rest_pet
+from ...operations._pet_operations import (
+    build_do_something_request,
+    build_get_pet_by_id_request,
+    build_has_models_param_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -73,7 +77,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_pet.build_get_pet_by_id_request(
+        request = build_get_pet_by_id_request(
             pet_id=pet_id,
             template_url=self.get_pet_by_id.metadata["url"],
         )
@@ -129,7 +133,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_pet.build_do_something_request(
+        request = build_do_something_request(
             what_action=what_action,
             template_url=self.do_something.metadata["url"],
         )
@@ -177,7 +181,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_pet.build_has_models_param_request(
+        request = build_has_models_param_request(
             models=models,
             template_url=self.has_models_param.metadata["url"],
         )

@@ -22,7 +22,11 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ...rest import header as rest_header
+from ...operations._header_operations import (
+    build_custom_named_request_id_head_request,
+    build_custom_named_request_id_param_grouping_request,
+    build_custom_named_request_id_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,7 +64,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_header.build_custom_named_request_id_request(
+        request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id.metadata["url"],
         )
@@ -98,7 +102,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_header.build_custom_named_request_id_param_grouping_request(
+        request = build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_param_grouping.metadata["url"],
         )
@@ -135,7 +139,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = rest_header.build_custom_named_request_id_head_request(
+        request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             template_url=self.custom_named_request_id_head.metadata["url"],
         )
