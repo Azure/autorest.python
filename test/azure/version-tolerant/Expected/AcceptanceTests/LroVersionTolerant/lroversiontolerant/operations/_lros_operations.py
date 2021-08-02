@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import TYPE_CHECKING
 import warnings
 
@@ -990,7 +991,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1002,8 +1003,8 @@ class LROsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -1069,8 +1070,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1116,7 +1117,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1126,8 +1127,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -1193,8 +1194,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1229,7 +1230,7 @@ class LROsOperations(object):
 
         request = build_post202_list_request_initial(
             template_url=self._post202_list_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1242,8 +1243,8 @@ class LROsOperations(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -1302,8 +1303,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1349,7 +1350,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_no_state_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1359,8 +1360,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -1426,8 +1427,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1473,7 +1474,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put202_retry200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1483,8 +1484,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -1551,8 +1552,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1598,7 +1599,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1609,14 +1610,14 @@ class LROsOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -1683,8 +1684,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1730,7 +1731,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_updating_succeeded204_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1740,8 +1741,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -1808,8 +1809,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1855,7 +1856,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_failed200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1866,14 +1867,14 @@ class LROsOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -1940,8 +1941,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -1987,7 +1988,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1997,8 +1998,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2065,8 +2066,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2112,7 +2113,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_no_header_in_retry_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2125,8 +2126,8 @@ class LROsOperations(object):
         response_headers = {}
         response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2195,8 +2196,8 @@ class LROsOperations(object):
             response = pipeline_response.http_response
             response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2242,7 +2243,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2259,8 +2260,8 @@ class LROsOperations(object):
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2334,8 +2335,8 @@ class LROsOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2381,7 +2382,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2397,8 +2398,8 @@ class LROsOperations(object):
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2471,8 +2472,8 @@ class LROsOperations(object):
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2518,7 +2519,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_failed_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2535,8 +2536,8 @@ class LROsOperations(object):
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2610,8 +2611,8 @@ class LROsOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2657,7 +2658,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2673,8 +2674,8 @@ class LROsOperations(object):
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2747,8 +2748,8 @@ class LROsOperations(object):
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2794,7 +2795,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2809,8 +2810,8 @@ class LROsOperations(object):
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -2882,8 +2883,8 @@ class LROsOperations(object):
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -2929,7 +2930,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_non_resource_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2939,8 +2940,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -3001,8 +3002,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3048,7 +3049,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_non_resource_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3058,8 +3059,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -3120,8 +3121,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3167,7 +3168,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_sub_resource_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3177,8 +3178,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -3243,8 +3244,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3290,7 +3291,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_sub_resource_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3300,8 +3301,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -3366,8 +3367,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3402,7 +3403,7 @@ class LROsOperations(object):
 
         request = build_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3414,8 +3415,8 @@ class LROsOperations(object):
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3423,8 +3424,8 @@ class LROsOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3476,8 +3477,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3512,7 +3513,7 @@ class LROsOperations(object):
 
         request = build_delete_provisioning202_deleting_failed200_request_initial(
             template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3524,8 +3525,8 @@ class LROsOperations(object):
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3533,8 +3534,8 @@ class LROsOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3586,8 +3587,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3622,7 +3623,7 @@ class LROsOperations(object):
 
         request = build_delete_provisioning202_deletingcanceled200_request_initial(
             template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3634,8 +3635,8 @@ class LROsOperations(object):
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3643,8 +3644,8 @@ class LROsOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3696,8 +3697,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3732,7 +3733,7 @@ class LROsOperations(object):
 
         request = build_delete204_succeeded_request_initial(
             template_url=self._delete204_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3805,7 +3806,7 @@ class LROsOperations(object):
 
         request = build_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3818,8 +3819,8 @@ class LROsOperations(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3874,8 +3875,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -3910,7 +3911,7 @@ class LROsOperations(object):
 
         request = build_delete202_no_retry204_request_initial(
             template_url=self._delete202_no_retry204_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3923,8 +3924,8 @@ class LROsOperations(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -3979,8 +3980,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -4015,7 +4016,7 @@ class LROsOperations(object):
 
         request = build_delete_no_header_in_retry_request_initial(
             template_url=self._delete_no_header_in_retry_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4093,7 +4094,7 @@ class LROsOperations(object):
 
         request = build_delete_async_no_header_in_retry_request_initial(
             template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4171,7 +4172,7 @@ class LROsOperations(object):
 
         request = build_delete_async_retry_succeeded_request_initial(
             template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4252,7 +4253,7 @@ class LROsOperations(object):
 
         request = build_delete_async_no_retry_succeeded_request_initial(
             template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4333,7 +4334,7 @@ class LROsOperations(object):
 
         request = build_delete_async_retry_failed_request_initial(
             template_url=self._delete_async_retry_failed_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4414,7 +4415,7 @@ class LROsOperations(object):
 
         request = build_delete_async_retrycanceled_request_initial(
             template_url=self._delete_async_retrycanceled_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4495,7 +4496,7 @@ class LROsOperations(object):
 
         request = build_post200_with_payload_request_initial(
             template_url=self._post200_with_payload_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4506,14 +4507,14 @@ class LROsOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
         if response.status_code == 202:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -4562,8 +4563,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -4609,7 +4610,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4716,7 +4717,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_no_retry204_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4730,8 +4731,8 @@ class LROsOperations(object):
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -4801,8 +4802,8 @@ class LROsOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -4837,7 +4838,7 @@ class LROsOperations(object):
 
         request = build_post_double_headers_final_location_get_request_initial(
             template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4847,8 +4848,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -4900,8 +4901,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -4936,7 +4937,7 @@ class LROsOperations(object):
 
         request = build_post_double_headers_final_azure_header_get_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4946,8 +4947,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -4999,8 +5000,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -5035,7 +5036,7 @@ class LROsOperations(object):
 
         request = build_post_double_headers_final_azure_header_get_default_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5045,8 +5046,8 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -5100,8 +5101,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -5147,7 +5148,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5160,8 +5161,8 @@ class LROsOperations(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -5235,8 +5236,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -5282,7 +5283,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5295,8 +5296,8 @@ class LROsOperations(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -5370,8 +5371,8 @@ class LROsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -5417,7 +5418,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_failed_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5528,7 +5529,7 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retrycanceled_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

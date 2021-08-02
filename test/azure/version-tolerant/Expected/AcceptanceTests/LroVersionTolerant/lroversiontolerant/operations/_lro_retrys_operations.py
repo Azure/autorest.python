@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import TYPE_CHECKING
 import warnings
 
@@ -230,7 +231,7 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -241,14 +242,14 @@ class LRORetrysOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -315,8 +316,8 @@ class LRORetrysOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -362,7 +363,7 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -379,8 +380,8 @@ class LRORetrysOperations(object):
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -454,8 +455,8 @@ class LRORetrysOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -490,7 +491,7 @@ class LRORetrysOperations(object):
 
         request = build_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -502,8 +503,8 @@ class LRORetrysOperations(object):
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -511,8 +512,8 @@ class LRORetrysOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -564,8 +565,8 @@ class LRORetrysOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -600,7 +601,7 @@ class LRORetrysOperations(object):
 
         request = build_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -678,7 +679,7 @@ class LRORetrysOperations(object):
 
         request = build_delete_async_relative_retry_succeeded_request_initial(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -770,7 +771,7 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -877,7 +878,7 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

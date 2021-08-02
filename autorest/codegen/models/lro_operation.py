@@ -45,6 +45,7 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
+        self.use_pipeline_transport = True
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -90,6 +91,7 @@ class LROOperation(Operation):
             want_tracing=False,
         )
         operation.request_builder = self.request_builder
+        operation.use_pipeline_transport = True
         return operation
 
     @property
@@ -166,4 +168,6 @@ class LROOperation(Operation):
 
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.lro_response and self.lro_response.has_body:
+            file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
         return file_import

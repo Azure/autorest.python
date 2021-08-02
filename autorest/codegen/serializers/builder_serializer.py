@@ -714,7 +714,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
 
-        convert_to_legacy = "" if self.code_model.options["version_tolerant"] else "._to_pipeline_transport_request()"
+        convert_to_legacy = ""
+        if self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
+            convert_to_legacy = "._to_pipeline_transport_request()"
         retval.append(f"){convert_to_legacy}")
         if builder.parameters.path:
             retval.extend(self._serialize_path_format_parameters(builder))
@@ -728,7 +730,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def call_request_builder(self, builder: BuilderType) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder)
 
-    def response_headers_and_deserialization(self, response: SchemaResponse) -> List[str]:
+    def response_headers_and_deserialization(
+        self,
+        builder: BuilderType,
+        response: SchemaResponse,
+    ) -> List[str]:
         retval: List[str] = [
             f"response_headers['{response_header.name}']=self._deserialize('{response_header.serialization_type}', response.headers.get('{response_header.name}'))"
             for response_header in response.headers
@@ -746,8 +752,15 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
             else:
                 is_xml = any(["xml" in ct for ct in response.media_types])
-                deserialized_value = "ET.fromstring(response.text)" if is_xml else "response.json()"
-                retval.append("if response.content:")
+                deserialized_value = ""
+                if is_xml:
+                    deserialized_value = "ET.fromstring(response.text)"
+                elif builder.use_pipeline_transport:
+                    deserialized_value = "_loads(response.body())"
+                else:
+                    deserialized_value = "response.json()"
+                response_body = "response.body()" if builder.use_pipeline_transport else "response.content"
+                retval.append(f"if {response_body}:")
                 retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
                 retval.append("    deserialized = None")
@@ -788,12 +801,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                         retval.append(f"if response.status_code == {status_code}:")
                         retval.extend([
                             f"    {line}"
-                            for line in self.response_headers_and_deserialization(response)
+                            for line in self.response_headers_and_deserialization(builder, response)
                         ])
                         retval.append("")
             else:
                 retval.extend(self.response_headers_and_deserialization(
-                    builder.responses[0]
+                    builder, builder.responses[0]
                 ))
                 retval.append("")
         retval.append("if cls:")
@@ -1136,7 +1149,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
-                for line in self.response_headers_and_deserialization(builder.lro_response)
+                for line in self.response_headers_and_deserialization(builder, builder.lro_response)
             ])
         retval.append("    if cls:")
         retval.append("        return cls(pipeline_response, {}, {})".format(

@@ -52,6 +52,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         self.want_tracing = want_tracing
         self._request_builder: Optional[RequestBuilder] = None
         self.deprecated = False
+        self.use_pipeline_transport = False
 
     @property
     def python_name(self) -> str:

@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
@@ -69,7 +70,7 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -88,8 +89,8 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 
@@ -159,8 +160,8 @@ class LROsCustomHeaderOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -201,7 +202,7 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -214,14 +215,14 @@ class LROsCustomHeaderOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -284,8 +285,8 @@ class LROsCustomHeaderOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -326,7 +327,7 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -426,7 +427,7 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
