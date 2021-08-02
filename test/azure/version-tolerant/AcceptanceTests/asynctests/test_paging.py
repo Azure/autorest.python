@@ -25,16 +25,6 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
 
 from pagingversiontolerant.aio import AutoRestPagingTestService
 from custombaseurlpagingversiontolerant.aio import AutoRestParameterizedHostTestPagingClient
@@ -71,8 +61,8 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 1
-        assert items[0].properties.id == 1
-        assert items[0].properties.name == "Product"
+        assert items[0]["properties"]["id"] == 1
+        assert items[0]["properties"]["name"] == "Product"
 
     @pytest.mark.asyncio
     async def test_get_null_next_link_name_pages(self, client):
@@ -81,17 +71,17 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 1
-        assert items[0].properties.id == 1
-        assert items[0].properties.name == "Product"
+        assert items[0]["properties"]["id"] == 1
+        assert items[0]["properties"]["name"] == "Product"
 
     @pytest.mark.asyncio
     async def test_get_single_pages_with_cb(self, client):
         def cb(list_of_obj):
             for obj in list_of_obj:
-                obj.marked = True
+                obj["marked"] = True
             return list_of_obj
         async for obj in client.paging.get_single_pages(cls=cb):
-            assert obj.marked
+            assert obj["marked"]
 
     @pytest.mark.asyncio
     async def test_get_single_pages(self, client):
@@ -100,8 +90,8 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 1
-        assert items[0].properties.id == 1
-        assert items[0].properties.name == "Product"
+        assert items[0]["properties"]["id"] == 1
+        assert items[0]["properties"]["name"] == "Product"
 
     @pytest.mark.asyncio
     async def test_get_multiple_pages(self, client):
@@ -145,14 +135,12 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_get_multiple_pages_with_offset(self, client):
-        from paging.models import PagingGetMultiplePagesWithOffsetOptions
-        options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
-        pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
+        pages = client.paging.get_multiple_pages_with_offset(offset=100)
         items = []
         async for item in pages:
             items.append(item)
         assert len(items) == 10
-        assert items[-1].properties.id == 110
+        assert items[-1]["properties"]["id"] == 110
 
     @pytest.mark.asyncio
     async def test_get_single_pages_failure(self, client):
@@ -178,7 +166,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_paging_fragment_path(self, client):
 
-        pages = client.paging.get_multiple_pages_fragment_next_link("1.6", "test_user")
+        pages = client.paging.get_multiple_pages_fragment_next_link(api_version="1.6", tenant="test_user")
         items = []
         async for item in pages:
             items.append(item)
@@ -196,8 +184,8 @@ class TestPaging(object):
             items.append(item)
 
         assert len(items) == 2
-        assert items[0].properties.id == 1
-        assert items[1].properties.id == 2
+        assert items[0]["properties"]["id"] == 1
+        assert items[1]["properties"]["id"] == 2
 
     @pytest.mark.asyncio
     async def test_custom_url_get_pages_partial_url_operation(self, custom_url_client):
@@ -207,8 +195,8 @@ class TestPaging(object):
             items.append(item)
 
         assert len(items) == 2
-        assert items[0].properties.id == 1
-        assert items[1].properties.id == 2
+        assert items[0]["properties"]["id"] == 1
+        assert items[1]["properties"]["id"] == 2
 
     @pytest.mark.asyncio
     async def test_get_multiple_pages_lro(self, client):
@@ -222,8 +210,8 @@ class TestPaging(object):
             items.append(item)
 
         assert len(items) == 10
-        assert items[0].properties.id == 1
-        assert items[1].properties.id == 2
+        assert items[0]["properties"]["id"] == 1
+        assert items[1]["properties"]["id"] == 2
 
     @pytest.mark.asyncio
     async def test_initial_response_no_items(self, client):

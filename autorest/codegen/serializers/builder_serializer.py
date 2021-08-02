@@ -973,16 +973,26 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
     def _extract_data_callback(self, builder: BuilderType) -> List[str]:
         retval = [f"{self._def} extract_data(pipeline_response):"]
         response = builder.responses[0]
-        retval.append("    deserialized = {}".format(
+        deserialized = (
             f'self._deserialize("{response.serialization_type}", pipeline_response)'
-        ))
-        retval.append(f"    list_of_elem = deserialized.{builder.item_name}")
+            if self.code_model.options["show_models"] else
+            "_loads(pipeline_response.http_response.body())"
+        )
+        retval.append(f"    deserialized = {deserialized}")
+        item_name = builder.item_name(self.code_model)
+        list_of_elem = f".{item_name}" if self.code_model.options["show_models"] else f'["{item_name}"]'
+        retval.append(f"    list_of_elem = deserialized{list_of_elem}")
         retval.append("    if cls:")
         retval.append("        list_of_elem = cls(list_of_elem)")
-        retval.append("    return {}, {}(list_of_elem)".format(
-            f"deserialized.{builder.next_link_name} or None" if builder.next_link_name else "None",
-            self._list_type_returned_to_users
-        ))
+
+        next_link_name = builder.next_link_name(self.code_model)
+        if not next_link_name:
+            next_link_property = "None"
+        elif self.code_model.options["show_models"]:
+            next_link_property = f"deserialized.{next_link_name} or None"
+        else:
+            next_link_property = f'deserialized.get("{next_link_name}", None)'
+        retval.append(f"    return {next_link_property}, {self._list_type_returned_to_users}(list_of_elem)")
         return retval
 
     def _get_next_callback(self, builder: BuilderType) -> List[str]:
@@ -1268,7 +1278,7 @@ class SyncLROPagingOperationGenericSerializer(_SyncLROPagingOperationBaseSeriali
 class SyncLROPagingOperationPython3Serializer(_SyncLROPagingOperationBaseSerializer, SyncOperationPython3Serializer):
     pass
 
-class AsyncLROPagingOperationSerializer(AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
+class AsyncLROPagingOperationSerializer(_LROPagingOperationBaseSerializer, AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
     @property
     def _function_definition(self) -> str:
         return "async def"

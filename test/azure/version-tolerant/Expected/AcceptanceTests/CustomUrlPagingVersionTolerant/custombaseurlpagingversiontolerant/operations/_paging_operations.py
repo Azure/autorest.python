@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import TYPE_CHECKING
 import warnings
 
@@ -159,7 +160,7 @@ class PagingOperations(object):
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
-                )
+                )._to_pipeline_transport_request()
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -170,7 +171,7 @@ class PagingOperations(object):
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
-                )
+                )._to_pipeline_transport_request()
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -185,11 +186,11 @@ class PagingOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("object", pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -247,7 +248,7 @@ class PagingOperations(object):
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
-                )
+                )._to_pipeline_transport_request()
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -259,7 +260,7 @@ class PagingOperations(object):
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
-                )
+                )._to_pipeline_transport_request()
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -269,11 +270,11 @@ class PagingOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("object", pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)

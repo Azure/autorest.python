@@ -51,6 +51,7 @@ class PagingOperation(Operation):
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
+        self.use_pipeline_transport = True
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -75,27 +76,27 @@ class PagingOperation(Operation):
     def _get_paging_extension(self, extension_name):
         return self.yaml_data["extensions"][extension_name]
 
-    @property
-    def item_name(self) -> str:
-        if self._item_name is None:
-            # Default value. I still check if I find it,  so I can do a nice message.
-            item_name = "value"
-            try:
-                return self._find_python_name(item_name, "itemName")
-            except ValueError:
-                response = self._get_response()
-                raise ValueError(
-                    f"While scanning x-ms-pageable, itemName was not defined and object"
-                    + f" {response.schema.name} has no array called 'value'"
-                )
-        return self._find_python_name(self._item_name, "itemName")
+    def item_name(self, code_model) -> str:
+        item_name = self._item_name or "value"
+        try:
+            return (
+                self._find_python_name(item_name, "itemName") if code_model.options["show_models"]
+                else item_name
+            )
+        except ValueError:
+            response = self._get_response()
+            raise ValueError(
+                f"While scanning x-ms-pageable, itemName was not defined and object"
+                + f" {response.schema.name} has no array called 'value'"
+            )
 
-    @property
-    def next_link_name(self) -> Optional[str]:
+    def next_link_name(self, code_model) -> Optional[str]:
         if not self._next_link_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        return self._find_python_name(self._next_link_name, "nextLinkName")
+        if code_model.options["show_models"]:
+            return self._find_python_name(self._next_link_name, "nextLinkName")
+        return self._next_link_name
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -152,5 +153,6 @@ class PagingOperation(Operation):
             file_import.add_from_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
+        file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import
