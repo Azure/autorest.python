@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import TYPE_CHECKING
 import warnings
 
@@ -94,7 +95,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -111,8 +112,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -160,8 +161,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -208,7 +209,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -225,8 +226,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -274,8 +275,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:

@@ -23,9 +23,6 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import sys
-import os
-from os.path import dirname, pardir, join, realpath
 import inspect
 
 from pagingversiontolerant import AutoRestPagingTestService

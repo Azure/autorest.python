@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import TYPE_CHECKING
 import warnings
 
@@ -13,14 +14,13 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
-
-from .. import models as _models
-from .._rest import paging as rest_paging
+from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -29,21 +29,537 @@ if TYPE_CHECKING:
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
+_SERIALIZER = Serializer()
+# fmt: off
+
+def build_get_no_item_name_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/noitemname')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_null_next_link_name_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/nullnextlink')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_single_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/single')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_first_response_empty_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/firstResponseEmpty/1')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_with_query_params_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
+
+    query_constant = True
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/getWithQueryParams')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['requiredQueryParameter'] = _SERIALIZER.query("required_query_parameter", required_query_parameter, 'int')
+    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_next_operation_with_query_params_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    query_constant = True
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/nextOperationWithQueryParams')
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_odata_multiple_pages_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/odata')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_with_offset_request(
+    offset,  # type: int
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/withpath/{offset}')
+    path_format_arguments = {
+        'offset': _SERIALIZER.url("offset", offset, 'int'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_retry_first_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/retryfirst')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_retry_second_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/retrysecond')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_single_pages_failure_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/single/failure')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_failure_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/failure')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_failure_uri_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/failureuri')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_fragment_next_link_request(
+    tenant,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_fragment_with_grouping_next_link_request(
+    tenant,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_multiple_pages_lro_request_initial(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/lro')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if client_request_id is not None:
+        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+    if maxresults is not None:
+        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+    if timeout is not None:
+        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_next_fragment_request(
+    tenant,  # type: str
+    next_link,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}/{nextLink}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_next_fragment_with_grouping_request(
+    tenant,  # type: str
+    next_link,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version')  # type: str
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}')
+    path_format_arguments = {
+        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_paging_model_with_item_name_with_xms_client_name_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/paging/itemNameWithXMSClientName')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+# fmt: on
 class PagingOperations(object):
     """PagingOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~custompollerpagerversiontolerant.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
-
-    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -55,16 +571,30 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResultValue"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that must return result of the default 'value' node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype:
-         ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResultValue]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "value": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -72,27 +602,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_no_item_name_pages_request(
+                request = build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_no_item_name_pages_request(
+                request = build_get_no_item_name_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResultValue', pipeline_response)
-            list_of_elem = deserialized.value
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -101,11 +630,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -116,15 +645,30 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -132,24 +676,23 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_null_next_link_name_pages_request(
+                request = build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_null_next_link_name_pages_request(
+                request = build_get_null_next_link_name_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
             return None, iter(list_of_elem)
@@ -161,11 +704,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -176,16 +719,30 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that finishes on the first call without a nextlink.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype:
-         ~custompollerpagerdefinitions.CustomPager[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~custompollerpagerdefinitions.CustomPager[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -193,27 +750,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_single_pages_request(
+                request = build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_single_pages_request(
+                request = build_get_single_pages_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -222,11 +778,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return CustomPager(
             get_next, extract_data
@@ -237,17 +793,31 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResultValue"]
+        # type: (...) -> Iterable[Any]
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype:
-         ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResultValue]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "value": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -255,27 +825,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_first_response_empty_request(
+                request = build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_first_response_empty_request(
+                request = build_first_response_empty_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResultValue', pipeline_response)
-            list_of_elem = deserialized.value
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -284,11 +853,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -297,68 +866,76 @@ class PagingOperations(object):
 
     def get_multiple_pages(
         self,
-        client_request_id=None,  # type: Optional[str]
-        paging_get_multiple_pages_options=None,  # type: Optional["_models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
-        :type client_request_id: str
-        :param paging_get_multiple_pages_options: Parameter group.
-        :type paging_get_multiple_pages_options:
-         ~custompollerpagerversiontolerant.models.PagingGetMultiplePagesOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_options is not None:
-                    _maxresults = paging_get_multiple_pages_options.maxresults
-                    _timeout = paging_get_multiple_pages_options.timeout
-
-                request = rest_paging.build_get_multiple_pages_request(
+                
+                request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.get_multiple_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_options is not None:
-                    _maxresults = paging_get_multiple_pages_options.maxresults
-                    _timeout = paging_get_multiple_pages_options.timeout
-
-                request = rest_paging.build_get_multiple_pages_request(
+                
+                request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -367,11 +944,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -380,22 +957,38 @@ class PagingOperations(object):
 
     def get_with_query_params(
         self,
-        required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
-        :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
-         test.
-        :type required_query_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
+         pass test.
+        :paramtype required_query_parameter: int
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -403,7 +996,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_with_query_params_request(
+                request = build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
                 )._to_pipeline_transport_request()
@@ -411,7 +1004,7 @@ class PagingOperations(object):
 
             else:
                 
-                request = rest_paging.build_next_operation_with_query_params_request(
+                request = build_next_operation_with_query_params_request(
                     template_url='/paging/multiple/nextOperationWithQueryParams',
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -419,11 +1012,11 @@ class PagingOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -432,11 +1025,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -445,69 +1038,76 @@ class PagingOperations(object):
 
     def get_odata_multiple_pages(
         self,
-        client_request_id=None,  # type: Optional[str]
-        paging_get_odata_multiple_pages_options=None,  # type: Optional["_models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.OdataProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id:
-        :type client_request_id: str
-        :param paging_get_odata_multiple_pages_options: Parameter group.
-        :type paging_get_odata_multiple_pages_options:
-         ~custompollerpagerversiontolerant.models.PagingGetOdataMultiplePagesOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.OdataProductResult]
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "odata.nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
+        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _timeout = None
-                if paging_get_odata_multiple_pages_options is not None:
-                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
-                    _timeout = paging_get_odata_multiple_pages_options.timeout
-
-                request = rest_paging.build_get_odata_multiple_pages_request(
+                
+                request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.get_odata_multiple_pages.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _timeout = None
-                if paging_get_odata_multiple_pages_options is not None:
-                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
-                    _timeout = paging_get_odata_multiple_pages_options.timeout
-
-                request = rest_paging.build_get_odata_multiple_pages_request(
+                
+                request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('OdataProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odata_next_link or None, iter(list_of_elem)
+            return deserialized.get("odata.nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -516,11 +1116,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -529,74 +1129,81 @@ class PagingOperations(object):
 
     def get_multiple_pages_with_offset(
         self,
-        paging_get_multiple_pages_with_offset_options,  # type: "_models.PagingGetMultiplePagesWithOffsetOptions"
-        client_request_id=None,  # type: Optional[str]
+        offset,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param paging_get_multiple_pages_with_offset_options: Parameter group.
-        :type paging_get_multiple_pages_with_offset_options:
-         ~custompollerpagerversiontolerant.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id:
-        :type client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :param offset: Offset of return value.
+        :type offset: int
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _offset = None
-                _timeout = None
-                if paging_get_multiple_pages_with_offset_options is not None:
-                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-                    _offset = paging_get_multiple_pages_with_offset_options.offset
-                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
-
-                request = rest_paging.build_get_multiple_pages_with_offset_request(
-                    offset=_offset,
+                
+                request = build_get_multiple_pages_with_offset_request(
+                    offset=offset,
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _offset = None
-                _timeout = None
-                if paging_get_multiple_pages_with_offset_options is not None:
-                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-                    _offset = paging_get_multiple_pages_with_offset_options.offset
-                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
-
-                request = rest_paging.build_get_multiple_pages_with_offset_request(
-                    offset=_offset,
+                
+                request = build_get_multiple_pages_with_offset_request(
+                    offset=offset,
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -605,11 +1212,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -620,16 +1227,31 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -637,27 +1259,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_retry_first_request(
+                request = build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_retry_first_request(
+                request = build_get_multiple_pages_retry_first_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -666,11 +1287,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -681,16 +1302,31 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -698,27 +1334,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_retry_second_request(
+                request = build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_retry_second_request(
+                request = build_get_multiple_pages_retry_second_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -727,11 +1362,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -742,15 +1377,30 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that receives a 400 on the first call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -758,27 +1408,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_single_pages_failure_request(
+                request = build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_single_pages_failure_request(
+                request = build_get_single_pages_failure_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -787,11 +1436,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -802,15 +1451,30 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that receives a 400 on the second call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -818,27 +1482,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_failure_request(
+                request = build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_failure_request(
+                request = build_get_multiple_pages_failure_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -847,11 +1510,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -862,15 +1525,30 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that receives an invalid nextLink.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -878,27 +1556,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_failure_uri_request(
+                request = build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_multiple_pages_failure_uri_request(
+                request = build_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -907,11 +1584,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -920,24 +1597,39 @@ class PagingOperations(object):
 
     def get_multiple_pages_fragment_next_link(
         self,
-        api_version,  # type: str
         tenant,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.OdataProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :param api_version: Sets the api version to use.
-        :type api_version: str
         :param tenant: Sets the tenant to use.
         :type tenant: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.OdataProductResult]
+        :keyword api_version: Sets the api version to use.
+        :paramtype api_version: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "odata.nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
+        api_version = kwargs.pop('api_version')  # type: str
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -945,7 +1637,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_multiple_pages_fragment_next_link_request(
+                request = build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
@@ -954,7 +1646,7 @@ class PagingOperations(object):
 
             else:
                 
-                request = rest_paging.build_next_fragment_request(
+                request = build_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
@@ -965,11 +1657,11 @@ class PagingOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('OdataProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odata_next_link or None, iter(list_of_elem)
+            return deserialized.get("odata.nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -978,11 +1670,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -991,51 +1683,59 @@ class PagingOperations(object):
 
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
-        custom_parameter_group,  # type: "_models.CustomParameterGroup"
+        tenant,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.OdataProductResult"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-        :param custom_parameter_group: Parameter group.
-        :type custom_parameter_group: ~custompollerpagerversiontolerant.models.CustomParameterGroup
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
-        :rtype:
-         ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.OdataProductResult]
+        :param tenant: Sets the tenant to use.
+        :type tenant: str
+        :keyword api_version: Sets the api version to use.
+        :paramtype api_version: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "odata.nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
+        api_version = kwargs.pop('api_version')  # type: str
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
-                _api_version = None
-                _tenant = None
-                if custom_parameter_group is not None:
-                    _api_version = custom_parameter_group.api_version
-                    _tenant = custom_parameter_group.tenant
-
-                request = rest_paging.build_get_multiple_pages_fragment_with_grouping_next_link_request(
-                    tenant=_tenant,
-                    api_version=_api_version,
+                
+                request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
+                    tenant=tenant,
+                    api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
-                _api_version = None
-                _tenant = None
-                if custom_parameter_group is not None:
-                    _api_version = custom_parameter_group.api_version
-                    _tenant = custom_parameter_group.tenant
-
-                request = rest_paging.build_next_fragment_with_grouping_request(
-                    tenant=_tenant,
+                
+                request = build_next_fragment_with_grouping_request(
+                    tenant=tenant,
                     next_link=next_link,
-                    api_version=_api_version,
+                    api_version=api_version,
                     template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
@@ -1043,11 +1743,11 @@ class PagingOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('OdataProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odata_next_link or None, iter(list_of_elem)
+            return deserialized.get("odata.nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -1056,11 +1756,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data
@@ -1069,26 +1769,24 @@ class PagingOperations(object):
 
     def _get_multiple_pages_lro_initial(
         self,
-        client_request_id=None,  # type: Optional[str]
-        paging_get_multiple_pages_lro_options=None,  # type: Optional["_models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ProductResult"
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        # type: (...) -> Any
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_lro_options is not None:
-            _maxresults = paging_get_multiple_pages_lro_options.maxresults
-            _timeout = paging_get_multiple_pages_lro_options.timeout
 
-        request = rest_paging.build_get_multiple_pages_lro_request_initial(
+        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+        
+        request = build_get_multiple_pages_lro_request_initial(
             client_request_id=client_request_id,
-            maxresults=_maxresults,
-            timeout=_timeout,
+            maxresults=maxresults,
+            timeout=timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata['url'],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -1100,7 +1798,10 @@ class PagingOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize('ProductResult', pipeline_response)
+        if response.body():
+            deserialized = _loads(response.body())
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1112,19 +1813,18 @@ class PagingOperations(object):
 
     def begin_get_multiple_pages_lro(
         self,
-        client_request_id=None,  # type: Optional[str]
-        paging_get_multiple_pages_lro_options=None,  # type: Optional["_models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> CustomPoller[ItemPaged["_models.ProductResult"]]
+        # type: (...) -> CustomPoller[ItemPaged[Any]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
-        :type client_request_id: str
-        :param paging_get_multiple_pages_lro_options: Parameter group.
-        :type paging_get_multiple_pages_lro_options:
-         ~custompollerpagerversiontolerant.models.PagingGetMultiplePagesLroOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword client_request_id:
+        :paramtype client_request_id: str
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -1132,58 +1832,49 @@ class PagingOperations(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of CustomPoller that returns an iterator like instance of either
-         ProductResult or the result of cls(response)
-        :rtype:
-         ~custompollerpagerdefinitions.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResult]]
+        :return: An instance of CustomPoller that returns an iterator like instance of JSON object
+        :rtype: ~custompollerpagerdefinitions.CustomPoller[~azure.core.paging.ItemPaged[Any]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_lro_options is not None:
-                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
-                    _timeout = paging_get_multiple_pages_lro_options.timeout
-
-                request = rest_paging.build_get_multiple_pages_lro_request_initial(
+                
+                request = build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
-                _maxresults = None
-                _timeout = None
-                if paging_get_multiple_pages_lro_options is not None:
-                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
-                    _timeout = paging_get_multiple_pages_lro_options.timeout
-
-                request = rest_paging.build_get_multiple_pages_lro_request_initial(
+                
+                request = build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
-                    maxresults=_maxresults,
-                    timeout=_timeout,
+                    maxresults=maxresults,
+                    timeout=timeout,
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -1192,14 +1883,14 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+
+        polling = kwargs.pop('polling', True)  # type: Union[bool, azure.core.polling.PollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1208,11 +1899,11 @@ class PagingOperations(object):
         if cont_token is None:
             raw_result = self._get_multiple_pages_lro_initial(
                 client_request_id=client_request_id,
-                paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+                maxresults=maxresults,
+                timeout=timeout,
                 cls=lambda x,y,z: x,
                 **kwargs
             )
-
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
@@ -1225,7 +1916,8 @@ class PagingOperations(object):
             return ItemPaged(
                 internal_get_next, extract_data
             )
-        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+
+        if polling is True: polling_method = ARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         if cont_token:
@@ -1237,6 +1929,7 @@ class PagingOperations(object):
             )
         else:
             return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
+
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
 
@@ -1244,18 +1937,31 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResultValueWithXMSClientName"]
+        # type: (...) -> Iterable[Any]
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result
-         of cls(response)
-        :rtype:
-         ~azure.core.paging.ItemPaged[~custompollerpagerversiontolerant.models.ProductResultValueWithXMSClientName]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str (optional)",
+                    "values": [
+                        {
+                            "properties": {
+                                "id": "int (optional)",
+                                "name": "str (optional)"
+                            }
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1263,27 +1969,26 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 
-                request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
+                request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
                 
-                request = rest_paging.build_get_paging_model_with_item_name_with_xms_client_name_request(
+                request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
-            list_of_elem = deserialized.indexes
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink", None), iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -1292,11 +1997,11 @@ class PagingOperations(object):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return ItemPaged(
             get_next, extract_data

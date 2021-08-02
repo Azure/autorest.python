@@ -15,6 +15,7 @@ basic-setup-py: true
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
 clear-output-folder: true
+version-tolerant: true
 ```
 
 ### Override ItemPaged to custom Pager

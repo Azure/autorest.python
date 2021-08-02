@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
+from json import loads as _loads
 from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
@@ -143,7 +144,7 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -157,8 +158,8 @@ class StorageAccountsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
 
@@ -265,8 +266,8 @@ class StorageAccountsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
+            if response.body():
+                deserialized = _loads(response.body())
             else:
                 deserialized = None
             if cls:
@@ -660,7 +661,7 @@ class StorageAccountsOperations:
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
-                )
+                )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -668,14 +669,14 @@ class StorageAccountsOperations:
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )
+                )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("object", pipeline_response)
-            list_of_elem = deserialized.value
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
             return None, AsyncList(list_of_elem)
@@ -766,7 +767,7 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
-                )
+                )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -775,14 +776,14 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )
+                )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("object", pipeline_response)
-            list_of_elem = deserialized.value
+            deserialized = _loads(pipeline_response.http_response.body())
+            list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
             return None, AsyncList(list_of_elem)

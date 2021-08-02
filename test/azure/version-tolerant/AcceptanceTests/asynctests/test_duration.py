@@ -40,13 +40,13 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid(client):
-    assert client.duration.get_null() is None
+    assert await client.duration.get_null() is None
 
     with pytest.raises(isodate.ISO8601Error):
-        deserialize_duration(client.duration.get_invalid())
+        deserialize_duration(await client.duration.get_invalid())
 
 @pytest.mark.asyncio
 async def test_positive_duration(client):
-    client.duration.get_positive_duration()
+    await client.duration.get_positive_duration()
     delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-    client.duration.put_positive_duration(serialize_duration(delta))
+    await client.duration.put_positive_duration(serialize_duration(delta))

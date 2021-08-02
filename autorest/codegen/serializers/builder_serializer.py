@@ -715,7 +715,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append(f"    template_url={template_url},")
 
         convert_to_legacy = ""
-        if self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
+        if not self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
             convert_to_legacy = "._to_pipeline_transport_request()"
         retval.append(f"){convert_to_legacy}")
         if builder.parameters.path:

@@ -1,5 +1,4 @@
 {% import 'operation_tools.jinja2' as op_tools with context %}
-{% import 'lro_operation_helper.jinja2' as helper with context %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}

@@ -23,9 +23,6 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import sys
-import datetime
-import os
 import platform
 import warnings
 
@@ -36,7 +33,7 @@ class TestAcceptance(object):
 
     def test_ensure_coverage(self):
         client = AutoRestReportServiceForAzure(base_url="http://localhost:3000")
-        report = client.get_report(platform.python_version())
+        report = client.get_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {}

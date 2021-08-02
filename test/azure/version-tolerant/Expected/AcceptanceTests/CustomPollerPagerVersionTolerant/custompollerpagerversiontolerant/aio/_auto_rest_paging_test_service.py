@@ -13,12 +13,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from .. import models
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
+    from typing import Dict
+
     from azure.core.credentials_async import AsyncTokenCredential
 
 class AutoRestPagingTestService:
@@ -45,14 +46,13 @@ class AutoRestPagingTestService:
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
 
-    def _send_request(
+    def send_request(
         self,
         request: HttpRequest,
         **kwargs: Any
@@ -60,13 +60,8 @@ class AutoRestPagingTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custompollerpagerversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
-        >>> from custompollerpagerversiontolerant._rest import paging
-        >>> request = paging.build_get_no_item_name_pages_request(**kwargs)
-        <HttpRequest [GET], url: '/paging/noitemname'>
-        >>> response = await client._send_request(request)
-        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
