@@ -1,3 +1,4 @@
+pip==20.2
 requests>=2.14.0
 pytest
 pytest-cov
