@@ -9,7 +9,7 @@
 {{ serializer.class_definition(async_mode) }}
     """{{ code_model.description }}
 
-    {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n     ") | indent }}
+    {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
         {% if not code_model.service_client.base_url %}
         base_url = {{ keywords.escape_str(code_model.service_client.custom_base_url) }}

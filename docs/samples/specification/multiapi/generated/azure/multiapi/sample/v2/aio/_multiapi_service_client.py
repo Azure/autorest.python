@@ -26,10 +26,10 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
 
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one:
-         azure.multiapi.sample.v2.aio.operations.OperationGroupOneOperations
+     azure.multiapi.sample.v2.aio.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two:
-         azure.multiapi.sample.v2.aio.operations.OperationGroupTwoOperations
+     azure.multiapi.sample.v2.aio.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL

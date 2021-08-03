@@ -28,7 +28,7 @@ class StorageManagementClient:
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-         subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
     :param base_url: Service URL
     :type base_url: str
