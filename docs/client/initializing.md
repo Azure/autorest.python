@@ -59,8 +59,7 @@ Each of these credential types also correspond to their own authentication polic
 
 | Credential Type                              | Authentication Policy                                                  |
 | -------------------------------------------- | ---------------------------------------------------------------------- |
-| [`TokenCredential`][aad_authentication]      | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy]        |
-| [`TokenCredential`][aad_authentication]      | [`ARMChallengeAuthenticationPolicy`][ARMChallengeAuthenticationPolicy] |
+| [`TokenCredential`][aad_authentication]      | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy] / [`ARMChallengeAuthenticationPolicy`][ARMChallengeAuthenticationPolicy]        |
 | [`AzureKeyCredential`][azure_key_credential] | [`AzureKeyCredentialPolicy`][azure_key_credential_policy]              |
 
 Currently, we only support generating credentials of type [`TokenCredential`][aad_authentication] and / or [`AzureKeyCredential`][azure_key_credential]. If you'd like to use your own custom credential,
