@@ -56,3 +56,12 @@ async def test_incorrect_content_type(client):
 async def test_content_type_with_encoding(client):
     result = await client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
     assert result == "Nice job sending content type with encoding"
+
+@pytest.mark.asyncio
+async def test_pdf_no_accept_header(client):
+    await client.analyze_body_no_accept_header(input=b"PDF", content_type="application/pdf")
+
+@pytest.mark.asyncio
+async def test_json_no_accept_header(client):
+    json_input = json.loads('{"source":"foo"}')
+    await client.analyze_body_no_accept_header(input=json_input)

@@ -304,12 +304,15 @@ async def test_array_string_csv(send_request, test_array_query):
 
 @pytest.mark.asyncio
 async def test_array_string_miscellaneous(send_request, test_array_query):
-    # request = queries.build_array_string_pipes_valid_request(array_query=test_array_query)
-    # await send_request(request)
+    request = queries.build_array_string_pipes_valid_request(array_query=test_array_query)
+    await send_request(request)
 
-    # request = queries.build_array_string_ssv_valid_request(array_query=test_array_query)
-    # await send_request(request)
+    request = queries.build_array_string_ssv_valid_request(array_query=test_array_query)
+    await send_request(request)
 
+@pytest.mark.asyncio
+@pytest.mark.skip(reason="https://github.com/aio-libs/aiohttp/issues/5904")
+async def test_array_string_tsv_valid(send_request, test_array_query):
     request = queries.build_array_string_tsv_valid_request(array_query=test_array_query)
     await send_request(request)
 

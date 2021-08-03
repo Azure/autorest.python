@@ -49,3 +49,10 @@ def test_incorrect_content_type(client):
 def test_content_type_with_encoding(client):
     result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
     assert result == "Nice job sending content type with encoding"
+
+def test_pdf_no_accept_header(client):
+    client.analyze_body_no_accept_header(input=b"PDF", content_type="application/pdf")
+
+def test_json_no_accept_header(client):
+    json_input = json.loads('{"source":"foo"}')
+    client.analyze_body_no_accept_header(input=json_input)
