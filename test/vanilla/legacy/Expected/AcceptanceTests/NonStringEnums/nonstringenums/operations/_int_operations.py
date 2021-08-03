@@ -106,7 +106,7 @@ class IntOperations(object):
         """Put an int enum.
 
         :param input: Input int enum.
-        :type input: str or ~nonstringenums.models.IntEnum
+        :type input: int or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -154,7 +154,7 @@ class IntOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntEnum, or the result of cls(response)
-        :rtype: str or ~nonstringenums.models.IntEnum
+        :rtype: int or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[int, "_models.IntEnum"]]

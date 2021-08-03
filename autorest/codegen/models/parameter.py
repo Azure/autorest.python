@@ -72,7 +72,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.schema = schema
         self.rest_api_name = rest_api_name
         self.serialized_name = serialized_name
-        self.description = description
+        self._description = description
         self._implementation = implementation
         self.required = required
         self.location = location
@@ -95,6 +95,21 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     def serialize_line(self, function_name: str, parameters_line: str):  # pylint: disable=no-self-use
         return f'self._serialize.{function_name}({parameters_line})'
+
+    @property
+    def description(self):
+        try:
+            if self._description and self.schema.extra_description_information:
+                return f"{self._description} {self.schema.extra_description_information}"
+            if self.schema.extra_description_information:
+                return self.schema.extra_description_information
+        except AttributeError:
+            pass
+        return self._description
+
+    @description.setter
+    def description(self, val: str):
+        self._description = val
 
     def build_serialize_data_call(self, function_name: str) -> str:
 
@@ -276,8 +291,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def has_default_value(self):
         return self.default_value is not None or not self.required
 
-    def method_signature(self, async_mode: bool) -> str:
-        if async_mode:
+    def method_signature(self, is_python_3_file: bool) -> str:
+        if is_python_3_file:
             if self.has_default_value:
                 return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
             return f"{self.serialized_name}: {self.type_annotation},"

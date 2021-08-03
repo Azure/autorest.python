@@ -54,3 +54,12 @@ class TestTime(object):
         else:
             from bodytime.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodytime.operations import TimeOperations
+
+        with pytest.raises(ImportError):
+            from bodytime.operations import _time_operations_py3
+
+        from bodytime.operations._time_operations import TimeOperations as TimeOperationsPy2
+        assert TimeOperations == TimeOperationsPy2

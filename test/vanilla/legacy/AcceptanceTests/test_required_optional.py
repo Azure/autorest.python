@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+import sys
 import unittest
 import subprocess
 import sys
@@ -148,3 +148,12 @@ class TestRequiredOptional(object):
 
     def test_implicit_put_optional_binary_body(self, client):
         client.implicit.put_optional_binary_body()
+
+    def test_operation_groups(self):
+        from requiredoptional.operations import ExplicitOperations
+
+        with pytest.raises(ImportError):
+            from requiredoptional.operations import _explicit_operations_py3
+
+        from requiredoptional.operations._explicit_operations import ExplicitOperations as ExplicitOperationsPy2
+        assert ExplicitOperations == ExplicitOperationsPy2

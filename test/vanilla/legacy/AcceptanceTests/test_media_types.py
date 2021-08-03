@@ -64,3 +64,12 @@ class TestMediaTypes(object):
         else:
             from mediatypes.models._models import SourcePath as SourcePathPy2
             assert SourcePath == SourcePathPy2
+
+    def test_operation_groups(self):
+        from mediatypes.operations import MediaTypesClientOperationsMixin
+
+        with pytest.raises(ImportError):
+            from mediatypes.operations import _media_types_client_operations_py3
+
+        from mediatypes.operations._media_types_client_operations import MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinPy2
+        assert MediaTypesClientOperationsMixin == MediaTypesClientOperationsMixinPy2

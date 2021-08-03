@@ -196,3 +196,19 @@ class TestParameter(object):
             from azureparametergrouping.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
 
+    def test_operation_groups(self):
+        from azurespecialproperties.operations import ApiVersionDefaultOperations
+
+        with pytest.raises(ImportError):
+            from azurespecialproperties.operations import _api_version_default_operations_py3
+
+        from azurespecialproperties.operations._api_version_default_operations import ApiVersionDefaultOperations as ApiVersionDefaultOperationsPy2
+        assert ApiVersionDefaultOperations == ApiVersionDefaultOperationsPy2
+
+        from azureparametergrouping.operations import ParameterGroupingOperations
+
+        with pytest.raises(ImportError):
+            from azureparametergrouping.operations import _parameter_grouping_operations_py3
+
+        from azureparametergrouping.operations._parameter_grouping_operations import ParameterGroupingOperations as ParameterGroupingOperationsPy2
+        assert ParameterGroupingOperations == ParameterGroupingOperationsPy2

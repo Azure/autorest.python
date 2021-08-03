@@ -23,7 +23,7 @@ class ClientSerializer:
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         init_signature = self._init_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=async_mode,
+            is_python_3_file=async_mode,
             method_signature=init_signature,
             response_type_annotation="None",
         )
@@ -89,7 +89,7 @@ class ClientSerializer:
     def send_request_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         send_request_signature = self._send_request_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            async_mode=async_mode,
+            is_python_3_file=async_mode,
             method_signature=send_request_signature,
             response_type_annotation="Awaitable[AsyncHttpResponse]" if async_mode else "HttpResponse",
         )
@@ -121,7 +121,7 @@ class ClientSerializer:
         retval.append(
             f"We have helper methods to create requests specific to this service in `{self.code_model.namespace}.rest`."
         )
-        retval.append("Use these helper methods to create the request you pass to this method. See our example below:")
+        retval.append("Use these helper methods to create the request you pass to this method.")
         retval.append("")
         retval.extend(self._request_builder_example(async_mode))
         retval.append("")

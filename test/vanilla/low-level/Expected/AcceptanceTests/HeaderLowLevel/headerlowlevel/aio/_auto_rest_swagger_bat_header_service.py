@@ -42,7 +42,7 @@ class AutoRestSwaggerBATHeaderService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `headerlowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from headerlowlevel.rest import header
         >>> request = header.build_param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)

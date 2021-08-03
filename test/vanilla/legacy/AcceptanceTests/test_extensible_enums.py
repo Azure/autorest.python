@@ -82,3 +82,12 @@ class TestExtensibleEnums(object):
         else:
             from extensibleenumsswagger.models._models import Pet as PetPy2
             assert Pet == PetPy2
+
+    def test_operation_groups(self):
+        from extensibleenumsswagger.operations import PetOperations
+
+        with pytest.raises(ImportError):
+            from extensibleenumsswagger.operations import _pet_operations_py3
+
+        from extensibleenumsswagger.operations._pet_operations import PetOperations as PetOperationsPy2
+        assert PetOperations == PetOperationsPy2

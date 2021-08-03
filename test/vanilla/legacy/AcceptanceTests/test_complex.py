@@ -470,3 +470,12 @@ class TestComplex(object):
         else:
             from bodycomplex.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from bodycomplex.operations import PolymorphicrecursiveOperations
+
+        with pytest.raises(ImportError):
+            from bodycomplex.operations import _polymorphicrecursive_operations_py3
+
+        from bodycomplex.operations._polymorphicrecursive_operations import PolymorphicrecursiveOperations as PolymorphicrecursiveOperationsPy2
+        assert PolymorphicrecursiveOperations == PolymorphicrecursiveOperationsPy2

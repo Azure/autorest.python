@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, List, Optional, Union
+from typing import Any, List, Optional
 
 from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest

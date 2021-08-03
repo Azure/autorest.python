@@ -307,6 +307,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_package_name_setup_py(c, debug)
         regenerate_custom_poller_pager(c, debug)
         regenerate_samples(c, debug)
+        regenerate_with_python3_operation_files(c, debug)
 
 
 @task
@@ -394,3 +395,9 @@ def regenerate_samples(c, debug=False):
             cmd += " ".join(flag_strings)
         cmds.append(cmd)
     _run_autorest(cmds, debug)
+
+@task
+def regenerate_with_python3_operation_files(c, debug=False):
+    mapping = {'BodyArrayWithPythonThreeOperationFiles': 'body-array.json'}
+    override_flags = {"add-python3-operation-files": True}
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)

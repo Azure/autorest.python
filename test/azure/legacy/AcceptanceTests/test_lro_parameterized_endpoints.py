@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import sys
 import pytest
 from lrowithparameterizedendpoints import LROWithParamaterizedEndpoints
 
@@ -39,3 +40,12 @@ def test_poll_with_parameterized_endpoints(client):
 def test_poll_with_constant_parameterized_endpoints(client):
     poller = client.begin_poll_with_constant_parameterized_endpoints(account_name='local', polling_interval=0)
     assert poller.result() == 'success'
+
+def test_operation_groups():
+    from lrowithparameterizedendpoints.operations import LROWithParamaterizedEndpointsOperationsMixin
+
+    with pytest.raises(ImportError):
+        from lrowithparameterizedendpoints.operations import _lro_with_paramaterized_endpoints_operations_py3
+
+    from lrowithparameterizedendpoints.operations._lro_with_paramaterized_endpoints_operations import LROWithParamaterizedEndpointsOperationsMixin as LROWithParamaterizedEndpointsOperationsMixinPy2
+    assert LROWithParamaterizedEndpointsOperationsMixin == LROWithParamaterizedEndpointsOperationsMixinPy2

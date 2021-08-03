@@ -209,24 +209,24 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return signature_parameters
 
 
-    def method_signature(self, async_mode: bool) -> List[str]:
-        positional = self.method_signature_positional(async_mode)
-        if async_mode:
-            positional += self.method_signature_keyword_only(async_mode)
-        kwargs = self.method_signature_kwargs(async_mode)
+    def method_signature(self, is_python_3_file: bool) -> List[str]:
+        positional = self.method_signature_positional(is_python_3_file)
+        if is_python_3_file:
+            positional += self.method_signature_keyword_only(is_python_3_file)
+        kwargs = self.method_signature_kwargs(is_python_3_file)
         return positional + kwargs
 
-    def method_signature_positional(self, async_mode: bool) -> List[str]:
-        return [parameter.method_signature(async_mode) for parameter in self.positional]
+    def method_signature_positional(self, is_python_3_file: bool) -> List[str]:
+        return [parameter.method_signature(is_python_3_file) for parameter in self.positional]
 
-    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
+    def method_signature_keyword_only(self, is_python_3_file: bool) -> List[str]:
         if not self.keyword_only:
             return []
-        return ["*,"] + [parameter.method_signature(async_mode) for parameter in self.keyword_only]
+        return ["*,"] + [parameter.method_signature(is_python_3_file) for parameter in self.keyword_only]
 
     @staticmethod
-    def method_signature_kwargs(async_mode: bool) -> List[str]:
-        return ["**kwargs: Any"] if async_mode else ["**kwargs  # type: Any"]
+    def method_signature_kwargs(is_python_3_file: bool) -> List[str]:
+        return ["**kwargs: Any"] if is_python_3_file else ["**kwargs  # type: Any"]
 
     @property
     def positional(self) -> List[Parameter]:
@@ -240,9 +240,9 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def kwargs(self) -> List[Parameter]:
         return [p for p in self.method if p.is_kwarg]
 
-    def kwargs_to_pop(self, async_mode: bool) -> List[Parameter]:
+    def kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
         kwargs_to_pop = self.kwargs
-        if not async_mode:
+        if not is_python_3_file:
             kwargs_to_pop += self.keyword_only
         return kwargs_to_pop
 

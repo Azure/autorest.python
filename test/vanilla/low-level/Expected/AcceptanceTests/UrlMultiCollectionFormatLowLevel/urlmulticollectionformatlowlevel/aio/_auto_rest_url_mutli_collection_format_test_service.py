@@ -42,7 +42,7 @@ class AutoRestUrlMutliCollectionFormatTestService:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `urlmulticollectionformatlowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from urlmulticollectionformatlowlevel.rest import queries
         >>> request = queries.build_array_string_multi_null_request(array_query=array_query, **kwargs)

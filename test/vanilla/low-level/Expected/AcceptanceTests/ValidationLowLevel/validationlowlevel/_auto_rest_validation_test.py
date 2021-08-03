@@ -56,7 +56,7 @@ class AutoRestValidationTest(object):
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `validationlowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from validationlowlevel.rest import build_validation_of_method_parameters_request
         >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, **kwargs)

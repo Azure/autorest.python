@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Type
 from .base_schema import BaseSchema
 from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
 from .imports import FileImport, ImportType, TypingSection
@@ -109,7 +109,7 @@ class EnumSchema(BaseSchema):
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        return f"str or ~{self.namespace}.models.{self.name}"
+        return f"{self.enum_type.type_annotation} or ~{self.namespace}.models.{self.name}"
 
     @staticmethod
     def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
@@ -179,3 +179,59 @@ class EnumSchema(BaseSchema):
         # if we import my name
         imports.add_from_import("." + self.enum_file_name, "*", ImportType.LOCAL)
         return imports
+
+class HiddenModelEnumSchema(EnumSchema):
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.enum_type.imports())
+        return file_import
+
+    @property
+    def type_annotation(self) -> str:
+        """The python type used for type annotation
+
+        :return: The type annotation for this schema
+        :rtype: str
+        """
+        return self.enum_type.type_annotation
+
+    @property
+    def operation_type_annotation(self) -> str:
+        """The python type used for type annotation
+
+        :return: The type annotation for this schema
+        :rtype: str
+        """
+        return self.enum_type.type_annotation
+
+    @property
+    def docstring_text(self) -> str:
+        return f"{self.enum_type.type_annotation}. {self.extra_description_information}"
+
+    @property
+    def extra_description_information(self):
+        possible_values = [self.get_declaration(v.value) for v in self.values]
+        if not possible_values:
+            return ""
+        if len(possible_values) == 1:
+            return possible_values[0]
+        if len(possible_values) == 2:
+            possible_values_str = " or ".join(possible_values)
+        else:
+            possible_values_str = ", ".join(
+                possible_values[: len(possible_values) - 1]
+            ) + f", and {possible_values[-1]}"
+
+        return "Possible values are: {}.".format(possible_values_str)
+
+    @property
+    def docstring_type(self) -> str:
+        """The python type used for RST syntax input and type annotation.
+        """
+        return self.enum_type.type_annotation
+
+def get_enum_schema(code_model) -> Type[EnumSchema]:
+    if code_model.options["show_models"]:
+        return EnumSchema
+    return HiddenModelEnumSchema

@@ -42,7 +42,7 @@ class AutoRestParameterFlattening:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `parameterflatteninglowlevel.rest`.
-        Use these helper methods to create the request you pass to this method. See our example below:
+        Use these helper methods to create the request you pass to this method.
 
         >>> from parameterflatteninglowlevel.rest import availability_sets
         >>> request = availability_sets.build_update_request(resource_group_name, avset, json=json, content=content, **kwargs)

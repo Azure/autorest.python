@@ -106,7 +106,7 @@ class FloatOperations(object):
         """Put a float enum.
 
         :param input: Input float enum.
-        :type input: str or ~nonstringenums.models.FloatEnum
+        :type input: float or ~nonstringenums.models.FloatEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -154,7 +154,7 @@ class FloatOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatEnum, or the result of cls(response)
-        :rtype: str or ~nonstringenums.models.FloatEnum
+        :rtype: float or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
