@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from mediatypes import MediaTypesClient
-from azure.core.exceptions import HttpResponseError
+import json
 
 import pytest
 import json
@@ -54,6 +54,13 @@ class TestMediaTypes(object):
     def test_content_type_with_encoding(self, client):
         result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
         assert result == "Nice job sending content type with encoding"
+
+    def test_pdf_no_accept_header(self, client):
+        client.analyze_body_no_accept_header(input=b"PDF", content_type="application/pdf")
+
+    def test_json_no_accept_header(self, client):
+        json_input = json.loads('{"source":"foo"}')
+        client.analyze_body_no_accept_header(input=json_input)
 
     def test_models(self):
         from mediatypes.models import SourcePath

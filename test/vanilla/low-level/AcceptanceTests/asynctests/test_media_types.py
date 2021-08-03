@@ -55,3 +55,13 @@ async def test_json(send_request_json_response):
 async def test_content_type_with_encoding(send_request_json_response):
     request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; encoding=UTF-8')
     assert await send_request_json_response(request) == "Nice job sending content type with encoding"
+
+@pytest.mark.asyncio
+async def test_pdf_no_accept_header(send_request):
+    request = build_analyze_body_no_accept_header_request(content=b"PDF", content_type="application/pdf")
+    await send_request(request)
+
+@pytest.mark.asyncio
+async def test_json_no_accept_header(send_request):
+    request = build_analyze_body_no_accept_header_request(json={"source":"foo"})
+    await send_request(request)
