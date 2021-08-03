@@ -21,13 +21,6 @@ class CredentialSchemaPolicy:
         return cls.__name__
 
 
-class ARMChallengeAuthenticationPolicy(BearerTokenCredentialPolicy):
-
-    def call(self, async_mode: bool) -> str:
-        policy_name = f"Async{self.name()}" if async_mode else self.name()
-        return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
-
-
 class BearerTokenCredentialPolicy(CredentialSchemaPolicy):
 
     def __init__(
@@ -45,6 +38,13 @@ class BearerTokenCredentialPolicy(CredentialSchemaPolicy):
     def call(self, async_mode: bool) -> str:
         policy_name = f"Async{self.name()}" if async_mode else self.name()
         return f"policies.{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
+
+
+class ARMChallengeAuthenticationPolicy(BearerTokenCredentialPolicy):
+
+    def call(self, async_mode: bool) -> str:
+        policy_name = f"Async{self.name()}" if async_mode else self.name()
+        return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
 
 class AzureKeyCredentialPolicy(CredentialSchemaPolicy):
