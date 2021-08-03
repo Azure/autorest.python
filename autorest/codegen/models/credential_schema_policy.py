@@ -21,19 +21,7 @@ class CredentialSchemaPolicy:
         return cls.__name__
 
 
-class ARMChallengeAuthenticationPolicy(CredentialSchemaPolicy):
-
-    def __init__(
-        self,
-        credential: CredentialSchema,
-        credential_scopes: List[str]
-    ) -> None:
-        super().__init__(credential)
-        self._credential_scopes = credential_scopes
-
-    @property
-    def credential_scopes(self):
-        return self._credential_scopes
+class ARMChallengeAuthenticationPolicy(BearerTokenCredentialPolicy):
 
     def call(self, async_mode: bool) -> str:
         policy_name = f"Async{self.name()}" if async_mode else self.name()
