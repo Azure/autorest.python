@@ -36,13 +36,13 @@ class AutoRestAzureSpecialParametersTestClient:
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
     :vartype xms_client_request_id:
-         azurespecialproperties.aio.operations.XMsClientRequestIdOperations
+     azurespecialproperties.aio.operations.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
     :vartype subscription_in_credentials:
-         azurespecialproperties.aio.operations.SubscriptionInCredentialsOperations
+     azurespecialproperties.aio.operations.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
     :vartype subscription_in_method:
-         azurespecialproperties.aio.operations.SubscriptionInMethodOperations
+     azurespecialproperties.aio.operations.SubscriptionInMethodOperations
     :ivar api_version_default: ApiVersionDefaultOperations operations
     :vartype api_version_default: azurespecialproperties.aio.operations.ApiVersionDefaultOperations
     :ivar api_version_local: ApiVersionLocalOperations operations
@@ -56,7 +56,7 @@ class AutoRestAzureSpecialParametersTestClient:
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-         credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
     :param base_url: Service URL
     :type base_url: str

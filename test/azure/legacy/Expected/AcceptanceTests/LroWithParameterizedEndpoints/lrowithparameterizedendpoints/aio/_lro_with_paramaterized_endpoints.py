@@ -22,10 +22,10 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
     """Test Infrastructure for AutoRest.
 
     :param host: A string value that is used as a global part of the parameterized host. Pass in
-         'host:3000' to pass test.
+     'host:3000' to pass test.
     :type host: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
+     Retry-After header is present.
     """
 
     def __init__(self, host: str = "host", **kwargs: Any) -> None:
