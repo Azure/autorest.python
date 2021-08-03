@@ -208,7 +208,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     @property
     def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
-        return ARMChallengeAuthenticationPolicy if self.options.get('azure_arm', False) else BearerTokenCredentialPolicy
+        return ARMChallengeAuthenticationPolicy if self.options['azure_arm'] else BearerTokenCredentialPolicy
 
     @property
     def credential_schema_policy(self) -> CredentialSchemaPolicy:
